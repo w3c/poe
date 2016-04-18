@@ -10,8 +10,8 @@ var respecConfig = {
     // crEnd: "3000-01-01",
     editors: [
     {
-      name: "Michael Stiedl",
-      company: "Invited Expert"
+      name: "Michael Steidl",
+      company: "The Copyright Hub"
 		}],
     wg: "Permissions &amp; Obligations Expression Working Group",
     wgURI: "https://www.w3.org/2016/poe/",
