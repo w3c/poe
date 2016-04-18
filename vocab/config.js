@@ -1,0 +1,45 @@
+var respecConfig = {
+    specStatus: "ED",
+    shortName: "odrl-vocab",
+    //publishDate:  "2015-05-18",
+    //previousPublishDate: "2014-03-27",
+    //previousMaturity: "FPWD",
+    //previousURI: "http://www.w3.org/TR/2014/WD-tabular-data-model-20140327/",
+    edDraftURI: "https://w3c.github.io/poe/vocab/",
+    // lcEnd: "3000-01-01",
+    // crEnd: "3000-01-01",
+    editors: [
+     {   name:       "Bart",
+                    url:        "",
+                    company:    "",
+                    companyURL: "",
+                    mailto:     ""
+                },
+      {   name:       "Homer",
+                    url:        "",
+                    company:    "",
+                    companyURL: "",
+                    mailto:     ""
+                },
+         {   name:       "Lisa",
+                    url:        "",
+                    company:    "",
+                    companyURL: "",
+                    mailto:     ""
+                },
+      {   name:       "Marge",
+                    url:        "",
+                    company:    "",
+                    companyURL: "",
+                    mailto:     ""
+                }],
+    wg: "Permissions &amp; Obligations Expression Working Group",
+    wgURI: "https://www.w3.org/2016/poe/",
+    wgPublicList: "public-poe-comments",
+    wgPatentURI: "http://www.w3.org/2004/01/pp-impl/87755/status",
+    inlineCSS: true,
+    noIDLIn: true,
+    noLegacyStyle: false,
+    noRecTrack: true,
+    issueBase: "https://www.w3.org/2016/poe/track/issues/"
+};
