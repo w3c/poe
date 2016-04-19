@@ -9,10 +9,10 @@
                     mailto:     "r@iannel.la"
                 }
           ],
-          previousMaturity:     "WD",
-          previousPublishDate:  "2015-10-15",
+          previousMaturity:     "",
+          previousPublishDate:  "",
           previousURI:          "",
-          publishDate:          "2016-03-31",
+          publishDate:          "2016-04-19",
           edDraftURI:           "http://w3c.github.io/poe/model/",
           wg:                   "Permissions & Obligations Expression Working Group",
           wgURI:                "http://www.w3.org/poe/",

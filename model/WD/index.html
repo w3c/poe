@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Linux https://github.com/w3c/tidy-html5/tree/c63cc39" />
-    <meta content="width=device-width,initial-scale=1" name="viewport" />
     <title>ODRL Information Model</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
     <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
     <script class="remove" src="config.js"></script>
   </head>
-
 	
 <body>
 
@@ -23,7 +21,7 @@
 
 <section id="sotd">
 <p>
-  <b>This is a work in progress. No section should be considered final, and the absence of any content does not imply that such content is out of scope, or may not appear in the future. If you feel something should be covered, please <a href="mailto:public-poe-commenst@w3.org">tell us!</a></b>
+  <b>This is a work in progress. No section should be considered final, and the absence of any content does not imply that such content is out of scope, or may not appear in the future. If you feel something should be covered, please <a href="mailto:public-poe-comments@w3.org">tell us.</a></b>
 </p>
 
 <p>
@@ -35,58 +33,66 @@ This specification was derived from the ODRL Community Group's outcomes, and det
 
 <section class="informative">
 <h2>Introduction</h2>
+    
+<p>    
+The Web has provided the community with standardised mechanisms for numerous content-management services: publishing, distribution, consumption, describing, and sharing. However, the key area of permissions, obligations and licensing has not been addressed in formal Web standards to date. Content licenses, rights statements, permissions and obligations express the terms of usage for content. With a standard vocabulary, content owners can express terms and processing systems can determine what permissions and other terms are associated with a given resource or collection of resources.</p>
 
-<p>The W3C ODRL Community Group&#8217;s aim is to develop and promote an open international specification for Policy Language expressions. The ODRL Policy Language provides a flexible and interoperable information model to support transparent and innovative use of digital assets in the publishing, distribution and consumption of content, applications, and services across all sectors and communities. The ODRL Policy model is targeted to support the business models of open, educational, government, and commercial communities through Profiles that enhance the model to align to their requirements whilst providing a common semantic layer for interoperability.</p>
-<p>ODRL Version 2.1 is a major update for ODRL and supersedes Version 2.0 and Version 1.1. [[odrl]]</a></p>
-<p>The ODRL Core Model is designed to be independent from implementation mechanisms and is focussed on the optimal interoperable model and semantics to represent policy-based information.</p>
-<p>The following documents are part of the ODRL Version 2 series:</p>
-<ul>
-<li>ODRL V2 &#8211; Requirements [[odrl2-req]]. The Requirements document represents requirements for the language that have been gathered since ODRL Version 1.1 has been released. Not all requirements are aimed to be met.</li>
-<li>ODRL V2.1 &#8211; Core Model <em>[[odrl21-model]]</em></li>
-<li>ODRL V2.1 &#8211; Common Vocabulary. This document specifies the terms (vocabulary) used by the Core Model for policy expression needs across communities [[odrl21-vocab]]. (This was called the &#8220;data dictionary&#8221; previously.)</li>
-<li>ODRL V2.1 &#8211; XML Encoding. The XML Encoding document specifies the serialisation of the Core Model in XML [[odrl21-xml]].</li>
-<li>ODRL V2.1 &#8211; Ontology. The ODRL Ontology document will specify the serialisation of the Core Model in the W3C RDF/OWL Semantic Web languages [[odrl21-onto]].</li>
-<li>ODRL V2.1 &#8211; JSON Encoding. The JSON Encoding document specifies the serialisation of the Core Model in JSON [[odrl21-json]].</li>
-</ul>
-<p>The requirements for Version 2 are documented [[odrl2-req]] and will be directly referenced in this document to ensure that they have been adequately addressed (where applicable).</p>
-<p>The model shall be formally specified using UML notation [[!uml]] and shall utilise the key words &#8220;MUST&#8221;, &#8220;MAY&#8221;, &#8220;REQUIRED&#8221;, and &#8220;OPTIONAL&#8221; in accordance to [[!RFC2119]].</p>
-<p>To make keywords easily distinguishable, this document uses syntax highlighting (formatted coded typeface) to indicate Core Model entities, the entities&#8217; attributes, and concrete values for the attributes.</p>
-
-
-
-</section>
-
-
-
+<p>A permissions and obligations expression system should provide a flexible and interoperable information model that supports transparent and innovative (re)use of digital content across all sectors and communities. The underlying information model should support the business models of open, educational, government, and commercial communities through profiles that align with their specific requirements whilst retaining a common semantic layer for wider interoperability. The system should not, however, be the basis of legal compliance or enforcement mechanisms.</p>
+<p>
+A permissions and obligations expression language is composed of detailed terms that are both machine-processable and expressible in a form for human-consumption. Allowable actions, constraints, and requirements are expressed at a level enabling complex and business-specific expressions to be created from a vocabulary with specific semantics.</p>   
+    
 <section>
-<h3>Terminology</h3>
+<h2>W3C ODRL Community Group</h2>
+    
+<p>The basis for the deliverables for the Permissions &amp; Obligations Expression Working Group are the reports created by the W3C ODRL Community Group. The ODRL Community Group has developed the ODRL family of specifications to support transparent and innovative use of digital assets in the publishing, distribution and consumption of content. The ODRL specifications have been adpoted by a number of leading industry sectors, such as the <a href="http://technical.openmobilealliance.org/Technical/technical-information/release-program/current-releases/drm-v2-2"Mobile sector</a> and the <a href="http://dev.iptc.org/RightsML">News industry</a>.</p>
+<p>The final outputs of the ODRL Community Group were the ODRL Version 2.1 is was major update for ODRL and superseded the original ODRL Version 1.1 [[odrl]] (published as a W3C NOTE)</p>
+    
+<p>The following documents are part of the ODRL Community Group report series:</p>
+<ul>
+<li>ODRL V2 Requirements [[odrl2-req]]</li>
+<li>ODRL V2.1 Core Model <[[odrl21-model]]</li>
+<li>ODRL V2.1 Common Vocabulary [[odrl21-vocab]]</li>
+<li>ODRL V2.1 XML Encoding [[odrl21-xml]]</li>
+<li>ODRL V2.1 Ontology [[odrl21-onto]]</li>
+<li>ODRL V2.1 JSON Encoding [[odrl21-json]]</li>
+</ul>
+<p>The ODRL Community Group reports are listed here for provenance purposes. All new ODRL implementations are expected to use the deliverables of the Permissions &amp; Obligations Expression Working Group. </p>
+    
+</section>
+    
+ <section>
+<h2>Working Group Deliverable</h2>
+   
+<p>
+  The mission of the Permissions &amp; Obligations Expression Working Group was to define a semantic data model for expressing permissions and obligations statements for digital content based on the ODRL V2.1 Core Model <[[odrl21-model]] (as the baseline information model). This recommendation is the outcome of that process.
+   </p>
 
-<dl>
-
-  <dt><dfn data-lt="Policy|Policies">Policy</dfn></dt>
-  <dd>txt</dd>
-  
-</dl>
+<p>The ODRL information model is formally specified using UML notation [[!uml]] and utilises the key words &#8220;MUST&#8221;, &#8220;MAY&#8221;, &#8220;REQUIRED&#8221;, and &#8220;OPTIONAL&#8221; in accordance to [[!RFC2119]]. To make keywords easily distinguishable, this document uses syntax highlighting (formatted coded typeface) to indicate model entities, attributes, and concrete values for the attributes.</p>
 
 </section>
+
+</section>
+
 
 
 <section>
 <h2>Core Information Model</h2>
 
 
-<p>The basic context of an ODRL Policy is that only an explicitly permitted use may be executed. Any use not explicitly permitted is prohibited by default. Based on that context, an ODRL Policy must contain at least one Permission and may contain Prohibitions. An ODRL Policy only permits the action explicitly specified in a Permission and all other actions are implicitly prohibited. An action defined in a Prohibition should only refine (or directly relate to) the semantics of an action defined in one of the Permissions in the<br />
-ODRL Policy.</p>
+<p>The basic context of an ODRL Policy is that only an explicitly permitted use may be executed. Any use not explicitly permitted is prohibited by default. Based on that context, an ODRL Policy must contain at least one Permission and may contain Prohibitions. An ODRL Policy only permits the action explicitly specified in a Permission and all other actions are implicitly prohibited. An action defined in a Prohibition should only refine (or directly relate to) the semantics of an action defined in one of the Permissions in the ODRL Policy.</p>
 <p>For example, an ODRL Policy that has the action &#8220;present&#8221; Permission and may also have the action &#8220;print&#8221; Prohibition (as these actions are related hierarchically in the ODRL Common Vocabulary).</p>
 <p>Note that ODRL Profiles can be developed and used to refine the basic context of an ODRL Policy. Hence, the application of an ODRL Profile must be understood by the consuming community and systems.</p>
-<p>Figure 2.1 below shows the ODRL Core Model. The <code>Policy</code> is the central entity that holds an ODRL policy together. </p>
-<p>A <code>Permission</code> <em>allows</em> a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g. &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> like &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g. &#8220;<code>assigner</code> VirtualMusicShop grants the <code>Permission</code> to <code>assignee</code> Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
-<p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MAY be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 EUR in order to get the <code>Permission</code> to play abc.mp3&#8243;.</p>
-<p>The <code>Prohibition</code> entity is used in the same way as <code>Permission</code>, with the two differences that it does not refer to <code>Duties</code> and (obviously) that it <em>forbids</em> the <code>Action</code>, e.g. &#8220;Alice is forbidden to use abc.mp3 commercially&#8221;.</p>
+<p>The figure below shows the ODRL Core Model. The <code>Policy</code> is the central entity that holds an ODRL policy together. </p>
+
 <figure>
 	<img src="fig/00Model.png" alt="ODRL Information Model" width="600"/>
     <figcaption>ODRL Core Model</figcaption>
 </figure>
+
+
+<p>A <code>Permission</code> <em>allows</em> a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g. &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> like &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g. &#8220;<code>assigner</code> VirtualMusicShop grants the <code>Permission</code> to <code>assignee</code> Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
+<p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MAY be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 EUR in order to get the <code>Permission</code> to play abc.mp3&#8243;.</p>
+<p>The <code>Prohibition</code> entity is used in the same way as <code>Permission</code>, with the two differences that it does not refer to <code>Duties</code> and (obviously) that it <em>forbids</em> the <code>Action</code>, e.g. &#8220;Alice is forbidden to use abc.mp3 commercially&#8221;.</p>
 
 <p>The following sections describes each entity of the Core Model in greater detail.</p>
 
@@ -156,7 +162,7 @@ the following values:</p>
 <p>
 The <code>profile</code> attribute in the <code>Policy</code> entity is used to indicate the identifier (URI) of the ODRL Profile for which the policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile &#8211; and all the rules from the Profile MUST apply to the policy expression. If multiple ODRL Profiles are required, then it is recommended that a new identifier be created to identify the combination of Profiles (and document the combined Profiles).</p>
 <p>
-Since the ODRL Core Model and Common Vocabulary <a href="#section-References">[ODRL-VOCAB]</a> represents broad needs for policy expressibility, different communities will require less or more concepts from the Core Model and terms from the Common Vocabulary. Community profiles of the ODRL model are expected to be developed that adequately document these requirements in respect to the Core Model and Vocabulary. Some requirements for communities developing ODRL Profiles include: </p>
+Since the ODRL Vocabulary represents broad needs for policy expressibility, different communities will require less or more concepts from the Core Model and terms from the Common Vocabulary. Community profiles of the ODRL model are expected to be developed that adequately document these requirements in respect to the Core Model and Vocabulary. Some requirements for communities developing ODRL Profiles include: </p>
 <ul>
 <li>Document any additions to the Core Model</li>
 <li>Document any aspects of the Core Model that will have different default values or interpretations</li>
@@ -165,7 +171,7 @@ Since the ODRL Core Model and Common Vocabulary <a href="#section-References">[O
 <li>Document deprecated Vocabulary terms</li>
 <li>Declare the ODRL Profile identifier (URI)</li>
 <li>Declare your communities namespace URI (see the various Encoding specifications)</li>
-<li>Share the Community ODRL Profile with the W3C ODRL community for feedback and comments</li>
+<li>Share the Community ODRL Profile with the W3C ODRL Community Group for feedback and comments</li>
 </ul>
 <p>It is recommended that the ODRL Profile URI be the same as the Namespace URI, but this is not mandatory.</p>
 </section>
@@ -466,15 +472,15 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 <section class="appendix">
 <h3>Acknowledgements</h3>
 
-<p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="http://">ODRL Initiative</a>.  The <a href="">output</a> of the Community Group was fundamental to the current  model.  In particular the editors would like to thank Susanne Guth, Daniel Paehler, and Andreas Kasten for their past editorial contributions.
+<p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>.  The output of the ODRL Community Group was fundamental to the current model.  In particular the editors would like to thank Susanne Guth, Daniel Paehler, and Andreas Kasten for their past editorial contributions.
 </p>
 
-<p>The following people have been instrumental in providing thoughts, feedback, reviews, content, criticism and input in the creation of this specification:
+<p>The following people have been instrumental in providing thoughts, feedback, reviews, content, criticism and input in the creation of this specification:</p>
 
 <div style="margin-left: 3em">
-	Michael Steidl, Vicky Weissman, Mark Strembeck, Alapan Arnab, Steven Rowat, Eetu Luoma, Jaime Delgado, Ruediger Grimm, Helge Hundacker, Stuart Myles, Francis Cave, Rigo Wenning, Hassan Abdel-Rahman, Jonas Zitz
+    <p>Michael Steidl, Vicky Weissman, Mark Strembeck, Alapan Arnab, Steven Rowat, Eetu Luoma, Jaime Delgado, Ruediger Grimm, Helge Hundacker, Stuart Myles, Francis Cave, Rigo Wenning, Hassan Abdel-Rahman, Jonas Zitz</p>
 </div>
-</p>
+
 </section>
 
 <section class="appendix">
@@ -483,7 +489,7 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 <p>
 Significant technical changes in this specification from the ODRL Community Group's draft are:
 <ul>
-  <li>Change (<a href="#annotations">link</a>)</li>
+  <li>Change x</li>
 </ul>
 </p>
 
