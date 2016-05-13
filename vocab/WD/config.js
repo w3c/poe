@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    //publishDate:  "2015-05-18",
+    publishDate:  "2016-05-13",
     //previousPublishDate: "",
     //previousMaturity: "",
     //previousURI: "",
@@ -30,7 +30,14 @@ var respecConfig = {
                     url:        "https://www.linkedin.com/in/stuart-myles-60a985",
                     company:    "Invited Expert",
                     mailto:     "SMyles@ap.org"
-                }],
+                },
+     {  name:       "James Birmingham",
+                    url:        "https://uk.linkedin.com/in/james-birmingham-1a49a91",
+                    company:    "Digital Catapult",
+                   companyURL: "http://www.digicatapult.org.uk",
+                    mailto:     "james.birmingham@digicatapult.org.uk"
+                }
+    ],
     wg: "Permissions &amp; Obligations Expression Working Group",
     wgURI: "https://www.w3.org/2016/poe/",
     wgPublicList: "public-poe-comments",
