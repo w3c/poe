@@ -64,6 +64,11 @@ This specification was derived from the ODRL Community Group's outcomes, and det
 
 
 <p>The basic context of an ODRL Policy is that only an explicitly permitted use may be executed. Any use not explicitly permitted is prohibited by default. Based on that context, an ODRL Policy must contain at least one Permission and may contain Prohibitions. An ODRL Policy only permits the action explicitly specified in a Permission and all other actions are implicitly prohibited. An action defined in a Prohibition should only refine (or directly relate to) the semantics of an action defined in one of the Permissions in the ODRL Policy.</p>
+    
+        <div class="issue">
+          <p>The above says that "an ODRL Policy must contain at least one Permission" but the UML model shows 0..* </p>
+    </div>
+    
 <p>For example, an ODRL Policy that has the action &#8220;present&#8221; Permission and may also have the action &#8220;print&#8221; Prohibition (as these actions are related hierarchically in the ODRL Vocabulary).</p>
 <p>Note that ODRL Profiles can be developed and used to refine the basic context of an ODRL Policy. Hence, the application of an ODRL Profile must be understood by the consuming community and systems.</p>
 <p>The figure below shows the ODRL Information Model. The <code>Policy</code> is the central entity that holds an ODRL policy together. </p>
@@ -96,6 +101,11 @@ This specification was derived from the ODRL Community Group's outcomes, and det
 </ul>
 <p>The <code>uid</code> attribute MUST be a unique identifier.</p>
 <p>The range of values for the <code>Policy</code> entity&#8217;s <code>type</code> attribute will be described in the ODRL Vocabulary document or in community profiles. This value MAY also impose further constraints on the Information Model, such as are exemplified in the Scenarios for types <code>Offer</code> and <code>Agreement</code>. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities.</p>
+    
+      <div class="issue">
+          <p>Conflict is not only used for resolving merge issues but also between perms/prohibits in the same policy. </p>
+    </div>
+    
 <p>The <code>conflict</code> attribute is used to resolve conflicts arising from the merging of policies, specifically when there are conflicting <code>Action</code>s in the <code>Permission</code>s and <code>Prohibition</code>s. If present, the <code>conflict</code> attribute MUST take one of the following values:</p>
 <ul>
 <li><code>perm</code>: the <code>Permission</code>s will always takes precedence</li>
@@ -103,6 +113,12 @@ This specification was derived from the ODRL Community Group's outcomes, and det
 <li><code>invalid</code>: the policy is not valid</li>
 </ul>
 <p>If the <code>conflict</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>conflict</code> attribute is <code>invalid</code>.</p>
+    
+      <div class="issue">
+          <p>Need to clarify conflicting values of the conflict attribute. That is, one policy says <code>perm</code> and the other <code>prohibit</code>. </p>
+    </div>
+    
+    
 <p>The <code>undefined</code> attribute is used to indicate how to support <code>Action</code>s that are not part of any profile in the policy expression system. If present, the <code>undefined</code> attribute MUST take one of<br />
 the following values:</p>
 <ul>
@@ -119,6 +135,11 @@ the following values:</p>
 <section>
 <h4>Inheritance</h4>
 
+    <div class="issue">
+        <p>We need to make clear exactly what gets inherited and what gets overriden (if anything)</p>
+    </div>
+    
+    
 <p>The <code>inheritAllowed</code> attribute in the <code>Policy</code> entity is used to indicate if the <code>Policy</code> expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> attribute MUST take one of the following values:</p>
 <ul>
 <li><code>true</code>: the <code>Policy</code> expression can be used for inheritance</li>
@@ -415,6 +436,10 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 <h3>Inheritance</h3>
 <p>The following shows the instance of a (child) <code>Policy</code> <code>http//example.com/policy:9999</code> inheriting from another (parent) <code>Policy</code> <code>http//example.com/policy:5531</code>. The <code>inheritFrom</code> attribute of the (child) <code>Policy</code> has the same identifier as the (parent) <code>Policy</code>. In this inheritance example, the (parent) <code>Policy</code> allows the <code>Party</code> <code>http//example.com/billie:888</code> to <code>print</code> the (parent&#8217;s) <code>target</code> <code>Asset</code>. The (child) <code>Policy</code> allows the <code>Party</code> <code>http//example.com/class:IT01</code> (a group of people) to <code>display</code> the (child&#8217;s) <code>target</code> <code>Asset</code>. Since the (child) <code>Policy</code> also inherits from the (parent) <code>Policy</code>, then the <code>Party</code> <code>http//example.com/class:IT01</code> can also <code>print</code> the (parent&#8217;s) <code>target</code> <code>Asset</code>.</p>
 
+    <div class="issue">
+          <p>Is this last statement true? </p>
+    </div>
+    
 <figure>
 	<img src="fig/09Inherit.png" alt="An instance of an Inheritance Policy" width="700"/>
     <figcaption>An instance of an Inheritance Policy</figcaption>
@@ -455,8 +480,7 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 <h2>Experimental Features</h2> 
         
      <div class="issue">
-        <p class="issue-title marker"><span>Should this section be included in a W3C REC?</span></p>
-        <p>We need to discuss and review.</p>
+        <p>Should this section be included in a W3C REC?</p>
     </div>
     
  <p>This section contains advanced ODRL features. Although not part of the normative specification, they provide an opportunity for communities to experiment with and provide feedback on experiences that may be included in future ODRL versions.</p>
@@ -524,8 +548,7 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 <p>By implementing <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> as subclasses of <code><em>Rule</em></code>, the redundancy of having very similar, but separately developed classes in an application&#8217;s source code can be avoided. Furthermore, <code><em>Rule</em></code> makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by default.</p>
     
        <div class="issue">
-        <p class="issue-title marker"><span>Include Rule in the normative Information Model?</span></p>
-        <p>Rule appears in the Ontology as an abstract class already</p>
+        <p>Include Rule in the normative Information Model? Rule appears in the Ontology as an abstract class already</p>
     </div>
     
 </section>
@@ -552,8 +575,7 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 
 <h2>Privacy Considerations</h2>
     <div class="note">
-        <p class="note-title marker"><span>Need to add this section</span></p>
-        <p>For the W3C Horizontal Review</p>
+        <p>Need to add this section for the W3C Horizontal Review</p>
     </div>
 </section>
 
