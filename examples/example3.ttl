@@ -1,0 +1,37 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+<http://example.com/policy:9001>
+	a odrl:Agreement ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:target <http://example.com/music:4545> ;
+		odrl:assigner <http://example.com/sony:10> ;
+		odrl:assignee <http://example.com/billie:888> ;
+		odrl:action odrl:play ;
+		odrl:duty _:requirements
+	] ;
+	odrl:permission [
+		odrl:target <http://example.com/music:4545> ;
+		odrl:assigner <http://example.com/sony:10> ;
+		odrl:assignee <http://example.com/billie:888> ;
+		odrl:action odrl:copy ;
+		odrl:duty _:requirements ;
+		odrl:constraint [
+			a odrl:Constraint ;
+			odrl:count 1 ;
+			odrl:operator odrl:lteq
+		]
+	] .
+
+_:requirements
+	a odrl:Duty ;
+	odrl:action odrl:pay ;
+	odrl:constraint [
+		a odrl:Constraint ;
+		odrl:payAmount 50.00 ;
+		odrl:operator odrl:eq ;
+		odrl:unit <http://cvx.iptc.org/iso4217a:AUD>
+	] .
+
+<http://example.com/sony:10> a odrl:Party .
+<http://example.com/billie:888> a odrl:Party .

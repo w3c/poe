@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:odrl="http://www.w3.org/ns/odrl/2/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:x="http://example.com/x#">
+  <odrl:Set rdf:about="http://example.com/policy:881212">
+    <odrl:permission>
+      <odrl:Permission>
+        <x:collection rdf:resource="http://example.com/x/database"/>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/index"/>
+        <odrl:target rdf:resource="http://example.com/archive/2010"/>
+      </odrl:Permission>
+    </odrl:permission>
+  </odrl:Set>
+  <rdf:Description rdf:about="http://example.com/x#collection">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/odrl/2/relation"/>
+  </rdf:Description>
+</rdf:RDF>

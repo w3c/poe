@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:odrl="http://www.w3.org/ns/odrl/2/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <odrl:Offer rdf:about="http://example.com/policy:0231">
+    <odrl:permission>
+      <odrl:Permission>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/play"/>
+        <odrl:assigner rdf:resource="http://example.com/sony:10"/>
+        <odrl:duty rdf:nodeID="requirements"/>
+        <odrl:target rdf:resource="http://example.com/music:4545"/>
+      </odrl:Permission>
+    </odrl:permission>
+    <odrl:permission>
+      <odrl:Permission>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/copy"/>
+        <odrl:assigner rdf:resource="http://example.com/sony:10"/>
+        <odrl:constraint>
+          <odrl:Constraint>
+            <odrl:count rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</odrl:count>
+            <odrl:operator rdf:resource="http://www.w3.org/ns/odrl/2/lteq"/>
+          </odrl:Constraint>
+        </odrl:constraint>
+        <odrl:duty rdf:nodeID="requirements"/>
+        <odrl:target rdf:resource="http://example.com/music:4545"/>
+      </odrl:Permission>
+    </odrl:permission>
+  </odrl:Offer>
+  <odrl:Party rdf:about="http://example.com/sony:10"/>
+  <odrl:Duty rdf:nodeID="requirements">
+    <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/pay"/>
+    <odrl:constraint>
+      <odrl:Constraint>
+        <odrl:operator rdf:resource="http://www.w3.org/ns/odrl/2/eq"/>
+        <odrl:payAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.00</odrl:payAmount>
+        <odrl:unit rdf:resource="http://cvx.iptc.org/iso4217a:AUD"/>
+      </odrl:Constraint>
+    </odrl:constraint>
+  </odrl:Duty>
+</rdf:RDF>

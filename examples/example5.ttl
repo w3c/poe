@@ -1,0 +1,15 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/policy:0811>
+	a odrl:Ticket ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:play ;
+		odrl:target <http://example.com/game:4589> ;
+		odrl:constraint [
+			a odrl:Constraint ;
+			odrl:operator odrl:lteq ;
+			odrl:dateTime "2010-12-31"^^xsd:date
+		]
+	] .

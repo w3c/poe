@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:odrl="http://www.w3.org/ns/odrl/2/"
+   xmlns:p3p="http://www.w3.org/2002/01/p3prdfv1#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <odrl:Party rdf:about="http://example.com/billie:888"/>
+  <odrl:Party rdf:about="http://example.com/gov:health:au"/>
+  <odrl:Privacy rdf:about="http://example.com/policy:1111">
+    <odrl:permission>
+      <odrl:Permission>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/distribute"/>
+        <odrl:assignee rdf:resource="http://example.com/gov:health:au"/>
+        <odrl:assigner rdf:resource="http://example.com/billie:888"/>
+        <odrl:constraint>
+          <odrl:Constraint>
+            <odrl:operator rdf:resource="http://www.w3.org/ns/odrl/2/eq"/>
+            <odrl:purpose rdf:resource="http://www.w3.org/2002/01/p3prdfv1#contact"/>
+          </odrl:Constraint>
+        </odrl:constraint>
+        <odrl:duty>
+          <odrl:Duty>
+            <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/delete"/>
+            <odrl:constraint>
+              <odrl:Constraint>
+                <odrl:dateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">P30D</odrl:dateTime>
+                <odrl:operator rdf:resource="http://www.w3.org/ns/odrl/2/eq"/>
+              </odrl:Constraint>
+            </odrl:constraint>
+          </odrl:Duty>
+        </odrl:duty>
+        <odrl:target rdf:resource="http://example.com/billie:888:personal-data"/>
+      </odrl:Permission>
+    </odrl:permission>
+  </odrl:Privacy>
+</rdf:RDF>
