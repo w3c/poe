@@ -54,26 +54,54 @@ This specification was derived from the ODRL Community Group's outcomes, and det
        <section id="Asset">
       <h4>Asset</h4> 
        <p class="advisement"><b>Label: </b>Asset<br/>
-       <b>Identifier: </b><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a><br/>
+       <b>Identifier: </b>
+           <a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a><br/>
        <b>Definition: </b>Asset is anything which can be subject to a policy<br/>  
-        <b>Comment: </b>Asserting that something the target of a policy implies that it is an Asset</p>
-        <p class="advisement"><i>Ontology</i><br/>
+        <b>Comment: </b>Asserting that something the target of a policy implies that it is an Asset<br/>
+        
        <b>Type: </b>owl:Class<br/>
        <b>SubClass Of: </b><a href="#Policy">Policy</a><br/>
        <b>In Range Of: </b>output, relation, target</p>
     </section> 
   
       <section id="Policy">
-      <h4>Policy</h4> 
-       <p class="advisement"><b>Label: </b>Policy<br/>
-       <b>Identifier: </b><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a><br/>
-           <b>Definition: </b>A top level entity for describing policies</p>
-        <p class="advisement"><i>Ontology</i><br/>
-       <b>Type: </b>owl:Class<br/>
-        <b>Parent Class: </b><a href="#Asset">Asset</a><br/>
-       <b>SubClass Of: </b>Agreement, Offer, Privacy, Request, Set, Ticket<br/>
-       <b>In Range Of: </b>inheritFrom<br/>   
-       <b>Properties: </b>conflict, inheritAllowed, inheritFrom, permission, profile, prohibition, undefined</p>
+      
+    <h4>Policy</h4>          
+        <table class="def propdef">
+            <tr>
+               <td><b>Label:</b></td>
+               <td>Policy</td>
+        </tr> 
+              <tr>
+               <td><b>Identifier:</b></td>
+               <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td>
+        </tr> 
+              <tr>
+               <td><b>Definition:</b></td>
+               <td>A top level entity for describing policies</td>
+        </tr> 
+              <tr>
+               <td><b>Type: </b></td>
+               <td>owl:Class</td>
+        </tr> 
+              <tr>
+               <td><b>Parent Class:</b></td>
+               <td><a href="#Asset">Asset</a></td>
+        </tr> 
+              <tr>
+               <td><b>SubClass Of:</b></td>
+               <td>Agreement, Offer, Privacy, Request, Set, Ticket</td>
+        </tr> 
+              <tr>
+               <td> <b>In Range Of:</b></td>
+               <td>inheritFrom</td>
+        </tr> 
+              <tr>
+               <td><b>Properties:</b></td>
+               <td>conflict, inheritAllowed, inheritFrom, permission, profile, prohibition, undefined</td>
+        </tr> 
+    </table>         
+
     </section> 
        
         
@@ -91,20 +119,64 @@ This specification was derived from the ODRL Community Group's outcomes, and det
    <section id="action">
      <h3>Actions</h3>  
    <p>For permissions and prohibitions, and duties</p>
-   <section id="use">
+  
+    <section id="use">
+        
     <h4>Use</h4> 
-       <p class="advisement"><b>Label: </b>use<br/>
-       <b>Identifier: </b><a href="http://www.w3.org/ns/odrl/2/use">http://www.w3.org/ns/odrl/2/use</a><br/>
-       <b>Definition: </b>The Assigner permits/prohibits the Assignee to use the Asset as agreed<br/>  
-       <b>Comment: </b>More details may be defined in the applicable agreements or under applicable commercial laws. Refined types of actions can be expressed by the narrower actions.</p>
-    <div class="example">
-        <p class="example-title marker"><span>Ontology</span></p>
-       <p>
-       <b>Type: </b>owl:Class<br/>
-       <b>SubClass Of: </b>Action<br/>
-       <b>In SKOS Concept Scheme: </b>actions<br/>
-        <b>Narrower SKOS Concepts: </b>aggregate, annotate, anonymize, archive, concurrentUse, derive, digitize, distribute, execute, grantUse, index, install, modify, move, present, read, reproduce, textToSpeech, transform, translate, writeTo</p>
-    </div>      
+        
+        <table>
+        <tr style="vertical-align: top;">
+         <td>
+             
+        <table class="def propdef">
+            <tr>
+               <td><b>Label:</b></td>
+               <td>Use</td>
+        </tr> 
+              <tr>
+               <td><b>Identifier:</b></td>
+               <td><a href="http://www.w3.org/ns/odrl/2/use">http://www.w3.org/ns/odrl/2/use</a></td>
+        </tr> 
+              <tr>
+               <td><b>Definition:</b></td>
+               <td>The Assigner permits/prohibits the Assignee to use the Asset as agreed</td>
+        </tr>
+            <tr>
+               <td><b>Comment:</b></td>
+               <td>More details may be defined in the applicable agreements or under applicable commercial laws. Refined types of actions can be expressed by the narrower actions.</td>
+        </tr>
+        </table>
+        
+            </td>
+            <td>
+                
+        <table class="def propdef">
+              <tr>
+               <td><b>Type: </b></td>
+               <td>owl:Class</td>
+        </tr> 
+              <tr>
+               <td><b>SubClass:</b></td>
+               <td><a href="#Action">Action</a></td>
+        </tr> 
+              <tr>
+               <td><b>SKOS Concept:</b></td>
+               <td>actions</td>
+        </tr> 
+              <tr>
+               <td> <b>Narrower SKOS Concepts:</b></td>
+               <td>aggregate, annotate, anonymize, archive, concurrentUse, derive, digitize, distribute, execute, grantUse, index, install, modify, move, present, read, reproduce, textToSpeech, transform, translate, writeTo</td>
+        </tr> 
+              <tr>
+               <td><b>Properties:</b></td>
+               <td>conflict, inheritAllowed, inheritFrom, permission, profile, prohibition, undefined</td>
+        </tr> 
+    </table> 
+      
+           </td>
+        </tr>
+    </table>    
+            
   </section> 
 
        
