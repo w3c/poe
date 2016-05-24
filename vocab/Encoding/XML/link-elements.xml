@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" type="http://www.w3.org/ns/odrl/2/Set" uid="http://example.com/policy:Z1XZ">
+    <o:permission>
+        <o:asset id="as1" uid="http://example.com/music:1234908" relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action id="ac1" name="http://www.w3.org/ns/odrl/2/play"/>
+        <o:constraint id="c1" name="http://www.w3.org/ns/odrl/2/spatial" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="http://www.itu.int/tML/tML-ISO-3166:it"/>
+        <o:party id="p1" uid="http://example.com/sony:10" function="http://www.w3.org/ns/odrl/2/assigner"/>
+        <o:party id= "p2" uid="http://example.com/billie:888" function="http://www.w3.org/ns/odrl/2/assignee"/>
+    </o:permission>
+    <o:prohibition>
+        <o:asset idref="as1"/>
+        <o:action idref="ac1"/>
+        <o:constraint  name="http://www.w3.org/ns/odrl/2/spatial" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="http://www.itu.int/tML/tML-ISO-3166:fr"/>
+        <o:party idref="p1"/>
+        <o:party idref="p2"/>
+    </o:prohibition>
+</o:Policy>
