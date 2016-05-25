@@ -1,42 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta  content="text/html; charset=utf-8"  http-equiv="content-type">
-    <meta  name="generator"  content="HTML Tidy for HTML5 (experimental) for Linux https://github.com/w3c/tidy-html5/tree/c63cc39">
-    <meta  content="width=device-width,initial-scale=1"  name="viewport">
-    <title>Permissions &amp; Obligations Expression: Use Cases &amp;
-      Requirements</title>
-    <script  class="remove"  src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
-    <script  class="remove"  src="config.js"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>POE Use Cases and Requirements</title>
+      <script src='https://www.w3.org/Tools/respec/respec-w3c-common'
+         async="async" class='remove'></script>
+      <script class='remove'>
+         var respecConfig = {
+         	specStatus: "ED",
+         	shortName:  "poe-ucr",
+         	edDraftURI: "http://w3c.github.io/poe/poe-ucr/",
+			      noRecTrack: true,
+      diffTool: "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
+         	editors: [{   name:       "Michael Steidl",
+         	company:    "The Copyright Hub",
+         	w3cid: "-" },
+         	{   name:       "Simon Steyskal",
+         	url:        "http://steyskal.info/",
+         	company:    "WU Vienna/Siemens AG",
+         	w3cid: "73545" },
+         	{   name:       "Benedict Whittam Smith",
+         	company:    "Thomson Reuters",
+         	w3cid: "-" }
+         	],
+         	wg:           "Permissions and Obligations Expression Working Group",
+         	wgURI:        "https://www.w3.org/2016/poe",
+         	wgPublicList: "public-poe-wg",
+         	wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/87755/status"
+         };
+      </script>
   </head>
   <body>
     <section  id="abstract">
       <p>TBD1</p>
     </section>
-    <section  id="sotd">
-      <p>TBD</p>
-    </section>
+<section id='sotd'>
+			</section>
     <section  id="intro"  class="informative">
-      <h2>Introduction</h2>
+      <h1>Introduction</h1>
     </section>
     <section  id="UseCases">
-      <h2>Use Cases</h2>
-      <section  id="uc1">
-        <h3>POE.UC.01 Permissions and obligations for language resources</h3>
+      <h1>Use Cases</h1>
+
+	  <section>
+				<h2>
+					<dfn>POE.UC.01</dfn>: Permissions and obligations for language resources</h2>
         <ul>
-        <li> <b>Title</b>: Permissions and Obligations for Language Resources 
+        <li> <strong>Title</strong>: Permissions and Obligations for Language Resources 
         </li>
-        <li> <b>Contributor</b>: Víctor Rodríguez on behalf of <a rel="nofollow" class="external text" href="https://www.w3.org/community/ld4lt/">W3C Linked Data For Language Technology Community Group</a>
+        <li> <strong>Contributor</strong>: Víctor Rodríguez on behalf of <a rel="nofollow" class="external text" href="https://www.w3.org/community/ld4lt/">W3C Linked Data For Language Technology Community Group</a>
         </li>
-        <li> <b>Industry</b>: Language resources industry 
+        <li> <strong>Industry</strong>: Language resources industry 
         </li>
-        <li> <b>Description</b>: Language resources (lexicons, dictionaries, machine translation, etc.) are collected in repositories. Publishers would like to express what is permitted and what it is not.
+        <li> <strong>Description</strong>: Language resources (lexicons, dictionaries, machine translation, etc.) are collected in repositories. Publishers would like to express what is permitted and what it is not.
         <p>Language resources are highly valuable resources now being massively translated to Linked Data. See the diagram here: <a rel="nofollow" class="external text" href="http://linghub.lider-project.eu/llod-cloud">Linguistic Linked Data Cloud</a>
         Different Language Resource Catalogs exist, like the one of <a rel="nofollow" class="external text" href="http://clarin.eu/">CLARIN</a>, or the one of <a rel="nofollow" class="external text" href="http://metashare.elda.org/">META-SHARE</a>, LRMAP, Linghub, etc. 
         These resources need to be browswed and queried, and the permissions information must be in a machine-readable form in order to facilitate search-by-permission and in order to allow the automated processing of permission expressions.
         </p>
         </li>
-        <li> <b>POE requirements</b>: 
+        <li> <strong>POE requirements</strong>: 
         <ol>
         <li> All the requirements of ODRL
         </li>
