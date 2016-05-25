@@ -8,11 +8,14 @@ var respecConfig = {
     edDraftURI: "https://w3c.github.io/poe/ucr/",
     // lcEnd: "3000-01-01",
     // crEnd: "3000-01-01",
-    editors: [
-    {
-      name: "Michael Steidl",
-      company: "The Copyright Hub"
-		}],
+   editors: [{   name:       "Michael Steidl",
+         	company:    "The Copyright Hub"},
+         	{   name:       "Simon Steyskal",
+         	url:        "http://steyskal.info/",
+         	company:    "WU Vienna/Siemens AG"},
+         	{   name:       "Benedict Whittam Smith",
+         	company:    "Thomson Reuters"}
+         	],
     wg: "Permissions &amp; Obligations Expression Working Group",
     wgURI: "https://www.w3.org/2016/poe/",
     wgPublicList: "public-poe-comments",
