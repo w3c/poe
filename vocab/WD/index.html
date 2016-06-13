@@ -1,220 +1,1709 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Linux https://github.com/w3c/tidy-html5/tree/c63cc39" />
-    <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <title>ODRL Vocabulary &amp; Expression</title>
-    <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
-    <script class="remove" src="config.js"></script>
-  <style>
+	<head>
+		<meta charset="utf-8">
+		<title>ODRL Version 3.0</title>
+		<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+		<meta content="width=device-width,initial-scale=1" name="viewport" />
+		<script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
+		<script class="remove" src="config.js"></script>
+		<style>
 .nanotabs > ul li { float:left; list-style:none; }
 .nanotabs > ul li a { display:block; padding:4px 6px; margin-right: 3px; border-left: 1px solid #b9ab2d; border-right: 1px solid #b9ab2d; border-top: 1px solid #b9ab2d; border-collapse: collapse; background:#fcfaee; color:#b9ab2d; font-family: sans-serif;
  text-decoration:none; }
 .nanotabs > ul li a:hover { background:#FFFCE5; color:#550; }
 .nanotabs > ul li a.selected { background:#555; color:#FFF; }
-  </style>     
+		</style>
+	</head>
+	<body>
+<section id="abstract">
+ 
+    <p>A permissions and obligations expression system should provide a flexible and interoperable information model that supports transparent and innovative use and resue of digital content across all sectors and communities. The ODRL Information Model  supports the business models of open, educational, government, and commercial communities through profiles that align with their specific requirements whilst retaining a common semantic layer for cross-domain interoperability.</p>
+  
+<h2>Relationship to the W3C ODRL Community Group Reports</h2>
 
-</head>
     
-  <body>
-    <section id="abstract">
-        
-    <div class="issue">
-        <p class="issue-title marker"><span>DO NOT QUOTE</span></p>
-        <p>This document is currently experimental</p>
-    </div>    
-        
-    </section>
+<p>The basis for the deliverables for the Permissions &amp; Obligations Expression Working Group are the reports created by the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a>. The ODRL Community Group has developed a family of specifications to support transparent and innovative use of digital assets in the publishing, distribution and consumption of content. The ODRL specifications have been adpoted by a number of leading industry sectors, such as the <a href="http://technical.openmobilealliance.org/Technical/technical-information/release-program/current-releases/drm-v2-2">Mobile sector</a> and the <a href="http://dev.iptc.org/RightsML">News industry</a>.</p>
+<p>The outputs of the ODRL Community Group were the ODRL Version 2.1 specifications that were a major update for ODRL and superseded the original ODRL Version 1.1 [[odrl]] (published as a W3C NOTE)</p>
+    
+<p>The following documents are part of the ODRL Community Group report series:</p>
+<ul>
+<li>ODRL V2 Requirements [[odrl2-req]]</li>
+<li>ODRL V2.1 Core Model [[odrl21-model]]</li>
+<li>ODRL V2.1 Common Vocabulary [[odrl21-vocab]]</li>
+<li>ODRL V2.1 XML Encoding [[odrl21-xml]]</li>
+<li>ODRL V2.1 Ontology [[odrl21-onto]]</li>
+<li>ODRL V2.1 JSON Encoding [[odrl21-json]]</li>
+</ul>
 
-    <section id="sotd">
-    <p>
-  <b>This is a work in progress. No section should be considered final, and the absence of any content does not imply that such content is out of scope, or may not appear in the future. If you feel something should be covered, please <a href="mailto:public-poe-commenst@w3.org">tell us!</a></b>
+ <p>
+This specification was derived from the ODRL Community Group's outcomes, and details of the differences are maintained in the <a href="#community">Changes from the ODRL Community Group Reports</a> Appendix.
 </p>
-
+    <p>All new ODRL implementations are expected to use the deliverables of the Permissions &amp; Obligations Expression Working Group. </p>
+</section>
+<section id="sotd">
 <p>
-This specification was derived from the ODRL Community Group's outcomes, and details of the differences between the two are maintained in the <a href="#acknowledgements">Acknowledgement</a> appendix.
+  <b>This is a work in progress. No section should be considered final, and the absence of any content does not imply that such content is out of scope, or may not appear in the future. If you feel something should be covered, please <a href="mailto:public-poe-comments@w3.org">tell us.</a></b>
 </p>
-    </section>
+
+</section>
+<section class="informative">
+<h2>Introduction</h2>   
     
-    <section id="intro" class="informative">
-      <h2>Introduction</h2>
-    </section>
-
-    <section id="vocab">
-      <h2>Vocabulary</h2>
-        
-        <p>The Namespace URI to identify the ODRL model and vocabulary is <code>http://www.w3.org/ns/odrl/2/</code></p>
-
-    <section id="model">
-      <h3>Model Concepts</h3>  
-        
-                
-   
-       <section id="Asset">
-      <h4>Asset</h4> 
-       <p class="advisement"><b>Label: </b>Asset<br/>
-       <b>Identifier: </b><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a><br/>
-       <b>Definition: </b>Asset is anything which can be subject to a policy<br/>  
-        <b>Comment: </b>Asserting that something the target of a policy implies that it is an Asset</p>
-        <p class="advisement"><i>Ontology</i><br/>
-       <b>Type: </b>owl:Class<br/>
-       <b>SubClass Of: </b><a href="#Policy">Policy</a><br/>
-       <b>In Range Of: </b>output, relation, target</p>
-    </section> 
-  
-      <section id="Policy">
-      <h4>Policy</h4> 
-       <p class="advisement"><b>Label: </b>Policy<br/>
-       <b>Identifier: </b><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a><br/>
-           <b>Definition: </b>A top level entity for describing policies</p>
-        <p class="advisement"><i>Ontology</i><br/>
-       <b>Type: </b>owl:Class<br/>
-        <b>Parent Class: </b><a href="#Asset">Asset</a><br/>
-       <b>SubClass Of: </b>Agreement, Offer, Privacy, Request, Set, Ticket<br/>
-       <b>In Range Of: </b>inheritFrom<br/>   
-       <b>Properties: </b>conflict, inheritAllowed, inheritFrom, permission, profile, prohibition, undefined</p>
-    </section> 
-       
-        
-             <section id="parties">
-     <h3>Parties</h3>  
-        
-                 
-                 
-  </section>
-
+<p>
+  The mission of the Permissions &amp; Obligations Expression Working Group is to define a semantic Information Model for expressing permissions and obligations statements for digital content based on the ODRL V2.1 Core Model [[odrl21-model]] (as the baseline information model).
+   </p>
      
-        
-     </section>
-          
-   <section id="action">
-     <h3>Actions</h3>  
-   <p>For permissions and prohibitions, and duties</p>
-   <section id="use">
-    <h4>Use</h4> 
-       <p class="advisement"><b>Label: </b>use<br/>
-       <b>Identifier: </b><a href="http://www.w3.org/ns/odrl/2/use">http://www.w3.org/ns/odrl/2/use</a><br/>
-       <b>Definition: </b>The Assigner permits/prohibits the Assignee to use the Asset as agreed<br/>  
-       <b>Comment: </b>More details may be defined in the applicable agreements or under applicable commercial laws. Refined types of actions can be expressed by the narrower actions.</p>
-    <div class="example">
-        <p class="example-title marker"><span>Ontology</span></p>
-       <p>
-       <b>Type: </b>owl:Class<br/>
-       <b>SubClass Of: </b>Action<br/>
-       <b>In SKOS Concept Scheme: </b>actions<br/>
-        <b>Narrower SKOS Concepts: </b>aggregate, annotate, anonymize, archive, concurrentUse, derive, digitize, distribute, execute, grantUse, index, install, modify, move, present, read, reproduce, textToSpeech, transform, translate, writeTo</p>
-    </div>      
-  </section> 
+<p>The ODRL information model is formally specified using UML notation [[!uml]] and utilises the key words &#8220;MUST&#8221;, &#8220;MAY&#8221;, &#8220;REQUIRED&#8221;, and &#8220;OPTIONAL&#8221; in accordance to [[!RFC2119]]. To make keywords easily distinguishable, this document uses syntax highlighting (formatted coded typeface) to indicate model entities, attributes, and concrete values for the attributes.</p>
 
-       
-         <section id=print>
-    <h4>Print</h4> 
-       <p class="advisement"><b>Label: </b>print<br/>
-       <b>Identifier: </b><a href="http://www.w3.org/ns/odrl/2/print">http://www.w3.org/ns/odrl/2/print</a><br/>
-       <b>Definition: </b>The Assigner permits/prohibits the Assignees to print an Asset onto paper or to create a hard copy<br/>  
-       <b>Comment: </b>For example, creating a permanent, fixed (static), and directly perceivable representation of the Asset</p>
-    <div class="example">
-        <p class="example-title marker"><span>Ontology</span></p>
-       <p>
-       <b>Type: </b>owl:Class<br/>
-       <b>SubClass Of: </b>Action<br/>
-       <b>In SKOS Concept Scheme: </b>actions<br/>
-        <b>Broader SKOS Concepts: </b>present</p>
-    </div>      
-  </section> 
+</section>
+<section id="vocab">
+	<h2>Vocabulary</h2>
 
-       
-       
-</section>
-    
-   <section id="constraints">
-     <h3>Constraints</h3>  
-      
-            
-        </section>
-   
-</section>      
-        
-<section>
-      <h2>Encoding Expressions</h2>
-  
-<section>
-      <h3>JSON</h3>
-  
+	<p>The Namespace URI to identify the ODRL model and vocabulary is <code>http://www.w3.org/ns/odrl/2/</code></p>
+
+<h2 id="sec-summary">Summary of Terms</h2>
+<p>This vocabulary defines 24 classes, 56 properties, one concept scheme, 61 concepts and 18 named individuals.</p>
+<dl><dt>Classes</dt><dd><a href="#term-Action">Action</a>&nbsp;| <a href="#term-Agreement">Agreement</a>&nbsp;| <a href="#term-All">All</a>&nbsp;| <a href="#term-AllConnections">AllConnections</a>&nbsp;| <a href="#term-AllGroups">AllGroups</a>&nbsp;| <a href="#term-All2ndConnections">All2ndConnections</a>&nbsp;| <a href="#term-Asset">Asset</a>&nbsp;| <a href="#term-ConflictTerm">ConflictTerm</a>&nbsp;| <a href="#term-Constraint">Constraint</a>&nbsp;| <a href="#term-Duty">Duty</a>&nbsp;| <a href="#term-Group">Group</a>&nbsp;| <a href="#term-Individual">Individual</a>&nbsp;| <a href="#term-Offer">Offer</a>&nbsp;| <a href="#term-Operator">Operator</a>&nbsp;| <a href="#term-Party">Party</a>&nbsp;| <a href="#term-Permission">Permission</a>&nbsp;| <a href="#term-Policy">Policy</a>&nbsp;| <a href="#term-Privacy">Privacy</a>&nbsp;| <a href="#term-Prohibition">Prohibition</a>&nbsp;| <a href="#term-Request">Request</a>&nbsp;| <a href="#term-Rule">Rule</a>&nbsp;| <a href="#term-Set">Set</a>&nbsp;| <a href="#term-Ticket">Ticket</a>&nbsp;| <a href="#term-UndefinedTerm">UndefinedTerm</a></dd><dt>Properties</dt><dd><a href="#term-systemDevice">systemDevice</a>&nbsp;| <a href="#term-absolutePosition">absolutePosition</a>&nbsp;| <a href="#term-absoluteSize">absoluteSize</a>&nbsp;| <a href="#term-action">action</a>&nbsp;| <a href="#term-assignee">assignee</a>&nbsp;| <a href="#term-assigner">assigner</a>&nbsp;| <a href="#term-attributedParty">attributedParty</a>&nbsp;| <a href="#term-conflict">conflict</a>&nbsp;| <a href="#term-consentingParty">consentingParty</a>&nbsp;| <a href="#term-constraint">constraint</a>&nbsp;| <a href="#term-count">count</a>&nbsp;| <a href="#term-dateTime">dateTime</a>&nbsp;| <a href="#term-deliveryChannel">deliveryChannel</a>&nbsp;| <a href="#term-device">device</a>&nbsp;| <a href="#term-duty">duty</a>&nbsp;| <a href="#term-elapsedTime">elapsedTime</a>&nbsp;| <a href="#term-event">event</a>&nbsp;| <a href="#term-fileFormat">fileFormat</a>&nbsp;| <a href="#term-function">function</a>&nbsp;| <a href="#term-industry">industry</a>&nbsp;| <a href="#term-informedParty">informedParty</a>&nbsp;| <a href="#term-inheritAllowed">inheritAllowed</a>&nbsp;| <a href="#term-inheritFrom">inheritFrom</a>&nbsp;| <a href="#term-language">language</a>&nbsp;| <a href="#term-media">media</a>&nbsp;| <a href="#term-meteredTime">meteredTime</a>&nbsp;| <a href="#term-operator">operator</a>&nbsp;| <a href="#term-output">output</a>&nbsp;| <a href="#term-compensatedParty">compensatedParty</a>&nbsp;| <a href="#term-payAmount">payAmount</a>&nbsp;| <a href="#term-percentage">percentage</a>&nbsp;| <a href="#term-permission">permission</a>&nbsp;| <a href="#term-product">product</a>&nbsp;| <a href="#term-profile">profile</a>&nbsp;| <a href="#term-prohibition">prohibition</a>&nbsp;| <a href="#term-proximity">proximity</a>&nbsp;| <a href="#term-purpose">purpose</a>&nbsp;| <a href="#term-recipient">recipient</a>&nbsp;| <a href="#term-relation">relation</a>&nbsp;| <a href="#term-relativePosition">relativePosition</a>&nbsp;| <a href="#term-relativeSize">relativeSize</a>&nbsp;| <a href="#term-resolution">resolution</a>&nbsp;| <a href="#term-rightOperand">rightOperand</a>&nbsp;| <a href="#term-spatial">spatial</a>&nbsp;| <a href="#term-status">status</a>&nbsp;| <a href="#term-system">system</a>&nbsp;| <a href="#term-target">target</a>&nbsp;| <a href="#term-timeInterval">timeInterval</a>&nbsp;| <a href="#term-timedCount">timedCount</a>&nbsp;| <a href="#term-trackingParty">trackingParty</a>&nbsp;| <a href="#term-undefined">undefined</a>&nbsp;| <a href="#term-dataType">dataType</a>&nbsp;| <a href="#term-version">version</a>&nbsp;| <a href="#term-virtualLocation">virtualLocation</a></dd><dt>Concept schemes</dt><dd><a href="#term-actions">actions</a></dd><dt>Concepts</dt><dd><a href="#term-acceptTracking">acceptTracking</a>&nbsp;| <a href="#term-adHocShare">adHocShare</a>&nbsp;| <a href="#term-aggregate">aggregate</a>&nbsp;| <a href="#term-annotate">annotate</a>&nbsp;| <a href="#term-anonymize">anonymize</a>&nbsp;| <a href="#term-append">append</a>&nbsp;| <a href="#term-appendTo">appendTo</a>&nbsp;| <a href="#term-archive">archive</a>&nbsp;| <a href="#term-attachPolicy">attachPolicy</a>&nbsp;| <a href="#term-attachSource">attachSource</a>&nbsp;| <a href="#term-attribute">attribute</a>&nbsp;| <a href="#term-commercialize">commercialize</a>&nbsp;| <a href="#term-compensate">compensate</a>&nbsp;| <a href="#term-concurrentUse">concurrentUse</a>&nbsp;| <a href="#term-copy">copy</a>&nbsp;| <a href="#term-delete">delete</a>&nbsp;| <a href="#term-derive">derive</a>&nbsp;| <a href="#term-digitize">digitize</a>&nbsp;| <a href="#term-display">display</a>&nbsp;| <a href="#term-distribute">distribute</a>&nbsp;| <a href="#term-ensureExclusivity">ensureExclusivity</a>&nbsp;| <a href="#term-execute">execute</a>&nbsp;| <a href="#term-export">export</a>&nbsp;| <a href="#term-extract">extract</a>&nbsp;| <a href="#term-extractChar">extractChar</a>&nbsp;| <a href="#term-extractPage">extractPage</a>&nbsp;| <a href="#term-extractWord">extractWord</a>&nbsp;| <a href="#term-give">give</a>&nbsp;| <a href="#term-grantUse">grantUse</a>&nbsp;| <a href="#term-include">include</a>&nbsp;| <a href="#term-index">index</a>&nbsp;| <a href="#term-inform">inform</a>&nbsp;| <a href="#term-install">install</a>&nbsp;| <a href="#term-lease">lease</a>&nbsp;| <a href="#term-lend">lend</a>&nbsp;| <a href="#term-license">license</a>&nbsp;| <a href="#term-modify">modify</a>&nbsp;| <a href="#term-move">move</a>&nbsp;| <a href="#term-nextPolicy">nextPolicy</a>&nbsp;| <a href="#term-obtainConsent">obtainConsent</a>&nbsp;| <a href="#term-pay">pay</a>&nbsp;| <a href="#term-play">play</a>&nbsp;| <a href="#term-present">present</a>&nbsp;| <a href="#term-preview">preview</a>&nbsp;| <a href="#term-print">print</a>&nbsp;| <a href="#term-read">read</a>&nbsp;| <a href="#term-reproduce">reproduce</a>&nbsp;| <a href="#term-reviewPolicy">reviewPolicy</a>&nbsp;| <a href="#term-secondaryUse">secondaryUse</a>&nbsp;| <a href="#term-sell">sell</a>&nbsp;| <a href="#term-share">share</a>&nbsp;| <a href="#term-shareAlike">shareAlike</a>&nbsp;| <a href="#term-textToSpeech">textToSpeech</a>&nbsp;| <a href="#term-transfer">transfer</a>&nbsp;| <a href="#term-transform">transform</a>&nbsp;| <a href="#term-translate">translate</a>&nbsp;| <a href="#term-uninstall">uninstall</a>&nbsp;| <a href="#term-use">use</a>&nbsp;| <a href="#term-watermark">watermark</a>&nbsp;| <a href="#term-write">write</a>&nbsp;| <a href="#term-writeTo">writeTo</a></dd><dt>Named individuals</dt><dd><a href="#term-eq">eq</a>&nbsp;| <a href="#term-gt">gt</a>&nbsp;| <a href="#term-gteq">gteq</a>&nbsp;| <a href="#term-hasPart">hasPart</a>&nbsp;| <a href="#term-ignore">ignore</a>&nbsp;| <a href="#term-invalid">invalid</a>&nbsp;| <a href="#term-isA">isA</a>&nbsp;| <a href="#term-isAllOf">isAllOf</a>&nbsp;| <a href="#term-isAnyOf">isAnyOf</a>&nbsp;| <a href="#term-isNoneOf">isNoneOf</a>&nbsp;| <a href="#term-isPartOf">isPartOf</a>&nbsp;| <a href="#term-lt">lt</a>&nbsp;| <a href="#term-lteq">lteq</a>&nbsp;| <a href="#term-neq">neq</a>&nbsp;| <a href="#term-perm">perm</a>&nbsp;| <a href="#term-policyUsage">policyUsage</a>&nbsp;| <a href="#term-prohibit">prohibit</a>&nbsp;| <a href="#term-support">support</a></dd></dl><h2 id="sec-classes">Classes</h2>
+<h3 id="term-Asset">Asset</h3
+<p>Asset is anything which can be subject to a policy. Asserting that something the target of a policy implies that it is an Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a></td></tr>
+<tr><th>Label:</th> <td>Asset</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
+</table>
+</div>
+<h3 id="term-Party">Party</h3
+<p>An entity which can participate in policy transactions. Use an instance of the Party class where it's necessary to associate a Scope with the relationship; in other cases, simply reference the party directly.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
+<tr><th>Label:</th> <td>Party</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-All">All</a>, <a href="#term-All2ndConnections">All2ndConnections</a>, <a href="#term-AllConnections">AllConnections</a>, <a href="#term-AllGroups">AllGroups</a>, <a href="#term-Group">Group</a>, <a href="#term-Individual">Individual</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
+</table>
+</div>
+<h3 id="term-Policy">Policy</h3
+<p>A top level entity for describing policies.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
+<tr><th>Label:</th> <td>Policy</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-Agreement">Agreement</a>, <a href="#term-Offer">Offer</a>, <a href="#term-Privacy">Privacy</a>, <a href="#term-Request">Request</a>, <a href="#term-Set">Set</a>, <a href="#term-Ticket">Ticket</a></td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-undefined">undefined</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-inheritFrom">inheritFrom</a></td></tr>
+</table>
+</div>
+<h3 id="term-ConflictTerm">ConflictTerm</h3
+<p>Instances of ConflictTerm describe policies for resolving conflicts.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/ConflictTerm">http://www.w3.org/ns/odrl/2/ConflictTerm</a></td></tr>
+<tr><th>Label:</th> <td>Conflict term</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>In range of:</th> <td><a href="#term-conflict">conflict</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-invalid">invalid</a>, <a href="#term-perm">perm</a>, <a href="#term-prohibit">prohibit</a></td></tr>
+</table>
+</div>
+<h3 id="term-UndefinedTerm">UndefinedTerm</h3
+<p>Instances of UndefinedTerm describe policies for processing unsupported actions.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td></tr>
+<tr><th>Label:</th> <td>Undefined values</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>In range of:</th> <td><a href="#term-undefined">undefined</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-ignore">ignore</a>, <a href="#term-invalid">invalid</a>, <a href="#term-support">support</a></td></tr>
+</table>
+</div>
+<h3 id="term-Rule">Rule</h3
+<p>An abstract common ancestor to Permissions, Prohibitions and Duties.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
+<tr><th>Label:</th> <td>Rule</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-Duty">Duty</a>, <a href="#term-Permission">Permission</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-function">function</a>, <a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
+</table>
+</div>
+<h3 id="term-Permission">Permission</h3
+<p>A Permission is a rule which indicates the actions the assignee is permitted to perform on the associated asset. In other words, what the assigner (supplier) has granted to the assignee (consumer).</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Permission">http://www.w3.org/ns/odrl/2/Permission</a></td></tr>
+<tr><th>Label:</th> <td>Permission</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-duty">duty</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-relation">relation</a>, <a href="#term-output">output</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-Prohibition">Prohibition</h3
+<p>A Prohibition is a rule which indicates the Actions that the assignee is prohibited to perform on the related Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Prohibition">http://www.w3.org/ns/odrl/2/Prohibition</a></td></tr>
+<tr><th>Label:</th> <td>Prohibition</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-relation">relation</a>, <a href="#term-output">output</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-Duty">Duty</h3
+<p>A Duty is a rule which indicates requirements which must be fulfilled in order to receive the permission.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Duty">http://www.w3.org/ns/odrl/2/Duty</a></td></tr>
+<tr><th>Label:</th> <td>Duty</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-relation">relation</a>, <a href="#term-output">output</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-Action">Action</h3
+<p>Instances of Action are things one might be permitted to do or prohibited from doing to a work.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Action">http://www.w3.org/ns/odrl/2/Action</a></td></tr>
+<tr><th>Label:</th> <td>Action</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2004/02/skos/core#Concept">skos:Concept</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-action">action</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-acceptTracking">acceptTracking</a>, <a href="#term-adHocShare">adHocShare</a>, <a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-append">append</a>, <a href="#term-appendTo">appendTo</a>, <a href="#term-archive">archive</a>, <a href="#term-attachPolicy">attachPolicy</a>, <a href="#term-attachSource">attachSource</a>, <a href="#term-attribute">attribute</a>, <a href="#term-commercialize">commercialize</a>, <a href="#term-compensate">compensate</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-copy">copy</a>, <a href="#term-delete">delete</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-ensureExclusivity">ensureExclusivity</a>, <a href="#term-execute">execute</a>, <a href="#term-export">export</a>, <a href="#term-extract">extract</a>, <a href="#term-extractChar">extractChar</a>, <a href="#term-extractPage">extractPage</a>, <a href="#term-extractWord">extractWord</a>, <a href="#term-give">give</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-include">include</a>, <a href="#term-index">index</a>, <a href="#term-inform">inform</a>, <a href="#term-install">install</a>, <a href="#term-lease">lease</a>, <a href="#term-lend">lend</a>, <a href="#term-license">license</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-nextPolicy">nextPolicy</a>, <a href="#term-obtainConsent">obtainConsent</a>, <a href="#term-pay">pay</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-preview">preview</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-reviewPolicy">reviewPolicy</a>, <a href="#term-secondaryUse">secondaryUse</a>, <a href="#term-sell">sell</a>, <a href="#term-share">share</a>, <a href="#term-shareAlike">shareAlike</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transfer">transfer</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-uninstall">uninstall</a>, <a href="#term-use">use</a>, <a href="#term-watermark">watermark</a>, <a href="#term-write">write</a>, <a href="#term-writeTo">writeTo</a></td></tr>
+</table>
+</div>
+<h3 id="term-Constraint">Constraint</h3
+<p>Parent class of all Constraints.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
+<tr><th>Label:</th> <td>Constraint</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-constraint">constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-Operator">Operator</h3
+<p>Instances of the Operator class represent boolean operators</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Operator">http://www.w3.org/ns/odrl/2/Operator</a></td></tr>
+<tr><th>Label:</th> <td>Operator</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-operator">operator</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a></td></tr>
+</table>
+</div>
+<h3 id="term-Agreement">Agreement</h3
+<p>Policy expressions that are formal contracts (or licenses) stipulating all the terms of usage and all the parties involved.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Agreement">http://www.w3.org/ns/odrl/2/Agreement</a></td></tr>
+<tr><th>Label:</th> <td>Agreement</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+</table>
+</div>
+<h3 id="term-Offer">Offer</h3
+<p>An instance of Offer is a Policy expression that proposes terms of usage from an Asset owner.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Offer">http://www.w3.org/ns/odrl/2/Offer</a></td></tr>
+<tr><th>Label:</th> <td>Offer</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+</table>
+</div>
+<h3 id="term-Privacy">Privacy</h3
+<p>An instance of Privacy is a Policy expression that stipulates the terms of usage over personal information.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Privacy">http://www.w3.org/ns/odrl/2/Privacy</a></td></tr>
+<tr><th>Label:</th> <td>Privacy</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+</table>
+</div>
+<h3 id="term-Request">Request</h3
+<p>An instance of Request is a Policy expression that proposes terms of usage to an Asset owner.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Request">http://www.w3.org/ns/odrl/2/Request</a></td></tr>
+<tr><th>Label:</th> <td>Request</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+</table>
+</div>
+<h3 id="term-Set">Set</h3
+<p>An instance of Set is a Policy expression that consists of entities from the complete model.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Set">http://www.w3.org/ns/odrl/2/Set</a></td></tr>
+<tr><th>Label:</th> <td>Set</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+</table>
+</div>
+<h3 id="term-Ticket">Ticket</h3
+<p>An instance of Ticket is a Policy expression that stipulates the terms of usage and is redeemable by any Party who currently holds the Ticket in their possession.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Ticket">http://www.w3.org/ns/odrl/2/Ticket</a></td></tr>
+<tr><th>Label:</th> <td>Ticket</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+</table>
+</div>
+<h3 id="term-All">All</h3
+<p>Specifies that the scope of the relationship is all of the collective individuals within a context.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/All">http://www.w3.org/ns/odrl/2/All</a></td></tr>
+<tr><th>Label:</th> <td>All</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</div>
+<h3 id="term-All2ndConnections">All2ndConnections</h3
+<p>Specifies that the scope of the relationship is all of the second-level connections to the Party.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/All2ndConnections">http://www.w3.org/ns/odrl/2/All2ndConnections</a></td></tr>
+<tr><th>Label:</th> <td>All second-level connections</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</div>
+<h3 id="term-AllConnections">AllConnections</h3
+<p>Specifies that the scope of the relationship is all of the first-level connections of the Party.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td></tr>
+<tr><th>Label:</th> <td>All connections</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</div>
+<h3 id="term-AllGroups">AllGroups</h3
+<p>Specifies that the scope of the relationship is all of the group connections of the Party.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td></tr>
+<tr><th>Label:</th> <td>All groups</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</div>
+<h3 id="term-Group">Group</h3
+<p>Specifies that the scope of the relationship is the defined group with multiple individual members.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Group">http://www.w3.org/ns/odrl/2/Group</a></td></tr>
+<tr><th>Label:</th> <td>Group</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</div>
+<h3 id="term-Individual">Individual</h3
+<p>Specifies that the scope of the relationship is the single Party individual.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/Individual">http://www.w3.org/ns/odrl/2/Individual</a></td></tr>
+<tr><th>Label:</th> <td>Individual</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</div>
+<h2 id="sec-properties">Properties</h2>
+<h3 id="term-conflict">conflict</h3
+<p>Relates a conflict-resolution mechansim to a Policy. If no mechanism is specified, the default is invalid.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/conflict">http://www.w3.org/ns/odrl/2/conflict</a></td></tr>
+<tr><th>Label:</th> <td>conflict</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+</table>
+</div>
+<h3 id="term-undefined">undefined</h3
+<p>Relates the mechanism used for handling undefined actions to a Policy. If no mechanism is specified, the default is invalid.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td></tr>
+<tr><th>Label:</th> <td>undefined</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+</table>
+</div>
+<h3 id="term-permission">permission</h3
+<p>Relates the description of an individual Permission to a Policy. A permission can be specified either in terms of an Action alone, or an instance of Permission relating an Action and one or more other attributes.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/permission">http://www.w3.org/ns/odrl/2/permission</a></td></tr>
+<tr><th>Label:</th> <td>permission</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Action">Action</a>, <a href="#term-Permission">Permission</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+</table>
+</div>
+<h3 id="term-prohibition">prohibition</h3
+<p>Relates the description of an individual Prohibition to a Policy. A prohibition can be specified either in terms of an Action alone, or an instance of Prohibition relating an Action and one or more other attributes.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/prohibition">http://www.w3.org/ns/odrl/2/prohibition</a></td></tr>
+<tr><th>Label:</th> <td>prohibition</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Action">Action</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+</table>
+</div>
+<h3 id="term-inheritAllowed">inheritAllowed</h3
+<p>A boolean value indicating whether this policy can be inherited from.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritAllowed">http://www.w3.org/ns/odrl/2/inheritAllowed</a></td></tr>
+<tr><th>Label:</th> <td>inheritance allowed</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+</table>
+</div>
+<h3 id="term-inheritFrom">inheritFrom</h3
+<p>Relates a policy to another policy from which terms are inherited.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritFrom">http://www.w3.org/ns/odrl/2/inheritFrom</a></td></tr>
+<tr><th>Label:</th> <td>inherits from</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+</table>
+</div>
+<h3 id="term-profile">profile</h3
+<p>indicates the identifier of the ODRL Profile for which the policy expression conforms to</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/profile">http://www.w3.org/ns/odrl/2/profile</a></td></tr>
+<tr><th>Label:</th> <td>profile</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+</table>
+</div>
+<h3 id="term-relation">relation</h3
+<p>Relation is an abstract property which creates an explicit link between an Action and an Asset. Sub-properties of relation are used to define the nature of that link.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/relation">http://www.w3.org/ns/odrl/2/relation</a></td></tr>
+<tr><th>Label:</th> <td>relation</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</div>
+<h3 id="term-output">output</h3
+<p>The output property specifies the Asset which is created from the output of the Action.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/output">http://www.w3.org/ns/odrl/2/output</a></td></tr>
+<tr><th>Label:</th> <td>output</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</div>
+<h3 id="term-target">target</h3
+<p>The target property specifies the Asset upon which the Action is performed.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/target">http://www.w3.org/ns/odrl/2/target</a></td></tr>
+<tr><th>Label:</th> <td>target</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</div>
+<h3 id="term-function">function</h3
+<p>Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
+<tr><th>Label:</th> <td>function</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-payeeParty">payeeParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</div>
+<h3 id="term-action">action</h3
+<p>The operation relating to the asset for which permission is being granted. A permission must include exactly one action.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/action">http://www.w3.org/ns/odrl/2/action</a></td></tr>
+<tr><th>Label:</th> <td>action</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</div>
+<h3 id="term-constraint">constraint</h3
+<p>One or more constraints which affect the validity of the Permission; e.g. if the Action play is only permitted for a certain period of time.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/constraint">http://www.w3.org/ns/odrl/2/constraint</a></td></tr>
+<tr><th>Label:</th> <td>constraint</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</div>
+<h3 id="term-duty">duty</h3
+<p>A Duty indicates requirements which must be fulfilled in order to receive the permission.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/duty">http://www.w3.org/ns/odrl/2/duty</a></td></tr>
+<tr><th>Label:</th> <td>duty</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Action">Action</a>, <a href="#term-Duty">Duty</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Permission">Permission</a></td></tr>
+</table>
+</div>
+<h3 id="term-unit">unit</h3
+<p>The unit of measurement used for the constraint value.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/unit">http://www.w3.org/ns/odrl/2/unit</a></td></tr>
+<tr><th>Label:</th> <td>unit</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-dataType">dataType</h3
+<p>The unit of measurement used for the constraint value.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/dataType">http://www.w3.org/ns/odrl/2/dataType</a></td></tr>
+<tr><th>Label:</th> <td>unit</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-operator">operator</h3
+<p>The Boolean operator applied to a constraint and its operand.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/operator">http://www.w3.org/ns/odrl/2/operator</a></td></tr>
+<tr><th>Label:</th> <td>operator</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-rightOperand">rightOperand</h3
+<p>The operand applied to an instance of a constraint. Do not use the right-operand property directly within a Constraint. Instead, a Constraint instance must contain exactly one triple which makes use of one of the sub-properties of right-operand.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperand">http://www.w3.org/ns/odrl/2/rightOperand</a></td></tr>
+<tr><th>Label:</th> <td>right-operand</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-proximity">proximity</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-timedCount">timedCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-status">status</h3
+<p>The current value of the constraint. The range of the status property is identical to that of the operand property selected used in the constraint.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/status">http://www.w3.org/ns/odrl/2/status</a></td></tr>
+<tr><th>Label:</th> <td>status</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+</table>
+</div>
+<h3 id="term-absolutePosition">absolutePosition</h3
+<p>A point defined with absolute coordinates.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/absolutePosition">http://www.w3.org/ns/odrl/2/absolutePosition</a></td></tr>
+<tr><th>Label:</th> <td>absolute position</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-absoluteSize">absoluteSize</h3
+<p>The absolute dimension that the Asset may be resized.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/absoluteSize">http://www.w3.org/ns/odrl/2/absoluteSize</a></td></tr>
+<tr><th>Label:</th> <td>absolute size</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a></td></tr>
+</table>
+</div>
+<h3 id="term-count">count</h3
+<p>The numeric count indicating the number of times the corresponding entity may be exercised</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/count">http://www.w3.org/ns/odrl/2/count</a></td></tr>
+<tr><th>Label:</th> <td>count</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">xsd:nonNegativeInteger</a></td></tr>
+</table>
+</div>
+<h3 id="term-dateTime">dateTime</h3
+<p>The date (and optional time and timezone) representing a point in time or period.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/dateTime">http://www.w3.org/ns/odrl/2/dateTime</a></td></tr>
+<tr><th>Label:</th> <td>date/time</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a>, <a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a></td></tr>
+</table>
+</div>
+<h3 id="term-deliveryChannel">deliveryChannel</h3
+<p>The delivery channel used for storing or communicating the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/deliveryChannel">http://www.w3.org/ns/odrl/2/deliveryChannel</a></td></tr>
+<tr><th>Label:</th> <td>delivery channel</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-device">device</h3
+<p>An identifiable computing system.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td></tr>
+<tr><th>Label:</th> <td>device</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-systemDevice">systemDevice</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-systemDevice">systemDevice</h3
+<p>An identifiable computing system.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr>
+<tr><th>Label:</th> <td>SystemDevice</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Deprecates:</th> <td><a href="#term-device">device</a>, <a href="#term-system">system</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-elapsedTime">elapsedTime</h3
+<p>A period of time in which the policy action can be exercised.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/elapsedTime">http://www.w3.org/ns/odrl/2/elapsedTime</a></td></tr>
+<tr><th>Label:</th> <td>elapsed time</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Literal">rdfs:Literal</a></td></tr>
+</table>
+</div>
+<h3 id="term-event">event</h3
+<p>Specification of a defined event applicable to the asset usage.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/event">http://www.w3.org/ns/odrl/2/event</a></td></tr>
+<tr><th>Label:</th> <td>event</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-fileFormat">fileFormat</h3
+<p>The file format applicable to the Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/fileFormat">http://www.w3.org/ns/odrl/2/fileFormat</a></td></tr>
+<tr><th>Label:</th> <td>file format</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-industry">industry</h3
+<p>The defined industry sector applicable to the asset usage</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/industry">http://www.w3.org/ns/odrl/2/industry</a></td></tr>
+<tr><th>Label:</th> <td>industry</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-language">language</h3
+<p>The natural language applicable to the asset usage</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/language">http://www.w3.org/ns/odrl/2/language</a></td></tr>
+<tr><th>Label:</th> <td>language</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-media">media</h3
+<p>The media type in which the asset may be used.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/media">http://www.w3.org/ns/odrl/2/media</a></td></tr>
+<tr><th>Label:</th> <td>media</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-meteredTime">meteredTime</h3
+<p>The maximum period of metered usage time.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/meteredTime">http://www.w3.org/ns/odrl/2/meteredTime</a></td></tr>
+<tr><th>Label:</th> <td>metered time</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Literal">rdfs:Literal</a></td></tr>
+</table>
+</div>
+<h3 id="term-payAmount">payAmount</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/payAmount">http://www.w3.org/ns/odrl/2/payAmount</a></td></tr>
+<tr><th>Label:</th> <td>payment amount</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a></td></tr>
+</table>
+</div>
+<h3 id="term-percentage">percentage</h3
+<p>The amount (as a percentage) of the action applicable to the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/percentage">http://www.w3.org/ns/odrl/2/percentage</a></td></tr>
+<tr><th>Label:</th> <td>percentage</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a></td></tr>
+</table>
+</div>
+<h3 id="term-product">product</h3
+<p>The specified Product or Service name.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/product">http://www.w3.org/ns/odrl/2/product</a></td></tr>
+<tr><th>Label:</th> <td>product</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td></tr>
+</table>
+</div>
+<h3 id="term-purpose">purpose</h3
+<p>Specification of a defined purpose applicable to the asset usage.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/purpose">http://www.w3.org/ns/odrl/2/purpose</a></td></tr>
+<tr><th>Label:</th> <td>purpose</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-recipient">recipient</h3
+<p>The party that receives the result of the Action on the Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/recipient">http://www.w3.org/ns/odrl/2/recipient</a></td></tr>
+<tr><th>Label:</th> <td>recipient</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-relativePosition">relativePosition</h3
+<p>A point defined with reference to another position.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativePosition">http://www.w3.org/ns/odrl/2/relativePosition</a></td></tr>
+<tr><th>Label:</th> <td>relative position</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-relativeSize">relativeSize</h3
+<p>The relative dimension that the Asset may be resized.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativeSize">http://www.w3.org/ns/odrl/2/relativeSize</a></td></tr>
+<tr><th>Label:</th> <td>relative size</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-resolution">resolution</h3
+<p>The resolution at which the asset may be used.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/resolution">http://www.w3.org/ns/odrl/2/resolution</a></td></tr>
+<tr><th>Label:</th> <td>resolution</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-spatial">spatial</h3
+<p>A code representing a geospatial area.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/spatial">http://www.w3.org/ns/odrl/2/spatial</a></td></tr>
+<tr><th>Label:</th> <td>spatial</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-system">system</h3
+<p>An identifiable computing system.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td></tr>
+<tr><th>Label:</th> <td>system</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-systemDevice">systemDevice</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-timeInterval">timeInterval</h3
+<p>Recurring period of time in which the usage may be exercised.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/timeInterval">http://www.w3.org/ns/odrl/2/timeInterval</a></td></tr>
+<tr><th>Label:</th> <td>time interval</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Literal">rdfs:Literal</a></td></tr>
+</table>
+</div>
+<h3 id="term-version">version</h3
+<p>The scope of versions for the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/version">http://www.w3.org/ns/odrl/2/version</a></td></tr>
+<tr><th>Label:</th> <td>version</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-virtualLocation">virtualLocation</h3
+<p>Specification of a digital locale.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/virtualLocation">http://www.w3.org/ns/odrl/2/virtualLocation</a></td></tr>
+<tr><th>Label:</th> <td>virtual location</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-assignee">assignee</h3
+<p>The Party is the recipient of the policy statement.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/assignee">http://www.w3.org/ns/odrl/2/assignee</a></td></tr>
+<tr><th>Label:</th> <td>assignee</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</div>
+<h3 id="term-assigner">assigner</h3
+<p>The Party is the issuer of the policy statement.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/assigner">http://www.w3.org/ns/odrl/2/assigner</a></td></tr>
+<tr><th>Label:</th> <td>assigner</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</div>
+<h3 id="term-attributedParty">attributedParty</h3
+<p>The Party to be attributed.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/attributedParty">http://www.w3.org/ns/odrl/2/attributedParty</a></td></tr>
+<tr><th>Label:</th> <td>attributed party</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</div>
+<h3 id="term-consentingParty">consentingParty</h3
+<p>The Party to obtain consent from.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/consentingParty">http://www.w3.org/ns/odrl/2/consentingParty</a></td></tr>
+<tr><th>Label:</th> <td>consenting party</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</div>
+<h3 id="term-informedParty">informedParty</h3
+<p>The Party to be informed of all uses.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/informedParty">http://www.w3.org/ns/odrl/2/informedParty</a></td></tr>
+<tr><th>Label:</th> <td>informed party</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</div>
+<h3 id="term-payeeParty">payeeParty</h3
+<p>The Party is the recipient of the payment.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td></tr>
+<tr><th>Label:</th> <td>payee party</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-compensatedParty">compensatedParty</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</div>
+<h3 id="term-compensatedParty">compensatedParty</h3
+<p>The Party is the recipient of the compensation.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr>
+<tr><th>Label:</th> <td>payee party</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Deprecates:</th> <td><a href="#term-payeeParty">payeeParty</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</div>
+<h3 id="term-trackingParty">trackingParty</h3
+<p>The Party is the usage tracker.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/trackingParty">http://www.w3.org/ns/odrl/2/trackingParty</a></td></tr>
+<tr><th>Label:</th> <td>tracking party</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</div>
+<h3 id="term-proximity">proximity</h3
+<p>An value indicating the closeness or nearness.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td></tr>
+<tr><th>Label:</th> <td>proximity</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://www.openmobilealliance.com/oma-dd/proximity">oma:proximity</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+</table>
+</div>
+<h3 id="term-timedCount">timedCount</h3
+<p>The number of seconds after which timed metering use of the asset begins.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td></tr>
+<tr><th>Label:</th> <td>timed count</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://www.openmobilealliance.com/oma-dd/timed-count">oma:timed-count</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Literal">rdfs:Literal</a></td></tr>
+</table>
+</div>
+<h2 id="sec-concept-schemes">Concept schemes</h2>
+<h3 id="term-actions">actions</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/actions">http://www.w3.org/ns/odrl/2/actions</a></td></tr>
+<tr><th>Label:</th> <td>ODRL Actions vocabulary</td></tr>
+<tr><th>Concepts:</th> <td><a href="#term-acceptTracking">acceptTracking</a>, <a href="#term-adHocShare">adHocShare</a>, <a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-append">append</a>, <a href="#term-appendTo">appendTo</a>, <a href="#term-archive">archive</a>, <a href="#term-attachPolicy">attachPolicy</a>, <a href="#term-attachSource">attachSource</a>, <a href="#term-attribute">attribute</a>, <a href="#term-commercialize">commercialize</a>, <a href="#term-compensate">compensate</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-copy">copy</a>, <a href="#term-delete">delete</a>, <a href="#term-derive">derive</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-ensureExclusivity">ensureExclusivity</a>, <a href="#term-execute">execute</a>, <a href="#term-export">export</a>, <a href="#term-extract">extract</a>, <a href="#term-give">give</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-include">include</a>, <a href="#term-index">index</a>, <a href="#term-inform">inform</a>, <a href="#term-install">install</a>, <a href="#term-lease">lease</a>, <a href="#term-lend">lend</a>, <a href="#term-license">license</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-nextPolicy">nextPolicy</a>, <a href="#term-obtainConsent">obtainConsent</a>, <a href="#term-pay">pay</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-preview">preview</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-reviewPolicy">reviewPolicy</a>, <a href="#term-secondaryUse">secondaryUse</a>, <a href="#term-sell">sell</a>, <a href="#term-share">share</a>, <a href="#term-shareAlike">shareAlike</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-uninstall">uninstall</a>, <a href="#term-use">use</a>, <a href="#term-watermark">watermark</a>, <a href="#term-write">write</a>, <a href="#term-writeTo">writeTo</a></td></tr>
+</table>
+</div>
+<h2 id="sec-concepts">Concepts</h2>
+<h3 id="term-use">use</h3
+<p>The Assigner permits/prohibits the Assignee to use the Asset as agreed. More details may be defined in the applicable agreements or under applicable commercial laws. Refined types of actions can be expressed by the narrower actions.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/use">http://www.w3.org/ns/odrl/2/use</a></td></tr>
+<tr><th>Label:</th> <td>Use</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-archive">archive</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-distribute">distribute</a>, <a href="#term-execute">execute</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-index">index</a>, <a href="#term-install">install</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-present">present</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-writeTo">writeTo</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-grantUse">grantUse</h3
+<p>The Assigner permits/prohibits the Assignee to grant the use the Asset to third parties. This action enables the Assignee to create policies for the use of the Asset for third parties. nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr>
+<tr><th>Label:</th> <td>Grant use</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Deprecates:</th> <td><a href="#term-license">license</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-compensate">compensate</h3
+<p>The Assigner requires that the Assignees compensates the Assigner (or other specified compensation Party) by some amount of value, if defined, for use of the Asset. The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by operator, rightOperand, dataType and unit</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr>
+<tr><th>Label:</th> <td>Compensate</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Deprecates:</th> <td><a href="#term-pay">pay</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-acceptTracking">acceptTracking</h3
+<p>The Assigner requires that the Assignees accepts that the use of the Asset may be tracked. The collected information may be tracked by the Assigner, or may link to a Party with the role function “trackingParty”.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/acceptTracking">http://www.w3.org/ns/odrl/2/acceptTracking</a></td></tr>
+<tr><th>Label:</th> <td>Accept tracking</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-aggregate">aggregate</h3
+<p>The Assigner permits/prohibits the Assignees to use the Asset or parts of it as part of a composite collection.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/aggregate">http://www.w3.org/ns/odrl/2/aggregate</a></td></tr>
+<tr><th>Label:</th> <td>Aggregate</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-annotate">annotate</h3
+<p>The Assigner permits/prohibits the Assignees to add explanatory notations/commentaries to the Asset without modifying the Asset in any other way.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/annotate">http://www.w3.org/ns/odrl/2/annotate</a></td></tr>
+<tr><th>Label:</th> <td>Annotate</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-anonymize">anonymize</h3
+<p>The Assigner permits/prohibits the Assignees to anonymize all or parts of the Asset. For example, to remove identifying particulars for statistical or for other comparable purposes, or to use the asset without stating the author/source.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/anonymize">http://www.w3.org/ns/odrl/2/anonymize</a></td></tr>
+<tr><th>Label:</th> <td>Anonymize</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-append">append</h3
+<p>The act of adding to the end of an asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td></tr>
+<tr><th>Label:</th> <td>Append</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-appendTo">appendTo</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-appendTo">appendTo</h3
+<p>The act of appending data to the Asset without modifying the Asset in any other way</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td></tr>
+<tr><th>Label:</th> <td>Append to</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Deprecates:</th> <td><a href="#term-append">append</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-writeTo">writeTo</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-archive">archive</h3
+<p>The Assigner permits/prohibits the Assignees to store the Asset (in a non-transient form). Constraints may be used for temporal conditions.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/archive">http://www.w3.org/ns/odrl/2/archive</a></td></tr>
+<tr><th>Label:</th> <td>Archive</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-attribute">attribute</h3
+<p>The Assigner requires that the Assignees attributes the Asset to the Assigner or an attributed Party. May link to an Asset with the attribution information. May link to a Party with the role function “attributedParty”.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/attribute">http://www.w3.org/ns/odrl/2/attribute</a></td></tr>
+<tr><th>Label:</th> <td>Attribute</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-concurrentUse">concurrentUse</h3
+<p>The Assigner permits/prohibits the Assignees to create multiple copies of the Asset that are being concurrently used.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/concurrentUse">http://www.w3.org/ns/odrl/2/concurrentUse</a></td></tr>
+<tr><th>Label:</th> <td>Concurrent use</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-copy">copy</h3
+<p>The act of making an exact reproduction of the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td></tr>
+<tr><th>Label:</th> <td>Copy</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Equivalent to:</th> <td><a href="#term-reproduce">reproduce</a></td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-reproduce">reproduce</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-delete">delete</h3
+<p>The Assigner requires that the Assignees permanently removes all copies of the Asset. Use a constraint to define under which conditions the Asset should be deleted.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/delete">http://www.w3.org/ns/odrl/2/delete</a></td></tr>
+<tr><th>Label:</th> <td>Delete</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-derive">derive</h3
+<p>The Assigner permits/prohibits the Assignees to create a new derivative Asset from this Asset and to edit or modify the derivative. A new asset is created and may have significant overlaps with the original Asset. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective). To the derived Asset a next policy may be applied.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/derive">http://www.w3.org/ns/odrl/2/derive</a></td></tr>
+<tr><th>Label:</th> <td>Derive</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-digitize">digitize</h3
+<p>The Assigner permits/prohibits the Assignees to produce a digital copy of (or otherwise digitize) the Asset from its analogue form.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/digitize">http://www.w3.org/ns/odrl/2/digitize</a></td></tr>
+<tr><th>Label:</th> <td>Digitize</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</div>
+<h3 id="term-display">display</h3
+<p>The Assigner permits/prohibits the Assignees to display the visual media Asset to an audience or the public. For example, displaying an image on a screen.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/display">http://www.w3.org/ns/odrl/2/display</a></td></tr>
+<tr><th>Label:</th> <td>Display</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-present">present</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-distribute">distribute</h3
+<p>The Assigner permits/prohibits the Assignees to distribute the Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/distribute">http://www.w3.org/ns/odrl/2/distribute</a></td></tr>
+<tr><th>Label:</th> <td>Distribute</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-ensureExclusivity">ensureExclusivity</h3
+<p>The Assignee requires that the Assigners ensure that the permission on the Asset is exclusive to the Assignee.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/ensureExclusivity">http://www.w3.org/ns/odrl/2/ensureExclusivity</a></td></tr>
+<tr><th>Label:</th> <td>Ensure exclusivity</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-execute">execute</h3
+<p>The Assigner permits/prohibits the Assignees to run the computer program Asset. For example, machine executable code or Java such as a game or application.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/execute">http://www.w3.org/ns/odrl/2/execute</a></td></tr>
+<tr><th>Label:</th> <td>Execute</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-export">export</h3
+<p>The act of transforming the asset into a new form.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td></tr>
+<tr><th>Label:</th> <td>Export</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-transform">transform</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-extract">extract</h3
+<p>The Assigner permits/prohibits the Assignees to extract parts of the Asset and to use it as a new Asset. A new asset is created and may have very little in common with the original Asset. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective). To the extracted Asset a next policy may be applied.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/extract">http://www.w3.org/ns/odrl/2/extract</a></td></tr>
+<tr><th>Label:</th> <td>Extract</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-reproduce">reproduce</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-give">give</h3
+<p>The Assigner permits/prohibits the Assignees to transfer the ownership of the Asset to a third party without compensation and while deleting the original asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/give">http://www.w3.org/ns/odrl/2/give</a></td></tr>
+<tr><th>Label:</th> <td>Give</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-transfer">transfer</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-include">include</h3
+<p>The Assigner requires that the Assignees include other related assets in the Asset. For example: bio picture must be included in the attribution. Use of the Asset relation attribute is required.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/include">http://www.w3.org/ns/odrl/2/include</a></td></tr>
+<tr><th>Label:</th> <td>Include</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-index">index</h3
+<p>The Assigner permits/prohibits the Assignees to record the Asset in an index. For example, to include a link to the Asset in a search engine database.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/index">http://www.w3.org/ns/odrl/2/index</a></td></tr>
+<tr><th>Label:</th> <td>Index</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-inform">inform</h3
+<p>The Assigner requires that the Assignees inform the Assigner or an informed Party that an action has been performed on or in relation to the Asset. May link to a Party with the role function “informedParty”.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/inform">http://www.w3.org/ns/odrl/2/inform</a></td></tr>
+<tr><th>Label:</th> <td>Inform</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-install">install</h3
+<p>The Assigner permits/prohibits the Assignees to load the computer program Asset onto a storage device which allows operating or running the Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/install">http://www.w3.org/ns/odrl/2/install</a></td></tr>
+<tr><th>Label:</th> <td>Install</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-lease">lease</h3
+<p>The act of making available the asset to a third-party for a fixed period of time with exchange of value.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td></tr>
+<tr><th>Label:</th> <td>Lease</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-license">license</h3
+<p>The act of granting the right to use the asset to a third-party.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td></tr>
+<tr><th>Label:</th> <td>License</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-grantUse">grantUse</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-lend">lend</h3
+<p>The act of making available the asset to a third-party for a fixed period of time without exchange of value.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td></tr>
+<tr><th>Label:</th> <td>Lend</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-modify">modify</h3
+<p>The Assigner permits/prohibits the Assignees to update existing content of the Asset. A new asset is not created by this action. This action will modify an asset which is typically updated from time to time without creating a new asset like a database. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective).</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr>
+<tr><th>Label:</th> <td>Modify</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-move">move</h3
+<p>The Assigner permits/prohibits the Assignees to move the Asset from one digital location to another including deleting the original copy. After the Asset has been moved, the original copy must be deleted.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/move">http://www.w3.org/ns/odrl/2/move</a></td></tr>
+<tr><th>Label:</th> <td>Move</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-nextPolicy">nextPolicy</h3
+<p>The Assigner requires that the Assignees grants the specified Policy to a third party for their use of the Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/nextPolicy">http://www.w3.org/ns/odrl/2/nextPolicy</a></td></tr>
+<tr><th>Label:</th> <td>Next policy</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-obtainConsent">obtainConsent</h3
+<p>The Assigner requires that the Assignees obtains explicit consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset. Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role function “consentingParty”.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/obtainConsent">http://www.w3.org/ns/odrl/2/obtainConsent</a></td></tr>
+<tr><th>Label:</th> <td>Obtain consent</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-pay">pay</h3
+<p>The act of paying a financial amount to a party for use of the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td></tr>
+<tr><th>Label:</th> <td>Pay</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-compensate">compensate</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-play">play</h3
+<p>The Assigner permits/prohibits the Assignees to perform an audio Asset to an audience.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/play">http://www.w3.org/ns/odrl/2/play</a></td></tr>
+<tr><th>Label:</th> <td>Play</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-present">present</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-present">present</h3
+<p>The Assigner permits/prohibits the Assignees to perform or exhibit an Asset to an audience.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/present">http://www.w3.org/ns/odrl/2/present</a></td></tr>
+<tr><th>Label:</th> <td>Present</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-display">display</a>, <a href="#term-play">play</a>, <a href="#term-print">print</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-preview">preview</h3
+<p>The act of providing a short preview of the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td></tr>
+<tr><th>Label:</th> <td>Preview</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-print">print</h3
+<p>The Assigner permits/prohibits the Assignees to print an Asset onto paper or to create a hard copy. For example, creating a permanent, fixed (static), and directly perceivable representation of the Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/print">http://www.w3.org/ns/odrl/2/print</a></td></tr>
+<tr><th>Label:</th> <td>Print</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-present">present</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-read">read</h3
+<p>The Assigner permits/prohibits the Assignees to obtain data from the Asset. For example, the ability to read a record from a database (the Asset).</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/read">http://www.w3.org/ns/odrl/2/read</a></td></tr>
+<tr><th>Label:</th> <td>Read</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-reproduce">reproduce</h3
+<p>The act of making an exact reproduction of the asset. The Assigner permits/prohibits the Assignees to make exact reproductions of the Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr>
+<tr><th>Label:</th> <td>Reproduce</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Deprecates:</th> <td><a href="#term-copy">copy</a></td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-extract">extract</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-reviewPolicy">reviewPolicy</h3
+<p>The Assigner requires that the Assignees have a person review the Policy applicable to the Asset. Used when human intervention is required to review the Policy. May link to an Asset which represents the full Policy information.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/reviewPolicy">http://www.w3.org/ns/odrl/2/reviewPolicy</a></td></tr>
+<tr><th>Label:</th> <td>Review policy</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-secondaryUse">secondaryUse</h3
+<p>The act of using the asset for a purpose other than the purpose it was intended for.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td></tr>
+<tr><th>Label:</th> <td>Secondary use</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-sell">sell</h3
+<p>The Assigner permits/prohibits the Assignees to transfer the ownership of the Asset to a third party with compensation and while deleting the original asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/sell">http://www.w3.org/ns/odrl/2/sell</a></td></tr>
+<tr><th>Label:</th> <td>Sell</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-transfer">transfer</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-textToSpeech">textToSpeech</h3
+<p>The Assigner permits/prohibits the Assignees to have a text Asset read out loud to an audience.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/textToSpeech">http://www.w3.org/ns/odrl/2/textToSpeech</a></td></tr>
+<tr><th>Label:</th> <td>Text-to-speech</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-transfer">transfer</h3
+<p>The Assigner transfers/does not transfer the ownership in perpetuity to the Assignees.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/transfer">http://www.w3.org/ns/odrl/2/transfer</a></td></tr>
+<tr><th>Label:</th> <td>Transfer</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-give">give</a>, <a href="#term-sell">sell</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</div>
+<h3 id="term-transform">transform</h3
+<p>The Assigner permits/prohibits the Assignees to make a digital copy of the digital Asset in another digital format. Typically used to convert the Asset into a different format for consumption on/transfer to a third party system.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr>
+<tr><th>Label:</th> <td>Transform</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Deprecates:</th> <td><a href="#term-export">export</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-translate">translate</h3
+<p>The Assigner permits/prohibits the Assignees to translate the original natural language of an Asset into another natural language. A new derivative Asset is created by that action.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/translate">http://www.w3.org/ns/odrl/2/translate</a></td></tr>
+<tr><th>Label:</th> <td>Translate</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-uninstall">uninstall</h3
+<p>The Assigner requires that the Assignees unload and delete the computer program Asset from a storage device and disable its readiness for operation. The Asset is no longer accessible to the Assignees.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/uninstall">http://www.w3.org/ns/odrl/2/uninstall</a></td></tr>
+<tr><th>Label:</th> <td>Uninstall</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-watermark">watermark</h3
+<p>The Assigner requires that the Assignees apply a watermark as provided by the Assigner to the Asset. It is recommended to embed a link to the watermark.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/watermark">http://www.w3.org/ns/odrl/2/watermark</a></td></tr>
+<tr><th>Label:</th> <td>Watermark</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-write">write</h3
+<p>The act of writing to the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td></tr>
+<tr><th>Label:</th> <td>Write</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="#term-writeTo">writeTo</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-writeTo">writeTo</h3
+<p>The act of adding data to the Asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td></tr>
+<tr><th>Label:</th> <td>Write to</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Deprecates:</th> <td><a href="#term-write">write</a></td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-appendTo">appendTo</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-adHocShare">adHocShare</h3
+<p>The act of sharing the asset to parties in close proximity to the owner. This action may be used to express [OMA] Sharing semantics.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td></tr>
+<tr><th>Label:</th> <td>Ad-hoc sharing</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://www.openmobilealliance.com/oma-dd/adhoc-share">oma:adhoc-share</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-extractChar">extractChar</h3
+<p>The act of extracting (replicating) unchanged characters from the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td></tr>
+<tr><th>Label:</th> <td>Extract character</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://www.editeur.org/onix-pl/extract-char">onix:extract-char</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</div>
+<h3 id="term-extractPage">extractPage</h3
+<p>The act of extracting (replicating) unchanged pages from the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td></tr>
+<tr><th>Label:</th> <td>Extract page</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://www.editeur.org/onix-pl/extract-word">onix:extract-word</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</div>
+<h3 id="term-extractWord">extractWord</h3
+<p>The act of extracting (replicating) unchanged words from the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td></tr>
+<tr><th>Label:</th> <td>Extract word</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://www.editeur.org/onix-pl/extract-page">onix:extract-page</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</div>
+<h3 id="term-attachPolicy">attachPolicy</h3
+<p>The act of keeping the policy notice with the asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td></tr>
+<tr><th>Label:</th> <td>Attach policy</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://creativecommons.org/ns#Notice">cc:Notice</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-attachSource">attachSource</h3
+<p>The act of attaching the source of the asset and its derivatives.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td></tr>
+<tr><th>Label:</th> <td>Attach source</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://creativecommons.org/ns#SourceCode">cc:SourceCode</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-shareAlike">shareAlike</h3
+<p>The act of distributing any derivative asset under the same terms as the original asset.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td></tr>
+<tr><th>Label:</th> <td>Share-alike</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://creativecommons.org/ns#ShareAlike">cc:ShareAlike</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-commercialize">commercialize</h3
+<p>The act of using the asset in a business environment.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td></tr>
+<tr><th>Label:</th> <td>Commercialize</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://creativecommons.org/ns#CommercialUse">cc:CommercialUse</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h3 id="term-share">share</h3
+<p>The act of the non-commercial reproduction and distribution of the asset to third-parties.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td></tr>
+<tr><th>Label:</th> <td>Share</td></tr>
+<tr><th>Status:</th> <td>deprecated</td></tr>
+<tr><th>Deprecated by:</th> <td><a href="http://creativecommons.org/ns#Distribution">cc:Distribution</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Concept scheme:</th> <td><a href="#term-actions">actions</a></td></tr>
+</table>
+</div>
+<h2 id="sec-named-individuals">Named individuals</h2>
+<h3 id="term-perm">perm</h3
+<p>Permissions take precedence over prohibitions.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/perm">http://www.w3.org/ns/odrl/2/perm</a></td></tr>
+<tr><th>Label:</th> <td>Permissions</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
+</table>
+</div>
+<h3 id="term-prohibit">prohibit</h3
+<p>Prohibitions take precedence over permissions.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/prohibit">http://www.w3.org/ns/odrl/2/prohibit</a></td></tr>
+<tr><th>Label:</th> <td>Prohibit</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
+</table>
+</div>
+<h3 id="term-ignore">ignore</h3
+<p>Undefined actions should be ignored.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/ignore">http://www.w3.org/ns/odrl/2/ignore</a></td></tr>
+<tr><th>Label:</th> <td>Ignore</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
+</table>
+</div>
+<h3 id="term-invalid">invalid</h3
+<p>The policy is invalidated.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/invalid">http://www.w3.org/ns/odrl/2/invalid</a></td></tr>
+<tr><th>Label:</th> <td>Invalid</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a>, <a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
+</table>
+</div>
+<h3 id="term-support">support</h3
+<p>Undefined actions do not invalidate the policy, but notification for review must occur.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/support">http://www.w3.org/ns/odrl/2/support</a></td></tr>
+<tr><th>Label:</th> <td>Support</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
+</table>
+</div>
+<h3 id="term-eq">eq</h3
+<p>Indicating that a given value equals the operand of the Constraint.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/eq">http://www.w3.org/ns/odrl/2/eq</a></td></tr>
+<tr><th>Label:</th> <td>Equal to</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-gt">gt</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/gt">http://www.w3.org/ns/odrl/2/gt</a></td></tr>
+<tr><th>Label:</th> <td>Greater than</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-gteq">gteq</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/gteq">http://www.w3.org/ns/odrl/2/gteq</a></td></tr>
+<tr><th>Label:</th> <td>Greater than or equal to</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-hasPart">hasPart</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPart">http://www.w3.org/ns/odrl/2/hasPart</a></td></tr>
+<tr><th>Label:</th> <td>Has part</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-isA">isA</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/isA">http://www.w3.org/ns/odrl/2/isA</a></td></tr>
+<tr><th>Label:</th> <td>Is a</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-isAllOf">isAllOf</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/isAllOf">http://www.w3.org/ns/odrl/2/isAllOf</a></td></tr>
+<tr><th>Label:</th> <td>Is all of</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-isAnyOf">isAnyOf</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/isAnyOf">http://www.w3.org/ns/odrl/2/isAnyOf</a></td></tr>
+<tr><th>Label:</th> <td>Is any of</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-isNoneOf">isNoneOf</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/isNoneOf">http://www.w3.org/ns/odrl/2/isNoneOf</a></td></tr>
+<tr><th>Label:</th> <td>Is none of</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-isPartOf">isPartOf</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/isPartOf">http://www.w3.org/ns/odrl/2/isPartOf</a></td></tr>
+<tr><th>Label:</th> <td>Is part of</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-lt">lt</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/lt">http://www.w3.org/ns/odrl/2/lt</a></td></tr>
+<tr><th>Label:</th> <td>Less than</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-lteq">lteq</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/lteq">http://www.w3.org/ns/odrl/2/lteq</a></td></tr>
+<tr><th>Label:</th> <td>Less than or equal to</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-neq">neq</h3
+<p></p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/neq">http://www.w3.org/ns/odrl/2/neq</a></td></tr>
+<tr><th>Label:</th> <td>Not equal to</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</div>
+<h3 id="term-policyUsage">policyUsage</h3
+<p>When used as an event in constraints, indicates that the event occurs at the time when the policy is executed.</p>
+<table>
+  <tr><th>URI:</th> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
+<tr><th>Label:</th> <td>Policy usage time</td></tr>
+<tr><th>Status:</th> <td>stable</td></tr>
+</table>
+</div>
+
 </section>
 
-<section>
-      <h3>RDF/OWL </h3>
-  
-</section>
-    
-<section>
-      <h3>XML</h3>
-  
-</section>
-    
-    
-    
-</section>            
-             
-    <section class="informative">
-      <h2>Scenarios - Encoding Examples</h2>
-  
-          <section>
-          <h3>Scenario - Set</h3>
-      <p>The following shows an instance of a Set Policy. The Set shows a policy expression, stating that the Asset <i>http//example.com/asset:9898</i> is the target of the Permission reproduce and the Prohibition to modify. No parties or other elements are involved. This Set could be used, for example, as a template or an instant license.
+<section id="examples" class="informative">
+	<h2>Scenarios - Encoding Examples</h2>
+<section id="sc-example1"><h3>Set</h3><p>
+        The following shows an instance of a <a href="#term-Set">set</a> <a href="#term-Policy">policy</a>. The set shows a policy expression, stating that the <a href="#term-Asset">asset</a>, <code>http://example.com/asset:9898</code>, is the target of the <a href="#term-Permission">permission</a> to <a href="#term-reproduce">reproduce</a> and the <a href="#term-Prohibition">prohibition</a> to <a href="#term-modify">modify</a>.
 </p>
-<div class="nanotabs">
-  <ul>
-    <li><a href="#sc01-json" class="selected">JSON</a></li>
-    <li><a href="#sc01-rdfxml" class="selected">RDF/XML</a></li>
-    <li><a href="#sc01-turtle" class="selected">Turtle</a></li>
-    <li><a href="#sc01-xml" class="selected">XML</a></li>
-  </ul>
-
-<div id="sc01-json" style="display: block;">
-<pre class="example highlight json">
-{
-    "policytype": "http://www.w3.org/ns/odrl/2/Set",
-    "policyid": "http://example.com/policy:0099",
-    "permissions": [{
-        "target": "http://example.com/asset:9898",
-        "action": "http://www.w3.org/ns/odrl/2/reproduce"
+<div class="nanotabs"><ul><li><a href="#sc-example1-json" class="selected">JSON</a></li><li><a href="#sc-example1-ttl" class="selected">Turtle</a></li><li><a href="#sc-example1-xml" class="selected">XML</a></li><li><a href="#sc-example1-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example1-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example1-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Set&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:0099&quot;,
+    &quot;permissions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/asset:9898&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/reproduce&quot;
     }],
-    "prohibitions": [{
-        "target": "http://example.com/asset:9898",
-        "action": "http://www.w3.org/ns/odrl/2/modify"
+    &quot;prohibitions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/asset:9898&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/modify&quot;
     }]
 }
- </pre>
-</div>
-          
-    <div id="sc01-rdfxml" style="display: none;">
-<pre class="example highlight html">
-&lt;rdf:RDF xmlns:odrl="http://www.w3.org/ns/odrl/2/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;
-  &lt;odrl:Set rdf:about="http://example.com/policy:0099"&gt;
-    &lt;odrl:permission&gt;
-      &lt;odrl:Permission&gt;
-        &lt;odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/reproduce"/&gt;
-        &lt;odrl:target rdf:resource="http://example.com/asset:9898"/&gt;
-      &lt;/odrl:Permission&gt;
-    &lt;/odrl:permission&gt;
-    &lt;odrl:prohibition&gt;
-      &lt;odrl:Prohibition&gt;
-        &lt;odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/modify"/&gt;
-        &lt;odrl:target rdf:resource="http://example.com/asset:9898"/&gt;
-      &lt;/odrl:Prohibition&gt;
-    &lt;/odrl:prohibition&gt;
-  &lt;/odrl:Set&gt;
-&lt;/rdf:RDF&gt;
-</pre>
- </div>
-          
-  <div id="sc01-turtle" style="display: none;">
-<pre class="example highlight turtle">
-@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div><div id="sc-example1-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:0099&gt;
 	a odrl:Set;
@@ -228,47 +1717,752 @@ This specification was derived from the ODRL Community Group's outcomes, and det
 		odrl:target &lt;http://example.com/asset:9898&gt; ;
 		odrl:action odrl:modify
 	] .
-</pre>
-</div>
-          
-    
-     <div id="sc01-xml" style="display: none;">
-<pre class="example highlight html">
-&lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" type="http://www.w3.org/ns/odrl/2/Set"
-                                                 uid="http://example.com/policy:0099"&gt;
+</pre></div><div id="sc-example1-xml" style="display: none;"><pre class="example highlight xml">&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; type=&quot;http://www.w3.org/ns/odrl/2/Set&quot;
+                                                 uid=&quot;http://example.com/policy:0099&quot;&gt;
     &lt;o:permission&gt;
-        &lt;o:asset uid="http://example.com/asset:9898"
-                 relation="http://www.w3.org/ns/odrl/2/target"/&gt;
-        &lt;o:action name="http://www.w3.org/ns/odrl/2/reproduce"/&gt;
+        &lt;o:asset uid=&quot;http://example.com/asset:9898&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/reproduce&quot;/&gt;
     &lt;/o:permission&gt;
     &lt;o:prohibition&gt;
-        &lt;o:asset uid="http://example.com/asset:9898"
-                 relation="http://www.w3.org/ns/odrl/2/target"/&gt;
-        &lt;o:action name="http://www.w3.org/ns/odrl/2/modify"/&gt;
+        &lt;o:asset uid=&quot;http://example.com/asset:9898&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/modify&quot;/&gt;
     &lt;/o:prohibition&gt;
 &lt;/o:Policy&gt;
-</pre>
- </div>
-    
-    
-          
-              </div>          
- </section>
+</pre></div><div id="sc-example1-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;odrl:Set rdf:about=&quot;http://example.com/policy:0099&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/reproduce&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/asset:9898&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+    &lt;odrl:prohibition&gt;
+      &lt;odrl:Prohibition&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/modify&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/asset:9898&quot;/&gt;
+      &lt;/odrl:Prohibition&gt;
+    &lt;/odrl:prohibition&gt;
+  &lt;/odrl:Set&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example1-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/asset:9898&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/reproduce&gt; .
+_:genid2 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Prohibition&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/asset:9898&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/modify&gt; .
+&lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Set&gt; .
+&lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
+&lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/ns/odrl/2/prohibition&gt; _:genid2 .
+</pre></div></section><section id="sc-example2"><h3>Offer</h3><div class="nanotabs"><ul><li><a href="#sc-example2-ttl" class="selected">Turtle</a></li><li><a href="#sc-example2-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example2-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example2-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
-          
-          
-   </section>
-      
- 
-      
-      
-<script type="text/javascript" src="http://www.w3.org/scripts/nanotabs/0.9/nanotabs.js">
-</script>
-<script type="text/javascript">
-  nanotabs({c:"cell",e:"click",d:-1,f:function(){ return false; }});
-  nanotabs({c:"cell",e:"mouseover",s:"active"});
-</script>
-           
-      
-  </body>
+&lt;http://example.com/policy:0231&gt;
+	a odrl:Offer ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:target &lt;http://example.com/music:4545&gt; ;
+		odrl:assigner &lt;http://example.com/sony:10&gt; ;
+		odrl:action odrl:play ;
+		odrl:duty _:requirements
+	] ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:target &lt;http://example.com/music:4545&gt; ;
+		odrl:assigner &lt;http://example.com/sony:10&gt; ;
+		odrl:action odrl:copy ;
+		odrl:duty _:requirements ;
+		odrl:constraint [
+			a odrl:Constraint ;
+			odrl:count 1 ;
+			odrl:operator odrl:lteq
+		]
+	] .
+
+_:requirements
+	a odrl:Duty ;
+	odrl:action odrl:pay ;
+	odrl:constraint [
+		a odrl:Constraint ;
+		odrl:payAmount 50.00 ;
+		odrl:operator odrl:eq ;
+		odrl:unit &lt;http://cvx.iptc.org/iso4217a:AUD&gt;
+	] .
+
+&lt;http://example.com/sony:10&gt; a odrl:Party .
+</pre></div><div id="sc-example2-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF
+   xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;odrl:Offer rdf:about=&quot;http://example.com/policy:0231&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/play&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/sony:10&quot;/&gt;
+        &lt;odrl:duty rdf:nodeID=&quot;requirements&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/music:4545&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/copy&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/sony:10&quot;/&gt;
+        &lt;odrl:constraint&gt;
+          &lt;odrl:Constraint&gt;
+            &lt;odrl:count rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#integer&quot;&gt;1&lt;/odrl:count&gt;
+            &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/lteq&quot;/&gt;
+          &lt;/odrl:Constraint&gt;
+        &lt;/odrl:constraint&gt;
+        &lt;odrl:duty rdf:nodeID=&quot;requirements&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/music:4545&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Offer&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/sony:10&quot;/&gt;
+  &lt;odrl:Duty rdf:nodeID=&quot;requirements&quot;&gt;
+    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+    &lt;odrl:constraint&gt;
+      &lt;odrl:Constraint&gt;
+        &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
+        &lt;odrl:payAmount rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#decimal&quot;&gt;50.00&lt;/odrl:payAmount&gt;
+        &lt;odrl:unit rdf:resource=&quot;http://cvx.iptc.org/iso4217a:AUD&quot;/&gt;
+      &lt;/odrl:Constraint&gt;
+    &lt;/odrl:constraint&gt;
+  &lt;/odrl:Duty&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example2-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music:4545&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/sony:10&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/play&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/duty&gt; _:requirements .
+_:genid2 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/count&gt; &quot;1&quot;^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/lteq&gt; .
+_:genid3 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music:4545&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/sony:10&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/copy&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/duty&gt; _:requirements .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid2 .
+&lt;http://example.com/policy:0231&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Offer&gt; .
+&lt;http://example.com/policy:0231&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
+&lt;http://example.com/policy:0231&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid3 .
+_:genid4 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/payAmount&gt; &quot;50.00&quot;^^&lt;http://www.w3.org/2001/XMLSchema#decimal&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/unit&gt; &lt;http://cvx.iptc.org/iso4217a:AUD&gt; .
+_:requirements &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
+_:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/pay&gt; .
+_:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
+&lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+</pre></div></section><section id="sc-example3"><h3>Agreement</h3><div class="nanotabs"><ul><li><a href="#sc-example3-ttl" class="selected">Turtle</a></li><li><a href="#sc-example3-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example3-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example3-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+
+&lt;http://example.com/policy:9001&gt;
+	a odrl:Agreement ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:target &lt;http://example.com/music:4545&gt; ;
+		odrl:assigner &lt;http://example.com/sony:10&gt; ;
+		odrl:assignee &lt;http://example.com/billie:888&gt; ;
+		odrl:action odrl:play ;
+		odrl:duty _:requirements
+	] ;
+	odrl:permission [
+		odrl:target &lt;http://example.com/music:4545&gt; ;
+		odrl:assigner &lt;http://example.com/sony:10&gt; ;
+		odrl:assignee &lt;http://example.com/billie:888&gt; ;
+		odrl:action odrl:copy ;
+		odrl:duty _:requirements ;
+		odrl:constraint [
+			a odrl:Constraint ;
+			odrl:count 1 ;
+			odrl:operator odrl:lteq
+		]
+	] .
+
+_:requirements
+	a odrl:Duty ;
+	odrl:action odrl:pay ;
+	odrl:constraint [
+		a odrl:Constraint ;
+		odrl:payAmount 50.00 ;
+		odrl:operator odrl:eq ;
+		odrl:unit &lt;http://cvx.iptc.org/iso4217a:AUD&gt;
+	] .
+
+&lt;http://example.com/sony:10&gt; a odrl:Party .
+&lt;http://example.com/billie:888&gt; a odrl:Party .
+</pre></div><div id="sc-example3-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF
+   xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/billie:888&quot;/&gt;
+  &lt;odrl:Agreement rdf:about=&quot;http://example.com/policy:9001&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/play&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;http://example.com/billie:888&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/sony:10&quot;/&gt;
+        &lt;odrl:duty rdf:nodeID=&quot;requirements&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/music:4545&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+    &lt;odrl:permission&gt;
+      &lt;rdf:Description&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/copy&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;http://example.com/billie:888&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/sony:10&quot;/&gt;
+        &lt;odrl:constraint&gt;
+          &lt;odrl:Constraint&gt;
+            &lt;odrl:count rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#integer&quot;&gt;1&lt;/odrl:count&gt;
+            &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/lteq&quot;/&gt;
+          &lt;/odrl:Constraint&gt;
+        &lt;/odrl:constraint&gt;
+        &lt;odrl:duty rdf:nodeID=&quot;requirements&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/music:4545&quot;/&gt;
+      &lt;/rdf:Description&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Agreement&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/sony:10&quot;/&gt;
+  &lt;odrl:Duty rdf:nodeID=&quot;requirements&quot;&gt;
+    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+    &lt;odrl:constraint&gt;
+      &lt;odrl:Constraint&gt;
+        &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
+        &lt;odrl:payAmount rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#decimal&quot;&gt;50.00&lt;/odrl:payAmount&gt;
+        &lt;odrl:unit rdf:resource=&quot;http://cvx.iptc.org/iso4217a:AUD&quot;/&gt;
+      &lt;/odrl:Constraint&gt;
+    &lt;/odrl:constraint&gt;
+  &lt;/odrl:Duty&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example3-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music:4545&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/sony:10&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/billie:888&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/play&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/duty&gt; _:requirements .
+_:genid2 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/count&gt; &quot;1&quot;^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/lteq&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music:4545&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/sony:10&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/billie:888&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/copy&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/duty&gt; _:requirements .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid2 .
+&lt;http://example.com/policy:9001&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Agreement&gt; .
+&lt;http://example.com/policy:9001&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
+&lt;http://example.com/policy:9001&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid3 .
+_:genid4 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/payAmount&gt; &quot;50.00&quot;^^&lt;http://www.w3.org/2001/XMLSchema#decimal&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/unit&gt; &lt;http://cvx.iptc.org/iso4217a:AUD&gt; .
+_:requirements &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
+_:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/pay&gt; .
+_:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
+&lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+&lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+</pre></div></section><section id="sc-example4"><h3>Request</h3><div class="nanotabs"><ul><li><a href="#sc-example4-ttl" class="selected">Turtle</a></li><li><a href="#sc-example4-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example4-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example4-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+
+&lt;http://example.com/policy:04311&gt;
+	a odrl:Request ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:display ;
+		odrl:assignee &lt;http://example.com/guest:0589&gt; ;
+		odrl:target &lt;http://example.com/news:0099&gt;
+	] .
+
+&lt;http://example.com/guest:0589&gt; a odrl:Party .
+</pre></div><div id="sc-example4-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/guest:0589&quot;/&gt;
+  &lt;odrl:Request rdf:about=&quot;http://example.com/policy:04311&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/display&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;http://example.com/guest:0589&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/news:0099&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Request&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example4-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/display&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/guest:0589&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/news:0099&gt; .
+&lt;http://example.com/policy:04311&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Request&gt; .
+&lt;http://example.com/policy:04311&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
+&lt;http://example.com/guest:0589&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+</pre></div></section><section id="sc-example5"><h3>Ticket</h3><div class="nanotabs"><ul><li><a href="#sc-example5-ttl" class="selected">Turtle</a></li><li><a href="#sc-example5-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example5-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example5-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+&lt;http://example.com/policy:0811&gt;
+	a odrl:Ticket ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:play ;
+		odrl:target &lt;http://example.com/game:4589&gt; ;
+		odrl:constraint [
+			a odrl:Constraint ;
+			odrl:operator odrl:lteq ;
+			odrl:dateTime &quot;2010-12-31&quot;^^xsd:date
+		]
+	] .
+</pre></div><div id="sc-example5-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema#&quot;&gt;
+  &lt;odrl:Ticket rdf:about=&quot;http://example.com/policy:0811&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/play&quot;/&gt;
+        &lt;odrl:constraint&gt;
+          &lt;odrl:Constraint&gt;
+            &lt;odrl:dateTime rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#date&quot;&gt;2010-12-31&lt;/odrl:dateTime&gt;
+            &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/lteq&quot;/&gt;
+          &lt;/odrl:Constraint&gt;
+        &lt;/odrl:constraint&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/game:4589&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Ticket&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example5-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/lteq&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/dateTime&gt; &quot;2010-12-31&quot;^^&lt;http://www.w3.org/2001/XMLSchema#date&gt; .
+_:genid2 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/play&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/game:4589&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
+&lt;http://example.com/policy:0811&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Ticket&gt; .
+&lt;http://example.com/policy:0811&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid2 .
+</pre></div></section><section id="sc-example6"><h3>Offer and next policy</h3><div class="nanotabs"><ul><li><a href="#sc-example6-ttl" class="selected">Turtle</a></li><li><a href="#sc-example6-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example6-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example6-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+
+&lt;http://example.com/policy:5531&gt;
+	a odrl:Offer ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:distribute ;
+		odrl:target &lt;http://example.com/wallpaper:2321&gt; ;
+		odrl:assigner &lt;http://example.com/sony:99&gt; ;
+		odrl:constraint [
+			a odrl:Constraint ;
+			odrl:operator odrl:eq ;
+			odrl:spatial &lt;http://ontologi.es/place/IT&gt;
+		] ;
+		odrl:duty &lt;http://example.com/duty:01&gt;, &lt;http://example.com/duty:02&gt;
+	] .
+
+&lt;http://example.com/duty:01&gt;
+	a odrl:Duty ;
+	odrl:action odrl:pay ;
+	odrl:constraint [
+		a odrl:Constraint ;
+		odrl:payAmount 1000.00 ;
+		odrl:operator odrl:eq ;
+		odrl:unit &lt;http://cvx.iptc.org/iso4217a:EUR&gt;
+	] .
+
+&lt;http://example.com/duty:02&gt;
+	a odrl:Duty ;
+	odrl:action odrl:nextPolicy ;
+	odrl:target &lt;http://example.com/policy:7777&gt; .
+
+&lt;http://example.com/policy:7777&gt;
+	a odrl:Set ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:display ;
+		odrl:target &lt;http://example.com/wallpaper:2321&gt;
+	] .
+
+&lt;http://example.com/sony:99&gt; a odrl:Party .
+</pre></div><div id="sc-example6-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF
+   xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;odrl:Duty rdf:about=&quot;http://example.com/duty:01&quot;&gt;
+    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+    &lt;odrl:constraint&gt;
+      &lt;odrl:Constraint&gt;
+        &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
+        &lt;odrl:payAmount rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#decimal&quot;&gt;1000.00&lt;/odrl:payAmount&gt;
+        &lt;odrl:unit rdf:resource=&quot;http://cvx.iptc.org/iso4217a:EUR&quot;/&gt;
+      &lt;/odrl:Constraint&gt;
+    &lt;/odrl:constraint&gt;
+  &lt;/odrl:Duty&gt;
+  &lt;odrl:Duty rdf:about=&quot;http://example.com/duty:02&quot;&gt;
+    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/nextPolicy&quot;/&gt;
+    &lt;odrl:target rdf:resource=&quot;http://example.com/policy:7777&quot;/&gt;
+  &lt;/odrl:Duty&gt;
+  &lt;odrl:Offer rdf:about=&quot;http://example.com/policy:5531&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/distribute&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/sony:99&quot;/&gt;
+        &lt;odrl:constraint&gt;
+          &lt;odrl:Constraint&gt;
+            &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
+            &lt;odrl:spatial rdf:resource=&quot;http://ontologi.es/place/IT&quot;/&gt;
+          &lt;/odrl:Constraint&gt;
+        &lt;/odrl:constraint&gt;
+        &lt;odrl:duty rdf:resource=&quot;http://example.com/duty:01&quot;/&gt;
+        &lt;odrl:duty rdf:resource=&quot;http://example.com/duty:02&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/wallpaper:2321&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Offer&gt;
+  &lt;odrl:Set rdf:about=&quot;http://example.com/policy:7777&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/display&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/wallpaper:2321&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Set&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/sony:99&quot;/&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example6-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/spatial&gt; &lt;http://ontologi.es/place/IT&gt; .
+_:genid2 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/distribute&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/wallpaper:2321&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/sony:99&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/duty&gt; &lt;http://example.com/duty:01&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/duty&gt; &lt;http://example.com/duty:02&gt; .
+&lt;http://example.com/policy:5531&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Offer&gt; .
+&lt;http://example.com/policy:5531&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid2 .
+_:genid3 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/payAmount&gt; &quot;1000.00&quot;^^&lt;http://www.w3.org/2001/XMLSchema#decimal&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/unit&gt; &lt;http://cvx.iptc.org/iso4217a:EUR&gt; .
+&lt;http://example.com/duty:01&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
+&lt;http://example.com/duty:01&gt; &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/pay&gt; .
+&lt;http://example.com/duty:01&gt; &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid3 .
+&lt;http://example.com/duty:02&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
+&lt;http://example.com/duty:02&gt; &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/nextPolicy&gt; .
+&lt;http://example.com/duty:02&gt; &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/policy:7777&gt; .
+_:genid4 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/display&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/wallpaper:2321&gt; .
+&lt;http://example.com/policy:7777&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Set&gt; .
+&lt;http://example.com/policy:7777&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid4 .
+&lt;http://example.com/sony:99&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+</pre></div></section><section id="sc-example7"><h3>Privacy policy</h3><div class="nanotabs"><ul><li><a href="#sc-example7-ttl" class="selected">Turtle</a></li><li><a href="#sc-example7-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example7-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example7-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+@prefix p3p: &lt;http://www.w3.org/2002/01/p3prdfv1#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+&lt;http://example.com/policy:1111&gt;
+	a odrl:Privacy ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:distribute ;
+		odrl:target &lt;http://example.com/billie:888:personal-data&gt; ;
+		odrl:assigner &lt;http://example.com/billie:888&gt; ;
+		odrl:assignee &lt;http://example.com/gov:health:au&gt; ;
+		odrl:duty [
+			a odrl:Duty ;
+			odrl:action odrl:delete ;
+			odrl:constraint [
+				a odrl:Constraint ;
+				odrl:operator odrl:eq ;
+				odrl:dateTime &quot;P30D&quot;^^xsd:dateTime 
+			]
+		] ;
+		odrl:constraint [
+			a odrl:Constraint ;
+			odrl:operator odrl:eq ;
+			odrl:purpose p3p:contact
+		]
+	] .
+
+&lt;http://example.com/billie:888&gt; a odrl:Party .
+&lt;http://example.com/gov:health:au&gt; a odrl:Party .
+</pre></div><div id="sc-example7-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:p3p=&quot;http://www.w3.org/2002/01/p3prdfv1#&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema#&quot;&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/billie:888&quot;/&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/gov:health:au&quot;/&gt;
+  &lt;odrl:Privacy rdf:about=&quot;http://example.com/policy:1111&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/distribute&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;http://example.com/gov:health:au&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/billie:888&quot;/&gt;
+        &lt;odrl:constraint&gt;
+          &lt;odrl:Constraint&gt;
+            &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
+            &lt;odrl:purpose rdf:resource=&quot;http://www.w3.org/2002/01/p3prdfv1#contact&quot;/&gt;
+          &lt;/odrl:Constraint&gt;
+        &lt;/odrl:constraint&gt;
+        &lt;odrl:duty&gt;
+          &lt;odrl:Duty&gt;
+            &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/delete&quot;/&gt;
+            &lt;odrl:constraint&gt;
+              &lt;odrl:Constraint&gt;
+                &lt;odrl:dateTime rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#dateTime&quot;&gt;P30D&lt;/odrl:dateTime&gt;
+                &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
+              &lt;/odrl:Constraint&gt;
+            &lt;/odrl:constraint&gt;
+          &lt;/odrl:Duty&gt;
+        &lt;/odrl:duty&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/billie:888:personal-data&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Privacy&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example7-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/dateTime&gt; &quot;P30D&quot;^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt; .
+_:genid2 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/delete&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
+_:genid3 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Constraint&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
+_:genid3 &lt;http://www.w3.org/ns/odrl/2/purpose&gt; &lt;http://www.w3.org/2002/01/p3prdfv1#contact&gt; .
+_:genid4 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/distribute&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/billie:888:personal-data&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/billie:888&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/gov:health:au&gt; .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/duty&gt; _:genid2 .
+_:genid4 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid3 .
+&lt;http://example.com/policy:1111&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Privacy&gt; .
+&lt;http://example.com/policy:1111&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid4 .
+&lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+&lt;http://example.com/gov:health:au&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+</pre></div></section><section id="sc-example8"><h3>Permission and prohibition</h3><div class="nanotabs"><ul><li><a href="#sc-example8-ttl" class="selected">Turtle</a></li><li><a href="#sc-example8-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example8-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example8-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+@prefix mobile: &lt;http://example.com/mobile#&gt; .
+
+&lt;http://example.com/policy:3433&gt;
+	a odrl:Agreement ;
+	odrl:conflict odrl:perm ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:play ;
+		odrl:assignee &lt;http://example.com/billie:888&gt; ;
+		odrl:assigner &lt;http://example.com/sony:10&gt; ;
+		odrl:target &lt;http://example.com/music:1234908&gt;
+	] ;
+	odrl:prohibition [
+		a odrl:Prohibition ; 
+		odrl:action mobile:ringtone ;
+		odrl:assignee &lt;/http://example.combillie:888&gt; ;
+		odrl:assigner &lt;http://example.com/sony:10&gt; ;
+		odrl:target &lt;http://example.com/music:1234908&gt;
+	] .
+
+&lt;http://example.com/billie:888&gt; a odrl:Party .
+&lt;http://example.com/sony:10&gt; a odrl:Party .
+</pre></div><div id="sc-example8-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF xmlns:mobile=&quot;http://example.com/mobile#&quot;
+   xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/billie:888&quot;/&gt;
+  &lt;odrl:Agreement rdf:about=&quot;http://example.com/policy:3433&quot;&gt;
+    &lt;odrl:conflict rdf:resource=&quot;http://www.w3.org/ns/odrl/2/perm&quot;/&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/play&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;http://example.com/billie:888&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/sony:10&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/music:1234908&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+    &lt;odrl:prohibition&gt;
+      &lt;odrl:Prohibition&gt;
+        &lt;odrl:action rdf:resource=&quot;http://example.com/mobile#ringtone&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;file:///http://example.combillie:888&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/sony:10&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/music:1234908&quot;/&gt;
+      &lt;/odrl:Prohibition&gt;
+    &lt;/odrl:prohibition&gt;
+  &lt;/odrl:Agreement&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/sony:10&quot;/&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example8-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/play&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/billie:888&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/sony:10&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music:1234908&gt; .
+_:genid2 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Prohibition&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://example.com/mobile#ringtone&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;file:///http://example.combillie:888&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/sony:10&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music:1234908&gt; .
+&lt;http://example.com/policy:3433&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Agreement&gt; .
+&lt;http://example.com/policy:3433&gt; &lt;http://www.w3.org/ns/odrl/2/conflict&gt; &lt;http://www.w3.org/ns/odrl/2/perm&gt; .
+&lt;http://example.com/policy:3433&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
+&lt;http://example.com/policy:3433&gt; &lt;http://www.w3.org/ns/odrl/2/prohibition&gt; _:genid2 .
+&lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+&lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+</pre></div></section><section id="sc-example9"><h3>Inheritance</h3><div class="nanotabs"><ul><li><a href="#sc-example9-ttl" class="selected">Turtle</a></li><li><a href="#sc-example9-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example9-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example9-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+
+&lt;http://example.com/policy:5531&gt;
+	a odrl:Agreement ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:print ;
+		odrl:target &lt;http://example.com/report:2321&gt; ;
+		odrl:assigner &lt;http://example.com/pub:88&gt; ;
+		odrl:assignee &lt;http://example.com/billie:888&gt; ;		
+	] .
+	
+&lt;http://example.com/policy:9999&gt;
+	a odrl:Agreement ;
+	odrl:inheritFrom &lt;http://example.com/policy:5531&gt; ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:display ;
+		odrl:target &lt;http://example.com/report:2333&gt; ;
+		odrl:assigner &lt;http://example.com/pub:88&gt; ;
+		odrl:assignee &lt;http://example.com/class:IT01&gt;
+	] .
+
+&lt;http://example.com/pub:88&gt; a odrl:Party .
+&lt;http://example.com/billie:888&gt; a odrl:Party .
+&lt;http://example.com/class:IT01&gt; a odrl:Group .
+</pre></div><div id="sc-example9-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/billie:888&quot;/&gt;
+  &lt;odrl:Group rdf:about=&quot;http://example.com/class:IT01&quot;/&gt;
+  &lt;odrl:Agreement rdf:about=&quot;http://example.com/policy:5531&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/print&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;http://example.com/billie:888&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/pub:88&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/report:2321&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Agreement&gt;
+  &lt;odrl:Agreement rdf:about=&quot;http://example.com/policy:9999&quot;&gt;
+    &lt;odrl:inheritFrom rdf:resource=&quot;http://example.com/policy:5531&quot;/&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/display&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;http://example.com/class:IT01&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/pub:88&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/report:2333&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Agreement&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/pub:88&quot;/&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example9-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/print&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/report:2321&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/pub:88&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/billie:888&gt; .
+&lt;http://example.com/policy:5531&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Agreement&gt; .
+&lt;http://example.com/policy:5531&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
+_:genid2 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/display&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/report:2333&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/pub:88&gt; .
+_:genid2 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/class:IT01&gt; .
+&lt;http://example.com/policy:9999&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Agreement&gt; .
+&lt;http://example.com/policy:9999&gt; &lt;http://www.w3.org/ns/odrl/2/inheritFrom&gt; &lt;http://example.com/policy:5531&gt; .
+&lt;http://example.com/policy:9999&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid2 .
+&lt;http://example.com/pub:88&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+&lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+&lt;http://example.com/class:IT01&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Group&gt; .
+</pre></div></section><section id="sc-example10"><h3>Social network</h3><div class="nanotabs"><ul><li><a href="#sc-example10-ttl" class="selected">Turtle</a></li><li><a href="#sc-example10-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example10-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example10-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+
+&lt;http://example.com/policy:5109&gt;
+	a odrl:Agreement ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:display ;
+		odrl:target &lt;http://example.com/myPlace:billie:photos:football2010&gt; ;
+		odrl:assigner &lt;http://example.com/myPlace:billie&gt; ;
+		odrl:assignee &lt;http://example.com/myPlace:network:football&gt;
+	] .
+
+&lt;http://example.com/myPlace:billie&gt; a odrl:Party .
+&lt;http://example.com/myPlace:network:football&gt; a odrl:Group .
+</pre></div><div id="sc-example10-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+  &lt;odrl:Party rdf:about=&quot;http://example.com/myPlace:billie&quot;/&gt;
+  &lt;odrl:Group rdf:about=&quot;http://example.com/myPlace:network:football&quot;/&gt;
+  &lt;odrl:Agreement rdf:about=&quot;http://example.com/policy:5109&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/display&quot;/&gt;
+        &lt;odrl:assignee rdf:resource=&quot;http://example.com/myPlace:network:football&quot;/&gt;
+        &lt;odrl:assigner rdf:resource=&quot;http://example.com/myPlace:billie&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/myPlace:billie:photos:football2010&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Agreement&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example10-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/display&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/myPlace:billie:photos:football2010&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assigner&gt; &lt;http://example.com/myPlace:billie&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/myPlace:network:football&gt; .
+&lt;http://example.com/policy:5109&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Agreement&gt; .
+&lt;http://example.com/policy:5109&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
+&lt;http://example.com/myPlace:billie&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
+&lt;http://example.com/myPlace:network:football&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Group&gt; .
+</pre></div></section><section id="sc-example11"><h3>Multiple assets</h3><div class="nanotabs"><ul><li><a href="#sc-example11-ttl" class="selected">Turtle</a></li><li><a href="#sc-example11-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example11-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example11-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix x: &lt;http://example.com/x#&gt; .
+
+&lt;http://example.com/policy:881212&gt;
+	a odrl:Set ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:index ;
+		odrl:target &lt;http://example.com/archive/2010&gt; ;
+		x:collection &lt;http://example.com/x/database&gt;
+	] .
+
+x:collection 
+	rdfs:subPropertyOf odrl:relation .
+</pre></div><div id="sc-example11-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;rdf:RDF
+   xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
+   xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+   xmlns:rdfs=&quot;http://www.w3.org/2000/01/rdf-schema#&quot;
+   xmlns:x=&quot;http://example.com/x#&quot;&gt;
+  &lt;odrl:Set rdf:about=&quot;http://example.com/policy:881212&quot;&gt;
+    &lt;odrl:permission&gt;
+      &lt;odrl:Permission&gt;
+        &lt;x:collection rdf:resource=&quot;http://example.com/x/database&quot;/&gt;
+        &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/index&quot;/&gt;
+        &lt;odrl:target rdf:resource=&quot;http://example.com/archive/2010&quot;/&gt;
+      &lt;/odrl:Permission&gt;
+    &lt;/odrl:permission&gt;
+  &lt;/odrl:Set&gt;
+  &lt;rdf:Description rdf:about=&quot;http://example.com/x#collection&quot;&gt;
+    &lt;rdfs:subPropertyOf rdf:resource=&quot;http://www.w3.org/ns/odrl/2/relation&quot;/&gt;
+  &lt;/rdf:Description&gt;
+&lt;/rdf:RDF&gt;
+</pre></div><div id="sc-example11-nt" style="display: none;"><pre class="example highlight nt">_:genid1 &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Permission&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/index&gt; .
+_:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/archive/2010&gt; .
+_:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/database&gt; .
+&lt;http://example.com/policy:881212&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Set&gt; .
+&lt;http://example.com/policy:881212&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
+&lt;http://example.com/x#collection&gt; &lt;http://www.w3.org/2000/01/rdf-schema#subPropertyOf&gt; &lt;http://www.w3.org/ns/odrl/2/relation&gt; .
+</pre></div></section>
+		<script type="text/javascript" src="http://www.w3.org/scripts/nanotabs/0.9/nanotabs.js">
+		</script>
+		<script type="text/javascript">
+nanotabs({c:"cell",e:"click",d:-1,f:function(){ return false; }});
+nanotabs({c:"cell",e:"mouseover",s:"active"});
+		</script>
+	</body>
 </html>
+
