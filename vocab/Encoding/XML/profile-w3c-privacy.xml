@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" type="http://www.w3.org/ns/odrl/2/Privacy" uid="http://example.com/policy:2442">
+    <o:permission>
+        <o:asset uid="http://example.comjane-doe:personal-data" relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://www.w3.org/ns/odrl/2/share"/>
+        <o:constraint name="http://www.w3.org/ns/odrl/2/purpose" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="http://www.w3.org/2009/dap:internal"/>
+        <o:duty uid="d1">
+            <o:action name="http://www.w3.org/ns/odrl/2/delete"/>
+            <o:constraint name="http://www.w3.org/ns/odrl/2/dateTime" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="P35D"/>
+        </o:duty>
+    </o:permission>
+    <o:permission>
+        <o:asset uid="http://example.com/jane-doe:personal-data" relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://www.w3.org/ns/odrl/2/secondaryUse"/>
+        <o:constraint name="http://www.w3.org/ns/odrl/2/purpose" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="http://www.w3.org/2009/dap:customization"/>
+        <o:duty uid="#d1"/>
+    </o:permission>
+</o:Policy>

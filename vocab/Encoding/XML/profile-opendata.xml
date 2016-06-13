@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" type="http://w3.org/ns/odrl/2/Agreement" uid="http://example.com/policy:0101Z">
+    <o:permission>
+        <o:asset uid="http://example.com/gov.au:database:environment" relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
+        <o:party uid="http://example.com/gov.au:env-dept" function="http://www.w3.org/ns/odrl/2/assigner"/>
+        <o:duty uid="d1">
+            <o:action name="http://www.w3.org/ns/odrl/2/attribute"/>
+        </o:duty>
+        <o:duty uid="d2">
+            <o:action name="http://creativecommons.org/ns#Notice"/>
+        </o:duty>
+        <o:duty uid="d3">
+            <o:action name="http://creativecommons.org/ns#ShareAlike"/>
+        </o:duty>
+    </o:permission>
+    <o:permission>
+        <o:asset uid="http://example.com/database:environment" relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://www.w3.org/ns/odrl/v2/derive"/>
+        <o:party uid="http://example.com/gov.au:env-dept" function="http://www.w3.org/ns/odrl/2/assigner"/>
+        <o:duty uid="#d1"/>
+        <o:duty uid="#d2"/>
+        <o:duty uid="#d3"/>
+    </o:permission>
+    <o:permission>
+        <o:asset uid="http://example.com/database:environment" relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://wwww.w3.org/ns/odrl/2/transform"/>
+        <o:party uid="http://example.com/gov.au:env-dept" function="http://www.w3.org/ns/odrl/2/assigner"/>
+        <o:duty uid="#d1"/>
+        <o:duty uid="#d2"/>
+        <o:duty uid="#d3"/>
+    </o:permission>
+    <o:prohibition>
+        <o:asset uid="http://example.com/database:environment" relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
+        <o:constraint name="http://www.w3.org/ns/odrl/2/system" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="http://www.opendatacommons.org:drm-restriction"/>
+        <o:party uid="http://example.com/gov.au:env-dept" function="http://www.w3.org/ns/odrl/2/assigner"/>
+    </o:prohibition>
+</o:Policy>
