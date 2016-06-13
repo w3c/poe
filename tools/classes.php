@@ -126,7 +126,8 @@
     {
     	public $revision = null;
 		public $basename = null;
-
+		public $termTemplatePath = null;
+		
         protected function propertyDefinition($title, $property) {
             $values = $this->all($property);
             if (count($values) < 1)
@@ -171,7 +172,7 @@
         }
 
         public function htmlSummaryOfTerms() {
-            $html = "<h2 id=\"sec-summary\">Summary of Terms</h2>\n";
+            $html = "<section><h2 id=\"sec-summary\">Summary of Terms</h2>\n";
 			$classes = array();
             $classCount = 0;
 			$props = array();
@@ -297,20 +298,33 @@
             }
             $html .= "</table>\n";
 */
+			
+			$html .= '</section>';
             return $html;
         }
 
         public function htmlTerms($type, $title) {
             $html = '';
             $id = strtolower(str_replace(' ','-',$title));
-            $html .= "<h2 id=\"sec-$id\">$title</h2>\n";
+            $html .= "<section><h2 id=\"sec-$id\">$title</h2>\n";
             foreach($this->all("^rdfs:isDefinedBy") as $term) {
                 if (!$term instanceof $type)
                     continue;
 
                 $name = htmlspecialchars($term->localName());
+				$html .= "<section>\n";
                 $html .= "<h3 id=\"term-$name\">$name</h3\n";
-                $html .= "<p>".htmlspecialchars($term->get('rdfs:comment'))."</p>\n";
+				$description = '<p>' . htmlspecialchars($term->get('rdfs:comment')) . '</p>';
+				if(strlen($this->termTemplatePath))
+				{
+					$path = $this->termTemplatePath . '/' . strtolower($term->localName()) . '.html';
+					if(file_exists($path))
+					{
+						$description = file_get_contents($path);
+					}
+				}
+				$html .= "\n" . $description . "\n";;
+				
                 $html .= "<table>\n";
                 $html .= "  <tr><th>URI:</th> <td>".$term->htmlLink()."</td></tr>\n";
                 $html .= $term->propertyRow("Label", "rdfs:label");
@@ -343,8 +357,9 @@
 				$html .= $term->propertyRow('Concepts', 'skos:hasTopConcept');
 				$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
                 $html .= "</table>\n";
-                $html .= "</div>\n";
+				$html .= "</section>\n";
             }
+			$html .= '</section>';
             return $html;
         }
 

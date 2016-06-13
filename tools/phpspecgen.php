@@ -43,6 +43,8 @@ $graph = new EasyRdf_Graph($uri);
 $graph->parseFile($argv[1], 'turtle', $uri);
 $vocab = $graph->get('owl:Ontology', '^rdf:type');
 $vocab->basename = $basename;
+$vocab->termTemplatePath = dirname($template) . '/terms';
+
 if (!isset($vocab))
 {
 	fprint($err, "%s: No OWL ontologies defined at that URL.\n", $argv[0]);
