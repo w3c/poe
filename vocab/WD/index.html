@@ -2085,7 +2085,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odr
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Set&gt; .
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/ns/odrl/2/prohibition&gt; _:genid2 .
-</pre></div></section><section id="sc-example2"><h3>Offer</h3><div class="nanotabs"><ul><li><a href="#sc-example2-ttl" class="selected">Turtle</a></li><li><a href="#sc-example2-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example2-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example2-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example2"><h3>Offer</h3><div class="nanotabs"><ul><li><a href="#sc-example2-ttl" class="selected">Turtle</a></li><li><a href="#sc-example2-xml" class="selected">XML</a></li><li><a href="#sc-example2-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example2-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example2-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:0231&gt;
 	a odrl:Offer ;
@@ -2120,6 +2120,34 @@ _:requirements
 	] .
 
 &lt;http://example.com/sony:10&gt; a odrl:Party .
+</pre></div><div id="sc-example2-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; type=&quot;http://www.w3.org/ns/odrl/2/Offer&quot;
+                uid=&quot;http://example.com/policy:0231&quot;&gt; 
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/music:4545&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/play&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/sony:10&quot;
+                function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:duty uid=&quot;d1&quot;&gt;
+            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+            &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/payAmount&quot;
+                operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot;
+                rightOperand=&quot;0.50&quot; dataType=&quot;http://www.w3.org/2001/XMLSchema:decimal&quot;
+                unit=&quot;http://cvx.iptc.org/iso4217a:AUD&quot;/&gt;
+        &lt;/o:duty&gt;
+    &lt;/o:permission&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/music:4545&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/copy&quot;/&gt;
+        &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/count&quot;
+                      operator=&quot;http://www.w3.org/ns/odrl/2/lteq&quot; rightOperand=&quot;1&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/sony:10&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:duty uid=&quot;#d1&quot;/&gt;
+    &lt;/o:permission&gt;  
+&lt;/o:Policy&gt;
 </pre></div><div id="sc-example2-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF
    xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
@@ -2185,7 +2213,7 @@ _:requirements &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http:
 _:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/pay&gt; .
 _:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
 &lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example3"><h3>Agreement</h3><div class="nanotabs"><ul><li><a href="#sc-example3-ttl" class="selected">Turtle</a></li><li><a href="#sc-example3-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example3-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example3-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example3"><h3>Agreement</h3><div class="nanotabs"><ul><li><a href="#sc-example3-ttl" class="selected">Turtle</a></li><li><a href="#sc-example3-xml" class="selected">XML</a></li><li><a href="#sc-example3-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example3-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example3-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:9001&gt;
 	a odrl:Agreement ;
@@ -2222,6 +2250,38 @@ _:requirements
 
 &lt;http://example.com/sony:10&gt; a odrl:Party .
 &lt;http://example.com/billie:888&gt; a odrl:Party .
+</pre></div><div id="sc-example3-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:9001&quot;
+                type=&quot;http://www.w3.org/ns/odrl/2/Agreement&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/music:4545&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/play&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/sony:10&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/billie:888&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;/&gt;
+        &lt;o:duty uid=&quot;d1&quot;&gt;
+            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+            &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/payAmount&quot;
+                operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot; rightOperand=&quot;0.50&quot; 
+                dataType=&quot;http://www.w3.org/2001/XMLSchema:decimal&quot;
+                unit=&quot;http://cvx.iptc.org/iso4217a:AUD&quot;/&gt;
+        &lt;/o:duty&gt;
+    &lt;/o:permission&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/music:4545&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/copy&quot;/&gt;
+        &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/count&quot; 
+                      operator=&quot;http://www.w3.org/ns/odrl/2/lteq&quot; rightOperand=&quot;1&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/sony:10&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/billie:888&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;/&gt;
+        &lt;o:duty uid=&quot;#d1&quot;/&gt;
+    &lt;/o:permission&gt;  
+&lt;/o:Policy&gt;
 </pre></div><div id="sc-example3-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF
    xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
@@ -2292,7 +2352,7 @@ _:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/
 _:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
 &lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example4"><h3>Request</h3><div class="nanotabs"><ul><li><a href="#sc-example4-ttl" class="selected">Turtle</a></li><li><a href="#sc-example4-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example4-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example4-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example4"><h3>Request</h3><div class="nanotabs"><ul><li><a href="#sc-example4-ttl" class="selected">Turtle</a></li><li><a href="#sc-example4-xml" class="selected">XML</a></li><li><a href="#sc-example4-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example4-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example4-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:04311&gt;
 	a odrl:Request ;
@@ -2304,7 +2364,17 @@ _:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
 	] .
 
 &lt;http://example.com/guest:0589&gt; a odrl:Party .
-</pre></div><div id="sc-example4-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+</pre></div><div id="sc-example4-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:04311&quot;
+                 type=&quot;http://www.w3.org/ns/odrl/2/Request&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/news:0099&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/display&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/guest:0589&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;/&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;</pre></div><div id="sc-example4-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
    xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
   &lt;odrl:Party rdf:about=&quot;http://example.com/guest:0589&quot;/&gt;
@@ -2325,7 +2395,7 @@ _:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/news:
 &lt;http://example.com/policy:04311&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Request&gt; .
 &lt;http://example.com/policy:04311&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
 &lt;http://example.com/guest:0589&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example5"><h3>Ticket</h3><div class="nanotabs"><ul><li><a href="#sc-example5-ttl" class="selected">Turtle</a></li><li><a href="#sc-example5-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example5-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example5-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example5"><h3>Ticket</h3><div class="nanotabs"><ul><li><a href="#sc-example5-ttl" class="selected">Turtle</a></li><li><a href="#sc-example5-xml" class="selected">XML</a></li><li><a href="#sc-example5-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example5-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example5-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
 &lt;http://example.com/policy:0811&gt;
@@ -2340,7 +2410,17 @@ _:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/news:
 			odrl:dateTime &quot;2010-12-31&quot;^^xsd:date
 		]
 	] .
-</pre></div><div id="sc-example5-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+</pre></div><div id="sc-example5-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot;  uid=&quot;http://example.com/policy:04311&quot;
+                type=&quot;http://www.w3.org/ns/odrl/2/Ticket&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/game:4589&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/play&quot;/&gt;
+        &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/currentDate&quot; 
+              operator=&quot;http://www.w3.org/ns/odrl/2/lteq&quot; rightOperand=&quot;2010-12-31&quot;/&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;</pre></div><div id="sc-example5-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
    xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
    xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema#&quot;&gt;
@@ -2368,7 +2448,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/game:
 _:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
 &lt;http://example.com/policy:0811&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Ticket&gt; .
 &lt;http://example.com/policy:0811&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid2 .
-</pre></div></section><section id="sc-example6"><h3>Offer and next policy</h3><div class="nanotabs"><ul><li><a href="#sc-example6-ttl" class="selected">Turtle</a></li><li><a href="#sc-example6-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example6-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example6-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example6"><h3>Offer and next policy</h3><div class="nanotabs"><ul><li><a href="#sc-example6-ttl" class="selected">Turtle</a></li><li><a href="#sc-example6-xml" class="selected">XML</a></li><li><a href="#sc-example6-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example6-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example6-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:5531&gt;
 	a odrl:Offer ;
@@ -2409,6 +2489,41 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
 	] .
 
 &lt;http://example.com/sony:99&gt; a odrl:Party .
+</pre></div><div id="sc-example6-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:5531&quot;
+                type=&quot;http://www.w3.org/ns/odrl/2/Offer&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/wallpaper:2321&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/distribute&quot;/&gt;
+        &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/spatial&quot; 
+                     operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot;
+                     rightOperand=&quot;http://www.itu.int/tML/tML-ISO-3166:it&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/sony:99&quot;
+                  function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:duty uid=&quot;d1&quot;&gt;
+            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+            &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/payAmount&quot;
+                operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot; rightOperand=&quot;1000.00&quot; 
+                dataType=&quot;http://www.w3.org/2001/XMLSchema:decimal&quot;
+                unit=&quot;http://cvx.iptc.org/iso4217a:EUR&quot;/&gt;
+        &lt;/o:duty&gt;
+        &lt;o:duty uid=&quot;d2&quot;&gt;
+            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/nextPolicy&quot;/&gt;
+            &lt;o:asset uid=&quot;http://example.com/policy:7777&quot;
+                     relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;/o:duty&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;
+
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:7777&quot;
+           type=&quot;http://www.w3.org/ns/odrl/2/Set&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/wallpaper:2321&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/display&quot;/&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;
 </pre></div><div id="sc-example6-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF
    xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
@@ -2482,7 +2597,7 @@ _:genid4 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/wallp
 &lt;http://example.com/policy:7777&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Set&gt; .
 &lt;http://example.com/policy:7777&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid4 .
 &lt;http://example.com/sony:99&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example7"><h3>Privacy policy</h3><div class="nanotabs"><ul><li><a href="#sc-example7-ttl" class="selected">Turtle</a></li><li><a href="#sc-example7-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example7-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example7-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example7"><h3>Privacy policy</h3><div class="nanotabs"><ul><li><a href="#sc-example7-ttl" class="selected">Turtle</a></li><li><a href="#sc-example7-xml" class="selected">XML</a></li><li><a href="#sc-example7-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example7-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example7-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 @prefix p3p: &lt;http://www.w3.org/2002/01/p3prdfv1#&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
@@ -2512,6 +2627,29 @@ _:genid4 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/wallp
 
 &lt;http://example.com/billie:888&gt; a odrl:Party .
 &lt;http://example.com/gov:health:au&gt; a odrl:Party .
+</pre></div><div id="sc-example7-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:1111&quot;
+                type=&quot;http://www.w3.org/ns/odrl/2/Privacy&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/billie:888:personal-data&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/distribute&quot;/&gt;
+        &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/purpose&quot;
+                   operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot; 
+                   rightOperand=&quot;http://www.w3.org/2002/01/P3Pv1:contact&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/billie:888&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/gov:health:au&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;/&gt;
+        &lt;o:duty&gt;
+            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/delete&quot;/&gt;
+            &lt;o:asset uid=&quot;http://example.com/billie:888:personal-data&quot;
+                     relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+            &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/dateTime&quot;
+                 operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot; rightOperand=&quot;P30D&quot;/&gt;
+        &lt;/o:duty&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;
 </pre></div><div id="sc-example7-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
    xmlns:p3p=&quot;http://www.w3.org/2002/01/p3prdfv1#&quot;
@@ -2567,7 +2705,7 @@ _:genid4 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid3 .
 &lt;http://example.com/policy:1111&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid4 .
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/gov:health:au&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example8"><h3>Permission and prohibition</h3><div class="nanotabs"><ul><li><a href="#sc-example8-ttl" class="selected">Turtle</a></li><li><a href="#sc-example8-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example8-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example8-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example8"><h3>Permission and prohibition</h3><div class="nanotabs"><ul><li><a href="#sc-example8-ttl" class="selected">Turtle</a></li><li><a href="#sc-example8-xml" class="selected">XML</a></li><li><a href="#sc-example8-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example8-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example8-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 @prefix mobile: &lt;http://example.com/mobile#&gt; .
 
 &lt;http://example.com/policy:3433&gt;
@@ -2590,7 +2728,29 @@ _:genid4 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid3 .
 
 &lt;http://example.com/billie:888&gt; a odrl:Party .
 &lt;http://example.com/sony:10&gt; a odrl:Party .
-</pre></div><div id="sc-example8-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+</pre></div><div id="sc-example8-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:3433&quot;
+            type=&quot;http://www.w3.org/ns/odrl/2/Agreement&quot; 
+            conflict=&quot;http://www.w3.org/ns/odrl/2/perm&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/music:1234908&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/play&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/sony:10&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/billie:888&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;/&gt;
+    &lt;/o:permission&gt;
+    &lt;o:prohibition&gt;
+        &lt;o:asset uid=&quot;http://example.com/music:1234908&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://oma.org/drm:ringtone&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/sony:10&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/billie:888&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;/&gt;
+    &lt;/o:prohibition&gt;
+&lt;/o:Policy&gt;</pre></div><div id="sc-example8-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF xmlns:mobile=&quot;http://example.com/mobile#&quot;
    xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
    xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
@@ -2632,7 +2792,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music
 &lt;http://example.com/policy:3433&gt; &lt;http://www.w3.org/ns/odrl/2/prohibition&gt; _:genid2 .
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example9"><h3>Inheritance</h3><div class="nanotabs"><ul><li><a href="#sc-example9-ttl" class="selected">Turtle</a></li><li><a href="#sc-example9-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example9-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example9-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example9"><h3>Inheritance</h3><div class="nanotabs"><ul><li><a href="#sc-example9-ttl" class="selected">Turtle</a></li><li><a href="#sc-example9-xml" class="selected">XML</a></li><li><a href="#sc-example9-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example9-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example9-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:5531&gt;
 	a odrl:Agreement ;
@@ -2658,7 +2818,34 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music
 &lt;http://example.com/pub:88&gt; a odrl:Party .
 &lt;http://example.com/billie:888&gt; a odrl:Party .
 &lt;http://example.com/class:IT01&gt; a odrl:Group .
-</pre></div><div id="sc-example9-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+</pre></div><div id="sc-example9-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:5531&quot;
+              type=&quot;http://www.w3.org/ns/odrl/2/Agreement&quot; inheritAllowed=&quot;true&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/report:2321&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/print&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/pub:88&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/billie:888&quot;
+                  function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;/&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;
+
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:9999&quot;
+           type=&quot;http://www.w3.org/ns/odrl/2/Agreement&quot; 
+           inheritFrom=&quot;http://example.com/policy:5531&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/report:2333&quot;
+                  relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/display&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/pub:88&quot;
+                  function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/class:IT01&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;
+                 scope=&quot;http://www.w3.org/ns/odrl/2/Group&quot;/&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;</pre></div><div id="sc-example9-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
    xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
   &lt;odrl:Party rdf:about=&quot;http://example.com/billie:888&quot;/&gt;
@@ -2704,7 +2891,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/cla
 &lt;http://example.com/pub:88&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/class:IT01&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Group&gt; .
-</pre></div></section><section id="sc-example10"><h3>Social network</h3><div class="nanotabs"><ul><li><a href="#sc-example10-ttl" class="selected">Turtle</a></li><li><a href="#sc-example10-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example10-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example10-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example10"><h3>Social network</h3><div class="nanotabs"><ul><li><a href="#sc-example10-ttl" class="selected">Turtle</a></li><li><a href="#sc-example10-xml" class="selected">XML</a></li><li><a href="#sc-example10-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example10-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example10-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:5109&gt;
 	a odrl:Agreement ;
@@ -2718,6 +2905,20 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/cla
 
 &lt;http://example.com/myPlace:billie&gt; a odrl:Party .
 &lt;http://example.com/myPlace:network:football&gt; a odrl:Group .
+</pre></div><div id="sc-example10-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; uid=&quot;http://example.com/policy:5109&quot;
+             type=&quot;http://www.w3.org/ns/odrl/2/Agreement&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/myPlace:billie:photos:football2010&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/display&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/myPlace:billie&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
+        &lt;o:party uid=&quot;http://example.com/myPlace:network:football&quot;
+                 function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;
+                 scope=&quot;http://www.w3.org/ns/odrl/2/Group&quot;/&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;
 </pre></div><div id="sc-example10-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
    xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
@@ -2743,7 +2944,7 @@ _:genid1 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/myP
 &lt;http://example.com/policy:5109&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
 &lt;http://example.com/myPlace:billie&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/myPlace:network:football&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Group&gt; .
-</pre></div></section><section id="sc-example11"><h3>Multiple assets</h3><div class="nanotabs"><ul><li><a href="#sc-example11-ttl" class="selected">Turtle</a></li><li><a href="#sc-example11-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example11-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example11-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example11"><h3>Multiple assets</h3><div class="nanotabs"><ul><li><a href="#sc-example11-ttl" class="selected">Turtle</a></li><li><a href="#sc-example11-xml" class="selected">XML</a></li><li><a href="#sc-example11-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example11-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example11-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 @prefix x: &lt;http://example.com/x#&gt; .
 
@@ -2758,6 +2959,17 @@ _:genid1 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/myP
 
 x:collection 
 	rdfs:subPropertyOf odrl:relation .
+</pre></div><div id="sc-example11-xml" style="display: none;"><pre class="example highlight xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;o:Policy xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; xmlns:x=&quot;http:example.com&quot;
+     type=&quot;http://www.w3.org/ns/odrl/2/Set&quot; uid=&quot;http://example.com/policy:881212&quot;&gt;
+    &lt;o:permission&gt;
+        &lt;o:asset uid=&quot;http://example.com/archive2010&quot;
+                 relation=&quot;http://www.w3.org/ns/odrl/2/target&quot;/&gt;
+        &lt;o:asset uid=&quot;http://example.com/x/database&quot; relation=&quot;x:collection&quot;/&gt;
+        &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/index&quot;/&gt;
+    &lt;/o:permission&gt;
+&lt;/o:Policy&gt;
+
 </pre></div><div id="sc-example11-rdf" style="display: none;"><pre class="example highlight rdf">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;rdf:RDF
    xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
