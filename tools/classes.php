@@ -313,7 +313,7 @@
 
                 $name = htmlspecialchars($term->localName());
 				$html .= "<section>\n";
-                $html .= "<h3 id=\"term-$name\">$name</h3\n";
+                $html .= "<h3 id=\"term-$name\">$name</h3>\n";
 				$description = '<p>' . htmlspecialchars($term->get('rdfs:comment')) . '</p>';
 				if(strlen($this->termTemplatePath))
 				{
