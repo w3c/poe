@@ -56,7 +56,7 @@
         public function propertyRow($title, $property, $skip = null) {
             $items = $this->propertyList($property, $skip);
             if (count($items) > 0) {
-                return "<tr><th>$title:</th> <td>".implode(', ', $items)."</td></tr>\n";
+                return "<tr><td><b>$title:</b></td> <td>".implode(', ', $items)."</td></tr>\n";
             } else {
                 return '';
             }
@@ -325,8 +325,8 @@
 				}
 				$html .= "\n" . $description . "\n";;
 				
-                $html .= "<table>\n";
-                $html .= "  <tr><th>URI:</th> <td>".$term->htmlLink()."</td></tr>\n";
+                $html .= "<table class='def propdef'>\n";
+                $html .= "  <tr><td><b>URI:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
                 $html .= $term->propertyRow("Label", "rdfs:label");
                 $html .= $term->propertyRow("Status", "vs:term_status");
 				$html .= $term->propertyRow("Equivalent to", "owl:sameAs");
@@ -342,7 +342,7 @@
                 if ($term instanceof Phpspecgen_Class) {
                     $properties = $term->inheritedProperties();
                     if (count($properties) > 0)
-                        $html .= "  <tr><th>Inherited Properties:</th> ".
+                        $html .= "  <tr><td><b>Inherited Properties:</b></td> ".
                                  "<td>".join(', ', $properties)."</td></tr>\n";
                 }
                 $html .= $term->propertyRow("Range", "rdfs:range");

@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    publishDate:  "2016-05-14",
+    publishDate:  "2016-05-17",
     //previousPublishDate: "",
     //previousMaturity: "",
     //previousURI: "",
