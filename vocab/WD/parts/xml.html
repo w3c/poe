@@ -1,0 +1,111 @@
+<p>Each of the core entities (UML Classes) from the ODRL Model will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as <b>required</b>.</p>
+<p>The Policy element contains the following attributes:</p>
+<ul>
+<li>uid &#8211; a URI/Qname/Qcode (required)</li>
+<li>type &#8211; a URI/Qname/Qcode (required)</li>
+<li>conflict &#8211; fixed enumeration (defined in XML Schema)</li>
+<li>undefined &#8211; fixed enumeration (defined in XML Schema)</li>
+<li>inheritAllowed &#8211; a boolean</li>
+<li>inheritFrom &#8211; a URI/Qname/Qcode</li>
+<li>inheritRelation &#8211; a URI/Qname/Qcode</li>
+<li>profile &#8211; a URI/Qname/Qcode</li>
+</ul>
+<p>&nbsp;</p>
+<p>The Policy element may contain the following elements:</p>
+<ul>
+<li>permission, and/or</li>
+<li>prohibition</li>
+</ul>
+<p>Note that under the ODRL context rules (see ODRL Model <a href="#section-References">[ODRL-MODEL]</a>) there MUST be at least one Permission in the complete ODRL Policy taking into account any Profile and Inheritance requirements.</p>
+<p>The Asset and Relation association class are merged into a single Asset element to represent both the Asset and how it is related to the Permission/Prohibition/Duty. The Asset element contains the following attributes:</p>
+<ul>
+<li>uid &#8211; a URI/Qname/Qcode</li>
+<li>relation &#8211; a URI/Qname/Qcode</li>
+<li>id &#8211; an local identifier for this element</li>
+<li>idref &#8211; a reference to an Asset element</li>
+</ul>
+<p>Asset element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
+<ol>
+<li>uid (required), relation (required), id (optional), or</li>
+<li>idref (required)</li>
+</ol>
+<p>The Party and Role association class are merged into a single Party element to represent both the Party and the role to the Permission/Prohibition/Duty. The Party element contains the following attributes:</p>
+<ul>
+<li>uid &#8211; a URI/Qname/Qcode</li>
+<li>function &#8211; a URI/Qname/Qcode</li>
+<li>scope &#8211; a URI/Qname/Qcode</li>
+<li>id &#8211; an local identifier for this element</li>
+<li>idref &#8211; a reference to a Party element</li>
+</ul>
+<p>Party element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
+<ol>
+<li>uid (required), function (required), scope (optional), id (optional), or</li>
+<li>idref (required)</li>
+</ol>
+<p>&nbsp;</p>
+<p>The Permission element contains the following elements:</p>
+<ul>
+<li>asset &#8211; (required)</li>
+<li>action &#8211; (required)</li>
+<li>constraint</li>
+<li>party</li>
+<li>duty</li>
+</ul>
+<p>&nbsp;</p>
+<p>The Prohibition element contains the following elements:</p>
+<ul>
+<li>asset &#8211; (required)</li>
+<li>action &#8211; (required)</li>
+<li>constraint</li>
+<li>party</li>
+</ul>
+<p>&nbsp;</p>
+<p>The Duty element contains the following elements:</p>
+<ul>
+<li>action &#8211; (required)</li>
+<li>constraint</li>
+<li>asset</li>
+<li>party</li>
+</ul>
+<p>&nbsp;</p>
+<p>The Duty element contains the following attributes:</p>
+<ul>
+<li>uid &#8211; a URI/Qname/Qcode</li>
+<li>id &#8211; an local identifier for this element</li>
+<li>idref &#8211; a reference to an Duty element</li>
+</ul>
+<p>Duty element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
+<ol>
+<li>uid (optional), or</li>
+<li>id (required), or</li>
+<li>idref (required)</li>
+</ol>
+<p>The Action element contains the following attribute:</p>
+<ul>
+<li>name &#8211; a URI/Qname/Qcode</li>
+<li>id &#8211; an local identifier for this element</li>
+<li>idref &#8211; a reference to an Action element</li>
+</ul>
+<p>Action element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
+<ol>
+<li>name (required), id (optional), or</li>
+<li>idref (required)</li>
+</ol>
+<p>The Constraint element contains the following attributes:</p>
+<ul>
+<li>name &#8211; a URI/Qname/Qcode</li>
+<li>operator &#8211; a URI/Qname/Qcode</li>
+<li>rightOperand &#8211; string, space separated list for set values</li>
+<li>dataType &#8211; a URI/Qname/Qcode</li>
+<li>unit &#8211; a URI/Qname/Qcode</li>
+<li>status &#8211; string</li>
+<li>id &#8211; an local identifier for this element</li>
+<li>idref &#8211; a reference to an Constraint element</li>
+</ul>
+<p>Constraint element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
+<ol>
+<li>name (required), operator (required), rightOperand (required), dataType (optional), unit (optional), status (optional), id (optional), or</li>
+<li>idref (required)</li>
+</ol>
+<p>In some cases where Duties refer to (external) Assets, it will be necessary to package the ODRL XML expression with the representation of that (external) Asset. This XML Encoding specification does not mandate any specific packaging mechanism as communities will utilise their preferred options for data interoperability.</p>
+<p>The examples in Section 5 give concrete instances of these XML encoding rules for the Model and Common Vocabulary. Appendix A shows the formal XML Schema that encapsulates these rules.</p>
