@@ -18,24 +18,12 @@
           previousMaturity:     "",
           previousPublishDate:  "",
           previousURI:          "",
-          publishDate:          "2016-05-13",
+          publishDate:          "2016-06-20",
           edDraftURI:           "http://w3c.github.io/poe/model/",
           wg:                   "Permissions & Obligations Expression Working Group",
           wgURI:                "http://www.w3.org/2016/poe/",
           wgPublicList:         "public-poe",
           wgPatentURI:          "http://www.w3.org/2004/01/pp-impl/73180/status",
-          localBiblio: {
-            "iana-media-types": {
-                title: "Media Types",
-                href: "http://www.iana.org/assignments/media-types/",
-                publisher: "IANA (Internet Assigned Numbers Authority)"
-            },
-            "w3c-language-tags": {
-                title: "Language Tags in HTML and XML",
-                href: "https://www.w3.org/International/articles/language-tags/",
-                publisher: "W3C"
-            }
-          },
           otherLinks: [
                 {
                         key: "Repository",
