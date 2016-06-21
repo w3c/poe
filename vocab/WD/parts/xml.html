@@ -1,8 +1,13 @@
-<p>Each of the core entities (UML Classes) from the ODRL Model will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as <b>required</b>.</p>
+<p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the URIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary. The complete ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a></p>
+
+<p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] may also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
+
+
+<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-w3c-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
 <p>The Policy element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; a URI/Qname/Qcode (required)</li>
-<li>type &#8211; a URI/Qname/Qcode (required)</li>
+<li>uid &#8211; a URI/Qname/Qcode (REQUIRED)</li>
+<li>type &#8211; a URI/Qname/Qcode (REQUIRED)</li>
 <li>conflict &#8211; fixed enumeration (defined in XML Schema)</li>
 <li>undefined &#8211; fixed enumeration (defined in XML Schema)</li>
 <li>inheritAllowed &#8211; a boolean</li>
@@ -10,13 +15,12 @@
 <li>inheritRelation &#8211; a URI/Qname/Qcode</li>
 <li>profile &#8211; a URI/Qname/Qcode</li>
 </ul>
-<p>&nbsp;</p>
 <p>The Policy element may contain the following elements:</p>
 <ul>
 <li>permission, and/or</li>
 <li>prohibition</li>
 </ul>
-<p>Note that under the ODRL context rules (see ODRL Model <a href="#section-References">[ODRL-MODEL]</a>) there MUST be at least one Permission in the complete ODRL Policy taking into account any Profile and Inheritance requirements.</p>
+<p>Note that under the ODRL Information Model context rules there MUST be at least one Permission in the complete ODRL Policy taking into account any Profile and Inheritance requirements.</p>
 <p>The Asset and Relation association class are merged into a single Asset element to represent both the Asset and how it is related to the Permission/Prohibition/Duty. The Asset element contains the following attributes:</p>
 <ul>
 <li>uid &#8211; a URI/Qname/Qcode</li>
@@ -26,8 +30,8 @@
 </ul>
 <p>Asset element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>uid (required), relation (required), id (optional), or</li>
-<li>idref (required)</li>
+<li>uid (REQUIRED), relation (REQUIRED), id (OPTIONAL), or</li>
+<li>idref (REQUIRED)</li>
 </ol>
 <p>The Party and Role association class are merged into a single Party element to represent both the Party and the role to the Permission/Prohibition/Duty. The Party element contains the following attributes:</p>
 <ul>
@@ -39,35 +43,31 @@
 </ul>
 <p>Party element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>uid (required), function (required), scope (optional), id (optional), or</li>
-<li>idref (required)</li>
+<li>uid (REQUIRED), function (REQUIRED), scope (OPTIONAL), id (OPTIONAL), or</li>
+<li>idref (REQUIRED)</li>
 </ol>
-<p>&nbsp;</p>
 <p>The Permission element contains the following elements:</p>
 <ul>
-<li>asset &#8211; (required)</li>
-<li>action &#8211; (required)</li>
+<li>asset &#8211; (REQUIRED)</li>
+<li>action &#8211; (REQUIRED)</li>
 <li>constraint</li>
 <li>party</li>
 <li>duty</li>
 </ul>
-<p>&nbsp;</p>
 <p>The Prohibition element contains the following elements:</p>
 <ul>
-<li>asset &#8211; (required)</li>
-<li>action &#8211; (required)</li>
+<li>asset &#8211; (REQUIRED)</li>
+<li>action &#8211; (REQUIRED)</li>
 <li>constraint</li>
 <li>party</li>
 </ul>
-<p>&nbsp;</p>
 <p>The Duty element contains the following elements:</p>
 <ul>
-<li>action &#8211; (required)</li>
+<li>action &#8211; (REQUIRED)</li>
 <li>constraint</li>
 <li>asset</li>
 <li>party</li>
 </ul>
-<p>&nbsp;</p>
 <p>The Duty element contains the following attributes:</p>
 <ul>
 <li>uid &#8211; a URI/Qname/Qcode</li>
@@ -76,9 +76,9 @@
 </ul>
 <p>Duty element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>uid (optional), or</li>
-<li>id (required), or</li>
-<li>idref (required)</li>
+<li>uid (OPTIONAL), or</li>
+<li>id (REQUIRED), or</li>
+<li>idref (REQUIRED)</li>
 </ol>
 <p>The Action element contains the following attribute:</p>
 <ul>
@@ -88,8 +88,8 @@
 </ul>
 <p>Action element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>name (required), id (optional), or</li>
-<li>idref (required)</li>
+<li>name (REQUIRED), id (OPTIONAL), or</li>
+<li>idref (REQUIRED)</li>
 </ol>
 <p>The Constraint element contains the following attributes:</p>
 <ul>
@@ -104,8 +104,66 @@
 </ul>
 <p>Constraint element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>name (required), operator (required), rightOperand (required), dataType (optional), unit (optional), status (optional), id (optional), or</li>
-<li>idref (required)</li>
+<li>name (REQUIRED), operator (REQUIRED), rightOperand (REQUIRED), dataType (OPTIONAL), unit (OPTIONAL), status (OPTIONAL), id (OPTIONAL), or</li>
+<li>idref (REQUIRED)</li>
 </ol>
 <p>In some cases where Duties refer to (external) Assets, it will be necessary to package the ODRL XML expression with the representation of that (external) Asset. This XML Encoding specification does not mandate any specific packaging mechanism as communities will utilise their preferred options for data interoperability.</p>
-<p>The examples in Section 5 give concrete instances of these XML encoding rules for the Model and Common Vocabulary. Appendix A shows the formal XML Schema that encapsulates these rules.</p>
+<section>
+<h2>XML Linking</h2>    
+<p>To support repeating the same element content across Permissions and Prohibitions, the Asset, Party, Constraint, Action, and Duty elements support the xml id and idref attributes. Any of these element that has been identified using the id attribute can then be referred to by an element with the same name using the idref attribute. In this case, the referring element must have no other content. </p>
+    <p>As shown in the below example, the Prohibition refers to elements defined in the Permission, except for the Constraint element. In this case, the assignee can play the music asset in Italy but not in France.</p>
+    
+<div id="link-xml">
+<pre class="example highlight xml">
+&lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" type="http://www.w3.org/ns/odrl/2/Set" 
+     uid="http://example.com/policy:Z1XZ">
+  &lt;o:permission>
+     &lt;o:asset id="as1" uid="http://example.com/music:1234908"
+                 relation="http://www.w3.org/ns/odrl/2/target"/>
+     &lt;o:action id="ac1" name="http://www.w3.org/ns/odrl/2/play"/>
+     &lt;o:constraint id="c1" name="http://www.w3.org/ns/odrl/2/spatial"
+                       operator="http://www.w3.org/ns/odrl/2/eq"
+                       rightOperand="http://www.itu.int/tML/tML-ISO-3166:it"/>
+     &lt;o:party id="p1" uid="http://example.com/sony:10" 
+                 function="http://www.w3.org/ns/odrl/2/assigner"/>
+     &lt;o:party id= "p2" uid="http://example.com/billie:888" 
+                 function="http://www.w3.org/ns/odrl/2/assignee"/>
+   &lt;/o:permission>
+   &lt;o:prohibition>
+     &lt;o:asset idref="as1"/>
+     &lt;o:action idref="ac1"/>
+     &lt;o:constraint name="http://www.w3.org/ns/odrl/2/spatial" 
+                      operator="http://www.w3.org/ns/odrl/2/eq"
+                      rightOperand="http://www.itu.int/tML/tML-ISO-3166:fr"/>
+     &lt;o:party idref="p1"/>
+     &lt;o:party idref="p2"/>
+   &lt;/o:prohibition>
+&lt;/o:Policy>
+</pre>
+</div>
+    <p>Note that there is an important distinction when using this feature with the Duty element which also has the uid attribute. The uid attribute is used to refer to the same Duty from multiple Permissions. In this case the Duty has to be performed only once to gain access to all the Permissions. When using the id and idref attributes then the semantics change as in this case the Duty must be performed for each time it is referenced (potentially, many times). Note that the use of the uid and id attribute for the same Duty element is not permitted.</p>
+</section>
+<section>
+<h2>Inline Assets</h2>
+  <p>In some scenarios, the Asset of an ODRL Policy maybe also be XML or HTML markup. In these specific cases, it makes sense to enable the ODRL Policy to be articulated as part of the Asset and to support abbreviated expressions. All default values should be assumed. The preferred method of linking is to utilise the XML ID attribute. The source Asset markup may be identified with an ID attribute and the ODRL Asset element can then refer to this ID as the UID (as a URI hash fragment). An example is shown below.</p>  
+<div id="inline-xml">
+<pre class="example highlight xml">
+&lt;rnews:Article xml:id="item8HEX">
+    &lt;rnews:title>Allies are Split&lt;rnews:title>
+    &lt;rnews:description>Rebel fighters take control...&lt;rnews:description>
+    ...
+    &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/"
+       type="http://www.w3.org/ns/odrl/2/Set" uid="http://example.com/policy:ABAABA">
+      &lt;o:permission>
+        &lt;o:asset uid="#item8HEX"/>
+        &lt;o:action name="http://w3.org/ns/odrl/vocab#distribute"/>
+        &lt;o:constraint name="http://www.w3.org/ns/odrl/2/dateTime" 
+             operator="http://www.w3.org/ns/odrl/2/gteq" rightOperand="2011-11-11"/>
+      &lt;/o:permission>
+    &lt;/o:policy>
+    ...
+&lt;/rnews:Article>
+</pre>
+</div>
+</section>
+
