@@ -64,8 +64,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>The basic context of an ODRL Policy is that only an explicitly permitted use may be executed. Any use not explicitly permitted is prohibited by default. Based on that context, an ODRL Policy must contain at least one Permission and may contain Prohibitions. An ODRL Policy only permits the action explicitly specified in a Permission and all other actions are implicitly prohibited. An action defined in a Prohibition should only refine (or directly relate to) the semantics of an action defined in one of the Permissions in the ODRL Policy.</p>
     
-        <div class="issue">
-          <p>The above says that "an ODRL Policy must contain at least one Permission" but the UML model shows 0..* </p>
+  <div class="issue">
+          <p>The above says that "an ODRL Policy MUST contain at least one Permission" but the UML model shows 0..* </p>
     </div>
     
 <p>For example, an ODRL Policy that has the action &#8220;present&#8221; Permission and may also have the action &#8220;print&#8221; Prohibition (as these actions are related hierarchically in the ODRL Vocabulary).</p>
@@ -80,8 +80,17 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>A <code>Permission</code> <em>allows</em> a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g. &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> like &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g. &#8220;<code>assigner</code> VirtualMusicShop grants the <code>Permission</code> to <code>assignee</code> Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
 <p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MAY be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 EUR in order to get the <code>Permission</code> to play abc.mp3&#8243;.</p>
+    
+    <div class="issue">
+          <p>Need to clarify that Duties MUST be performed but when is not specified by default. </p>
+    </div>
+    
 <p>The <code>Prohibition</code> entity is used in the same way as <code>Permission</code>, with the two differences that it does not refer to <code>Duties</code> and (obviously) that it <em>forbids</em> the <code>Action</code>, e.g. &#8220;Alice is forbidden to use abc.mp3 commercially&#8221;.</p>
 
+    <div class="issue">
+          <p>Need to clarify that Prohibitions cannot have Duties. </p>
+    </div>
+    
 <p>The following sections describes each entity of the Information Model in greater detail.</p>
 
 <section>
@@ -202,6 +211,9 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <li><code>relation</code>: indicates the relationship of the <code>Asset</code> to the linked entity (REQUIRED)</li>
 </ul>
 <p>The default value for the <code>relation</code> attribute is <code>target</code> which indicates that the <code>Asset</code> is the primary object to which the <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> actions apply.</p>
+     <div class="issue">
+          <p>Target is formally defined in the ODRL Vocabulary </p>
+    </div>
 <p>Other values for the <code>Relation</code> entity MAY be defined in the ODRL Vocabulary and community Profiles.</p>
 </section>
 </section>
@@ -210,6 +222,10 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <section>
 <h3>Party</h3>
 
+    <div class="issue">
+          <p>Need to define Party more generically, not based on role</p>
+    </div>
+    
 <p>The <code>Party</code> entity is the object of an ODRL policy that performs (or not performs) actions or has a role in a Duty. The <code>Party</code> entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect.</p>
 <p>The <code>Party</code> entity contains the following attribute:</p>
 <ul>
@@ -231,6 +247,9 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <li><code>assigner</code>: indicates that the <code>Party</code> has assigned the associated <code>Permission</code>, <code>Duty</code>, or <code>Prohibition</code>. In other words, the <code>Party</code> grants a <code>Permission</code> or requires a <code>Duty</code> to be performed or states a <code>Prohibition</code>.</li>
 <li><code>assignee</code>: indicates that the <code>Party</code> has been assigned the associated entity, i.e. they are granted a <code>Permission</code> or required to perform a <code>Duty</code> or have to adhere to a <code>Prohibition</code>.</li>
 </ul>
+    <div class="issue">
+          <p>Assignee and Asignee are formally defined in the ODRL Vocabulary </p>
+    </div>
 <p>Other values for the <code>function</code> attribute MAY be defined in the ODRL Vocabulary and community Profiles.</p>
 <p>The <code>scope</code> attribute MAY be used to indicate the context under which to interpret the <code>Party</code> entity. If present, the <code>scope</code> attribute MAY take one of the following values:</p>
 <ul>
@@ -276,6 +295,11 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 <li><code>Constraint</code>: a <code>Duty</code> MAY link to one or more <code>Constraint</code>s (OPTIONAL)</li>
 </ul>
 <p>A <code>Duty</code> entity does not, by itself, specify any conditions on when the <code>Duty</code> <code>Action</code> MUST or MAY be performed, such as to <code>compensate</code> before viewing the movie. Such conditions MAY be expressed through <code>Constraint</code> entities.</p>
+    
+     <div class="issue">
+          <p>Need to clarify that Duties must be performed but when is not specified by default. </p>
+    </div>
+    
 <p>To support cases where the <code>Duty</code> MAY be performed for each <code>Action</code> on an <code>Asset</code> (for example, pay-per-view) then the use of a <code>Constraint</code> (e.g. count=1) on the <code>Permission</code> (e.g. play) can express these semantics.</p>
 </section>
 
@@ -334,6 +358,10 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 <h2>Scenarios</h2>
 <p>This section shows a number of policy expression scenarios. In these examples, the different policy expression <code>type</code>s that are used are for illustrative purposes only and are not part of this normative specification. Also, the specific <code>Action</code> and <code>Constraint</code> names (etc.) used in these examples are for illustrative purposes only. Please note that formal policy expression <code>type</code>s and other entities are defined in the ODRL  Vocabulary specification, or in community profiles.</p>
 
+    <div class="issue">
+          <p>Need to clarify if these Scenarios need to be udated. </p>
+    </div>
+    
 <section>
 <h3>Set</h3>
 <p>The following shows an instance of a <code>set</code> <code>Policy</code>. The <code>Set</code> shows a policy expression, stating that the <code>Asset</code> <code>http//example.com/asset:9898</code> is the <code>target</code> of the <code>Permission</code> <code>reproduce</code> and the <code>Prohibition</code> to <code>modify</code>. No parties or other elements are involved. This <code>set</code> could be used, for example, as a template or an <em>instant license</em>.</p>
