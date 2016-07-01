@@ -28,9 +28,9 @@
 <section id="vocab">
 	<h2>Vocabulary</h2>
 
-	<p>The Namespace URI to identify the ODRL model and vocabulary terms is <code>http://www.w3.org/ns/odrl/2/</code></p>
+	<p>The Namespace URI to identify the ODRL model and vocabulary terms is: <code>http://www.w3.org/ns/odrl/2/</code></p>
 
-    <div class="issue">
+    <div class="issue" data-number="10">
         <p>The namespace URI may change in future versions.</p>
     </div>
     
@@ -42,14 +42,19 @@
     
 <?php
 	echo $vocab->htmlSummaryOfTerms();
-	
+?>
+
+    <p>The detail for each ODRL Vocabulary term is shown below in the two tables. The left table shows the normative semantic description of the concept, and the right table the  ontological description and relationships.</p>
+    
+<?php
 	echo $vocab->htmlTerms('Phpspecgen_Class', 'Classes');
 	echo $vocab->htmlTerms('Phpspecgen_Property', 'Properties');
 	echo $vocab->htmlTerms('Phpspecgen_ConceptScheme', 'Concept schemes');
 	echo $vocab->htmlTerms('Phpspecgen_Concept', 'Concepts');
 	echo $vocab->htmlTerms('Phpspecgen_Individual', 'Named individuals');
 ?>
-
+    
+    
 </section>
 
         <section id="encodings">

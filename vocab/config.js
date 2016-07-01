@@ -1,13 +1,8 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    publishDate:  "2016-06-30",
-    //previousPublishDate: "",
-    //previousMaturity: "",
-    //previousURI: "",
+    publishDate:  "2016-07-01",
     edDraftURI: "https://w3c.github.io/poe/vocab/",
-    // lcEnd: "3000-01-01",
-    // crEnd: "3000-01-01",
     editors: [
      {    name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
@@ -45,5 +40,5 @@ var respecConfig = {
     inlineCSS: true,
     noIDLIn: true,
     noLegacyStyle: false,
-    issueBase: "https://github.com/w3c/poe/milestones/Vocabulary%20&%20Expression"
+    issueBase: "https://github.com/w3c/poe/issues/"
 };
