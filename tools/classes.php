@@ -327,7 +327,7 @@
 			
                 $html .= "<table>\n  <tr style='vertical-align: top;'>\n  <td style='width:70%;'>\n";
                 
-                $html .= "<table class='def propdef'>\n";
+                $html .= "<table class='def propdef' style='background:#DDE9FF;'>\n";
                 $html .= $term->propertyRow("Label", "rdfs:label");
                 $html .= "  <tr><td><b>Identifier:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
                 $html .= "  <tr><td><b>Defintion:</b></td> <td>".$description."</td></tr>\n";
