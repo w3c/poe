@@ -323,12 +323,22 @@
 						$description = file_get_contents($path);
 					}
 				}
-				$html .= "\n" . $description . "\n";;
-				
+				#$html .= "\n" . $description . "\n";;
+			
+                $html .= "<table>\n  <tr style='vertical-align: top;'>\n  <td style='width:70%;'>\n";
+                
                 $html .= "<table class='def propdef'>\n";
-                $html .= "  <tr><td><b>URI:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
                 $html .= $term->propertyRow("Label", "rdfs:label");
-                $html .= $term->propertyRow("Status", "vs:term_status");
+                $html .= "  <tr><td><b>Identifier:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
+                $html .= "  <tr><td><b>Defintion:</b></td> <td>".$description."</td></tr>\n";
+                $html .= "  <tr><td><b>Comment:</b></td> <td>test</td></tr>\n";
+                
+                $html .= "</table>\n </td>\n <td>\n";
+                $html .= "<table class='def propdef'>\n";
+                
+                #$html .= $term->propertyRow("Status", "vs:term_status");
+                $html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
+                $html .= $term->propertyRow("Parent property", "rdfs:subPropertyOf");
 				$html .= $term->propertyRow("Equivalent to", "owl:sameAs");
 				$html .= $term->propertyRow("Deprecated by", "ont:deprecatedBy");
 				$html .= $term->propertyRow("Deprecates", "^ont:deprecatedBy");
@@ -336,8 +346,7 @@
                 $html .= $term->propertyRow("Sub-properties", "^rdfs:subPropertyOf");
                 $html .= $term->propertyRow("Narrower terms", "^skos:broaderTransitive");
                 $html .= $term->propertyRow("Broader terms", "skos:broaderTransitive");
-                $html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
-                $html .= $term->propertyRow("Parent property", "rdfs:subPropertyOf");
+ 
                 $html .= $term->propertyRow("Properties", "^rdfs:domain");
                 if ($term instanceof Phpspecgen_Class) {
                     $properties = $term->inheritedProperties();
@@ -357,6 +366,10 @@
 				$html .= $term->propertyRow('Concepts', 'skos:hasTopConcept');
 				$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
                 $html .= "</table>\n";
+              
+                $html .= "</td>\n </tr>\n </table>\n ";
+                    
+                
 				$html .= "</section>\n";
             }
 			$html .= '</section>';

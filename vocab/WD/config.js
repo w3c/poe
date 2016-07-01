@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    publishDate:  "2016-05-20",
+    publishDate:  "2016-06-30",
     //previousPublishDate: "",
     //previousMaturity: "",
     //previousURI: "",
@@ -45,5 +45,5 @@ var respecConfig = {
     inlineCSS: true,
     noIDLIn: true,
     noLegacyStyle: false,
-    issueBase: "https://www.w3.org/2016/poe/track/issues/"
+    issueBase: "https://github.com/w3c/poe/milestones/Vocabulary%20&%20Expression"
 };
