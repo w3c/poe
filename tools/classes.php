@@ -327,14 +327,14 @@
 			
                 $html .= "<table>\n  <tr style='vertical-align: top;'>\n  <td style='width:70%;'>\n";
                 
-                $html .= "<table class='def propdef' style='background:#DDE9FF;'>\n";
+                $html .= "<table class='def propdef' >\n";
                 $html .= $term->propertyRow("Label", "rdfs:label");
                 $html .= "  <tr><td><b>Identifier:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
                 $html .= "  <tr><td><b>Defintion:</b></td> <td>".$description."</td></tr>\n";
                 $html .= "  <tr><td><b>Comment:</b></td> <td>test</td></tr>\n";
                 
                 $html .= "</table>\n </td>\n <td>\n";
-                $html .= "<table class='def propdef'>\n";
+                $html .= "<table class='def propdef' style='background:#E5F5FF;'>\n";
                 
                 #$html .= $term->propertyRow("Status", "vs:term_status");
                 $html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
