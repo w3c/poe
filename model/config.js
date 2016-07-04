@@ -18,12 +18,13 @@
           previousMaturity:     "",
           previousPublishDate:  "",
           previousURI:          "",
-          publishDate:          "2016-06-30",
+          publishDate:          "2016-07-04",
           edDraftURI:           "http://w3c.github.io/poe/model/",
           wg:                   "Permissions & Obligations Expression Working Group",
           wgURI:                "http://www.w3.org/2016/poe/",
           wgPublicList:         "public-poe",
           wgPatentURI:          "http://www.w3.org/2004/01/pp-impl/73180/status",
+          issueBase:            "https://github.com/w3c/poe/issues/",
           otherLinks: [
                 {
                         key: "Repository",
