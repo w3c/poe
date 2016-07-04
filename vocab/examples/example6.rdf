@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:odrl="http://www.w3.org/ns/odrl/2/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <odrl:Duty rdf:about="http://example.com/duty:01">
+    <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/pay"/>
+    <odrl:constraint>
+      <odrl:Constraint>
+        <odrl:operator rdf:resource="http://www.w3.org/ns/odrl/2/eq"/>
+        <odrl:payAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1000.00</odrl:payAmount>
+        <odrl:unit rdf:resource="http://cvx.iptc.org/iso4217a:EUR"/>
+      </odrl:Constraint>
+    </odrl:constraint>
+  </odrl:Duty>
+  <odrl:Duty rdf:about="http://example.com/duty:02">
+    <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/nextPolicy"/>
+    <odrl:target rdf:resource="http://example.com/policy:7777"/>
+  </odrl:Duty>
+  <odrl:Offer rdf:about="http://example.com/policy:5531">
+    <odrl:permission>
+      <odrl:Permission>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/distribute"/>
+        <odrl:assigner rdf:resource="http://example.com/sony:99"/>
+        <odrl:constraint>
+          <odrl:Constraint>
+            <odrl:operator rdf:resource="http://www.w3.org/ns/odrl/2/eq"/>
+            <odrl:spatial rdf:resource="http://ontologi.es/place/IT"/>
+          </odrl:Constraint>
+        </odrl:constraint>
+        <odrl:duty rdf:resource="http://example.com/duty:01"/>
+        <odrl:duty rdf:resource="http://example.com/duty:02"/>
+        <odrl:target rdf:resource="http://example.com/wallpaper:2321"/>
+      </odrl:Permission>
+    </odrl:permission>
+  </odrl:Offer>
+  <odrl:Set rdf:about="http://example.com/policy:7777">
+    <odrl:permission>
+      <odrl:Permission>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/display"/>
+        <odrl:target rdf:resource="http://example.com/wallpaper:2321"/>
+      </odrl:Permission>
+    </odrl:permission>
+  </odrl:Set>
+  <odrl:Party rdf:about="http://example.com/sony:99"/>
+</rdf:RDF>

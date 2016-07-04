@@ -1,0 +1,41 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+<http://example.com/policy:5531>
+	a odrl:Offer ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:distribute ;
+		odrl:target <http://example.com/wallpaper:2321> ;
+		odrl:assigner <http://example.com/sony:99> ;
+		odrl:constraint [
+			a odrl:Constraint ;
+			odrl:operator odrl:eq ;
+			odrl:spatial <http://ontologi.es/place/IT>
+		] ;
+		odrl:duty <http://example.com/duty:01>, <http://example.com/duty:02>
+	] .
+
+<http://example.com/duty:01>
+	a odrl:Duty ;
+	odrl:action odrl:pay ;
+	odrl:constraint [
+		a odrl:Constraint ;
+		odrl:payAmount 1000.00 ;
+		odrl:operator odrl:eq ;
+		odrl:unit <http://cvx.iptc.org/iso4217a:EUR>
+	] .
+
+<http://example.com/duty:02>
+	a odrl:Duty ;
+	odrl:action odrl:nextPolicy ;
+	odrl:target <http://example.com/policy:7777> .
+
+<http://example.com/policy:7777>
+	a odrl:Set ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:display ;
+		odrl:target <http://example.com/wallpaper:2321>
+	] .
+
+<http://example.com/sony:99> a odrl:Party .

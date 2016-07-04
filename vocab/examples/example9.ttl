@@ -1,0 +1,26 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+<http://example.com/policy:5531>
+	a odrl:Agreement ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:print ;
+		odrl:target <http://example.com/report:2321> ;
+		odrl:assigner <http://example.com/pub:88> ;
+		odrl:assignee <http://example.com/billie:888> ;		
+	] .
+	
+<http://example.com/policy:9999>
+	a odrl:Agreement ;
+	odrl:inheritFrom <http://example.com/policy:5531> ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:display ;
+		odrl:target <http://example.com/report:2333> ;
+		odrl:assigner <http://example.com/pub:88> ;
+		odrl:assignee <http://example.com/class:IT01>
+	] .
+
+<http://example.com/pub:88> a odrl:Party .
+<http://example.com/billie:888> a odrl:Party .
+<http://example.com/class:IT01> a odrl:Group .

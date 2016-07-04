@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:odrl="http://www.w3.org/ns/odrl/2/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <odrl:Ticket rdf:about="http://example.com/policy:0811">
+    <odrl:permission>
+      <odrl:Permission>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/play"/>
+        <odrl:constraint>
+          <odrl:Constraint>
+            <odrl:dateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2010-12-31</odrl:dateTime>
+            <odrl:operator rdf:resource="http://www.w3.org/ns/odrl/2/lteq"/>
+          </odrl:Constraint>
+        </odrl:constraint>
+        <odrl:target rdf:resource="http://example.com/game:4589"/>
+      </odrl:Permission>
+    </odrl:permission>
+  </odrl:Ticket>
+</rdf:RDF>

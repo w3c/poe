@@ -1,0 +1,15 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix x: <http://example.com/x#> .
+
+<http://example.com/policy:881212>
+	a odrl:Set ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:index ;
+		odrl:target <http://example.com/archive/2010> ;
+		x:collection <http://example.com/x/database>
+	] .
+
+x:collection 
+	rdfs:subPropertyOf odrl:relation .

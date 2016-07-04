@@ -1,0 +1,14 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+<http://example.com/policy:5109>
+	a odrl:Agreement ;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:action odrl:display ;
+		odrl:target <http://example.com/myPlace:billie:photos:football2010> ;
+		odrl:assigner <http://example.com/myPlace:billie> ;
+		odrl:assignee <http://example.com/myPlace:network:football>
+	] .
+
+<http://example.com/myPlace:billie> a odrl:Party .
+<http://example.com/myPlace:network:football> a odrl:Group .

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:odrl="http://www.w3.org/ns/odrl/2/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <odrl:Party rdf:about="http://example.com/billie:888"/>
+  <odrl:Group rdf:about="http://example.com/class:IT01"/>
+  <odrl:Agreement rdf:about="http://example.com/policy:5531">
+    <odrl:permission>
+      <odrl:Permission>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/print"/>
+        <odrl:assignee rdf:resource="http://example.com/billie:888"/>
+        <odrl:assigner rdf:resource="http://example.com/pub:88"/>
+        <odrl:target rdf:resource="http://example.com/report:2321"/>
+      </odrl:Permission>
+    </odrl:permission>
+  </odrl:Agreement>
+  <odrl:Agreement rdf:about="http://example.com/policy:9999">
+    <odrl:inheritFrom rdf:resource="http://example.com/policy:5531"/>
+    <odrl:permission>
+      <odrl:Permission>
+        <odrl:action rdf:resource="http://www.w3.org/ns/odrl/2/display"/>
+        <odrl:assignee rdf:resource="http://example.com/class:IT01"/>
+        <odrl:assigner rdf:resource="http://example.com/pub:88"/>
+        <odrl:target rdf:resource="http://example.com/report:2333"/>
+      </odrl:Permission>
+    </odrl:permission>
+  </odrl:Agreement>
+  <odrl:Party rdf:about="http://example.com/pub:88"/>
+</rdf:RDF>

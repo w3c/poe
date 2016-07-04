@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
+                type="http://www.w3.org/ns/odrl/2/Agreement">
+    <o:permission>
+        <o:asset uid="http://example.com/music:4545"
+                 relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://www.w3.org/ns/odrl/2/play"/>
+        <o:party uid="http://example.com/sony:10"
+                 function="http://www.w3.org/ns/odrl/2/assigner"/>
+        <o:party uid="http://example.com/billie:888"
+                 function="http://www.w3.org/ns/odrl/2/assignee"/>
+        <o:duty uid="d1">
+            <o:action name="http://www.w3.org/ns/odrl/2/pay"/>
+            <o:constraint name="http://www.w3.org/ns/odrl/2/payAmount"
+                operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="0.50" 
+                dataType="http://www.w3.org/2001/XMLSchema:decimal"
+                unit="http://cvx.iptc.org/iso4217a:AUD"/>
+        </o:duty>
+    </o:permission>
+    <o:permission>
+        <o:asset uid="http://example.com/music:4545"
+                 relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://www.w3.org/ns/odrl/2/copy"/>
+        <o:constraint name="http://www.w3.org/ns/odrl/2/count" 
+                      operator="http://www.w3.org/ns/odrl/2/lteq" rightOperand="1"/>
+        <o:party uid="http://example.com/sony:10"
+                 function="http://www.w3.org/ns/odrl/2/assigner"/>
+        <o:party uid="http://example.com/billie:888"
+                 function="http://www.w3.org/ns/odrl/2/assignee"/>
+        <o:duty uid="#d1"/>
+    </o:permission>  
+</o:Policy>
