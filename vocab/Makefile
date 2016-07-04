@@ -1,4 +1,4 @@
-TOP = ../
+TOP = .
 
 RAPPER ?= rapper
 PHP ?= php
