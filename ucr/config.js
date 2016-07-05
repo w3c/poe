@@ -1,4 +1,5 @@
 var respecConfig = {
+    preProcess: [dfn_index],
     specStatus: "ED",
     shortName: "poe-ucr",
     //publishDate:  "2015-05-18",
