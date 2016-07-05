@@ -1,0 +1,193 @@
+   {
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "ODRL JSON Schema",
+    "description": "This is the JSON Schema for ODRL Version 2.2 Working Draft. Copyright © 2016 W3C (MIT, ERCIM, Keio, Beihang). W3C liability, trademark and document use rules apply.",
+    "id": "http://www.w3.org/ns/odrl/2/jsonschema#",
+    "definitions": {"prohibdutytype": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "required": ["action"],
+            "properties": {
+                "assigner": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "assignee": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "assignee_scope": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "target": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "output": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "action": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "constraints": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "operator",
+                            "rightoperand"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "format": "uri"
+                            },
+                            "operator": {
+                                "type": "string",
+                                "format": "uri"
+                            },
+                            "rightoperand": {"type": "string"},
+                            "rightoperanddatatype": {"type": "string"},
+                            "rightoperandunit": {"type": "string"},
+                            "status": {"type": "string"}
+                        }
+                    }
+                }
+            },
+            "patternProperties": {
+                "^[a-z]+party": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "^[a-z]+_scope": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            }
+        }
+    }},
+    "required": [
+        "policyid",
+        "policytype"
+    ],
+    "properties": {
+        "policyid": {
+            "type": "string",
+            "format": "uri"
+        },
+        "policytype": {
+            "type": "string",
+            "format": "uri"
+        },
+        "conflict": {
+            "type": "string",
+            "enum": [
+                "perm",
+                "prohibit",
+                "invalid"
+            ]
+        },
+        "undefined": {
+            "type": "string",
+            "enum": [
+                "support",
+                "ignore",
+                "invalid"
+            ]
+        },
+        "inheritallowed": {"type": "boolean"},
+        "inheritfrom": {
+            "type": "string",
+            "format": "uri"
+        },
+        "inheritrelation": {
+            "type": "string",
+            "format": "uri"
+        },
+        "policyprofile": {
+            "type": "string",
+            "format": "uri"
+        },
+        "permissions": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["action"],
+                "properties": {
+                    "assigner": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "assigner_scope": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "assignee": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "assignee_scope": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "target": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "output": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "action": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "constraints": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "name",
+                                "operator",
+                                "rightoperand"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "format": "uri"
+                                },
+                                "operator": {
+                                    "type": "string",
+                                    "format": "uri"
+                                },
+                                "rightoperand": {"type": "string"},
+                                "rightoperanddatatype": {"type": "string"},
+                                "rightoperandunit": {"type": "string"},
+                                "status": {"type": "string"}
+                            }
+                        }
+                    },
+                    "duties": {"$ref": "#/definitions/prohibdutytype"}
+                },
+                "patternProperties": {
+                    "^[a-z]+party": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "^[a-z]+_scope": {
+                        "type": "string",
+                        "format": "uri"
+                    }
+                }
+            }
+        },
+        "prohibitions": {"$ref": "#/definitions/prohibdutytype"}
+    }
+ 
+}

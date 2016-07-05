@@ -314,7 +314,7 @@
                 $name = htmlspecialchars($term->localName());
 				$html .= "<section>\n";
                 $html .= "<h3 id=\"term-$name\">$name</h3>\n";
-				$description = '<p>' . htmlspecialchars($term->get('rdfs:comment')) . '</p>';
+/*				$description = '<p>' . htmlspecialchars($term->get('rdfs:comment')) . '</p>';
 				if(strlen($this->termTemplatePath))
 				{
 					$path = $this->termTemplatePath . '/' . strtolower($term->localName()) . '.html';
@@ -323,15 +323,17 @@
 						$description = file_get_contents($path);
 					}
 				}
-				#$html .= "\n" . $description . "\n";;
-			
+				$html .= "\n" . $description . "\n";;
+*/			
                 $html .= "<table>\n  <tr style='vertical-align: top;'>\n  <td style='width:70%;'>\n";
                 
                 $html .= "<table class='def propdef' >\n";
                 $html .= $term->propertyRow("Label", "rdfs:label");
                 $html .= "  <tr><td><b>Identifier:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
-                $html .= "  <tr><td><b>Defintion:</b></td> <td>".$description."</td></tr>\n";
-                $html .= "  <tr><td><b>Comment:</b></td> <td>test</td></tr>\n";
+                #$html .= "  <tr><td><b>Definition:</b></td> <td>".$description."</td></tr>\n";
+                $html .= $term->propertyRow("Definition", "skos:definition");
+                #$html .= "  <tr><td><b>Comment:</b></td> <td>test</td></tr>\n";
+                $html .= $term->propertyRow("Comment", "rdfs:comment");
                 
                 $html .= "</table>\n </td>\n <td>\n";
                 $html .= "<table class='def propdef' style='background:#E5F5FF;'>\n";

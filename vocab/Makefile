@@ -5,7 +5,7 @@ PHP ?= php
 
 NSURI = http://www.w3.org/ns/odrl/2/
 
-ALL = ODRL21.rdf ODRL21.nt index.html
+ALL = ODRL22.rdf ODRL22.nt index.html
 
 all: $(ALL)
 
@@ -18,5 +18,5 @@ clean:
 %.nt: %.ttl
 	$(RAPPER) -i turtle -o ntriples $< > $@
 
-index.html: ODRL21.ttl $(TOP)/tools/phpspecgen.php $(TOP)/tools/classes.php template.phtml
-	php -f $(TOP)/tools/phpspecgen.php -- $< '$(NSURI)' ODRL21 'template.phtml' > $@
+index.html: ODRL22.ttl $(TOP)/tools/phpspecgen.php $(TOP)/tools/classes.php template.phtml
+	php -f $(TOP)/tools/phpspecgen.php -- $< '$(NSURI)' ODRL22 'template.phtml' > $@

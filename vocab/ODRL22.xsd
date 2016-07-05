@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:o="http://www.w3.org/ns/odrl/2/" version="2.2" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.w3.org/ns/odrl/2/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>
+            This is the XML Schema for ODRL Version 2.2 Working Draft
+            Copyright © 2016 W3C (MIT, ERCIM, Keio, Beihang). W3C liability, trademark and document use rules apply.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:element name="Policy" type="o:Policy"/>
+    <xs:complexType name="Policy">
+                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="o:permission" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="o:prohibition" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="uid" type="o:URIQnameQcode" use="required"/>
+                <xs:attribute name="type" type="o:URIQnameQcode" use="required"/>
+                <xs:attribute name="conflict" type="o:ConflictTerm"/>
+                <xs:attribute name="undefined" type="o:UndefinedTerm"/>
+                <xs:attribute name="inheritAllowed" type="xs:boolean"/>
+                <xs:attribute name="inheritFrom" type="o:URIQnameQcode"/>
+                <xs:attribute name="inheritRelation" type="o:URIQnameQcode"/>
+                <xs:attribute name="profile" type="o:URIQnameQcode"/>
+                <xs:anyAttribute namespace="##other" processContents="lax"/>     
+    </xs:complexType>
+    
+    <xs:element name="permission" type="o:Permission"/>
+    <xs:complexType name="Permission">
+           <xs:sequence>
+                    <xs:element ref="o:asset" maxOccurs="unbounded"/>
+                    <xs:element ref="o:action" />
+                    <xs:element ref="o:constraint"  minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="o:party"  minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="o:duty"  minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+           </xs:sequence>
+           <xs:attributeGroup ref="o:idAttributes"/>        
+    </xs:complexType>
+    
+    <xs:element name="prohibition" type="o:Prohibition"/> 
+    <xs:complexType name="Prohibition">
+        <xs:sequence>
+            <xs:element ref="o:asset"  maxOccurs="unbounded"/>
+            <xs:element ref="o:action" />
+            <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="o:party"  minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="o:idAttributes"/>
+    </xs:complexType>
+    
+    <xs:element name="duty" type="o:Duty"/>
+    <xs:complexType name="Duty">
+        <xs:sequence>
+            <xs:element ref="o:action" minOccurs="0"/> <!--Required Element-->
+            <xs:element ref="o:asset"  minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="o:constraint"  minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="o:party"  minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="uid" type="o:URIQnameQcode"/>
+        <xs:attributeGroup ref="o:idAttributes"/>
+    </xs:complexType>
+    
+    <xs:element name="asset" type="o:Asset"/> 
+    <xs:complexType name="Asset">
+        <xs:attribute name="uid" type="o:URIQnameQcode" /> <!--Required Attribute-->
+        <xs:attribute name="relation" type="o:URIQnameQcode" /> <!--Required Attribute-->
+        <xs:attributeGroup ref="o:idAttributes"/>
+    </xs:complexType>
+    
+    <xs:element name="party" type="o:Party"/>
+    <xs:complexType name="Party">
+        <xs:attribute name="uid" type="o:URIQnameQcode"/> <!--Required Attribute-->
+        <xs:attribute name="function" type="o:URIQnameQcode" /> <!--Required Attribute-->
+        <xs:attribute name="scope" type="o:URIQnameQcode"/>
+        <xs:attributeGroup ref="o:idAttributes"/>
+    </xs:complexType>
+ 
+    <xs:element name="action" type="o:Action"/>
+    <xs:complexType name="Action">
+        <xs:attribute name="name" type="o:URIQnameQcode" /> <!--Required Attribute-->
+        <xs:attributeGroup ref="o:idAttributes"/>
+    </xs:complexType>
+    
+    <xs:element name="constraint" type="o:Constraint"/>
+    <xs:complexType name="Constraint">
+        <xs:attribute name="name" type="o:URIQnameQcode" /> <!--Required Attribute-->
+        <xs:attribute name="operator" type="o:URIQnameQcode" /> <!--Required Attribute-->
+        <xs:attribute name="rightOperand" type="o:listOfValues" /> <!--Required Attribute-->
+        <xs:attribute name="dataType" type="o:URIQnameQcode" />
+        <xs:attribute name="unit" type="o:URIQnameQcode" />
+        <xs:attribute name="status" type="xs:string" />
+        <xs:attributeGroup ref="o:idAttributes"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="listOfValues">
+        <xs:list itemType="xs:string"/>
+    </xs:simpleType>
+     
+    <xs:simpleType name="ConflictTerm">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="http://www.w3.org/ns/odrl/2/perm"/>
+            <xs:enumeration value="http://www.w3.org/ns/odrl/2/prohibit"/>
+            <xs:enumeration value="http://www.w3.org/ns/odrl/2/invalid"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="UndefinedTerm">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="http://www.w3.org/ns/odrl/2/support"/>
+            <xs:enumeration value="http://www.w3.org/ns/odrl/2/ignore"/>
+            <xs:enumeration value="http://www.w3.org/ns/odrl/2/invalid"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="URIQnameQcode">
+        <xs:union memberTypes="xs:anyURI xs:QName o:QCode"/>
+    </xs:simpleType>
+    
+    <xs:simpleType name="QCode">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^\s:]+:[^\s]+"/>
+        </xs:restriction>
+        
+    </xs:simpleType>
+    <xs:attributeGroup name="idAttributes">
+        <xs:attribute name="id" type="xs:ID"/>
+        <xs:attribute name="idref" type="xs:IDREF"/>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:attributeGroup>
+</xs:schema>
