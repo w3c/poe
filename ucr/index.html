@@ -227,12 +227,38 @@
 	</head>
 	<body>
 		<section  id="abstract">
-			<p>TBD1</p>
+			<p>To foster the development of the permissions and obligations expression language (POE), this document includes a set of use cases and requirements that motivate a simple language for describing statements about digital content usage. All use cases provide realistic examples describing how people may (or want to be able to) specify statements about digital content usage. Note, that this document avoids the use of any specific vocabulary that might be introduced by the final POE specification. </p>
 		</section>
 		<section id='sotd'>
 		</section>
-		<section  id="intro"  class="informative">
+		<!--<section  id="intro"  class="informative">
 			<h1>Introduction</h1>
+		</section>-->
+		<section id="intro" class="informative">
+			<h1>Organization of this Document</h1>
+			<p>This document is organized as follows:</p>
+			<ul>
+				<li>
+					<strong>
+						<a href="#UseCases" title="Use Cases">Use Cases</a>
+					</strong> are
+					used to capture and model functional requirements. Use cases
+					describe the system’s behavior under various conditions [[COCKBURN-2000]],
+					cataloging who does what with the system, for what purpose, but
+					without concern for system design or implementation. Each use case is identified by a
+					reference number to aid cross-reference from other documentation. A variety of styles may be used to capture use cases,
+					from a simple narrative to a structured description with actors,
+					pre/post conditions, and non-functional requirements
+					raised by the use case.
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<strong>Requirements
+						<!--<a href="#requirements" title="Requirements">Requirements</a>-->
+					</strong> will be added in future iterations of this document.
+				</li>
+			</ul>
 		</section>
 		<section  id="UseCases">
 			<h1>Use Cases</h1>
@@ -256,7 +282,7 @@
 
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						<ol>
 							<li> All the requirements of ODRL
 							</li>
@@ -313,10 +339,10 @@
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						<ol>
-							<li> The CRUD operations should be unequivocally described (i.e., only one term to declare "Read" access, and not the many that now could be interpreted). Maybe also in tighter relationship with the Linked Data Platform vocabulary.</li>
-							<li>Richer manners of expressing payments and prices are required. </li>
+							<li>CRUD operations should be unequivocally described (i.e., only one term to declare "Read" access, and not the many that now could be interpreted). Maybe also in tighter relationship with the Linked Data Platform vocabulary.</li>
+							<li>Richer means of expressing payments and prices are required. </li>
 							<li>The range of syntactically valid expressions is too large to grant that any valid expression will be parsed. This is promising too much. A more constrained syntax is needed (avoiding recursions, a limit in the nested elements, etc.)</li>
 							<li>It should be possible to declare default policies for actions (e.g., if nothing is said about 'delete', then allow 'delete', etc.).</li>
 						</ol>
@@ -338,7 +364,7 @@
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -358,7 +384,7 @@
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -378,7 +404,7 @@
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -400,7 +426,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -416,24 +442,45 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<li> <p class="contributor">Stuart Myles</p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>In the News Industry, Rights Holders and Editors need to establish the permissions and restrictions associated with content.</p>
-					<p><strong>What Do Rights Holders Want?</strong> In general, Rights Holders will require that a set of permissions, restrictions and duties be obeyed for a defined set of content. And they can require additional restrictions or duties for individual items within the larger content set. Rights Holders wish to restrict the use of their content by such factors as:
+					<div class="visible uc"> <p>In the news industry, rights holders and editors need to establish the permissions and restrictions associated with content.</p>
+					<p>
+					<dl>
+					<dt>What Do Rights Holders Want?</dt><dd> In general, rights holders will require that a set of permissions, restrictions, and duties be obeyed for a defined set of content. And they can require additional restrictions or duties for individual items within the larger content set. Rights holders wish to restrict the use of their content by factors such as:
 					<ul>
 						<li>Geography (e.g. "No use in China")</li>
 						<li>Time (e.g. "No archive after 3 days")</li>
 						<li>Distribution channel (e.g. "No mobile")</li>
 					</ul>
-					They also want to enforce duties such as
+					They also want to enforce duties such as:
 					<ul>
 						<li>Payment (e.g. "You can use this photo online for EUR80")</li>
 						<li>Attribution (e.g. "Credit Kyoto News")</li>
 					</ul>
-					Often Rights Holders need to constrain the use of their content in complex ways, i.e. with combined constraints. For example, "No use in UK after 7 days".</p>
-					<p><strong>What Do Editors Want?</strong> Ideally, not to worry about rights… Essentially, Editors want to know the answer to the question "Can I use this content in this way?" and, if the answer is yes, "Are there any duties?". It is not unusual for Editors to have access to content that they are not permitted to republish. Or that they can only republish in certain ways (e.g. only in print but not on a mobile app).  
+					Often, rights holders need to constrain the use of their content in complex ways, i.e., with combined constraints (e.g, "No use in UK after 7 days").
+					Generally, rights holders want to be able to:
+					<dl>
+					  <dt>Create a bundle of permissions, restrictions and duties</dt>
+						<dd>The rights holder creates a set of permissions and restrictions with constraints, together with any duties that the editor must perform, in order to unlock the permissions. The set may be associated with one or more sets of content. Therefore the policy bundle must have a unique identifier. </dd>
+					  <dt>Identify one or more items of content to be treated as a set</dt>
+						<dd>The rights holder defines one or more content items which are to be treated as a set. The set must have a unique identifier.</dd>
+					  <dt>Bind a policy to a set of content</dt>
+						<dd>The rights holder asserts that a given set of content is governed by a given policy. Note that a given content item might be a member of more than one set of content. Therefore, a given content item may have more than one policy associated with it. </dd>
+					</dl></dd>
+					
+					
+					<!--</p>-->
+					<dt>What Do Editors Want?</dt><dd> Ideally, not to worry about rights at all. Essentially, editors want to know the answer to the question "Can I use this content in this way?" and, if the answer is yes, "Are there any duties?". It is not unusual for editors to have access to content that they are not permitted to republish. Or that they can only republish in certain ways (e.g., only in print but not on a mobile app). Editors want to be able to:
+					<dl>
+					  <dt>Create a bundle of action and context"</dt>
+						<dd>An editor identifies a content use in context, meaning a particular action they propose to take with pieces of content (e.g. "print", "distribute", "archive") and any relevant context for that action (e.g. location="France"). The types of context for an action correspond to possible constraints which could apply to the use of a piece of content. The use is not tied to one particular piece of content. The use must have a unique identifier. </dd>
+					 <dt>Determine whether a use is permitted for a particular content item</dt>
+					 <dd>At the point where an Editor wishes to use a particular piece of content in a particular way, the policies must be evaluated to determine whether it is permitted and whether there are any duties that must be fulfilled. The possible results are therefore: "yes", "no" or "maybe". </dd>
+					 </dl>
+					</dd></dl>  
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -449,11 +496,11 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<li> <p class="contributor">Phil Archer</p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>The European Data Portal harvests and republishes metadata from across Europe. It therefore has to handle a wide variety of inputs, including a variety of licenses attached to datasets (and datasets with no license attached). In order to manage this, the EDP has examined each of the most commonly found licenses and derived a set of atomic permissions and obligations expressed in those licenses with the intention that reusers can assess whether or not a particular combination of datasets is permissible and, if so, under what conditions.  
+					<div class="visible uc"> <p>The European Data Portal (EDP) harvests and republishes metadata from across Europe. It therefore has to handle a wide variety of inputs, including a variety of licenses attached to datasets (and datasets with no license attached). In order to manage this, the EDP has examined each of the most commonly found licenses and derived a set of atomic permissions and obligations expressed in those licenses with the intention that reusers can assess whether or not a particular combination of datasets is permissible and, if so, under what conditions. Their work itself is available on the <a rel="nofollow" class="external text" href="http://www.europeandataportal.eu/en/training-library/library/edp-reports">European Data Portal</a> as <strong>Licence Assistant: European Data Portal Licence Compatibility Matrix</strong>. 
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -473,7 +520,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -489,11 +536,11 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Sometimes things are paid for on a per-usage basis. For instance a SAAS product might charge per account (or per seat), or a definition in legal treatise might be charged for every time it is printed or included in a PDF.  
+					<div class="visible uc"> <p>Sometimes things are paid for on a per-usage basis. For instance a SaaS product might charge per account (or per seat), or a definition in legal treatise might be charged for every time it is printed or included in a PDF.  
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -509,11 +556,11 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>There are some common obligations (odrl:Duty) that must be transmitted if you are acting as an intermediary between the data owner and the data user. Often the owner and the user must sign a contract; the user must acknowledge the copyright of the owner; and the user must acknowledge some other documentation (like a 'Restriction On Distribution Statement').  
+					<div class="visible uc"> <p>There are some common obligations that must be transmitted if you are acting as an intermediary between the data owner and the data user. Often the owner and the user must sign a contract, the user must acknowledge the copyright of the owner, and the user must acknowledge some other documentation (like a 'Restriction On Distribution Statement').  
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -529,12 +576,12 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Data sets are often combined (aggregation) and analysed to generate new data sets (derivation). Big data analytics generates extended workflows of such operations. What policies control each step of the process? For example, a synthetic instrument might be generated by following a simple rule: (equity price on NYSE - equity opening price on NYSE) * equity weighting on MSCI Technology Index)</p>
+					<div class="visible uc"> <p>Data sets are often combined (aggregation) and analysed to generate new data sets (derivation). Big data analytics generates extended workflows of such operations. What policies control each step of the process? For example, a synthetic instrument might be generated by following a simple rule: <code>(equity price on NYSE - equity opening price on NYSE) * equity weighting on MSCI Technology Index)</code></p>
 					<p>Let's say we know the three policies that control equity prices on the New York Stock Exchange, their opening prices, and their index weighting. Then what is the policy that controls the resulting synthetic instrument?  
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -554,7 +601,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -570,11 +617,11 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>On the 15th of every month the user must report usage by providing a list of either Access IDs or Physical IDs  
+					<div class="visible uc"> <p>On the 15th of every month the user must report usage by providing a list of either Access IDs or Physical IDs.  
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -594,7 +641,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -614,7 +661,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -630,10 +677,10 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<li> <p class="contributor">James Birmingham on behalf of Digital Catapult </p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>In order to manage a common Offer which is applied to many Assets, a one-to-many relationship is more preferable than a one-to-one. If the Offer can Target a set of Assets it must also be able to state that what is offered is n items from the set rather than the whole set.</p></div>
+					<div class="visible uc"> <p>In order to manage a common offer which is applied to many assets, a one-to-many relationship is more preferable than a one-to-one. If the offer can target a set of assets, it must also be able to state that what is offered is <em>n items</em> from the set rather than the whole set.</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
@@ -649,251 +696,87 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<li> <p class="contributor">Renato Iannella</p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>A common use case is for a general policy statement to be asserted. This is simply a party stating what policy terms they believe they have. Either an assignee can assert what terms they have over an Asset and/or an assigner can assert what terms they have over an asset. An assertion does not grant any of the statements. A policy assertion may state that a Party is a general rightsholder or other roles.  
+					<div class="visible uc"> <p>A common use case is for a general policy statement to be asserted. This is simply a party stating what policy terms they believe they have. Either an assignee can assert what terms they have over an asset and/or an assigner can assert what terms they have over an asset. An assertion does not grant any of the statements. A policy assertion may state that a party is a general rightsholder or other roles.  
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"> 
+					<div class="visible requirement"><strong>TBD</strong> 
 						
 					</div>
 					</li>
 				</ul>
 			</section>
-			
-		</section>
-		<section id="Requirements">
-			<h1>Requirements</h1>
-			<p>This section lists the requirements arising from the use-cases catalogued in this document. Specific requirements that have been de-prioritized or rejected have been left in the document for completeness, but are shown as struck out.</p>
-				<section>
-					<h2>POE.R.M - Model</h2>
-						<!-- %%%%%%%%%%%% POE.R.M01 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M01</dfn>: Define how constraints on a party can be expressed</h3>
-							<em> </em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M02 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M02</dfn>: Introduce policy template</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M03 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M03</dfn>: Support versioning policies</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M04 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M04</dfn>: Set a global price for all permissions of a policy</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M05 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M05</dfn>: Support relative time constraints</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M06 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M06</dfn>: Define a category property for class Party</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M07 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M07</dfn>: Define a category property for class Asset</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M08 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M08</dfn>: Complex Constraints</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M09 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M09</dfn>: Extended Relations</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M10 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M10</dfn>: Remedies</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.M11 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.M11</dfn>: Grouping party entities</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-				</section>
-				<section>
-					<h2>POE.R.V - Vocabulary</h2>
-						<!-- %%%%%%%%%%%% POE.R.V01 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V01</dfn>: Add rights holder terms to Roles of a Party Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V02 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V02</dfn>: Add term for redepositing to Duty Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V03 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V03</dfn>: Add concept of 'unit-of-count' to Duty Constraint Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V04 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V04</dfn>: Add "action context" to Constraint Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V05 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V05</dfn>: New Action Context Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V06 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V06</dfn>: Add "party" to Constraints Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V07 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V07</dfn>: Add "meansOfDelivery" to Constraints Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V08 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V08</dfn>: Add terms to the Action Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V09 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V09</dfn>: Add Linked Data related actions to Action Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V10 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V10</dfn>: Add terms to the Roles of a Party Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V11 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V11</dfn>: New Party Category Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V12 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V12</dfn>: New Asset Category Vocabulary</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V13 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V13</dfn>: Temporal Constraint</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V14 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V14</dfn>: Using time spans in Temporal Constraints</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.V15 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.V15</dfn>: Reference to Source License</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
+			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.19 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			<section>
+				<h2><dfn>POE.UC.19</dfn>: Relative Time Constraints</h2>
+				<ul>
+					<!-- <li> <strong>Title</strong>:   </li> -->
+					<li> <p class="contributor">Michael Steidl</p></li>
+					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+					<div class="visible uc"> <p>Sometimes it's required to be able to constrain the applicability of policies according to a relative point in time, e.g.:
+					<ul>
+						<li>Organisers of sport events grant the use of photos or videos relative to the end of a sport event/game. (Note: the live publishing of photos/videos may be granted by a different license.)</li>
+						<li>Speakers at a conference circulate a document with their speech in advance and they permit to publish it only after the speech has ended. </li>
+					</ul>
+						</p></div>
+					</li>
+					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
+					<div class="visible requirement"><strong>TBD</strong> 
 						
-				</section>
-				<section>
-					<h2>POE.R.E - Encoding</h2>
-						<!-- %%%%%%%%%%%% POE.R.E01 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.E01</dfn>: Referring to external resources for defining payment fees</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.E02 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.E02</dfn>: Prove that a list of existing licenses can be expressed/encoded</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-				</section>
-				<section>
-					<h2>POE.R.PR - Processing Rules</h2>
-						<!-- %%%%%%%%%%%% POE.R.PR01 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.PR01</dfn>: Define rules for matching permissions/prohibitions against specific use cases</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.PR02 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.PR02</dfn>: Define a language for controlling processing policies</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.PR03 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.PR03</dfn>: Define processing rules for versioned policies</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.PR04 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.PR04</dfn>: Support to auto-generate a policy from a template plus provided parameter values</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.PR05 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.PR05</dfn>: Guidance on Rights Assignments through Aggregation and Derivation</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.PR06 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.PR06</dfn>: Guidance on Specifying Subsets</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.PR07 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.PR07</dfn>: Guidance on Conflicting Permissions</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-						<!-- %%%%%%%%%%%% POE.R.PR08 %%%%%%%%%%%% -->
-						<section>
-							<h3><dfn>POE.R.PR08</dfn>: Guidance on the Provenance of Policies</h3>
-							<em></em> 
-							<p class="relatedUseCases"></p>
-						</section>
-				</section>
+					</div>
+					</li>
+				</ul>
+			</section>
+			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.20 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			<section>
+				<h2><dfn>POE.UC.20</dfn>: External Declaration of Payment Amount</h2>
+				<ul>
+					<!-- <li> <strong>Title</strong>:   </li> -->
+					<li> <p class="contributor">Víctor Rodríguez-Doncel</p></li>
+					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+					<div class="visible uc"> <p><a rel="nofollow" class="external text" href="http://georg-re.hm/pdf/LREC-2014-META-SHARE.pdf"><i>META-SHARE</i></a> is an open and secure network of repositories for sharing and exchanging language data, tools, and related web services. As of July 2016, it accounted more than 2700 resources. These resources are described with small pieces of metadata according to their <a rel="nofollow" class="external text" href="http://www.meta-net.eu/meta-share/metadata-schema/">schema</a>.<p>
+					<p>While maintainers of META-SHARE's 32 repositories can edit simple metadata records, they are usually not skilled enough to edit ODRL expressions. Hence they would like to be able to:
+					<ol>
+						<li>Point to a license template (referred by a well-known URI), with a placeholder to for the price.</li>
+						<li>Add a metadata record indicating the specific price of the resource.</li>
+					</ol>
+					</p></div>
+					</li>
+					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
+					<div class="visible requirement"><strong>TBD</strong> 
+						
+					</div>
+					</li>
+				</ul>
+			</section>
+			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.21 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			<section>
+				<h2><dfn>POE.UC.21</dfn>: Specifying the Scope of Constraints</h2>
+				<ul>
+					<!-- <li> <strong>Title</strong>:   </li> -->
+					<li> <p class="contributor">Víctor Rodríguez-Doncel</p></li>
+					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+					<div class="visible uc"> <p>Depending on the use case, it's often necessary to specify constraints on properties of different kinds of entities (e.g., assets, parties or any other external entities). The exact subject for which those constraints must hold is currently not encodable in ODRL, but has to be inferred from the textual semantics of each of ODRL's 25 constraint terms; which not only leads to ambiguities in terms of interpreted semantics, but might also prove to be not capable of fully covering new usages of ODRL.
+						</p></div>
+					</li>
+					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
+					<div class="visible requirement"><strong>TBD</strong> 
+						
+					</div>
+					</li>
+				</ul>
+			</section>
 		</section>
+		
 	</body>
 </html>
 	
