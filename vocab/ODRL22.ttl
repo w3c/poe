@@ -63,6 +63,35 @@ odrl:
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/text/html> .
 
+<http://www.w3.org/ns/odrl/2/#modelConcept>
+    a skos:Collection ;
+    skos:prefLabel "Information Model Concepts"@en ;
+    skos:member :Asset ;
+    skos:member :Party ;
+    skos:member :Policy .
+
+<http://www.w3.org/ns/odrl/2/#policyType>
+    a skos:Collection ;
+    skos:prefLabel "Policy Types"@en ;
+    skos:member :Agreement ;
+    skos:member :Offer ;
+    skos:member :Set .
+
+<http://www.w3.org/ns/odrl/2/#actionsPermProhib>
+    a skos:Collection ;
+    skos:prefLabel "Actions for Permissions and Prohibitions"@en ;
+    skos:member :use ;
+    skos:member :play ;
+    skos:member :modify .
+
+<http://www.w3.org/ns/odrl/2/#actionsDuty>
+    a skos:Collection ;
+    skos:prefLabel "Actions for Duties"@en ;
+    skos:member :compensate ;
+    skos:member :acceptTracking ;
+    skos:member :nextPolicy .
+
+
 :actions
 	a skos:ConceptScheme ;
 	rdfs:isDefinedBy odrl: ;
@@ -70,12 +99,12 @@ odrl:
 	skos:hasTopConcept :acceptTracking, :adHocShare, :aggregate, :annotate,
 		:anonymize, :append, :archive, :attachPolicy, :attachSource,
 		:attribute, :commercialize, :concurrentUse, :copy, :delete,
-		:derive, :display, :distribute, :ensureExclusivity, :execute,
+		:derive, :display, :distribute, :digitize, :ensureExclusivity, :execute,
 		:export, :extract, :give, :include, :index, :inform,
 		:install, :lease, :lend, :license, :modify, :move, :nextPolicy,
 		:obtainConsent, :pay, :play, :present, :preview, :print, :read,
 		:reproduce, :reviewPolicy, :secondaryUse, :sell, :share,
-		:shareAlike, :textToSpeech, :transform, :translate, :uninstall,
+		:shareAlike, :textToSpeech, :transform, :transfer, :translate, :uninstall,
 		:watermark, :write, :use, :grantUse, :compensate, :writeTo,
 		:appendTo .
 
@@ -95,7 +124,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Party"@en ;
-	skos:definition "The Party entity is the object of an ODRL policy that performs (or not performs) actions or has a role in a Duty "@en ;
+	skos:definition "The Party entity is the object of an ODRL policy that performs (or not performs) actions or has a role in a Duty."@en ;
 	rdfs:comment "The Party entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use vCard [[vcard-rdf]] or [[foaf]] metadata."@en .
 
 ## Policies
@@ -282,7 +311,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "relation"@en ;
-	skos:definition "Relation is an abstract property which creates an explicit link between an Action and an Asset. "@en ;
+	skos:definition "Relation is an abstract property which creates an explicit link between an Action and an Asset."@en ;
 	rdfs:comment "Sub-properties of relation are used to define the nature of that link."@en ;
 	rdfs:domain :Rule ;
 	rdfs:range :Asset .
@@ -427,8 +456,7 @@ odrl:
 :isAllOf
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "Indicating that a given value is all of the right operand of the Constraint
-"@en ;
+	skos:definition "Indicating that a given value is all of the right operand of the Constraint"@en ;
 	rdfs:label "Is all of"@en .
 
 :isAnyOf
@@ -446,8 +474,7 @@ odrl:
 :isPartOf
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "Indicating that a given value is contained by the right operand of the Constraint
-"@en ;
+	skos:definition "Indicating that a given value is contained by the right operand of the Constraint"@en ;
 	rdfs:label "Is part of"@en .
 
 :lt
@@ -482,14 +509,14 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Grant use"@en ;
 	skos:broaderTransitive odrl:use ;
-	skos:definition "The Assigner permits/prohibits the Assignee to grant the use the Asset to third parties. "@en ;
+	skos:definition "The Assigner permits/prohibits the Assignee to grant the use the Asset to third parties."@en ;
 	rdfs:comment "This action enables the Assignee to create policies for the use of the Asset for third parties. nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended."@en .
 
 :compensate
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Compensate"@en ;
-	skos:definition "The Assigner requires that the Assignees compensates the Assigner (or other specified compensation Party) by some amount of value, if defined, for use of the Asset. "@en ;
+	skos:definition "The Assigner requires that the Assignees compensates the Assigner (or other specified compensation Party) by some amount of value, if defined, for use of the Asset."@en ;
 	rdfs:comment "The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by operator, rightOperand, dataType and unit"@en .
 
 :acceptTracking
@@ -586,7 +613,7 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Digitize"@en ;
-	skos:broaderTransitive odrl:use ;
+	skos:broaderTransitive :use ;
 	skos:definition "The Assigner permits/prohibits the Assignees to produce a digital copy of (or otherwise digitize) the Asset from its analogue form."@en .
 
 :display
@@ -760,7 +787,7 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Read"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to obtain data from the Asset. "@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to obtain data from the Asset."@en ;
 	rdfs:comment "For example, the ability to read a record from a database (the Asset)."@en ;
 	skos:broaderTransitive :use .
 
