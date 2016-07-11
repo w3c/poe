@@ -4599,13 +4599,344 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
         
 <section class="appendix normative" id="xmlschema">
 <h2>ODRL XML Schema</h2>
+      <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;xs:schema xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; version=&quot;2.2&quot; 
+           xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
+           targetNamespace=&quot;http://www.w3.org/ns/odrl/2/&quot;
+           elementFormDefault=&quot;qualified&quot; attributeFormDefault=&quot;unqualified&quot;&gt;
+    &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;
+            This is the XML Schema for ODRL Version 2.2 Working Draft
+            Copyright © 2016 W3C (MIT, ERCIM, Keio, Beihang).
+            W3C liability, trademark and document use rules apply.
+        &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:element name=&quot;Policy&quot; type=&quot;o:Policy&quot;/&gt;
+    &lt;xs:complexType name=&quot;Policy&quot;&gt;
+                &lt;xs:sequence minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;
+                    &lt;xs:element ref=&quot;o:permission&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+                    &lt;xs:element ref=&quot;o:prohibition&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+                    &lt;xs:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; 
+                                                                   maxOccurs=&quot;unbounded&quot;/&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:attribute name=&quot;uid&quot; type=&quot;o:URIQnameQcode&quot; use=&quot;required&quot;/&gt;
+                &lt;xs:attribute name=&quot;type&quot; type=&quot;o:URIQnameQcode&quot; use=&quot;required&quot;/&gt;
+                &lt;xs:attribute name=&quot;conflict&quot; type=&quot;o:ConflictTerm&quot;/&gt;
+                &lt;xs:attribute name=&quot;undefined&quot; type=&quot;o:UndefinedTerm&quot;/&gt;
+                &lt;xs:attribute name=&quot;inheritAllowed&quot; type=&quot;xs:boolean&quot;/&gt;
+                &lt;xs:attribute name=&quot;inheritFrom&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
+                &lt;xs:attribute name=&quot;inheritRelation&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
+                &lt;xs:attribute name=&quot;profile&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
+                &lt;xs:anyAttribute namespace=&quot;##other&quot; processContents=&quot;lax&quot;/&gt;     
+    &lt;/xs:complexType&gt;
     
-</section>
+    &lt;xs:element name=&quot;permission&quot; type=&quot;o:Permission&quot;/&gt;
+    &lt;xs:complexType name=&quot;Permission&quot;&gt;
+           &lt;xs:sequence&gt;
+                    &lt;xs:element ref=&quot;o:asset&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+                    &lt;xs:element ref=&quot;o:action&quot; /&gt;
+                    &lt;xs:element ref=&quot;o:constraint&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+                    &lt;xs:element ref=&quot;o:party&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+                    &lt;xs:element ref=&quot;o:duty&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+                    &lt;xs:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; 
+                                                               maxOccurs=&quot;unbounded&quot;/&gt;
+           &lt;/xs:sequence&gt;
+           &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;        
+    &lt;/xs:complexType&gt;
+    
+    &lt;xs:element name=&quot;prohibition&quot; type=&quot;o:Prohibition&quot;/&gt; 
+    &lt;xs:complexType name=&quot;Prohibition&quot;&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element ref=&quot;o:asset&quot;  maxOccurs=&quot;unbounded&quot;/&gt;
+            &lt;xs:element ref=&quot;o:action&quot; /&gt;
+            &lt;xs:element ref=&quot;o:constraint&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+            &lt;xs:element ref=&quot;o:party&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+            &lt;xs:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; 
+                                                          maxOccurs=&quot;unbounded&quot;/&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
+    &lt;/xs:complexType&gt;
+    
+    &lt;xs:element name=&quot;duty&quot; type=&quot;o:Duty&quot;/&gt;
+    &lt;xs:complexType name=&quot;Duty&quot;&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element ref=&quot;o:action&quot; minOccurs=&quot;0&quot;/&gt; &lt;!--Required Element--&gt;
+            &lt;xs:element ref=&quot;o:asset&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+            &lt;xs:element ref=&quot;o:constraint&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+            &lt;xs:element ref=&quot;o:party&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+            &lt;xs:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; 
+                                                           maxOccurs=&quot;unbounded&quot;/&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;uid&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
+        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
+    &lt;/xs:complexType&gt;
+    
+    &lt;xs:element name=&quot;asset&quot; type=&quot;o:Asset&quot;/&gt; 
+    &lt;xs:complexType name=&quot;Asset&quot;&gt;
+        &lt;xs:attribute name=&quot;uid&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attribute name=&quot;relation&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
+    &lt;/xs:complexType&gt;
+    
+    &lt;xs:element name=&quot;party&quot; type=&quot;o:Party&quot;/&gt;
+    &lt;xs:complexType name=&quot;Party&quot;&gt;
+        &lt;xs:attribute name=&quot;uid&quot; type=&quot;o:URIQnameQcode&quot;/&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attribute name=&quot;function&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attribute name=&quot;scope&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
+        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
+    &lt;/xs:complexType&gt;
+ 
+    &lt;xs:element name=&quot;action&quot; type=&quot;o:Action&quot;/&gt;
+    &lt;xs:complexType name=&quot;Action&quot;&gt;
+        &lt;xs:attribute name=&quot;name&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
+    &lt;/xs:complexType&gt;
+    
+    &lt;xs:element name=&quot;constraint&quot; type=&quot;o:Constraint&quot;/&gt;
+    &lt;xs:complexType name=&quot;Constraint&quot;&gt;
+        &lt;xs:attribute name=&quot;name&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attribute name=&quot;operator&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attribute name=&quot;rightOperand&quot; type=&quot;o:listOfValues&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attribute name=&quot;dataType&quot; type=&quot;o:URIQnameQcode&quot; /&gt;
+        &lt;xs:attribute name=&quot;unit&quot; type=&quot;o:URIQnameQcode&quot; /&gt;
+        &lt;xs:attribute name=&quot;status&quot; type=&quot;xs:string&quot; /&gt;
+        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
+    &lt;/xs:complexType&gt;
+    
+    &lt;xs:simpleType name=&quot;listOfValues&quot;&gt;
+        &lt;xs:list itemType=&quot;xs:string&quot;/&gt;
+    &lt;/xs:simpleType&gt;
+     
+    &lt;xs:simpleType name=&quot;ConflictTerm&quot;&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/perm&quot;/&gt;
+            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/prohibit&quot;/&gt;
+            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/invalid&quot;/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+    
+    &lt;xs:simpleType name=&quot;UndefinedTerm&quot;&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/support&quot;/&gt;
+            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/ignore&quot;/&gt;
+            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/invalid&quot;/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+    
+    &lt;xs:simpleType name=&quot;URIQnameQcode&quot;&gt;
+        &lt;xs:union memberTypes=&quot;xs:anyURI xs:QName o:QCode&quot;/&gt;
+    &lt;/xs:simpleType&gt;
+    
+    &lt;xs:simpleType name=&quot;QCode&quot;&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+            &lt;xs:pattern value=&quot;[^\s:]+:[^\s]+&quot;/&gt;
+        &lt;/xs:restriction&gt;
+        
+    &lt;/xs:simpleType&gt;
+    &lt;xs:attributeGroup name=&quot;idAttributes&quot;&gt;
+        &lt;xs:attribute name=&quot;id&quot; type=&quot;xs:ID&quot;/&gt;
+        &lt;xs:attribute name=&quot;idref&quot; type=&quot;xs:IDREF&quot;/&gt;
+        &lt;xs:anyAttribute namespace=&quot;##other&quot; processContents=&quot;lax&quot;/&gt;
+    &lt;/xs:attributeGroup&gt;
+&lt;/xs:schema&gt;
+</pre></section>
         
 <section class="appendix normative" id="jsonschema">
 <h2>ODRL JSON Schema</h2>
-    
- </section>
+       <pre>   {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+    &quot;title&quot;: &quot;ODRL JSON Schema&quot;,
+    &quot;description&quot;: &quot;JSON Schema for ODRL Version 2.2 Working Draft.&quot;,
+    &quot;id&quot;: &quot;http://www.w3.org/ns/odrl/2/jsonschema#&quot;,
+    &quot;definitions&quot;: {&quot;prohibdutytype&quot;: {
+        &quot;type&quot;: &quot;array&quot;,
+        &quot;items&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;required&quot;: [&quot;action&quot;],
+            &quot;properties&quot;: {
+                &quot;assigner&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;format&quot;: &quot;uri&quot;
+                },
+                &quot;assignee&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;format&quot;: &quot;uri&quot;
+                },
+                &quot;assignee_scope&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;format&quot;: &quot;uri&quot;
+                },
+                &quot;target&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;format&quot;: &quot;uri&quot;
+                },
+                &quot;output&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;format&quot;: &quot;uri&quot;
+                },
+                &quot;action&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;format&quot;: &quot;uri&quot;
+                },
+                &quot;constraints&quot;: {
+                    &quot;type&quot;: &quot;array&quot;,
+                    &quot;items&quot;: {
+                        &quot;type&quot;: &quot;object&quot;,
+                        &quot;required&quot;: [
+                            &quot;name&quot;,
+                            &quot;operator&quot;,
+                            &quot;rightoperand&quot;
+                        ],
+                        &quot;properties&quot;: {
+                            &quot;name&quot;: {
+                                &quot;type&quot;: &quot;string&quot;,
+                                &quot;format&quot;: &quot;uri&quot;
+                            },
+                            &quot;operator&quot;: {
+                                &quot;type&quot;: &quot;string&quot;,
+                                &quot;format&quot;: &quot;uri&quot;
+                            },
+                            &quot;rightoperand&quot;: {&quot;type&quot;: &quot;string&quot;},
+                            &quot;rightoperanddatatype&quot;: {&quot;type&quot;: &quot;string&quot;},
+                            &quot;rightoperandunit&quot;: {&quot;type&quot;: &quot;string&quot;},
+                            &quot;status&quot;: {&quot;type&quot;: &quot;string&quot;}
+                        }
+                    }
+                }
+            },
+            &quot;patternProperties&quot;: {
+                &quot;^[a-z]+party&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;format&quot;: &quot;uri&quot;
+                },
+                &quot;^[a-z]+_scope&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;format&quot;: &quot;uri&quot;
+                }
+            }
+        }
+    }},
+    &quot;required&quot;: [
+        &quot;policyid&quot;,
+        &quot;policytype&quot;
+    ],
+    &quot;properties&quot;: {
+        &quot;policyid&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;format&quot;: &quot;uri&quot;
+        },
+        &quot;policytype&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;format&quot;: &quot;uri&quot;
+        },
+        &quot;conflict&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;enum&quot;: [
+                &quot;perm&quot;,
+                &quot;prohibit&quot;,
+                &quot;invalid&quot;
+            ]
+        },
+        &quot;undefined&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;enum&quot;: [
+                &quot;support&quot;,
+                &quot;ignore&quot;,
+                &quot;invalid&quot;
+            ]
+        },
+        &quot;inheritallowed&quot;: {&quot;type&quot;: &quot;boolean&quot;},
+        &quot;inheritfrom&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;format&quot;: &quot;uri&quot;
+        },
+        &quot;inheritrelation&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;format&quot;: &quot;uri&quot;
+        },
+        &quot;policyprofile&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;format&quot;: &quot;uri&quot;
+        },
+        &quot;permissions&quot;: {
+            &quot;type&quot;: &quot;array&quot;,
+            &quot;items&quot;: {
+                &quot;type&quot;: &quot;object&quot;,
+                &quot;required&quot;: [&quot;action&quot;],
+                &quot;properties&quot;: {
+                    &quot;assigner&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    },
+                    &quot;assigner_scope&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    },
+                    &quot;assignee&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    },
+                    &quot;assignee_scope&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    },
+                    &quot;target&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    },
+                    &quot;output&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    },
+                    &quot;action&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    },
+                    &quot;constraints&quot;: {
+                        &quot;type&quot;: &quot;array&quot;,
+                        &quot;items&quot;: {
+                            &quot;type&quot;: &quot;object&quot;,
+                            &quot;required&quot;: [
+                                &quot;name&quot;,
+                                &quot;operator&quot;,
+                                &quot;rightoperand&quot;
+                            ],
+                            &quot;properties&quot;: {
+                                &quot;name&quot;: {
+                                    &quot;type&quot;: &quot;string&quot;,
+                                    &quot;format&quot;: &quot;uri&quot;
+                                },
+                                &quot;operator&quot;: {
+                                    &quot;type&quot;: &quot;string&quot;,
+                                    &quot;format&quot;: &quot;uri&quot;
+                                },
+                                &quot;rightoperand&quot;: {&quot;type&quot;: &quot;string&quot;},
+                                &quot;rightoperanddatatype&quot;: {&quot;type&quot;: &quot;string&quot;},
+                                &quot;rightoperandunit&quot;: {&quot;type&quot;: &quot;string&quot;},
+                                &quot;status&quot;: {&quot;type&quot;: &quot;string&quot;}
+                            }
+                        }
+                    },
+                    &quot;duties&quot;: {&quot;$ref&quot;: &quot;#/definitions/prohibdutytype&quot;}
+                },
+                &quot;patternProperties&quot;: {
+                    &quot;^[a-z]+party&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    },
+                    &quot;^[a-z]+_scope&quot;: {
+                        &quot;type&quot;: &quot;string&quot;,
+                        &quot;format&quot;: &quot;uri&quot;
+                    }
+                }
+            }
+        },
+        &quot;prohibitions&quot;: {&quot;$ref&quot;: &quot;#/definitions/prohibdutytype&quot;}
+    }
+ 
+}
+</pre> </section>
     
 <section class="appendix" id="community">
 <h2>Changes from the Community Group Reports</h2>
