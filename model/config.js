@@ -18,7 +18,7 @@
           previousMaturity:     "",
           previousPublishDate:  "",
           previousURI:          "",
-          publishDate:          "2016-07-04",
+          publishDate:          "2016-07-11",
           edDraftURI:           "http://w3c.github.io/poe/model/",
           wg:                   "Permissions & Obligations Expression Working Group",
           wgURI:                "http://www.w3.org/2016/poe/",
