@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    publishDate:  "2016-07-11",
+    publishDate:  "2016-07-12",
     edDraftURI: "https://w3c.github.io/poe/vocab/",
     editors: [
      {    name:       "Renato Iannella",
@@ -40,5 +40,18 @@ var respecConfig = {
     inlineCSS: true,
     noIDLIn: true,
     noLegacyStyle: false,
-    issueBase: "https://github.com/w3c/poe/issues/"
+    issueBase: "https://github.com/w3c/poe/issues/",
+    otherLinks: [
+                {
+                        key: "Repository",
+                        data: [{
+                                value: "Github Repository",
+                                href: "https://github.com/w3c/poe"
+                        },
+                              {
+                                value: "Issue Tracker",
+                                href: "https://github.com/w3c/poe/milestone/2"
+                        }]
+                }
+          ]
 };
