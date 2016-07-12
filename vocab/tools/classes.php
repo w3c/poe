@@ -328,10 +328,10 @@
                 $html .= "<table>\n  <tr style='vertical-align: top;'>\n  <td style='width:70%;'>\n";
                 
                 $html .= "<table class='def propdef' >\n";
+                $html .= $term->propertyRow("Definition", "skos:definition");
                 $html .= $term->propertyRow("Label", "rdfs:label");
                 $html .= "  <tr><td><b>Identifier:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
                 #$html .= "  <tr><td><b>Definition:</b></td> <td>".$description."</td></tr>\n";
-                $html .= $term->propertyRow("Definition", "skos:definition");
                 #$html .= "  <tr><td><b>Comment:</b></td> <td>test</td></tr>\n";
                 $html .= $term->propertyRow("Comment", "rdfs:comment");
                 
