@@ -38,13 +38,12 @@
 	<img src="diagram.png" alt="ODRL Vocabulary groups"/>
     <figcaption>Vocabulary groups </figcaption>
 </figure>
-    
-    
-<?php
-	echo $vocab->htmlSummaryOfTerms();
-?>
 
-    <p>The detail for each ODRL Vocabulary term is shown below in the two tables. The left table shows the normative semantic description of the concept, and the right table the  ontological description and relationships.</p>
+     <div class="note">
+        <p>Above figure will be updated to match the vocabulary term groupings.</p>
+    </div>
+
+    <p>The detail for each ODRL Vocabulary term is shown below in the two tables. The left table shows the normative semantic description of the concept, and the right table the ontological description and relationships.</p>
     
 <?php
 	echo $vocab->htmlTerms('Phpspecgen_Class', 'Classes');
@@ -52,6 +51,7 @@
 	echo $vocab->htmlTerms('Phpspecgen_ConceptScheme', 'Concept schemes');
 	echo $vocab->htmlTerms('Phpspecgen_Concept', 'Concepts');
 	echo $vocab->htmlTerms('Phpspecgen_Individual', 'Named individuals');
+    echo $vocab->htmlSummaryOfTerms();
 ?>
     
     

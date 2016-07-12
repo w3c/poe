@@ -66,37 +66,238 @@ odrl:
 
 ## SKOS Collections for Grouping related concepts
 
-<http://www.w3.org/ns/odrl/2/#modelConcept>
+<http://www.w3.org/ns/odrl/2/#policyConcept>
     a skos:Collection ;
-    skos:prefLabel "Information Model Concepts"@en ;
-    skos:member :Asset ;
-    skos:member :Party ;
-    skos:member :Policy .
+    skos:prefLabel "Policy Concepts"@en ;
+    skos:member :Policy ;
+    skos:member :Rule ;
+    skos:member :profile ;
+    skos:member :inheritAllowed ;
+    skos:member :inheritFrom ;
+    skos:member :ConflictTerm ;
+    skos:member :conflict ;
+    skos:member :perm ;
+    skos:member :prohibit ;
+    skos:member :UndefinedTerm ;
+    skos:member :undefined ;
+    skos:member :ignore ;
+    skos:member :invalid ;
+    skos:member :support .
+
 
 <http://www.w3.org/ns/odrl/2/#policyType>
     a skos:Collection ;
     skos:prefLabel "Policy Types"@en ;
     skos:member :Agreement ;
     skos:member :Offer ;
-    skos:member :Set .
+    skos:member :Set ;
+    skos:member :Request ;
+    skos:member :Ticket ;
+    skos:member :Privacy .
+
+<http://www.w3.org/ns/odrl/2/#assetConcept>
+    a skos:Collection ;
+    skos:prefLabel "Asset Concepts"@en ;
+    skos:member :Asset ;
+    skos:member :relation .
+
+<http://www.w3.org/ns/odrl/2/#assetRelations>
+    a skos:Collection ;
+    skos:prefLabel "Asset Relations"@en ;
+    skos:member :target ;
+    skos:member :output .
+
+
+<http://www.w3.org/ns/odrl/2/#partyConcept>
+    a skos:Collection ;
+    skos:prefLabel "Party Concepts"@en ;
+    skos:member :Party ;
+    skos:member :function .
+
+<http://www.w3.org/ns/odrl/2/#partyRoles>
+    a skos:Collection ;
+    skos:prefLabel "Party Roles"@en ;
+    skos:member :assignee ;
+    skos:member :assigner ;
+    skos:member :attributedParty ;
+    skos:member :compensatedParty ;
+    skos:member :consentingParty ;
+    skos:member :informedParty ;
+    skos:member :payeeParty ;
+    skos:member :trackingParty .
+
+
+<http://www.w3.org/ns/odrl/2/#partyScopes>
+    a skos:Collection ;
+    skos:prefLabel "Party Scopes"@en ;
+    skos:member :Group ;
+    skos:member :Individual ;
+    skos:member :All ;
+    skos:member :AllConnections ;
+    skos:member :All2ndConnections ;
+    skos:member :AllGroups .
+
+<http://www.w3.org/ns/odrl/2/#actionConcept>
+    a skos:Collection ;
+    skos:prefLabel "Action Concepts"@en ;
+    skos:member :Action ;
+    skos:member :action .
+
+<http://www.w3.org/ns/odrl/2/#permissionConcept>
+    a skos:Collection ;
+    skos:prefLabel "Permission Concepts"@en ;
+    skos:member :Permission ;
+    skos:member :permission .
+
+<http://www.w3.org/ns/odrl/2/#prohibitionConcept>
+    a skos:Collection ;
+    skos:prefLabel "Prohibition Concepts"@en ;
+    skos:member :Prohibition ;
+    skos:member :prohibition .
 
 <http://www.w3.org/ns/odrl/2/#actionsPermProhib>
     a skos:Collection ;
     skos:prefLabel "Actions for Permissions and Prohibitions"@en ;
     skos:member :use ;
+    skos:member :grantUse ;
+    skos:member :aggregate ;
+    skos:member :annotate ;
+    skos:member :anonymize ;
+    skos:member :archive ;
+    skos:member :concurrentUse ;
+    skos:member :derive ;
+    skos:member :digitize ;
+    skos:member :display ;
+    skos:member :distribute ;
+    skos:member :execute ;
+    skos:member :extract ;
+    skos:member :give ;
+    skos:member :index ;
+    skos:member :install ;
+    skos:member :modify ;
+    skos:member :move ;
+    skos:member :pay ;
     skos:member :play ;
-    skos:member :modify .
+    skos:member :present ;
+    skos:member :print ;
+    skos:member :read ;
+    skos:member :reproduce ;
+    skos:member :sell ;
+    skos:member :textToSpeech ;
+    skos:member :transfer ;
+    skos:member :transform ;
+    skos:member :translate .
+
+
+<http://www.w3.org/ns/odrl/2/#dutyConcept>
+    a skos:Collection ;
+    skos:prefLabel "Duty Concepts"@en ;
+    skos:member :Duty ;
+    skos:member :duty ; .
+
 
 <http://www.w3.org/ns/odrl/2/#actionsDuty>
     a skos:Collection ;
     skos:prefLabel "Actions for Duties"@en ;
-    skos:member :compensate ;
     skos:member :acceptTracking ;
-    skos:member :nextPolicy .
+    skos:member :attribute ;
+    skos:member :compensate ;
+    skos:member :delete ;
+    skos:member :ensureExclusivity ;
+    skos:member :include ;
+    skos:member :inform ;
+    skos:member :nextPolicy ;
+    skos:member :obtainConsent ;
+    skos:member :reviewPolicy ;
+    skos:member :uninstall ;
+    skos:member :watermark .
 
-<http://www.w3.org/ns/odrl/2/#constraints>
+<http://www.w3.org/ns/odrl/2/#constraintConcept>
     a skos:Collection ;
-    skos:prefLabel "Constraints"@en .
+    skos:prefLabel "Constraint Concepts"@en ;
+    skos:member :Constraint ;
+    skos:member :constraint ;
+    skos:member :Operator ;
+    skos:member :operator ;
+    skos:member :rightOperand ;
+    skos:member :unit ;
+    skos:member :datatype ;
+    skos:member :status .
+
+<http://www.w3.org/ns/odrl/2/#actionConstraints>
+    a skos:Collection ;
+    skos:prefLabel "Actions for Constraints"@en ;
+    skos:member :absolutePosition ;
+    skos:member :absoluteSize ;
+    skos:member :count ;
+    skos:member :dateTime ;
+    skos:member :deliveryChannel ;
+    skos:member :elapsedTime ;
+    skos:member :event ;
+    skos:member :fileFormat ;
+    skos:member :industry ;
+    skos:member :language ;
+    skos:member :media ;
+    skos:member :meteredTime ;
+    skos:member :payAmount ;
+    skos:member :percentage ;
+    skos:member :product ;
+    skos:member :purpose ;
+    skos:member :recipient ;
+    skos:member :relativePosition ;
+    skos:member :relativeSize ;
+    skos:member :resolution ;
+    skos:member :spatial ;
+    skos:member :systemDevice ;
+    skos:member :timeInterval ;
+    skos:member :version ;
+    skos:member :virtualLocation .
+
+
+<http://www.w3.org/ns/odrl/2/#constraintOperators>
+    a skos:Collection ;
+    skos:prefLabel "Constraint Operators"@en ;
+    skos:member :eq ;
+    skos:member :gt ;
+    skos:member :gteq ;
+    skos:member :lt ;
+    skos:member :lteq ;
+    skos:member :neq ;
+    skos:member :isA ;
+    skos:member :hasPart ;
+    skos:member :isPartOf ;
+    skos:member :isAllof ;
+    skos:member :isAnyof ;
+    skos:member :isNoneOf .
+
+
+<http://www.w3.org/ns/odrl/2/#deprecatedTerms>
+    a skos:Collection ;
+    skos:prefLabel "Deprecated Terms"@en ;
+    skos:member :device ;
+    skos:member :system ;
+    skos:member :proximity ;
+    skos:member :append ;
+    skos:member :appendTo ;
+    skos:member :copy ;
+    skos:member :export ;
+    skos:member :lease ;
+    skos:member :license ;
+    skos:member :lend ;
+    skos:member :preview ;
+    skos:member :secondaryUse ;
+    skos:member :write ;
+    skos:member :writeTo ;
+    skos:member :adHocShare ;
+    skos:member :extractChar ;
+    skos:member :extractPage ;
+    skos:member :extractWord ;
+    skos:member :attachPolicy ;
+    skos:member :attachSource ;
+    skos:member :shareAlike ;
+    skos:member :commercialize ;
+    skos:member :share ;
+    skos:member :timedCount .
 
 
 ## SKOS Concept Schemes
