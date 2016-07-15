@@ -39,6 +39,7 @@ var respecConfig = {
     wgPatentURI: "http://www.w3.org/2004/01/pp-impl/87755/status",
     inlineCSS: true,
     noIDLIn: true,
+    lint:                 true,
     noLegacyStyle: false,
     issueBase: "https://github.com/w3c/poe/issues/",
     otherLinks: [
