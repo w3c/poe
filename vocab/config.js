@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    publishDate:  "2016-07-13",
+    publishDate:  "2016-07-16",
     edDraftURI: "https://w3c.github.io/poe/vocab/",
     editors: [
      {    name:       "Renato Iannella",
@@ -36,7 +36,7 @@ var respecConfig = {
     wg: "Permissions &amp; Obligations Expression Working Group",
     wgURI: "https://www.w3.org/2016/poe/",
     wgPublicList: "public-poe-comments",
-    wgPatentURI: "http://www.w3.org/2004/01/pp-impl/87755/status",
+    wgPatentURI: "https://www.w3.org/2004/01/pp-impl/87755/status",
     inlineCSS: true,
     noIDLIn: true,
     lint:                 true,
