@@ -31,7 +31,13 @@ var respecConfig = {
                     company:    "Digital Catapult",
                    companyURL: "http://www.digicatapult.org.uk",
                     mailto:     "james.birmingham@digicatapult.org.uk"
-                }
+                },
+           {  name:       "Víctor Rodríguez-Doncel",
+                    url:        "https://www.linkedin.com/in/victor-rodriguez-doncel-554b5213/en",
+                    company:    "Universidad Politécnica de Madrid",
+                   companyURL: "http://www.upm.es",
+                    mailto:     "vrodriguez@fi.upm.es"
+           }
     ],
     wg: "Permissions &amp; Obligations Expression Working Group",
     wgURI: "https://www.w3.org/2016/poe/",
