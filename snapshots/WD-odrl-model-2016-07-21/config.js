@@ -1,5 +1,5 @@
       var respecConfig = {
-          specStatus: "FPWD",
+          specStatus: "ED",
           shortName:  "odrl-model",
           editors: [
                 {   name:       "Renato Iannella",
