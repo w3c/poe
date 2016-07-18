@@ -42,16 +42,16 @@ odrl:
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/application/rdf+xml> .
 
-<http://www.w3.org/ns/odrl/2/ODRL21.xsd>
+<http://www.w3.org/ns/odrl/2/ODRL22.xsd>
 	a dcmit:Text ;
-	rdfs:label "ODRL 2.1 (XML Schema Definition)"@en ;
+	rdfs:label "ODRL 2.2 (XML Schema Definition)"@en ;
 	foaf:primaryTopic odrl: ;
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/application/xml> .
 
-<http://www.w3.org/ns/odrl/2/ODRL21.json>
+<http://www.w3.org/ns/odrl/2/ODRL22.json>
 	a dcmit:Text ;
-	rdfs:label "ODRL 2.1 (JSON Schema Definition)"@en ;
+	rdfs:label "ODRL 2.2 (JSON Schema Definition)"@en ;
 	foaf:primaryTopic odrl: ;
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/application/json> .
@@ -66,7 +66,7 @@ odrl:
 
 ## SKOS Collections for Grouping related concepts
 
-<http://www.w3.org/ns/odrl/2/#policyConcept>
+<http://www.w3.org/ns/odrl/2/#policyConcepts>
     a skos:Collection ;
     skos:prefLabel "Policy Concepts"@en ;
     skos:member :Policy ;
@@ -85,7 +85,7 @@ odrl:
     skos:member :support .
 
 
-<http://www.w3.org/ns/odrl/2/#policyType>
+<http://www.w3.org/ns/odrl/2/#policyTypes>
     a skos:Collection ;
     skos:prefLabel "Policy Types"@en ;
     skos:member :Agreement ;
@@ -95,7 +95,7 @@ odrl:
     skos:member :Ticket ;
     skos:member :Privacy .
 
-<http://www.w3.org/ns/odrl/2/#assetConcept>
+<http://www.w3.org/ns/odrl/2/#assetConcepts>
     a skos:Collection ;
     skos:prefLabel "Asset Concepts"@en ;
     skos:member :Asset ;
@@ -108,7 +108,7 @@ odrl:
     skos:member :output .
 
 
-<http://www.w3.org/ns/odrl/2/#partyConcept>
+<http://www.w3.org/ns/odrl/2/#partyConcepts>
     a skos:Collection ;
     skos:prefLabel "Party Concepts"@en ;
     skos:member :Party ;
@@ -143,19 +143,19 @@ odrl:
     skos:member :Action ;
     skos:member :action .
 
-<http://www.w3.org/ns/odrl/2/#permissionConcept>
+<http://www.w3.org/ns/odrl/2/#permissions>
     a skos:Collection ;
     skos:prefLabel "Permission Concepts"@en ;
     skos:member :Permission ;
     skos:member :permission .
 
-<http://www.w3.org/ns/odrl/2/#prohibitionConcept>
+<http://www.w3.org/ns/odrl/2/#prohibitions>
     a skos:Collection ;
     skos:prefLabel "Prohibition Concepts"@en ;
     skos:member :Prohibition ;
     skos:member :prohibition .
 
-<http://www.w3.org/ns/odrl/2/#actionsPermProhib>
+<http://www.w3.org/ns/odrl/2/#actions>
     a skos:Collection ;
     skos:prefLabel "Actions for Permissions and Prohibitions"@en ;
     skos:member :use ;
@@ -189,14 +189,14 @@ odrl:
     skos:member :translate .
 
 
-<http://www.w3.org/ns/odrl/2/#dutyConcept>
+<http://www.w3.org/ns/odrl/2/#duties>
     a skos:Collection ;
     skos:prefLabel "Duty Concepts"@en ;
     skos:member :Duty ;
     skos:member :duty ; .
 
 
-<http://www.w3.org/ns/odrl/2/#actionsDuty>
+<http://www.w3.org/ns/odrl/2/#dutyActions>
     a skos:Collection ;
     skos:prefLabel "Actions for Duties"@en ;
     skos:member :acceptTracking ;
@@ -212,7 +212,7 @@ odrl:
     skos:member :uninstall ;
     skos:member :watermark .
 
-<http://www.w3.org/ns/odrl/2/#constraintConcept>
+<http://www.w3.org/ns/odrl/2/#constraints>
     a skos:Collection ;
     skos:prefLabel "Constraint Concepts"@en ;
     skos:member :Constraint ;
@@ -221,10 +221,10 @@ odrl:
     skos:member :operator ;
     skos:member :rightOperand ;
     skos:member :unit ;
-    skos:member :datatype ;
+    skos:member :dataType ;
     skos:member :status .
 
-<http://www.w3.org/ns/odrl/2/#actionConstraints>
+<http://www.w3.org/ns/odrl/2/#constraintActions>
     a skos:Collection ;
     skos:prefLabel "Actions for Constraints"@en ;
     skos:member :absolutePosition ;

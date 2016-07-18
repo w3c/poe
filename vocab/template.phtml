@@ -46,12 +46,23 @@
     <p>The detail for each ODRL Vocabulary term is shown below in the two tables. The left table shows the normative semantic description of the concept, and the right table the ontological description and relationships.</p>
     
 <?php
-	echo $vocab->htmlTerms('Phpspecgen_Class', 'Classes');
-	echo $vocab->htmlTerms('Phpspecgen_Property', 'Properties');
-	echo $vocab->htmlTerms('Phpspecgen_ConceptScheme', 'Concept schemes');
-	echo $vocab->htmlTerms('Phpspecgen_Concept', 'Concepts');
-	echo $vocab->htmlTerms('Phpspecgen_Individual', 'Named individuals');
-    echo $vocab->htmlSummaryOfTerms();
+writeGroup('policyConcepts');
+writeGroup('policyTypes');
+writeGroup('permissions');
+writeGroup('prohibitions');
+writeGroup('actions');
+writeGroup('duties');
+writeGroup('dutyActions');
+writeGroup('constraints');
+writeGroup('constraintActions');
+writeGroup('constraintOperators');
+writeGroup('actionValues');
+writeGroup('partyRoles');
+writeGroup('partyScopes');
+writeGroup('assetConcepts');
+writeGroup('assetRelations');
+writeGroup('deprecatedTerms');
+echo $vocab->htmlSummaryOfTerms();
 ?>
     
     
@@ -199,5 +210,102 @@ function printExample($filename, $id, $title)
 		echo '</div>';
 	}
 	
+	echo '</section>';
+}
+
+function writeGroup($groupUri, $name = null)
+{
+	global $graph, $uri;
+	
+	if($name === null)
+	{
+		$name = $groupUri;
+		$groupUri = $uri . '#' . $name;
+	}
+	$members = $graph->allResources($groupUri, 'skos:member');
+	echo '<section>';
+	$title = $graph->getLiteral($groupUri, 'skos:prefLabel');
+	if($title !== null)
+	{
+		$title = trim($title);
+	}
+	else
+	{
+		$title = $name;
+	}
+	echo '<h2 id="' . $name . '">' . $title . '</h2>';
+	$path = dirname(__FILE__) . '/parts/' . strtolower($name) . '.html';
+	if(file_exists($path))
+	{
+		readfile($path);
+	}
+	foreach($members as $term)
+	{
+		writeTerm($term);
+	}
+	echo '</section>';
+}
+
+function writeTerm($term)
+{
+	if(!($term instanceof Phpspecgen_Term))
+	{
+		return;
+	}
+	$tname = htmlspecialchars($term->localName());
+	echo '<section>';
+	echo '<h3 id="term-' . $tname . '">' . $tname . '</h3>';
+	$description = '<p>' . htmlspecialchars($term->get('rdfs:comment')) . '</p>';
+	$path = dirname(__FILE__) . '/parts/' . strtolower($term->localName()) . '.html';
+	if(file_exists($path))
+	{
+		$description = file_get_contents($path);
+	}
+
+	$html = "<table>\n  <tr style='vertical-align: top;'>\n  <td style='width:70%;'>\n";
+	$html .= "<table class='def propdef' >\n";
+	$html .= $term->propertyRow("Definition", "skos:definition");
+	$html .= $term->propertyRow("Label", "rdfs:label");
+	$html .= "  <tr><td><b>Identifier:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
+	$html .= "  <tr><td><b>Definition:</b></td> <td>".$description."</td></tr>\n";
+	#$html .= "  <tr><td><b>Comment:</b></td> <td>test</td></tr>\n";
+	$html .= $term->propertyRow("Comment", "rdfs:comment");
+                
+	$html .= "</table>\n </td>\n <td>\n";
+	$html .= "<table class='def propdef' style='background:#E5F5FF;'>\n";
+                
+	#$html .= $term->propertyRow("Status", "vs:term_status");
+	$html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
+	$html .= $term->propertyRow("Parent property", "rdfs:subPropertyOf");
+	$html .= $term->propertyRow("Equivalent to", "owl:sameAs");
+	$html .= $term->propertyRow("Deprecated by", "ont:deprecatedBy");
+	$html .= $term->propertyRow("Deprecates", "^ont:deprecatedBy");
+	$html .= $term->propertyRow("Sub-classes", "^rdfs:subClassOf");
+	$html .= $term->propertyRow("Sub-properties", "^rdfs:subPropertyOf");
+	$html .= $term->propertyRow("Narrower terms", "^skos:broaderTransitive");
+ 
+	$html .= $term->propertyRow("Properties", "^rdfs:domain");
+	if ($term instanceof Phpspecgen_Class) {
+		$properties = $term->inheritedProperties();
+		if (count($properties) > 0)
+                        $html .= "  <tr><td><b>Inherited Properties:</b></td> ".
+							"<td>".join(', ', $properties)."</td></tr>\n";
+	}
+	$html .= $term->propertyRow("Range", "rdfs:range");
+	$html .= $term->propertyRow("In range of", "^rdfs:range");
+	$html .= $term->propertyRow("Domain", "rdfs:domain");
+	$html .= $term->propertyRow('Instances', '^rdf:type');
+	$html .= $term->propertyRow("See Also", "rdfs:seeAlso");
+	if($term instanceof Phpspecgen_Individual || $term instanceof Phpspecgen_Concept)
+	{
+		$html .= $term->propertyRow('Class', 'rdf:type', array('http://www.w3.org/2004/02/skos/core#Concept', 'http://www.w3.org/2002/07/owl#NamedIndividual'));
+	}
+	$html .= $term->propertyRow('Concepts', 'skos:hasTopConcept');
+	$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
+	$html .= "</table>\n";
+	$html .= "</td>\n </tr>\n </table>\n";
+
+	echo $html;
+
 	echo '</section>';
 }
