@@ -1,6 +1,6 @@
-var respecConfig = {
+﻿var respecConfig = {
     specStatus: "ED",
-    shortName: "odrl-vocab",
+    shortName: "vocab-odrl",
     publishDate:  "2016-07-16",
     edDraftURI: "https://w3c.github.io/poe/vocab/",
     editors: [
