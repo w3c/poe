@@ -98,6 +98,163 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       font-weight: bold;
     }
 
+    /* --- EXAMPLES --- */
+    
+    div.example-title {
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.example-title span {
+      text-transform: uppercase;
+    }
+    
+    aside.example,
+    div.example,
+    div.illegal-example {
+      padding: 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    div.illegal-example {
+      color: red
+    }
+    
+    div.illegal-example p {
+      color: black
+    }
+    
+    aside.example,
+    div.example {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+      border-color: #e0cb52;
+      background: #fcfaee;
+    }
+    
+    aside.example div.example {
+      border-left-width: .1em;
+      border-color: #999;
+      background: #fff;
+    }
+    
+    aside.example div.example div.example-title {
+      color: #999;
+    }
+
+    /* --- ISSUES/NOTES --- */
+    
+    div.issue-title,
+    div.note-title,
+    div.ednote-title,
+    div.warning-title {
+      padding-right: 1em;
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.issue-title {
+      color: #e05252;
+    }
+    
+    div.note-title,
+    div.ednote-title {
+      color: #2b2;
+    }
+    
+    div.warning-title {
+      color: #f22;
+    }
+    
+    div.issue-title span,
+    div.note-title span,
+    div.ednote-title span,
+    div.warning-title span {
+      text-transform: uppercase;
+    }
+    
+    div.note,
+    div.issue,
+    div.ednote,
+    div.warning {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    
+    .note> p:first-child,
+    .ednote> p:first-child,
+    .issue> p:first-child,
+    .warning> p:first-child {
+      margin-top: 0
+    }
+    
+    .issue,
+    .note,
+    .ednote,
+    .warning {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+    }
+    
+    div.issue,
+    div.note,
+    div.ednote,
+    div.warning {
+      padding: 1em 1.2em 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    span.note,
+    span.ednote,
+    span.issue,
+    span.warning {
+      padding: .1em .5em .15em;
+    }
+    
+    .issue {
+      border-color: #e05252;
+      background: #fbe9e9;
+    }
+    
+    .note,
+    .ednote {
+      border-color: #52e052;
+      background: #e9fbe9;
+    }
+    
+    .warning {
+      border-color: #f11;
+      border-width: .2em;
+      border-style: solid;
+      background: #fbe9e9;
+    }
+    
+    .warning-title:before {
+      content: "⚠";
+      /*U+26A0 WARNING SIGN*/
+      font-size: 3em;
+      float: left;
+      height: 100%;
+      padding-right: .3em;
+      vertical-align: top;
+      margin-top: -0.5em;
+    }
+    
+    li.task-list-item {
+      list-style: none;
+    }
+    
+    input.task-list-item-checkbox {
+      margin: 0 0.35em 0.25em -1.6em;
+      vertical-align: middle;
+    }
+
     /*****************************************************************
  * ReSpec 3 CSS
  * Robin Berjon - http://berjon.com/
@@ -239,242 +396,35 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       }
     }
 
-
-  /* taken from "Spatial Data on the Web Use Cases & Requirements" */
-    .contributor:before {
-      content: "Contributed by: ";
-      font-weight: bold;
+    .nanotabs> ul li {
+      float: left;
+      list-style: none;
     }
     
-    .relatedRequirements:before {
-      content: "Related requirements: ";
-      font-weight: bold;
-    }
-    
-    .relatedUseCases:before {
-      content: "Related use cases: ";
-      font-weight: bold;
-    }
-    
-    .hidden {
-      display: none;
-    }
-    
-    .visible {
+    .nanotabs> ul li a {
       display: block;
-    }
-    
-    .toggleVis {
-      text-decoration: none;
-      font-weight: bold;
-    }
-    
-    .expandOrCollapse {
-      font-weight: bold;
-    }
-
-    pre {
-      tab-size: 3;
-      -moz-tab-size: 3;
-      /* Code for Firefox */
-      -o-tab-size: 3;
-      /* Code for Opera */
-    }
-    
-    th {
-      text-align: left;
-    }
-    
-    table.rule {
-      background-color: #EBEBE0;
-    }
-    
-    table.rule td {
-      text-align: center;
-    }
-    
-    td.up {
-      border-bottom: 1px solid black;
-    }
-    
-    td {
-      vertical-align: top;
-    }
-    
-    .algorithm {
-      background: #fafafc;
-      border-left-style: solid;
-      border-left-width: .5em;
-      border-color: #c0c0c0;
-      margin-bottom: 16px;
-      padding: 8px;
-    }
-    
-    .arg {
-      font-weight: bold;
-      color: #000080;
-    }
-    
-    .def {
-      background: #fcfcfc;
-      border-left-style: solid;
-      border-left-width: .5em;
-      border-color: #c0c0c0;
-      margin-bottom: 16px;
-      padding: 8px;
-    }
-    
-    .def-sparql {}
-    
-    .def-text {}
-    
-    .def-text-body {
-      margin-left: 2em;
-    }
-    
-    .def-header {
-      color: #a0a0a0;
-      font-size: 16px;
-      padding-bottom: 8px;
-    }
-    
-    .focus-node-selected {
-      color: blue;
-    }
-    
-    .focus-node-error {
-      color: red;
-    }
-    
-    .triple-can-be-skipped {
-      color: grey;
-    }
-    
-    .focus-node-error {
-      color: red;
-    }
-    
-    .component-class {
-      font-weight: bold;
-      font-size: 16px;
-    }
-    
-    .parameter-context {
-      font-weight: bold;
-      font-size: 16px;
-    }
-    
-    .parameters {
-      font-weight: bold;
-      font-size: 16px;
-    }
-    
-    .part-header {
-      font-weight: bold;
-    }
-    
-    .term {
-      font-style: italic;
-    }
-    
-    .term-def-header {
-      font-style: italic;
-      font-weight: bold;
-    }
-    
-    .term-table {
+      padding: 4px 6px;
+      margin-right: 3px;
+      border-left: 1px solid #b9ab2d;
+      border-right: 1px solid #b9ab2d;
+      border-top: 1px solid #b9ab2d;
       border-collapse: collapse;
-      border-color: #000000;
-      margin: 16px;
-    }
-    
-    .term-table td,
-    th {
-      border-width: 1px;
-      border-style: solid;
-      padding: 5px;
-    }
-    
-    .todo {
-      color: red;
-    }
-    /* example pre taken / adapted from R2RML */
-    
-    pre.example,
-    pre.example-data,
-    pre.example-results {
-      margin-left: 0;
-      padding: 0 2em;
-      margin-top: 1.5em;
-      padding: 1em;
-    }
-    
-    pre.example:before,
-    pre.example-data:before,
-    pre.example-results:before {
-      background: white;
-      display: block;
+      background: #fcfaee;
+      color: #b9ab2d;
       font-family: sans-serif;
-      margin: -1em 0 0.4em -1em;
-      padding: 0.2em 1em;
+      text-decoration: none;
     }
     
-    pre.example {
-      background: #deb;
+    .nanotabs> ul li a:hover {
+      background: #FFFCE5;
+      color: #550;
     }
     
-    pre.example,
-    pre.example:before {
-      border: 1px solid #bbb;
+    .nanotabs> ul li a.selected {
+      background: #555;
+      color: #FFF;
     }
     
-    pre.example:before {
-      color: #888;
-      content: "Description";
-      width: 13em;
-    }
-    
-    pre.example-data {
-      background: #eeb;
-    }
-    
-    pre.example-data,
-    pre.example-data:before {
-      border: 1px solid #cc9;
-    }
-    
-    pre.example-data:before {
-      color: #996;
-      content: "Example data graph";
-      width: 13em;
-    }
-    
-    .example-results {
-      background: #edb;
-    }
-    
-    .example-results,
-    .example-results:before,
-    .example-results th,
-    .example-results td {
-      border: 1px solid #aca;
-    }
-    
-    pre.example-results:before {
-      color: #797;
-      content: "Example validation results";
-      width: 13em;
-    }
-    /* our syntax menu for switching */
-    
-    div.syntaxmenu {
-      border: 1px dotted black;
-      padding: 0.5em;
-      margin: 1em;
-    }
-    
-    @media print {
-      div.syntaxmenu {
-        display: none;
-      }
+    table.propdef th {
+      text-align: left;
     }
