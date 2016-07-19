@@ -5,7 +5,7 @@
                 {   name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
                     company:    "Monegraph",
-                    companyURL: "http://www.monegraph.com/",
+                    companyURL: "https://www.monegraph.com/",
                     mailto:     "r@iannel.la"
                 },
                {   name:        "Serena Villata",
@@ -23,7 +23,7 @@
           edDraftURI:           "https://w3c.github.io/poe/model/",
           wg:                   "Permissions & Obligations Expression Working Group",
           wgURI:                "https://www.w3.org/2016/poe/",
-          wgPublicList:         "public-poe",
+          wgPublicList:         "public-poe-comments",
           wgPatentURI:          "https://www.w3.org/2004/01/pp-impl/73180/status",
           issueBase:            "https://github.com/w3c/poe/issues/",
           otherLinks: [
