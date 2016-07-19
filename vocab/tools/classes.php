@@ -56,7 +56,7 @@
         public function propertyRow($title, $property, $skip = null) {
             $items = $this->propertyList($property, $skip);
             if (count($items) > 0) {
-                return "<tr><td><th>$title:</th></td> <td>".implode(', ', $items)."</td></tr>\n";
+                return "<tr><th>$title:</th> <td>".implode(', ', $items)."</td></tr>\n";
             } else {
                 return '';
             }
