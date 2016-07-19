@@ -1,0 +1,480 @@
+    /*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+    
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      padding: 0.5em;
+      color: #333;
+      background: #f8f8f8;
+    }
+    
+    .hljs-comment,
+    .hljs-quote {
+      color: #998;
+      font-style: italic;
+    }
+    
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-subst {
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .hljs-number,
+    .hljs-literal,
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag .hljs-attr {
+      color: #008080;
+    }
+    
+    .hljs-string,
+    .hljs-doctag {
+      color: #d14;
+    }
+    
+    .hljs-title,
+    .hljs-section,
+    .hljs-selector-id {
+      color: #900;
+      font-weight: bold;
+    }
+    
+    .hljs-subst {
+      font-weight: normal;
+    }
+    
+    .hljs-type,
+    .hljs-class .hljs-title {
+      color: #458;
+      font-weight: bold;
+    }
+    
+    .hljs-tag,
+    .hljs-name,
+    .hljs-attribute {
+      color: #000080;
+      font-weight: normal;
+    }
+    
+    .hljs-regexp,
+    .hljs-link {
+      color: #009926;
+    }
+    
+    .hljs-symbol,
+    .hljs-bullet {
+      color: #990073;
+    }
+    
+    .hljs-built_in,
+    .hljs-builtin-name {
+      color: #0086b3;
+    }
+    
+    .hljs-meta {
+      color: #999;
+      font-weight: bold;
+    }
+    
+    .hljs-deletion {
+      background: #fdd;
+    }
+    
+    .hljs-addition {
+      background: #dfd;
+    }
+    
+    .hljs-emphasis {
+      font-style: italic;
+    }
+    
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    /*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+    /* Override code highlighter background */
+    
+    .hljs {
+      background: transparent !important;
+    }
+    /* --- INLINES --- */
+    
+    em.rfc2119 {
+      text-transform: lowercase;
+      font-variant: small-caps;
+      font-style: normal;
+      color: #900;
+    }
+    
+    h1 acronym,
+    h2 acronym,
+    h3 acronym,
+    h4 acronym,
+    h5 acronym,
+    h6 acronym,
+    a acronym,
+    h1 abbr,
+    h2 abbr,
+    h3 abbr,
+    h4 abbr,
+    h5 abbr,
+    h6 abbr,
+    a abbr {
+      border: none;
+    }
+    
+    dfn {
+      font-weight: bold;
+    }
+    
+    a.internalDFN {
+      color: inherit;
+      border-bottom: 1px solid #99c;
+      text-decoration: none;
+    }
+    
+    a.externalDFN {
+      color: inherit;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    a.bibref {
+      text-decoration: none;
+    }
+    
+    cite .bibref {
+      font-style: normal;
+    }
+    
+    code {
+      color: #C83500;
+    }
+    /* --- TOC --- */
+    
+    .toc a,
+    .tof a {
+      text-decoration: none;
+    }
+    
+    a .secno,
+    a .figno {
+      color: #000;
+    }
+    
+    ul.tof,
+    ol.tof {
+      list-style: none outside none;
+    }
+    
+    .caption {
+      margin-top: 0.5em;
+      font-style: italic;
+    }
+    /* --- TABLE --- */
+    
+    table.simple {
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-bottom: 3px solid #005a9c;
+    }
+    
+    .simple th {
+      background: #005a9c;
+      color: #fff;
+      padding: 3px 5px;
+      text-align: left;
+    }
+    
+    .simple th[scope="row"] {
+      background: inherit;
+      color: inherit;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple tr:nth-child(even) {
+      background: #f0f6ff;
+    }
+    /* --- DL --- */
+    
+    .section dd> p:first-child {
+      margin-top: 0;
+    }
+    
+    .section dd> p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section dd {
+      margin-bottom: 1em;
+    }
+    
+    .section dl.attrs dd,
+    .section dl.eldef dd {
+      margin-bottom: 0;
+    }
+    
+    .respec-hidden {
+      display: none;
+    }
+    
+    @media print {
+      .removeOnSave {
+        display: none;
+      }
+    }
+
+
+  /* taken from "Spatial Data on the Web Use Cases & Requirements" */
+    .contributor:before {
+      content: "Contributed by: ";
+      font-weight: bold;
+    }
+    
+    .relatedRequirements:before {
+      content: "Related requirements: ";
+      font-weight: bold;
+    }
+    
+    .relatedUseCases:before {
+      content: "Related use cases: ";
+      font-weight: bold;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .visible {
+      display: block;
+    }
+    
+    .toggleVis {
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .expandOrCollapse {
+      font-weight: bold;
+    }
+
+    pre {
+      tab-size: 3;
+      -moz-tab-size: 3;
+      /* Code for Firefox */
+      -o-tab-size: 3;
+      /* Code for Opera */
+    }
+    
+    th {
+      text-align: left;
+    }
+    
+    table.rule {
+      background-color: #EBEBE0;
+    }
+    
+    table.rule td {
+      text-align: center;
+    }
+    
+    td.up {
+      border-bottom: 1px solid black;
+    }
+    
+    td {
+      vertical-align: top;
+    }
+    
+    .algorithm {
+      background: #fafafc;
+      border-left-style: solid;
+      border-left-width: .5em;
+      border-color: #c0c0c0;
+      margin-bottom: 16px;
+      padding: 8px;
+    }
+    
+    .arg {
+      font-weight: bold;
+      color: #000080;
+    }
+    
+    .def {
+      background: #fcfcfc;
+      border-left-style: solid;
+      border-left-width: .5em;
+      border-color: #c0c0c0;
+      margin-bottom: 16px;
+      padding: 8px;
+    }
+    
+    .def-sparql {}
+    
+    .def-text {}
+    
+    .def-text-body {
+      margin-left: 2em;
+    }
+    
+    .def-header {
+      color: #a0a0a0;
+      font-size: 16px;
+      padding-bottom: 8px;
+    }
+    
+    .focus-node-selected {
+      color: blue;
+    }
+    
+    .focus-node-error {
+      color: red;
+    }
+    
+    .triple-can-be-skipped {
+      color: grey;
+    }
+    
+    .focus-node-error {
+      color: red;
+    }
+    
+    .component-class {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    
+    .parameter-context {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    
+    .parameters {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    
+    .part-header {
+      font-weight: bold;
+    }
+    
+    .term {
+      font-style: italic;
+    }
+    
+    .term-def-header {
+      font-style: italic;
+      font-weight: bold;
+    }
+    
+    .term-table {
+      border-collapse: collapse;
+      border-color: #000000;
+      margin: 16px;
+    }
+    
+    .term-table td,
+    th {
+      border-width: 1px;
+      border-style: solid;
+      padding: 5px;
+    }
+    
+    .todo {
+      color: red;
+    }
+    /* example pre taken / adapted from R2RML */
+    
+    pre.example,
+    pre.example-data,
+    pre.example-results {
+      margin-left: 0;
+      padding: 0 2em;
+      margin-top: 1.5em;
+      padding: 1em;
+    }
+    
+    pre.example:before,
+    pre.example-data:before,
+    pre.example-results:before {
+      background: white;
+      display: block;
+      font-family: sans-serif;
+      margin: -1em 0 0.4em -1em;
+      padding: 0.2em 1em;
+    }
+    
+    pre.example {
+      background: #deb;
+    }
+    
+    pre.example,
+    pre.example:before {
+      border: 1px solid #bbb;
+    }
+    
+    pre.example:before {
+      color: #888;
+      content: "Description";
+      width: 13em;
+    }
+    
+    pre.example-data {
+      background: #eeb;
+    }
+    
+    pre.example-data,
+    pre.example-data:before {
+      border: 1px solid #cc9;
+    }
+    
+    pre.example-data:before {
+      color: #996;
+      content: "Example data graph";
+      width: 13em;
+    }
+    
+    .example-results {
+      background: #edb;
+    }
+    
+    .example-results,
+    .example-results:before,
+    .example-results th,
+    .example-results td {
+      border: 1px solid #aca;
+    }
+    
+    pre.example-results:before {
+      color: #797;
+      content: "Example validation results";
+      width: 13em;
+    }
+    /* our syntax menu for switching */
+    
+    div.syntaxmenu {
+      border: 1px dotted black;
+      padding: 0.5em;
+      margin: 1em;
+    }
+    
+    @media print {
+      div.syntaxmenu {
+        display: none;
+      }
+    }
