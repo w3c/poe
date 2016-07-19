@@ -123,7 +123,6 @@ odrl:
     skos:member :compensatedParty ;
     skos:member :consentingParty ;
     skos:member :informedParty ;
-    skos:member :payeeParty ;
     skos:member :trackingParty .
 
 
@@ -176,7 +175,6 @@ odrl:
     skos:member :install ;
     skos:member :modify ;
     skos:member :move ;
-    skos:member :pay ;
     skos:member :play ;
     skos:member :present ;
     skos:member :print ;
@@ -289,6 +287,8 @@ odrl:
     skos:member :lease ;
     skos:member :license ;
     skos:member :lend ;
+    skos:member :pay ;
+    skos:member :payeeParty ;
     skos:member :preview ;
     skos:member :secondaryUse ;
     skos:member :write ;
@@ -988,6 +988,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Preview"@en ;
 	skos:definition "The act of providing a short preview of the asset."@en ;
+    rdfs:comment "Use a time constraint with the appropriate action."@en ;
 	ont:deprecatedBy rdf:nil .
 
 :print
