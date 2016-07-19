@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>POE Use Cases and Requirements</title>
@@ -230,11 +230,12 @@
 			<p>This document includes a set of use cases and requirements, compiled by the Permissions & Obligations Expression (POE) working group, that motivate the expression of statements about digital content usage. All use cases provide realistic examples describing how people and organisations may (or want to be able to) specify statements about digital content usage. The requirements derived from these use cases will be used to guide the development of the POE WG recommendation deliverables for the Information Model, Vocabulary and Encodings. </p>
 		</section>
 		<section id='sotd'>
+		<p>This first public working draft of sets out the use cases that will be used to extend the ODRL model that is the starting point for the Working Group. Work is already under way to derive requirements and further use cases are welcome.</p>
 		</section>
-		<!--<section  id="intro"  class="informative">
+		<!--<section  id="intro">
 			<h1>Introduction</h1>
 		</section>-->
-		<section id="intro" class="informative">
+		<section id="intro">
 			<h1>Organization of this Document</h1>
 			<p>This document is organized as follows:</p>
 			<ul>
@@ -265,18 +266,18 @@
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.01 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="langResources">
 				<h2><dfn>POE.UC.01</dfn>: Permissions and obligations for language resources</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>: Permissions and Obligations for Language Resources 
 					</li> -->
-					<li> <p class="contributor">Víctor Rodríguez on behalf of <a rel="nofollow" class="external text" href="https://www.w3.org/community/ld4lt/">W3C Linked Data For Language Technology Community Group</a></p>
+					<li> <p class="contributor">Víctor Rodríguez on behalf of <a class="external text" href="https://www.w3.org/community/ld4lt/">W3C Linked Data For Language Technology Community Group</a></p>
 					</li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
 					<div class="visible uc"> <p>Language resources (lexicons, dictionaries, machine translation, etc.) are collected in repositories. Publishers would like to express what is permitted and what it is not.</p>
-						<p>Language resources are highly valuable resources now being massively translated to Linked Data. See the diagram here: <a rel="nofollow" class="external text" href="http://linghub.lider-project.eu/llod-cloud">Linguistic Linked Data Cloud</a>.
-							Different Language Resource Catalogs exist, like the one of <a rel="nofollow" class="external text" href="http://clarin.eu/">CLARIN</a>, or the one of <a rel="nofollow" class="external text" href="http://metashare.elda.org/">META-SHARE</a>, LRMAP, Linghub, etc. 
+						<p>Language resources are highly valuable resources now being massively translated to Linked Data. See the diagram here: <a class="external text" href="http://linghub.lider-project.eu/llod-cloud">Linguistic Linked Data Cloud</a>.
+							Different Language Resource Catalogs exist, like the one of <a class="external text" href="https://clarin.eu/">CLARIN</a>, or the one of <a class="external text" href="http://metashare.elda.org/">META-SHARE</a>, LRMAP, Linghub, etc. 
 							These resources need to be browsed and queried, and the permissions information must be in a machine-readable form in order to facilitate search-by-permission and in order to allow the automated processing of permission expressions.
 						</p></div>
 
@@ -286,7 +287,7 @@
 						<ol>
 							<li> All the requirements of ODRL
 							</li>
-							<li> A number of more precise <a rel="nofollow" class="external text" href="https://www.w3.org/community/ld4lt/wiki/Metashare_vocabulary_for_licenses">requirements</a> can be found in the work within the Linked Data For Language Technologies (LD4LT) W3C Community Group. <br>
+							<li> A number of more precise <a class="external text" href="https://www.w3.org/community/ld4lt/wiki/Metashare_vocabulary_for_licenses">requirements</a> can be found in the work within the Linked Data For Language Technologies (LD4LT) W3C Community Group. <br>
 									In particular, these requirements were identified:
 								</li>
 								<li> Ability to represent who is the distribution rightsholder and who is the IPR holder of a certain language asset.
@@ -328,7 +329,7 @@
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.02 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="conditionalAccess">
 				<h2><dfn>POE.UC.02</dfn>: Conditional Access to Linked Data</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>: Conditional Access to Linked Data  </li> -->
@@ -353,7 +354,7 @@
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.03 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="embargoedDataset">
 				<h2><dfn>POE.UC.03</dfn>: Published article with embargoed dataset</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -373,7 +374,7 @@
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.04 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="busProcRegulation">
 				<h2><dfn>POE.UC.04</dfn>: Technical documents rules for business process regulatory compliance</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -393,7 +394,7 @@
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.05 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="audienceId">
 				<h2><dfn>POE.UC.05</dfn>: Determine an identifier representing the audience who can access a digital resource</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -413,7 +414,7 @@
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.06 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="openPhacts">
 				<h2><dfn>POE.UC.06</dfn>: OpenPHACTS</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -435,7 +436,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.07 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="newsPermAndRest">
 				<h2><dfn>POE.UC.07</dfn>: News Permissions and Restrictions</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -477,7 +478,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					 <dd>At the point where an Editor wishes to use a particular piece of content in a particular way, the policies must be evaluated to determine whether it is permitted and whether there are any duties that must be fulfilled. The possible results are therefore: "yes", "no" or "maybe". </dd>
 					 </dl>
 					</dd></dl>  
-						</p></div>
+					</div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
 					<div class="visible requirement"><strong>TBD</strong> 
@@ -489,14 +490,14 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.08 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="atomicLicense">
 				<h2><dfn>POE.UC.08</dfn>: Atomic Understanding of Common Licenses</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
 					<li> <p class="contributor">Phil Archer</p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>The European Data Portal (EDP) harvests and republishes metadata from across Europe. It therefore has to handle a wide variety of inputs, including a variety of licenses attached to datasets (and datasets with no license attached). In order to manage this, the EDP has examined each of the most commonly found licenses and derived a set of atomic permissions and obligations expressed in those licenses with the intention that reusers can assess whether or not a particular combination of datasets is permissible and, if so, under what conditions. Their work itself is available on the <a rel="nofollow" class="external text" href="http://www.europeandataportal.eu/en/training-library/library/edp-reports">European Data Portal</a> as <strong>Licence Assistant: European Data Portal Licence Compatibility Matrix</strong>. 
+					<div class="visible uc"> <p>The European Data Portal (EDP) harvests and republishes metadata from across Europe. It therefore has to handle a wide variety of inputs, including a variety of licenses attached to datasets (and datasets with no license attached). In order to manage this, the EDP has examined each of the most commonly found licenses and derived a set of atomic permissions and obligations expressed in those licenses with the intention that reusers can assess whether or not a particular combination of datasets is permissible and, if so, under what conditions. Their work itself is available on the <a class="external text" href="http://www.europeandataportal.eu/en/training-library/library/edp-reports">European Data Portal</a> as <strong>Licence Assistant: European Data Portal Licence Compatibility Matrix</strong>. 
 						</p></div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
@@ -509,7 +510,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.09 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="baseProduct">
 				<h2><dfn>POE.UC.09</dfn>: Base Product</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -529,7 +530,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.10 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="payByUse">
 				<h2><dfn>POE.UC.10</dfn>: Pay-by-Use</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -549,7 +550,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.11 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="thirdParty">
 				<h2><dfn>POE.UC.11</dfn>: Third-Party Rights Management</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -569,7 +570,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.12 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="tracingPerm">
 				<h2><dfn>POE.UC.12</dfn>: Tracing Permissions and Obligations through Aggregations and Derivations</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -590,7 +591,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.13 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="delegation">
 				<h2><dfn>POE.UC.13</dfn>: Delegation</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -610,7 +611,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.14 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="voteExtendedRel">
 				<h2><dfn>POE.UC.14</dfn>: A Vote for Extended Relations</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -630,7 +631,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.15 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="realDelay">
 				<h2><dfn>POE.UC.15</dfn>: Real-time vs. Delayed Data</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -650,7 +651,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.16 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="horizontalData">
 				<h2><dfn>POE.UC.16</dfn>: Accessing Historical Data</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -670,7 +671,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.17 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="assetInSet">
 				<h2><dfn>POE.UC.17</dfn>: Asset in a set</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -689,7 +690,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.18 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="policyAssertion">
 				<h2><dfn>POE.UC.18</dfn>: Policy Assertion</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -709,7 +710,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.19 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="relTimeConstraint">
 				<h2><dfn>POE.UC.19</dfn>: Relative Time Constraints</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
@@ -721,7 +722,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 						<li>Organisers of sport events grant the use of photos or videos relative to the end of a sport event/game. (Note: the live publishing of photos/videos may be granted by a different license.)</li>
 						<li>Speakers at a conference circulate a document with their speech in advance and they permit to publish it only after the speech has ended. </li>
 					</ul>
-						</p></div>
+					</div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
 					<div class="visible requirement"><strong>TBD</strong> 
@@ -733,20 +734,20 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.20 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="extDecPaymentAmount">
 				<h2><dfn>POE.UC.20</dfn>: External Declaration of Payment Amount</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->
 					<li> <p class="contributor">Víctor Rodríguez-Doncel</p></li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p><a rel="nofollow" class="external text" href="http://georg-re.hm/pdf/LREC-2014-META-SHARE.pdf"><i>META-SHARE</i></a> is an open and secure network of repositories for sharing and exchanging language data, tools, and related web services. As of July 2016, it accounted more than 2700 resources. These resources are described with small pieces of metadata according to their <a rel="nofollow" class="external text" href="http://www.meta-net.eu/meta-share/metadata-schema/">schema</a>.<p>
+					<div class="visible uc"> <p><a class="external text" href="http://georg-re.hm/pdf/LREC-2014-META-SHARE.pdf"><i>META-SHARE</i></a> is an open and secure network of repositories for sharing and exchanging language data, tools, and related web services. As of July 2016, it accounted more than 2700 resources. These resources are described with small pieces of metadata according to their <a class="external text" href="http://www.meta-net.eu/meta-share/metadata-schema/">schema</a>.<p>
 					<p>While maintainers of META-SHARE's 32 repositories can edit simple metadata records, they are usually not skilled enough to edit ODRL expressions. Hence they would like to be able to:
 					<ol>
 						<li>Point to a license template (referred by a well-known URI), with a placeholder to for the price.</li>
 						<li>Add a metadata record indicating the specific price of the resource.</li>
 					</ol>
-					</p></div>
+					</div>
 					</li>
 					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
 					<div class="visible requirement"><strong>TBD</strong> 
@@ -758,7 +759,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.21 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-			<section>
+			<section id="constraintScope">
 				<h2><dfn>POE.UC.21</dfn>: Specifying the Scope of Constraints</h2>
 				<ul>
 					<!-- <li> <strong>Title</strong>:   </li> -->

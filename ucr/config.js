@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "poe-ucr",
-    //publishDate:  "2015-05-18",
+    //publishDate:  "2016-07-21",
     //previousPublishDate: "2014-03-27",
     //previousMaturity: "FPWD",
     //previousURI: "http://www.w3.org/TR/2014/WD-tabular-data-model-20140327/",

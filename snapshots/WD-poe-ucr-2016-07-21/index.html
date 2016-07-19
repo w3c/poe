@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta lang="" property="dc:language" content="en">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>POE Use Cases and Requirements</title>
+
+  <script type="text/javascript">
+    // This is the script that hides/shows the full descriptions of the use cases
+    // The default is visible so that they're accessible without scripting
+    // Init makes them all hidden and writes in the toggle link
+
+    window.onload = init;
+
+    function init()
+    {
+      var divs = document.getElementsByTagName("div");
+      for (var i = 0; i < divs.length; i++)
+      {
+        //   if (divs[i+1].className=='visible uc') {
+        //    divs[i+1].className = 'hidden uc';
+        //				divs[i].innerHTML = 'Full use case description (click to expand):';
+
+        // } else 
+        if (divs[i + 1].className == 'visible requirement')
+        {
+          divs[i + 1].className = 'hidden requirement';
+          divs[i].innerHTML = 'Related requirements (click to expand):';
+
+        }
+      }
+    }
+
+    // And here's the toggle function
+
+    function toggleVisibility(elem)
+    { // expand or collapse the next div
+      var divs = document.getElementsByTagName("div");
+      for (var i = 0; i < divs.length; i++) // find the next div element
+        if (divs[i] == elem)
+        {
+          var item = divs[i + 1];
+        }
+      if (item)
+      {
+        if (item.className == 'hidden uc')
+        {
+          item.className = 'visible uc';
+          elem.innerHTML = 'Full use case description (click to collapse):';
+        }
+        else if (item.className == 'visible uc')
+        {
+          item.className = 'hidden uc';
+          elem.innerHTML = 'Full use case description (click to expand):';
+        }
+        else if (item.className == 'hidden requirement')
+        {
+          item.className = 'visible requirement';
+          elem.innerHTML = 'Related requirements (click to collapse):';
+        }
+        else if (item.className == 'visible requirement')
+        {
+          item.className = 'hidden requirement';
+          elem.innerHTML = 'Related requirements (click to expand):';
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="localstyles.css">
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD">
+  <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+</head>
+<body class="h-entry" role="document" id="respecDocument">
+  <div class="head" role="contentinfo" id="respecHeader">
+    <p>
+      <a class="logo" href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
+    </p>
+    <h1 class="title p-name" id="title" property="dcterms:title">POE Use Cases and Requirements</h1>
+    <h2 id="w3c-first-public-working-draft-21-july-2016"><abbr title="World Wide Web Consortium">W3C</abbr> First Public Working Draft <time property="dcterms:issued" class="dt-published" datetime="2016-07-21">21 July 2016</time></h2>
+    <dl>
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2016/WD-poe-ucr-20160721/">http://www.w3.org/TR/2016/WD-poe-ucr-20160721/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="http://www.w3.org/TR/poe-ucr/">http://www.w3.org/TR/poe-ucr/</a></dd>
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="https://w3c.github.io/poe/ucr/">https://w3c.github.io/poe/ucr/</a></dd>
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Michael Steidl</span>, The Copyright Hub</span>
+        <span property="rdf:rest" resource="_:editor1"></span>
+      </dd>
+      <dd class="p-author h-card vcard" resource="_:editor1"><span property="rdf:first" typeof="foaf:Person"><meta property="foaf:name" content="Simon Steyskal"><a class="u-url url p-name fn" property="foaf:homepage" href="http://steyskal.info/">Simon Steyskal</a>, WU Vienna/Siemens AG</span>
+        <span property="rdf:rest" resource="_:editor2"></span>
+      </dd>
+      <dd class="p-author h-card vcard" resource="_:editor2"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Benedict Whittam Smith</span>, Thomson Reuters</span>
+        <span property="rdf:rest" resource="rdf:nil"></span>
+      </dd>
+
+    </dl>
+    <p class="copyright">
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2016
+
+      <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+      <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
+      <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+      <a rel="license" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
+    </p>
+    <hr title="Separator for header">
+  </div>
+
+  <section id="abstract" class="introductory" property="dc:abstract">
+    <h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+    <p>This document includes a set of use cases and requirements, compiled by the Permissions &amp; Obligations Expression (POE) working group, that motivate the expression of statements about digital content usage. All use cases provide realistic examples describing how people and organisations may (or want to be able to) specify statements about digital content usage. The requirements derived from these use cases will be used to guide the development of the POE WG recommendation deliverables for the Information Model, Vocabulary and Encodings. </p>
+  </section>
+
+  <section id="sotd" class="introductory">
+    <h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+    <p>
+      <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
+    </p>
+
+    <p>This first public working draft of sets out the use cases that will be used to extend the ODRL model that is the starting point for the Working Group. Work is already under way to derive requirements and further use cases are welcome.</p>
+
+    <p>
+      This document was published by the <a href="https://www.w3.org/2016/poe/">Permissions &amp; Obligations Expression Working Group</a> as a First Public Working Draft. If you wish to make comments regarding this document, please send them to
+      <a href="mailto:public-poe-comments@w3.org">public-poe-comments@w3.org</a> (<a href="mailto:public-poe-comments-request@w3.org?subject=subscribe">subscribe</a>,
+      <a href="http://lists.w3.org/Archives/Public/public-poe-comments/">archives</a>). All comments are welcome.
+    </p>
+    <p>
+      Publication as a First Public Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+    </p>
+    <p>
+      This document was produced by a group operating under the
+      <a id="sotd_patent" property="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+              Policy</a>. The group does not expect this document to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/87755/status" rel="disclosure">public list of any patent
+                disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
+      <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+              Claim(s)</a> must disclose the information in accordance with
+      <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+    </p>
+    <p>This document is governed by the <a id="w3c_process_revision" href="http://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+    </p>
+
+  </section>
+  <nav id="toc" data-vivaldi-spatnav-clickable="1">
+    <h2 class="introductory" id="table-of-contents" resource="#table-of-contents"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2>
+    <ul class="toc" role="directory">
+      <li class="tocline"><a href="#intro" class="tocxref"><span class="secno">1. </span>Organization of this Document</a></li>
+      <li class="tocline"><a href="#UseCases" class="tocxref"><span class="secno">2. </span>Use Cases</a>
+        <ul class="toc">
+          <li class="tocline"><a href="#langResources" class="tocxref"><span class="secno">2.1 </span><span data-dfn-type="dfn">POE.UC.01</span>: Permissions and obligations for language resources</a></li>
+          <li class="tocline"><a href="#conditionalAccess" class="tocxref"><span class="secno">2.2 </span><span data-dfn-type="dfn">POE.UC.02</span>: Conditional Access to Linked Data</a></li>
+          <li class="tocline"><a href="#embargoedDataset" class="tocxref"><span class="secno">2.3 </span><span data-dfn-type="dfn">POE.UC.03</span>: Published article with embargoed dataset</a></li>
+          <li class="tocline"><a href="#busProcRegulation" class="tocxref"><span class="secno">2.4 </span><span data-dfn-type="dfn">POE.UC.04</span>: Technical documents rules for business process regulatory compliance</a></li>
+          <li class="tocline"><a href="#audienceId" class="tocxref"><span class="secno">2.5 </span><span data-dfn-type="dfn">POE.UC.05</span>: Determine an identifier representing the audience who can access a digital resource</a></li>
+          <li class="tocline"><a href="#openPhacts" class="tocxref"><span class="secno">2.6 </span><span data-dfn-type="dfn">POE.UC.06</span>: OpenPHACTS</a></li>
+          <li class="tocline"><a href="#newsPermAndRest" class="tocxref"><span class="secno">2.7 </span><span data-dfn-type="dfn">POE.UC.07</span>: News Permissions and Restrictions</a></li>
+          <li class="tocline"><a href="#atomicLicense" class="tocxref"><span class="secno">2.8 </span><span data-dfn-type="dfn">POE.UC.08</span>: Atomic Understanding of Common Licenses</a></li>
+          <li class="tocline"><a href="#baseProduct" class="tocxref"><span class="secno">2.9 </span><span data-dfn-type="dfn">POE.UC.09</span>: Base Product</a></li>
+          <li class="tocline"><a href="#payByUse" class="tocxref"><span class="secno">2.10 </span><span data-dfn-type="dfn">POE.UC.10</span>: Pay-by-Use</a></li>
+          <li class="tocline"><a href="#thirdParty" class="tocxref"><span class="secno">2.11 </span><span data-dfn-type="dfn">POE.UC.11</span>: Third-Party Rights Management</a></li>
+          <li class="tocline"><a href="#tracingPerm" class="tocxref"><span class="secno">2.12 </span><span data-dfn-type="dfn">POE.UC.12</span>: Tracing Permissions and Obligations through Aggregations and Derivations</a></li>
+          <li class="tocline"><a href="#delegation" class="tocxref"><span class="secno">2.13 </span><span data-dfn-type="dfn">POE.UC.13</span>: Delegation</a></li>
+          <li class="tocline"><a href="#voteExtendedRel" class="tocxref"><span class="secno">2.14 </span><span data-dfn-type="dfn">POE.UC.14</span>: A Vote for Extended Relations</a></li>
+          <li class="tocline"><a href="#realDelay" class="tocxref"><span class="secno">2.15 </span><span data-dfn-type="dfn">POE.UC.15</span>: Real-time vs. Delayed Data</a></li>
+          <li class="tocline"><a href="#horizontalData" class="tocxref"><span class="secno">2.16 </span><span data-dfn-type="dfn">POE.UC.16</span>: Accessing Historical Data</a></li>
+          <li class="tocline"><a href="#assetInSet" class="tocxref"><span class="secno">2.17 </span><span data-dfn-type="dfn">POE.UC.17</span>: Asset in a set</a></li>
+          <li class="tocline"><a href="#policyAssertion" class="tocxref"><span class="secno">2.18 </span><span data-dfn-type="dfn">POE.UC.18</span>: Policy Assertion</a></li>
+          <li class="tocline"><a href="#relTimeConstraint" class="tocxref"><span class="secno">2.19 </span><span data-dfn-type="dfn">POE.UC.19</span>: Relative Time Constraints</a></li>
+          <li class="tocline"><a href="#extDecPaymentAmount" class="tocxref"><span class="secno">2.20 </span><span data-dfn-type="dfn">POE.UC.20</span>: External Declaration of Payment Amount</a></li>
+          <li class="tocline"><a href="#constraintScope" class="tocxref"><span class="secno">2.21 </span><span data-dfn-type="dfn">POE.UC.21</span>: Specifying the Scope of Constraints</a></li>
+        </ul>
+      </li>
+      <li class="tocline"><a href="#references" class="tocxref"><span class="secno">A. </span>References</a>
+        <ul class="toc">
+          <li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">A.1 </span>Informative references</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!--<section  id="intro">
+			<h1>Introduction</h1>
+		</section>-->
+
+  <section id="intro" typeof="bibo:Chapter" resource="#intro" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-intro" resource="#h-intro"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Organization of this Document</span></h2>
+    <p>This document is organized as follows:</p>
+    <ul>
+      <li>
+        <strong>
+						<a href="#UseCases" title="Use Cases">Use Cases</a>
+					</strong> are used to capture and model functional requirements. Use cases describe the system’s behavior under various conditions [<cite><a class="bibref" href="#bib-COCKBURN-2000">COCKBURN-2000</a></cite>], cataloging who does what with the system, for what purpose, but without concern for system design or implementation. Each use case is identified by a reference number to aid cross-reference from other documentation. A variety of styles may be used to capture use cases, from a simple narrative to a structured description with actors, pre/post conditions, and non-functional requirements raised by the use case.
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <strong>Requirements
+						<!--<a href="#requirements" title="Requirements">Requirements</a>-->
+					</strong> will be added in future iterations of this document.
+      </li>
+    </ul>
+  </section>
+
+  <section id="UseCases" typeof="bibo:Chapter" resource="#UseCases" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-usecases" resource="#h-usecases"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Use Cases</span></h2>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.01 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="langResources" typeof="bibo:Chapter" resource="#langResources" property="bibo:hasPart">
+      <h3 id="h-langresources" resource="#h-langresources"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.1 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.01">POE.UC.01</dfn>: Permissions and obligations for language resources</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>: Permissions and Obligations for Language Resources 
+					</li> -->
+        <li>
+          <p class="contributor">Víctor Rodríguez on behalf of <a class="external text" href="https://www.w3.org/community/ld4lt/"><abbr title="World Wide Web Consortium">W3C</abbr> Linked Data For Language Technology Community Group</a></p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Language resources (lexicons, dictionaries, machine translation, etc.) are collected in repositories. Publishers would like to express what is permitted and what it is not.</p>
+            <p>Language resources are highly valuable resources now being massively translated to Linked Data. See the diagram here: <a class="external text" href="http://linghub.lider-project.eu/llod-cloud">Linguistic Linked Data Cloud</a>. Different Language Resource Catalogs exist, like the one of <a class="external text" href="https://clarin.eu/">CLARIN</a>, or the one of <a class="external text" href="http://metashare.elda.org/">META-SHARE</a>, LRMAP, Linghub, etc. These resources need to be browsed and queried, and the permissions information must be in a machine-readable form in order to facilitate search-by-permission and in order to allow the automated processing of permission expressions.
+            </p>
+          </div>
+
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+            <ol>
+              <li> All the requirements of ODRL
+              </li>
+              <li> A number of more precise <a class="external text" href="https://www.w3.org/community/ld4lt/wiki/Metashare_vocabulary_for_licenses">requirements</a> can be found in the work within the Linked Data For Language Technologies (LD4LT) <abbr title="World Wide Web Consortium">W3C</abbr> Community Group. <br> In particular, these requirements were identified:
+              </li>
+              <li> Ability to represent who is the distribution rightsholder and who is the IPR holder of a certain language asset.
+              </li>
+              <li> Ability to represent temporal constraints to the permissions and obligations (
+                <!--<a>POE.R.01</a>-->)
+              </li>
+              <li> Ability to represent common licenses in the linguistic domain
+              </li>
+              <li> Ability to represent the obligation to inform the licensor on the usages given to the resources
+              </li>
+              <li> Ability to represent the obligation to redeposit newly created resources form an existing resource
+              </li>
+              <li> Ability to represent that only members of a certain community have certain permissions
+              </li>
+              <li> Ability to distinguish between Academic / noncommercial / evaluation use
+              </li>
+              <li> Ability to represent the attribution condition in a complete manner (with attribution text/url etc.).
+              </li>
+              <li> Ability to express conditions based on the user nature (academic, commercial, etc.)
+              </li>
+              <li> Ability to express features on the distribution of the resource (physical, download, etc.)
+              </li>
+              <li> Ability to specify the condition to distribute derived material and the condition to create derived material
+              </li>
+              <li> Ability to specify a fee within and outside the POE expression
+              </li>
+              <li> Ability to specify the further policy applicable in case certain conditions hold
+              </li>
+              <li> Ability to use policy templates
+              </li>
+              <li> Ability to define policy categories
+              </li>
+              <li> Ability to reference standard licenses
+              </li>
+            </ol>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.02 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="conditionalAccess" typeof="bibo:Chapter" resource="#conditionalAccess" property="bibo:hasPart">
+      <h3 id="h-conditionalaccess" resource="#h-conditionalaccess"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.02">POE.UC.02</dfn>: Conditional Access to Linked Data</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>: Conditional Access to Linked Data  </li> -->
+        <li>
+          <p class="contributor">Víctor Rodríguez and Nandana Mihindukulasooriya (UPM) on behalf of the ODRL Linked Data profile editors.</p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p> A publisher of Linked Data (or in general a RDF dataset) wants to selectively make available parts (e.g. named graphs) of a dataset. Availability depend on ODRL policies, the context and the ODRL Request and ODRL Ticket. For example, given a dataset, one might want to serve it under the following conditions: "Anybody can access named graph ex:graph1, but can only access ex:graph2 during 2016. Individual triples in ex:graph3 can be accessed at the price of 1 eur cent."
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+            <ol>
+              <li>CRUD operations should be unequivocally described (i.e., only one term to declare "Read" access, and not the many that now could be interpreted). Maybe also in tighter relationship with the Linked Data Platform vocabulary.</li>
+              <li>Richer means of expressing payments and prices are required. </li>
+              <li>The range of syntactically valid expressions is too large to grant that any valid expression will be parsed. This is promising too much. A more constrained syntax is needed (avoiding recursions, a limit in the nested elements, etc.)</li>
+              <li>It should be possible to declare default policies for actions (e.g., if nothing is said about 'delete', then allow 'delete', etc.).</li>
+            </ol>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.03 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="embargoedDataset" typeof="bibo:Chapter" resource="#embargoedDataset" property="bibo:hasPart">
+      <h3 id="h-embargoeddataset" resource="#h-embargoeddataset"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.3 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.03">POE.UC.03</dfn>: Published article with embargoed dataset</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Phil Archer &amp; Keith Jeffery on behalf of the VRE4EIC Project </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p> Researchers are strongly encouraged (and now routinely required) to publish data supporting their scholarly published papers. Irrespective of the terms under which the paper is published (although usually open access), the data is generally expected to be made freely and openly available. However, this may happen after an embargo period. The purpose of the embargo period is to allow the researcher or research team creating the dataset to have a publication based on it published before colleagues can access the dataset and generate their own publications.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.04 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="busProcRegulation" typeof="bibo:Chapter" resource="#busProcRegulation" property="bibo:hasPart">
+      <h3 id="h-busprocregulation" resource="#h-busprocregulation"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.4 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.04">POE.UC.04</dfn>: Technical documents rules for business process regulatory compliance</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Serena Villata (joint work with Guido Governatori) in the context of the MIREL Project </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Technical documents describe how to handle and what are the functionalities of a certain product or process. They are intended to provide information about what can/cannot be done with the product or within a certain process. Given the huge dimension of this kind of legal texts and their diffusion in the companies, the advantages of returning a machine-readable representation of such texts would allow to have in this representation a kind of summary of the main constraints expressed in the documents, with invaluable time saving for every person that is expected to read the whole document before obtaining this information. A specific usage of such a kind of texts is that of manually extracting the set of obliged/prohibited/permitted actions in order to check whether certain business processes are compliant with the legal text they should refer to.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.05 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="audienceId" typeof="bibo:Chapter" resource="#audienceId" property="bibo:hasPart">
+      <h3 id="h-audienceid" resource="#h-audienceid"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.5 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.05">POE.UC.05</dfn>: Determine an identifier representing the audience who can access a digital resource</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Mo McRoberts, BBC </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>The Research &amp; Education Space platform, developed jointly by the BBC and partners, indexes Linked Open Data describing media that is available both to the public, and specifically for those in formal education, primarily in the UK. Even within this latter group, there are a range of different licensing schemes and access mechanisms which are not mutually-exclusive. For queries against the index to return appropriate results for a user, we must track which schemes they (or their institution) is a member of and filter based upon these, which therefore translates into a requirement for the metadata being indexed to include information identifying which are applicable (we term these "audience URIs"). Note that this is not an access-control mechanism (this should be implemented and enforced at the media location), rather a means of ensuring that an optimal user experience is delivered.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.06 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="openPhacts" typeof="bibo:Chapter" resource="#openPhacts" property="bibo:hasPart">
+      <h3 id="h-openphacts" resource="#h-openphacts"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.6 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.06">POE.UC.06</dfn>: OpenPHACTS</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Phil Archer for the Big Data Europe Project </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>OpenPHACTS integrates pharmacological data from a wide range of sources and provides an API through which different identifiers for the same thing can be reconciled, reducing barriers to drug discovery in industry, academia and for small businesses. Some data is open but not all. It may come with a variation of a Creative Commons License; some data is visible to all users, some to members, some only to the original data owner.</p>
+            <p>
+              Rather than attempt to make assertions about what an end user can or cannot do with the data available through its API, OpenPHACTS is careful to simply make clear to its users where data came from and under what terms. It is then up to the end user to assess whether their intended use is, or is not, compliant with those terms.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.07 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="newsPermAndRest" typeof="bibo:Chapter" resource="#newsPermAndRest" property="bibo:hasPart">
+      <h3 id="h-newspermandrest" resource="#h-newspermandrest"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.7 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.07">POE.UC.07</dfn>: News Permissions and Restrictions</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Stuart Myles</p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>In the news industry, rights holders and editors need to establish the permissions and restrictions associated with content.</p>
+            <p>
+            </p>
+            <dl>
+              <dt>What Do Rights Holders Want?</dt>
+              <dd> In general, rights holders will require that a set of permissions, restrictions, and duties be obeyed for a defined set of content. And they can require additional restrictions or duties for individual items within the larger content set. Rights holders wish to restrict the use of their content by factors such as:
+                <ul>
+                  <li>Geography (e.g. "No use in China")</li>
+                  <li>Time (e.g. "No archive after 3 days")</li>
+                  <li>Distribution channel (e.g. "No mobile")</li>
+                </ul>
+                They also want to enforce duties such as:
+                <ul>
+                  <li>Payment (e.g. "You can use this photo online for EUR80")</li>
+                  <li>Attribution (e.g. "Credit Kyoto News")</li>
+                </ul>
+                Often, rights holders need to constrain the use of their content in complex ways, i.e., with combined constraints (e.g, "No use in UK after 7 days"). Generally, rights holders want to be able to:
+                <dl>
+                  <dt>Create a bundle of permissions, restrictions and duties</dt>
+                  <dd>The rights holder creates a set of permissions and restrictions with constraints, together with any duties that the editor must perform, in order to unlock the permissions. The set may be associated with one or more sets of content. Therefore the policy bundle must have a unique identifier. </dd>
+                  <dt>Identify one or more items of content to be treated as a set</dt>
+                  <dd>The rights holder defines one or more content items which are to be treated as a set. The set must have a unique identifier.</dd>
+                  <dt>Bind a policy to a set of content</dt>
+                  <dd>The rights holder asserts that a given set of content is governed by a given policy. Note that a given content item might be a member of more than one set of content. Therefore, a given content item may have more than one policy associated with it. </dd>
+                </dl>
+              </dd>
+
+
+              <!--</p>-->
+              <dt>What Do Editors Want?</dt>
+              <dd> Ideally, not to worry about rights at all. Essentially, editors want to know the answer to the question "Can I use this content in this way?" and, if the answer is yes, "Are there any duties?". It is not unusual for editors to have access to content that they are not permitted to republish. Or that they can only republish in certain ways (e.g., only in print but not on a mobile app). Editors want to be able to:
+                <dl>
+                  <dt>Create a bundle of action and context"</dt>
+                  <dd>An editor identifies a content use in context, meaning a particular action they propose to take with pieces of content (e.g. "print", "distribute", "archive") and any relevant context for that action (e.g. location="France"). The types of context for an action correspond to possible constraints which could apply to the use of a piece of content. The use is not tied to one particular piece of content. The use must have a unique identifier. </dd>
+                  <dt>Determine whether a use is permitted for a particular content item</dt>
+                  <dd>At the point where an Editor wishes to use a particular piece of content in a particular way, the policies must be evaluated to determine whether it is permitted and whether there are any duties that must be fulfilled. The possible results are therefore: "yes", "no" or "maybe". </dd>
+                </dl>
+              </dd>
+            </dl>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.08 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="atomicLicense" typeof="bibo:Chapter" resource="#atomicLicense" property="bibo:hasPart">
+      <h3 id="h-atomiclicense" resource="#h-atomiclicense"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.8 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.08">POE.UC.08</dfn>: Atomic Understanding of Common Licenses</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Phil Archer</p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>The European Data Portal (EDP) harvests and republishes metadata from across Europe. It therefore has to handle a wide variety of inputs, including a variety of licenses attached to datasets (and datasets with no license attached). In order to manage this, the EDP has examined each of the most commonly found licenses and derived a set of atomic permissions and obligations expressed in those licenses with the intention that reusers can assess whether or not a particular combination of datasets is permissible and, if so, under what conditions. Their work itself is available on the <a class="external text" href="http://www.europeandataportal.eu/en/training-library/library/edp-reports">European Data Portal</a> as <strong>Licence Assistant: European Data Portal Licence Compatibility Matrix</strong>.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.09 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="baseProduct" typeof="bibo:Chapter" resource="#baseProduct" property="bibo:hasPart">
+      <h3 id="h-baseproduct" resource="#h-baseproduct"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.9 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.09">POE.UC.09</dfn>: Base Product</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>A 'base product' bundles together a set of permissions that can be separately bought into a package that is sold for a single price - or provided for free.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.10 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="payByUse" typeof="bibo:Chapter" resource="#payByUse" property="bibo:hasPart">
+      <h3 id="h-paybyuse" resource="#h-paybyuse"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.10 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.10">POE.UC.10</dfn>: Pay-by-Use</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Sometimes things are paid for on a per-usage basis. For instance a SaaS product might charge per account (or per seat), or a definition in legal treatise might be charged for every time it is printed or included in a PDF.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.11 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="thirdParty" typeof="bibo:Chapter" resource="#thirdParty" property="bibo:hasPart">
+      <h3 id="h-thirdparty" resource="#h-thirdparty"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.11 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.11">POE.UC.11</dfn>: Third-Party Rights Management</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>There are some common obligations that must be transmitted if you are acting as an intermediary between the data owner and the data user. Often the owner and the user must sign a contract, the user must acknowledge the copyright of the owner, and the user must acknowledge some other documentation (like a 'Restriction On Distribution Statement').
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.12 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="tracingPerm" typeof="bibo:Chapter" resource="#tracingPerm" property="bibo:hasPart">
+      <h3 id="h-tracingperm" resource="#h-tracingperm"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.12 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.12">POE.UC.12</dfn>: Tracing Permissions and Obligations through Aggregations and Derivations</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Data sets are often combined (aggregation) and analysed to generate new data sets (derivation). Big data analytics generates extended workflows of such operations. What policies control each step of the process? For example, a synthetic instrument might be generated by following a simple rule: <code>(equity price on NYSE - equity opening price on NYSE) * equity weighting on MSCI Technology Index)</code></p>
+            <p>Let's say we know the three policies that control equity prices on the New York Stock Exchange, their opening prices, and their index weighting. Then what is the policy that controls the resulting synthetic instrument?
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.13 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="delegation" typeof="bibo:Chapter" resource="#delegation" property="bibo:hasPart">
+      <h3 id="h-delegation" resource="#h-delegation"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.13 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.13">POE.UC.13</dfn>: Delegation</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Assigners are often corporate entities. They may want to restrict the right to exercise the actions they 'own' to particular groups within their own organisation, or even to an individual. This doesn't feel like an rights assignment (as no rights are being assigned?) but a delegation.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.14 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="voteExtendedRel" typeof="bibo:Chapter" resource="#voteExtendedRel" property="bibo:hasPart">
+      <h3 id="h-voteextendedrel" resource="#h-voteextendedrel"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.14 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.14">POE.UC.14</dfn>: A Vote for Extended Relations</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>On the 15th of every month the user must report usage by providing a list of either Access IDs or Physical IDs.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.15 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="realDelay" typeof="bibo:Chapter" resource="#realDelay" property="bibo:hasPart">
+      <h3 id="h-realdelay" resource="#h-realdelay"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.15 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.15">POE.UC.15</dfn>: Real-time vs. Delayed Data</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Permissions often vary depending on whether the data is used in real-time (expensive and restrictive) or after a specified delay (cheaper and less restrictive).
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.16 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="horizontalData" typeof="bibo:Chapter" resource="#horizontalData" property="bibo:hasPart">
+      <h3 id="h-horizontaldata" resource="#h-horizontaldata"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.16 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.16">POE.UC.16</dfn>: Accessing Historical Data</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Access to historical data is often specified by the access period (how long can you go back in history) and access interval (how often can you sample the history). So a permission might be for access to 7 years of historical data but only on a monthly basis.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.17 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="assetInSet" typeof="bibo:Chapter" resource="#assetInSet" property="bibo:hasPart">
+      <h3 id="h-assetinset" resource="#h-assetinset"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.17 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.17">POE.UC.17</dfn>: Asset in a set</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">James Birmingham on behalf of Digital Catapult </p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>In order to manage a common offer which is applied to many assets, a one-to-many relationship is more preferable than a one-to-one. If the offer can target a set of assets, it must also be able to state that what is offered is <em>n items</em> from the set rather than the whole set.</p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.18 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="policyAssertion" typeof="bibo:Chapter" resource="#policyAssertion" property="bibo:hasPart">
+      <h3 id="h-policyassertion" resource="#h-policyassertion"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.18 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.18">POE.UC.18</dfn>: Policy Assertion</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Renato Iannella</p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>A common use case is for a general policy statement to be asserted. This is simply a party stating what policy terms they believe they have. Either an assignee can assert what terms they have over an asset and/or an assigner can assert what terms they have over an asset. An assertion does not grant any of the statements. A policy assertion may state that a party is a general rightsholder or other roles.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.19 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="relTimeConstraint" typeof="bibo:Chapter" resource="#relTimeConstraint" property="bibo:hasPart">
+      <h3 id="h-reltimeconstraint" resource="#h-reltimeconstraint"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.19 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.19">POE.UC.19</dfn>: Relative Time Constraints</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Michael Steidl</p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Sometimes it's required to be able to constrain the applicability of policies according to a relative point in time, e.g.:
+            </p>
+            <ul>
+              <li>Organisers of sport events grant the use of photos or videos relative to the end of a sport event/game. (Note: the live publishing of photos/videos may be granted by a different license.)</li>
+              <li>Speakers at a conference circulate a document with their speech in advance and they permit to publish it only after the speech has ended. </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.20 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="extDecPaymentAmount" typeof="bibo:Chapter" resource="#extDecPaymentAmount" property="bibo:hasPart">
+      <h3 id="h-extdecpaymentamount" resource="#h-extdecpaymentamount"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.20 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.20">POE.UC.20</dfn>: External Declaration of Payment Amount</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Víctor Rodríguez-Doncel</p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p><a class="external text" href="http://georg-re.hm/pdf/LREC-2014-META-SHARE.pdf"><i>META-SHARE</i></a> is an open and secure network of repositories for sharing and exchanging language data, tools, and related web services. As of July 2016, it accounted more than 2700 resources. These resources are described with small pieces of metadata according to their <a class="external text" href="http://www.meta-net.eu/meta-share/metadata-schema/">schema</a>.</p>
+            <p>
+            </p>
+            <p>While maintainers of META-SHARE's 32 repositories can edit simple metadata records, they are usually not skilled enough to edit ODRL expressions. Hence they would like to be able to:
+            </p>
+            <ol>
+              <li>Point to a license template (referred by a well-known URI), with a placeholder to for the price.</li>
+              <li>Add a metadata record indicating the specific price of the resource.</li>
+            </ol>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.21 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="constraintScope" typeof="bibo:Chapter" resource="#constraintScope" property="bibo:hasPart">
+      <h3 id="h-constraintscope" resource="#h-constraintscope"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.21 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.21">POE.UC.21</dfn>: Specifying the Scope of Constraints</span></h3>
+      <ul>
+        <!-- <li> <strong>Title</strong>:   </li> -->
+        <li>
+          <p class="contributor">Víctor Rodríguez-Doncel</p>
+        </li>
+        <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
+          <div class="visible uc">
+            <p>Depending on the use case, it's often necessary to specify constraints on properties of different kinds of entities (e.g., assets, parties or any other external entities). The exact subject for which those constraints must hold is currently not encodable in ODRL, but has to be inferred from the textual semantics of each of ODRL's 25 constraint terms; which not only leads to ambiguities in terms of interpreted semantics, but might also prove to be not capable of fully covering new usages of ODRL.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related requirements (click to expand):</div>
+          <div class="hidden requirement"><strong>TBD</strong>
+
+          </div>
+        </li>
+      </ul>
+    </section>
+  </section>
+
+
+
+  <section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>References</span></h2>
+
+    <section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" property="bibo:hasPart">
+      <h3 id="h-informative-references" resource="#h-informative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.1 </span>Informative references</span></h3>
+      <dl class="bibliography" resource=""><dt id="bib-COCKBURN-2000">[COCKBURN-2000]</dt>
+        <dd>Alistair Cockburn. Addison Wesley Longman Publishing Co., Inc., Boston, MA, USA. <a href="http://alistair.cockburn.us/get/2465" property="dc:references"><cite>Writing Effective Use Cases</cite></a>. 2000. URL: <a href="http://alistair.cockburn.us/get/2465" property="dc:references">http://alistair.cockburn.us/get/2465</a>
+        </dd>
+      </dl>
+    </section>
+  </section>
+  <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to Top">↑</abbr></a></p>
+  <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+</body>
+</html>
