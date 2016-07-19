@@ -297,7 +297,7 @@ function writeTerm($term)
 	if ($term instanceof Phpspecgen_Class) {
 		$properties = $term->inheritedProperties();
 		if (count($properties) > 0)
-                        $html .= "  <tr><th>Inherited Properties:</td> ".
+                        $html .= "  <tr><th>Inherited Properties:</th> ".
 							"<td>".join(', ', $properties)."</td></tr>\n";
 	}
 	$html .= $term->propertyRow("Range", "rdfs:range");
