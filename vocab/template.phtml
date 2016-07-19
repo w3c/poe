@@ -282,7 +282,7 @@ function writeTerm($term)
 	$html .= "<table class='def propdef' >\n";
 	$html .= $term->propertyRow("Definition", "skos:definition");
 	$html .= $term->propertyRow("Label", "rdfs:label");
-	$html .= "  <tr><td><th>Identifier:</th></td> <td>".$term->htmlLink()."</td></tr>\n";
+	$html .= "  <tr><th>Identifier:</th> <td>".$term->htmlLink()."</td></tr>\n";
 	$html .= $term->propertyRow("Comment", "rdfs:comment");
 	$html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
 	$html .= $term->propertyRow("Parent property", "rdfs:subPropertyOf");
@@ -297,7 +297,7 @@ function writeTerm($term)
 	if ($term instanceof Phpspecgen_Class) {
 		$properties = $term->inheritedProperties();
 		if (count($properties) > 0)
-                        $html .= "  <tr><td><th>Inherited Properties:</th></td> ".
+                        $html .= "  <tr><th>Inherited Properties:</td> ".
 							"<td>".join(', ', $properties)."</td></tr>\n";
 	}
 	$html .= $term->propertyRow("Range", "rdfs:range");
