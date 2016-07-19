@@ -271,7 +271,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><td><th>Range:</th></td> <td><a href="#term-Action">Action</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
 <tr><td><th>Domain:</th></td> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
-</section></section><section id="actions"><h2>Actions for Permissions and Prohibitions</h2><section id="term-use"><h3>use</h3><table class='def propdef' >
+</section></section><section id="actionConcepts"><h2>actionConcepts</h2></section><section id="actions"><h2>Actions for Permissions and Prohibitions</h2><section id="term-use"><h3>use</h3><table class='def propdef' >
 <tr><td><th>Definition:</th></td> <td>The Assigner permits/prohibits the Assignee to use the Asset as agreed.</td></tr>
 <tr><td><th>Label:</th></td> <td>Use</td></tr>
   <tr><td><th>Identifier:</th></td> <td><a href="http://www.w3.org/ns/odrl/2/use">http://www.w3.org/ns/odrl/2/use</a></td></tr>
@@ -881,6 +881,22 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><td><th>Label:</th></td> <td>Policy usage time</td></tr>
   <tr><td><th>Identifier:</th></td> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
 <tr><td><th>Comment:</th></td> <td>This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised.</td></tr>
+</table>
+</section></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
+<tr><td><th>Definition:</th></td> <td>The Party entity is the object of an ODRL policy that performs (or not performs) actions or has a role in a Duty.</td></tr>
+<tr><td><th>Label:</th></td> <td>Party</td></tr>
+  <tr><td><th>Identifier:</th></td> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
+<tr><td><th>Comment:</th></td> <td>The Party entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use vCard [[vcard-rdf]] or [[foaf]] metadata.</td></tr>
+<tr><td><th>Sub-classes:</th></td> <td><a href="#term-All">All</a>, <a href="#term-All2ndConnections">All2ndConnections</a>, <a href="#term-AllConnections">AllConnections</a>, <a href="#term-AllGroups">AllGroups</a>, <a href="#term-Group">Group</a>, <a href="#term-Individual">Individual</a></td></tr>
+<tr><td><th>In range of:</th></td> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
+</table>
+</section><section id="term-function"><h3>function</h3><table class='def propdef' >
+<tr><td><th>Definition:</th></td> <td>Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule</td></tr>
+<tr><td><th>Label:</th></td> <td>function</td></tr>
+  <tr><td><th>Identifier:</th></td> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
+<tr><td><th>Sub-properties:</th></td> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-payeeParty">payeeParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
+<tr><td><th>Range:</th></td> <td><a href="#term-Party">Party</a></td></tr>
+<tr><td><th>Domain:</th></td> <td><a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section></section><section id="partyRoles"><h2>Party Roles</h2><section id="term-assignee"><h3>assignee</h3><table class='def propdef' >
 <tr><td><th>Definition:</th></td> <td>The Party is the recipient of the policy statement.</td></tr>
