@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-<!--		<title><?php echo htmlspecialchars($vocab->label()); ?></title> -->
         <title>ODRL Vocabulary &amp; Expression</title>
 		<meta content="text/html; charset=utf-8" http-equiv="content-type" />
 		<meta content="width=device-width,initial-scale=1" name="viewport" />
@@ -13,7 +11,10 @@
 .nanotabs > ul li a { display:block; padding:4px 6px; margin-right: 3px; border-left: 1px solid #b9ab2d; border-right: 1px solid #b9ab2d; border-top: 1px solid #b9ab2d; border-collapse: collapse; background:#fcfaee; color:#b9ab2d; font-family: sans-serif;
  text-decoration:none; }
 .nanotabs > ul li a:hover { background:#FFFCE5; color:#550; }
-.nanotabs > ul li a.selected { background:#555; color:#FFF; }
+            .nanotabs > ul li a.selected { background:#555; color:#FFF; }
+table.propdef th {
+  text-align:left;
+}
 		</style>
 	</head>
 	<body>
@@ -24,7 +25,11 @@
 	readfile(dirname(__FILE__) . '/parts/abstract.html');
 	readfile(dirname(__FILE__) . '/parts/sotd.html');
 	readfile(dirname(__FILE__) . '/parts/intro.html');
+    readfile(dirname(__FILE__) . '/parts/community.html');
 ?>
+        
+<section id="conformance"></section>
+        
 <section id="vocab">
 	<h2>Vocabulary</h2>
 
@@ -61,16 +66,26 @@ writeGroup('partyRoles');
 writeGroup('partyScopes');
 writeGroup('assetConcepts');
 writeGroup('assetRelations');
-writeGroup('deprecatedTerms');
+?>
+    
+    <div class="note">
+        <p>All the Deprecated Terms shown below may be rendered in a single table in future versions</p>
+    </div>
+<?php
+    writeGroup('deprecatedTerms');
 echo $vocab->htmlSummaryOfTerms();
 ?>
     
     
 </section>
 
-        <section id="encodings">
+    <section id="encodings">
 	<h2>Vocabulary Encodings</h2>
 
+        <div class="note">
+        <p>Add a list of all Namespace URIs used.</p>
+        </div>
+        
     <section id="rdfowl">
    	<h2>RDF/OWL Encoding</h2>         
      <?php
@@ -223,7 +238,6 @@ function writeGroup($groupUri, $name = null)
 		$groupUri = $uri . '#' . $name;
 	}
 	$members = $graph->allResources($groupUri, 'skos:member');
-	echo '<section>';
 	$title = $graph->getLiteral($groupUri, 'skos:prefLabel');
 	if($title !== null)
 	{
@@ -233,7 +247,8 @@ function writeGroup($groupUri, $name = null)
 	{
 		$title = $name;
 	}
-	echo '<h2 id="' . $name . '">' . $title . '</h2>';
+    echo '<section id="' . $name . '">';
+    echo '<h2>' . $title . '</h2>';
 	$path = dirname(__FILE__) . '/parts/' . strtolower($name) . '.html';
 	if(file_exists($path))
 	{
@@ -253,8 +268,8 @@ function writeTerm($term)
 		return;
 	}
 	$tname = htmlspecialchars($term->localName());
-	echo '<section>';
-	echo '<h3 id="term-' . $tname . '">' . $tname . '</h3>';
+    echo '<section id="term-' . $tname . '">';
+	echo '<h3>' . $tname . '</h3>';
 	$description = '<p>' . htmlspecialchars($term->get('rdfs:comment')) . '</p>';
 	$path = dirname(__FILE__) . '/parts/' . strtolower($term->localName()) . '.html';
 	if(file_exists($path))
@@ -262,19 +277,11 @@ function writeTerm($term)
 		$description = file_get_contents($path);
 	}
 
-	$html = "<table>\n  <tr style='vertical-align: top;'>\n  <td style='width:70%;'>\n";
 	$html .= "<table class='def propdef' >\n";
 	$html .= $term->propertyRow("Definition", "skos:definition");
 	$html .= $term->propertyRow("Label", "rdfs:label");
-	$html .= "  <tr><td><b>Identifier:</b></td> <td>".$term->htmlLink()."</td></tr>\n";
-	$html .= "  <tr><td><b>Definition:</b></td> <td>".$description."</td></tr>\n";
-	#$html .= "  <tr><td><b>Comment:</b></td> <td>test</td></tr>\n";
+	$html .= "  <tr><td><th>Identifier:</th></td> <td>".$term->htmlLink()."</td></tr>\n";
 	$html .= $term->propertyRow("Comment", "rdfs:comment");
-                
-	$html .= "</table>\n </td>\n <td>\n";
-	$html .= "<table class='def propdef' style='background:#E5F5FF;'>\n";
-                
-	#$html .= $term->propertyRow("Status", "vs:term_status");
 	$html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
 	$html .= $term->propertyRow("Parent property", "rdfs:subPropertyOf");
 	$html .= $term->propertyRow("Equivalent to", "owl:sameAs");
@@ -288,7 +295,7 @@ function writeTerm($term)
 	if ($term instanceof Phpspecgen_Class) {
 		$properties = $term->inheritedProperties();
 		if (count($properties) > 0)
-                        $html .= "  <tr><td><b>Inherited Properties:</b></td> ".
+                        $html .= "  <tr><td><th>Inherited Properties:</th></td> ".
 							"<td>".join(', ', $properties)."</td></tr>\n";
 	}
 	$html .= $term->propertyRow("Range", "rdfs:range");
@@ -301,9 +308,8 @@ function writeTerm($term)
 		$html .= $term->propertyRow('Class', 'rdf:type', array('http://www.w3.org/2004/02/skos/core#Concept', 'http://www.w3.org/2002/07/owl#NamedIndividual'));
 	}
 	$html .= $term->propertyRow('Concepts', 'skos:hasTopConcept');
-	$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
+	#$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
 	$html .= "</table>\n";
-	$html .= "</td>\n </tr>\n </table>\n";
 
 	echo $html;
 

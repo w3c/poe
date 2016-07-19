@@ -21,7 +21,7 @@ odrl:
 	vann:preferredNamespaceUri <http://w3.org/ns/odrl/2/> ;
 	vann:preferredNamespacePrefix "odrl" ;
 	vann:example :Asset ;
-	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "James Birminham" ;
+	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "James Birminham", "Víctor Rodríguez-Doncel" ;
 	dct:issued "2016-07-05"^^xsd:date ;
 	dct:contributor "W3C Permissions & Obligations Expression Working Group" ;
 	dct:description "The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model"@en ;
@@ -1511,33 +1511,40 @@ odrl:
 :adHocShare
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.openmobilealliance.com/oma-dd/adhoc-share> ;
+	ont:deprecatedBy <http://www.openmobilealliance.com/> ;
 	rdfs:label "Ad-hoc sharing"@en ;
-	skos:definition "The act of sharing the asset to parties in close proximity to the owner."@en .
+	skos:definition "The act of sharing the asset to parties in close proximity to the owner."@en ;
+    rdfs:comment "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/adhoc-share"@en .
 
 :extractChar
 	a :Action, skos:Concept ;
 	skos:broader :extract ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.editeur.org/onix-pl/extract-char> ;
+	ont:deprecatedBy <http://www.editeur.org/21/ONIX-PL/> ;
 	rdfs:label "Extract character"@en ;
-	skos:definition "The act of extracting (replicating) unchanged characters from the asset."@en .
+	skos:definition "The act of extracting (replicating) unchanged characters from the asset."@en ;
+    rdfs:comment "Must be supported."@en ;
+ rdfs:comment "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-char"@en .
 
 :extractPage
 	a :Action, skos:Concept ;
 	skos:broader :extract ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.editeur.org/onix-pl/extract-word> ;
+	ont:deprecatedBy <http://www.editeur.org/21/ONIX-PL/> ;
 	rdfs:label "Extract page"@en ;
-	skos:definition "The act of extracting (replicating) unchanged pages from the asset."@en .
+	skos:definition "The act of extracting (replicating) unchanged pages from the asset."@en ;
+ rdfs:comment "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-page"@en .
+
 
 :extractWord
 	a :Action, skos:Concept ;
 	skos:broader :extract ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.editeur.org/onix-pl/extract-page> ;
+	ont:deprecatedBy <http://www.editeur.org/21/ONIX-PL/> ;
 	rdfs:label "Extract word"@en ;
-	skos:definition "The act of extracting (replicating) unchanged words from the asset."@en .
+	skos:definition "The act of extracting (replicating) unchanged words from the asset."@en ;
+ rdfs:comment "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-word"@en .
+
 
 :attachPolicy
 	a :Action, skos:Concept ;
@@ -1578,15 +1585,17 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.openmobilealliance.com/oma-dd/proximity> ;
+	ont:deprecatedBy <http://www.openmobilealliance.com/> ;
 	rdfs:label "proximity"@en ;
-	skos:definition "An value indicating the closeness or nearness."@en .
+	skos:definition "An value indicating the closeness or nearness."@en ;
+    rdfs:comment "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/proximity"@en .
 
 :timedCount
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.openmobilealliance.com/oma-dd/timed-count> ;
+	ont:deprecatedBy <http://www.openmobilealliance.com/> ;
 	rdfs:label "timed count"@en ;
 	skos:definition "The number of seconds after which timed metering use of the asset begins."@en ;
-	rdfs:range rdfs:Literal .	
+	rdfs:range rdfs:Literal ;
+    rdfs:comment "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/timed-count"@en .
