@@ -268,11 +268,11 @@
 				$html .= '<dt>Properties</dt>';
 				$html .= '<dd>' . implode('&nbsp;| ', $props) . '</dd>';
 			}
-			if($schemeCount)
+			/*if($schemeCount)
 			{
 				$html .= '<dt>Concept schemes</dt>';
 				$html .= '<dd>' . implode('&nbsp;| ', $schemes) . '</dd>';
-			}
+			} */
 			if($conceptCount)
 			{
 				$html .= '<dt>Concepts</dt>';
