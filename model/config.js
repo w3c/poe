@@ -1,6 +1,7 @@
       var respecConfig = {
           specStatus: "ED",
           shortName:  "odrl-model",
+          publishDate:          "2016-08-15",
           editors: [
                 {   name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
@@ -16,10 +17,9 @@
                 }
           ],
           lint:                 true,
-//          previousMaturity:     "",
-//          previousPublishDate:  "",
-//          previousURI:          "",
-          publishDate:          "2016-07-12",
+          previousMaturity:     "FPWD",
+          previousPublishDate:  "2016-07-21",
+          previousURI:          "https://www.w3.org/TR/2016/WD-odrl-model-20160721/",
           edDraftURI:           "https://w3c.github.io/poe/model/",
           wg:                   "Permissions & Obligations Expression Working Group",
           wgURI:                "https://www.w3.org/2016/poe/",
