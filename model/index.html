@@ -72,7 +72,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The figure below shows the ODRL Information Model. The <code>Policy</code> is the central entity that holds an ODRL policy together. </p>
 
 <figure>
-	<img src="fig/00Model.png" alt="ODRL Information Model" width="600"/>
+	<img src="fig/00Model.png" alt="ODRL Information Model" width="800"/>
     <figcaption>ODRL Information Model</figcaption>
 </figure>
 
@@ -360,128 +360,120 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
     <div class="note">
           <p>Need to clarify if these Scenarios need to be udated. </p>
     </div>
-    
+
+<!-- Can we include the examples? -->
+
 <section id="set">
 <h3>Set</h3>
-<p>The following shows an instance of a <code>set</code> <code>Policy</code>. The <code>Set</code> shows a policy expression, stating that the <code>Asset</code> <code>http//example.com/asset:9898</code> is the <code>target</code> of the <code>Permission</code> <code>reproduce</code> and the <code>Prohibition</code> to <code>modify</code>. No parties or other elements are involved. This <code>set</code> could be used, for example, as a template or an <em>instant license</em>.</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example1.html"></section>
 <figure>
 	<img src="fig/01Set.png" alt="An instance of a Set Policy" width="700"/>
     <figcaption>An instance of a Set Policy</figcaption>
 </figure>
+See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example1">scenario in supported encodings.</a>
 </section>
 
 <section id="offer">
-
 <h3>Offer</h3>
-<p>The following shows the instance of an <code>offer</code> <code>Policy</code>. The <code>offer</code> contains the music file <code>http//example.com/music:4545</code> that is offered by the <code>Party</code> <code>http//example.com/sony:10</code> with the <code>Permission</code>s to <code>play</code> and <code>copy</code> the file. The <code>Permission</code> <code>copy</code> is only granted once. The two <code>Permission</code>s are offered for a payment of AUD$0.50.</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example2.html"></section>
 <figure>
-	<img src="fig/02Offer.png" alt="An instance of an Offer Policy" width="700"/>
+	<img src="fig/02Offer.png" alt="An instance of an Offer Policy" width="800"/>
     <figcaption>An instance of an Offer Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example2">scenario in supported encodings.</a>
 </section>
 
 <section id="agreement">
-
 <h3>Agreement</h3>
-<p>The following shows the instance of an <code>agreement</code> <code>Policy</code>. The <code>agreement</code> contains all entities shown in the <code>offer</code> scenario above. A new <code>Party</code> element <code>http//example.com/billie:888</code> has been added. This <code>Party</code> accepted the previous <code>offer</code> and thus is now the buyer of the <code>Permission</code> <code>play</code> and <code>copy</code>, i.e. is now linked as <code>assignee</code> of the <code>Permission</code>s and <code>Duty</code> entities.</p>
-
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example3.html"></section>
 <figure>
-	<img src="fig/03Agreement.png" alt="An instance of an Agreement Policy" width="700"/>
+	<img src="fig/03Agreement.png" alt="An instance of an Agreement Policy" width="800"/>
     <figcaption>An instance of an Agreement Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example3">scenario in supported encodings.</a>
 </section>
 
 <section id="request">
-
 <h3>Request</h3>
-<p>The following shows the instance of a <code>request</code> <code>Policy</code>. The <code>Party</code> <code>http//example.com/guest:0589</code> has requested the <code>Permission</code> to <code>display </code> the <code>target</code> <code>Asset</code> <code>http//example.com/news:0099</code>.</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example4.html"></section>
 <figure>
 	<img src="fig/04Request.png" alt="An instance of an Request Policy" width="700"/>
     <figcaption>An instance of an Request Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example4">scenario in supported encodings.</a>
 </section>
 
 <section id="ticket">
 <h3>Ticket</h3>
-<p>The following shows the instance of a <code>ticket</code> <code>Policy</code>. The <code>ticket</code> expresses the <code>play</code> <code>Permission</code> for the <code>target</code> <code>Asset</code> <code>http//example.com/game:4589</code>. The <code>Ticket</code> is valid until the end of the year 2010. Any valid holder of this ticket may exercise this <code>Permission</code>.</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example5.html"></section>
 <figure>
 	<img src="fig/05Ticket.png" alt="An instance of an Ticket Policy" width="700"/>
     <figcaption>An instance of an Ticket Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example5">scenario in supported encodings.</a>
 </section>
 
 <section id="offerAndNextPolicy">
 	<h3>Offer and Next Policy</h3>
-<p>The following shows the instance of an <code>offer</code> <code>Policy</code> showing the <code>nextPolicy</code> structure. The party <code>http//example.com/sony:99</code> assigns the <code>Permission</code> <code>distribute</code> directly to the potential buyer of the permission who will pay $EU1,000. The <code>distribute</code> <code>Permission</code> is also constrained to the country Italy. The potential <code>assignee</code> may then <code>distribute</code> the <code>target</code> <code>Asset</code> according to the <code>nextPolicy</code> <code>target</code> <code>Asset</code> linked directly from this <code>Duty</code>. In this case, the next Policy <code>Asset</code> stipulates that the potential <code>assignee</code> may only offer the <code>display</code> <code>Permission</code> to downstream consumers.</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example6.html"></section>
 <figure>
-	<img src="fig/06OfferNextPolicy.png" alt="An instance of an Offer and Next Policy" width="700"/>
+	<img src="fig/06OfferNextPolicy.png" alt="An instance of an Offer and Next Policy" width="800"/>
     <figcaption>An instance of an Offer and Next Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example6">scenario in supported encodings.</a>
 </section>
 
 <section id="privacy">
 <h3>Privacy</h3>
-<p>The following shows the instance of an <code>privacy</code> <code>Policy</code>.</p>
-<p>The <code>target</code> <code>Asset</code> is Personal Data and the <code>assignee</code> is allowed to <code>distribute</code> the <code>Asset</code> only for the <code>purpose</code> of contacting the subject of the Personal Data. The purpose value is taken from the <a href="http://www.w3.org/TR/P3P11/#PURPOSE">P3P privacy purpose vocabulary</a>.</p>
-<p>Additionally, the <code>assigner</code> (the <code>Party</code> who the personal data is about) has stipulated that the <code>assignee</code> must <code>delete</code> the <code>Asset</code> after a 30 day period (retention policy).</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example7.html"></section>
 <figure>
-	<img src="fig/07Privacy.png" alt="An instance of an Privacy Policy" width="700"/>
+	<img src="fig/07Privacy.png" alt="An instance of an Privacy Policy" width="800"/>
     <figcaption>An instance of an Privacy Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example7">scenario in supported encodings.</a>
 </section>
 
 <section id="permissionAndProhibition">
 <h3>Permission and Prohibition</h3>
-<p>The following shows the instance of an <code>agreement</code> <code>Policy</code> with both a <code>Permission</code> and a <code>Prohibition</code>. The party <code>http//example.com/sony:10</code> assigns the <code>Permission</code> <code>play</code> to the <code>Party</code> <code>http//example.com/billie:888</code> at the same time they are <em>prohibited</em> from utilising the <code>target</code> <code>Asset</code> as a <code>mobile:ringtone</code>. Additionally, in case of any conflict, the <code>conflict</code> attribute is set to <code>perm</code> indicating that the <code>Permission</code> entity will take precedence.</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example8.html"></section>
 <figure>
-	<img src="fig/08PermProhibit.png" alt="An instance of an Permission and Prohibition Policy" width="700"/>
+	<img src="fig/08PermProhibit.png" alt="An instance of an Permission and Prohibition Policy" width="800"/>
     <figcaption>An instance of an Permission and Prohibition Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example8">scenario in supported encodings.</a>
 </section>
 
 <section id="inheritance2">
 <h3>Inheritance</h3>
-<p>The following shows the instance of a (child) <code>Policy</code> <code>http//example.com/policy:9999</code> inheriting from another (parent) <code>Policy</code> <code>http//example.com/policy:5531</code>. The <code>inheritFrom</code> attribute of the (child) <code>Policy</code> has the same identifier as the (parent) <code>Policy</code>. In this inheritance example, the (parent) <code>Policy</code> allows the <code>Party</code> <code>http//example.com/billie:888</code> to <code>print</code> the (parent&#8217;s) <code>target</code> <code>Asset</code>. The (child) <code>Policy</code> allows the <code>Party</code> <code>http//example.com/class:IT01</code> (a group of people) to <code>display</code> the (child&#8217;s) <code>target</code> <code>Asset</code>. Since the (child) <code>Policy</code> also inherits from the (parent) <code>Policy</code>, then the <code>Party</code> <code>http//example.com/class:IT01</code> can also <code>print</code> the (parent&#8217;s) <code>target</code> <code>Asset</code>.</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example9.html"></section>
     <div class="issue" data-number="22">
           <p>Is this last statement true? </p>
     </div>
-    
 <figure>
-	<img src="fig/09Inherit.png" alt="An instance of an Inheritance Policy" width="700"/>
+	<img src="fig/09Inherit.png" alt="An instance of an Inheritance Policy" width="800"/>
     <figcaption>An instance of an Inheritance Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example9">scenario in supported encodings.</a>
 </section>
 
 <section id="socialNetwork">
 <h3>Social Network</h3>
-<p>The following shows the instance of an <code>agreement</code> <code>Policy</code> for a Social Network scenario.</p>
-<p>The <code>target</code> <code>Asset</code> are photos posted to a Social Network site and the <code>assigner</code> is the owner of the photos. The <code>assignee</code> is a <code>Party</code> <code>group</code> and represents the <em>football network members</em> on the social network, who are each allowed to <code>display</code> the photos.</p>
-
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example10.html"></section>
 <figure>
-	<img src="fig/10SocialNetwork.png" alt="An instance of an Social Network Policy" width="700"/>
+	<img src="fig/10SocialNetwork.png" alt="An instance of an Social Network Policy" width="800"/>
     <figcaption>An instance of an Social Network Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example10">scenario in supported encodings.</a>
 </section>
 
 <section id="multipleAssets">
 <h3>Multiple Assets</h3>
-<p>The following shows an instance of a <code>set</code> <code>Policy</code> utilising multiple <code>Asset</code> entities.</p>
-<p>The <code>index</code> <code>Permission</code> is granted to the <code>target</code> <code>Asset</code>. As well, the <code>x:collection</code> <code>Asset</code> specifies which database the <code>index</code> outcome should be stored in.</p>
-
+<section data-include="http://w3c.github.io/poe/vocab/examples/example11.html"></section>
 <figure>
-	<img src="fig/11MultipleAssets.png" alt="An instance of an Multiple Assets Policy" width="700"/>
+	<img src="fig/11MultipleAssets.png" alt="An instance of an Multiple Assets Policy" width="800"/>
     <figcaption>An instance of an Multiple Assets Policy</figcaption>
 </figure>
+    See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example11">scenario in supported encodings.</a>
 </section>
 
 </section>
@@ -557,6 +549,7 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
 </figure>
     
 <p>By implementing <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> as subclasses of <code><em>Rule</em></code>, the redundancy of having very similar, but separately developed classes in an application&#8217;s source code can be avoided. Furthermore, <code><em>Rule</em></code> makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by default.</p>
+<p>By implementing <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> as subclasses of <code><em>Rule</em></code>, the redundancy of having very similar, but separately developed classes in an application&#8217;s source code can be avoided. Furthermore, <code><em>Rule</em></code> makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by defaultdata-.</p>
     
        <div class="issue" data-number="24">
         <p>Include Rule in the normative Information Model? Rule appears in the Ontology as an abstract class already</p>
@@ -606,7 +599,7 @@ For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the
   <h3>Changes from the ODRL Community Group Reports</h3>
 <p>Significant technical changes in this specification from the ODRL Community Group's draft are:
 <ul>
-  <li>None</li>
+  <li>Added abstract Rule to the Informaton Model</li>
 </ul>
 </section>
 
