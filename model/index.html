@@ -76,27 +76,19 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>As the Information Model diagram shows the key <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> entities are are subtypes of the abstract <code><em>Rule</em></code> class and they have the same relationships to the other key entities (<code>Action</code>, <code>Constraint</code>, <code>Asset</code>, and <code>Party</code>). The core difference is in their semantics:</p>
 <ul>
-<li><code>Permission</code> says that the <code>assignee </code> <em>may</em> perform action,</li>
-<li><code>Duty</code> says that the <code>assignee</code> <em>should</em> perform and action, and</li>
-<li><code>Prohibition</code> says that the <code>assignee</code> <em>should not</em> perform and action.</li>
+<li><code>Permission</code> says that the <code>assignee </code> MAY perform action,</li>
+<li><code>Duty</code> says that the <code>assignee</code> MUST perform and action, and</li>
+<li><code>Prohibition</code> says that the <code>assignee</code> MUST NOT perform and action.</li>
 </ul>
 
 <p>The <code><em>Rule</em></code> class also makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by default.</p>
     
 <p>The cardinalities shown in the ODRL Information Model allow for the greatest flexibility in expressing associations between the key entities. However, <code>Policy Types</code> and <code>Profiles</code> may express narrower and/or specific cardinalities on these entities.</p>
 
-<p>A <code>Permission</code> <em>allows</em> a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g. &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> like &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g. &#8220;<code>assigner</code> VirtualMusicShop grants the <code>Permission</code> to <code>assignee</code> Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
-<p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MAY be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 EUR in order to get the <code>Permission</code> to play abc.mp3&#8243;.</p>
+<p>A <code>Permission</code> MAY allow a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g. &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> like &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g. &#8220;<code>assigner</code> VirtualMusicShop grants the <code>Permission</code> to <code>assignee</code> Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
+<p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MUST be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 EUR in order to get the <code>Permission</code> to play abc.mp3&#8243;.</p>
     
-    <div class="issue" data-number="18">
-          <p>Need to clarify that Duties MUST be performed but at what point in time is not specified (by default). </p>
-    </div>
-    
-<p>The <code>Prohibition</code> entity is used in the same way as <code>Permission</code>, with the two differences that it does not refer to <code>Duties</code> and (obviously) that it <em>forbids</em> the <code>Action</code>, e.g. &#8220;Alice is forbidden to use abc.mp3 commercially&#8221;.</p>
-
-    <div class="issue" data-number="19">
-          <p>Need to clarify that Prohibitions cannot have Duties. </p>
-    </div>
+<p>The <code>Prohibition</code> entity is used in the same way as <code>Permission</code>, with the difference that it MUST NOT refer to <code>Duties</code> and that the <code>Action</code> MUST NOT be exercised, e.g. &#8220;Alice is forbidden to use abc.mp3 commercially&#8221;.</p>
     
 <p>The following sections describes each entity of the Information Model in greater detail.</p>
 
@@ -288,7 +280,8 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <section id="duty">
 <h3>Duty</h3>
 
-<p>The <code>Duty</code> entity indicates a requirement that MUST be fulfilled in return for being entitled to the referring <code>Permission</code> entity. While implying different semantics, the <code>Duty</code> entity is similar to <code>Permission</code> in that it is an Action that can be undertaken. If a <code>Permission</code> refers to several <code>Duty</code> entities, <em>all of them</em> have to be fulfilled for the <code>Permission</code> to become valid. If several <code>Permission</code> entities refer to one <code>Duty</code>, then the Duty only has to be fulfilled <em>once</em> for all the <code>Permission</code> entities to become valid.</p>
+<p>The <code>Duty</code> entity indicates a requirement that MUST be fulfilled in return for being entitled to the referring <code>Permission</code> entity. A <code>Duty</code> MUST only be associated with a <code>Permission</code>. </p>
+<p>While implying different semantics, the <code>Duty</code> entity is similar to <code>Permission</code> in that it is an Action that can be undertaken. If a <code>Permission</code> refers to several <code>Duty</code> entities, <em>all of them</em> MUST be fulfilled for the <code>Permission</code> to become valid. If several <code>Permission</code> entities refer to one <code>Duty</code>, then the Duty only has to be fulfilled <em>once</em> for all the <code>Permission</code> entities to become valid.</p>
 <p>The <code>Duty</code> entity contains the following attributes:</p>
 <ul>
 <li><code>uid</code>: a unique identification for this <code>Duty</code>. Used to refer a single <code>Duty</code> to multiple <code>Permission</code> entities (OPTIONAL)</li>
@@ -296,18 +289,14 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <p>The <code>Duty</code> entity has the following relations:</p>
 <ul>
 <li><code>Action</code>: indicates the operation that MUST be performed (REQUIRED). Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
-<li><code>Party</code>: a <code>Duty</code> MAY refer to <code>Party</code> entities with different <code>Role</code>s (see Section 2.3.1). If no explicit <code>Party</code> is linked to as <code>assignee</code> or <code>assigner</code>, the <code>Parties</code> with the respective <code>Role</code>s are taken from the referring <code>Permission</code>. (OPTIONAL)</li>
-<li><code>Asset</code>: a <code>Duty</code> entity MAY refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) related to fulfilling the <code>Duty</code>.<br />
-For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the identifier of a target policy <code>Asset</code>. (OPTIONAL)</li>
+<li><code>Party</code>: a <code>Duty</code> MAY refer to <code>Party</code> entities with different <code>Role</code>s. If no explicit <code>Party</code> is linked to as <code>assignee</code> or <code>assigner</code>, the <code>Parties</code> with the respective <code>Role</code>s are taken from the referring <code>Permission</code>. (OPTIONAL)</li>
+<li><code>Asset</code>: a <code>Duty</code> entity MAY refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) related to fulfilling the <code>Duty</code>. (OPTIONAL) For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the identifier of a target policy <code>Asset</code>.</li>
 <li><code>Constraint</code>: a <code>Duty</code> MAY link to one or more <code>Constraint</code>s (OPTIONAL)</li>
 </ul>
-<p>A <code>Duty</code> entity does not, by itself, specify any conditions on when the <code>Duty</code> <code>Action</code> MUST or MAY be performed, such as to <code>compensate</code> before viewing the movie. Such conditions MAY be expressed through <code>Constraint</code> entities.</p>
+
+<p>A <code>Duty</code> entity does not by default specify any conditions on <em>when</em> the <code>Duty</code> <code>Action</code> MUST be performed in order for the <code>Permission</code> to be exercised. Such temporal conditions MAY be expressed through additional <code>Constraint</code>s.</p>
     
-     <div class="issue" data-number="18">
-          <p>Need to clarify that Duties must be performed but when is not specified by default. </p>
-    </div>
-    
-<p>To support cases where the <code>Duty</code> MAY be performed for each <code>Action</code> on an <code>Asset</code> (for example, pay-per-view) then the use of a <code>Constraint</code> (e.g. count=1) on the <code>Permission</code> (e.g. play) can express these semantics.</p>
+<p>For example, to support cases where the <code>Duty</code> MUST be performed for each <code>Action</code> on an <code>Asset</code> before it is exercised (for example, a <em>pay-per-view</em> scenario) then the use of a <code>Constraint</code> (e.g. count=1) on the <code>Permission</code> (e.g. play) and a temporal (or event) <code>Constraint</code> on the <code>Duty</code> can express these semantics.</p>
 </section>
 
 <section id="prohibition">
