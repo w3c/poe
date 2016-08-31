@@ -61,11 +61,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <h2>Information Model</h2>
 
 
-<p>The basic context of an ODRL Policy is that only an explicitly permitted use may be executed. Any use not explicitly permitted is prohibited by default. Based on that context, an ODRL Policy must contain at least one Permission and may contain Prohibitions. An ODRL Policy only permits the action explicitly specified in a Permission and all other actions are implicitly prohibited. An action defined in a Prohibition should only refine (or directly relate to) the semantics of an action defined in one of the Permissions in the ODRL Policy.</p>
-    
-  <div class="issue" data-number="17">
-          <p>The above says that "an ODRL Policy MUST contain at least one Permission" but the UML model shows 0..* </p>
-    </div>
+<p>The basic context of an ODRL Policy is that only an explicitly permitted use may be executed. Any use not explicitly permitted is prohibited by default. An ODRL Policy only permits the action explicitly specified in a Permission and all other actions are implicitly prohibited. An action defined in a Prohibition should only refine (or directly relate to) the semantics of an action defined in one of the Permissions in the ODRL Policy.</p>
     
 <p>For example, an ODRL Policy that has the action &#8220;present&#8221; Permission and may also have the action &#8220;print&#8221; Prohibition (as these actions are related hierarchically in the ODRL Vocabulary).</p>
 <p>Note that ODRL Profiles can be developed and used to refine the basic context of an ODRL Policy. Hence, the application of an ODRL Profile must be understood by the consuming community and systems.</p>
@@ -87,7 +83,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>The <code><em>Rule</em></code> class also makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by default.</p>
     
- 
+<p>The cardinalities shown in the ODRL Information Model allow for the greatest flexibility in expressing associations between the key entities. However, <code>Policy Types</code> and <code>Profiles</code> may express narrower and/or specific cardinalities on these entities.</p>
 
 <p>A <code>Permission</code> <em>allows</em> a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g. &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> like &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g. &#8220;<code>assigner</code> VirtualMusicShop grants the <code>Permission</code> to <code>assignee</code> Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
 <p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MAY be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 EUR in order to get the <code>Permission</code> to play abc.mp3&#8243;.</p>
