@@ -76,6 +76,18 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <figcaption>ODRL Information Model</figcaption>
 </figure>
 
+  
+    
+<p>As the Information Model diagram shows the key <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> entities are are subtypes of the abstract <code><em>Rule</em></code> class and they have the same relationships to the other key entities (<code>Action</code>, <code>Constraint</code>, <code>Asset</code>, and <code>Party</code>). The core difference is in their semantics:</p>
+<ul>
+<li><code>Permission</code> says that the <code>assignee </code> <em>may</em> perform action,</li>
+<li><code>Duty</code> says that the <code>assignee</code> <em>should</em> perform and action, and</li>
+<li><code>Prohibition</code> says that the <code>assignee</code> <em>should not</em> perform and action.</li>
+</ul>
+
+<p>The <code><em>Rule</em></code> class also makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by default.</p>
+    
+ 
 
 <p>A <code>Permission</code> <em>allows</em> a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g. &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> like &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g. &#8220;<code>assigner</code> VirtualMusicShop grants the <code>Permission</code> to <code>assignee</code> Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
 <p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MAY be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 EUR in order to get the <code>Permission</code> to play abc.mp3&#8243;.</p>
@@ -533,32 +545,11 @@ See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example1">scenario in sup
     
 </section>
     
-<section id="abstract-policy">
-<h3>Abstract Policy Expression</h3>
-<p>As the Information Model diagram shows the key <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> entities are very similar since they have (more or less) the same relationships to the other entities. They core difference is in their semantics:</p>
-<ul>
-<li><code>Permission</code> says that the <code>assignee </code> <em>may</em> do something,</li>
-<li><code>Duty</code> says that the <code>assignee</code> <em>should</em> do something, and</li>
-<li><code>Prohibition</code> says that they <em>should not</em> do it.</li>
-</ul>
-<p>In an implementation that interprets ODRL, it may make sense to introduce a common superclass <code><em>Rule</em></code>, as shown in the (abbreviated) Model below.</p>
-    
-<figure>
-	<img src="fig/exp-abstractmodel.png" alt="Abstract Policy Expression" width="600"/>
-    <figcaption>Abstract Policy Expression</figcaption>
-</figure>
-    
-<p>By implementing <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> as subclasses of <code><em>Rule</em></code>, the redundancy of having very similar, but separately developed classes in an application&#8217;s source code can be avoided. Furthermore, <code><em>Rule</em></code> makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by default.</p>
-<p>By implementing <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> as subclasses of <code><em>Rule</em></code>, the redundancy of having very similar, but separately developed classes in an application&#8217;s source code can be avoided. Furthermore, <code><em>Rule</em></code> makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by defaultdata-.</p>
-    
-       <div class="issue" data-number="24">
-        <p>Include Rule in the normative Information Model? Rule appears in the Ontology as an abstract class already</p>
-    </div>
-    
-</section>
-    
 <section id="remedies">
 <h3>Remedies</h3>
+    <div class="note">
+            <p>This section will be removed from the next release.</p>
+    </div>
 <p>In the ODRL Information Model, <code>Duties</code> are only directly related to <code>Permission</code>s, meaning that for a <code>Permission</code> to become effective, the related <code>Duty</code> should be performed. For some use cases though, it might be useful to attach a <code>Duty</code> to a <code>Prohibition</code>, meaning that if a <code>Prohibition</code> is violated, the <code>Duty</code> has to be performed as a kind of remedy or consequence for the violation.</p>
 <p>Not only can a <code>Prohibition</code> have a <code>Duty</code> attached to it as a remedy, even <code>Duties</code> themselves may have remedies, e.g. &#8220;For the <code>Permission</code> to play audio file xyz to become effective, you have to perform the <code>Duty</code> &#8216;pay 2€&#8217;. If you don&#8217;t perform this <code>Duty</code> (even though you&#8217;ve played yxz), you have to remedy this by performing the <code>Duty</code> &#8216;pay 5€'&#8221;.</p>
 <p>In order to distinguish between a <code>Duty</code> that has to be fulfilled as a requirement and one that has to be fulfilled as a remedy, different relation names are introduced as shown in the Figure below.</p>
