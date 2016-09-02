@@ -272,7 +272,7 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <li><code>Asset</code>: the <code>Permission</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the linked <code>Action</code> MAY be performed (REQUIRED)</li>
 <li><code>Action</code>: the <code>Permission</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that indicates the granted operation on the target <code>Asset</code> (REQUIRED)</li>
 <li><code>Party</code>: the <code>Permission</code> MUST refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
-<li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more <code>Constraint</code>s which affect the validity of the <code>Permission</code>, e.g. if the <code>Action</code> <code>play</code> is only permitted for a certain period of time (OPTIONAL)</li>
+<li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more <code>Constraint</code>s which affect the validity of the <code>Permission</code>, e.g. if the <code>Action</code> <code>play<code> is only permitted for a certain period of time (OPTIONAL)</li>
 <li><code>Duty</code>: the <code>Permission</code> MAY refer to one or more <code>Duty</code> entities that indicate a requirement that MAY be fulfilled in return for receiving the <code>Permission</code> (OPTIONAL)</li>
 </ul>
 </section>
@@ -296,7 +296,7 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 
 <p>A <code>Duty</code> entity does not by default specify any conditions on <em>when</em> the <code>Duty</code> <code>Action</code> MUST be performed in order for the <code>Permission</code> to be exercised. Such temporal conditions MAY be expressed through additional <code>Constraint</code>s.</p>
     
-<p>For example, to support cases where the <code>Duty</code> MUST be performed for each <code>Action</code> on an <code>Asset</code> before it is exercised (for example, a <em>pay-per-view</em> scenario) then the use of a <code>Constraint</code> (e.g. count=1) on the <code>Permission</code> (e.g. play) and a temporal (or event) <code>Constraint</code> on the <code>Duty</code> can express these semantics.</p>
+<p>For example, to support cases where the <code>Duty</code> MUST be performed for each <code>Action</code> on an <code>Asset</code> before it is exercised (for example, a <em>pay-per-view</em> scenario) then the use of a <code>Constraint</code> (e.g. count=1) on the <code>Permission</code> (e.g. play) and a temporal (or event) <code>Constraint</code> on the <code>Duty</code> can express this semantics.</p>
 </section>
 
 <section id="prohibition">
