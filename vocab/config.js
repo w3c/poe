@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "vocab-odrl",
-    publishDate:  "2016-07-21",
+    publishDate:  "2016-09-02",
     edDraftURI: "https://w3c.github.io/poe/vocab/",
     editors: [
      {    name:       "Renato Iannella",
@@ -39,6 +39,9 @@ var respecConfig = {
                     mailto:     "vrodriguez@fi.upm.es"
            }
     ],
+    previousMaturity:     "FPWD",
+    previousPublishDate:  "2016-07-21",
+    previousURI:          "https://www.w3.org/TR/2016/WD-vocab-odrl-20160721/",
     wg: "Permissions &amp; Obligations Expression Working Group",
     wgURI: "https://www.w3.org/2016/poe/",
     wgPublicList: "public-poe-comments",

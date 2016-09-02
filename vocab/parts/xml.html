@@ -1,10 +1,12 @@
 <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the URIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
 <p>The complete ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="https://www.w3.org/ns/odrl/2/ODRL22.xsd">downloaded</a>.</p>
 
-<p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] may also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
+<p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
 
 
 <p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-w3c-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
+<P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policyTypes">Policy Types</a> for further details. </P>
+
 <p>The Policy element contains the following attributes:</p>
 <ul>
 <li>uid &#8211; a URI/Qname/Qcode (REQUIRED)</li>
@@ -16,12 +18,12 @@
 <li>inheritRelation &#8211; a URI/Qname/Qcode</li>
 <li>profile &#8211; a URI/Qname/Qcode</li>
 </ul>
-<p>The Policy element may contain the following elements:</p>
+
+<p>The Policy element MAY contain the following elements:</p>
 <ul>
 <li>permission, and/or</li>
 <li>prohibition</li>
 </ul>
-<p>Note that under the ODRL Information Model context rules there MUST be at least one Permission in the complete ODRL Policy taking into account any Profile and Inheritance requirements.</p>
 <p>The Asset and Relation association class are merged into a single Asset element to represent both the Asset and how it is related to the Permission/Prohibition/Duty. The Asset element contains the following attributes:</p>
 <ul>
 <li>uid &#8211; a URI/Qname/Qcode</li>
