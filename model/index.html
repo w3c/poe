@@ -220,18 +220,15 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 
 <section id="party">
 <h3>Party</h3>
-
-    <div class="issue" data-number="23">
-          <p>Need to define Party more generically, not based on role</p>
-    </div>
     
-<p>The <code>Party</code> entity is the object of an ODRL policy that performs (or not performs) actions or has a role in a Duty. The <code>Party</code> entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect.</p>
-<p>The <code>Party</code> entity contains the following attribute:</p>
+<p>The <code>Party</code> entity is the object of an ODRL policy and can be any form of identifiable entity. The <code>Party</code> performs (or not performs) actions or has a function in a Duty (i.e., assigns the <code>Party</code> to the <code>Rule</code> by associating it with the role it plays in the <code>Rule</code>). The <code>Party</code> entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect.</p>
+<p>The <code>Party</code> entity contains the following attributes:</p>
 <ul>
 <li><code>uid</code>: the unique identification of the party (REQUIRED)</li>
+<li><code>function</code>: defines the roles which may be fulfilled by a party in relation to a Rule (REQUIRED)</li>
 <li><code>scope</code>: defines how the role shall be interpreted under different contexts. (OPTIONAL)</li>
 </ul>
-<p>The ODRL Information Model does not provide additional metadata for the <code>Party</code> element. It is recommended to use already existing metadata standards, such as [[vcard-rdf]], that are appropriate to the <code>Party</code> type or purpose.</p>
+<p>The ODRL Information Model does not provide additional metadata for the <code>Party</code> element. It is recommended to use already existing metadata standards, such as [[vcard-rdf]] or [[foaf]], that are appropriate to the <code>Party</code> type or purpose.</p>
 <p>The <code>Role</code> entity is used to associate the <code>Party</code> entity with the relevant <code>Permission</code>, <code>Prohibition</code>, and <code>Duty</code> entities.</p>
 
 <section id="role">
