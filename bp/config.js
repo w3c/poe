@@ -1,8 +1,8 @@
 var respecConfig = {
     specStatus: "ED",
-    shortName: "odrl-bpg",
+    shortName: "odrl-bp",
      publishDate:          "2016-10-18",
-    edDraftURI: "https://w3c.github.io/poe/bpg/",
+    edDraftURI: "https://w3c.github.io/poe/bp/",
    editors: [	{   name:       "Benedict Whittam Smith",
          	company:    "Thomson Reuters"},
          	{   name:       "Paul Jessop",
