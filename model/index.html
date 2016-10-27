@@ -29,7 +29,7 @@
 <h2>Introduction</h2>   
 
 <p>Several business scenarios require to express what are the permitted and prohibited actions over digital content. These permitted/prohibited actions are usually expressed under the form of policies, i.e., entities that allow to indicate those uses and re-uses of the digital content which are comform with the existing regulations or to the constraints assigned by the owner. Policies may also be enriched with additional information, i.e., who are the entities in charge of the definition of such policy and those who are required to conform to it, what are the additional constrains to be associated with the permissions, prohibitions and duties expressed by the policy. The ability to express these concepts and relationships is important both for the producers of digital content, i.e., they may state in a clear way what are the permitted and the prohibited actions to prevent misuses, and for the consumers, i.e., they may know precisely how they are allowed to use and re-use the digital content to avoid breaking the law or the owner's constraints. This specification describes a common approach to expressing these concepts, and more.</p>
-<p>The ODRL Information Model defines the underlying semantic model for permissions and obligations statements describing digital content usage. The information model covers the core concepts, entities and relationships that provide the foundational model for content usage statements. These machine-readable policies may be linked directly with the digital content they are associated to with the aim to allow consimers to easily retrieve those information.</p>
+<p>The ODRL Information Model defines the underlying semantic model for permissions and obligations statements describing digital content usage. The information model covers the core concepts, entities and relationships that provide the foundational model for content usage statements. These machine-readable policies may be linked directly with the digital content they are associated to with the aim to allow consumers to easily retrieve those information.</p>
      
 <section id="aimsModel">
 <h3>Aims of the Model</h3>
@@ -56,9 +56,9 @@
 	<ul>
 		<li>Resource: an item of interest that may be identified by an URI.</li>
 		<li>Digital content: any type of content that exists in the form of digital data.</li>
-		<li>Permission: a set of actions that are allowed to be perfomed over a resource. </li>
-		<li>Prohibition: a set of actions that are forbidden to be perfomed over a resource.</li>
-		<li>Duty: a set of actions that are obliged to be perfomed over a resource.</li>
+		<li>Permission: a set of actions that are allowed to be performed over a resource. </li>
+		<li>Prohibition: a set of actions that are forbidden to be performed over a resource.</li>
+		<li>Duty: a set of actions that are obliged to be performed over a resource.</li>
 	</ul>
 	
 </section>
@@ -88,12 +88,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
     
 <section id="infoModel">
-<h2>Information Model</h2>
+<h2>ODRL Information Model</h2>
 
 
 <p>The basic context of an ODRL Policy is that only an explicitly permitted use may be executed. Any use not explicitly permitted is prohibited by default. An ODRL Policy only permits the action explicitly specified in a Permission and all other actions are implicitly prohibited. An action defined in a Prohibition should only refine (or directly relate to) the semantics of an action defined in one of the Permissions in the ODRL Policy.</p>
     
-<p>For example, an ODRL Policy that has the action &#8220;present&#8221; Permission and may also have the action &#8220;print&#8221; Prohibition (as these actions are related hierarchically in the ODRL Vocabulary).</p>
+<p>For example, an ODRL Policy that has the action &#8220;present&#8221; Permission and may also have the action &#8220;print&#8221; Prohibition (as these actions are related hierarchically in the ODRL Vocabulary [[!vocab-odrl]]).</p>
 <p>Note that ODRL Profiles can be developed and used to refine the basic context of an ODRL Policy. Hence, the application of an ODRL Profile must be understood by the consuming community and systems.</p>
 <p>The figure below shows the ODRL Information Model. The <code>Policy</code> is the central entity that holds an ODRL policy together. </p>
 
@@ -128,7 +128,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The <code>Policy</code> entity is the top-level entity and contains the following attributes:</p>
 <ul>
 <li><code>uid</code>: the unique identification of the <code>Policy</code> entity (REQUIRED)</li>
-<li><code>type</code>: indicates the semantics of the <code>Policy</code> entity (REQUIRED). These are further described in the  Vocabulary and ODRL Profiles.</li>
+<li><code>type</code>: indicates the semantics of the <code>Policy</code> entity (REQUIRED). These are further described in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</li>
 <li><code>conflict</code>: indicates the precedence between <code>Permission</code>s and <code>Prohibition</code>s (OPTIONAL)</li>
 <li><code>undefined</code>: indicates how to handle undefined <code>Action</code>s (OPTIONAL)</li>
 <li><code>inheritAllowed</code>: indicates if the <code>Policy</code> entity can be inherited (OPTIONAL)</li>
@@ -137,7 +137,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li><code>profile</code>: the identifier of the ODRL Profile that this <code>Policy</code> conforms to (OPTIONAL)</li>
 </ul>
 <p>The <code>uid</code> attribute MUST be a unique identifier.</p>
-<p>The range of values for the <code>Policy</code> entity&#8217;s <code>type</code> attribute will be described in the ODRL Vocabulary document or in community profiles. This value MAY also impose further constraints on the Information Model, such as are exemplified in the Scenarios for types <code>Offer</code> and <code>Agreement</code>. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities.</p>
+<p>The range of values for the <code>Policy</code> entity&#8217;s <code>type</code> attribute will be described in the ODRL Vocabulary [[!vocab-odrl]] or in ODRL Profiles. This value MAY also impose further constraints on the Information Model, such as are exemplified in the Scenarios for types <code>Offer</code> and <code>Agreement</code>. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities.</p>
     
 <p>The <code>conflict</code> attribute is used either to resolve conflicts arising from the merging of policies, specifically when there are conflicting <code>Action</code>s in the <code>Permission</code>s and <code>Prohibition</code>s, or to set priorities over the <code>Permission</code>s/<code>Prohibition</code>s in the same policy. If present, the <code>conflict</code> attribute MUST take one of the following values:</p>
 <ul>
@@ -164,7 +164,7 @@ the following values:</p>
 <p>In the <code>invalid</code> case with the unknown <code>Action</code>, the policy is invalid and the consuming parties or system of the policy MUST be made aware of this.</p>
 <p>If the <code>undefined</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>undefined</code> attribute is <code>invalid</code>.</p>
 <p>Other attributes MAY be added to the <code>Policy</code> entity to support additional functions and requirements. Typically, these will be from different community vocabularies. For example, to indicate the issued date or valid dates of the <code>Policy</code> entity, use of the <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> would be recommended.</p>
-
+    
 <section id="inhertiance">
 <h4>Inheritance</h4>
 
@@ -181,7 +181,7 @@ the following values:</p>
 <p>If the <code>inheritAllowed</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>inherit</code> attribute is <code>true</code>.</p>
 <p>Only if the <code>inheritAllowed</code> attribute has the value <code>true</code> can the <code>inheritFrom</code> and <code>inheritRelation</code> attributes be specified.</p>
 <p>The <code>inheritFrom</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the (parent) <code>Policy</code> from which the inheritance will be performed.</p>
-<p>The <code>inheritRelation</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the type of inheritance from the (parent) <code>Policy</code>. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the parties (that are not machine representable). Such terms MAY be defined in the ODRL Vocabulary or Community Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL policies they exchange. This will require the ODRL policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission actions or constraints (etc) that is documented in their business model arrangement.</p>
+<p>The <code>inheritRelation</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the type of inheritance from the (parent) <code>Policy</code>. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the parties (that are not machine representable). Such terms MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL policies they exchange. This will require the ODRL policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission actions or constraints (etc) that is documented in their business model arrangement.</p>
 <p>Both the <code>inheritFrom</code> and <code>inheritRelation</code> attribute MAY be used independently.</p>
 <p>The following restrictions apply when using inheritance:</p>
 <ul>
@@ -193,26 +193,6 @@ the following values:</p>
 </ul>
 </section>
 
-
-<section id="profile">
-<h4>Profile</h4>
-
-<p>
-The <code>profile</code> attribute in the <code>Policy</code> entity is used to indicate the identifier (URI) of the ODRL Profile for which the policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile &#8211; and all the rules from the Profile MUST apply to the policy expression. If multiple ODRL Profiles are required, then it is recommended that a new identifier be created to identify the combination of Profiles (and document the combined Profiles).</p>
-<p>
-Since the ODRL Vocabulary represents broad needs for policy expressibility, different communities will require less or more concepts from the Information Model and terms from the ODRL Vocabulary. Community profiles of the ODRL model are expected to be developed that adequately document these requirements in respect to the Information Model and Vocabulary. Some requirements for communities developing ODRL Profiles include: </p>
-<ul>
-<li>Document any additions to the Information Model</li>
-<li>Document any aspects of the Information Model that will have different default values or interpretations</li>
-<li>Document which aspects of the Information Model are not being used (deprecated)</li>
-<li>Document new Vocabulary terms</li>
-<li>Document deprecated Vocabulary terms</li>
-<li>Declare the ODRL Profile identifier (URI)</li>
-<li>Declare your communities namespace URI (see the various Encoding specifications)</li>
-<li>Share the Community ODRL Profile with the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a> for feedback and comments</li>
-</ul>
-<p>It is recommended that the ODRL Profile URI be the same as the Namespace URI, but this is not mandatory.</p>
-</section>
 </section>
 
 <section id="asset">
@@ -222,7 +202,7 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <ul>
 <li><code>uid</code>: the unique identification of the <code>Asset</code> (REQUIRED)</li>
 </ul>
-<p>The identification of the <code>Asset</code> entity is a key foundation of the ODRL Policy language. However, there are some use cases where the ODRL Policy expression MAY be embedded inside the target <code>Asset</code>. In these cases, it MAY be more appropriate to provide, or infer, a link to the <code>Asset</code> entity (as the complete <code>Asset</code> <code>uid</code> may not be known at the time) through the local context. Use of such inference and context MUST be documented in the relevant ODRL community Profile.</p>
+<p>The identification of the <code>Asset</code> entity is a key foundation of the ODRL Policy language. However, there are some use cases where the ODRL Policy expression MAY be embedded inside the target <code>Asset</code>. In these cases, it MAY be more appropriate to provide, or infer, a link to the <code>Asset</code> entity (as the complete <code>Asset</code> <code>uid</code> may not be known at the time) through the local context. Use of such inference and context MUST be documented in the relevant ODRL Profile.</p>
 <p>Since ODRL policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe <code>Asset</code> entities of particular media types. It is recommended to use already existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> that are appropriate to the <code>Asset</code> type or purpose.</p>
 <p>The <code>Relation</code> entity is used to associate the <code>Asset</code> entity with the relevant <code>Permission</code>, <code>Prohibition</code>, and <code>Duty</code> entities</p>
 
@@ -237,9 +217,9 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 </ul>
 <p>The default value for the <code>relation</code> attribute is <code>target</code> which indicates that the <code>Asset</code> is the primary object to which the <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> actions apply.</p>
      <div class="note">
-          <p>Target is formally defined in the ODRL Vocabulary </p>
+          <p>Target is formally defined in the ODRL Vocabulary [[!vocab-odrl]]</p>
     </div>
-<p>Other values for the <code>Relation</code> entity MAY be defined in the ODRL Vocabulary and community Profiles.</p>
+<p>Other values for the <code>Relation</code> entity MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 </section>
 
@@ -270,15 +250,15 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <li><code>assignee</code>: indicates that the <code>Party</code> has been assigned the associated entity, i.e. they are granted a <code>Permission</code> or required to perform a <code>Duty</code> or have to adhere to a <code>Prohibition</code>.</li>
 </ul>
     <div class="note">
-          <p>Assignee and Asignee are formally defined in the ODRL Vocabulary </p>
+          <p>Assignee and Asignee are formally defined in the ODRL Vocabulary [[!vocab-odrl]]</p>
     </div>
-<p>Other values for the <code>function</code> attribute MAY be defined in the ODRL Vocabulary and community Profiles.</p>
+<p>Other values for the <code>function</code> attribute MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 <p>The <code>scope</code> attribute MAY be used to indicate the context under which to interpret the <code>Party</code> entity. If present, the <code>scope</code> attribute MAY take one of the following values:</p>
 <ul>
 <li><code>individual</code>: indicates that the <code>Party</code> entity is a single individual. The linked <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> is applicable for that individual only.</li>
 <li><code>group</code>: indicates that the <code>Party</code> entity represents a group. The group consisting of many individual members. The linked <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> is applicable for each member of that group. For example, a (constrained) <code>Permission</code> to play a movie 5 times is valid for each <code>Party</code> member or the <code>Duty</code> to pay 3 EUR has to be fulfilled by each <code>Party</code> member.</li>
 </ul>
-<p>Other values for the <code>scope</code> attribute MAY be defined in the ODRL Vocabulary and community Profiles.</p>
+<p>Other values for the <code>scope</code> attribute MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 
 </section>
@@ -344,7 +324,7 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <ul>
 <li><code>name</code>: indicates the <code>Action</code> entity term (REQUIRED)</li>
 </ul>
-<p>As its value, the <code>name</code> attribute MAY take one of a set of <code>Action</code> <em>names</em> which are formally defined in profiles. The ODRL Vocabulary defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) profiles to capture additional and refined semantics.</p>
+<p>As its value, the <code>name</code> attribute MAY take one of a set of <code>Action</code> <em>names</em> which are formally defined in profiles. The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) profiles to capture additional and refined semantics.</p>
 </section>
 
 <section id="constraint">
@@ -362,7 +342,7 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 <li><code>status</code>: the current value of the left operand (OPTIONAL)</li>
 </ul>
 <p>The <code>name</code> identifies the left operand of the mathematical operation for the <code>Constraint</code> such as &#8220;Number of Usages&#8221; and &#8220;Expiration Date&#8221; etc. The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. The <code>rightOperand</code> identifies the value that is being compared. The <code>dataType</code> indicates the type of the <code>rightOperand</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand</code>, such as &#8220;EU dollars&#8221;.</p>
-<p>When processing policy expressions, these <code>Constraint</code> names MAY be directly linked to a procedure that can determine the outcome of the operations, such as the number of already performed usages and the current date. The <code>name</code> and <code>operator</code> are defined in the ODRL  Vocabulary or community profiles.</p>
+<p>When processing policy expressions, these <code>Constraint</code> names MAY be directly linked to a procedure that can determine the outcome of the operations, such as the number of already performed usages and the current date. The <code>name</code> and <code>operator</code> are defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles.</p>
 <p>The <code>status</code> provides the current value of the <code>Constraint</code> variable (i.e. current value of <code>name</code>). This is useful in cases where the current status of <code>Constraint</code>s needs to be captured and expressed in the ODRL Information Model.</p>
 
 </section>
@@ -370,7 +350,55 @@ Since the ODRL Vocabulary represents broad needs for policy expressibility, diff
 </section>
 
 
+<section id="profile">
+<h2>ODRL Profiles</h2>
 
+    <section id="profile-motivation">
+    <h3>Motivation</h3>
+        
+<p>The ODRL Information Model serves as a framework to express Policies and the ODRL Vocabulary [[!vocab-odrl]] provides a broad range of common actions for Permissions, Prohibition, Duties as well as Policy Types, Constraint names, Asset relations, and Party roles. For communities that implement ODRL, the entire ODRL Information Framework and the entire Vocabulary would be too onerous when they will typically have very specific needs, as well as needs not covered by the ODRL vocabulary. </p>
+<p>In these common cases, it is strongly recommended that a community create and formally document an ODRL Profile. An ODRL Profile will directly serve the communities needs by excluding features of the ODRL Information Model they do not require (for example, inheritance) and specifying only the terms of the ODRL Vocabulary they wish to support. In addition, the ODRL Profile may include additional vocabulary terms specific to their community.</p>
+    </section>
+    
+    <section id="profile-requirements">
+    <h3>Requirements</h3>
+      
+<p>
+    The <code>profile</code> attribute in the <code>Policy</code> entity is used to indicate the identifier (URI) of the ODRL Profile for which the policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile and all the constraints in the ODRL Profile MUST apply to the policy expression. If a consuming system does not understand the ODRL Profile URI, then it MAY continue processing the policy expression, but it SHOULD NOT assume it has interpreted the policy expression correctly. </p>
+    
+    <p>If multiple ODRL Profiles are required, then it is recommended that a new identifier SHOULD be created to identify the combination of Profiles (and document the combined Profiles).</p>
+<p>
+The requirements for communities developing ODRL Profiles MUST document the following: </p>
+<ul>
+<li>Any additions to the Information Model</li>
+<li>Any aspects of the Information Model that will have different default values or (editorial) interpretations</li>
+<li>Any aspects of the Information Model that is not being supported</li>
+<li>New Vocabulary terms</li>
+<li>Vocabulary terms not explicitly being suported</li>
+<li>Vocabulary terms with more specific interpretations</li>
+<li>The ODRL Profile identifier (URI)</li>
+    </ul>
+  
+<p>The community SHOULD also create a machine-readable schema for their ODRL Profile following the appropriate serialisations options outlined in the ODRL Vocabulary and Expression specification [[!vocab-odrl]]. In this case, the ODRL Profile URI MUST also be used as the serialisation namespace URI.</p>
+
+<p>It is also recommended to share the ODRL Profile with the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a> for feedback and comments.</p>
+    </section>
+    
+<section id="profile-example">
+    <h3>Profile Example</h3>
+<p>
+An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a href="https://www.iptc.org">International Press and Telecommuncations Council</a> for the communication of usage policies, primarily in association with the licensed distribution and use of news content by news gathering agencies, publishers, licensing organisations, business intermediaries and business consumers in the online news market-place. The RightsML ODRL Profile clearly documented:</p>
+    <ul>
+    <li>which features of the ODRL Information Model were supported,</li>
+    <li>the supported policy types,</li>
+    <li>the exact list of actions to be supported for Permissions,</li>  
+    <li>more refined definitions of some ODRL vocabulary terms, and</li>
+    <li>additional actions and constraints (specific to the News industry).</li>
+</ul>
+ </section>
+    
+</section>
+    
 
 <section class="informative" id="scenarios">
 
@@ -604,6 +632,9 @@ See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example1">scenario in sup
 <li>Clarified Duty only applicable to Permission   <a href="https://github.com/w3c/poe/issues/19">(Issue#19)</a></li>
 <li>Clarified conflict of Permissions/Prohibitions may arise also within the same policy <a href="https://github.com/w3c/poe/issues/20">(Issue#20)</a></li>
 <li>Clarified Party definition and its relation with role <a href="https://github.com/w3c/poe/issues/23">(Issue#23)</a></li>
+    
+<li>Additional description on the purpose and use of ODRL Profiles.<a href="https://github.com/w3c/poe/issues/49">(Issue#49)</a></li>
+    
 </ul>
 </section>
 
