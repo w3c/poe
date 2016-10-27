@@ -404,7 +404,7 @@ odrl:
 :conflict
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "conflict"@en ;
+	rdfs:label "Conflict"@en ;
 	skos:definition "Relates a conflict-resolution mechansim to a Policy."@en ;
 	rdfs:comment "If no mechanism is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
@@ -413,7 +413,7 @@ odrl:
 :undefined
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "undefined"@en ;
+	rdfs:label "Undefined"@en ;
 	skos:definition "Relates the mechanism used for handling undefined actions to a Policy."@en ;
 	rdfs:comment "If no mechanism is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
@@ -422,7 +422,7 @@ odrl:
 :permission
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "permission"@en ;
+	rdfs:label "Has Permission"@en ;
 	skos:definition "Relates the description of an individual Permission to a Policy"@en ;
 	rdfs:comment "A permission can be specified either in terms of an Action alone, or an instance of Permission relating an Action and one or more other attributes."@en ;
 	rdfs:domain :Policy ;
@@ -434,7 +434,7 @@ odrl:
 :prohibition
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "prohibition"@en ;
+	rdfs:label "Has Prohibition"@en ;
 	skos:definition "Relates the description of an individual Prohibition to a Policy."@en ;
 	rdfs:comment "A prohibition can be specified either in terms of an Action alone, or an instance of Prohibition relating an Action and one or more other attributes."@en ;
 	rdfs:domain :Policy ;
@@ -446,7 +446,7 @@ odrl:
 :inheritAllowed
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "inheritance allowed"@en ;
+	rdfs:label "Inheritance Allowed"@en ;
 	skos:definition "Indicates if the Policy entity can be inherited."@en ;
 	rdfs:comment "A boolean value."@en ;
 	rdfs:domain :Policy ;
@@ -455,7 +455,7 @@ odrl:
 :inheritFrom
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "inherits from"@en ;
+	rdfs:label "Inherits From"@en ;
 	skos:definition "Relates a (child) policy to another (parent) policy from which terms are inherited"@en ;
 	rdfs:comment "The child policy will inherit from the parent policy"@en ;
 	rdfs:domain :Policy ;
@@ -464,7 +464,7 @@ odrl:
 :profile
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "profile"@en ;
+	rdfs:label "Profile"@en ;
 	skos:definition "The identifier of an ODRL Profile that this Policy conforms to."@en ;
 	rdfs:comment "ODRL Profiles may be defined by community groups and express additional semantics."@en ;
 	rdfs:domain :Policy ;
@@ -525,7 +525,7 @@ odrl:
 :relation
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "relation"@en ;
+	rdfs:label "Relation"@en ;
 	skos:definition "Relation is an abstract property which creates an explicit link between an Action and an Asset."@en ;
 	rdfs:comment "Sub-properties of relation are used to define the nature of that link."@en ;
 	rdfs:domain :Rule ;
@@ -535,7 +535,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :relation ;
-	rdfs:label "output"@en ;
+	rdfs:label "Output"@en ;
 	skos:definition "The output property specifies the Asset which is created from the output of the Action."@en ;
 	rdfs:domain :Rule ;
 	rdfs:range :Asset . 
@@ -544,7 +544,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :relation ;
-	rdfs:label "target"@en ;
+	rdfs:label "Target"@en ;
 	skos:definition "The target property specifies the Asset upon which the Action is performed."@en ;
 	rdfs:comment "Or not performed by Prohibitions."@en ;
 	rdfs:domain :Rule ;
@@ -553,7 +553,7 @@ odrl:
 :function
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "function"@en ;
+	rdfs:label "Function"@en ;
 	skos:definition "Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule"@en ;
 	rdfs:domain :Rule ;
 	rdfs:range :Party .
@@ -561,7 +561,7 @@ odrl:
 :action
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "action"@en ;
+	rdfs:label "Has Action"@en ;
 	skos:definition "The operation relating to the asset for which the Rule is being subjected."@en ;
 	rdfs:comment "A permission must include exactly one action."@en ;
 	rdfs:domain :Rule ;
@@ -570,7 +570,7 @@ odrl:
 :constraint
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "constraint"@en ;
+	rdfs:label "Has Constraint"@en ;
 	skos:definition "The constraint relating to the Rule"@en ;
 	rdfs:comment "One or more constraints which affect the validity of the Rule; e.g. if the Action play is only permitted for a certain period of time."@en ;
 	rdfs:domain :Rule ;
@@ -579,7 +579,7 @@ odrl:
 :duty
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "duty"@en ;
+	rdfs:label "Has Duty"@en ;
 	skos:definition "The duty relating to the Permission"@en ;
 	rdfs:comment "A Duty indicates requirements which must be fulfilled in order to receive the permission."@en ;
 	rdfs:domain :Permission ;
@@ -593,7 +593,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:domain :Constraint ;
 	rdfs:range rdfs:Resource ;
-	rdfs:label "unit"@en ;
+	rdfs:label "Unit"@en ;
 	skos:definition "The unit of measurement used for the constraint value."@en .
 
 :dataType
@@ -601,13 +601,13 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:domain :Constraint ;
 	rdfs:range rdfs:Resource ;
-	rdfs:label "unit"@en ;
+	rdfs:label "Datatype"@en ;
 	skos:definition "The datatype used for the constraint value."@en .
 
 :operator
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "operator"@en ;
+	rdfs:label "Operator"@en ;
 	skos:definition "The Boolean operator applied to a constraint and its operand."@en ;
 	rdfs:domain :Constraint ;
 	rdfs:range :Operator .
@@ -615,7 +615,7 @@ odrl:
 :rightOperand
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "right-operand"@en ;
+	rdfs:label "Right Operand"@en ;
 	skos:definition "The operand applied to an instance of a constraint."@en ;
 	rdfs:comment "Do not use the right-operand property directly within a Constraint. Instead, a Constraint instance must contain exactly one triple which makes use of one of the sub-properties of right-operand."@en ;
 	rdfs:domain :Constraint .
@@ -623,7 +623,7 @@ odrl:
 :status
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "status"@en ;
+	rdfs:label "Status"@en ;
 	skos:definition "The current value of the constraint."@en ;
 	rdfs:comment "The range of the status property is identical to that of the operand property selected used in the constraint."@en ;
 	rdfs:domain :Constraint .
@@ -722,7 +722,7 @@ odrl:
 :grantUse
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Grant use"@en ;
+	rdfs:label "Grant Use"@en ;
 	skos:broaderTransitive odrl:use ;
 	skos:definition "The Assigner permits/prohibits the Assignee to grant the use the Asset to third parties."@en ;
 	rdfs:comment "This action enables the Assignee to create policies for the use of the Asset for third parties. nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended."@en .
@@ -737,7 +737,7 @@ odrl:
 :acceptTracking
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Accept tracking"@en ;
+	rdfs:label "Accept Tracking"@en ;
 	skos:definition "The Assigner requires that the Assignees accepts that the use of the Asset may be tracked."@en ;
 	rdfs:comment "The collected information may be tracked by the Assigner, or may link to a Party with the role function “trackingParty”."@en .
 
@@ -774,7 +774,7 @@ odrl:
 :appendTo
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Append to"@en ;
+	rdfs:label "Append To"@en ;
 	skos:broaderTransitive odrl:writeTo ;	
 	ont:deprecatedBy :modify ;
 	skos:definition "The act of appending data to the Asset without modifying the Asset in any other way"@en .
@@ -797,7 +797,7 @@ odrl:
 :concurrentUse
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Concurrent use"@en ;
+	rdfs:label "Concurrent Use"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to create multiple copies of the Asset that are being concurrently used."@en ;
 	skos:broaderTransitive :use .
 
@@ -849,7 +849,7 @@ odrl:
 :ensureExclusivity
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Ensure exclusivity"@en ;
+	rdfs:label "Ensure Exclusivity"@en ;
 	skos:definition "The Assignee requires that the Assigners ensure that the permission on the Asset is exclusive to the Assignee."@en .
 
 :execute
@@ -951,14 +951,14 @@ odrl:
 :nextPolicy
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Next policy"@en ;
+	rdfs:label "Next Policy"@en ;
 	skos:definition "The Assigner requires that the Assignees grants the specified Policy to a third party for their use of the Asset."@en ;
 	rdfs:comment "Useful for downstream policies."@en .
 
 :obtainConsent
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Obtain consent"@en ;
+	rdfs:label "Obtain Consent"@en ;
 	skos:definition "The Assigner requires that the Assignees obtains explicit consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset."@en ;
 	rdfs:comment "Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role function “consentingParty”."@en .
 
@@ -1017,14 +1017,14 @@ odrl:
 :reviewPolicy
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Review policy"@en ;
+	rdfs:label "Review Policy"@en ;
 	skos:definition "The Assigner requires that the Assignee(s) has(ve) a person review the Policy applicable to the Asset."@en ;
 	rdfs:comment "Used when human intervention is required to review the Policy. May link to an Asset which represents the full Policy information."@en .
 
 :secondaryUse
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Secondary use"@en ;
+	rdfs:label "Secondary Use"@en ;
 	skos:definition "The act of using the asset for a purpose other than the purpose it was intended for."@en ;
 	ont:deprecatedBy rdf:nil .
 
@@ -1099,7 +1099,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "absolute position"@en ;
+	rdfs:label "Absolute Position"@en ;
 	skos:definition "A point defined with absolute coordinates."@en ;
 	rdfs:comment "For example, JPEG image must be positioned at 100×100 pixel location. This may be used to express [[plus]] semantics."@en .
 
@@ -1107,7 +1107,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "absolute size"@en ;
+	rdfs:label "Absolute Size"@en ;
 	skos:definition "The absolute dimension that the Asset may be resized."@en ;
 	rdfs:comment "For example, JPEG image must be reproduced onto an area no larger than A0. This may be used to express [[plus]] semantics."@en ;
 	rdfs:range xsd:decimal .
@@ -1116,7 +1116,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "count"@en ;
+	rdfs:label "Count"@en ;
 	skos:definition "The numeric count indicating the number of times the corresponding entity may be exercised"@en ;
 	rdfs:comment "Should be a positive integer"@en ;
 	rdfs:range xsd:nonNegativeInteger .
@@ -1125,7 +1125,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "date/time"@en ;
+	rdfs:label "Datetime"@en ;
 	skos:definition "The date (and optional time and timezone) representing a point in time or period."@en ;
 	rdfs:comment "Value must conform to [iso8601] as represented in [xmlschema11-2]. The use of Timezone information is strongly recommended."@en ;
 	rdfs:range [
@@ -1137,7 +1137,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "delivery channel"@en ;
+	rdfs:label "Delivery Channel"@en ;
 	skos:definition "The delivery channel used for storing or communicating the asset."@en ;
 	rdfs:comment "For example, the asset may be distributed only on mobile networks."@en .
 
@@ -1146,7 +1146,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
 	owl:equivalentProperty :system ;
-	rdfs:label "device"@en ;
+	rdfs:label "Device"@en ;
 	skos:definition "An identifiable computing system."@en ;
 	ont:deprecatedBy :systemDevice .
 
@@ -1155,7 +1155,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
 	owl:equivalentProperty :system, :device ;
-	rdfs:label "system device"@en ;
+	rdfs:label "System Device"@en ;
 	skos:definition "An identifiable computing system."@en ;
 	rdfs:comment "For example, identifiable via the CPU or unique hardware address."@en .
 
@@ -1163,7 +1163,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "elapsed time"@en ;
+	rdfs:label "Elapsed Time"@en ;
 	skos:definition "A period of time in which the policy action can be exercised."@en ;
 	rdfs:comment "The start of the period is when the action is first exercised. Value must conform to [iso8601] as represented in [xmlschema11-2]."@en ;
 	rdfs:range xsd:duration .
@@ -1172,14 +1172,14 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "event"@en ;
+	rdfs:label "Event"@en ;
 	skos:definition "Specification of a defined event applicable to the asset usage."@en ;
 	rdfs:comment "For example, asset may be used at the “FIFA World Cup” only. To express events related to undertaking Duties, specific event values may be defined (eg see policyUsage)."@en .
 
 :policyUsage
 	a owl:NamedIndividual;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Policy usage time"@en ;
+	rdfs:label "Policy Usage Time"@en ;
 	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
 	rdfs:comment "This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised."@en .
 
@@ -1187,7 +1187,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "file format"@en ;
+	rdfs:label "File Format"@en ;
 	skos:definition "The file format applicable to the Asset."@en ;
 	rdfs:comment "For example only JPEG image may be distributed. This may be used to express [[plus]] semantics."@en .
 
@@ -1195,7 +1195,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "industry"@en ;
+	rdfs:label "Industry"@en ;
 	skos:definition "The defined industry sector applicable to the asset usage."@en ;
 	rdfs:comment "For example, publishing, financial."@en .
 
@@ -1203,7 +1203,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "language"@en ;
+	rdfs:label "Language"@en ;
 	skos:definition "The natural language applicable to the asset usage"@en ;
 	rdfs:comment "For example, JPEG image may only be reproduced with Spanish text. May be used to express [[plus] semantics. Must use [bcp47] codes for language values."@en .
 
@@ -1211,7 +1211,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "media"@en ;
+	rdfs:label "Media"@en ;
 	skos:definition "The media type in which the asset may be used."@en ;
 	rdfs:comment "For example, electronic, print, advertising, marketing. This may be used to express [[plus]] semantics."@en .
 
@@ -1219,7 +1219,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "metered time"@en ;
+	rdfs:label "Metered Time"@en ;
 	skos:definition "The maximum period of metered usage time."@en ;
 	rdfs:comment "For example “P30H” indicates a 30 hour period. Value must conform to [iso8601] as represented in [xmlschema11-2]."@en ;
 	rdfs:range xsd:duration .
@@ -1228,7 +1228,7 @@ odrl:
 	a rdf:Property, owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "payment amount"@en ;
+	rdfs:label "Payment Amount"@en ;
 	skos:definition "The value of the financial payment"@en ;
 	rdfs:comment "Maybe used for compensation duties. The dataType attribute may be used to indicate the type of the value (eg decimal) and the unit attribute to indicate the currency."@en ;
 	rdfs:range xsd:decimal .
@@ -1237,7 +1237,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "percentage"@en ;
+	rdfs:label "Percentage"@en ;
 	skos:definition "The amount (as a percentage) of the action applicable to the asset."@en ;
 	rdfs:comment "A numeric value from 0 to 100. For example, extract a maximum of 50% of the asset"@en ;
 	rdfs:range xsd:decimal .
@@ -1246,7 +1246,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "product"@en ;
+	rdfs:label "Product"@en ;
 	skos:definition "The specified Product or Service name."@en ;
 	rdfs:comment "For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics;"@en ;
 	rdfs:range xsd:string .
@@ -1255,7 +1255,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "purpose"@en ;
+	rdfs:label "Purpose"@en ;
 	skos:definition "Specification of a defined purpose applicable to the asset usage."@en ;
 	rdfs:comment "For example, educational use. Purpose values from [[p3p]] may also be used."@en .
 
@@ -1263,7 +1263,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "recipient"@en ;
+	rdfs:label "Recipient"@en ;
 	skos:definition "The party that receives the result of the Action on the Asset."@en ;
 	rdfs:comment "The right operand must identify one or more specific parties or categories of party"@en .
 
@@ -1271,7 +1271,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "relative position"@en ;
+	rdfs:label "Relative Position"@en ;
 	skos:definition "A point defined with reference to another position."@en ;
 	rdfs:comment "For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics;"@en .
 
@@ -1279,7 +1279,7 @@ odrl:
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "relative size"@en ;
+	rdfs:label "Relative Size"@en ;
 	skos:definition "The relative dimension that the Asset may be resized."@en ;
 	rdfs:comment "For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics;"@en .
 
@@ -1287,7 +1287,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "resolution"@en ;
+	rdfs:label "Resolution"@en ;
 	skos:definition "The resolution at which the asset may be used."@en ;
 	rdfs:comment "For example, may be printed at 1200dpi."@en .
 
@@ -1295,7 +1295,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "spatial"@en ;
+	rdfs:label "Spatial"@en ;
 	skos:definition "A code representing a geospatial area."@en ;
 	rdfs:comment "The code value and code source must be represented. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value."@en .
 
@@ -1305,14 +1305,14 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	ont:deprecatedBy :systemDevice ;
 	owl:equivalentProperty :device ;
-	rdfs:label "system"@en ;
+	rdfs:label "System"@en ;
 	skos:definition "An identifiable computing system."@en .
 
 :timeInterval
 	a rdf:Property , owl:DatatypeProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "time interval"@en ;
+	rdfs:label "Time Interval"@en ;
 	skos:definition "Recurring period of time in which the usage may be exercised."@en ;
 	rdfs:comment "For example, “P7D” indicates a 7 day period. Value must conform to [iso8601] as represented in [xmlschema11-2]."@en ;
 	rdfs:range xsd:duration .
@@ -1321,7 +1321,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "version"@en ;
+	rdfs:label "Version"@en ;
 	skos:definition "The scope of versions for the asset."@en ;
 	rdfs:comment "For example, Single Paperback, or Multiple Issues. This may be used to express [[plus]] semantics."@en .
 
@@ -1329,7 +1329,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "virtual location"@en ;
+	rdfs:label "Virtual Location"@en ;
 	skos:definition "Specification of a digital locale."@en ;
 	rdfs:comment "For example, an Internet domain or IP address range."@en .
 
@@ -1339,7 +1339,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
-	rdfs:label "assignee"@en ;
+	rdfs:label "Assignee"@en ;
 	skos:definition "The Party is the recipient of the policy statement."@en ;
 	rdfs:comment "Must be supported."@en ;
 	rdfs:range :Party .
@@ -1348,7 +1348,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
-	rdfs:label "assigner"@en ;
+	rdfs:label "Assigner"@en ;
 	skos:definition "The Party is the issuer of the policy statement."@en ;
 	rdfs:comment "Must be supported."@en ;
 	rdfs:range :Party .
@@ -1357,7 +1357,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
-	rdfs:label "attributed party"@en ;
+	rdfs:label "Attributed Party"@en ;
 	skos:definition "The Party to be attributed."@en ;
 	rdfs:comment "Maybe specified as part of the attribute action."@en .
 
@@ -1365,7 +1365,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
-	rdfs:label "consenting party"@en ;
+	rdfs:label "Consenting Party"@en ;
 	skos:definition "The Party to obtain consent from."@en ;
 	rdfs:comment "Maybe specified as part of the obtainConsent action."@en .
 
@@ -1373,7 +1373,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
-	rdfs:label "informed party"@en ;
+	rdfs:label "Informed Party"@en ;
 	skos:definition "The Party to be informed of all uses."@en ;
 	rdfs:comment "Maybe specified as part of the inform action."@en .
 
@@ -1382,14 +1382,14 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
 	ont:deprecatedBy :compensatedParty ;
-	rdfs:label "payee party"@en ;
+	rdfs:label "Payee Party"@en ;
 	skos:definition "The Party is the recipient of the payment."@en .
 
 :compensatedParty
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
-	rdfs:label "payee party"@en ;
+	rdfs:label "Compensated Party"@en ;
 	skos:definition "The Party is the recipient of the compensation."@en ;
 	rdfs:comment "Maybe specified as part of the compensate duty action."@en .
 
@@ -1397,7 +1397,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
-	rdfs:label "tracking party"@en ;
+	rdfs:label "Tracking Party"@en ;
 	skos:definition "The Party is the usage tracker."@en ;
 	rdfs:comment "May be specified as part of the acceptTracking action."@en .
 
@@ -1471,7 +1471,7 @@ odrl:
 	a rdfs:Class, owl:Class ;
 	rdfs:subClassOf :Party ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "All second-level connections"@en ;
+	rdfs:label "All Second-level Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the second-level connections to the Party."@en ;
 	rdfs:comment "For example, may be used to indicate all “friends of friends” of the Party. Note that “group” scope is also assumed."@en .
 
@@ -1479,7 +1479,7 @@ odrl:
 	a rdfs:Class, owl:Class ;
 	rdfs:subClassOf :Party ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "All connections"@en ;
+	rdfs:label "All Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the first-level connections of the Party."@en ;
 	rdfs:comment "For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed."@en .
 
@@ -1487,7 +1487,7 @@ odrl:
 	a rdfs:Class, owl:Class ;
 	rdfs:subClassOf :Party ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "All groups"@en ;
+	rdfs:label "All Groups"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the group connections of the Party."@en ;
 	rdfs:comment "For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed."@en .
 

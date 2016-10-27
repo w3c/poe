@@ -271,7 +271,8 @@ function writeTerm($term)
 	}
 	$tname = htmlspecialchars($term->localName());
     echo '<section id="term-' . $tname . '">';
-	echo '<h3>' . $tname . '</h3>';
+    
+	echo '<h3>' . htmlspecialchars($term->get('rdfs:label')) . '</h3>';
 	$description = '<p>' . htmlspecialchars($term->get('rdfs:comment')) . '</p>';
 	$path = dirname(__FILE__) . '/parts/' . strtolower($term->localName()) . '.html';
 	if(file_exists($path))
