@@ -113,7 +113,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>The <code><em>Rule</em></code> class also makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by default.</p>
     
-<p>The cardinalities shown in the ODRL Information Model allow for the greatest flexibility in expressing associations between the key entities. However, <code>Policy Types</code> and <code>Profiles</code> may express narrower and/or specific cardinalities on these entities.</p>
+<p>The cardinalities shown in the ODRL Information Model allow for the greatest flexibility in expressing associations between the key entities. However, <code>Policy Types</code> and <code>ODRL Profiles</code> may express narrower and/or specific cardinalities on these entities.</p>
 
 <p>A <code>Permission</code> MAY allow a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g. &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> like &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g. &#8220;<code>assigner</code> VirtualMusicShop grants the <code>Permission</code> to <code>assignee</code> Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
 <p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MUST be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 EUR in order to get the <code>Permission</code> to play abc.mp3&#8243;.</p>
@@ -129,11 +129,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <ul>
 <li><code>uid</code>: the unique identification of the <code>Policy</code> entity (REQUIRED)</li>
 <li><code>type</code>: indicates the semantics of the <code>Policy</code> entity (REQUIRED). These are further described in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</li>
-<li><code>conflict</code>: indicates the precedence between <code>Permission</code>s and <code>Prohibition</code>s (OPTIONAL)</li>
+<li><code>conflict</code>: indicates how to handle <code>Policy</code> conflicts (OPTIONAL)</li>
 <li><code>undefined</code>: indicates how to handle undefined <code>Action</code>s (OPTIONAL)</li>
 <li><code>inheritAllowed</code>: indicates if the <code>Policy</code> entity can be inherited (OPTIONAL)</li>
-<li><code>inheritFrom</code>: the identifier from which this <code>Policy</code> inherits from it&#8217;s parent <code>Policy</code> (OPTIONAL)</li>
-<li><code>inheritRelation</code>: the identifier for the relationship type of this inheritance structure (OPTIONAL)</li>
 <li><code>profile</code>: the identifier of the ODRL Profile that this <code>Policy</code> conforms to (OPTIONAL)</li>
 </ul>
 <p>The <code>uid</code> attribute MUST be a unique identifier.</p>
@@ -141,9 +139,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>The <code>conflict</code> attribute is used either to resolve conflicts arising from the merging of policies, specifically when there are conflicting <code>Action</code>s in the <code>Permission</code>s and <code>Prohibition</code>s, or to set priorities over the <code>Permission</code>s/<code>Prohibition</code>s in the same policy. If present, the <code>conflict</code> attribute MUST take one of the following values:</p>
 <ul>
-<li><code>perm</code>: the <code>Permission</code>s will always takes precedence</li>
-<li><code>prohibit</code>: the <code>Prohibition</code>s will always takes precedence</li>
-<li><code>invalid</code>: the policy is not valid</li>
+<li><code>perm</code>: the <code>Permission</code>s will always takes preference</li>
+<li><code>prohibit</code>: the <code>Prohibition</code>s will always takes preference</li>
+<li><code>invalid</code>: the policy is invalid</li>
 </ul>
 <p>If the <code>conflict</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>conflict</code> attribute is <code>invalid</code>.</p>
     
@@ -155,8 +153,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The <code>undefined</code> attribute is used to indicate how to support <code>Action</code>s that are not part of any profile in the policy expression system. If present, the <code>undefined</code> attribute MUST take one of<br />
 the following values:</p>
 <ul>
-<li><code>support</code>: the <code>Action</code> is to be supported as part of the policy &#8211; and the policy remains valid</li>
-<li><code>ignore</code>: the <code>Action</code> is to be ignored and not part of the policy &#8211; and the policy remains valid</li>
+<li><code>support</code>: the undefined <code>Action</code> is to be supported as part of the policy &#8211; and the policy remains valid</li>
+<li><code>ignore</code>: the undefined <code>Action</code> is to be ignored and is not part of the policy &#8211; and the policy remains valid</li>
 <li><code>invalid</code>: the <code>Action</code> is unknown &#8211; and the policy is invalid</li>
 </ul>
 <p>In the <code>support</code> case, even though the <code>Action</code> is unknown, the policy still is valid and the consuming parties or system of the policy MUST be made aware of the unknown <code>Action</code>. This MAY be via a user interface that displays the unknown <code>Action</code> for human readability.</p>
@@ -179,10 +177,17 @@ the following values:</p>
 <li><code>false</code>: the <code>Policy</code> expression can not be used for inheritance</li>
 </ul>
 <p>If the <code>inheritAllowed</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>inherit</code> attribute is <code>true</code>.</p>
-<p>Only if the <code>inheritAllowed</code> attribute has the value <code>true</code> can the <code>inheritFrom</code> and <code>inheritRelation</code> attributes be specified.</p>
-<p>The <code>inheritFrom</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the (parent) <code>Policy</code> from which the inheritance will be performed.</p>
+<p>Only if the <code>inheritAllowed</code> attribute has the value <code>true</code> MAY the following be used:</p>
+
+    <ul>
+    <li><code>inheritFrom</code>: the identifier from which this <code>Policy</code> inherits from it&#8217;s parent <code>Policy</code> (OPTIONAL)</li>
+<li><code>inheritRelation</code>: the identifier for the relationship type of this inheritance structure (OPTIONAL)</li>
+    </ul>
+    
+    
+<p>The <code>inheritFrom</code> association in the (child) <code>Policy</code> will uniquely identify (via a UID) the (parent) <code>Policy</code> from which the inheritance will be performed.</p>
 <p>The <code>inheritRelation</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the type of inheritance from the (parent) <code>Policy</code>. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the parties (that are not machine representable). Such terms MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL policies they exchange. This will require the ODRL policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission actions or constraints (etc) that is documented in their business model arrangement.</p>
-<p>Both the <code>inheritFrom</code> and <code>inheritRelation</code> attribute MAY be used independently.</p>
+<p>Both the <code>inheritFrom</code> association and <code>inheritRelation</code> attribute MAY be used independently.</p>
 <p>The following restrictions apply when using inheritance:</p>
 <ul>
 <li>Single inheritance is only supported. (One Parent <code>Policy</code> to one or more Child <code>Policy</code> entities. No Child <code>Policy</code> can inherit from two or more Parent <code>Policy</code> entities.)</li>
@@ -634,7 +639,9 @@ See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example1">scenario in sup
 <li>Clarified Party definition and its relation with role <a href="https://github.com/w3c/poe/issues/23">(Issue#23)</a></li>
     
 <li>Additional description on the purpose and use of ODRL Profiles.<a href="https://github.com/w3c/poe/issues/49">(Issue#49)</a></li>
-    
+ 
+    <li>Modified UML model to have Inheritance as separate association class.<a href="https://github.com/w3c/poe/issues/51">(Issue#51)</a></li>
+
 </ul>
 </section>
 

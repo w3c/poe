@@ -71,13 +71,27 @@ odrl:
     skos:prefLabel "Policy Concepts"@en ;
     skos:member :Policy ;
     skos:member :Rule ;
-    skos:member :profile ;
+    skos:member :profile .
+
+
+<http://www.w3.org/ns/odrl/2/#inheritanceConcepts>
+    a skos:Collection ;
+    skos:prefLabel "Policy Inheritance"@en ;
     skos:member :inheritAllowed ;
     skos:member :inheritFrom ;
+    skos:member :inheritRelation .
+
+<http://www.w3.org/ns/odrl/2/#conflictConcepts>
+    a skos:Collection ;
+    skos:prefLabel "Handle Policy Conflicts"@en ;
     skos:member :ConflictTerm ;
     skos:member :conflict ;
     skos:member :perm ;
-    skos:member :prohibit ;
+    skos:member :invalid .
+
+<http://www.w3.org/ns/odrl/2/#undefinedConcepts>
+    a skos:Collection ;
+    skos:prefLabel "Handle Undefined Policy Terms"@en ;
     skos:member :UndefinedTerm ;
     skos:member :undefined ;
     skos:member :ignore ;
@@ -116,7 +130,7 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#partyRoles>
     a skos:Collection ;
-    skos:prefLabel "Party Roles"@en ;
+    skos:prefLabel "Party Functions"@en ;
     skos:member :assignee ;
     skos:member :assigner ;
     skos:member :attributedParty ;
@@ -224,7 +238,7 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#constraintActions>
     a skos:Collection ;
-    skos:prefLabel "Actions for Constraints"@en ;
+    skos:prefLabel "Right Operands for Constraints"@en ;
     skos:member :absolutePosition ;
     skos:member :absoluteSize ;
     skos:member :count ;
@@ -270,7 +284,7 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#actionValues>
     a skos:Collection ;
-    skos:prefLabel "Values for Actions"@en ;
+    skos:prefLabel "Values for Constraints"@en ;
     skos:member :policyUsage .
 
 
@@ -357,54 +371,54 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
     skos:definition "Is used to resolve conflicts arising from the merging of policies, specifically when there are conflicting Actions in the Permissions and Prohibitions"@en ;
     rdfs:comment "Instances of ConflictTerm describe policies for resolving conflicts."@en ;
-	rdfs:label "Conflict term"@en .
+	rdfs:label "Conflict Preference"@en .
 
 :perm
 	a :ConflictTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Permissions"@en ;
-    skos:definition "Permissions take precedence over prohibitions."@en ;
+	rdfs:label "Prefer Permissions"@en ;
+    skos:definition "Permissions take preference over prohibitions."@en ;
     rdfs:comment "Used to determine policy conflict outcomes."@en .
 
 :prohibit
 	a :ConflictTerm, owl:NamedIndividual;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Prohibit"@en ;
-    skos:definition "Prohibitions take precedence over permissions"@en ;
+	rdfs:label "Prefer Prohibitions"@en ;
+    skos:definition "Prohibitions take preference over permissions"@en ;
 	rdfs:comment "Used to determine policy conflict outcomes."@en .
 
 :UndefinedTerm
 	a rdfs:Class, owl:Class ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "Is used to indicate how to support Actions that are not part of any profile in the policy expression system"@en ;
+	skos:definition "Is used to indicate how to support Actions that are not part of any vocabulary or profile in the policy expression system"@en ;
 	rdfs:comment "Instances of UndefinedTerm describe policies for processing unsupported actions."@en ;
-	rdfs:label "Undefined values"@en .
+	rdfs:label "Undefined Term"@en .
 
 :ignore
 	a :UndefinedTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Ignore"@en ;
-	skos:definition "The Action is to be ignored and not part of the policy – and the policy remains valid."@en ;
+	rdfs:label "Ignore Undefined Actions"@en ;
+	skos:definition "The Action is to be ignored and is not part of the policy – and the policy remains valid."@en ;
 	rdfs:comment "Used to support actions not known to the policy system."@en .
 
 :invalid
 	a :ConflictTerm, :UndefinedTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Invalid"@en ;
+	rdfs:label "Invalidate Policy"@en ;
 	skos:definition "the Action is unknown – and the policy is invalid."@en ;
 	rdfs:comment "Used to support actions not known to the policy system."@en .
 
 :support
 	a :UndefinedTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Support"@en ;
+	rdfs:label "Support Undefined Actions"@en ;
 	skos:definition "The Action is to be supported as part of the policy – and the policy remains valid"@en ;
 	rdfs:comment "Used to support actions not known to the policy system."@en .
 
 :conflict
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Conflict"@en ;
+	rdfs:label "Handle Policy Conflicts"@en ;
 	skos:definition "Relates a conflict-resolution mechansim to a Policy."@en ;
 	rdfs:comment "If no mechanism is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
@@ -413,7 +427,7 @@ odrl:
 :undefined
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Undefined"@en ;
+	rdfs:label "Handle Undefined Term"@en ;
 	skos:definition "Relates the mechanism used for handling undefined actions to a Policy."@en ;
 	rdfs:comment "If no mechanism is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
@@ -460,6 +474,16 @@ odrl:
 	rdfs:comment "The child policy will inherit from the parent policy"@en ;
 	rdfs:domain :Policy ;
 	rdfs:range :Policy .
+
+:inheritRelation
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Inherit Relation"@en ;
+	skos:definition "Indentifies the type of inheritance"@en ;
+	rdfs:comment "For example, this may indicate the business scenario, such as subscription, or prior arrangements between the parties (that are not machine representable)"@en ;
+	rdfs:domain :Policy ;
+	rdfs:range rdfs:Resource .
+
 
 :profile
 	a rdf:Property ;
