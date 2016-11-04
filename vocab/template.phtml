@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 	<head>
         <title>ODRL Vocabulary &amp; Expression</title>
@@ -71,14 +71,6 @@ writeGroup('partyRoles');
 writeGroup('partyScopes');
 writeGroup('assetConcepts');
 writeGroup('assetRelations');
-?>
-    
-    <div class="note">
-        <p>All the Deprecated Terms shown below may be rendered in a single table in future versions</p>
-    </div>
-<?php
-    writeGroup('deprecatedTerms');
-echo $vocab->htmlSummaryOfTerms();
 ?>
     
     
@@ -167,6 +159,15 @@ echo $vocab->htmlSummaryOfTerms();
         ?>
  </section>
     
+        <section class="appendix" id="deprecate">
+<h2>Deprecated Terms</h2>
+ 
+            <?php
+    writeGroupAppendix('deprecatedTerms');
+?>
+           
+</section>
+        
 <section class="appendix" id="community">
 <h2>Changes from the Community Group Reports</h2>
  <?php
@@ -321,3 +322,56 @@ function writeTerm($term)
 
 	echo '</section>';
 }
+
+
+function writeGroupAppendix ($groupUri, $name = null)
+{
+	global $graph, $uri;
+	
+	if($name === null)
+	{
+		$name = $groupUri;
+		$groupUri = $uri . '#' . $name;
+	}
+	$members = $graph->allResources($groupUri, 'skos:member');
+	$title = $graph->getLiteral($groupUri, 'skos:prefLabel');
+	if($title !== null)
+	{
+		$title = trim($title);
+	}
+	else
+	{
+		$title = $name;
+	}
+    echo '<table class="def propdef" >';
+    echo '<tbody>';
+    echo '<tr>';
+    echo '<th>Label</th>';
+    echo '<th>Identifier</th>';
+    echo '<th>Deprecated By</th>';
+    echo '</tr>';
+	
+    foreach($members as $term)
+	{
+		writeTermAppendix($term);
+	}
+	echo '</tbody>';
+    echo '</table>';
+}
+
+function writeTermAppendix($term)
+{
+	if(!($term instanceof Phpspecgen_Term))
+	{
+		return;
+	}
+	$tname = htmlspecialchars($term->localName());
+    echo '<tr id="term-' . $tname . '">';
+	echo '<td>' . htmlspecialchars($term->get('rdfs:label')) . '</td>';
+	echo '<td>' .$term->htmlLink(). '</td>';
+    echo '<td> <a href="' . htmlspecialchars($term->get('ont:deprecatedBy')) . '"';
+    echo '>' . htmlspecialchars($term->get('ont:deprecatedBy')) . '</a></td>';
+    
+	echo '</tr>';
+}
+
