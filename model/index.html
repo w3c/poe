@@ -238,8 +238,35 @@ the following values:</p>
 <li>The Child <code>Policy</code> MUST override the Parent <code>Policy</code>. i.e.: If the same <code>Action</code> appears in the Parent, then it is replaced by the Child version, otherwise the Parent <code>Action</code>s are added to the Child&#8217;s <code>Action</code>s.</li>
 <li>No state information is transferred from the policy in the Parent <code>Policy</code> to the Child <code>Policy</code></li>
 </ul>
-</section>
+	
+<p><b>Example Use Case</b>: The instance of the child Policy <code>http://example.com/policy:2222</code> inherits from the parent Policy <code>http://example.com/policy:1111</code>, allowing to reproduce the parent's target Asset <code>http://example.com/asset:1111</code>, and allowing the Party <code>http://example.com/assignee:88</code> to display the child's target Asset <code>http://example.com/asset:2222</code>. Moreover, due to the inheritance relation, the child Policy inherits from the parent that the Party <code>http://example.com/assignee:88</code> can also reproduce <code>http://example.com/asset:1111</code>.</p>	
 
+<div class="example" data-number="3">
+	EXAMPLE 3
+         <pre class="highlight hljs xquery">{
+    <span class="hljs-string">"policytype"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+    <span class="hljs-string">"policyid"</span>: <span class="hljs-string">"http://example.com/policy:1111"</span>,
+    <span class="hljs-string">"inheritallowed"</span>: <span class="hljs-string">true</span>,
+    <span class="hljs-string">"permissions"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1111"</span>,
+        <span class="hljs-string">"action": <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>,
+	<span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1818"</span>
+    }]
+}</pre>
+
+<pre class="highlight hljs xquery">{
+    <span class="hljs-string">"policytype"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+    <span class="hljs-string">"policyid"</span>: <span class="hljs-string">"http://example.com/policy:2222"</span>,
+    <span class="hljs-string">"inheritfrom"</span>: <span class="hljs-string">"http://example.com/policy:1111"</span>,
+    <span class="hljs-string">"permissions"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:2222"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/read"</span>,
+        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1818"</span>,
+        <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:88"</span>
+    }]
+}</pre>
+</div>
+	
 </section>
 
 <section id="asset">
