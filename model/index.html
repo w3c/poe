@@ -146,11 +146,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <span class="hljs-string">"policyid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
     <span class="hljs-string">"permissions"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/read"</span>
     }],
     <span class="hljs-string">"prohibitions"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>
     }]
 }</pre>
 </div>
@@ -159,23 +159,24 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <div class="example" data-number="2">
 	EXAMPLE 2
-          <p><code> {<br>
-    "policytype": "http://www.w3.org/ns/odrl/2/Set",<br>
-    "policyid": "http://example.com/policy:1010",<br>
-    "permissions": [{<br>
-        "target": "http://example.com/asset:9898",<br>
-        "action": "http://www.w3.org/ns/odrl/2/reproduce",<br>
-	"assigner": "http://example.com/assigner:88",<br>
-	"duty": [{ <br>
-	        "action": "http://www.w3.org/ns/odrl/2/attribute",<br>
-		"attributedParty": "http://example.com/owner:9898" <br>
-	}]<br>
-    }],<br>
-    "prohibitions": [{<br>
-        "target": "http://example.com/asset:9898",<br>
-        "action": "http://www.w3.org/ns/odrl/2/commercialize"<br>
-    }]<br>
-}</code></p>
+	
+	<pre class="highlight hljs xquery">{
+    <span class="hljs-string">"policytype"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+    <span class="hljs-string">"policyid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
+    <span class="hljs-string">"permissions"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>
+	<span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/assigner:88"</span>,
+	<span class="hljs-string">"duty"</span>: [{
+	        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/attribute"</span>,
+		<span class="hljs-string">"attributedParty"</span>: <span class="hljs-string">"http://example.com/owner:9898"</span>
+	}],
+    }],
+    <span class="hljs-string">"prohibitions"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>
+    }]
+}</pre>
 </div>
 	
 <p>The <code>conflict</code> attribute is used either to resolve conflicts arising from the merging of policies, specifically when there are conflicting <code>Action</code>s in the <code>Permission</code>s and <code>Prohibition</code>s, or to set priorities over the <code>Permission</code>s/<code>Prohibition</code>s in the same policy. If present, the <code>conflict</code> attribute MUST take one of the following values:</p>
