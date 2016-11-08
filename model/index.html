@@ -283,6 +283,21 @@ the following values:</p>
 <p>Since ODRL policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe <code>Asset</code> entities of particular media types. It is recommended to use already existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> that are appropriate to the <code>Asset</code> type or purpose.</p>
 <p>The <code>Relation</code> entity is used to associate the <code>Asset</code> entity with the relevant <code>Permission</code>, <code>Prohibition</code>, and <code>Duty</code> entities</p>
 
+<section id="relation">
+<h4>Relation</h4>
+
+<p>The <code>Relation</code> entity is an association class and can be used to link to an <code>Asset</code> from either <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code>, indicating how the <code>Asset</code> MAY be utilised in respect to the entity that links to it.</p>
+<p>The <code>Relation</code> entity contains the following attribute:</p>
+<ul>
+<li><code>relation</code>: indicates the relationship of the <code>Asset</code> to the linked entity (REQUIRED)</li>
+</ul>
+<p>The default value for the <code>relation</code> attribute is <code>target</code> which indicates that the <code>Asset</code> is the primary object to which the <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> actions apply.</p>
+     <div class="note">
+          <p>Target is formally defined in the ODRL Vocabulary [[!vocab-odrl]]</p>
+    </div>
+<p>Other values for the <code>Relation</code> entity MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+</section>
+	
 <p><b>Example Use Case</b>: The Party <code>http//example.com/guest:0001</code> needs to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the permission to do so. This request can be implemented through a Policy of the type Request asking for the permission to display Asset <code>http://example.com/asset:3333</code>.</p>
 
 <div class="example" data-number="4">
@@ -299,21 +314,8 @@ the following values:</p>
 }</pre>
 
 </div>
-
-<section id="relation">
-<h4>Relation</h4>
-
-<p>The <code>Relation</code> entity is an association class and can be used to link to an <code>Asset</code> from either <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code>, indicating how the <code>Asset</code> MAY be utilised in respect to the entity that links to it.</p>
-<p>The <code>Relation</code> entity contains the following attribute:</p>
-<ul>
-<li><code>relation</code>: indicates the relationship of the <code>Asset</code> to the linked entity (REQUIRED)</li>
-</ul>
-<p>The default value for the <code>relation</code> attribute is <code>target</code> which indicates that the <code>Asset</code> is the primary object to which the <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> actions apply.</p>
-     <div class="note">
-          <p>Target is formally defined in the ODRL Vocabulary [[!vocab-odrl]]</p>
-    </div>
-<p>Other values for the <code>Relation</code> entity MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
-</section>
+	
+	
 </section>
 
 
