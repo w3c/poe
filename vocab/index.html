@@ -639,6 +639,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The datatype used for the constraint value.</td></tr>
 <tr><th>Label:</th> <td>Datatype</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dataType">http://www.w3.org/ns/odrl/2/dataType</a></td></tr>
+<tr><th>Comment:</th> <td>In RDF encodings, use of the rdf:datatype MAY be used</td></tr>
 <tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
@@ -1341,7 +1342,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odr
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Set&gt; .
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/ns/odrl/2/prohibition&gt; _:genid2 .
-</pre></div></section><section id="sc-example2"><h3>Offer</h3><p>The following shows the instance of an <code>offer</code> <code>Policy</code>. The <code>offer</code> contains the music file <code>http//example.com/music:4545</code> that is offered by the <code>Party</code> <code>http//example.com/sony:10</code> with the <code>Permission</code>s to <code>play</code> and <code>copy</code> the file. The <code>Permission</code> <code>copy</code> is only granted once. The two <code>Permission</code>s are offered for a payment of AUD$0.50.</p><div class="nanotabs"><ul><li><a href="#sc-example2-ttl" class="selected">Turtle</a></li><li><a href="#sc-example2-xml" class="selected">XML</a></li><li><a href="#sc-example2-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example2-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example2-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example2"><h3>Offer</h3><p>The following shows the instance of an <code>offer</code> <code>Policy</code>. The <code>offer</code> contains the music file <code>http//example.com/music:4545</code> that is offered by the <code>Party</code> <code>http//example.com/sony:10</code> with the <code>Permission</code>s to <code>play</code> and <code>copy</code> the file. The <code>Permission</code> <code>copy</code> is only granted once. The two <code>Permission</code>s are offered for a compensation of AUD$0.50.</p><div class="nanotabs"><ul><li><a href="#sc-example2-ttl" class="selected">Turtle</a></li><li><a href="#sc-example2-xml" class="selected">XML</a></li><li><a href="#sc-example2-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example2-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example2-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:0231&gt;
 	a odrl:Offer ;
@@ -1367,7 +1368,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odr
 
 _:requirements
 	a odrl:Duty ;
-	odrl:action odrl:pay ;
+	odrl:action odrl:compensate ;
 	odrl:constraint [
 		a odrl:Constraint ;
 		odrl:payAmount 50.00 ;
@@ -1386,7 +1387,7 @@ _:requirements
         &lt;o:party uid=&quot;http://example.com/sony:10&quot;
                 function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
         &lt;o:duty uid=&quot;d1&quot;&gt;
-            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/compensate&quot;/&gt;
             &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/payAmount&quot;
                 operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot;
                 rightOperand=&quot;0.50&quot; dataType=&quot;http://www.w3.org/2001/XMLSchema:decimal&quot;
@@ -1434,7 +1435,7 @@ _:requirements
   &lt;/odrl:Offer&gt;
   &lt;odrl:Party rdf:about=&quot;http://example.com/sony:10&quot;/&gt;
   &lt;odrl:Duty rdf:nodeID=&quot;requirements&quot;&gt;
-    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/compensate&quot;/&gt;
     &lt;odrl:constraint&gt;
       &lt;odrl:Constraint&gt;
         &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
@@ -1466,7 +1467,7 @@ _:genid4 &lt;http://www.w3.org/ns/odrl/2/payAmount&gt; &quot;50.00&quot;^^&lt;ht
 _:genid4 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
 _:genid4 &lt;http://www.w3.org/ns/odrl/2/unit&gt; &lt;http://cvx.iptc.org/iso4217a:AUD&gt; .
 _:requirements &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
-_:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/pay&gt; .
+_:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/compensate&gt; .
 _:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
 &lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 </pre></div></section><section id="sc-example3"><h3>Agreement</h3><p>The following shows the instance of an <code>agreement</code> <code>Policy</code>. The <code>agreement</code> contains all entities shown in the <code>offer</code> scenario above. A new <code>Party</code> element <code>http//example.com/billie:888</code> has been added. This <code>Party</code> accepted the previous <code>offer</code> and thus is now the buyer of the <code>Permission</code> <code>play</code> and <code>copy</code>, i.e. is now linked as <code>assignee</code> of the <code>Permission</code>s and <code>Duty</code> entities.</p><div class="nanotabs"><ul><li><a href="#sc-example3-ttl" class="selected">Turtle</a></li><li><a href="#sc-example3-xml" class="selected">XML</a></li><li><a href="#sc-example3-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example3-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example3-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
@@ -1496,7 +1497,7 @@ _:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
 
 _:requirements
 	a odrl:Duty ;
-	odrl:action odrl:pay ;
+	odrl:action odrl:compensate ;
 	odrl:constraint [
 		a odrl:Constraint ;
 		odrl:payAmount 50.00 ;
@@ -1518,7 +1519,7 @@ _:requirements
         &lt;o:party uid=&quot;http://example.com/billie:888&quot;
                  function=&quot;http://www.w3.org/ns/odrl/2/assignee&quot;/&gt;
         &lt;o:duty uid=&quot;d1&quot;&gt;
-            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/compensate&quot;/&gt;
             &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/payAmount&quot;
                 operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot; rightOperand=&quot;0.50&quot; 
                 dataType=&quot;http://www.w3.org/2001/XMLSchema:decimal&quot;
@@ -1571,7 +1572,7 @@ _:requirements
   &lt;/odrl:Agreement&gt;
   &lt;odrl:Party rdf:about=&quot;http://example.com/sony:10&quot;/&gt;
   &lt;odrl:Duty rdf:nodeID=&quot;requirements&quot;&gt;
-    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/compensate&quot;/&gt;
     &lt;odrl:constraint&gt;
       &lt;odrl:Constraint&gt;
         &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
@@ -1604,7 +1605,7 @@ _:genid4 &lt;http://www.w3.org/ns/odrl/2/payAmount&gt; &quot;50.00&quot;^^&lt;ht
 _:genid4 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
 _:genid4 &lt;http://www.w3.org/ns/odrl/2/unit&gt; &lt;http://cvx.iptc.org/iso4217a:AUD&gt; .
 _:requirements &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
-_:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/pay&gt; .
+_:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/compensate&gt; .
 _:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
 &lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
@@ -1723,7 +1724,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
 
 &lt;http://example.com/duty:01&gt;
 	a odrl:Duty ;
-	odrl:action odrl:pay ;
+	odrl:action odrl:compensate ;
 	odrl:constraint [
 		a odrl:Constraint ;
 		odrl:payAmount 1000.00 ;
@@ -1758,7 +1759,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
         &lt;o:party uid=&quot;http://example.com/sony:99&quot;
                   function=&quot;http://www.w3.org/ns/odrl/2/assigner&quot;/&gt;
         &lt;o:duty uid=&quot;d1&quot;&gt;
-            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+            &lt;o:action name=&quot;http://www.w3.org/ns/odrl/2/compensate&quot;/&gt;
             &lt;o:constraint name=&quot;http://www.w3.org/ns/odrl/2/payAmount&quot;
                 operator=&quot;http://www.w3.org/ns/odrl/2/eq&quot; rightOperand=&quot;1000.00&quot; 
                 dataType=&quot;http://www.w3.org/2001/XMLSchema:decimal&quot;
@@ -1785,7 +1786,7 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
    xmlns:odrl=&quot;http://www.w3.org/ns/odrl/2/&quot;
    xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
   &lt;odrl:Duty rdf:about=&quot;http://example.com/duty:01&quot;&gt;
-    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/pay&quot;/&gt;
+    &lt;odrl:action rdf:resource=&quot;http://www.w3.org/ns/odrl/2/compensate&quot;/&gt;
     &lt;odrl:constraint&gt;
       &lt;odrl:Constraint&gt;
         &lt;odrl:operator rdf:resource=&quot;http://www.w3.org/ns/odrl/2/eq&quot;/&gt;
@@ -1842,7 +1843,7 @@ _:genid3 &lt;http://www.w3.org/ns/odrl/2/payAmount&gt; &quot;1000.00&quot;^^&lt;
 _:genid3 &lt;http://www.w3.org/ns/odrl/2/operator&gt; &lt;http://www.w3.org/ns/odrl/2/eq&gt; .
 _:genid3 &lt;http://www.w3.org/ns/odrl/2/unit&gt; &lt;http://cvx.iptc.org/iso4217a:EUR&gt; .
 &lt;http://example.com/duty:01&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
-&lt;http://example.com/duty:01&gt; &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/pay&gt; .
+&lt;http://example.com/duty:01&gt; &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/compensate&gt; .
 &lt;http://example.com/duty:01&gt; &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid3 .
 &lt;http://example.com/duty:02&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Duty&gt; .
 &lt;http://example.com/duty:02&gt; &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/nextPolicy&gt; .
