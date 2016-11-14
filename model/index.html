@@ -355,6 +355,25 @@ the following values:</p>
 </ul>
 <p>Other values for the <code>scope</code> attribute MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
+	
+<p><b>Example Use Case</b>: The target Asset <code>http://example.com/asset:myPhotos:football4444</code> are photos posted to a Social Network site by the assigner and owner of the photos <code>http://example.com/myPhoto:assigner44</code>. The assignee is a Party group <code>http://example.com/myPhoto:assignee:footballfans44</code>, and represents the football fan club members, who are each allowed to display the photos.</p>
+
+<div class="example" data-number="5">
+	EXAMPLE 5
+         <pre class="highlight hljs xquery">{
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
+    <span class="hljs-string">"permission"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:myPhotos:football4444"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>,
+	<span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/myPhoto:assigner44"</span>,
+        <span class="hljs-string">"assignee"</span>: [{
+	        <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/myPhoto:assignee:footballfans44"</span>,
+                <span class="hljs-string">"scope"</span>: "http://www.w3.org/ns/odrl/2/group"</span>	
+	}]
+    }]
+}</pre>
+</div>
 
 </section>
 
