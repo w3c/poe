@@ -391,7 +391,26 @@ the following values:</p>
 <li><code>Party</code>: the <code>Permission</code> MUST refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
 <li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more <code>Constraint</code>s which affect the validity of the <code>Permission</code>, e.g. if the <code>Action</code> <code>play</code> is only permitted for a certain period of time (OPTIONAL)</li>
 <li><code>Duty</code>: the <code>Permission</code> MAY refer to one or more <code>Duty</code> entities that indicate a requirement that MAY be fulfilled in return for receiving the <code>Permission</code> (OPTIONAL)</li>
-</ul>	
+</ul>
+	
+<p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the Ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
+
+<div class="example" data-number="6">
+	EXAMPLE 6
+ <pre class="highlight hljs xquery">{
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Ticket"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:9090"</span>,
+    <span class="hljs-string">"permission"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/game:9090"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/play"</span>,
+        <span class="hljs-string">"constraint"</span>: [{
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/dateTime"</span>,
+            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/lteq"</span>,
+            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"2016-12-31"</span>
+        }]
+    }]
+}</pre>
+</div>
 </section>
 
 <section id="prohibition">
@@ -408,8 +427,8 @@ the following values:</p>
 
 <p><b>Example Use Case</b>: The owner and assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between permissions and prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
 
-<div class="example" data-number="6">
-	EXAMPLE 6
+<div class="example" data-number="7">
+	EXAMPLE 7
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:5555"</span>,
@@ -455,8 +474,8 @@ the following values:</p>
 <p><b>Example Use Case</b>: The Party <code>http://example.com/assigner:77</code> needs to set a Privacy Policy for some data about it. The target Asset <code>http://example.com/personal-data:77</code> of this policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
 
 
-<div class="example" data-number="7">
-	EXAMPLE 7
+<div class="example" data-number="8">
+	EXAMPLE 8
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Privacy"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
@@ -517,8 +536,8 @@ the following values:</p>
 
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
 
-<div class="example" data-number="8">
-	EXAMPLE 8
+<div class="example" data-number="9">
+	EXAMPLE 9
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
