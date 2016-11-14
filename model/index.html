@@ -451,6 +451,53 @@ the following values:</p>
 <p>A <code>Duty</code> entity does not by default specify any conditions on <em>when</em> the <code>Duty</code> <code>Action</code> MUST be performed in order for the <code>Permission</code> to be exercised. Such temporal conditions MAY be expressed through additional <code>Constraint</code>s.</p>
     
 <p>For example, to support cases where the <code>Duty</code> MUST be performed for each <code>Action</code> on an <code>Asset</code> before it is exercised (for example, a <em>pay-per-view</em> scenario) then the use of a <code>Constraint</code> (e.g. count=1) on the <code>Permission</code> (e.g. play) and a temporal (or event) <code>Constraint</code> on the <code>Duty</code> can express this semantics.</p>
+
+<p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
+
+<div class="example" data-number="7">
+	EXAMPLE 7
+         <pre class="highlight hljs xquery">{
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
+    <span class="hljs-string">"permission"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/wallpaper:1234"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/distribute"</span>,
+        <span class="hljs-string">"constraint"</span>: [{
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/spatial"</span>,
+            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/eq"</span>,
+            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://www.itu.int/tML/tML-ISO-3166:it"</span>
+        }],
+        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/myPix:6161"</span>,
+        <span class="hljs-string">"duty"</span>: [
+            {
+                <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/compensate"</span>,
+                <span class="hljs-string">"constraint"</span>: [{
+                    <span class="hljs-string">"name"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/payAmount"</span>,
+                    <span class="hljs-string">"operator"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/eq"</span>,
+                    <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"100.00"</span>,
+                    <span class="hljs-string">"dataType"</span>: <span class="hljs-string">"http://www.w3.org/2001/XMLSchema#decimal"</span>,
+                    <span class="hljs-string">"unit"</span>: <span class="hljs-string">"http://cvx.iptc.org/iso4217a/EUR"</span>
+                }]
+            },
+            {
+                <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/nextPolicy"</span>,
+                <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>
+            }
+        ]
+    }]
+}</pre>
+ 
+    <pre class="highlight hljs xquery">{
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+        <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>,
+        <span class="hljs-string">"permission"</span>: [{
+            <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/wallpaper:1234"</span>,
+            <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>
+        }]
+    }</pre>
+</div>
+
+	
 </section>	
 	
 <section id="action">
