@@ -452,10 +452,43 @@ the following values:</p>
     
 <p>For example, to support cases where the <code>Duty</code> MUST be performed for each <code>Action</code> on an <code>Asset</code> before it is exercised (for example, a <em>pay-per-view</em> scenario) then the use of a <code>Constraint</code> (e.g. count=1) on the <code>Permission</code> (e.g. play) and a temporal (or event) <code>Constraint</code> on the <code>Duty</code> can express this semantics.</p>
 
+	
+</section>	
+	
+<section id="action">
+<h3>Action</h3>
+
+
+<p>The <code>Action</code> entity (when related to a <code>Permission</code> entity) indicates the operations (e.g. <code>play</code>, <code>copy</code>, etc.) that the <code>assignee</code> (i.e. the consumer) is <em>permitted</em> to perform on the related <code>Asset</code> linked to by <code>Permission</code>. When related to a <code>Prohibition</code>, the <code>Action</code> entity indicates the operations that the <code>assignee</code> (again the consumer) is <em>prohibited</em> to perform on the <code>Asset</code> linked to by <code>Prohibition</code>. Analogously, when related to a <code>Duty</code>, it indicates the operation to be performed.</p>
+<p><code>Action</code> contains the following attribute:</p>
+<ul>
+<li><code>name</code>: indicates the <code>Action</code> entity term (REQUIRED)</li>
+</ul>
+<p>As its value, the <code>name</code> attribute MAY take one of a set of <code>Action</code> <em>names</em> which are formally defined in profiles. The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) profiles to capture additional and refined semantics.</p>
+</section>
+
+<section id="constraint">
+<h3>Constraint</h3>
+
+<p>The <code>Constraint</code> entity indicates limits and restrictions to the <code>Permission</code>, the <code>Prohibition</code> and the <code>Duty</code> entity. <code>Constraint</code>s express mathematical terms with two operands and one operator. For example, the &#8220;number of usages&#8221; (<code>name</code>) must be &#8220;smaller than&#8221; (<code>operator</code>) the &#8220;number 10&#8221; (<code>rightOperand</code>).</p>
+<p>If multiple <code>Constraint</code> entities are linked to the same <code>Permission</code>, <code>Prohibition</code>, or <code>Duty</code> entity, then all of the <code>Constraint</code> entities MUST be satisfied. That is, all the <code>Constraint</code> entities are (boolean) <em>and</em>ed. In the case where the same <code>Constraint</code> is repeated, then these MUST be represented as a single <code>Constraint</code> entity using an appropriate <code>operator</code> value (for example, <code>isAnyOf</code>).</p>
+<p>The <code>Constraint</code> entity contains the following attributes:</p>
+<ul>
+<li><code>name</code>: a name that identifies the left operand of the operation (REQUIRED)</li>
+<li><code>operator</code>: an operator function (REQUIRED)</li>
+<li><code>rightOperand</code>: the right operand of the operation (REQUIRED)</li>
+<li><code>dataType</code>: the datatype of the rightOperand (OPTIONAL)</li>
+<li><code>unit</code>: the units of the rightOperand (OPTIONAL)</li>
+<li><code>status</code>: the current value of the left operand (OPTIONAL)</li>
+</ul>
+<p>The <code>name</code> identifies the left operand of the mathematical operation for the <code>Constraint</code> such as &#8220;Number of Usages&#8221; and &#8220;Expiration Date&#8221; etc. The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. The <code>rightOperand</code> identifies the value that is being compared. The <code>dataType</code> indicates the type of the <code>rightOperand</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand</code>, such as &#8220;EU dollars&#8221;.</p>
+<p>When processing policy expressions, these <code>Constraint</code> names MAY be directly linked to a procedure that can determine the outcome of the operations, such as the number of already performed usages and the current date. The <code>name</code> and <code>operator</code> are defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles.</p>
+<p>The <code>status</code> provides the current value of the <code>Constraint</code> variable (i.e. current value of <code>name</code>). This is useful in cases where the current status of <code>Constraint</code>s needs to be captured and expressed in the ODRL Information Model.</p>
+
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
 
-<div class="example" data-number="7">
-	EXAMPLE 7
+<div class="example" data-number="8">
+	EXAMPLE 8
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
@@ -495,41 +528,8 @@ the following values:</p>
             <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>
         }]
     }</pre>
-</div>
-
+</div>	
 	
-</section>	
-	
-<section id="action">
-<h3>Action</h3>
-
-
-<p>The <code>Action</code> entity (when related to a <code>Permission</code> entity) indicates the operations (e.g. <code>play</code>, <code>copy</code>, etc.) that the <code>assignee</code> (i.e. the consumer) is <em>permitted</em> to perform on the related <code>Asset</code> linked to by <code>Permission</code>. When related to a <code>Prohibition</code>, the <code>Action</code> entity indicates the operations that the <code>assignee</code> (again the consumer) is <em>prohibited</em> to perform on the <code>Asset</code> linked to by <code>Prohibition</code>. Analogously, when related to a <code>Duty</code>, it indicates the operation to be performed.</p>
-<p><code>Action</code> contains the following attribute:</p>
-<ul>
-<li><code>name</code>: indicates the <code>Action</code> entity term (REQUIRED)</li>
-</ul>
-<p>As its value, the <code>name</code> attribute MAY take one of a set of <code>Action</code> <em>names</em> which are formally defined in profiles. The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) profiles to capture additional and refined semantics.</p>
-</section>
-
-<section id="constraint">
-<h3>Constraint</h3>
-
-<p>The <code>Constraint</code> entity indicates limits and restrictions to the <code>Permission</code>, the <code>Prohibition</code> and the <code>Duty</code> entity. <code>Constraint</code>s express mathematical terms with two operands and one operator. For example, the &#8220;number of usages&#8221; (<code>name</code>) must be &#8220;smaller than&#8221; (<code>operator</code>) the &#8220;number 10&#8221; (<code>rightOperand</code>).</p>
-<p>If multiple <code>Constraint</code> entities are linked to the same <code>Permission</code>, <code>Prohibition</code>, or <code>Duty</code> entity, then all of the <code>Constraint</code> entities MUST be satisfied. That is, all the <code>Constraint</code> entities are (boolean) <em>and</em>ed. In the case where the same <code>Constraint</code> is repeated, then these MUST be represented as a single <code>Constraint</code> entity using an appropriate <code>operator</code> value (for example, <code>isAnyOf</code>).</p>
-<p>The <code>Constraint</code> entity contains the following attributes:</p>
-<ul>
-<li><code>name</code>: a name that identifies the left operand of the operation (REQUIRED)</li>
-<li><code>operator</code>: an operator function (REQUIRED)</li>
-<li><code>rightOperand</code>: the right operand of the operation (REQUIRED)</li>
-<li><code>dataType</code>: the datatype of the rightOperand (OPTIONAL)</li>
-<li><code>unit</code>: the units of the rightOperand (OPTIONAL)</li>
-<li><code>status</code>: the current value of the left operand (OPTIONAL)</li>
-</ul>
-<p>The <code>name</code> identifies the left operand of the mathematical operation for the <code>Constraint</code> such as &#8220;Number of Usages&#8221; and &#8220;Expiration Date&#8221; etc. The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. The <code>rightOperand</code> identifies the value that is being compared. The <code>dataType</code> indicates the type of the <code>rightOperand</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand</code>, such as &#8220;EU dollars&#8221;.</p>
-<p>When processing policy expressions, these <code>Constraint</code> names MAY be directly linked to a procedure that can determine the outcome of the operations, such as the number of already performed usages and the current date. The <code>name</code> and <code>operator</code> are defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles.</p>
-<p>The <code>status</code> provides the current value of the <code>Constraint</code> variable (i.e. current value of <code>name</code>). This is useful in cases where the current status of <code>Constraint</code>s needs to be captured and expressed in the ODRL Information Model.</p>
-
 </section>
 
 </section>
