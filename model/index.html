@@ -391,8 +391,20 @@ the following values:</p>
 <li><code>Party</code>: the <code>Permission</code> MUST refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
 <li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more <code>Constraint</code>s which affect the validity of the <code>Permission</code>, e.g. if the <code>Action</code> <code>play</code> is only permitted for a certain period of time (OPTIONAL)</li>
 <li><code>Duty</code>: the <code>Permission</code> MAY refer to one or more <code>Duty</code> entities that indicate a requirement that MAY be fulfilled in return for receiving the <code>Permission</code> (OPTIONAL)</li>
+</ul>	
+</section>
+
+<section id="prohibition">
+<h3>Prohibition</h3>
+
+<p>The <code>Prohibition</code> entity indicates the <code>Action</code>s that the <code>assignee</code> is prohibited to perform on the related <code>Asset</code>. <code>Prohibition</code>s are issued by the supplier of the <code>Asset</code> &#8211; the <code>Party</code> with the <code>Role</code> <code>assigner</code>. If several <code>Prohibition</code> entities are referred to by a <code>Policy</code>, <em>all of them</em> must be satisfied.</p>
+<p>The <code>Prohibition</code> entity has the following relations:</p>
+<ul>
+<li><code>Asset</code>: the <code>Prohibition</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the <code>Action</code> is prohibited (REQUIRED)</li>
+<li><code>Action</code>: the <code>Prohibition</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that is prohibited (REQUIRED)</li>
+<li><code>Party</code>: the <code>Prohibition</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
+<li><code>Constraint</code>: the <code>Prohibition</code> MAY refer to one or more <code>Constraint</code> entities (OPTIONAL)</li>
 </ul>
-	
 
 <p><b>Example Use Case</b>: The owner and assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between permissions and prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
 
@@ -417,19 +429,6 @@ the following values:</p>
 }</pre>
 </div>	
 	
-</section>
-
-<section id="prohibition">
-<h3>Prohibition</h3>
-
-<p>The <code>Prohibition</code> entity indicates the <code>Action</code>s that the <code>assignee</code> is prohibited to perform on the related <code>Asset</code>. <code>Prohibition</code>s are issued by the supplier of the <code>Asset</code> &#8211; the <code>Party</code> with the <code>Role</code> <code>assigner</code>. If several <code>Prohibition</code> entities are referred to by a <code>Policy</code>, <em>all of them</em> must be satisfied.</p>
-<p>The <code>Prohibition</code> entity has the following relations:</p>
-<ul>
-<li><code>Asset</code>: the <code>Prohibition</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the <code>Action</code> is prohibited (REQUIRED)</li>
-<li><code>Action</code>: the <code>Prohibition</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that is prohibited (REQUIRED)</li>
-<li><code>Party</code>: the <code>Prohibition</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
-<li><code>Constraint</code>: the <code>Prohibition</code> MAY refer to one or more <code>Constraint</code> entities (OPTIONAL)</li>
-</ul>
 </section>
 
 <section id="duty">
