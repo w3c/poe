@@ -780,12 +780,10 @@ See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example1">scenario in sup
     
 <h2>Experimental Features</h2> 
         
-     <div class="note">
-        <p>Should this section be included in a W3C REC?</p>
+   <div class="issue" data-number="63">
+        <p>Modified verions of Extended Relations will be incorporated into the Model</p>
     </div>
     
- <p>This section contains advanced ODRL features. Although not part of the normative specification, they provide an opportunity for communities to experiment with and provide feedback on experiences that may be included in future ODRL versions.</p>
-
 <section id="extended-relations">
 <h3>Extended Relations</h3>
 <p><code>Extended Relations</code> may tie <code>Permission</code>, <code>Prohibition</code>, <code>Duty</code>, and <code>Constraint</code> entities together with an <code>AND</code>, <code>OR</code> or <code>XOR</code> relationship. Only entities of the same type can be linked with this model. For example, a <code>Permission</code> and <code>Prohibition</code> cannot be linked together within this model. The Extended Relations model supports the following attribute:</p>
@@ -830,24 +828,7 @@ See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example1">scenario in sup
 <p>Note that Extended Relations are not needed to assign two or more <code>Permission</code>s to a <code>Party</code> entity. In this case simply use as many <code>Assignee</code> relations between <code>Party</code> and <code>Permission</code> as needed.</p>
     
 </section>
-    
-<section id="remedies">
-<h3>Remedies</h3>
-    <div class="note">
-            <p>This section will be removed from the next release.</p>
-    </div>
-<p>In the ODRL Information Model, <code>Duties</code> are only directly related to <code>Permission</code>s, meaning that for a <code>Permission</code> to become effective, the related <code>Duty</code> should be performed. For some use cases though, it might be useful to attach a <code>Duty</code> to a <code>Prohibition</code>, meaning that if a <code>Prohibition</code> is violated, the <code>Duty</code> has to be performed as a kind of remedy or consequence for the violation.</p>
-<p>Not only can a <code>Prohibition</code> have a <code>Duty</code> attached to it as a remedy, even <code>Duties</code> themselves may have remedies, e.g. &#8220;For the <code>Permission</code> to play audio file xyz to become effective, you have to perform the <code>Duty</code> &#8216;pay 2€&#8217;. If you don&#8217;t perform this <code>Duty</code> (even though you&#8217;ve played yxz), you have to remedy this by performing the <code>Duty</code> &#8216;pay 5€'&#8221;.</p>
-<p>In order to distinguish between a <code>Duty</code> that has to be fulfilled as a requirement and one that has to be fulfilled as a remedy, different relation names are introduced as shown in the Figure below.</p>
-
- <figure>
-	<img src="fig/exp-remedy.png" alt="Remedy Model" width="600"/>
-    <figcaption>Remedy Model</figcaption>
-</figure>
-    
-<p>The relation between <code>Permission</code> and <code>Duty</code>, which was unnamed before, is now named <code>hasRequirement</code>. This is needed not only to make the different semantics clearer, but also because a <code>Duty</code> can refer to yet another <code>Duty</code> as a requirement, e.g. &#8220;If you want to print this written article, you have the <code>Duty</code> to attach a particular image of the author, and if you do that, you have the <code>Duty</code> to attribute the image to the photographer&#8221;.</p>
-</section>    
-    
+   
     
 </section>
  
@@ -867,9 +848,7 @@ See this <a href="https://www.w3.org/TR/vocab-odrl/#sc-example1">scenario in sup
 <h3>Acknowledgements</h3>
 
 <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>.  The output of the ODRL Community Group was fundamental to the current model.</p>
-<p>In particular the editors would like to thank:</p>
-<ul><li>Susanne Guth</li><li>Daniel Paehler</li><li>Andreas Kasten</li></ul>
-<p> for their past editorial contributions.</p>
+<p>In particular the editors would like to thank Susanne Guth, Daniel Paehler, and Andreas Kasten for their past editorial contributions.</p>
 </section>
 
 <section class="appendix" id="community">
