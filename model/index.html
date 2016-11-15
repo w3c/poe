@@ -45,7 +45,7 @@
 <h3>Serialization of the Model</h3>
 
 <p>The ODRL Information Model is formally specified using UML notation [[!uml]].</p>
-<p>The examples throughout the document are serialized as [[JSON-LD]].</p>	
+<p>The examples throughout the document are serialized as [[json-ld]]. For normative serialisations, please refer to the ODRL Vocabulary and Expression [[!vocab-odrl]].</p>	
 </section>
 	
 <section id="conformance"></section>
@@ -53,13 +53,18 @@
 <section id="terminology">
 <h3>Terminology</h3>
 
-	<ul>
-		<li><b>Resource</b>: an item of interest that may be identified by an URI.</li>
-		<li><b>Digital content</b>: any type of content that exists in the form of digital data.</li>
-		<li><b>Permission</b>: a set of actions that are allowed to be performed over a resource. </li>
-		<li><b>Prohibition</b>: a set of actions that are forbidden to be performed over a resource.</li>
-		<li><b>Duty</b>: a set of actions that are obliged to be performed over a resource.</li>
-	</ul>
+     <dl class="termlist">
+                  <dt><dfn>Resource</dfn></dt>
+                  <dd>An item of interest that may be identified by an URI.</dd>
+                  <dt><dfn>Digital content</dfn></dt>
+                  <dd>Any type of content that exists in the form of digital data.</dd>
+                  <dt><dfn>Permission</dfn></dt>
+                  <dd>A set of actions that are allowed to be performed over a resource.</dd>
+                  <dt><dfn>Prohibition</dfn></dt>
+                  <dd>A set of actions that are forbidden to be performed over a resource.</dd>
+                  <dt><dfn>Duty</dfn></dt>
+                  <dd>A set of actions that are obliged to be performed over a resource.</dd>
+             </dl>
 	
 </section>
 	
@@ -139,7 +144,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p><b>Example Use Case</b>: A Policy of type Set states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission read and the Prohibition reproduce. No parties or other elements are involved.</p>
 
-<div class="example" data-number="1">
+<div class="example">
 	EXAMPLE 1
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
@@ -157,7 +162,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 	
 <p><b>Example Use Case</b>: A Policy of type Set states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission reproduce, the Duty attribute to <code>http://example.com/owner:9898</code> and the Prohibition commercialize. Two parties are involved, namely the Assigner of the Permissions and the Party to be attributed.</p>
 
-<div class="example" data-number="2">
+<div class="example">
 	EXAMPLE 2
 	
 	<pre class="highlight hljs xquery">{
@@ -241,7 +246,7 @@ the following values:</p>
 	
 <p><b>Example Use Case</b>: The instance of the child Policy <code>http://example.com/policy:2222</code> inherits from the parent Policy <code>http://example.com/policy:1111</code>, allowing to reproduce the parent's target Asset <code>http://example.com/asset:1111</code>, and allowing the Party <code>http://example.com/assignee:88</code> to display the child's target Asset <code>http://example.com/asset:2222</code>. Moreover, due to the inheritance relation, the child Policy inherits from the parent that the Party <code>http://example.com/assignee:88</code> can also reproduce <code>http://example.com/asset:1111</code>.</p>	
 
-<div class="example" data-number="3">
+<div class="example">
 	EXAMPLE 3
 	
          <pre class="highlight hljs xquery">{
@@ -300,7 +305,7 @@ the following values:</p>
 	
 <p><b>Example Use Case</b>: The Party <code>http//example.com/guest:0001</code> needs to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the permission to do so. This request can be implemented through a Policy of the type Request asking for the permission to display Asset <code>http://example.com/asset:3333</code>.</p>
 
-<div class="example" data-number="4">
+<div class="example">
 	EXAMPLE 4
 	
          <pre class="highlight hljs xquery">{
@@ -319,7 +324,7 @@ the following values:</p>
 which database the index outcome should be stored in.</p>
 
 
-<div class="example" data-number="5">
+<div class="example">
 	EXAMPLE 5
  <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
@@ -374,7 +379,7 @@ which database the index outcome should be stored in.</p>
 	
 <p><b>Example Use Case</b>: The target Asset <code>http://example.com/asset:myPhotos:football4444</code> are photos posted to a Social Network site by the assigner and owner of the photos <code>http://example.com/myPhoto:assigner44</code>. The assignee is a Party group <code>http://example.com/myPhoto:assignee:footballfans44</code>, and represents the football fan club members, who are each allowed to display the photos.</p>
 
-<div class="example" data-number="6">
+<div class="example">
 	EXAMPLE 6
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
@@ -411,7 +416,7 @@ which database the index outcome should be stored in.</p>
 	
 <p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the Ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
 
-<div class="example" data-number="7">
+<div class="example">
 	EXAMPLE 7
  <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Ticket"</span>,
@@ -443,7 +448,7 @@ which database the index outcome should be stored in.</p>
 
 <p><b>Example Use Case</b>: The owner and assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between permissions and prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
 
-<div class="example" data-number="8">
+<div class="example">
 	EXAMPLE 8
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
@@ -490,7 +495,7 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The Party <code>http://example.com/assigner:77</code> needs to set a Privacy Policy for some data about it. The target Asset <code>http://example.com/personal-data:77</code> of this policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
 
 
-<div class="example" data-number="9">
+<div class="example">
 	EXAMPLE 9
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Privacy"</span>,
@@ -552,7 +557,7 @@ which database the index outcome should be stored in.</p>
 
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
 
-<div class="example" data-number="10">
+<div class="example">
 	EXAMPLE 10
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
