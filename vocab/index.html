@@ -677,7 +677,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The date (and optional time and timezone) representing a point in time or period.</td></tr>
 <tr><th>Label:</th> <td>Datetime</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dateTime">http://www.w3.org/ns/odrl/2/dateTime</a></td></tr>
-<tr><th>Comment:</th> <td>Value must conform to [[iso8601]] as represented in [[xmlschema11-2]. The use of Timezone information is strongly recommended.</td></tr>
+<tr><th>Comment:</th> <td>Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The use of Timezone information is strongly recommended.</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
 <tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a>, <a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a></td></tr>
 </table>
@@ -721,7 +721,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The natural language applicable to the asset usage</td></tr>
 <tr><th>Label:</th> <td>Language</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/language">http://www.w3.org/ns/odrl/2/language</a></td></tr>
-<tr><th>Comment:</th> <td>For example, JPEG image may only be reproduced with Spanish text. May be used to express [[plus] semantics. Must use [[bcp47]] codes for language values.</td></tr>
+<tr><th>Comment:</th> <td>For example, JPEG image may only be reproduced with Spanish text. May be used to express [[plus]] semantics. Must use [[bcp47]] codes for language values.</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
 </table>
 </section><section id="term-media"><h3>Media</h3><table class='def propdef' >
@@ -1070,12 +1070,17 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
         
     <section id="rdfowl">
    	<h2>RDF/OWL Encoding</h2>         
-     <p>The complete ODRL Ontology and can be downloaded in <a href="https://www.w3.org/ns/odrl/2/ODRL22.ttl">Turtle serialisation</a> or <a href="https://www.w3.org/ns/odrl/2/ODRL22.rdf">RDF/XML serialisation</a> or <a href="https://www.w3.org/ns/odrl/2/ODRL22.nt">N-Triples serialisation</a></p>    </section>
+     <p>The current (draft) ODRL Ontology and can be downloaded in <a href="http://w3c.github.io/poe/vocab/ODRL22.ttl">Turtle serialisation</a>.</p>
+<P>Other serialisations (RDF/XML and N-Triples) will be provided when the ODRL Ontology is finalised.</P>    </section>
           
     <section id="xml">
    	<h2>XML Encoding</h2>         
         <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the URIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
-<p>The complete ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="https://www.w3.org/ns/odrl/2/ODRL22.xsd">downloaded</a>.</p>
+
+<div class="issue">
+    <p>The ODRL XML Schema has not been updated to reflect the current vocabulary changes.</p>
+<p>The complete ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="">downloaded</a>.</p>
+</div>
 
 <p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
 
@@ -1252,7 +1257,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
    	<h2>JSON Encoding</h2>         
        <p>This section describes how to encode both the ODRL Model and Vocabulary, including any community developed Profiles, using the JSON syntax [[rfc4627]] and using a JSON Schema [[json-schema]].</p>
 
-<p>The complete ODRL JSON Schema is shown in the <a href="#jsonschema">Appendix.</a> and can be <a href="https://www.w3.org/ns/odrl/2/ODRL22.json">downloaded</a>.</p>
+<div class="issue">
+    <p>The ODRL JSON Schema has not been updated to reflect the current vocabulary changes.</p>
+    <p>The complete ODRL JSON Schema is shown in the <a href="#jsonschema">Appendix.</a> and can be <a href="">downloaded</a>.</p>
+</div>
 
 <p>ODRL can express complex contracts and policies which may require quite sophisticated systems to evaluate contractual permissions, restrictions and duties. However, the ODRL in JSON encoding is designed to be lightweight and requires only standard JSON software to generate or parse the representation.</p>
 
