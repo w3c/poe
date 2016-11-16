@@ -474,29 +474,63 @@ which database the index outcome should be stored in.</p>
 <section id="duty">
 <h3>Duty</h3>
 
-<p>The <code>Duty</code> entity indicates a requirement that MUST be fulfilled in return for being entitled to the referring <code>Permission</code> entity. A <code>Duty</code> MUST only be associated with a <code>Permission</code>. </p>
-<p>While implying different semantics, the <code>Duty</code> entity is similar to <code>Permission</code> in that it is an Action that can be undertaken. If a <code>Permission</code> refers to several <code>Duty</code> entities, <em>all of them</em> MUST be fulfilled for the <code>Permission</code> to become valid. If several <code>Permission</code> entities refer to one <code>Duty</code>, then the Duty only has to be fulfilled <em>once</em> for all the <code>Permission</code> entities to become valid.</p>
+<p>A <code>Permission</code> entity MAY include a <code>Duty</code> entity that indicates a requirement that MUST be satisfied in order to undertake the <code>Permission</code>. A <code>Duty</code> MUST only be associated with a <code>Permission</code>. </p>
+    
+<p>Even though a <code>Duty</code> entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the <code>Duty</code> <code>Action</code> MUST be performed. Such business rules MAY be expressed through additional <code>Constraint</code>s.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid, as different business rules may apply such as montly invoicing.</p>
+    
+<p><b>Example Use Case</b>: The Party <code>http://example.com/assigner:sony</code> makes and <code>Offer</code> to <code>Play</code> the music file <code>http://example.com/music/1999.mp3</code>. There are two <code>Duties</code> that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this <code>http://www.w3.org/ns/odrl/2/policyUsage</code> must not have occured yet.
+</p>
+
+
+    
+<div class="example">
+	EXAMPLE 9
+         <pre class="highlight hljs xquery">
+{
+    "type": "http://www.w3.org/ns/odrl/2/Offer",
+    "uid": "http://example.com/policy:88",
+    "permission": [{
+        "assigner": "http://example.com/assigner:sony",
+        "target": "http://example.com/music/1999.mp3",
+        "action": "http://www.w3.org/ns/odrl/2/play",
+        "duty": [{
+            "action": "http://www.w3.org/ns/odrl/2/compensate",
+            "constraint": [{
+                "name": "http://www.w3.org/ns/odrl/2/payAmount",
+                "operator": "http://www.w3.org/ns/odrl/2/eq",
+                "rightOperand": "5.00",
+                "unit": "http://cvx.iptc.org/iso4217a/AUD"
+            }],
+            "constraint": [{
+                "name": "http://www.w3.org/ns/odrl/2/event",
+                "operator": "http://www.w3.org/ns/odrl/2/lt",
+                "rightOperand": "http://www.w3.org/ns/odrl/2/policyUsage"
+            }]
+        }]
+    }]
+}  
+</pre>
+    </div>
+    
+    
+<p>If a <code>Permission</code> refers to several <code>Duty</code> entities, <em>all of them</em> MUST be satisfied for the <code>Permission</code> to be undertaken. If several <code>Permission</code> entities refer to one <code>Duty</code>, then the Duty only has to be satisfied <em>once</em> for all the <code>Permission</code> entities.</p>
 <p>The <code>Duty</code> entity contains the following attributes:</p>
 <ul>
 <li><code>uid</code>: a unique identification for this <code>Duty</code>. Used to refer a single <code>Duty</code> to multiple <code>Permission</code> entities (OPTIONAL)</li>
 </ul>
 <p>The <code>Duty</code> entity has the following relations:</p>
 <ul>
-<li><code>Action</code>: indicates the operation that MUST be performed (REQUIRED). Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
+<li><code>Action</code>: indicates the requirement that MUST be performed (REQUIRED). Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
 <li><code>Party</code>: a <code>Duty</code> MAY refer to <code>Party</code> entities with different <code>Role</code>s. If no explicit <code>Party</code> is linked to as <code>assignee</code> or <code>assigner</code>, the <code>Parties</code> with the respective <code>Role</code>s are taken from the referring <code>Permission</code>. (OPTIONAL)</li>
-<li><code>Asset</code>: a <code>Duty</code> entity MAY refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) related to fulfilling the <code>Duty</code>. (OPTIONAL) For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the identifier of a target policy <code>Asset</code>.</li>
+<li><code>Asset</code>: a <code>Duty</code> entity MAY refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) related to satisfying the <code>Duty</code>. (OPTIONAL) For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the identifier of a target policy <code>Asset</code>.</li>
 <li><code>Constraint</code>: a <code>Duty</code> MAY link to one or more <code>Constraint</code>s (OPTIONAL)</li>
 </ul>
-
-<p>A <code>Duty</code> entity does not by default specify any conditions on <em>when</em> the <code>Duty</code> <code>Action</code> MUST be performed in order for the <code>Permission</code> to be exercised. Such temporal conditions MAY be expressed through additional <code>Constraint</code>s.</p>
-    
-<p>For example, to support cases where the <code>Duty</code> MUST be performed for each <code>Action</code> on an <code>Asset</code> before it is exercised (for example, a <em>pay-per-view</em> scenario) then the use of a <code>Constraint</code> (e.g. count=1) on the <code>Permission</code> (e.g. play) and a temporal (or event) <code>Constraint</code> on the <code>Duty</code> can express this semantics.</p>
 
 <p><b>Example Use Case</b>: The Party <code>http://example.com/assigner:77</code> needs to set a Privacy Policy for some data about it. The target Asset <code>http://example.com/personal-data:77</code> of this policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
 
 
 <div class="example">
-	EXAMPLE 9
+	EXAMPLE 10
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Privacy"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
@@ -558,7 +592,7 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
 
 <div class="example">
-	EXAMPLE 10
+	EXAMPLE 11
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
@@ -636,7 +670,7 @@ The requirements for communities developing ODRL Profiles MUST document the foll
   
 <p>The community SHOULD also create a machine-readable schema for their ODRL Profile following the appropriate serialisations options outlined in the ODRL Vocabulary and Expression specification [[!vocab-odrl]]. In this case, the ODRL Profile URI MUST also be used as the serialisation namespace URI.</p>
 
-<p>It is also recommended to share the ODRL Profile with the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a> for feedback and comments.</p>
+<p>It is also recommended to share the ODRL Profile with the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a> for feedback and comments. In addition, the W3C ODRL Community Group may host the ODRL Profile documents on their website. </p>
     </section>
     
 <section id="profile-example">
