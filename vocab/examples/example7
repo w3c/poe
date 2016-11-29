@@ -1,0 +1,24 @@
+{
+    "policytype": "http://www.w3.org/ns/odrl/2/Privacy",
+    "policyid": "http://example.com/policy:1111",
+    "permissions": [{
+        "target": "http://example.com/billie:888:personal-data",
+        "action": "http://www.w3.org/ns/odrl/2/distribute",
+        "constraints": [{
+            "name": "http://www.w3.org/ns/odrl/2/purpose",
+            "operator": "http://www.w3.org/ns/odrl/2/eq",
+            "rightoperand": "http://www.w3.org/2002/01/P3Pv1:contact"
+        }],
+        "assigner": "http://example.com/billie:888",
+        "assignee": "http://example.com/gov:health:au",
+        "duties": [{
+            "action": "http://www.w3.org/ns/odrl/2/delete",
+            "target": "http://example.com/billie:888:personal-data",
+            "constraints": [{
+                "name": "http://www.w3.org/ns/odrl/2/dateTime",
+                "operator": "http://www.w3.org/ns/odrl/2/eq",
+                "rightoperand": "P30D"
+            }]
+        }]
+    }]
+}
