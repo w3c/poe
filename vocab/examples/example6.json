@@ -1,0 +1,39 @@
+{
+    "policytype": "http://www.w3.org/ns/odrl/2/Offer",
+    "policyid": "http://example.com/policy:5531",
+    "permissions": [{
+        "target": "http://example.com/wallpaper:2321",
+        "action": "http://www.w3.org/ns/odrl/2/distribute",
+        "constraints": [{
+            "name": "http://www.w3.org/ns/odrl/2/spatial",
+            "operator": "http://www.w3.org/ns/odrl/2/eq",
+            "rightoperand": "http://www.itu.int/tML/tML-ISO-3166:it"
+        }],
+        "assigner": "http://example.com/sony:99",
+        "duties": [
+            {
+                "action": "http://www.w3.org/ns/odrl/2/compensate",
+                "constraints": [{
+                    "name": "http://www.w3.org/ns/odrl/2/payAmount",
+                    "operator": "http://www.w3.org/ns/odrl/2/eq",
+                    "rightoperand": "1000.00",
+                    "rightoperanddatatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                    "rightoperandunit": "http://cvx.iptc.org/iso4217a/EUR"
+                }]
+            },
+            {
+                "action": "http://www.w3.org/ns/odrl/2/nextPolicy",
+                "target": "http://example.com/policy:7777"
+            }
+        ]
+    }]
+}
+
+    {
+        "policytype": "http://www.w3.org/ns/odrl/2/Set",
+        "policyid": "http://example.com/policy:7777",
+        "permissions": [{
+            "target": "http://example.com/wallpaper:2321",
+            "action": "http://www.w3.org/ns/odrl/2/display"
+        }]
+    }
