@@ -245,14 +245,20 @@ the following values:</p>
 <li>No state information is transferred from the policy in the Parent <code>Policy</code> to the Child <code>Policy</code></li>
 </ul>
 	
-<p><b>Example Use Case</b>: The instance of the child Policy <code>http://example.com/policy:2222</code> inherits from the parent Policy <code>http://example.com/policy:1111</code>, allowing to reproduce the parent's target Asset <code>http://example.com/asset:1111</code>, and allowing the Party <code>http://example.com/assignee:88</code> to display the child's target Asset <code>http://example.com/asset:2222</code>. Moreover, due to the inheritance relation, the child Policy inherits from the parent that the Party <code>http://example.com/assignee:88</code> can also reproduce <code>http://example.com/asset:1111</code>.</p>	
+<p><b>Example Use Case</b>: This example explains the use of inheritance by means of two parent Policies and two child Policies. 
+On the one side, the instance of the child Policy <code>http://example.com/child_policy:2222</code> inherits from the parent Policy <code>http://example.com/parent_policy:1111</code>, allowing to reproduce the parent's target Asset <code>http://example.com/asset:1111</code>, and allowing the Party <code>http://example.com/assignee:88</code> to read the child's target Asset <code>http://example.com/asset:2222</code>. Moreover, due to the inheritance relation, the child Policy inherits from the parent that the Party <code>http://example.com/assignee:88</code> can also reproduce <code>http://example.com/asset:1111</code>.<br> 
+
+On the other side, the instance of the child Policy <code>http://example.com/child_policy:1111</code> inherits from the parent Policy <code>http://example.com/parent_policy:2222</code>, allowing to distribute the parent's target Asset <code>http://example.com/asset:3333</code>, and allowing the Party <code>http://example.com/assignee:88</code> to play and distribute the child's target Asset <code>http://example.com/asset:4444</code>. In this case, the child Policy overrides the parent one, meaning that as the same Action appears in the parent and in the child (i.e., <code>distribute</code>), then it is replaced by the child version, so that the child Policy can also distribute <code>http://example.com/asset:3333</code>. <br>
+
+Note that, following the definition of inheritance provided above, the child Policy <code>http://example.com/child_policy:1111</code> cannot inherit from parent Policy <code>http://example.com/parent_policy:1111</code>, even if inheritance is allowed from this Policy. 
+</p>	
 
 <div class="example">
 	EXAMPLE 3
 	
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
-    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1111"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/parent_policy:1111"</span>,
     <span class="hljs-string">"inheritAllowed"</span>: <span class="hljs-string">true</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1111"</span>,
@@ -263,7 +269,18 @@ the following values:</p>
 
 <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
-    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:2222"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/parent_policy:2222"</span>,
+    <span class="hljs-string">"inheritallowed"</span>: <span class="hljs-string">true</span>,
+    <span class="hljs-string">"permission"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:3333"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/distribute"</span>,
+	<span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1919"</span>
+    }]
+}</pre>
+	
+<pre class="highlight hljs xquery">{
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/child_policy:2222"</span>,
     <span class="hljs-string">"inheritFrom"</span>: <span class="hljs-string">"http://example.com/policy:1111"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:2222"</span>,
@@ -273,6 +290,19 @@ the following values:</p>
     }]
 }</pre>
 
+<pre class="highlight hljs xquery">{
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-string">"http://example.com/child_policy:1111"</span>,
+    <span class="hljs-string">"inheritfrom"</span>: <span class="hljs-string">"http://example.com/policy:2222"</span>,
+    <span class="hljs-string">"permission"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:4444"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/play"</span>,
+	<span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/distribute"</span>,
+        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1919"</span>,
+        <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:88"</span>
+    }]
+}</pre>
+	
 </div>
 	
 	</section>
