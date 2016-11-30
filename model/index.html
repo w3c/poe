@@ -570,6 +570,24 @@ which database the index outcome should be stored in.</p>
 <li><code>name</code>: indicates the <code>Action</code> entity term (REQUIRED)</li>
 </ul>
 <p>As its value, the <code>name</code> attribute MAY take one of a set of <code>Action</code> <em>names</em> which are formally defined in profiles. The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) profiles to capture additional and refined semantics.</p>
+
+<p><b>Example Use Case</b>: The Party needs to define an Offer policy granting several permissions to the target Asset <code>http://example.com/music:1012</code>, namely the permission to play, to create multiple copies of the Asset that are being concurrently used, and to to perform or exhibit the Asset to an audience.</p> 
+
+<div class="example">
+	EXAMPLE 11
+ <pre class="highlight hljs xquery">{
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1012"</span>,
+    <span class="hljs-string">"permission"</span>: [{
+            <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/music:1012"</span>,
+            <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/play"</span>,
+            <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/concurrentUse"</span>,
+	    <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/present"</span>
+          }]
+}</pre>
+</div>	
+	
+	
 </section>
 
 <section id="constraint">
@@ -593,7 +611,7 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
 
 <div class="example">
-	EXAMPLE 11
+	EXAMPLE 12
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
