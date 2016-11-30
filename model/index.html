@@ -196,7 +196,42 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
       <div class="issue" data-number="21">
           <p>Need to clarify conflicting values of the conflict attribute. That is, one policy says <code>perm</code> and the other <code>prohibit</code>. </p>
     </div>
-    
+	
+<p><b>Example Use Case</b>: Two policies are associated to target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:1212</code> allows to use, reproduce and commercialize the Asset. The second Policy <code>http://example.com/policy:1213</code> allows for the reproduction of the Asset, but it prohibits display and commercialization. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute: the first Policy assigns the priority to permissions, whilst the second Policy assigns the priority to the prohibition. Two different conflicts arise from merging these two policies dealing with the same Asset: (1) the first policy permits commercialization while the second one prohibits it (direct dependency between the two actions), and (2) the first policy permits the use of the Asset while the second one prohibits to display it (explicit dependency between the two actions, use is more general than display). Moreover, we have conflicting value of the <code>conflict</code> attribute: following the first Policy, we would go for permitting use and commercialize, but if we follow the second Policy we would go for prohibiting commercialize and display. </p>
+
+
+<div class="example">
+	EXAMPLE 3
+ <pre class="highlight hljs xquery">{
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1212"</span>,
+    <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"perm"</span>,
+    <span class="hljs-string">"permission"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>,
+	<span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/use"</span>,
+	<span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>,
+	<span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:181"</span>
+    }]
+}</pre>
+
+<pre class="highlight hljs xquery">{
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1213"</span>,
+    <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"prohibit"</span>,
+    <span class="hljs-string">"permission"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>,
+	<span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:182"</span>
+    }]
+    <span class="hljs-string">"prohibition"</span>: [{
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>,
+	<span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>
+    }]
+}</pre>
+</div>
+
     
 <p>The <code>undefined</code> attribute is used to indicate how to support <code>Action</code>s that are not part of any profile in the policy expression system. If present, the <code>undefined</code> attribute MUST take one of<br />
 the following values:</p>
@@ -254,7 +289,7 @@ Note that, following the definition of inheritance provided above, the child Pol
 </p>	
 
 <div class="example">
-	EXAMPLE 3
+	EXAMPLE 4
 	
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
@@ -337,7 +372,7 @@ Note that, following the definition of inheritance provided above, the child Pol
 <p><b>Example Use Case</b>: The Party <code>http//example.com/guest:0001</code> needs to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the permission to do so. This request can be implemented through a Policy of the type Request asking for the permission to display Asset <code>http://example.com/asset:3333</code>.</p>
 
 <div class="example">
-	EXAMPLE 4
+	EXAMPLE 5
 	
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Request"</span>,
@@ -356,7 +391,7 @@ which database the index outcome should be stored in.</p>
 
 
 <div class="example">
-	EXAMPLE 5
+	EXAMPLE 6
  <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
@@ -411,7 +446,7 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The target Asset <code>http://example.com/asset:myPhotos:football4444</code> are photos posted to a Social Network site by the assigner and owner of the photos <code>http://example.com/myPhoto:assigner44</code>. The assignee is a Party group <code>http://example.com/myPhoto:assignee:footballfans44</code>, and represents the football fan club members, who are each allowed to display the photos.</p>
 
 <div class="example">
-	EXAMPLE 6
+	EXAMPLE 7
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
@@ -448,7 +483,7 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the Ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
 
 <div class="example">
-	EXAMPLE 7
+	EXAMPLE 8
  <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Ticket"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:9090"</span>,
@@ -480,7 +515,7 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The owner and assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between permissions and prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
 
 <div class="example">
-	EXAMPLE 8
+	EXAMPLE 9
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:5555"</span>,
@@ -515,7 +550,7 @@ which database the index outcome should be stored in.</p>
 
     
 <div class="example">
-	EXAMPLE 9
+	EXAMPLE 10
          <pre class="highlight hljs xquery">
 {
     "type": "http://www.w3.org/ns/odrl/2/Offer",
@@ -561,7 +596,7 @@ which database the index outcome should be stored in.</p>
 
 
 <div class="example">
-	EXAMPLE 10
+	EXAMPLE 11
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Privacy"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
@@ -604,7 +639,7 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The Party needs to define an Offer policy granting several permissions about the target Asset <code>http://example.com/music:1012</code>, namely the permission to play, to create multiple copies of the Asset that are being concurrently used, and to to perform or exhibit the Asset to an audience.</p> 
 
 <div class="example">
-	EXAMPLE 11
+	EXAMPLE 12
  <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1012"</span>,
@@ -641,7 +676,7 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
 
 <div class="example">
-	EXAMPLE 12
+	EXAMPLE 13
          <pre class="highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
