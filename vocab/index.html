@@ -1350,7 +1350,48 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odr
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Set&gt; .
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
 &lt;http://example.com/policy:0099&gt; &lt;http://www.w3.org/ns/odrl/2/prohibition&gt; _:genid2 .
-</pre></div></section><section id="sc-example2"><h3>Offer</h3><p>The following shows the instance of an <code>offer</code> <code>Policy</code>. The <code>offer</code> contains the music file <code>http//example.com/music:4545</code> that is offered by the <code>Party</code> <code>http//example.com/sony:10</code> with the <code>Permission</code>s to <code>play</code> and <code>copy</code> the file. The <code>Permission</code> <code>copy</code> is only granted once. The two <code>Permission</code>s are offered for a compensation of AUD$0.50.</p><div class="nanotabs"><ul><li><a href="#sc-example2-ttl" class="selected">Turtle</a></li><li><a href="#sc-example2-xml" class="selected">XML</a></li><li><a href="#sc-example2-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example2-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example2-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example2"><h3>Offer</h3><p>The following shows the instance of an <code>offer</code> <code>Policy</code>. The <code>offer</code> contains the music file <code>http//example.com/music:4545</code> that is offered by the <code>Party</code> <code>http//example.com/sony:10</code> with the <code>Permission</code>s to <code>play</code> and <code>copy</code> the file. The <code>Permission</code> <code>copy</code> is only granted once. The two <code>Permission</code>s are offered for a compensation of AUD$0.50.</p><div class="nanotabs"><ul><li><a href="#sc-example2-json" class="selected">JSON</a></li><li><a href="#sc-example2-ttl" class="selected">Turtle</a></li><li><a href="#sc-example2-xml" class="selected">XML</a></li><li><a href="#sc-example2-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example2-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example2-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Offer&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:0231&quot;,
+    &quot;permissions&quot;: [
+        {
+            &quot;target&quot;: &quot;http://example.com/music:4545&quot;,
+            &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/play&quot;,
+            &quot;assigner&quot;: &quot;http://example.com/sony:10&quot;,
+            &quot;duties&quot;: [{
+                &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/compensate&quot;,
+                &quot;constraints&quot;: [{
+                    &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/payAmount&quot;,
+                    &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/eq&quot;,
+                    &quot;rightoperand&quot;: &quot;0.50&quot;,
+                    &quot;rightoperanddatatype&quot;: &quot;http://www.w3.org/2001/XMLSchema#decimal&quot;,
+                    &quot;rightoperandunit&quot;: &quot;http://cvx.iptc.org/iso4217a/AUD&quot;
+                }]
+            }]
+        },
+        {
+            &quot;target&quot;: &quot;http://example.com/music:4545&quot;,
+            &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/copy&quot;,
+            &quot;constraints&quot;: [{
+                &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/count&quot;,
+                &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/lteq&quot;,
+                &quot;rightoperand&quot;: &quot;1&quot;
+            }],
+            &quot;assigner&quot;: &quot;http://example.com/sony:10&quot;,
+            &quot;duties&quot;: [{
+                &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/compensate&quot;,
+                &quot;constraints&quot;: [{
+                    &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/payAmount&quot;,
+                    &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/eq&quot;,
+                    &quot;rightoperand&quot;: &quot;0.50&quot;,
+                    &quot;rightoperanddatatype&quot;: &quot;http://www.w3.org/2001/XMLSchema#decimal&quot;,
+                    &quot;rightoperandunit&quot;: &quot;http://cvx.iptc.org/iso4217a/AUD&quot;
+                }]
+            }]
+        }
+    ]
+}
+</pre></div><div id="sc-example2-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:0231&gt;
 	a odrl:Offer ;
@@ -1478,7 +1519,50 @@ _:requirements &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http:
 _:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/ns/odrl/2/compensate&gt; .
 _:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
 &lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example3"><h3>Agreement</h3><p>The following shows the instance of an <code>agreement</code> <code>Policy</code>. The <code>agreement</code> contains all entities shown in the <code>offer</code> scenario above. A new <code>Party</code> element <code>http//example.com/billie:888</code> has been added. This <code>Party</code> accepted the previous <code>offer</code> and thus is now the buyer of the <code>Permission</code> <code>play</code> and <code>copy</code>, i.e. is now linked as <code>assignee</code> of the <code>Permission</code>s and <code>Duty</code> entities.</p><div class="nanotabs"><ul><li><a href="#sc-example3-ttl" class="selected">Turtle</a></li><li><a href="#sc-example3-xml" class="selected">XML</a></li><li><a href="#sc-example3-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example3-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example3-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example3"><h3>Agreement</h3><p>The following shows the instance of an <code>agreement</code> <code>Policy</code>. The <code>agreement</code> contains all entities shown in the <code>offer</code> scenario above. A new <code>Party</code> element <code>http//example.com/billie:888</code> has been added. This <code>Party</code> accepted the previous <code>offer</code> and thus is now the buyer of the <code>Permission</code> <code>play</code> and <code>copy</code>, i.e. is now linked as <code>assignee</code> of the <code>Permission</code>s and <code>Duty</code> entities.</p><div class="nanotabs"><ul><li><a href="#sc-example3-json" class="selected">JSON</a></li><li><a href="#sc-example3-ttl" class="selected">Turtle</a></li><li><a href="#sc-example3-xml" class="selected">XML</a></li><li><a href="#sc-example3-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example3-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example3-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Agreement&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:9001&quot;,
+    &quot;permissions&quot;: [
+        {
+            &quot;target&quot;: &quot;http://example.com/music:4545&quot;,
+            &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/play&quot;,
+            &quot;assigner&quot;: &quot;http://example.com/sony:10&quot;,
+            &quot;assignee&quot;: &quot;http://example.com/billie:888&quot;,
+            &quot;duties&quot;: [{
+                &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/compensate&quot;,
+                &quot;constraints&quot;: [{
+                    &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/payAmount&quot;,
+                    &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/eq&quot;,
+                    &quot;rightoperand&quot;: &quot;0.50&quot;,
+                    &quot;rightoperanddatatype&quot;: &quot;http://www.w3.org/2001/XMLSchema#decimal&quot;,
+                    &quot;rightoperandunit&quot;: &quot;http://cvx.iptc.org/iso4217a/AUD&quot;
+                }]
+            }]
+        },
+        {
+            &quot;target&quot;: &quot;http://example.com/music:4545&quot;,
+            &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/copy&quot;,
+            &quot;constraints&quot;: [{
+                &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/count&quot;,
+                &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/lteq&quot;,
+                &quot;rightoperand&quot;: &quot;1&quot;
+            }],
+            &quot;assigner&quot;: &quot;http://example.com/sony:10&quot;,
+            &quot;assignee&quot;: &quot;http://example.com/billie:888&quot;,
+            &quot;duties&quot;: [{
+                &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/compensate&quot;,
+                &quot;constraints&quot;: [{
+                    &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/payAmount&quot;,
+                    &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/eq&quot;,
+                    &quot;rightoperand&quot;: &quot;0.50&quot;,
+                    &quot;rightoperanddatatype&quot;: &quot;http://www.w3.org/2001/XMLSchema#decimal&quot;,
+                    &quot;rightoperandunit&quot;: &quot;http://cvx.iptc.org/iso4217a/AUD&quot;
+                }]
+            }]
+        }
+    ]
+}
+</pre></div><div id="sc-example3-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:9001&gt;
 	a odrl:Agreement ;
@@ -1617,7 +1701,16 @@ _:requirements &lt;http://www.w3.org/ns/odrl/2/action&gt; &lt;http://www.w3.org/
 _:requirements &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid4 .
 &lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example4"><h3>Request</h3><p>The following shows the instance of a <code>request</code> <code>Policy</code>. The <code>Party</code> <code>http//example.com/guest:0589</code> has requested the <code>Permission</code> to <code>display </code> the <code>target</code> <code>Asset</code> <code>http//example.com/news:0099</code>.</p><div class="nanotabs"><ul><li><a href="#sc-example4-ttl" class="selected">Turtle</a></li><li><a href="#sc-example4-xml" class="selected">XML</a></li><li><a href="#sc-example4-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example4-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example4-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example4"><h3>Request</h3><p>The following shows the instance of a <code>request</code> <code>Policy</code>. The <code>Party</code> <code>http//example.com/guest:0589</code> has requested the <code>Permission</code> to <code>display </code> the <code>target</code> <code>Asset</code> <code>http//example.com/news:0099</code>.</p><div class="nanotabs"><ul><li><a href="#sc-example4-json" class="selected">JSON</a></li><li><a href="#sc-example4-ttl" class="selected">Turtle</a></li><li><a href="#sc-example4-xml" class="selected">XML</a></li><li><a href="#sc-example4-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example4-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example4-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Request&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:04311&quot;,
+    &quot;permissions&quot;:[ {
+        &quot;target&quot;: &quot;http://example.com/news:0099&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/display&quot;,
+        &quot;assignee&quot;: &quot;http://example.com/guest:0589&quot;
+    }]
+}
+</pre></div><div id="sc-example4-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:04311&gt;
 	a odrl:Request ;
@@ -1660,7 +1753,20 @@ _:genid1 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/news:
 &lt;http://example.com/policy:04311&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Request&gt; .
 &lt;http://example.com/policy:04311&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid1 .
 &lt;http://example.com/guest:0589&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example5"><h3>Ticket</h3><p>The following shows the instance of a <code>ticket</code> <code>Policy</code>. The <code>ticket</code> expresses the <code>play</code> <code>Permission</code> for the <code>target</code> <code>Asset</code> <code>http//example.com/game:4589</code>. The <code>Ticket</code> is valid until the end of the year 2010. Any valid holder of this ticket may exercise this <code>Permission</code>.</p><div class="nanotabs"><ul><li><a href="#sc-example5-ttl" class="selected">Turtle</a></li><li><a href="#sc-example5-xml" class="selected">XML</a></li><li><a href="#sc-example5-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example5-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example5-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example5"><h3>Ticket</h3><p>The following shows the instance of a <code>ticket</code> <code>Policy</code>. The <code>ticket</code> expresses the <code>play</code> <code>Permission</code> for the <code>target</code> <code>Asset</code> <code>http//example.com/game:4589</code>. The <code>Ticket</code> is valid until the end of the year 2010. Any valid holder of this ticket may exercise this <code>Permission</code>.</p><div class="nanotabs"><ul><li><a href="#sc-example5-json" class="selected">JSON</a></li><li><a href="#sc-example5-ttl" class="selected">Turtle</a></li><li><a href="#sc-example5-xml" class="selected">XML</a></li><li><a href="#sc-example5-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example5-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example5-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Ticket&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:04311&quot;,
+    &quot;permissions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/game:4589&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/play&quot;,
+        &quot;constraints&quot;: [{
+            &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/dateTime&quot;,
+            &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/lteq&quot;,
+            &quot;rightoperand&quot;: &quot;2010-12-31&quot;
+        }]
+    }]
+}
+</pre></div><div id="sc-example5-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
 &lt;http://example.com/policy:0811&gt;
@@ -1713,7 +1819,46 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/game:
 _:genid2 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid1 .
 &lt;http://example.com/policy:0811&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Ticket&gt; .
 &lt;http://example.com/policy:0811&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid2 .
-</pre></div></section><section id="sc-example6"><h3>Offer and next policy</h3><p>The following shows the instance of an <code>offer</code> <code>Policy</code> showing the <code>nextPolicy</code> structure. The party <code>http//example.com/sony:99</code> assigns the <code>Permission</code> <code>distribute</code> directly to the potential buyer of the permission who will pay $EU1,000. The <code>distribute</code> <code>Permission</code> is also constrained to the country Italy. The potential <code>assignee</code> may then <code>distribute</code> the <code>target</code> <code>Asset</code> according to the <code>nextPolicy</code> <code>target</code> <code>Asset</code> linked directly from this <code>Duty</code>. In this case, the next Policy <code>Asset</code> stipulates that the potential <code>assignee</code> may only offer the <code>display</code> <code>Permission</code> to downstream consumers.</p><div class="nanotabs"><ul><li><a href="#sc-example6-ttl" class="selected">Turtle</a></li><li><a href="#sc-example6-xml" class="selected">XML</a></li><li><a href="#sc-example6-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example6-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example6-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example6"><h3>Offer and next policy</h3><p>The following shows the instance of an <code>offer</code> <code>Policy</code> showing the <code>nextPolicy</code> structure. The party <code>http//example.com/sony:99</code> assigns the <code>Permission</code> <code>distribute</code> directly to the potential buyer of the permission who will pay $EU1,000. The <code>distribute</code> <code>Permission</code> is also constrained to the country Italy. The potential <code>assignee</code> may then <code>distribute</code> the <code>target</code> <code>Asset</code> according to the <code>nextPolicy</code> <code>target</code> <code>Asset</code> linked directly from this <code>Duty</code>. In this case, the next Policy <code>Asset</code> stipulates that the potential <code>assignee</code> may only offer the <code>display</code> <code>Permission</code> to downstream consumers.</p><div class="nanotabs"><ul><li><a href="#sc-example6-json" class="selected">JSON</a></li><li><a href="#sc-example6-ttl" class="selected">Turtle</a></li><li><a href="#sc-example6-xml" class="selected">XML</a></li><li><a href="#sc-example6-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example6-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example6-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Offer&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:5531&quot;,
+    &quot;permissions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/wallpaper:2321&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/distribute&quot;,
+        &quot;constraints&quot;: [{
+            &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/spatial&quot;,
+            &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/eq&quot;,
+            &quot;rightoperand&quot;: &quot;http://www.itu.int/tML/tML-ISO-3166:it&quot;
+        }],
+        &quot;assigner&quot;: &quot;http://example.com/sony:99&quot;,
+        &quot;duties&quot;: [
+            {
+                &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/compensate&quot;,
+                &quot;constraints&quot;: [{
+                    &quot;name&quot;: &quot;http://www.w3.org/ns/odrl/2/payAmount&quot;,
+                    &quot;operator&quot;: &quot;http://www.w3.org/ns/odrl/2/eq&quot;,
+                    &quot;rightoperand&quot;: &quot;1000.00&quot;,
+                    &quot;rightoperanddatatype&quot;: &quot;http://www.w3.org/2001/XMLSchema#decimal&quot;,
+                    &quot;rightoperandunit&quot;: &quot;http://cvx.iptc.org/iso4217a/EUR&quot;
+                }]
+            },
+            {
+                &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/nextPolicy&quot;,
+                &quot;target&quot;: &quot;http://example.com/policy:7777&quot;
+            }
+        ]
+    }]
+}
+
+    {
+        &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Set&quot;,
+        &quot;policyid&quot;: &quot;http://example.com/policy:7777&quot;,
+        &quot;permissions&quot;: [{
+            &quot;target&quot;: &quot;http://example.com/wallpaper:2321&quot;,
+            &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/display&quot;
+        }]
+    }
+</pre></div><div id="sc-example6-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:5531&gt;
 	a odrl:Offer ;
@@ -1972,7 +2117,24 @@ _:genid4 &lt;http://www.w3.org/ns/odrl/2/constraint&gt; _:genid3 .
 &lt;http://example.com/policy:1111&gt; &lt;http://www.w3.org/ns/odrl/2/permission&gt; _:genid4 .
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/gov:health:au&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example8"><h3>Permission and prohibition</h3><p>The following shows the instance of an <code>agreement</code> <code>Policy</code> with both a <code>Permission</code> and a <code>Prohibition</code>. The party <code>http//example.com/sony:10</code> assigns the <code>Permission</code> <code>play</code> to the <code>Party</code> <code>http//example.com/billie:888</code> at the same time they are <em>prohibited</em> from utilising the <code>target</code> <code>Asset</code> as a <code>mobile:ringtone</code>. Additionally, in case of any conflict, the <code>conflict</code> attribute is set to <code>perm</code> indicating that the <code>Permission</code> entity will take precedence.</p><div class="nanotabs"><ul><li><a href="#sc-example8-ttl" class="selected">Turtle</a></li><li><a href="#sc-example8-xml" class="selected">XML</a></li><li><a href="#sc-example8-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example8-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example8-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example8"><h3>Permission and prohibition</h3><p>The following shows the instance of an <code>agreement</code> <code>Policy</code> with both a <code>Permission</code> and a <code>Prohibition</code>. The party <code>http//example.com/sony:10</code> assigns the <code>Permission</code> <code>play</code> to the <code>Party</code> <code>http//example.com/billie:888</code> at the same time they are <em>prohibited</em> from utilising the <code>target</code> <code>Asset</code> as a <code>mobile:ringtone</code>. Additionally, in case of any conflict, the <code>conflict</code> attribute is set to <code>perm</code> indicating that the <code>Permission</code> entity will take precedence.</p><div class="nanotabs"><ul><li><a href="#sc-example8-json" class="selected">JSON</a></li><li><a href="#sc-example8-ttl" class="selected">Turtle</a></li><li><a href="#sc-example8-xml" class="selected">XML</a></li><li><a href="#sc-example8-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example8-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example8-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Agreement&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:3433&quot;,
+    &quot;conflict&quot;: &quot;perm&quot;,
+    &quot;permissions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/music:1234908&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/play&quot;,
+        &quot;assigner&quot;: &quot;http://example.com/sony:10&quot;,
+        &quot;assignee&quot;: &quot;http://example.com/billie:888&quot;
+    }],
+    &quot;prohibitions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/music:1234908&quot;,
+        &quot;action&quot;: &quot;http://oma.org/drm:ringtone&quot;,
+        &quot;assigner&quot;: &quot;http://example.com/sony:10&quot;,
+        &quot;assignee&quot;: &quot;http://example.com/billie:888&quot;
+    }]
+}
+</pre></div><div id="sc-example8-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 @prefix mobile: &lt;http://example.com/mobile#&gt; .
 
 &lt;http://example.com/policy:3433&gt;
@@ -2059,7 +2221,31 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/target&gt; &lt;http://example.com/music
 &lt;http://example.com/policy:3433&gt; &lt;http://www.w3.org/ns/odrl/2/prohibition&gt; _:genid2 .
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/sony:10&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
-</pre></div></section><section id="sc-example9"><h3>Inheritance</h3><p>The following shows the instance of a (child) <code>Policy</code> <code>http//example.com/policy:9999</code> inheriting from another (parent) <code>Policy</code> <code>http//example.com/policy:5531</code>. The <code>inheritFrom</code> attribute of the (child) <code>Policy</code> has the same identifier as the (parent) <code>Policy</code>. In this inheritance example, the (parent) <code>Policy</code> allows the <code>Party</code> <code>http//example.com/billie:888</code> to <code>print</code> the (parent’s) <code>target</code> <code>Asset</code>. The (child) <code>Policy</code> allows the <code>Party</code> <code>http//example.com/class:IT01</code> (a group of people) to <code>display</code> the (child’s) <code>target</code> <code>Asset</code>. Since the (child) <code>Policy</code> also inherits from the (parent) <code>Policy</code>, then the <code>Party</code> <code>http//example.com/class:IT01</code> can also <code>print</code> the (parent’s) <code>target</code> <code>Asset</code>.</p><div class="nanotabs"><ul><li><a href="#sc-example9-ttl" class="selected">Turtle</a></li><li><a href="#sc-example9-xml" class="selected">XML</a></li><li><a href="#sc-example9-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example9-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example9-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+</pre></div></section><section id="sc-example9"><h3>Inheritance</h3><p>The following shows the instance of a (child) <code>Policy</code> <code>http//example.com/policy:9999</code> inheriting from another (parent) <code>Policy</code> <code>http//example.com/policy:5531</code>. The <code>inheritFrom</code> attribute of the (child) <code>Policy</code> has the same identifier as the (parent) <code>Policy</code>. In this inheritance example, the (parent) <code>Policy</code> allows the <code>Party</code> <code>http//example.com/billie:888</code> to <code>print</code> the (parent’s) <code>target</code> <code>Asset</code>. The (child) <code>Policy</code> allows the <code>Party</code> <code>http//example.com/class:IT01</code> (a group of people) to <code>display</code> the (child’s) <code>target</code> <code>Asset</code>. Since the (child) <code>Policy</code> also inherits from the (parent) <code>Policy</code>, then the <code>Party</code> <code>http//example.com/class:IT01</code> can also <code>print</code> the (parent’s) <code>target</code> <code>Asset</code>.</p><div class="nanotabs"><ul><li><a href="#sc-example9-json" class="selected">JSON</a></li><li><a href="#sc-example9-ttl" class="selected">Turtle</a></li><li><a href="#sc-example9-xml" class="selected">XML</a></li><li><a href="#sc-example9-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example9-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example9-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Agreement&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:5531&quot;,
+    &quot;inheritallowed&quot;: true,
+    &quot;permissions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/report:2321&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/print&quot;,
+        &quot;assigner&quot;: &quot;http://example.com/pub:88&quot;,
+        &quot;assignee&quot;: &quot;http://example.com/billie:888&quot;
+    }]
+}
+
+{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Agreement&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:9999&quot;,
+    &quot;inheritfrom&quot;: &quot;http://example.com/policy:5531&quot;,
+    &quot;permissions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/report:2333&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/display&quot;,
+        &quot;assigner&quot;: &quot;http://example.com/pub:88&quot;,
+        &quot;assignee&quot;: &quot;http://example.com/class:IT01&quot;,
+        &quot;assignee_scope&quot;: &quot;http://www.w3.org/ns/odrl/2/group&quot;
+    }]
+}
+</pre></div><div id="sc-example9-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:5531&gt;
 	a odrl:Agreement ;
@@ -2159,7 +2345,18 @@ _:genid2 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/cla
 &lt;http://example.com/billie:888&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/class:IT01&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Group&gt; .
 </pre></div></section><section id="sc-example10"><h3>Social network</h3><p>The following shows the instance of an <code>agreement</code> <code>Policy</code> for a Social Network scenario.</p>
-<p>The <code>target</code> <code>Asset</code> are photos posted to a Social Network site and the <code>assigner</code> is the owner of the photos. The <code>assignee</code> is a <code>Party</code> <code>group</code> and represents the <em>football network members</em> on the social network, who are each allowed to <code>display</code> the photos.</p><div class="nanotabs"><ul><li><a href="#sc-example10-ttl" class="selected">Turtle</a></li><li><a href="#sc-example10-xml" class="selected">XML</a></li><li><a href="#sc-example10-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example10-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example10-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+<p>The <code>target</code> <code>Asset</code> are photos posted to a Social Network site and the <code>assigner</code> is the owner of the photos. The <code>assignee</code> is a <code>Party</code> <code>group</code> and represents the <em>football network members</em> on the social network, who are each allowed to <code>display</code> the photos.</p><div class="nanotabs"><ul><li><a href="#sc-example10-json" class="selected">JSON</a></li><li><a href="#sc-example10-ttl" class="selected">Turtle</a></li><li><a href="#sc-example10-xml" class="selected">XML</a></li><li><a href="#sc-example10-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example10-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example10-json" style="display: block;"><pre class="example highlight json">{
+   &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Agreement&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:5109&quot;,
+    &quot;permissions&quot;: [{
+        &quot;target&quot;: &quot;http://example.com/myPlace:billie:photos:football2010&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/display&quot;,
+        &quot;assigner&quot;: &quot;http://example.com/myPlace:billie&quot;,
+        &quot;assignee&quot;: &quot;http://example.com/myPlace:network:football&quot;,
+        &quot;assignee_scope&quot;: &quot;http://www.w3.org/ns/odrl/2/group&quot;
+    }]
+}
+</pre></div><div id="sc-example10-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 
 &lt;http://example.com/policy:5109&gt;
 	a odrl:Agreement ;
@@ -2213,7 +2410,16 @@ _:genid1 &lt;http://www.w3.org/ns/odrl/2/assignee&gt; &lt;http://example.com/myP
 &lt;http://example.com/myPlace:billie&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Party&gt; .
 &lt;http://example.com/myPlace:network:football&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/ns/odrl/2/Group&gt; .
 </pre></div></section><section id="sc-example11"><h3>Multiple assets</h3><p>The following shows an instance of a <code>set</code> <code>Policy</code> utilising multiple <code>Asset</code> entities.</p>
-<p>The <code>index</code> <code>Permission</code> is granted to the <code>target</code> <code>Asset</code>. As well, the <code>x:collection</code> <code>Asset</code> specifies which database the <code>index</code> outcome should be stored in.</p><div class="nanotabs"><ul><li><a href="#sc-example11-ttl" class="selected">Turtle</a></li><li><a href="#sc-example11-xml" class="selected">XML</a></li><li><a href="#sc-example11-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example11-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example11-ttl" style="display: block;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
+<p>The <code>index</code> <code>Permission</code> is granted to the <code>target</code> <code>Asset</code>. As well, the <code>x:collection</code> <code>Asset</code> specifies which database the <code>index</code> outcome should be stored in.</p><div class="nanotabs"><ul><li><a href="#sc-example11-json" class="selected">JSON</a></li><li><a href="#sc-example11-ttl" class="selected">Turtle</a></li><li><a href="#sc-example11-xml" class="selected">XML</a></li><li><a href="#sc-example11-rdf" class="selected">RDF/XML</a></li><li><a href="#sc-example11-nt" class="selected">N-Triples</a></li></ul></div><div id="sc-example11-json" style="display: block;"><pre class="example highlight json">{
+    &quot;policytype&quot;: &quot;http://www.w3.org/ns/odrl/2/Set&quot;,
+    &quot;policyid&quot;: &quot;http://example.com/policy:881212&quot;,
+    &quot;permissions&quot;:[ {
+        &quot;target&quot;: &quot;http://example.com/archive2010&quot;,
+        &quot;x:collection&quot;: &quot;http://example.com/x/database&quot;,
+        &quot;action&quot;: &quot;http://www.w3.org/ns/odrl/2/index&quot;
+    }]
+}
+</pre></div><div id="sc-example11-ttl" style="display: none;"><pre class="example highlight ttl">@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 @prefix x: &lt;http://example.com/x#&gt; .
 
