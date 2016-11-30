@@ -647,7 +647,8 @@ which database the index outcome should be stored in.</p>
     <h3>Motivation</h3>
         
 <p>The ODRL Information Model serves as a framework to express Policies and the ODRL Vocabulary [[!vocab-odrl]] provides a broad range of common actions for Permissions, Prohibition, Duties as well as Policy Types, Constraint names, Asset relations, and Party roles. For communities that implement ODRL, the entire ODRL Information Framework and the entire Vocabulary would be too onerous when they will typically have very specific needs, as well as needs not covered by the ODRL vocabulary. </p>
-<p>In these common cases, it is strongly recommended that a community create and formally document an ODRL Profile. An ODRL Profile will directly serve the communities needs by excluding features of the ODRL Information Model they do not require (for example, inheritance) and specifying only the terms of the ODRL Vocabulary they wish to support. In addition, the ODRL Profile may include additional vocabulary terms specific to their community.</p>
+<p>In these common cases, it is strongly recommended that a community create and formally document an ODRL Profile. An ODRL Profile will directly serve the communities needs by excluding features of the ODRL Information Model that they do not require (for example, inheritance) and specifying only the terms of the ODRL Vocabulary they wish to support. In addition, the ODRL Profile may include additional vocabulary terms specific to their community.</p>
+        <p>The ODRL Profile may also include specific implementation details on how to determine the status and processing of Rules and Constraints. For example, the ODRL Profile may require the use of a thrid-party time-service to ensure temporal constraints are meet correctly (and will document the API details etc), or document the API to access values that need to be compared to the ODRL expression values (such as what location is the asset currently being used in).</p>
     </section>
     
     <section id="profile-requirements">
@@ -675,7 +676,7 @@ The requirements for communities developing ODRL Profiles MUST document the foll
     </section>
     
 <section id="profile-example">
-    <h3>Profile Example</h3>
+    <h3>Profile Examples</h3>
 <p>
 An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a href="https://www.iptc.org">International Press and Telecommuncations Council</a> for the communication of usage policies, primarily in association with the licensed distribution and use of news content by news gathering agencies, publishers, licensing organisations, business intermediaries and business consumers in the online news market-place. The RightsML ODRL Profile clearly documented:</p>
     <ul>
@@ -685,6 +686,9 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
     <li>more refined definitions of some ODRL vocabulary terms, and</li>
     <li>additional actions and constraints (specific to the News industry).</li>
 </ul>
+    
+    <p>The Open Mobile Alliance (OMA) developed a comprehensive ODRL Profile for the mobile community. Although it was based on the ODRL Version 1.1 specification [[odrl]], the documentation included detailed specifications on the ODRL vocabulary to be supported, new and refined terms, a protocol to exchange ODRL Expressions (over mobile phones), and the relevant encoding schemas. The documentation is available here [[oma-profile]].</p>
+    
  </section>
     
 </section>

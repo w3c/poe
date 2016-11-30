@@ -1,7 +1,7 @@
       var respecConfig = {
           specStatus: "ED",
           shortName:  "odrl-model",
-          publishDate:          "2016-11-29",
+          publishDate:          "2016-11-30",
           editors: [
                 {   name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
@@ -26,6 +26,15 @@
           wgPublicList:         "public-poe-comments",
           wgPatentURI:          "https://www.w3.org/2004/01/pp-impl/73180/status",
           issueBase:            "https://github.com/w3c/poe/issues/",
+          localBiblio: {
+             "oma-profile":{
+                "title":"OMA Digital Rights Management V2.2",
+                "publisher": "Open Mobile Alliance (OMA)",
+                "status": "Candidate Enabler",
+                "date": "2011",
+                "href": "http://technical.openmobilealliance.org/Technical/technical-information/release-program/current-releases/drm-v2-2"
+                 },
+          },
           otherLinks: [
                 {
                         key: "Repository",
