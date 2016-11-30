@@ -103,11 +103,12 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Policy Types"@en ;
     skos:member :Agreement ;
+    skos:member :Assertion ;
     skos:member :Offer ;
-    skos:member :Set ;
+    skos:member :Privacy ;
     skos:member :Request ;
-    skos:member :Ticket ;
-    skos:member :Privacy .
+    skos:member :Set ;
+    skos:member :Ticket .
 
 <http://www.w3.org/ns/odrl/2/#assetConcepts>
     a skos:Collection ;
@@ -135,6 +136,7 @@ odrl:
     skos:member :assigner ;
     skos:member :attributedParty ;
     skos:member :compensatedParty ;
+    skos:member :compensatingParty ;
     skos:member :consentingParty ;
     skos:member :informedParty ;
     skos:member :trackingParty .
@@ -1418,6 +1420,14 @@ odrl:
 	skos:definition "The Party is the recipient of the compensation."@en ;
 	rdfs:comment "Maybe specified as part of the compensate duty action."@en .
 
+:compensatingParty
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subPropertyOf :function ;
+	rdfs:label "Compensating Party"@en ;
+	skos:definition "The Party that is the provider of the compensation."@en ;
+	rdfs:comment "Maybe specified as part of the compensate duty action."@en .
+
 :trackingParty
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
@@ -1432,16 +1442,25 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket ;
+	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Agreement"@en ;
 	skos:definition "Policy expressions that are formal contracts (or licenses) stipulating all the terms of usage and all the parties involved."@en ;
 	rdfs:comment "Must contain at least the Party entity with Assigner role and a Party with Assignee role. The latter being granted the terms of the Agreement from the former."@en .
+
+:Assertion
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf :Policy ;
+	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket ;
+	rdfs:label "Assertion"@en ;
+	skos:definition "Policy expressions that reflect terms that Parties claim to hold."@en ;
+	rdfs:comment "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion policy type does not grant such permissions/prohibitions but only asserts the parties claims. Must contain at least one Party entity role and one Rule."@en .
 
 :Offer
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Privacy, :Request, :Set, :Ticket ;
+	owl:disjointWith :Agreement, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Offer"@en ;
 	skos:definition "Policy expression that proposes terms of usage from an Asset owner."@en ;
 	rdfs:comment "Must contain a Party entity with Assigner role. The Offer may contain a Party entity with Assignee role, but does not grant any privileges to that Party."@en .
@@ -1450,7 +1469,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Offer, :Request, :Set, :Ticket ;
+	owl:disjointWith :Agreement, :Offer, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Privacy"@en ;
 	skos:definition "Policy expression that stipulates the terms of usage over personal information."@en ;
 	rdfs:comment "Must contain at least the Party entity with Assigner role and a Party with Assignee role. Must also contain a Duty on the assignee related to obligations towards managing the assigner’s Asset containing personal information. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en .
@@ -1459,7 +1478,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Offer, :Privacy, :Set, :Ticket ;
+	owl:disjointWith :Agreement, :Offer, :Privacy, :Set, :Ticket, :Assertion ;
 	rdfs:label "Request"@en ;
 	skos:definition "Policy expression that proposes terms of usage to an Asset owner."@en ;
 	rdfs:comment "Must contain a Party entity with Assignee role. The Request may also contain the Party entity with Assigner role if this is known. No privileges are granted to any Party."@en .
@@ -1468,7 +1487,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Ticket ;
+	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Ticket, :Assertion ;
 	rdfs:label "Set"@en ;
 	skos:definition "Policy expression that consists of entities from the complete model."@en ;
 	rdfs:comment "The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party."@en .
@@ -1477,7 +1496,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Set ;
+	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Set, :Assertion ;
 	rdfs:label "Ticket"@en ;
 	skos:definition "Policy expression that stipulates the terms of usage and is redeemable by any Party who currently holds the Ticket in their possession."@en ;
 	rdfs:comment "May contain the Party entity with Assigner role and the Party entity with Assignee role. A Ticket (or Voucher) may be anonymous or personalised, where the holder of that Ticket may remain unknown or has to be identified. The holder, or if known, the Assignee, is being granted the terms of the Ticket from the Assigner (in known)."@en .

@@ -87,7 +87,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
 <tr><th>Comment:</th> <td>A top level entity for describing policies.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-<tr><th>Sub-classes:</th> <td><a href="#term-Agreement">Agreement</a>, <a href="#term-Offer">Offer</a>, <a href="#term-Privacy">Privacy</a>, <a href="#term-Request">Request</a>, <a href="#term-Set">Set</a>, <a href="#term-Ticket">Ticket</a></td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-Agreement">Agreement</a>, <a href="#term-Assertion">Assertion</a>, <a href="#term-Offer">Offer</a>, <a href="#term-Privacy">Privacy</a>, <a href="#term-Request">Request</a>, <a href="#term-Set">Set</a>, <a href="#term-Ticket">Ticket</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-undefined">undefined</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-inheritFrom">inheritFrom</a></td></tr>
 </table>
@@ -115,6 +115,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
+</section><section id="term-Assertion"><h3>Assertion</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Policy expressions that reflect terms that Parties claim to hold.</td></tr>
+<tr><th>Label:</th> <td>Assertion</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Assertion">http://www.w3.org/ns/odrl/2/Assertion</a></td></tr>
+<tr><th>Comment:</th> <td>For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion policy type does not grant such permissions/prohibitions but only asserts the parties claims. Must contain at least one Party entity role and one Rule.</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
+</table>
 </section><section id="term-Offer"><h3>Offer</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Policy expression that proposes terms of usage from an Asset owner.</td></tr>
 <tr><th>Label:</th> <td>Offer</td></tr>
@@ -123,11 +131,11 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
-</section><section id="term-Set"><h3>Set</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expression that consists of entities from the complete model.</td></tr>
-<tr><th>Label:</th> <td>Set</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Set">http://www.w3.org/ns/odrl/2/Set</a></td></tr>
-<tr><th>Comment:</th> <td>The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party.</td></tr>
+</section><section id="term-Privacy"><h3>Privacy</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Policy expression that stipulates the terms of usage over personal information.</td></tr>
+<tr><th>Label:</th> <td>Privacy</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Privacy">http://www.w3.org/ns/odrl/2/Privacy</a></td></tr>
+<tr><th>Comment:</th> <td>Must contain at least the Party entity with Assigner role and a Party with Assignee role. Must also contain a Duty on the assignee related to obligations towards managing the assigner’s Asset containing personal information. The Assignee is being granted the terms of the Privacy policy from the Assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
@@ -139,19 +147,19 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
+</section><section id="term-Set"><h3>Set</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Policy expression that consists of entities from the complete model.</td></tr>
+<tr><th>Label:</th> <td>Set</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Set">http://www.w3.org/ns/odrl/2/Set</a></td></tr>
+<tr><th>Comment:</th> <td>The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party.</td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
+</table>
 </section><section id="term-Ticket"><h3>Ticket</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Policy expression that stipulates the terms of usage and is redeemable by any Party who currently holds the Ticket in their possession.</td></tr>
 <tr><th>Label:</th> <td>Ticket</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Ticket">http://www.w3.org/ns/odrl/2/Ticket</a></td></tr>
 <tr><th>Comment:</th> <td>May contain the Party entity with Assigner role and the Party entity with Assignee role. A Ticket (or Voucher) may be anonymous or personalised, where the holder of that Ticket may remain unknown or has to be identified. The holder, or if known, the Assignee, is being granted the terms of the Ticket from the Assigner (in known).</td></tr>
-<tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
-</table>
-</section><section id="term-Privacy"><h3>Privacy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expression that stipulates the terms of usage over personal information.</td></tr>
-<tr><th>Label:</th> <td>Privacy</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Privacy">http://www.w3.org/ns/odrl/2/Privacy</a></td></tr>
-<tr><th>Comment:</th> <td>Must contain at least the Party entity with Assigner role and a Party with Assignee role. Must also contain a Duty on the assignee related to obligations towards managing the assigner’s Asset containing personal information. The Assignee is being granted the terms of the Privacy policy from the Assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
@@ -925,7 +933,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule</td></tr>
 <tr><th>Label:</th> <td>Function</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-payeeParty">payeeParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-payeeParty">payeeParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
 </table>
@@ -959,6 +967,13 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Comment:</th> <td>Maybe specified as part of the compensate duty action.</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 <tr><th>Deprecates:</th> <td><a href="#term-payeeParty">payeeParty</a></td></tr>
+</table>
+</section><section id="term-compensatingParty"><h3>Compensating Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party that is the provider of the compensation.</td></tr>
+<tr><th>Label:</th> <td>Compensating Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/compensatingParty">http://www.w3.org/ns/odrl/2/compensatingParty</a></td></tr>
+<tr><th>Comment:</th> <td>Maybe specified as part of the compensate duty action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 </table>
 </section><section id="term-consentingParty"><h3>Consenting Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party to obtain consent from.</td></tr>
@@ -2846,8 +2861,12 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
 <ul>
     <li>Clarified Permission cardinality in XML Encoding <a href="https://github.com/w3c/poe/issues/17">(Issue#17)</a></li>
 
-     <li>Added missing inheritRelation property <a href="https://github.com/w3c/poe/issues/51">(Issue#51)</a></li>
+     <li>Added missing inheritRelation term <a href="https://github.com/w3c/poe/issues/51">(Issue#51)</a></li>
     
+     <li>Added compensatingParty term <a href="https://github.com/w3c/poe/issues/53">(Issue#53)</a></li>
+    
+    <li>Added Assertion Policy Type  <a href="https://github.com/w3c/poe/issues/54">(Issue#54)</a></li>
+
 </ul></section>
         
         
