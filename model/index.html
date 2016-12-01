@@ -148,9 +148,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p><b>Example Use Case</b>: A Policy of type Set states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission read and the Prohibition reproduce. No parties or other elements are involved.</p>
 
-<div class="example">
-	EXAMPLE 1
-         <pre class="highlight hljs xquery">{
+
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -161,15 +160,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>
     }]
-}</pre>
-</div>
+}
+</pre>
 	
 <p><b>Example Use Case</b>: A Policy of type Set states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission reproduce, the Duty attribute to <code>http://example.com/owner:9898</code> and the Prohibition commercialize. Two parties are involved, namely the Assigner of the Permissions and the Party to be attributed.</p>
 
-<div class="example">
-	EXAMPLE 2
-	
-	<pre class="highlight hljs xquery">{
+<pre class=" example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -185,8 +181,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>
     }]
-}</pre>
-</div>
+}
+</pre>
 	
     <section id="conflict">
 <h4>Policy Conflict</h4>
@@ -203,9 +199,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p><b>Example Use Case</b>: Two policies are associated to target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:1212</code> allows to use, reproduce and commercialize the Asset. The second Policy <code>http://example.com/policy:1213</code> allows for the reproduction of the Asset, but it prohibits display and commercialization. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute: the first Policy assigns the priority to permissions, whilst the second Policy assigns the priority to the prohibition. Two different conflicts arise from merging these two policies dealing with the same Asset: (1) the first policy permits commercialization while the second one prohibits it (direct dependency between the two actions), and (2) the first policy permits the use of the Asset while the second one prohibits to display it (explicit dependency between the two actions, use is more general than display). Moreover, we have conflicting value of the <code>conflict</code> attribute: following the first Policy, we would go for permitting use and commercialize, but if we follow the second Policy we would go for prohibiting commercialize and display. </p>
 
 
-<div class="example">
-	EXAMPLE 3
- <pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1212"</span>,
     <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"perm"</span>,
@@ -216,9 +210,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:181"</span>
     }]
-}</pre>
+}
+</pre>
 
-<pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1213"</span>,
     <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"prohibit"</span>,
@@ -233,7 +228,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>
     }]
 }</pre>
-</div>
+
 
     </section>
     <section id="undefined">
@@ -253,9 +248,8 @@ the following values:</p>
 
   <p><b>Example Use Case</b>: A Policy of type Set states that the Asset can be <i>recorded</i>. The processing system does not understand this Action, and since the <b>undefined</b> attribute is <b>invalid</b>, then the entire Policy is deemed invalid.</p>
         
-        <div class="example">
-	EXAMPLE 3B
-         <pre class="highlight hljs xquery">
+
+<pre class="example highlight hljs xquery">
 {
     "type": "http://www.w3.org/ns/odrl/2/Set",
     "uid": "http://example.com/policy:8888",
@@ -267,7 +261,6 @@ the following values:</p>
     }]
 }  
 </pre>
-    </div>
         
     </section>
     
@@ -308,10 +301,8 @@ On the other side, the instance of the child Policy <code>http://example.com/chi
 Note that, following the definition of inheritance provided above, the child Policy <code>http://example.com/child_policy:1111</code> cannot inherit from parent Policy <code>http://example.com/parent_policy:1111</code>, even if inheritance is allowed from this Policy, because no child Policy can inherit from two or more parent Policy entities. 
 </p>	
 
-<div class="example">
-	EXAMPLE 4
-	
-         <pre class="highlight hljs xquery">{
+
+ <pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/parent_policy:1111"</span>,
     <span class="hljs-string">"inheritAllowed"</span>: <span class="hljs-string">true</span>,
@@ -320,9 +311,10 @@ Note that, following the definition of inheritance provided above, the child Pol
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1818"</span>
     }]
-}</pre>
+}
+</pre>
 
-<pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/parent_policy:2222"</span>,
     <span class="hljs-string">"inheritAllowed"</span>: <span class="hljs-string">true</span>,
@@ -333,7 +325,7 @@ Note that, following the definition of inheritance provided above, the child Pol
     }]
 }</pre>
 	
-<pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/child_policy:2222"</span>,
     <span class="hljs-string">"inheritFrom"</span>: <span class="hljs-string">"http://example.com/parent_policy:1111"</span>,
@@ -345,7 +337,7 @@ Note that, following the definition of inheritance provided above, the child Pol
     }]
 }</pre>
 
-<pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"id"</span>: <span class="hljs-string">"http://example.com/child_policy:1111"</span>,
     <span class="hljs-string">"inheritFrom"</span>: <span class="hljs-string">"http://example.com/parent_policy:2222"</span>,
@@ -357,8 +349,7 @@ Note that, following the definition of inheritance provided above, the child Pol
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:88"</span>
     }]
 }</pre>
-	
-</div>
+
 	
 	</section>
 </section>
@@ -391,10 +382,7 @@ Note that, following the definition of inheritance provided above, the child Pol
 	
 <p><b>Example Use Case</b>: The Party <code>http//example.com/guest:0001</code> needs to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the permission to do so. This request can be implemented through a Policy of the type Request asking for the permission to display Asset <code>http://example.com/asset:3333</code>.</p>
 
-<div class="example">
-	EXAMPLE 5
-	
-         <pre class="highlight hljs xquery">{
+ <pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Request"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:3333"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -404,15 +392,12 @@ Note that, following the definition of inheritance provided above, the child Pol
     }]
 }</pre>
 
-</div>
 	
 <p><b>Example Use Case</b>: The Party needs to define a policy exploiting multiple Asset entities. The index Permission is granted to the target Asset <code>http://example.com/archive1011</code>. The x:collection Asset <code>http://example.com/x/database</code> specifies 
 which database the index outcome should be stored in.</p>
 
 
-<div class="example">
-	EXAMPLE 6
- <pre class="highlight hljs xquery">{
+ <pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -421,7 +406,6 @@ which database the index outcome should be stored in.</p>
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/index"</span>
     }]
 }</pre>
-</div>
 	
 </section>
 
@@ -465,9 +449,7 @@ which database the index outcome should be stored in.</p>
 	
 <p><b>Example Use Case</b>: The target Asset <code>http://example.com/asset:myPhotos:football4444</code> are photos posted to a Social Network site by the assigner and owner of the photos <code>http://example.com/myPhoto:assigner44</code>. The assignee is a Party group <code>http://example.com/myPhoto:assignee:footballfans44</code>, and represents the football fan club members, who are each allowed to display the photos.</p>
 
-<div class="example">
-	EXAMPLE 7
-         <pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -480,7 +462,6 @@ which database the index outcome should be stored in.</p>
         }]
     }]
 }</pre>
-</div>
 
 </section>
 
@@ -502,9 +483,7 @@ which database the index outcome should be stored in.</p>
 	
 <p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the Ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
 
-<div class="example">
-	EXAMPLE 8
- <pre class="highlight hljs xquery">{
+ <pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Ticket"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:9090"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -517,7 +496,7 @@ which database the index outcome should be stored in.</p>
         }]
     }]
 }</pre>
-</div>
+
 </section>
 
 <section id="prohibition">
@@ -534,9 +513,7 @@ which database the index outcome should be stored in.</p>
 
 <p><b>Example Use Case</b>: The owner and assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between permissions and prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
 
-<div class="example">
-	EXAMPLE 9
-         <pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:5555"</span>,
     <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/perm"</span>,
@@ -553,7 +530,6 @@ which database the index outcome should be stored in.</p>
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:55"</span>
     }]
 }</pre>
-</div>	
 	
 </section>
 
@@ -568,10 +544,8 @@ which database the index outcome should be stored in.</p>
 </p>
 
 
-    
-<div class="example">
-	EXAMPLE 10
-         <pre class="highlight hljs xquery">
+
+<pre class="example highlight hljs xquery">
 {
     "type": "http://www.w3.org/ns/odrl/2/Offer",
     "uid": "http://example.com/policy:88",
@@ -596,7 +570,6 @@ which database the index outcome should be stored in.</p>
     }]
 }  
 </pre>
-    </div>
     
     
 <p>If a <code>Permission</code> refers to several <code>Duty</code> entities, <em>all of them</em> MUST be satisfied for the <code>Permission</code> to be undertaken. If several <code>Permission</code> entities refer to one <code>Duty</code>, then the Duty only has to be satisfied <em>once</em> for all the <code>Permission</code> entities.</p>
@@ -615,9 +588,8 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The Party <code>http://example.com/assigner:77</code> needs to set a Privacy Policy for some data about it. The target Asset <code>http://example.com/personal-data:77</code> of this policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
 
 
-<div class="example">
-	EXAMPLE 11
-         <pre class="highlight hljs xquery">{
+
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Privacy"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -641,7 +613,6 @@ which database the index outcome should be stored in.</p>
         }]
     }]
 }</pre>
-</div>
 	
 </section>	
 	
@@ -658,9 +629,7 @@ which database the index outcome should be stored in.</p>
 
 <p><b>Example Use Case</b>: The Party needs to define an Offer policy granting several permissions about the target Asset <code>http://example.com/music:1012</code>, namely the permission to play, to create multiple copies of the Asset that are being concurrently used, and to to perform or exhibit the Asset to an audience.</p> 
 
-<div class="example">
-	EXAMPLE 12
- <pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1012"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -670,7 +639,6 @@ which database the index outcome should be stored in.</p>
             <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/present"</span>
      }]
 }</pre>
-</div>	
 	
 	
 </section>
@@ -695,9 +663,7 @@ which database the index outcome should be stored in.</p>
 
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
 
-<div class="example">
-	EXAMPLE 13
-         <pre class="highlight hljs xquery">{
+<pre class="example highlight hljs xquery">{
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -728,7 +694,7 @@ which database the index outcome should be stored in.</p>
     }]
 }</pre>
  
-    <pre class="highlight hljs xquery">{
+    <pre class="example highlight hljs xquery">{
         <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
         <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>,
         <span class="hljs-string">"permission"</span>: [{
@@ -736,7 +702,6 @@ which database the index outcome should be stored in.</p>
             <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>
         }]
     }</pre>
-</div>	
 	
 </section>
 
