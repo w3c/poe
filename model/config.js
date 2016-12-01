@@ -1,7 +1,7 @@
       var respecConfig = {
           specStatus: "ED",
           shortName:  "odrl-model",
-          publishDate:          "2016-11-30",
+          publishDate:          "2016-12-01",
           editors: [
                 {   name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",

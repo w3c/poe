@@ -273,23 +273,18 @@ the following values:</p>
     
 <section id="inhertiance">
 <h4>Policy Inheritance</h4>
-
-    <div class="issue" data-number="22">
-        <p>We need to make clear exactly what gets inherited and what gets overriden (if anything)</p>
-    </div>
-    
     
 <p>The <code>inheritAllowed</code> attribute in the <code>Policy</code> entity is used to indicate if the <code>Policy</code> expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> attribute MUST take one of the following values:</p>
 <ul>
 <li><code>true</code>: the <code>Policy</code> expression can be used for inheritance</li>
 <li><code>false</code>: the <code>Policy</code> expression can not be used for inheritance</li>
 </ul>
-<p>If the <code>inheritAllowed</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>inherit</code> attribute is <code>true</code>.</p>
-<p>Only if the <code>inheritAllowed</code> attribute has the value <code>true</code> MAY the following be used:</p>
+<p>If the <code>inheritAllowed</code> attribute is not explicitly set, its default value of <code>true</code> will be used.</p>
+<p>The following attributes MAY be used in a child policy that is inheriting from a parent policy in which that parent policy MUST allow inheritance (vai the <code>inheritAllowed</code> attribute) :</p>
 
     <ul>
-    <li><code>inheritFrom</code>: the identifier from which this <code>Policy</code> inherits from it&#8217;s parent <code>Policy</code> (OPTIONAL)</li>
-<li><code>inheritRelation</code>: the identifier for the relationship type of this inheritance structure (OPTIONAL)</li>
+    <li><code>inheritFrom</code>: the identifier from which this child <code>Policy</code> inherits from the parent <code>Policy</code></li>
+<li><code>inheritRelation</code>: the identifier for the relationship type of this inheritance structure</li>
     </ul>
     
     
