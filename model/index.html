@@ -142,6 +142,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </ul>
 <p>The <code>uid</code> attribute MUST be a unique identifier.</p>
 <p>The range of values for the <code>Policy</code> entity&#8217;s <code>type</code> attribute will be described in the ODRL Vocabulary [[!vocab-odrl]] or in ODRL Profiles. This value MAY also impose further constraints on the Information Model, such as are exemplified in the Scenarios for types <code>Offer</code> and <code>Agreement</code>. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities.</p>
+    
+    <p>Other attributes MAY be added to the <code>Policy</code> entity to support additional functions and requirements. Typically, these will be from different community vocabularies. For example, to indicate the issued date or valid dates of the <code>Policy</code> entity, use of the <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> would be recommended.</p>
+    
 
 <p><b>Example Use Case</b>: A Policy of type Set states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission read and the Prohibition reproduce. No parties or other elements are involved.</p>
 
@@ -247,7 +250,25 @@ the following values:</p>
 <p>In the <code>ignore</code> case, even though the <code>Action</code> is unknown, the policy still is valid and the consuming parties or system of the policy MAY be made aware of the unknown <code>Action</code>.</p>
 <p>In the <code>invalid</code> case with the unknown <code>Action</code>, the policy is invalid and the consuming parties or system of the policy MUST be made aware of this.</p>
 <p>If the <code>undefined</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>undefined</code> attribute is <code>invalid</code>.</p>
-<p>Other attributes MAY be added to the <code>Policy</code> entity to support additional functions and requirements. Typically, these will be from different community vocabularies. For example, to indicate the issued date or valid dates of the <code>Policy</code> entity, use of the <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> would be recommended.</p>
+
+  <p><b>Example Use Case</b>: A Policy of type Set states that the Asset can be <i>recorded</i>. The processing system does not understand this Action, and since the <b>undefined</b> attribute is <b>invalid</b>, then the entire Policy is deemed invalid.</p>
+        
+        <div class="example">
+	EXAMPLE 3B
+         <pre class="highlight hljs xquery">
+{
+    "type": "http://www.w3.org/ns/odrl/2/Set",
+    "uid": "http://example.com/policy:8888",
+    "undefined": "invalid",
+    "permission": [{
+        "target": "http://example.com/music/1999.mp3",
+        "action": "http://example.com/ns/recorded"
+        }]
+    }]
+}  
+</pre>
+    </div>
+        
     </section>
     
 <section id="inhertiance">
