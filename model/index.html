@@ -185,6 +185,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }</pre>
 </div>
 	
+    <section id="conflict">
+<h4>Policy Conflict</h4>
+        
 <p>The <code>conflict</code> attribute is used either to resolve conflicts arising from the merging of policies, specifically when there are conflicting <code>Action</code>s in the <code>Permission</code>s and <code>Prohibition</code>s, or to set priorities over the <code>Permission</code>s/<code>Prohibition</code>s in the same policy. If present, the <code>conflict</code> attribute MUST take one of the following values:</p>
 <ul>
 <li><code>perm</code>: the <code>Permission</code>s will always takes preference</li>
@@ -192,10 +195,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li><code>invalid</code>: the policy is invalid</li>
 </ul>
 <p>If the <code>conflict</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>conflict</code> attribute is <code>invalid</code>.</p>
-    
-      <div class="issue" data-number="21">
-          <p>Need to clarify conflicting values of the conflict attribute. That is, one policy says <code>perm</code> and the other <code>prohibit</code>. </p>
-    </div>
+
 	
 <p><b>Example Use Case</b>: Two policies are associated to target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:1212</code> allows to use, reproduce and commercialize the Asset. The second Policy <code>http://example.com/policy:1213</code> allows for the reproduction of the Asset, but it prohibits display and commercialization. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute: the first Policy assigns the priority to permissions, whilst the second Policy assigns the priority to the prohibition. Two different conflicts arise from merging these two policies dealing with the same Asset: (1) the first policy permits commercialization while the second one prohibits it (direct dependency between the two actions), and (2) the first policy permits the use of the Asset while the second one prohibits to display it (explicit dependency between the two actions, use is more general than display). Moreover, we have conflicting value of the <code>conflict</code> attribute: following the first Policy, we would go for permitting use and commercialize, but if we follow the second Policy we would go for prohibiting commercialize and display. </p>
 
@@ -232,6 +232,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }</pre>
 </div>
 
+    </section>
+    <section id="undefined">
+<h4>Undefined Policy</h4>
     
 <p>The <code>undefined</code> attribute is used to indicate how to support <code>Action</code>s that are not part of any profile in the policy expression system. If present, the <code>undefined</code> attribute MUST take one of<br />
 the following values:</p>
@@ -245,9 +248,10 @@ the following values:</p>
 <p>In the <code>invalid</code> case with the unknown <code>Action</code>, the policy is invalid and the consuming parties or system of the policy MUST be made aware of this.</p>
 <p>If the <code>undefined</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>undefined</code> attribute is <code>invalid</code>.</p>
 <p>Other attributes MAY be added to the <code>Policy</code> entity to support additional functions and requirements. Typically, these will be from different community vocabularies. For example, to indicate the issued date or valid dates of the <code>Policy</code> entity, use of the <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> would be recommended.</p>
+    </section>
     
 <section id="inhertiance">
-<h4>Inheritance</h4>
+<h4>Policy Inheritance</h4>
 
     <div class="issue" data-number="22">
         <p>We need to make clear exactly what gets inherited and what gets overriden (if anything)</p>
