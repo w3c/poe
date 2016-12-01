@@ -469,14 +469,14 @@ which database the index outcome should be stored in.</p>
 <h3>Permission</h3>
 
 
-<p>The <code>Permission</code> entity indicates the <code>Action</code>s that the <code>assignee</code> is permitted to perform on the associated <code>Asset</code>. In other words, what the <code>assigner</code> (supplier) has granted to the <code>assignee</code> (consumer).</p>
+<p>The <code>Permission</code> entity indicates the <code>Action</code>s permitted to be performed on the  <code>Asset</code>.</p>
 <p>An ODRL policy expression MAY contain at least one <code>Permission</code>. It is important to verify the semantics of the <code>Policy</code> <code>type</code> attribute as this MAY indicate additional constraints on the Policy expression structure.</p>
-<p>If several <code>Permission</code> entities are referred to by a <code>Policy</code>, then <em>all of them</em> are valid.</p>
+
 <p>The <code>Permission</code> entity has the following relations:</p>
 <ul>
 <li><code>Asset</code>: the <code>Permission</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the linked <code>Action</code> MAY be performed (REQUIRED)</li>
 <li><code>Action</code>: the <code>Permission</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that indicates the granted operation on the target <code>Asset</code> (REQUIRED)</li>
-<li><code>Party</code>: the <code>Permission</code> MUST refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
+<li><code>Party</code>: the <code>Permission</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
 <li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more <code>Constraint</code>s which affect the validity of the <code>Permission</code>, e.g. if the <code>Action</code> <code>play</code> is only permitted for a certain period of time (OPTIONAL)</li>
 <li><code>Duty</code>: the <code>Permission</code> MAY refer to one or more <code>Duty</code> entities that indicate a requirement that MAY be fulfilled in return for receiving the <code>Permission</code> (OPTIONAL)</li>
 </ul>
@@ -502,7 +502,7 @@ which database the index outcome should be stored in.</p>
 <section id="prohibition">
 <h3>Prohibition</h3>
 
-<p>The <code>Prohibition</code> entity indicates the <code>Action</code>s that the <code>assignee</code> is prohibited to perform on the related <code>Asset</code>. <code>Prohibition</code>s are issued by the supplier of the <code>Asset</code> &#8211; the <code>Party</code> with the <code>Role</code> <code>assigner</code>. If several <code>Prohibition</code> entities are referred to by a <code>Policy</code>, <em>all of them</em> must be satisfied.</p>
+<p>The <code>Prohibition</code> entity indicates the <code>Action</code>s that are prohibited to be performed on the  <code>Asset</code>.
 <p>The <code>Prohibition</code> entity has the following relations:</p>
 <ul>
 <li><code>Asset</code>: the <code>Prohibition</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the <code>Action</code> is prohibited (REQUIRED)</li>
