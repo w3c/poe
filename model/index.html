@@ -150,15 +150,18 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/read"</span>
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:read"</span>
     }],
     <span class="hljs-string">"prohibition"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:reproduce"</span>
     }]
 }
 </pre>
@@ -166,20 +169,23 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p><b>Example Use Case</b>: A Policy of type Set states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission reproduce, the Duty attribute to <code>http://example.com/owner:9898</code> and the Prohibition commercialize. Two parties are involved, namely the Assigner of the Permissions and the Party to be attributed.</p>
 
 <pre class=" example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:reproduce"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/assigner:88"</span>,
         <span class="hljs-string">"duty"</span>: [{
-                <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/attribute"</span>,
+                <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:attribute"</span>,
                 <span class="hljs-string">"attributedParty"</span>: <span class="hljs-string">"http://example.com/owner:9898"</span>
         }]
     }],
     <span class="hljs-string">"prohibition"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:commercialize"</span>
     }]
 }
 </pre>
@@ -200,32 +206,38 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1212"</span>,
     <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"perm"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/use"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:reproduce"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:use"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:commercialize"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:181"</span>
     }]
 }
 </pre>
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1213"</span>,
     <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"prohibit"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:reproduce"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:182"</span>
     }]
     <span class="hljs-string">"prohibition"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/commercialize"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:commercialize"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>
     }]
 }</pre>
 
@@ -251,7 +263,10 @@ the following values:</p>
 
 <pre class="example highlight hljs xquery">
 {
-    "type": "http://www.w3.org/ns/odrl/2/Set",
+    "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/"
+    }
+    "type": "odrl:Set",
     "uid": "http://example.com/policy:8888",
     "undefined": "invalid",
     "permission": [{
@@ -303,48 +318,60 @@ Note that, following the definition of inheritance provided above, the child Pol
 
 
  <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+ <span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/parent_policy:1111"</span>,
     <span class="hljs-string">"inheritAllowed"</span>: <span class="hljs-string">true</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1111"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/reproduce"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:reproduce"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1818"</span>
     }]
 }
 </pre>
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/parent_policy:2222"</span>,
     <span class="hljs-string">"inheritAllowed"</span>: <span class="hljs-string">true</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:3333"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/distribute"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:distribute"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1919"</span>
     }]
 }</pre>
 	
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/child_policy:2222"</span>,
     <span class="hljs-string">"inheritFrom"</span>: <span class="hljs-string">"http://example.com/parent_policy:1111"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:2222"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/read"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:read"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1818"</span>,
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:88"</span>
     }]
 }</pre>
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"id"</span>: <span class="hljs-string">"http://example.com/child_policy:1111"</span>,
     <span class="hljs-string">"inheritFrom"</span>: <span class="hljs-string">"http://example.com/parent_policy:2222"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:4444"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/play"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/distribute"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:play"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:distribute"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:1919"</span>,
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:88"</span>
     }]
@@ -385,11 +412,14 @@ Note that, following the definition of inheritance provided above, the child Pol
 <p><b>Example Use Case</b>: The Party <code>http//example.com/guest:0001</code> needs to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the permission to do so. This request can be implemented through a Policy of the type Request asking for the permission to display Asset <code>http://example.com/asset:3333</code>.</p>
 
  <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Request"</span>,
+ <span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Request"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:3333"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:3333"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>,
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/guest:0001"</span>
     }]
 }</pre>
@@ -400,12 +430,15 @@ which database the index outcome should be stored in.</p>
 
 
  <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+ <span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/archive1011"</span>,
         <span class="hljs-string">"x:collection"</span>: <span class="hljs-string">"http://example.com/x/database"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/index"</span>
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:index"</span>
     }]
 }</pre>
 	
@@ -452,15 +485,18 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The target Asset <code>http://example.com/asset:myPhotos:football4444</code> are photos posted to a Social Network site by the assigner and owner of the photos <code>http://example.com/myPhoto:assigner44</code>. The assignee is a Party group <code>http://example.com/myPhoto:assignee:footballfans44</code>, and represents the football fan club members, who are each allowed to display the photos.</p>
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:myPhotos:football4444"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/myPhoto:assigner44"</span>,
         <span class="hljs-string">"assignee"</span>: [{
                 <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/myPhoto:assignee:footballfans44"</span>,
-                <span class="hljs-string">"scope"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/group"</span>	
+                <span class="hljs-string">"scope"</span>: <span class="hljs-string">"odrl:group"</span>	
         }]
     }]
 }</pre>
@@ -486,14 +522,17 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the Ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
 
  <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Ticket"</span>,
+ <span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Ticket"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:9090"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/game:9090"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/play"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:play"</span>,
         <span class="hljs-string">"constraint"</span>: [{
-            <span class="hljs-string">"name"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/dateTime"</span>,
-            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/lteq"</span>,
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"odrl:dateTime"</span>,
+            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:lteq"</span>,
             <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"2016-12-31"</span>
         }]
     }]
@@ -516,18 +555,21 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The owner and assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between permissions and prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Agreement"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:5555"</span>,
-    <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/perm"</span>,
+    <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"odrl:perm"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/photoAlbum:55"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/MyPix:55"</span>,
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:55"</span>
     }],
     <span class="hljs-string">"prohibition"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/photoAlbum:55"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/archive"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:archive"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/MyPix:55"</span>,
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:55"</span>
     }]
@@ -549,24 +591,27 @@ which database the index outcome should be stored in.</p>
 
 <pre class="example highlight hljs xquery">
 {
-    "type": "http://www.w3.org/ns/odrl/2/Offer",
+   "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/"
+    }
+    "type": "odrl:Offer",
     "uid": "http://example.com/policy:88",
     "permission": [{
         "assigner": "http://example.com/assigner:sony",
         "target": "http://example.com/music/1999.mp3",
-        "action": "http://www.w3.org/ns/odrl/2/play",
+        "action": "odrl:play",
         "duty": [{
-            "action": "http://www.w3.org/ns/odrl/2/compensate",
+            "action": "odrl:compensate",
             "constraint": [{
-                "name": "http://www.w3.org/ns/odrl/2/payAmount",
-                "operator": "http://www.w3.org/ns/odrl/2/eq",
+                "name": "odrl:payAmount",
+                "operator": "odrl:eq",
                 "rightOperand": "5.00",
                 "unit": "http://cvx.iptc.org/iso4217a/AUD"
             }],
             "constraint": [{
-                "name": "http://www.w3.org/ns/odrl/2/event",
-                "operator": "http://www.w3.org/ns/odrl/2/lt",
-                "rightOperand": "http://www.w3.org/ns/odrl/2/policyUsage"
+                "name": "odrl:event",
+                "operator": "odrl:lt",
+                "rightOperand": "odrl:policyUsage"
             }]
         }]
     }]
@@ -592,24 +637,27 @@ which database the index outcome should be stored in.</p>
 
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Privacy"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Privacy"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/personal-data:77"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/distribute"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:distribute"</span>,
         <span class="hljs-string">"constraint"</span>: [{
-            <span class="hljs-string">"name"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/purpose"</span>,
-            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/eq"</span>,
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"odrl:purpose"</span>,
+            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
             <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://www.w3.org/2002/01/P3Pv1:contact"</span>
         }],
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/assigner:77"</span>,
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/gov:health:au"</span>,
         <span class="hljs-string">"duty"</span>: [{
-            <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/delete"</span>,
+            <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:delete"</span>,
             <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/personal-data:77"</span>,
             <span class="hljs-string">"constraint"</span>: [{
-                <span class="hljs-string">"name"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/dateTime"</span>,
-                <span class="hljs-string">"operator"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/eq"</span>,
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"odrl:dateTime"</span>,
+                <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
                 <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"P30D"</span>
             }]
         }]
@@ -632,13 +680,16 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The Party needs to define an Offer policy granting several permissions about the target Asset <code>http://example.com/music:1012</code>, namely the permission to play, to create multiple copies of the Asset that are being concurrently used, and to to perform or exhibit the Asset to an audience.</p> 
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1012"</span>,
     <span class="hljs-string">"permission"</span>: [{
             <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/music:1012"</span>,
-            <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/play"</span>,
-            <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/concurrentUse"</span>,
-            <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/present"</span>
+            <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:play"</span>,
+            <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:concurrentUse"</span>,
+            <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:present"</span>
      }]
 }</pre>
 	
@@ -666,30 +717,33 @@ which database the index outcome should be stored in.</p>
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
 
 <pre class="example highlight hljs xquery">{
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Offer"</span>,
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/wallpaper:1234"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/distribute"</span>,
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:distribute"</span>,
         <span class="hljs-string">"constraint"</span>: [{
-            <span class="hljs-string">"name"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/spatial"</span>,
-            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/eq"</span>,
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"odrl:spatial"</span>,
+            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
             <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://www.itu.int/tML/tML-ISO-3166:it"</span>
         }],
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/myPix:6161"</span>,
         <span class="hljs-string">"duty"</span>: [
             {
-                <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/compensate"</span>,
+                <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:compensate"</span>,
                 <span class="hljs-string">"constraint"</span>: [{
-                    <span class="hljs-string">"name"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/payAmount"</span>,
-                    <span class="hljs-string">"operator"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/eq"</span>,
+                    <span class="hljs-string">"name"</span>: <span class="hljs-string">"odrl:payAmount"</span>,
+                    <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
                     <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"100.00"</span>,
                     <span class="hljs-string">"dataType"</span>: <span class="hljs-string">"http://www.w3.org/2001/XMLSchema#decimal"</span>,
                     <span class="hljs-string">"unit"</span>: <span class="hljs-string">"http://cvx.iptc.org/iso4217a/EUR"</span>
                 }]
             },
             {
-                <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/nextPolicy"</span>,
+                <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:nextPolicy"</span>,
                 <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>
             }
         ]
@@ -697,11 +751,14 @@ which database the index outcome should be stored in.</p>
 }</pre>
  
     <pre class="example highlight hljs xquery">{
-        <span class="hljs-string">"type"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/Set"</span>,
+    <span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
         <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>,
         <span class="hljs-string">"permission"</span>: [{
             <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/wallpaper:1234"</span>,
-            <span class="hljs-string">"action"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/display"</span>
+            <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>
         }]
     }</pre>
 	
