@@ -217,7 +217,7 @@ function dfn_index() {
         $(this).text("");
         $(this).html(
             $.map(ids, function(oneref) {
-                return "<a href='#" + oneref + "'></a>"
+                return "<a href='#" + oneref + "'>"+oneref+"</a>"
             })
             .join(", ")
         );
