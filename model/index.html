@@ -242,19 +242,20 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
     </section>
     <section id="undefined">
-<h4>Undefined Policy</h4>
+<h4>Undefined Actions</h4>
     
-<p>The <code>undefined</code> attribute is used to indicate how to support <code>Action</code>s that are not part of any profile in the policy expression system. If present, the <code>undefined</code> attribute MUST take one of<br />
-the following values:</p>
+<p>The <code>undefined</code> attribute is used to indicate how to process unsupported <code>Action</code>s. That is, if an ODRL expression contains an Action that is not from a known (or supported) ODRL vocabulary, how should the action be treated in the context of the whole ODRL Policy.</p>
+        
+ <p>The <code>undefined</code> attribute MUST take one of the following values:</p>
 <ul>
-<li><code>support</code>: the undefined <code>Action</code> is to be supported as part of the policy &#8211; and the policy remains valid</li>
-<li><code>ignore</code>: the undefined <code>Action</code> is to be ignored and is not part of the policy &#8211; and the policy remains valid</li>
-<li><code>invalid</code>: the <code>Action</code> is unknown &#8211; and the policy is invalid</li>
+<li><code>support</code>: the undefined <code>Action</code> is to be <b>supported</b> as part of the Policy &#8211; and the Policy remains valid</li>
+<li><code>ignore</code>: the undefined <code>Action</code> is to be <b>ignored</b> and is not part of the Policy &#8211; and the Policy remains valid</li>
+    <li><code>invalid</code>: the undefined <code>Action</code> is unknown &#8211; and the entire Policy is <b>invalid</b></li>
 </ul>
-<p>In the <code>support</code> case, even though the <code>Action</code> is unknown, the policy still is valid and the consuming parties or system of the policy MUST be made aware of the unknown <code>Action</code>. This MAY be via a user interface that displays the unknown <code>Action</code> for human readability.</p>
-<p>In the <code>ignore</code> case, even though the <code>Action</code> is unknown, the policy still is valid and the consuming parties or system of the policy MAY be made aware of the unknown <code>Action</code>.</p>
-<p>In the <code>invalid</code> case with the unknown <code>Action</code>, the policy is invalid and the consuming parties or system of the policy MUST be made aware of this.</p>
-<p>If the <code>undefined</code> attribute is not explicitly set, its default value will be used instead. The default value of the <code>undefined</code> attribute is <code>invalid</code>.</p>
+<p>In all cases, systems that process ODRL expressions SHOULD provide mechanisms that adequately address these three outcomes. That is, how the action can be <b>supported</b>, or <b>ignored</b>, or the entire Policy is <b>invalid</b>. </p>
+
+
+        <p>If the <code>undefined</code> attribute is not explicitly set, its default value of <code>invalid</code> SHALL be used.</p>
 
   <p><b>Example Use Case</b>: A Policy of type Set states that the Asset can be <i>recorded</i>. The processing system does not understand this Action, and since the <b>undefined</b> attribute is <b>invalid</b>, then the entire Policy is deemed invalid.</p>
         
