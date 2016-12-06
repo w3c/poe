@@ -734,12 +734,16 @@ which database the index outcome should be stored in.</p>
 <ul>
 <li><code>name</code>: a name that identifies the left operand of the operation (REQUIRED)</li>
 <li><code>operator</code>: an operator function (REQUIRED)</li>
-<li><code>rightOperand</code>: the right operand of the operation (REQUIRED)</li>
+<li><code>rightOperand</code>: the right operand of the operation (REQUIRED if no rightOperandReference)</li>
+<li><code>rightOperandReference</code>: the right operand of the operation (REQUIRED if no rightOperand)</li>
 <li><code>dataType</code>: the datatype of the rightOperand (OPTIONAL)</li>
 <li><code>unit</code>: the units of the rightOperand (OPTIONAL)</li>
 <li><code>status</code>: the current value of the left operand (OPTIONAL)</li>
 </ul>
-<p>The <code>name</code> identifies the left operand of the mathematical operation for the <code>Constraint</code> such as &#8220;Number of Usages&#8221; and &#8220;Expiration Date&#8221; etc. The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. The <code>rightOperand</code> identifies the value that is being compared. The <code>dataType</code> indicates the type of the <code>rightOperand</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand</code>, such as &#8220;EU dollars&#8221;.</p>
+<p>The <code>name</code> identifies the left operand of the mathematical operation for the <code>Constraint</code> such as &#8220;Number of Usages&#8221; and &#8220;Expiration Date&#8221; etc. The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. </p>
+    <p>The actual value of the constraint that is to be compared to the <code>name</code> is either represented with the <code>rightOperand</code> or <code>rightOperandReference</code>. The <code>rightOperand</code> represents the literal value (such as "10" or "http://example.com/c100") and <code>rightOperandReference</code> represents a URI that MUST be dereferenced to obtain the actual value. Only one of these MUST appear in the constraint.  </p>
+        
+        <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;.</p>
 <p>When processing policy expressions, these <code>Constraint</code> names MAY be directly linked to a procedure that can determine the outcome of the operations, such as the number of already performed usages and the current date. The <code>name</code> and <code>operator</code> are defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles.</p>
 <p>The <code>status</code> provides the current value of the <code>Constraint</code> variable (i.e. current value of <code>name</code>). This is useful in cases where the current status of <code>Constraint</code>s needs to be captured and expressed in the ODRL Information Model.</p>
 
@@ -753,13 +757,13 @@ which database the index outcome should be stored in.</p>
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/wallpaper:1234"</span>,
+        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/myPix:6161"</span>,
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:distribute"</span>,
         <span class="hljs-string">"constraint"</span>: [{
             <span class="hljs-string">"name"</span>: <span class="hljs-string">"odrl:spatial"</span>,
             <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
             <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://www.itu.int/tML/tML-ISO-3166:it"</span>
         }],
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/myPix:6161"</span>,
         <span class="hljs-string">"duty"</span>: [
             {
                 <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:compensate"</span>,
@@ -945,6 +949,7 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
 
         <li>Updated the Scope for Parties (and new for Assets) to allow any URI to scope the characerisitics of the entity. <a href="https://github.com/w3c/poe/issues/59">(Issue#59)</a></li>
 
+       <li>Added rightOperandReference to Constraint. <a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></li>
     
 </ul>
 </section>
