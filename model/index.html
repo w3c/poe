@@ -193,11 +193,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <section id="conflict">
 <h4>Policy Conflict</h4>
         
-<p>The <code>conflict</code> attribute is used either to resolve conflicts arising from the merging of policies, specifically when there are conflicting <code>Action</code>s in the <code>Permission</code>s and <code>Prohibition</code>s, or to set priorities over the <code>Permission</code>s/<code>Prohibition</code>s in the same policy. If present, the <code>conflict</code> attribute MUST take one of the following values:</p>
+<p>The <code>conflict</code> attribute is used either to resolve conflicts arising from the merging of policies or to set priorities over the <code>Permission</code>s/<code>Prohibition</code>s in the same policy. Conflicts may arise when merging Policies about the same Asset and the resultant actions are inconsistent. For example, one Policy stated that Assignee Fred had been granted an "exclusive" distribution Permission, and the other Policy said the same for Assignee Mary. In the same Policy, conflicts can also arise when the same action is used in a Permssion and a Prohibition. </p>
+    
+    <p>The <code>conflict</code> attribute MUST take one of the following values:</p>
 <ul>
-<li><code>perm</code>: the <code>Permission</code>s will always takes preference</li>
-<li><code>prohibit</code>: the <code>Prohibition</code>s will always takes preference</li>
-<li><code>invalid</code>: the policy is invalid</li>
+<li><code>perm</code>: the <code>Permission</code>s will always take preference over Prohibitions</li>
+<li><code>prohibit</code>: the <code>Prohibition</code>s will always take preference over Permissions</li>
+<li><code>invalid</code>: the entire Policy becomes invalid if any conflict is detected</li>
 </ul>
 <p>If the <code>conflict</code> attribute is not explicitly set, its default value of <code>invalid</code> will be used.</p>
 
