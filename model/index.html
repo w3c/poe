@@ -384,6 +384,7 @@ Note that, following the definition of inheritance provided above, the child Pol
 <p>The <code>Asset</code> entity contains the following attribute:</p>
 <ul>
 <li><code>uid</code>: the unique identification of the <code>Asset</code> (REQUIRED)</li>
+    <li><code>scope</code>: defines how the Asset shall be interpreted under different contexts. (OPTIONAL)</li>
 </ul>
 <p>The identification of the <code>Asset</code> entity is a key foundation of the ODRL Policy language. In general, the <code>uid</code> MAY be a URI [[rfc3986]] representing the identifier for the Asset. There MAY also be other alternative identifers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. <p>
     
@@ -400,12 +401,19 @@ Note that, following the definition of inheritance provided above, the child Pol
 <li><code>relation</code>: indicates the relationship of the <code>Asset</code> to the linked entity (REQUIRED)</li>
 </ul>
 <p>The default value for the <code>relation</code> attribute is <code>target</code> which indicates that the <code>Asset</code> is the primary object to which the <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> actions apply.</p>
-     <div class="note">
-          <p>Target is formally defined in the ODRL Vocabulary [[!vocab-odrl]]</p>
-    </div>
+    
 <p>Other values for the <code>Relation</code> entity MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 	
+<section id="asset-scope">
+<h4>Scope</h4>
+    
+    <p>The <code>scope</code> attribute MAY be used to indicate the context under which to interpret the <code>Asset</code> entity. The purpose of <code>scope</code> is to provide additional information about the Asset. For example, the Asset identifier may refer to a resource which many characteristics, but the scope may limit that to only one specific characteristic.</p>
+    
+<p>The <code>scope</code> attribute URI values MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+</section>
+    
+    
 <p><b>Example Use Case</b>: The Party <code>http//example.com/guest:0001</code> needs to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the permission to do so. This request can be implemented through a Policy of the type Request asking for the permission to display Asset <code>http://example.com/asset:3333</code>.</p>
 
  <pre class="example highlight hljs xquery">{
@@ -438,6 +446,26 @@ which database the index outcome should be stored in.</p>
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:index"</span>
     }]
 }</pre>
+    
+    <p><b>Example Use Case</b>: The Policy includes a target Asset <code>http://example.com/media-catalogue</code> that has a scope of <code>http://example.com/imt/jpeg</code> (which, in this case, provides additional context on what characteristics the Asset MUST hold).</p>
+
+ <pre class="example highlight hljs xquery">{
+<span class="hljs-string">"@context"</span>: {
+    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    }
+    <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
+    <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
+    <span class="hljs-string">"permission"</span>: [{
+        <span class="hljs-string">"target"</span>: [{
+                <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/media-catalogue"</span>,
+                <span class="hljs-string">"scope"</span>: <span class="hljs-string">"http://example.com/imt/jpeg"</span>	
+        }],
+        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:use"</span>,
+        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/user88"</span>
+    }]
+}</pre>
+    
+    
 	
 </section>
 
@@ -914,7 +942,9 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
     <li>Modified UML model to have Inheritance as separate association class.<a href="https://github.com/w3c/poe/issues/51">(Issue#51)</a></li>
 
     <li>Added example use cases through-out the Model sections and have removed the Scenarios sections (as they are covered in the examples).<a href="https://github.com/w3c/poe/issues/50">(Issue#50)</a></li>
-    
+
+        <li>Updated the Scope for Parties (and new for Assets) to allow any URI to scope the characerisitics of the entity. <a href="https://github.com/w3c/poe/issues/59">(Issue#59)</a></li>
+
     
 </ul>
 </section>
