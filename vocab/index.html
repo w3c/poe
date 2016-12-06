@@ -32,7 +32,7 @@ table.propdef th {
 <h2>Introduction</h2>   
     
 <p>
-  The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model [[!odrl-w3c-model]].
+  The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model [[!odrl-model]].
    </p>
 
 </section>
@@ -64,23 +64,20 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <section id="vocab">
 	<h2>Vocabulary</h2>
 
-	<p>The Namespace URI to identify the ODRL model and vocabulary terms is: <code>http://www.w3.org/ns/odrl/2/</code></p>
+      <p>The ODRL Vocabulary formally defines the semantics for the concepts and terms from the ODRL Information Model [[!odrl-model]] and the vocabulary terms that can be used for common use cases for ODRL Policy expressions. The figure below shows the grouping of concepts and terms used in this section.</p>
 
-    <div class="issue" data-number="10">
-        <p>The namespace URI may change in future versions.</p>
-    </div>
-    
+ 
 <figure>
-	<img src="diagram.png" alt="ODRL Vocabulary groups"/>
-    <figcaption>Vocabulary groups </figcaption>
+	<img src="vocab-groups.png" alt="ODRL Vocabulary groups"/>
+    <figcaption>ODRL Vocabulary Groups</figcaption>
 </figure>
 
-     <div class="note">
-        <p>Above figure will be updated to match the vocabulary term groupings.</p>
-    </div>
+<p>The Namespace URI to identify the ODRL model and vocabulary terms is: <code>http://www.w3.org/ns/odrl/2/</code></p>
 
-    <p>The detail for each ODRL Vocabulary term is shown below in the two tables. The left table shows the normative semantic description of the concept, and the right table the ontological description and relationships.</p>
-    
+   <div class="issue" data-number="64">
+        <p>This section is normative, meaning that the concepts and terms presented are required by ODRL expression systems. However, a number of terms have yet to reach the level of implementation that warrants them to be deemed normative. As a result, some terms in this section will be explicitly labelled as "non-normative". Future versions of the ODRL Vocabulary may update these terms as more implementation experience is gained.</p>
+    </div>
+        
 <section id="policyConcepts"><h2>Policy Concepts</h2><section id="term-Policy"><h3>Policy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An entity to capture the statements of the policy</td></tr>
 <tr><th>Label:</th> <td>Policy</td></tr>
@@ -1100,7 +1097,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
 
 
-<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-w3c-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
+<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policyTypes">Policy Types</a> for further details. </P>
 
 <p>The Policy element contains the following attributes:</p>

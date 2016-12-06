@@ -33,22 +33,9 @@ table.propdef th {
 <section id="vocab">
 	<h2>Vocabulary</h2>
 
-	<p>The Namespace URI to identify the ODRL model and vocabulary terms is: <code>http://www.w3.org/ns/odrl/2/</code></p>
-
-    <div class="issue" data-number="10">
-        <p>The namespace URI may change in future versions.</p>
-    </div>
-    
-<figure>
-	<img src="diagram.png" alt="ODRL Vocabulary groups"/>
-    <figcaption>Vocabulary groups </figcaption>
-</figure>
-
-     <div class="note">
-        <p>Above figure will be updated to match the vocabulary term groupings.</p>
-    </div>
-
-    <p>The detail for each ODRL Vocabulary term is shown below in the two tables. The left table shows the normative semantic description of the concept, and the right table the ontological description and relationships.</p>
+      <?php
+        readfile(dirname(__FILE__) . '/parts/vocab.html');  
+          ?>
     
 <?php
 writeGroup('policyConcepts');
