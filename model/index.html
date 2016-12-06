@@ -289,7 +289,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li><code>false</code>: the <code>Policy</code> expression can not be used for inheritance</li>
 </ul>
 <p>If the <code>inheritAllowed</code> attribute is not explicitly set, its default value of <code>true</code> will be used.</p>
-<p>The following attributes MAY be used in a child policy that is inheriting from a parent policy in which that parent policy MUST allow inheritance (vai the <code>inheritAllowed</code> attribute) :</p>
+<p>The following attributes SHOULD be used in a child policy that is inheriting from a parent policy in which that parent policy MUST allow inheritance (vai the <code>inheritAllowed</code> attribute) :</p>
 
     <ul>
     <li><code>inheritFrom</code>: the identifier from which this child <code>Policy</code> inherits from the parent <code>Policy</code></li>
@@ -298,8 +298,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     
 <p>The <code>inheritFrom</code> association in the (child) <code>Policy</code> will uniquely identify (via a UID) the (parent) <code>Policy</code> from which the inheritance will be performed.</p>
-<p>The <code>inheritRelation</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the type of inheritance from the (parent) <code>Policy</code>. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the parties (that are not machine representable). Such terms MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL policies they exchange. This will require the ODRL policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission actions or constraints (etc) that is documented in their business model arrangement.</p>
-<p>Both the <code>inheritFrom</code> association and <code>inheritRelation</code> attribute MAY be used independently.</p>
+<p>The <code>inheritRelation</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the type of inheritance from the (parent) <code>Policy</code>. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the parties (that are not machine representable). Such terms SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL policies they exchange. This will require the ODRL policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission actions or constraints (etc) that is documented in their business model arrangement.</p>
+<p>Both the <code>inheritFrom</code> association and <code>inheritRelation</code> attribute may be used independently.</p>
 <p>The following restrictions apply when using inheritance:</p>
 <ul>
 <li>Single inheritance is only supported. (One Parent <code>Policy</code> to one or more Child <code>Policy</code> entities. No Child <code>Policy</code> can inherit from two or more Parent <code>Policy</code> entities.)</li>
@@ -389,7 +389,7 @@ Note that, following the definition of inheritance provided above, the child Pol
 <li><code>uid</code>: the unique identification of the <code>Asset</code> (REQUIRED)</li>
     <li><code>scope</code>: defines how the Asset shall be interpreted under different contexts. (OPTIONAL)</li>
 </ul>
-<p>The identification of the <code>Asset</code> entity is a key foundation of the ODRL Policy language. In general, the <code>uid</code> MAY be a URI [[rfc3986]] representing the identifier for the Asset. There MAY also be other alternative identifers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. <p>
+<p>The identification of the <code>Asset</code> entity is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be a URI [[rfc3986]] representing the identifier for the Asset. There MAY also be other alternative identifers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. <p>
     
     <p>There are some use cases where the ODRL Policy expression MAY be embedded inside the target <code>Asset</code>. In these cases, it MAY be more appropriate to provide, or infer, a link to the <code>Asset</code> entity (as the complete <code>Asset</code> <code>uid</code> may not be known at the time) through the local context. Use of such inference and context MUST be documented in the relevant ODRL Profile.</p>
 <p>Since ODRL policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe <code>Asset</code> entities of particular media types. It is recommended to use already existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> that are appropriate to the <code>Asset</code> type or purpose.</p>
@@ -398,22 +398,22 @@ Note that, following the definition of inheritance provided above, the child Pol
 <section id="relation">
 <h4>Relation</h4>
 
-<p>The <code>Relation</code> entity is an association class and can be used to link to an <code>Asset</code> from either <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code>, indicating how the <code>Asset</code> MAY be utilised in respect to the entity that links to it.</p>
+<p>The <code>Relation</code> entity is an association class and can be used to link to an <code>Asset</code> from either <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code>, indicating how the <code>Asset</code> SHOULD be utilised in respect to the entity that links to it.</p>
 <p>The <code>Relation</code> entity contains the following attribute:</p>
 <ul>
 <li><code>relation</code>: indicates the relationship of the <code>Asset</code> to the linked entity (REQUIRED)</li>
 </ul>
 <p>The default value for the <code>relation</code> attribute is <code>target</code> which indicates that the <code>Asset</code> is the primary object to which the <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> actions apply.</p>
     
-<p>Other values for the <code>Relation</code> entity MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other values for the <code>Relation</code> entity SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 	
 <section id="asset-scope">
 <h4>Scope</h4>
     
-    <p>The <code>scope</code> attribute MAY be used to indicate the context under which to interpret the <code>Asset</code> entity. The purpose of <code>scope</code> is to provide additional information about the Asset. For example, the Asset identifier may refer to a resource which many characteristics, but the scope may limit that to only one specific characteristic.</p>
+    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret the <code>Asset</code> entity. The purpose of <code>scope</code> is to provide additional information about the Asset. For example, the Asset identifier may refer to a resource which many characteristics, but the scope may limit that to only one specific characteristic.</p>
     
-<p>The <code>scope</code> attribute URI values MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>The <code>scope</code> attribute URI values SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
     
     
@@ -480,7 +480,7 @@ which database the index outcome should be stored in.</p>
 <p>The <code>Party</code> entity contains the following attributes:</p>
 <ul>
 <li><code>uid</code>: the unique identification of the party (REQUIRED)</li>
-<li><code>function</code>: defines the roles which may be fulfilled by a party in relation to a Rule (REQUIRED)</li>
+<li><code>function</code>: defines the roles  fulfilled by a party in relation to a Rule (REQUIRED)</li>
 <li><code>scope</code>: defines how the role shall be interpreted under different contexts. (OPTIONAL)</li>
 </ul>
 <p>The ODRL Information Model does not provide additional metadata for the <code>Party</code> element. It is recommended to use already existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]], that are appropriate to the <code>Party</code> type or purpose.</p>
@@ -499,21 +499,21 @@ which database the index outcome should be stored in.</p>
 <li><code>assignee</code>: indicates that the <code>Party</code> has been assigned the associated entity, i.e. they are granted a <code>Permission</code> or required to perform a <code>Duty</code> or have to adhere to a <code>Prohibition</code>.</li>
 </ul>
    
-<p>Other values for the <code>function</code> attribute MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other values for the <code>function</code> attribute SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     </section>
     
     
 <section id="party-scope">
 <h4>Scope</h4>
     
-    <p>The <code>scope</code> attribute MAY be used to indicate the context under which to interpret the <code>Party</code> entity. The purpose of <code>scope</code> is to provide additional information about the Party that may also reduce the extent of the Party identifier. For example, the Party identifier may refer to all users at a University, but the scope may limit that to only staff members at the University.</p>
+    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret the <code>Party</code> entity. The purpose of <code>scope</code> is to provide additional information about the Party that may also reduce the extent of the Party identifier. For example, the Party identifier may refer to all users at a University, but the scope may limit that to only staff members at the University.</p>
         
-     <p>The <code>scope</code> attribute MAY take one of the following values:</p>
+     <p>The <code>scope</code> attribute SHOULD take one of the following values:</p>
 <ul>
 <li><code>individual</code>: indicates that the <code>Party</code> entity is a single individual. The linked <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> is applicable for that individual only.</li>
 <li><code>group</code>: indicates that the <code>Party</code> entity represents a group. The group consisting of many individual members. The linked <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> is applicable for each member of that group. For example, a <code>Permission</code> to play a movie 5 times is valid for each <code>Party</code> member or the <code>Duty</code> to pay 3 EUR has to be fulfilled by each <code>Party</code> member.</li>
 </ul>
-<p>Other URI values for the <code>scope</code> attribute MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other URI values for the <code>scope</code> attribute SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 	
 <p><b>Example Use Case</b>: The target Asset <code>http://example.com/myPhotos:BdayParty</code> are photos posted to a Social Network site by the assigner and owner of the photos <code>http://example.com/user44</code>. The assignee is a Party <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. The scope of the assignee(s) has been set to <code>http://example.com/people/age/18+</code> (which, in this case provides additional context on what characteristics the Assigee MUST hold).</p>
@@ -542,15 +542,15 @@ which database the index outcome should be stored in.</p>
 
 
 <p>The <code>Permission</code> entity indicates the <code>Action</code>s permitted to be performed on the  <code>Asset</code>.</p>
-<p>An ODRL policy expression MAY contain at least one <code>Permission</code>. It is important to verify the semantics of the <code>Policy</code> <code>type</code> attribute as this MAY indicate additional constraints on the Policy expression structure.</p>
+<p>An ODRL policy expression MAY contain at least one <code>Permission</code>. It is important to verify the semantics of the <code>Policy</code> <code>type</code> attribute as this SHOULD indicate additional constraints on the Policy expression semantics.</p>
 
 <p>The <code>Permission</code> entity has the following relations:</p>
 <ul>
-<li><code>Asset</code>: the <code>Permission</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the linked <code>Action</code> MAY be performed (REQUIRED)</li>
+<li><code>Asset</code>: the <code>Permission</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the linked <code>Action</code> SHOULD be performed (REQUIRED)</li>
 <li><code>Action</code>: the <code>Permission</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that indicates the granted operation on the target <code>Asset</code> (REQUIRED)</li>
 <li><code>Party</code>: the <code>Permission</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
 <li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more <code>Constraint</code>s which affect the validity of the <code>Permission</code>, e.g. if the <code>Action</code> <code>play</code> is only permitted for a certain period of time (OPTIONAL)</li>
-<li><code>Duty</code>: the <code>Permission</code> MAY refer to one or more <code>Duty</code> entities that indicate a requirement that MAY be fulfilled in return for receiving the <code>Permission</code> (OPTIONAL)</li>
+<li><code>Duty</code>: the <code>Permission</code> MAY refer to one or more <code>Duty</code> entities that indicate a requirement that SHOULD be fulfilled in return for receiving the <code>Permission</code> (OPTIONAL)</li>
 </ul>
 	
 <p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the Ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
@@ -709,7 +709,7 @@ which database the index outcome should be stored in.</p>
 <ul>
 <li><code>name</code>: indicates the <code>Action</code> entity term (REQUIRED)</li>
 </ul>
-<p>As its value, the <code>name</code> attribute MAY take one of a set of <code>Action</code> <em>names</em> which are formally defined in profiles. The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) profiles to capture additional and refined semantics.</p>
+<p>As its value, the <code>name</code> attribute SHOULD take one of a set of <code>Action</code> <em>names</em> which are formally defined in Profiles. The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) profiles to capture additional and refined semantics.</p>
 
 <p><b>Example Use Case</b>: The Party needs to define an Offer policy granting a permission about the target Asset <code>http://example.com/music:1012</code>, namely the permission to play the Asset.</p> 
 
