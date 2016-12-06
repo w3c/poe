@@ -456,7 +456,7 @@ which database the index outcome should be stored in.</p>
 <p>The <code>Role</code> entity is used to associate the <code>Party</code> entity with the relevant <code>Permission</code>, <code>Prohibition</code>, and <code>Duty</code> entities.</p>
 
 <section id="role">
-<h4> Role</h4>
+<h4>Role</h4>
 <p>The <code>Role</code> entity is an association class and can be used to link to a <code>Party</code> from either <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code>, indicating which role the <code>Party</code> takes with respect to the entity that links to it.</p>
 <p>The <code>Role</code> entity contains the following attributes:</p>
 <ul>
@@ -467,19 +467,25 @@ which database the index outcome should be stored in.</p>
 <li><code>assigner</code>: indicates that the <code>Party</code> has assigned the associated <code>Permission</code>, <code>Duty</code>, or <code>Prohibition</code>. In other words, the <code>Party</code> grants a <code>Permission</code> or requires a <code>Duty</code> to be performed or states a <code>Prohibition</code>.</li>
 <li><code>assignee</code>: indicates that the <code>Party</code> has been assigned the associated entity, i.e. they are granted a <code>Permission</code> or required to perform a <code>Duty</code> or have to adhere to a <code>Prohibition</code>.</li>
 </ul>
-    <div class="note">
-          <p>Assignee and Asignee are formally defined in the ODRL Vocabulary [[!vocab-odrl]]</p>
-    </div>
+   
 <p>Other values for the <code>function</code> attribute MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
-<p>The <code>scope</code> attribute MAY be used to indicate the context under which to interpret the <code>Party</code> entity. If present, the <code>scope</code> attribute MAY take one of the following values:</p>
+    </section>
+    
+    
+<section id="party-scope">
+<h4>Scope</h4>
+    
+    <p>The <code>scope</code> attribute MAY be used to indicate the context under which to interpret the <code>Party</code> entity. The purpose of <code>scope</code> is to provide additional information about the Party that may also reduce the extent of the Party identifier. For example, the Party identifier may refer to all users at a University, but the scope may limit that to only staff members at the University.</p>
+        
+     <p>The <code>scope</code> attribute MAY take one of the following values:</p>
 <ul>
 <li><code>individual</code>: indicates that the <code>Party</code> entity is a single individual. The linked <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> is applicable for that individual only.</li>
-<li><code>group</code>: indicates that the <code>Party</code> entity represents a group. The group consisting of many individual members. The linked <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> is applicable for each member of that group. For example, a (constrained) <code>Permission</code> to play a movie 5 times is valid for each <code>Party</code> member or the <code>Duty</code> to pay 3 EUR has to be fulfilled by each <code>Party</code> member.</li>
+<li><code>group</code>: indicates that the <code>Party</code> entity represents a group. The group consisting of many individual members. The linked <code>Permission</code>, <code>Duty</code> or <code>Prohibition</code> is applicable for each member of that group. For example, a <code>Permission</code> to play a movie 5 times is valid for each <code>Party</code> member or the <code>Duty</code> to pay 3 EUR has to be fulfilled by each <code>Party</code> member.</li>
 </ul>
-<p>Other values for the <code>scope</code> attribute MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other URI values for the <code>scope</code> attribute MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 	
-<p><b>Example Use Case</b>: The target Asset <code>http://example.com/asset:myPhotos:football4444</code> are photos posted to a Social Network site by the assigner and owner of the photos <code>http://example.com/myPhoto:assigner44</code>. The assignee is a Party group <code>http://example.com/myPhoto:assignee:footballfans44</code>, and represents the football fan club members, who are each allowed to display the photos.</p>
+<p><b>Example Use Case</b>: The target Asset <code>http://example.com/myPhotos:BdayParty</code> are photos posted to a Social Network site by the assigner and owner of the photos <code>http://example.com/user44</code>. The assignee is a Party <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. The scope of the assignee(s) has been set to <code>http://example.com/people/age/18+</code> (which, in this case provides additional context on what characteristics the Assigee MUST hold).</p>
 
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
@@ -488,12 +494,12 @@ which database the index outcome should be stored in.</p>
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
     <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:myPhotos:football4444"</span>,
+        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/myPhotos:BdayParty"</span>,
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>,
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/myPhoto:assigner44"</span>,
+        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/user44"</span>,
         <span class="hljs-string">"assignee"</span>: [{
-                <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/myPhoto:assignee:footballfans44"</span>,
-                <span class="hljs-string">"scope"</span>: <span class="hljs-string">"odrl:group"</span>	
+                <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/user44/friends"</span>,
+                <span class="hljs-string">"scope"</span>: <span class="hljs-string">"http://example.com/people/age/18+"</span>	
         }]
     }]
 }</pre>
