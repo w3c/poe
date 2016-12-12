@@ -292,13 +292,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The following attributes SHOULD be used in a child policy that is inheriting from a parent policy in which that parent policy MUST allow inheritance (vai the <code>inheritAllowed</code> attribute) :</p>
 
     <ul>
-    <li><code>inheritFrom</code>: the identifier from which this child <code>Policy</code> inherits from the parent <code>Policy</code></li>
-<li><code>inheritRelation</code>: the identifier for the relationship type of this inheritance structure</li>
+    <li><code>inheritFrom</code>: the identifier of the parent <code>Policy</code> from which this child <code>Policy</code> inherits from</li>
+<li><code>inheritRelation</code>: the identifier of the relationship context of this inheritance structure</li>
     </ul>
     
     
 <p>The <code>inheritFrom</code> association in the (child) <code>Policy</code> will uniquely identify (via a UID) the (parent) <code>Policy</code> from which the inheritance will be performed.</p>
-<p>The <code>inheritRelation</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the type of inheritance from the (parent) <code>Policy</code>. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the parties (that are not machine representable). Such terms SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL policies they exchange. This will require the ODRL policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission actions or constraints (etc) that is documented in their business model arrangement.</p>
+<p>The <code>inheritRelation</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the context of inheritance from the (parent) <code>Policy</code>. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the parties (that are not machine representable). Such terms SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL policies they exchange. This will require the ODRL policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission actions or constraints (etc) that is documented in their business model arrangement.</p>
 <p>Both the <code>inheritFrom</code> association and <code>inheritRelation</code> attribute may be used independently.</p>
 <p>The following restrictions apply when using inheritance:</p>
 <ul>
