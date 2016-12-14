@@ -373,49 +373,56 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
     skos:definition "Is used to resolve conflicts arising from the merging of policies, specifically when there are conflicting Actions in the Permissions and Prohibitions"@en ;
     skos:note "Instances of ConflictTerm describe policies for resolving conflicts."@en ;
-	rdfs:label "Conflict Preference"@en .
+	rdfs:label "Conflict Preference"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :perm
 	a :ConflictTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Prefer Permissions"@en ;
     skos:definition "Permissions take preference over prohibitions."@en ;
-    skos:note "Used to determine policy conflict outcomes."@en .
+    skos:note "Used to determine policy conflict outcomes."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :prohibit
 	a :ConflictTerm, owl:NamedIndividual;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Prefer Prohibitions"@en ;
     skos:definition "Prohibitions take preference over permissions"@en ;
-	skos:note "Used to determine policy conflict outcomes."@en .
+	skos:note "Used to determine policy conflict outcomes."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :UndefinedTerm
 	a rdfs:Class, owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Is used to indicate how to support Actions that are not part of any vocabulary or profile in the policy expression system"@en ;
 	skos:note "Instances of UndefinedTerm describe policies for processing unsupported actions."@en ;
-	rdfs:label "Undefined Term"@en .
+	rdfs:label "Undefined Term"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :ignore
 	a :UndefinedTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Ignore Undefined Actions"@en ;
 	skos:definition "The Action is to be ignored and is not part of the policy – and the policy remains valid."@en ;
-	skos:note "Used to support actions not known to the policy system."@en .
+	skos:note "Used to support actions not known to the policy system."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :invalid
 	a :ConflictTerm, :UndefinedTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Invalidate Policy"@en ;
 	skos:definition "the Action is unknown – and the policy is invalid."@en ;
-	skos:note "Used to support actions not known to the policy system."@en .
+	skos:note "Used to support actions not known to the policy system."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :support
 	a :UndefinedTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Support Undefined Actions"@en ;
 	skos:definition "The Action is to be supported as part of the policy – and the policy remains valid"@en ;
-	skos:note "Used to support actions not known to the policy system."@en .
+	skos:note "Used to support actions not known to the policy system."@en ;
+    skos:scopeNote "Non-Normative"@en . 
 
 :conflict
 	a rdf:Property , owl:ObjectProperty ;
@@ -424,7 +431,8 @@ odrl:
 	skos:definition "Relates a conflict-resolution mechansim to a Policy."@en ;
 	skos:note "If no mechanism is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
-	rdfs:range :ConflictTerm .
+	rdfs:range :ConflictTerm ;
+    skos:scopeNote "Non-Normative"@en .
 
 :undefined
 	a rdf:Property , owl:ObjectProperty ;
@@ -433,7 +441,8 @@ odrl:
 	skos:definition "Relates the mechanism used for handling undefined actions to a Policy."@en ;
 	skos:note "If no mechanism is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
-	rdfs:range :UndefinedTerm .
+	rdfs:range :UndefinedTerm ;
+    skos:scopeNote "Non-Normative"@en .
 
 :permission
 	a rdf:Property , owl:ObjectProperty ;
@@ -466,7 +475,8 @@ odrl:
 	skos:definition "Indicates if the Policy entity can be inherited."@en ;
 	skos:note "A boolean value."@en ;
 	rdfs:domain :Policy ;
-	rdfs:range xsd:boolean .
+	rdfs:range xsd:boolean ;
+    skos:scopeNote "Non-Normative"@en .
 
 :inheritFrom
 	a rdf:Property , owl:ObjectProperty ;
@@ -475,7 +485,8 @@ odrl:
 	skos:definition "Relates a (child) policy to another (parent) policy from which terms are inherited"@en ;
 	skos:note "The child policy will inherit from the parent policy"@en ;
 	rdfs:domain :Policy ;
-	rdfs:range :Policy .
+	rdfs:range :Policy ;
+    skos:scopeNote "Non-Normative"@en .
 
 :inheritRelation
 	a rdf:Property , owl:ObjectProperty ;
@@ -484,7 +495,8 @@ odrl:
 	skos:definition "Indentifies the type of inheritance"@en ;
 	skos:note "For example, this may indicate the business scenario, such as subscription, or prior arrangements between the parties (that are not machine representable)"@en ;
 	rdfs:domain :Policy ;
-	rdfs:range rdfs:Resource .
+	rdfs:range rdfs:Resource ;
+    skos:scopeNote "Non-Normative"@en .
 
 
 :profile
@@ -564,7 +576,8 @@ odrl:
 	rdfs:label "Output"@en ;
 	skos:definition "The output property specifies the Asset which is created from the output of the Action."@en ;
 	rdfs:domain :Rule ;
-	rdfs:range :Asset . 
+	rdfs:range :Asset  ;
+    skos:scopeNote "Non-Normative"@en . 
 
 :target
 	a rdf:Property , owl:ObjectProperty ;
@@ -653,7 +666,8 @@ odrl:
 	rdfs:label "Status"@en ;
 	skos:definition "The current value of the constraint."@en ;
 	skos:note "The range of the status property is identical to that of the operand property selected used in the constraint."@en ;
-	rdfs:domain :Constraint .
+	rdfs:domain :Constraint ;
+    skos:scopeNote "Non-Normative"@en .
 
 ## Operators
 
@@ -687,7 +701,8 @@ odrl:
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value contains the right operand of the Constraint"@en ;
-	rdfs:label "Has part"@en .
+	rdfs:label "Has part"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :isA
 	a :Operator, owl:NamedIndividual ;
@@ -699,25 +714,29 @@ odrl:
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is all of the right operand of the Constraint"@en ;
-	rdfs:label "Is all of"@en .
+	rdfs:label "Is all of"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :isAnyOf
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is any of the right operand of the Constraint"@en ;
-	rdfs:label "Is any of"@en .
+	rdfs:label "Is any of"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :isNoneOf
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is none of the right operand of the Constraint"@en ;
-	rdfs:label "Is none of"@en .
+	rdfs:label "Is none of"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :isPartOf
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is contained by the right operand of the Constraint"@en ;
-	rdfs:label "Is part of"@en .
+	rdfs:label "Is part of"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :lt
 	a :Operator, owl:NamedIndividual ;
@@ -752,7 +771,8 @@ odrl:
 	rdfs:label "Grant Use"@en ;
 	skos:broaderTransitive odrl:use ;
 	skos:definition "The Assigner permits/prohibits the Assignee to grant the use the Asset to third parties."@en ;
-	skos:note "This action enables the Assignee to create policies for the use of the Asset for third parties. nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended."@en .
+	skos:note "This action enables the Assignee to create policies for the use of the Asset for third parties. nextPolicy is recommended to be agreed with the third party. Use of temporal constraints is recommended."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :compensate
 	a :Action, skos:Concept ;
@@ -766,7 +786,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Accept Tracking"@en ;
 	skos:definition "The Assigner requires that the Assignees accepts that the use of the Asset may be tracked."@en ;
-	skos:note "The collected information may be tracked by the Assigner, or may link to a Party with the role function “trackingParty”."@en .
+	skos:note "The collected information may be tracked by the Assigner, or may link to a Party with the role function “trackingParty”."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 
 :aggregate
@@ -774,14 +795,16 @@ odrl:
 	skos:broaderTransitive odrl:use ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Aggregate"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to use the Asset or parts of it as part of a composite collection."@en .
+	skos:definition "The Assigner permits/prohibits the Assignees to use the Asset or parts of it as part of a composite collection."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :annotate
 	a :Action, skos:Concept ;
 	skos:broaderTransitive odrl:use ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Annotate"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to add explanatory notations/commentaries to the Asset without modifying the Asset in any other way."@en .
+	skos:definition "The Assigner permits/prohibits the Assignees to add explanatory notations/commentaries to the Asset without modifying the Asset in any other way."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :anonymize
 	a :Action, skos:Concept ;
@@ -789,7 +812,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Anonymize"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to anonymize all or parts of the Asset."@en ;
-	skos:note "For example, to remove identifying particulars for statistical or for other comparable purposes, or to use the asset without stating the author/source."@en .
+	skos:note "For example, to remove identifying particulars for statistical or for other comparable purposes, or to use the asset without stating the author/source."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :append
 	a :Action, skos:Concept ;
@@ -812,7 +836,8 @@ odrl:
 	rdfs:label "Archive"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to store the Asset (in a non-transient form)."@en ;
 	skos:note "Constraints may be used for temporal conditions."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :attribute
 	a :Action, skos:Concept ;
@@ -826,7 +851,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Concurrent Use"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to create multiple copies of the Asset that are being concurrently used."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :copy
 	a :Action, skos:Concept ;
@@ -841,7 +867,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Delete"@en ;
 	skos:definition "The Assigner requires that the Assignees permanently removes all copies of the Asset."@en ;
-	skos:note "Use a constraint to define under which conditions the Asset should be deleted."@en .
+	skos:note "Use a constraint to define under which conditions the Asset should be deleted."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :derive
 	a :Action, skos:Concept ;
@@ -849,14 +876,16 @@ odrl:
 	rdfs:label "Derive"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to create a new derivative Asset from this Asset and to edit or modify the derivative."@en ;
 	skos:note "A new asset is created and may have significant overlaps with the original Asset. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective). To the derived Asset a next policy may be applied."@en ;
-	skos:broaderTransitive :use .	
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :digitize
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Digitize"@en ;
 	skos:broaderTransitive :use ;
-	skos:definition "The Assigner permits/prohibits the Assignees to produce a digital copy of (or otherwise digitize) the Asset from its analogue form."@en .
+	skos:definition "The Assigner permits/prohibits the Assignees to produce a digital copy of (or otherwise digitize) the Asset from its analogue form."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :display
 	a :Action, skos:Concept ;
@@ -877,7 +906,8 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Ensure Exclusivity"@en ;
-	skos:definition "The Assignee requires that the Assigners ensure that the permission on the Asset is exclusive to the Assignee."@en .
+	skos:definition "The Assignee requires that the Assigners ensure that the permission on the Asset is exclusive to the Assignee."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :execute
 	a :Action, skos:Concept ;
@@ -885,7 +915,8 @@ odrl:
 	rdfs:label "Execute"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to run the computer program Asset."@en ;
 	skos:note "For example, machine executable code or Java such as a game or application."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :export
 	a :Action, skos:Concept ;
@@ -900,21 +931,24 @@ odrl:
 	rdfs:label "Extract"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to extract parts of the Asset and to use it as a new Asset."@en ;
 	skos:note "A new asset is created and may have very little in common with the original Asset. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective). To the extracted Asset a next policy may be applied."@en ;
-	skos:broaderTransitive :reproduce .
+	skos:broaderTransitive :reproduce ;
+    skos:scopeNote "Non-Normative"@en .
 
 :give
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Give"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to transfer the ownership of the Asset to a third party without compensation and while deleting the original asset."@en ;
-	skos:broaderTransitive :transfer .
+	skos:broaderTransitive :transfer ;
+    skos:scopeNote "Non-Normative"@en .
 
 :include
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Include"@en ;
 	skos:definition "The Assigner requires that the Assignees include other related assets in the Asset."@en ;
-	skos:note "For example: bio picture must be included in the attribution. Use of the Asset relation attribute is required."@en .
+	skos:note "For example: bio picture must be included in the attribution. Use of the Asset relation attribute is required."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :index
 	a :Action, skos:Concept ;
@@ -922,21 +956,24 @@ odrl:
 	rdfs:label "Index"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to record the Asset in an index."@en ;
 	skos:note "For example, to include a link to the Asset in a search engine database."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :inform
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Inform"@en ;
 	skos:definition "The Assigner requires that the Assignees inform the Assigner or an informed Party that an action has been performed on or in relation to the Asset."@en ;
-	skos:note "May link to a Party with the role function “informedParty”."@en .
+	skos:note "May link to a Party with the role function “informedParty”."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :install
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Install"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to load the computer program Asset onto a storage device which allows operating or running the Asset."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :lease
 	a :Action, skos:Concept ;
@@ -965,7 +1002,8 @@ odrl:
 	rdfs:label "Modify"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to update existing content of the Asset. A new asset is not created by this action."@en ;
 	skos:note "This action will modify an asset which is typically updated from time to time without creating a new asset like a database. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective)."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :move
 	a :Action, skos:Concept ;
@@ -973,7 +1011,8 @@ odrl:
 	rdfs:label "Move"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to move the Asset from one digital location to another including deleting the original copy."@en ;
 	skos:note "After the Asset has been moved, the original copy must be deleted."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :nextPolicy
 	a :Action, skos:Concept ;
@@ -987,7 +1026,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Obtain Consent"@en ;
 	skos:definition "The Assigner requires that the Assignees obtains explicit consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset."@en ;
-	skos:note "Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role function “consentingParty”."@en .
+	skos:note "Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role function “consentingParty”."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :pay
 	a :Action, skos:Concept ;
@@ -1001,14 +1041,16 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Play"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to perform an audio Asset to an audience."@en ;
-	skos:broaderTransitive :present .
+	skos:broaderTransitive :present ;
+    skos:scopeNote "Non-Normative"@en .
 
 :present
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Present"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to perform or exhibit an Asset to an audience."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :preview
 	a :Action, skos:Concept ;
@@ -1024,7 +1066,8 @@ odrl:
 	rdfs:label "Print"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to print an Asset onto paper or to create a hard copy."@en ;
 	skos:note "For example, creating a permanent, fixed (static), and directly perceivable representation of the Asset."@en ;
-	skos:broaderTransitive :present .
+	skos:broaderTransitive :present ;
+    skos:scopeNote "Non-Normative"@en .
 
 :read
 	a :Action, skos:Concept ;
@@ -1032,21 +1075,24 @@ odrl:
 	rdfs:label "Read"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to obtain data from the Asset."@en ;
 	skos:note "For example, the ability to read a record from a database (the Asset)."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :reproduce
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Reproduce"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignee(s) to make (an) exact reproduction(s) of the Asset."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :reviewPolicy
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Review Policy"@en ;
 	skos:definition "The Assigner requires that the Assignee(s) has(ve) a person review the Policy applicable to the Asset."@en ;
-	skos:note "Used when human intervention is required to review the Policy. May link to an Asset which represents the full Policy information."@en .
+	skos:note "Used when human intervention is required to review the Policy. May link to an Asset which represents the full Policy information."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :secondaryUse
 	a :Action, skos:Concept ;
@@ -1060,20 +1106,23 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Sell"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to transfer the ownership of the Asset to a third party with compensation and while deleting the original asset."@en ;
-	skos:broaderTransitive :transfer .
+	skos:broaderTransitive :transfer ;
+    skos:scopeNote "Non-Normative"@en .
 
 :textToSpeech
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Text-to-speech"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to have a text Asset read out loud to an audience."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :transfer
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Transfer"@en ;
-	skos:definition "The Assigner transfers/does not transfer the ownership in perpetuity to the Assignees."@en .
+	skos:definition "The Assigner transfers/does not transfer the ownership in perpetuity to the Assignees."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :transform
 	a :Action, skos:Concept ;
@@ -1081,7 +1130,8 @@ odrl:
 	rdfs:label "Transform"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to make a digital copy of the digital Asset in another digital format."@en ;
 	skos:note "Typically used to convert the Asset into a different format for consumption on/transfer to a third party system."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :translate
 	a :Action, skos:Concept ;
@@ -1096,14 +1146,16 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Uninstall"@en ;
 	skos:definition "The Assigner requires that the Assignees unload and delete the computer program Asset from a storage device and disable its readiness for operation."@en ;
-	skos:note "The Asset is no longer accessible to the Assignees."@en .
+	skos:note "The Asset is no longer accessible to the Assignees."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :watermark
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Watermark"@en ;
 	skos:definition "The Assigner requires that the Assignees apply a watermark as provided by the Assigner to the Asset."@en ;
-	skos:note "It is recommended to embed a link to the watermark."@en .
+	skos:note "It is recommended to embed a link to the watermark."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :write
 	a :Action, skos:Concept ;
@@ -1128,7 +1180,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "Absolute Position"@en ;
 	skos:definition "A point defined with absolute coordinates."@en ;
-	skos:note "For example, JPEG image must be positioned at 100×100 pixel location. This may be used to express [[plus]] semantics."@en .
+	skos:note "For example, JPEG image must be positioned at 100×100 pixel location. This may be used to express [[plus]] semantics."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :absoluteSize
 	a rdf:Property , owl:DatatypeProperty ;
@@ -1137,7 +1190,8 @@ odrl:
 	rdfs:label "Absolute Size"@en ;
 	skos:definition "The absolute dimension that the Asset may be resized."@en ;
 	skos:note "For example, JPEG image must be reproduced onto an area no larger than A0. This may be used to express [[plus]] semantics."@en ;
-	rdfs:range xsd:decimal .
+	rdfs:range xsd:decimal ;
+    skos:scopeNote "Non-Normative"@en .
 
 :count
 	a rdf:Property , owl:DatatypeProperty ;
@@ -1184,7 +1238,8 @@ odrl:
 	owl:equivalentProperty :system, :device ;
 	rdfs:label "System Device"@en ;
 	skos:definition "An identifiable computing system."@en ;
-	skos:note "For example, identifiable via the CPU or unique hardware address."@en .
+	skos:note "For example, identifiable via the CPU or unique hardware address."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :elapsedTime
 	a rdf:Property , owl:DatatypeProperty ;
@@ -1193,7 +1248,8 @@ odrl:
 	rdfs:label "Elapsed Time"@en ;
 	skos:definition "A period of time in which the policy action can be exercised."@en ;
 	skos:note "The start of the period is when the action is first exercised. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
-	rdfs:range xsd:duration .
+	rdfs:range xsd:duration ;
+    skos:scopeNote "Non-Normative"@en .
 
 :event
 	a rdf:Property , owl:ObjectProperty ;
@@ -1208,7 +1264,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy Usage Time"@en ;
 	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
-	skos:note "This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised."@en .
+	skos:note "This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :fileFormat
 	a rdf:Property , owl:ObjectProperty ;
@@ -1216,7 +1273,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "File Format"@en ;
 	skos:definition "The file format applicable to the Asset."@en ;
-	skos:note "For example only JPEG image may be distributed. This may be used to express [[plus]] semantics."@en .
+	skos:note "For example only JPEG image may be distributed. This may be used to express [[plus]] semantics."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :industry
 	a rdf:Property , owl:DatatypeProperty ;
@@ -1240,7 +1298,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "Media"@en ;
 	skos:definition "The media type in which the asset may be used."@en ;
-	skos:note "For example, electronic, print, advertising, marketing. This may be used to express [[plus]] semantics."@en .
+	skos:note "For example, electronic, print, advertising, marketing. This may be used to express [[plus]] semantics."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :meteredTime
 	a rdf:Property , owl:DatatypeProperty ;
@@ -1249,7 +1308,8 @@ odrl:
 	rdfs:label "Metered Time"@en ;
 	skos:definition "The maximum period of metered usage time."@en ;
 	skos:note "For example “P30H” indicates a 30 hour period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
-	rdfs:range xsd:duration .
+	rdfs:range xsd:duration ;
+    skos:scopeNote "Non-Normative"@en .
 
 :payAmount
 	a rdf:Property, owl:DatatypeProperty ;
@@ -1267,7 +1327,8 @@ odrl:
 	rdfs:label "Percentage"@en ;
 	skos:definition "The amount (as a percentage) of the action applicable to the asset."@en ;
 	skos:note "A numeric value from 0 to 100. For example, extract a maximum of 50% of the asset"@en ;
-	rdfs:range xsd:decimal .
+	rdfs:range xsd:decimal ;
+    skos:scopeNote "Non-Normative"@en .
 
 :product
 	a rdf:Property , owl:DatatypeProperty ;
@@ -1276,7 +1337,8 @@ odrl:
 	rdfs:label "Product"@en ;
 	skos:definition "The specified Product or Service name."@en ;
 	skos:note "For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics;"@en ;
-	rdfs:range xsd:string .
+	rdfs:range xsd:string ;
+    skos:scopeNote "Non-Normative"@en .
 
 :purpose
 	a rdf:Property , owl:ObjectProperty ;
@@ -1300,7 +1362,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "Relative Position"@en ;
 	skos:definition "A point defined with reference to another position."@en ;
-	skos:note "For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics;"@en .
+	skos:note "For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics;"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :relativeSize
 	a rdf:Property , owl:DatatypeProperty ;
@@ -1308,7 +1371,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "Relative Size"@en ;
 	skos:definition "The relative dimension that the Asset may be resized."@en ;
-	skos:note "For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics;"@en .
+	skos:note "For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics;"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :resolution
 	a rdf:Property ;
@@ -1316,7 +1380,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "Resolution"@en ;
 	skos:definition "The resolution at which the asset may be used."@en ;
-	skos:note "For example, may be printed at 1200dpi."@en .
+	skos:note "For example, may be printed at 1200dpi."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :spatial
 	a rdf:Property ;
@@ -1324,7 +1389,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "Spatial"@en ;
 	skos:definition "A code representing a geospatial area."@en ;
-	skos:note "The code value and code source must be represented. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value."@en .
+	skos:note "The code value and code source must be represented. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :system
 	a rdf:Property ;
@@ -1342,7 +1408,8 @@ odrl:
 	rdfs:label "Time Interval"@en ;
 	skos:definition "Recurring period of time in which the usage may be exercised."@en ;
 	skos:note "For example, “P7D” indicates a 7 day period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
-	rdfs:range xsd:duration .
+	rdfs:range xsd:duration ;
+    skos:scopeNote "Non-Normative"@en .
 
 :version
 	a rdf:Property , owl:ObjectProperty ;
@@ -1350,7 +1417,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "Version"@en ;
 	skos:definition "The scope of versions for the asset."@en ;
-	skos:note "For example, Single Paperback, or Multiple Issues. This may be used to express [[plus]] semantics."@en .
+	skos:note "For example, Single Paperback, or Multiple Issues. This may be used to express [[plus]] semantics."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :virtualLocation
 	a rdf:Property , owl:ObjectProperty ;
@@ -1358,7 +1426,8 @@ odrl:
 	rdfs:subPropertyOf :rightOperand ;
 	rdfs:label "Virtual Location"@en ;
 	skos:definition "Specification of a digital locale."@en ;
-	skos:note "For example, an Internet domain or IP address range."@en .
+	skos:note "For example, an Internet domain or IP address range."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 ## Functions
 
@@ -1402,7 +1471,8 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Informed Party"@en ;
 	skos:definition "The Party to be informed of all uses."@en ;
-	skos:note "Maybe specified as part of the inform action."@en .
+	skos:note "Maybe specified as part of the inform action."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :payeeParty
 	a rdf:Property , owl:ObjectProperty ;
@@ -1418,7 +1488,8 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Compensated Party"@en ;
 	skos:definition "The Party is the recipient of the compensation."@en ;
-	skos:note "Maybe specified as part of the compensate duty action."@en .
+	skos:note "Maybe specified as part of the compensate duty action."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :compensatingParty
 	a rdf:Property , owl:ObjectProperty ;
@@ -1426,7 +1497,8 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Compensating Party"@en ;
 	skos:definition "The Party that is the provider of the compensation."@en ;
-	skos:note "Maybe specified as part of the compensate duty action."@en .
+	skos:note "Maybe specified as part of the compensate duty action."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :trackingParty
 	a rdf:Property , owl:ObjectProperty ;
@@ -1472,7 +1544,8 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Privacy"@en ;
 	skos:definition "Policy expression that stipulates the terms of usage over personal information."@en ;
-	skos:note "A Privacy Policy Type MUST contain a target Asset, a Party with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en .
+	skos:note "A Privacy Policy Type MUST contain a target Asset, a Party with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
+   skos:scopeNote "Non-Normative"@en .
 
 :Request
 	a rdfs:Class , owl:Class ;
@@ -1500,7 +1573,8 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Set, :Assertion ;
 	rdfs:label "Ticket"@en ;
 	skos:definition "Policy expression that stipulates the terms of usage and is redeemable by any Party who currently holds the Ticket in their possession."@en ;
-	skos:note "A Offer Policy Type MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Offer MAY contain the Party  with Assigner role and a Party with Assignee role. A Ticket (or Voucher) may be anonymous or personalised, where the holder of that Ticket may remain unknown or has to be identified. The holder, or if known, the Assignee, is being granted the terms of the Ticket from the Assigner (in known)."@en .
+	skos:note "A Offer Policy Type MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Offer MAY contain the Party  with Assigner role and a Party with Assignee role. A Ticket (or Voucher) may be anonymous or personalised, where the holder of that Ticket may remain unknown or has to be identified. The holder, or if known, the Assignee, is being granted the terms of the Ticket from the Assigner (in known)."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 ## Scopes
 
@@ -1510,7 +1584,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "All"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the collective individuals within a context."@en ;
-	skos:note "For example, may be used to indicate all the users of a specific social network the party is a member of. Note that “group” scope is also assumed."@en .
+	skos:note "For example, may be used to indicate all the users of a specific social network the party is a member of. Note that “group” scope is also assumed."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :All2ndConnections
 	a rdfs:Class, owl:Class ;
@@ -1518,7 +1593,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "All Second-level Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the second-level connections to the Party."@en ;
-	skos:note "For example, may be used to indicate all “friends of friends” of the Party. Note that “group” scope is also assumed."@en .
+	skos:note "For example, may be used to indicate all “friends of friends” of the Party. Note that “group” scope is also assumed."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :AllConnections
 	a rdfs:Class, owl:Class ;
@@ -1526,7 +1602,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "All Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the first-level connections of the Party."@en ;
-	skos:note "For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed."@en .
+	skos:note "For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :AllGroups
 	a rdfs:Class, owl:Class ;
@@ -1534,7 +1611,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "All Groups"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the group connections of the Party."@en ;
-	skos:note "For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed."@en .
+	skos:note "For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :Group
 	a rdfs:Class, owl:Class ;
@@ -1542,7 +1620,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Group"@en ;
 	skos:definition "Specifies that the scope of the relationship is the defined group with multiple individual members."@en ;
-	skos:note "Must be supported."@en .
+	skos:note "Must be supported."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :Individual
 	a rdfs:Class, owl:Class ;
@@ -1550,7 +1629,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Individual"@en ;
 	skos:definition "Specifies that the scope of the relationship is the single Party individual."@en ;
-	skos:note "Must be supported."@en .
+	skos:note "MUST be supported."@en .
 
 ## Deprecated terms
 
