@@ -283,6 +283,7 @@ function writeTerm($term)
 	$html .= $term->propertyRow("Label", "rdfs:label");
 	$html .= "  <tr><th>Identifier:</th> <td>".$term->htmlLink()."</td></tr>\n";
 	$html .= $term->propertyRow("Comment", "rdfs:comment");
+    $html .= $term->propertyRow("Note", "skos:note");
 	$html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
 	$html .= $term->propertyRow("Parent property", "rdfs:subPropertyOf");
 	$html .= $term->propertyRow("Equivalent to", "owl:sameAs");
@@ -309,6 +310,7 @@ function writeTerm($term)
 		$html .= $term->propertyRow('Class', 'rdf:type', array('http://www.w3.org/2004/02/skos/core#Concept', 'http://www.w3.org/2002/07/owl#NamedIndividual'));
 	}
 	$html .= $term->propertyRow('Concepts', 'skos:hasTopConcept');
+    $html .= $term->propertyRow("Status", "skos:scopeNote");
 	#$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
 	$html .= "</table>\n";
 
