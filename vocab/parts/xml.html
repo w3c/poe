@@ -1,10 +1,14 @@
 <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the URIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
-<p>The complete ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="https://www.w3.org/ns/odrl/2/ODRL22.xsd">downloaded</a>.</p>
+
+<div class="issue">
+    <p>The ODRL XML Schema has not been updated to reflect the current vocabulary changes.</p>
+<p>The complete ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="">downloaded</a>.</p>
+</div>
 
 <p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
 
 
-<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-w3c-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
+<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policyTypes">Policy Types</a> for further details. </P>
 
 <p>The Policy element contains the following attributes:</p>

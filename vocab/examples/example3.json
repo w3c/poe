@@ -1,0 +1,43 @@
+{
+    "policytype": "http://www.w3.org/ns/odrl/2/Agreement",
+    "policyid": "http://example.com/policy:9001",
+    "permissions": [
+        {
+            "target": "http://example.com/music:4545",
+            "action": "http://www.w3.org/ns/odrl/2/play",
+            "assigner": "http://example.com/sony:10",
+            "assignee": "http://example.com/billie:888",
+            "duties": [{
+                "action": "http://www.w3.org/ns/odrl/2/compensate",
+                "constraints": [{
+                    "name": "http://www.w3.org/ns/odrl/2/payAmount",
+                    "operator": "http://www.w3.org/ns/odrl/2/eq",
+                    "rightoperand": "0.50",
+                    "rightoperanddatatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                    "rightoperandunit": "http://cvx.iptc.org/iso4217a/AUD"
+                }]
+            }]
+        },
+        {
+            "target": "http://example.com/music:4545",
+            "action": "http://www.w3.org/ns/odrl/2/copy",
+            "constraints": [{
+                "name": "http://www.w3.org/ns/odrl/2/count",
+                "operator": "http://www.w3.org/ns/odrl/2/lteq",
+                "rightoperand": "1"
+            }],
+            "assigner": "http://example.com/sony:10",
+            "assignee": "http://example.com/billie:888",
+            "duties": [{
+                "action": "http://www.w3.org/ns/odrl/2/compensate",
+                "constraints": [{
+                    "name": "http://www.w3.org/ns/odrl/2/payAmount",
+                    "operator": "http://www.w3.org/ns/odrl/2/eq",
+                    "rightoperand": "0.50",
+                    "rightoperanddatatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                    "rightoperandunit": "http://cvx.iptc.org/iso4217a/AUD"
+                }]
+            }]
+        }
+    ]
+}

@@ -33,22 +33,9 @@ table.propdef th {
 <section id="vocab">
 	<h2>Vocabulary</h2>
 
-	<p>The Namespace URI to identify the ODRL model and vocabulary terms is: <code>http://www.w3.org/ns/odrl/2/</code></p>
-
-    <div class="issue" data-number="10">
-        <p>The namespace URI may change in future versions.</p>
-    </div>
-    
-<figure>
-	<img src="diagram.png" alt="ODRL Vocabulary groups"/>
-    <figcaption>Vocabulary groups </figcaption>
-</figure>
-
-     <div class="note">
-        <p>Above figure will be updated to match the vocabulary term groupings.</p>
-    </div>
-
-    <p>The detail for each ODRL Vocabulary term is shown below in the two tables. The left table shows the normative semantic description of the concept, and the right table the ontological description and relationships.</p>
+      <?php
+        readfile(dirname(__FILE__) . '/parts/vocab.html');  
+          ?>
     
 <?php
 writeGroup('policyConcepts');
@@ -63,7 +50,7 @@ writeGroup('actions');
 writeGroup('duties');
 writeGroup('dutyActions');
 writeGroup('constraints');
-writeGroup('constraintActions');
+writeGroup('constraintNames');
 writeGroup('constraintOperators');
 writeGroup('actionValues');
 writeGroup('partyConcepts');
@@ -166,6 +153,13 @@ writeGroup('assetRelations');
     writeGroupAppendix('deprecatedTerms');
 ?>
            
+</section>
+   
+        <section class="appendix" id="ack">
+<h2>Acknowledgements</h2>
+ <?php
+        readfile(dirname(__FILE__) . '/parts/ack.html');  
+          ?>
 </section>
         
 <section class="appendix" id="community">
@@ -289,6 +283,7 @@ function writeTerm($term)
 	$html .= $term->propertyRow("Label", "rdfs:label");
 	$html .= "  <tr><th>Identifier:</th> <td>".$term->htmlLink()."</td></tr>\n";
 	$html .= $term->propertyRow("Comment", "rdfs:comment");
+    $html .= $term->propertyRow("Note", "skos:note");
 	$html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
 	$html .= $term->propertyRow("Parent property", "rdfs:subPropertyOf");
 	$html .= $term->propertyRow("Equivalent to", "owl:sameAs");
@@ -315,6 +310,7 @@ function writeTerm($term)
 		$html .= $term->propertyRow('Class', 'rdf:type', array('http://www.w3.org/2004/02/skos/core#Concept', 'http://www.w3.org/2002/07/owl#NamedIndividual'));
 	}
 	$html .= $term->propertyRow('Concepts', 'skos:hasTopConcept');
+    $html .= $term->propertyRow("Status", "skos:scopeNote");
 	#$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
 	$html .= "</table>\n";
 
