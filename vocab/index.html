@@ -648,7 +648,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
 <tr><th>Note:</th> <td>Parent class of all Constraints.</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-leftOperand">leftOperand</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-constraint"><h3>Has Constraint</h3><table class='def propdef' >
@@ -676,12 +676,28 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-rightOperand"><h3>Right Operand</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The operand applied to an instance of a constraint.</td></tr>
+<tr><th>Definition:</th> <td>The right operand in a constraint expression.</td></tr>
 <tr><th>Label:</th> <td>Right Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperand">http://www.w3.org/ns/odrl/2/rightOperand</a></td></tr>
-<tr><th>Note:</th> <td>Do not use the right-operand property directly within a Constraint. Instead, a Constraint instance must contain exactly one triple which makes use of one of the sub-properties of right-operand.</td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-proximity">proximity</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-timedCount">timedCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-proximity">proximity</a>, <a href="#term-timedCount">timedCount</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#any">xsd:any</a>, <a href="http://www.w3.org/ns/odrl/2/RightOperandReference">odrl:RightOperandReference</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+</table>
+</section><section id="term-leftOperand"><h3>Left Operand</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The left operand in a constraint expression.</td></tr>
+<tr><th>Label:</th> <td>Left Operand</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/leftOperand">http://www.w3.org/ns/odrl/2/leftOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+</table>
+</section><section id="term-LeftOperand"><h3>Left Operand</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Left operators for constraint expressions.</td></tr>
+<tr><th>Label:</th> <td>Left Operand</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/LeftOperand">http://www.w3.org/ns/odrl/2/LeftOperand</a></td></tr>
+<tr><th>Note:</th> <td>Instances of the LeftOperand class represent the left term in a Constraint</td></tr>
+<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-leftOperand">leftOperand</a></td></tr>
+<tr><th>Instances:</th> <td><a href="http://www.w3.org/ns/odrl/2/absolutePosition">odrl:absolutePosition</a>, <a href="http://www.w3.org/ns/odrl/2/absoluteSize">odrl:absoluteSize</a>, <a href="http://www.w3.org/ns/odrl/2/count">odrl:count</a>, <a href="http://www.w3.org/ns/odrl/2/dateTime">odrl:dateTime</a>, <a href="http://www.w3.org/ns/odrl/2/deliveryChannel">odrl:deliveryChannel</a>, <a href="http://www.w3.org/ns/odrl/2/device">odrl:device</a>, <a href="http://www.w3.org/ns/odrl/2/elapsedTime">odrl:elapsedTime</a>, <a href="http://www.w3.org/ns/odrl/2/event">odrl:event</a>, <a href="http://www.w3.org/ns/odrl/2/fileFormat">odrl:fileFormat</a>, <a href="http://www.w3.org/ns/odrl/2/industry">odrl:industry</a>, <a href="http://www.w3.org/ns/odrl/2/language">odrl:language</a>, <a href="http://www.w3.org/ns/odrl/2/media">odrl:media</a>, <a href="http://www.w3.org/ns/odrl/2/meteredTime">odrl:meteredTime</a>, <a href="http://www.w3.org/ns/odrl/2/payAmount">odrl:payAmount</a>, <a href="http://www.w3.org/ns/odrl/2/percentage">odrl:percentage</a>, <a href="http://www.w3.org/ns/odrl/2/policyUsage">odrl:policyUsage</a>, <a href="http://www.w3.org/ns/odrl/2/product">odrl:product</a>, <a href="http://www.w3.org/ns/odrl/2/purpose">odrl:purpose</a>, <a href="http://www.w3.org/ns/odrl/2/recipient">odrl:recipient</a>, <a href="http://www.w3.org/ns/odrl/2/relativePosition">odrl:relativePosition</a>, <a href="http://www.w3.org/ns/odrl/2/relativeSize">odrl:relativeSize</a>, <a href="http://www.w3.org/ns/odrl/2/resolution">odrl:resolution</a>, <a href="http://www.w3.org/ns/odrl/2/spatial">odrl:spatial</a>, <a href="http://www.w3.org/ns/odrl/2/system">odrl:system</a>, <a href="http://www.w3.org/ns/odrl/2/systemDevice">odrl:systemDevice</a>, <a href="http://www.w3.org/ns/odrl/2/timeInterval">odrl:timeInterval</a>, <a href="http://www.w3.org/ns/odrl/2/version">odrl:version</a>, <a href="http://www.w3.org/ns/odrl/2/virtualLocation">odrl:virtualLocation</a></td></tr>
 </table>
 </section><section id="term-unit"><h3>Unit</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The unit of measurement used for the constraint value.</td></tr>
@@ -706,208 +722,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section></section><section id="constraintNames"><h2>Names for Constraints</h2><section id="term-absolutePosition"><h3>Absolute Position</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A point defined with absolute coordinates.</td></tr>
-<tr><th>Label:</th> <td>Absolute Position</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/absolutePosition">http://www.w3.org/ns/odrl/2/absolutePosition</a></td></tr>
-<tr><th>Note:</th> <td>For example, JPEG image must be positioned at 100×100 pixel location. This may be used to express [[plus]] semantics.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-absoluteSize"><h3>Absolute Size</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The absolute dimension that the Asset may be resized.</td></tr>
-<tr><th>Label:</th> <td>Absolute Size</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/absoluteSize">http://www.w3.org/ns/odrl/2/absoluteSize</a></td></tr>
-<tr><th>Note:</th> <td>For example, JPEG image must be reproduced onto an area no larger than A0. This may be used to express [[plus]] semantics.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-count"><h3>Count</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The numeric count indicating the number of times the corresponding entity may be exercised</td></tr>
-<tr><th>Label:</th> <td>Count</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/count">http://www.w3.org/ns/odrl/2/count</a></td></tr>
-<tr><th>Note:</th> <td>Should be a positive integer</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">xsd:nonNegativeInteger</a></td></tr>
-</table>
-</section><section id="term-dateTime"><h3>Datetime</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The date (and optional time and timezone) representing a point in time or period.</td></tr>
-<tr><th>Label:</th> <td>Datetime</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dateTime">http://www.w3.org/ns/odrl/2/dateTime</a></td></tr>
-<tr><th>Note:</th> <td>Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The use of Timezone information is strongly recommended.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a>, <a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a></td></tr>
-</table>
-</section><section id="term-deliveryChannel"><h3>Delivery Channel</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The delivery channel used for storing or communicating the asset.</td></tr>
-<tr><th>Label:</th> <td>Delivery Channel</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/deliveryChannel">http://www.w3.org/ns/odrl/2/deliveryChannel</a></td></tr>
-<tr><th>Note:</th> <td>For example, the asset may be distributed only on mobile networks.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-</table>
-</section><section id="term-elapsedTime"><h3>Elapsed Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A period of time in which the policy action can be exercised.</td></tr>
-<tr><th>Label:</th> <td>Elapsed Time</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/elapsedTime">http://www.w3.org/ns/odrl/2/elapsedTime</a></td></tr>
-<tr><th>Note:</th> <td>The start of the period is when the action is first exercised. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]].</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#duration">xsd:duration</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-event"><h3>Event</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specification of a defined event applicable to the asset usage.</td></tr>
-<tr><th>Label:</th> <td>Event</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/event">http://www.w3.org/ns/odrl/2/event</a></td></tr>
-<tr><th>Note:</th> <td>For example, asset may be used at the “FIFA World Cup” only. To express events related to undertaking Duties, specific event values may be defined (eg see policyUsage).</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-</table>
-</section><section id="term-fileFormat"><h3>File Format</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The file format applicable to the Asset.</td></tr>
-<tr><th>Label:</th> <td>File Format</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/fileFormat">http://www.w3.org/ns/odrl/2/fileFormat</a></td></tr>
-<tr><th>Note:</th> <td>For example only JPEG image may be distributed. This may be used to express [[plus]] semantics.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-industry"><h3>Industry</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The defined industry sector applicable to the asset usage.</td></tr>
-<tr><th>Label:</th> <td>Industry</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/industry">http://www.w3.org/ns/odrl/2/industry</a></td></tr>
-<tr><th>Note:</th> <td>For example, publishing, financial.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-</table>
-</section><section id="term-language"><h3>Language</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The natural language applicable to the asset usage</td></tr>
-<tr><th>Label:</th> <td>Language</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/language">http://www.w3.org/ns/odrl/2/language</a></td></tr>
-<tr><th>Note:</th> <td>For example, JPEG image may only be reproduced with Spanish text. May be used to express [[plus]] semantics. Must use [[bcp47]] codes for language values.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-</table>
-</section><section id="term-media"><h3>Media</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The media type in which the asset may be used.</td></tr>
-<tr><th>Label:</th> <td>Media</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/media">http://www.w3.org/ns/odrl/2/media</a></td></tr>
-<tr><th>Note:</th> <td>For example, electronic, print, advertising, marketing. This may be used to express [[plus]] semantics.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-meteredTime"><h3>Metered Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The maximum period of metered usage time.</td></tr>
-<tr><th>Label:</th> <td>Metered Time</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/meteredTime">http://www.w3.org/ns/odrl/2/meteredTime</a></td></tr>
-<tr><th>Note:</th> <td>For example “P30H” indicates a 30 hour period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]].</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#duration">xsd:duration</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-payAmount"><h3>Payment Amount</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The value of the financial payment</td></tr>
-<tr><th>Label:</th> <td>Payment Amount</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/payAmount">http://www.w3.org/ns/odrl/2/payAmount</a></td></tr>
-<tr><th>Note:</th> <td>Maybe used for compensation duties. The dataType attribute may be used to indicate the type of the value (eg decimal) and the unit attribute to indicate the currency.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a></td></tr>
-</table>
-</section><section id="term-percentage"><h3>Percentage</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The amount (as a percentage) of the action applicable to the asset.</td></tr>
-<tr><th>Label:</th> <td>Percentage</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/percentage">http://www.w3.org/ns/odrl/2/percentage</a></td></tr>
-<tr><th>Note:</th> <td>A numeric value from 0 to 100. For example, extract a maximum of 50% of the asset</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-product"><h3>Product</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The specified Product or Service name.</td></tr>
-<tr><th>Label:</th> <td>Product</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/product">http://www.w3.org/ns/odrl/2/product</a></td></tr>
-<tr><th>Note:</th> <td>For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics;</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-purpose"><h3>Purpose</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specification of a defined purpose applicable to the asset usage.</td></tr>
-<tr><th>Label:</th> <td>Purpose</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/purpose">http://www.w3.org/ns/odrl/2/purpose</a></td></tr>
-<tr><th>Note:</th> <td>For example, educational use. Purpose values from [[p3p]] may also be used.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-</table>
-</section><section id="term-recipient"><h3>Recipient</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The party that receives the result of the Action on the Asset.</td></tr>
-<tr><th>Label:</th> <td>Recipient</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/recipient">http://www.w3.org/ns/odrl/2/recipient</a></td></tr>
-<tr><th>Note:</th> <td>The right operand must identify one or more specific parties or categories of party</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-</table>
-</section><section id="term-relativePosition"><h3>Relative Position</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A point defined with reference to another position.</td></tr>
-<tr><th>Label:</th> <td>Relative Position</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativePosition">http://www.w3.org/ns/odrl/2/relativePosition</a></td></tr>
-<tr><th>Note:</th> <td>For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics;</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-relativeSize"><h3>Relative Size</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relative dimension that the Asset may be resized.</td></tr>
-<tr><th>Label:</th> <td>Relative Size</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativeSize">http://www.w3.org/ns/odrl/2/relativeSize</a></td></tr>
-<tr><th>Note:</th> <td>For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics;</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-resolution"><h3>Resolution</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The resolution at which the asset may be used.</td></tr>
-<tr><th>Label:</th> <td>Resolution</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/resolution">http://www.w3.org/ns/odrl/2/resolution</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be printed at 1200dpi.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-spatial"><h3>Spatial</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A code representing a geospatial area.</td></tr>
-<tr><th>Label:</th> <td>Spatial</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/spatial">http://www.w3.org/ns/odrl/2/spatial</a></td></tr>
-<tr><th>Note:</th> <td>The code value and code source must be represented. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-systemDevice"><h3>System Device</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identifiable computing system.</td></tr>
-<tr><th>Label:</th> <td>System Device</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr>
-<tr><th>Note:</th> <td>For example, identifiable via the CPU or unique hardware address.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Deprecates:</th> <td><a href="#term-device">device</a>, <a href="#term-system">system</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-timeInterval"><h3>Time Interval</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Recurring period of time in which the usage may be exercised.</td></tr>
-<tr><th>Label:</th> <td>Time Interval</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/timeInterval">http://www.w3.org/ns/odrl/2/timeInterval</a></td></tr>
-<tr><th>Note:</th> <td>For example, “P7D” indicates a 7 day period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]].</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#duration">xsd:duration</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-version"><h3>Version</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The scope of versions for the asset.</td></tr>
-<tr><th>Label:</th> <td>Version</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/version">http://www.w3.org/ns/odrl/2/version</a></td></tr>
-<tr><th>Note:</th> <td>For example, Single Paperback, or Multiple Issues. This may be used to express [[plus]] semantics.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-virtualLocation"><h3>Virtual Location</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specification of a digital locale.</td></tr>
-<tr><th>Label:</th> <td>Virtual Location</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/virtualLocation">http://www.w3.org/ns/odrl/2/virtualLocation</a></td></tr>
-<tr><th>Note:</th> <td>For example, an Internet domain or IP address range.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-rightOperand">rightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="constraintOperators"><h2>Constraint Operators</h2><section id="term-eq"><h3>Equal to</h3><table class='def propdef' >
+</section></section><section id="constraintNames"><h2>Names for Constraints</h2></section><section id="constraintOperators"><h2>Constraint Operators</h2><section id="term-eq"><h3>Equal to</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Indicating that a given value equals the right operand of the Constraint.</td></tr>
 <tr><th>Label:</th> <td>Equal to</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/eq">http://www.w3.org/ns/odrl/2/eq</a></td></tr>
@@ -984,14 +799,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section></section><section id="actionValues"><h2>Values for Constraints</h2><section id="term-policyUsage"><h3>Policy Usage Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>When used as an event in constraints, indicates that the event occurs at the time when the policy is executed.</td></tr>
-<tr><th>Label:</th> <td>Policy Usage Time</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
-<tr><th>Note:</th> <td>This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised.</td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
+</section></section><section id="actionValues"><h2>Values for Constraints</h2></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party entity is the object of an ODRL policy that performs (or not performs) actions or has a role in a Duty.</td></tr>
 <tr><th>Label:</th> <td>Party</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
@@ -2921,7 +2729,7 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
         <section class="appendix" id="deprecate">
 <h2>Deprecated Terms</h2>
  
-            <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td> <a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td> <a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td> <a href="http://www.openmobilealliance.com/">http://www.openmobilealliance.com/</a></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td> <a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td> <a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td> <a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td> <a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td> <a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td> <a href="http://www.openmobilealliance.com/">http://www.openmobilealliance.com/</a></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td> <a href="http://www.editeur.org/21/ONIX-PL/">http://www.editeur.org/21/ONIX-PL/</a></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td> <a href="http://www.editeur.org/21/ONIX-PL/">http://www.editeur.org/21/ONIX-PL/</a></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td> <a href="http://www.editeur.org/21/ONIX-PL/">http://www.editeur.org/21/ONIX-PL/</a></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td> <a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td> <a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td> <a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td> <a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td> <a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td> <a href="http://www.openmobilealliance.com/">http://www.openmobilealliance.com/</a></td></tr></tbody></table>           
+            <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td> <a href="http://www.openmobilealliance.com/">http://www.openmobilealliance.com/</a></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td> <a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td> <a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td> <a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td> <a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td> <a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil">http://www.w3.org/1999/02/22-rdf-syntax-ns#nil</a></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td> <a href="http://www.openmobilealliance.com/">http://www.openmobilealliance.com/</a></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td> <a href="http://www.editeur.org/21/ONIX-PL/">http://www.editeur.org/21/ONIX-PL/</a></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td> <a href="http://www.editeur.org/21/ONIX-PL/">http://www.editeur.org/21/ONIX-PL/</a></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td> <a href="http://www.editeur.org/21/ONIX-PL/">http://www.editeur.org/21/ONIX-PL/</a></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td> <a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td> <a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td> <a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td> <a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td> <a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td> <a href="http://www.openmobilealliance.com/">http://www.openmobilealliance.com/</a></td></tr></tbody></table>           
 </section>
    
         <section class="appendix" id="ack">

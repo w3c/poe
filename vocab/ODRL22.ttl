@@ -21,7 +21,7 @@ odrl:
 	vann:preferredNamespaceUri <http://w3.org/ns/odrl/2/> ;
 	vann:preferredNamespacePrefix "odrl" ;
 	vann:example :Asset ;
-	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "James Birminham", "Víctor Rodríguez-Doncel" ;
+	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "James Birmingham", "Víctor Rodríguez-Doncel" ;
 	dct:issued "2016-07-05"^^xsd:date ;
 	dct:contributor "W3C Permissions & Obligations Expression Working Group" ;
 	dct:description "The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model"@en ;
@@ -234,6 +234,8 @@ odrl:
     skos:member :Operator ;
     skos:member :operator ;
     skos:member :rightOperand ;
+	skos:member :leftOperand ;
+	skos:member :LeftOperand ;
     skos:member :unit ;
     skos:member :dataType ;
     skos:member :status .
@@ -656,10 +658,21 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Right Operand"@en ;
-	skos:definition "The operand applied to an instance of a constraint."@en ;
-	skos:note "Do not use the right-operand property directly within a Constraint. Instead, a Constraint instance must contain exactly one triple which makes use of one of the sub-properties of right-operand."@en ;
+	skos:definition "The right operand in a constraint expression."@en ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :RightOperandReference xsd:any ) ;
+	] ;	
 	rdfs:domain :Constraint .
 
+:leftOperand
+	a rdf:Property ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Left Operand"@en ;
+	skos:definition "The left operand in a constraint expression."@en ;
+	rdfs:range :LeftOperand ;
+	rdfs:domain :Constraint .
+	
 :status
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
@@ -668,7 +681,7 @@ odrl:
 	skos:note "The range of the status property is identical to that of the operand property selected used in the constraint."@en ;
 	rdfs:domain :Constraint ;
     skos:scopeNote "Non-Normative"@en .
-
+	
 ## Operators
 
 :Operator
@@ -756,6 +769,242 @@ odrl:
 	skos:definition "Indicating that a given value is not equal to the right operand of the Constraint"@en ;
 	rdfs:label "Not equal to"@en .
 
+## LeftOperand
+
+:LeftOperand
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "Left Operand"@en ;
+	skos:definition "Left operators for constraint expressions."@en ;
+	skos:note "Instances of the LeftOperand class represent the left term in a Constraint"@en .
+
+## Left Operands
+
+:absolutePosition
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Absolute Position"@en ;
+	skos:definition "A point defined with absolute coordinates."@en ;
+	skos:note "For example, JPEG image must be positioned at 100×100 pixel location. This may be used to express [[plus]] semantics."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:absoluteSize
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Absolute Size"@en ;
+	skos:definition "The absolute dimension that the Asset may be resized."@en ;
+	skos:note "For example, JPEG image must be reproduced onto an area no larger than A0. This may be used to express [[plus]] semantics."@en ;
+	skos:note "Right operand must be a xsd:decimal" ;
+    skos:scopeNote "Non-Normative"@en .
+
+:count
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Count"@en ;
+	skos:definition "The numeric count indicating the number of times the corresponding entity may be exercised"@en ;
+	skos:note "Should be a positive integer"@en .
+
+:dateTime
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Datetime"@en ;
+	skos:definition "The date (and optional time and timezone) representing a point in time or period."@en ;
+	skos:note "Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The use of Timezone information is strongly recommended."@en ;
+	skos:note "Right operand should be a xsd:date or a xsd:dateTime" .
+
+:deliveryChannel
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Delivery Channel"@en ;
+	skos:definition "The delivery channel used for storing or communicating the asset."@en ;
+	skos:note "For example, the asset may be distributed only on mobile networks."@en .
+
+:device
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	owl:equivalentProperty :system ;
+	rdfs:label "Device"@en ;
+	skos:definition "An identifiable computing system."@en ;
+	ont:deprecatedBy :systemDevice .
+
+:systemDevice
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	owl:equivalentProperty :system, :device ;
+	rdfs:label "System Device"@en ;
+	skos:definition "An identifiable computing system."@en ;
+	skos:note "For example, identifiable via the CPU or unique hardware address."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:elapsedTime
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Elapsed Time"@en ;
+	skos:definition "A period of time in which the policy action can be exercised."@en ;
+	skos:note "The start of the period is when the action is first exercised. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
+	skos:note "Data type of the right operand must be xsd:duration" ;
+    skos:scopeNote "Non-Normative"@en .
+
+:event
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Event"@en ;
+	skos:definition "Specification of a defined event applicable to the asset usage."@en ;
+	skos:note "For example, asset may be used at the “FIFA World Cup” only. To express events related to undertaking Duties, specific event values may be defined (eg see policyUsage)."@en .
+
+:policyUsage
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Policy Usage Time"@en ;
+	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
+	skos:note "This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:fileFormat
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "File Format"@en ;
+	skos:definition "The file format applicable to the Asset."@en ;
+	skos:note "For example only JPEG image may be distributed. This may be used to express [[plus]] semantics."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:industry
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Industry"@en ;
+	skos:definition "The defined industry sector applicable to the asset usage."@en ;
+	skos:note "For example, publishing, financial."@en .
+
+:language
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Language"@en ;
+	skos:definition "The natural language applicable to the asset usage"@en ;
+	skos:note "For example, JPEG image may only be reproduced with Spanish text. May be used to express [[plus]] semantics. Must use [[bcp47]] codes for language values."@en .
+
+:media
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Media"@en ;
+	skos:definition "The media type in which the asset may be used."@en ;
+	skos:note "For example, electronic, print, advertising, marketing. This may be used to express [[plus]] semantics."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:meteredTime
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Metered Time"@en ;
+	skos:definition "The maximum period of metered usage time."@en ;
+	skos:note "For example “P30H” indicates a 30 hour period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
+	skos:note "The data type of the right operand must be xsd:duration" ;
+    skos:scopeNote "Non-Normative"@en .
+
+:payAmount
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Payment Amount"@en ;
+	skos:definition "The value of the financial payment"@en ;
+	skos:note "Maybe used for compensation duties. The dataType attribute may be used to indicate the type of the value (eg decimal) and the unit attribute to indicate the currency."@en ;
+	skos:note "The data type of the right operand must be xsd:decimal" .
+
+:percentage
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Percentage"@en ;
+	skos:definition "The amount (as a percentage) of the action applicable to the asset."@en ;
+	skos:note "A numeric value from 0 to 100. For example, extract a maximum of 50% of the asset"@en ;
+	skos:note "The data type of the right operand must be xsd:decimal"@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:product
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Product"@en ;
+	skos:definition "The specified Product or Service name."@en ;
+	skos:note "For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics;"@en ;
+	skos:note "The data type of the right operand must be xsd:decimal"@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:purpose
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Purpose"@en ;
+	skos:definition "Specification of a defined purpose applicable to the asset usage."@en ;
+	skos:note "For example, educational use. Purpose values from [[p3p]] may also be used."@en .
+
+:recipient
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Recipient"@en ;
+	skos:definition "The party that receives the result of the Action on the Asset."@en ;
+	skos:note "The right operand must identify one or more specific parties or categories of party"@en .
+
+:relativePosition
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Relative Position"@en ;
+	skos:definition "A point defined with reference to another position."@en ;
+	skos:note "For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics;"@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:relativeSize
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Relative Size"@en ;
+	skos:definition "The relative dimension that the Asset may be resized."@en ;
+	skos:note "For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics;"@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:resolution
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Resolution"@en ;
+	skos:definition "The resolution at which the asset may be used."@en ;
+	skos:note "For example, may be printed at 1200dpi."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:spatial
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Spatial"@en ;
+	skos:definition "A code representing a geospatial area."@en ;
+	skos:note "The code value and code source must be represented. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:system
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	ont:deprecatedBy :systemDevice ;
+	owl:equivalentProperty :device ;
+	rdfs:label "System"@en ;
+	skos:definition "An identifiable computing system."@en .
+
+:timeInterval
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Time Interval"@en ;
+	skos:definition "Recurring period of time in which the usage may be exercised."@en ;
+	skos:note "For example, “P7D” indicates a 7 day period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
+	skos:note "The data type of the right operand must be xsd:duration"@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:version
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Version"@en ;
+	skos:definition "The scope of versions for the asset."@en ;
+	skos:note "For example, Single Paperback, or Multiple Issues. This may be used to express [[plus]] semantics."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:virtualLocation
+	a :LeftOperand ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Virtual Location"@en ;
+	skos:definition "Specification of a digital locale."@en ;
+	skos:note "For example, an Internet domain or IP address range."@en ;
+    skos:scopeNote "Non-Normative"@en .
+	
 ## Actions
 
 :use
@@ -1171,263 +1420,6 @@ odrl:
 	skos:broaderTransitive odrl:use ;
 	skos:definition "The act of adding data to the Asset."@en ;
 	ont:deprecatedBy :modify .
-
-## Constraints
-
-:absolutePosition
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Absolute Position"@en ;
-	skos:definition "A point defined with absolute coordinates."@en ;
-	skos:note "For example, JPEG image must be positioned at 100×100 pixel location. This may be used to express [[plus]] semantics."@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:absoluteSize
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Absolute Size"@en ;
-	skos:definition "The absolute dimension that the Asset may be resized."@en ;
-	skos:note "For example, JPEG image must be reproduced onto an area no larger than A0. This may be used to express [[plus]] semantics."@en ;
-	rdfs:range xsd:decimal ;
-    skos:scopeNote "Non-Normative"@en .
-
-:count
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Count"@en ;
-	skos:definition "The numeric count indicating the number of times the corresponding entity may be exercised"@en ;
-	skos:note "Should be a positive integer"@en ;
-	rdfs:range xsd:nonNegativeInteger .
-
-:dateTime
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Datetime"@en ;
-	skos:definition "The date (and optional time and timezone) representing a point in time or period."@en ;
-	skos:note "Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The use of Timezone information is strongly recommended."@en ;
-	rdfs:range [
-		a owl:Class ;
-		owl:unionOf ( xsd:date xsd:dateTime ) ;
-	] .
-
-:deliveryChannel
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Delivery Channel"@en ;
-	skos:definition "The delivery channel used for storing or communicating the asset."@en ;
-	skos:note "For example, the asset may be distributed only on mobile networks."@en .
-
-:device
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	owl:equivalentProperty :system ;
-	rdfs:label "Device"@en ;
-	skos:definition "An identifiable computing system."@en ;
-	ont:deprecatedBy :systemDevice .
-
-:systemDevice
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	owl:equivalentProperty :system, :device ;
-	rdfs:label "System Device"@en ;
-	skos:definition "An identifiable computing system."@en ;
-	skos:note "For example, identifiable via the CPU or unique hardware address."@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:elapsedTime
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Elapsed Time"@en ;
-	skos:definition "A period of time in which the policy action can be exercised."@en ;
-	skos:note "The start of the period is when the action is first exercised. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
-	rdfs:range xsd:duration ;
-    skos:scopeNote "Non-Normative"@en .
-
-:event
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Event"@en ;
-	skos:definition "Specification of a defined event applicable to the asset usage."@en ;
-	skos:note "For example, asset may be used at the “FIFA World Cup” only. To express events related to undertaking Duties, specific event values may be defined (eg see policyUsage)."@en .
-
-:policyUsage
-	a owl:NamedIndividual;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Policy Usage Time"@en ;
-	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
-	skos:note "This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised."@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:fileFormat
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "File Format"@en ;
-	skos:definition "The file format applicable to the Asset."@en ;
-	skos:note "For example only JPEG image may be distributed. This may be used to express [[plus]] semantics."@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:industry
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Industry"@en ;
-	skos:definition "The defined industry sector applicable to the asset usage."@en ;
-	skos:note "For example, publishing, financial."@en .
-
-:language
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Language"@en ;
-	skos:definition "The natural language applicable to the asset usage"@en ;
-	skos:note "For example, JPEG image may only be reproduced with Spanish text. May be used to express [[plus]] semantics. Must use [[bcp47]] codes for language values."@en .
-
-:media
-	a rdf:Property ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Media"@en ;
-	skos:definition "The media type in which the asset may be used."@en ;
-	skos:note "For example, electronic, print, advertising, marketing. This may be used to express [[plus]] semantics."@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:meteredTime
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Metered Time"@en ;
-	skos:definition "The maximum period of metered usage time."@en ;
-	skos:note "For example “P30H” indicates a 30 hour period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
-	rdfs:range xsd:duration ;
-    skos:scopeNote "Non-Normative"@en .
-
-:payAmount
-	a rdf:Property, owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Payment Amount"@en ;
-	skos:definition "The value of the financial payment"@en ;
-	skos:note "Maybe used for compensation duties. The dataType attribute may be used to indicate the type of the value (eg decimal) and the unit attribute to indicate the currency."@en ;
-	rdfs:range xsd:decimal .
-
-:percentage
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Percentage"@en ;
-	skos:definition "The amount (as a percentage) of the action applicable to the asset."@en ;
-	skos:note "A numeric value from 0 to 100. For example, extract a maximum of 50% of the asset"@en ;
-	rdfs:range xsd:decimal ;
-    skos:scopeNote "Non-Normative"@en .
-
-:product
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Product"@en ;
-	skos:definition "The specified Product or Service name."@en ;
-	skos:note "For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics;"@en ;
-	rdfs:range xsd:string ;
-    skos:scopeNote "Non-Normative"@en .
-
-:purpose
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Purpose"@en ;
-	skos:definition "Specification of a defined purpose applicable to the asset usage."@en ;
-	skos:note "For example, educational use. Purpose values from [[p3p]] may also be used."@en .
-
-:recipient
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Recipient"@en ;
-	skos:definition "The party that receives the result of the Action on the Asset."@en ;
-	skos:note "The right operand must identify one or more specific parties or categories of party"@en .
-
-:relativePosition
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Relative Position"@en ;
-	skos:definition "A point defined with reference to another position."@en ;
-	skos:note "For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics;"@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:relativeSize
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Relative Size"@en ;
-	skos:definition "The relative dimension that the Asset may be resized."@en ;
-	skos:note "For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics;"@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:resolution
-	a rdf:Property ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Resolution"@en ;
-	skos:definition "The resolution at which the asset may be used."@en ;
-	skos:note "For example, may be printed at 1200dpi."@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:spatial
-	a rdf:Property ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Spatial"@en ;
-	skos:definition "A code representing a geospatial area."@en ;
-	skos:note "The code value and code source must be represented. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value."@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:system
-	a rdf:Property ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	ont:deprecatedBy :systemDevice ;
-	owl:equivalentProperty :device ;
-	rdfs:label "System"@en ;
-	skos:definition "An identifiable computing system."@en .
-
-:timeInterval
-	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Time Interval"@en ;
-	skos:definition "Recurring period of time in which the usage may be exercised."@en ;
-	skos:note "For example, “P7D” indicates a 7 day period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
-	rdfs:range xsd:duration ;
-    skos:scopeNote "Non-Normative"@en .
-
-:version
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Version"@en ;
-	skos:definition "The scope of versions for the asset."@en ;
-	skos:note "For example, Single Paperback, or Multiple Issues. This may be used to express [[plus]] semantics."@en ;
-    skos:scopeNote "Non-Normative"@en .
-
-:virtualLocation
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :rightOperand ;
-	rdfs:label "Virtual Location"@en ;
-	skos:definition "Specification of a digital locale."@en ;
-	skos:note "For example, an Internet domain or IP address range."@en ;
-    skos:scopeNote "Non-Normative"@en .
 
 ## Functions
 
