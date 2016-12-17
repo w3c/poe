@@ -782,7 +782,7 @@ odrl:
 ## Left Operands
 
 :absolutePosition
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Absolute Position"@en ;
 	skos:definition "A point defined with absolute coordinates."@en ;
@@ -790,7 +790,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :absoluteSize
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Absolute Size"@en ;
 	skos:definition "The absolute dimension that the Asset may be resized."@en ;
@@ -799,14 +799,14 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :count
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Count"@en ;
 	skos:definition "The numeric count indicating the number of times the corresponding entity may be exercised"@en ;
 	skos:note "Should be a positive integer"@en .
 
 :dateTime
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Datetime"@en ;
 	skos:definition "The date (and optional time and timezone) representing a point in time or period."@en ;
@@ -814,14 +814,14 @@ odrl:
 	skos:note "Right operand should be a xsd:date or a xsd:dateTime" .
 
 :deliveryChannel
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Delivery Channel"@en ;
 	skos:definition "The delivery channel used for storing or communicating the asset."@en ;
 	skos:note "For example, the asset may be distributed only on mobile networks."@en .
 
 :device
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	owl:equivalentProperty :system ;
 	rdfs:label "Device"@en ;
@@ -829,7 +829,7 @@ odrl:
 	ont:deprecatedBy :systemDevice .
 
 :systemDevice
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	owl:equivalentProperty :system, :device ;
 	rdfs:label "System Device"@en ;
@@ -838,7 +838,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :elapsedTime
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Elapsed Time"@en ;
 	skos:definition "A period of time in which the policy action can be exercised."@en ;
@@ -847,14 +847,14 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :event
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Event"@en ;
 	skos:definition "Specification of a defined event applicable to the asset usage."@en ;
 	skos:note "For example, asset may be used at the “FIFA World Cup” only. To express events related to undertaking Duties, specific event values may be defined (eg see policyUsage)."@en .
 
 :policyUsage
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy Usage Time"@en ;
 	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
@@ -862,7 +862,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :fileFormat
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "File Format"@en ;
 	skos:definition "The file format applicable to the Asset."@en ;
@@ -870,21 +870,21 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :industry
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Industry"@en ;
 	skos:definition "The defined industry sector applicable to the asset usage."@en ;
 	skos:note "For example, publishing, financial."@en .
 
 :language
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Language"@en ;
 	skos:definition "The natural language applicable to the asset usage"@en ;
 	skos:note "For example, JPEG image may only be reproduced with Spanish text. May be used to express [[plus]] semantics. Must use [[bcp47]] codes for language values."@en .
 
 :media
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Media"@en ;
 	skos:definition "The media type in which the asset may be used."@en ;
@@ -892,7 +892,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :meteredTime
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Metered Time"@en ;
 	skos:definition "The maximum period of metered usage time."@en ;
@@ -901,7 +901,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :payAmount
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Payment Amount"@en ;
 	skos:definition "The value of the financial payment"@en ;
@@ -909,7 +909,7 @@ odrl:
 	skos:note "The data type of the right operand must be xsd:decimal" .
 
 :percentage
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Percentage"@en ;
 	skos:definition "The amount (as a percentage) of the action applicable to the asset."@en ;
@@ -918,7 +918,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :product
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Product"@en ;
 	skos:definition "The specified Product or Service name."@en ;
@@ -927,21 +927,21 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :purpose
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Purpose"@en ;
 	skos:definition "Specification of a defined purpose applicable to the asset usage."@en ;
 	skos:note "For example, educational use. Purpose values from [[p3p]] may also be used."@en .
 
 :recipient
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Recipient"@en ;
 	skos:definition "The party that receives the result of the Action on the Asset."@en ;
 	skos:note "The right operand must identify one or more specific parties or categories of party"@en .
 
 :relativePosition
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Relative Position"@en ;
 	skos:definition "A point defined with reference to another position."@en ;
@@ -949,7 +949,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :relativeSize
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Relative Size"@en ;
 	skos:definition "The relative dimension that the Asset may be resized."@en ;
@@ -957,7 +957,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :resolution
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Resolution"@en ;
 	skos:definition "The resolution at which the asset may be used."@en ;
@@ -965,7 +965,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :spatial
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Spatial"@en ;
 	skos:definition "A code representing a geospatial area."@en ;
@@ -973,7 +973,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :system
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	ont:deprecatedBy :systemDevice ;
 	owl:equivalentProperty :device ;
@@ -981,7 +981,7 @@ odrl:
 	skos:definition "An identifiable computing system."@en .
 
 :timeInterval
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Time Interval"@en ;
 	skos:definition "Recurring period of time in which the usage may be exercised."@en ;
@@ -990,7 +990,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :version
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Version"@en ;
 	skos:definition "The scope of versions for the asset."@en ;
@@ -998,7 +998,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :virtualLocation
-	a :LeftOperand ;
+	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Virtual Location"@en ;
 	skos:definition "Specification of a digital locale."@en ;
