@@ -193,19 +193,19 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <section id="conflict">
 <h4>Policy Conflict</h4>
         
-<p>The <code>conflict</code> attribute is used either to resolve conflicts arising from the merging of policies or to set priorities over the <code>Permission</code>s/<code>Prohibition</code>s in the same policy. Conflicts may arise when merging Policies about the same Asset and the resultant actions are inconsistent. For example, one Policy stated that Assignee Fred had been granted an "exclusive" distribution Permission, and the other Policy said the same for Assignee Mary. In the same Policy, conflicts can also arise when the same action is used in a Permssion and a Prohibition. </p>
+<p>The <code>conflict</code> attribute is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between <code>Permission</code>s/<code> and <code>Prohibition</code>s in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent. For example, one Policy stated that Assignee Fred had been granted an "exclusive" distribution Permission, and the other Policy said the same for Assignee Mary. In the same Policy, conflicts can also arise when the same Action is used in a Permission and a Prohibition. </p>
     
     <p>The <code>conflict</code> attribute MUST take one of the following values:</p>
 <ul>
-<li><code>perm</code>: the <code>Permission</code>s will always take preference over Prohibitions</li>
-<li><code>prohibit</code>: the <code>Prohibition</code>s will always take preference over Permissions</li>
-<li><code>invalid</code>: the entire Policy becomes invalid if any conflict is detected</li>
+<li><code>perm</code>: the <code>Permission</code>s MUST override the Prohibitions</li>
+<li><code>prohibit</code>: the <code>Prohibition</code>s MUST override the Permissions</li>
+<li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
 </ul>
 <p>If the <code>conflict</code> attribute is not explicitly set, its default value of <code>invalid</code> will be used.</p>
 
 <p>In cases where both <code>perm</code> and <code>prohibit</code> are used in Policies, and that causes contradictory outcomes (ie the conflict cannot be resolved), then the outcome MUST be an <code>invalid</code> Policy.</p>
 	
-<p><b>Example Use Case</b>: Two policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to use the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits print. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute being set to <code>perm</code>. Hence the Permissions will always take preference over any Prohibitions. In this use case, since the print action is a subset of the use action, there could be a conflict. However, the <code>perm</code> conflict preference means that the use Permission will override the print Prohibition.</p>
+<p><b>Example Use Case</b>: Two policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to use the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits print. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the print action is a subset of the use action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the use Permission will override the print Prohibition.</p>
 
 
 <pre class="example highlight hljs xquery">{
