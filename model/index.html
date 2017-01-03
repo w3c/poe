@@ -548,8 +548,8 @@ which database the index outcome should be stored in.</p>
 <ul>
 <li><code>Asset</code>: the <code>Permission</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the linked <code>Action</code> SHOULD be performed (REQUIRED)</li>
 <li><code>Action</code>: the <code>Permission</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that indicates the granted operation on the target <code>Asset</code> (REQUIRED)</li>
-<li><code>Party</code>: the <code>Permission</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
-<li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more <code>Constraint</code>s which affect the validity of the <code>Permission</code>, e.g. if the <code>Action</code> <code>play</code> is only permitted for a certain period of time (OPTIONAL)</li>
+<li><code>Party</code>: the <code>Permission</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (OPTIONAL)</li>
+<li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more Constraints which affect the validity of the Permission - it only becomes effective if all of the referred Constraints are true (OPTIONAL). For example; the Action play is only permitted for a certain period of time.</li>
 <li><code>Duty</code>: the <code>Permission</code> MAY refer to one or more <code>Duty</code> entities that indicate a requirement that SHOULD be fulfilled in return for receiving the <code>Permission</code> (OPTIONAL)</li>
 </ul>
 	
@@ -583,7 +583,9 @@ which database the index outcome should be stored in.</p>
 <li><code>Asset</code>: the <code>Prohibition</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the <code>Action</code> is prohibited (REQUIRED)</li>
 <li><code>Action</code>: the <code>Prohibition</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that is prohibited (REQUIRED)</li>
 <li><code>Party</code>: the <code>Prohibition</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
-<li><code>Constraint</code>: the <code>Prohibition</code> MAY refer to one or more <code>Constraint</code> entities (OPTIONAL)</li>
+    
+    <li><code>Constraint</code>: the <code>Prohibition</code> MAY refer to one or more Constraints which affect the validity of the Prohibition - it only becomes effective if all of the referred Constraints are true (OPTIONAL). For example; the Action display is only prohibited for a certain country.</li>
+    
 </ul>
 
 <p><b>Example Use Case</b>: The owner and assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between permissions and prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
@@ -615,6 +617,23 @@ which database the index outcome should be stored in.</p>
 <h3>Duty</h3>
 
 <p>A <code>Permission</code> entity MAY include a <code>Duty</code> entity that indicates a requirement that MUST be satisfied in order to undertake the <code>Permission</code>. A <code>Duty</code> MUST only be associated with a <code>Permission</code>. </p>
+    
+    <p>The <code>Duty</code> entity contains the following attributes:</p>
+<ul>
+<li><code>uid</code>: a unique identification for this <code>Duty</code>. Used to refer a single <code>Duty</code> to multiple <code>Permission</code> entities (OPTIONAL)</li>
+</ul>
+<p>The <code>Duty</code> entity has the following relations:</p>
+<ul>
+<li><code>Action</code>: indicates the requirement that MUST be performed (REQUIRED). Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
+<li><code>Party</code>: a <code>Duty</code> MAY refer to <code>Party</code> entities with different <code>Role</code>s. If no explicit <code>Party</code> is linked to as <code>assignee</code> or <code>assigner</code>, the <code>Parties</code> with the respective <code>Role</code>s are taken from the referring <code>Permission</code>. (OPTIONAL)</li>
+<li><code>Asset</code>: a <code>Duty</code> entity MAY refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) related to satisfying the <code>Duty</code>. (OPTIONAL) For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the identifier of a target policy <code>Asset</code>.</li>
+
+    <li><code>Constraint</code>: a <code>Duty</code> MAY refer to one or more Constraints which affect the fulfillment of the Duty - it is only fulfilled if all of the referred Constraints are true (OPTIONAL). For example; the Duty Action payAmount is only fulfilled if a specific amount is paid.
+</li>
+       
+</ul>
+    
+    <p>If a <code>Permission</code> refers to several <code>Duty</code> entities, <em>all of them</em> MUST be satisfied for the <code>Permission</code> to be undertaken. If several <code>Permission</code> entities refer to one <code>Duty</code>, then the Duty only has to be satisfied <em>once</em> for all the <code>Permission</code> entities.</p>
     
 <p>Even though a <code>Duty</code> entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the <code>Duty</code> <code>Action</code> MUST be performed. Such business rules MAY be expressed through additional <code>Constraint</code>s.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid, as different business rules may apply such as montly invoicing.</p>
     
@@ -652,19 +671,7 @@ which database the index outcome should be stored in.</p>
 }  
 </pre>
     
-    
-<p>If a <code>Permission</code> refers to several <code>Duty</code> entities, <em>all of them</em> MUST be satisfied for the <code>Permission</code> to be undertaken. If several <code>Permission</code> entities refer to one <code>Duty</code>, then the Duty only has to be satisfied <em>once</em> for all the <code>Permission</code> entities.</p>
-<p>The <code>Duty</code> entity contains the following attributes:</p>
-<ul>
-<li><code>uid</code>: a unique identification for this <code>Duty</code>. Used to refer a single <code>Duty</code> to multiple <code>Permission</code> entities (OPTIONAL)</li>
-</ul>
-<p>The <code>Duty</code> entity has the following relations:</p>
-<ul>
-<li><code>Action</code>: indicates the requirement that MUST be performed (REQUIRED). Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
-<li><code>Party</code>: a <code>Duty</code> MAY refer to <code>Party</code> entities with different <code>Role</code>s. If no explicit <code>Party</code> is linked to as <code>assignee</code> or <code>assigner</code>, the <code>Parties</code> with the respective <code>Role</code>s are taken from the referring <code>Permission</code>. (OPTIONAL)</li>
-<li><code>Asset</code>: a <code>Duty</code> entity MAY refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) related to satisfying the <code>Duty</code>. (OPTIONAL) For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the identifier of a target policy <code>Asset</code>.</li>
-<li><code>Constraint</code>: a <code>Duty</code> MAY link to one or more <code>Constraint</code>s (OPTIONAL)</li>
-</ul>
+
 
 <p><b>Example Use Case</b>: The Party <code>http://example.com/assigner:77</code> needs to set a Privacy Policy for some data about it. The target Asset <code>http://example.com/personal-data:77</code> of this policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
 
@@ -730,9 +737,13 @@ which database the index outcome should be stored in.</p>
 
 <section id="constraint">
 <h3>Constraint</h3>
-
-<p>The <code>Constraint</code> entity indicates limits and restrictions to the <code>Permission</code>, the <code>Prohibition</code> and the <code>Duty</code> entity. <code>Constraint</code>s express mathematical terms with two operands and one operator. For example, the &#8220;number of usages&#8221; (<code>name</code>) must be &#8220;smaller than&#8221; (<code>operator</code>) the &#8220;number 10&#8221; (<code>rightOperand</code>).</p>
+    
+    <p>The <code>Constraint</code> entity indicates limits and restrictions to the Permission, the Prohibition and the Duty entity. Constraints express a rule for comparing two operands by one operator. If the two operands match the result of the constraint is <b>TRUE</b>.</p>
+        <p>
+       For example, the &#8220;number of usages&#8221; (<code>name</code>) must be &#8220;smaller than&#8221; (<code>operator</code>) the &#8220;number 10&#8221; (<code>rightOperand</code>).</p>
+       
 <p>If multiple <code>Constraint</code> entities are linked to the same <code>Permission</code>, <code>Prohibition</code>, or <code>Duty</code> entity, then all of the <code>Constraint</code> entities MUST be satisfied. That is, all the <code>Constraint</code> entities are (boolean) <em>and</em>ed. In the case where the same <code>Constraint</code> is repeated, then these MUST be represented as a single <code>Constraint</code> entity using an appropriate <code>operator</code> value (for example, <code>isAnyOf</code>).</p>
+       
 <p>The <code>Constraint</code> entity contains the following attributes:</p>
 <ul>
 <li><code>name</code>: a name that identifies the left operand of the operation (REQUIRED)</li>
@@ -743,11 +754,18 @@ which database the index outcome should be stored in.</p>
 <li><code>unit</code>: the units of the rightOperand (OPTIONAL)</li>
 <li><code>status</code>: the current value of the left operand (OPTIONAL)</li>
 </ul>
-<p>The <code>name</code> identifies the left operand of the mathematical operation for the <code>Constraint</code> such as &#8220;Number of Usages&#8221; and &#8220;Expiration Date&#8221; etc. The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. </p>
+        
+<p>
+    
+    The <code>name</code> identifies the left operand of the logic operation for the Constraint, it SHOULD include the entity it constrains and how its value for a comparison has to be retrieved/generated. It MAY include the datatype of the value and it MAY include references to resources for retrieving/generating the value.
+        </p>
+    
+    <p>The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. </p>
     <p>The actual value of the constraint that is to be compared to the <code>name</code> is either represented with the <code>rightOperand</code> or <code>rightOperandReference</code>. The <code>rightOperand</code> represents the literal value (such as "10" or "http://example.com/c100") and <code>rightOperandReference</code> represents a URI that MUST be dereferenced to obtain the actual value. Only one of these MUST appear in the constraint.  </p>
         
         <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;.</p>
-<p>When processing policy expressions, these <code>Constraint</code> names MAY be directly linked to a procedure that can determine the outcome of the operations, such as the number of already performed usages and the current date. The <code>name</code> and <code>operator</code> are defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles.</p>
+
+        
 <p>The <code>status</code> provides the current value of the <code>Constraint</code> variable (i.e. current value of <code>name</code>). This is useful in cases where the current status of <code>Constraint</code>s needs to be captured and expressed in the ODRL Information Model.</p>
 
 <p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
@@ -953,6 +971,9 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
         <li>Updated the Scope for Parties (and new for Assets) to allow any URI to scope the characerisitics of the entity. <a href="https://github.com/w3c/poe/issues/59">(Issue#59)</a></li>
 
        <li>Added rightOperandReference to Constraint. <a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></li>
+    
+      <li>Clarified Constraint related definitions. <a href="https://github.com/w3c/poe/issues/81">(Issue#81)</a></li>
+    
     
 </ul>
 </section>
