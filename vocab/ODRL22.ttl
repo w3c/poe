@@ -235,6 +235,7 @@ odrl:
     skos:member :Operator ;
     skos:member :operator ;
     skos:member :rightOperand ;
+    skos:member :rightOperandReference ;
     skos:member :unit ;
     skos:member :dataType ;
     skos:member :status .
@@ -660,6 +661,15 @@ odrl:
 	skos:definition "The operand applied to an instance of a constraint."@en ;
 	skos:note "Do not use the right-operand property directly within a Constraint. Instead, a Constraint instance must contain exactly one triple which makes use of one of the sub-properties of right-operand."@en ;
 	rdfs:domain :Constraint .
+
+:rightOperandReference
+	a rdf:Property ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Right Operand Reference"@en ;
+	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
+	skos:note "Represents a URI that must be dereferenced to obtain the actual right operand value"@en ;
+	rdfs:domain :Constraint ;
+    skos:scopeNote "Non-Normative"@en .
 
 :status
 	a rdf:Property ;

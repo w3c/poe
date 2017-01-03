@@ -656,7 +656,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
 <tr><th>Note:</th> <td>Parent class of all Constraints.</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-rightOperandReference">rightOperandReference</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-constraint"><h3>Has Constraint</h3><table class='def propdef' >
@@ -690,6 +690,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Do not use the right-operand property directly within a Constraint. Instead, a Constraint instance must contain exactly one triple which makes use of one of the sub-properties of right-operand.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-proximity">proximity</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-timedCount">timedCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+</table>
+</section><section id="term-rightOperandReference"><h3>Right Operand Reference</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>A reference to the operand applied to an instance of a constraint.</td></tr>
+<tr><th>Label:</th> <td>Right Operand Reference</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperandReference">http://www.w3.org/ns/odrl/2/rightOperandReference</a></td></tr>
+<tr><th>Note:</th> <td>Represents a URI that must be dereferenced to obtain the actual right operand value</td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-unit"><h3>Unit</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The unit of measurement used for the constraint value.</td></tr>
@@ -2935,11 +2943,7 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
         <section class="appendix" id="ack">
 <h2>Acknowledgements</h2>
  <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>.  The output of the ODRL Community Group was fundamental to the current vocabulary and serialisations.</p>
-<p>In particular the editors would like to thank:</p>
-<ul><li>Susanne Guth (Vocabulary)</li>
-    <li>Jonas Öberg (JSON)</li>
-    <li>Lu Ai (JSON)</li></ul>
-<p> for their past editorial contributions.</p>
+<p>In particular the editors would like to thankl Susanne Guth (Vocabulary), Jonas Öberg (JSON), and Lu Ai (JSON) for their past editorial contributions.</p>
 </section>
         
 <section class="appendix" id="community">
@@ -2956,6 +2960,8 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
     
 <li>Designated some terms as non-normative  <a href="https://github.com/w3c/poe/issues/64">(Issue#64)</a></li>
 
+       <li>Added Right Operand Reference  <a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></li>
+    
 </ul></section>
         
         
