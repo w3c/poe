@@ -95,7 +95,8 @@
     <xs:complexType name="Constraint">
         <xs:attribute name="name" type="o:URIQnameQcode" /> <!--Required Attribute-->
         <xs:attribute name="operator" type="o:URIQnameQcode" /> <!--Required Attribute-->
-        <xs:attribute name="rightOperand" type="o:listOfValues" /> <!--Required Attribute-->
+        <xs:attribute name="rightOperand" type="o:listOfValues" /> <!--Required Attribute (if no rightOperandReference)-->
+        <xs:attribute name="rightOperandReference" type="xs:anyURI" /> <!--Required Attribute (if no rightOperand)-->
         <xs:attribute name="dataType" type="o:URIQnameQcode" />
         <xs:attribute name="unit" type="o:URIQnameQcode" />
         <xs:attribute name="status" type="xs:string" />
