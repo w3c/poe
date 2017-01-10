@@ -1181,7 +1181,27 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     <section id="rdfowl">
    	<h2>RDF/OWL Encoding</h2>         
      <p>The current (draft) ODRL Ontology and can be downloaded in <a href="http://w3c.github.io/poe/vocab/ODRL22.ttl">Turtle serialisation</a>.</p>
-<P>Other serialisations (RDF/XML and N-Triples) will be provided when the ODRL Ontology is finalised.</P>    </section>
+<P>Other serialisations (RDF/XML and N-Triples) will be provided when the ODRL Ontology is finalised.</P>
+
+<section id='targetAsset'>
+<h4>Target Asset</h4>
+
+<p>The use of other ontology predicates to associate Assets with Policies MAY be supported using the RDF/OWL encoding. In these cases, the ODRL Policy MUST not define the target Asset, as this will be inferred from the axiom.</p>
+    
+    <p>Consider the below example; the Dublin Core [[dcterms]] license predicate is used to infer the relationship between the Asset and the Policy. This axiom infers that the Asset &lt;http://example.com/asset:9898&gt; is the target Asset for the Policy &lt;http://example.com/policy:0099&gt;.</p>
+    
+<pre class="example highlight hljs xquery">
+@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/> .
+@prefix dct: &lt;http://purl.org/dc/terms/> .
+
+ &lt;http://example.com/asset:9898> dct:license &lt;http://example.com/policy:0099> .
+
+ &lt;http://example.com/policy:0099>
+	  a odrl:Set;
+	  odrl:permission odrl:reproduce ;
+	  odrl:prohibition odrl:modify .
+</pre>
+</section>    </section>
           
     <section id="xml">
    	<h2>XML Encoding</h2>         
@@ -1290,6 +1310,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <li>name &#8211; a URI/Qname/Qcode</li>
 <li>operator &#8211; a URI/Qname/Qcode</li>
 <li>rightOperand &#8211; string, space separated list for set values</li>
+<li>rightOperandReference &#8211; a URI</li>
 <li>dataType &#8211; a URI/Qname/Qcode</li>
 <li>unit &#8211; a URI/Qname/Qcode</li>
 <li>status &#8211; string</li>
@@ -2692,7 +2713,8 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
     &lt;xs:complexType name=&quot;Constraint&quot;&gt;
         &lt;xs:attribute name=&quot;name&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
         &lt;xs:attribute name=&quot;operator&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
-        &lt;xs:attribute name=&quot;rightOperand&quot; type=&quot;o:listOfValues&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attribute name=&quot;rightOperand&quot; type=&quot;o:listOfValues&quot; /&gt; &lt;!--Required Attribute (if no rightOperandReference)--&gt;
+        &lt;xs:attribute name=&quot;rightOperandReference&quot; type=&quot;xs:anyURI&quot; /&gt; &lt;!--Required Attribute (if no rightOperand)--&gt;
         &lt;xs:attribute name=&quot;dataType&quot; type=&quot;o:URIQnameQcode&quot; /&gt;
         &lt;xs:attribute name=&quot;unit&quot; type=&quot;o:URIQnameQcode&quot; /&gt;
         &lt;xs:attribute name=&quot;status&quot; type=&quot;xs:string&quot; /&gt;
