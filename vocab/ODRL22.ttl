@@ -87,6 +87,7 @@ odrl:
     skos:member :ConflictTerm ;
     skos:member :conflict ;
     skos:member :perm ;
+    skos:member :prohibit ;
     skos:member :invalid .
 
 <http://www.w3.org/ns/odrl/2/#undefinedConcepts>
@@ -234,6 +235,7 @@ odrl:
     skos:member :Operator ;
     skos:member :operator ;
     skos:member :rightOperand ;
+    skos:member :rightOperandReference ;
 	skos:member :leftOperand ;
 	skos:member :LeftOperand ;
     skos:member :unit ;
@@ -658,7 +660,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Right Operand"@en ;
-	skos:definition "The right operand in a constraint expression."@en ;
+	skos:definition "The operand applied to an instance of a constraint."@en ;
 	rdfs:range [
 		a owl:Class ;
 		owl:unionOf ( :RightOperandReference xsd:any ) ;
@@ -669,10 +671,11 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Right Operand Reference"@en ;
-	skos:definition "A reference to the right operand in a constraint expression."@en ;
-	skos:note "This reference will usually be given as a URI to be queried via HTTP."@en ;
-	rdfs:domain :Constraint .
-	
+	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
+	skos:note "Represents a URI that must be dereferenced to obtain the actual right operand value"@en ;
+	rdfs:domain :Constraint ;
+    skos:scopeNote "Non-Normative"@en .
+
 :leftOperand
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
@@ -686,6 +689,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Status"@en ;
 	skos:definition "The current value of the constraint."@en ;
+	skos:note "The range of the status property is identical to that of the operand property selected used in the constraint."@en ;
 	skos:note "The range of the status property is identical to that of the constraint expression."@en ;
 	rdfs:domain :Constraint ;
     skos:scopeNote "Non-Normative"@en .
@@ -930,8 +934,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Product"@en ;
 	skos:definition "The specified Product or Service name."@en ;
-	skos:note "For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics;"@en ;
-	skos:note "The data type of the right operand must be xsd:decimal"@en ;
+	skos:note "For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics."@en ;
+	skos:note "The data type of the right operand must be xsd:decimal."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :purpose
@@ -946,14 +950,14 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Recipient"@en ;
 	skos:definition "The party that receives the result of the Action on the Asset."@en ;
-	skos:note "The right operand must identify one or more specific parties or categories of party"@en .
+	skos:note "The right operand must identify one or more specific parties or categories of party."@en .
 
 :relativePosition
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Relative Position"@en ;
 	skos:definition "A point defined with reference to another position."@en ;
-	skos:note "For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics;"@en ;
+	skos:note "For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :relativeSize
@@ -961,7 +965,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Relative Size"@en ;
 	skos:definition "The relative dimension that the Asset may be resized."@en ;
-	skos:note "For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics;"@en ;
+	skos:note "For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :resolution
