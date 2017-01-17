@@ -242,9 +242,9 @@ odrl:
     skos:member :dataType ;
     skos:member :status .
 
-<http://www.w3.org/ns/odrl/2/#constraintNames>
+<http://www.w3.org/ns/odrl/2/#constraintLeftOperand>
     a skos:Collection ;
-    skos:prefLabel "Names for Constraints"@en ;
+    skos:prefLabel "Constraint Left Operands"@en ;
     skos:member :absolutePosition ;
     skos:member :absoluteSize ;
     skos:member :count ;
@@ -268,6 +268,7 @@ odrl:
     skos:member :spatial ;
     skos:member :systemDevice ;
     skos:member :timeInterval ;
+    skos:member :unitOfCount ;
     skos:member :version ;
     skos:member :virtualLocation .
 
@@ -288,9 +289,9 @@ odrl:
     skos:member :isAnyOf ;
     skos:member :isNoneOf .
 
-<http://www.w3.org/ns/odrl/2/#actionValues>
+<http://www.w3.org/ns/odrl/2/#constraintRightOp>
     a skos:Collection ;
-    skos:prefLabel "Values for Constraints"@en ;
+    skos:prefLabel "Constraint Right Operands"@en ;
     skos:member :policyUsage .
 
 
@@ -866,7 +867,7 @@ odrl:
 	skos:note "For example, asset may be used at the “FIFA World Cup” only. To express events related to undertaking Duties, specific event values may be defined (eg see policyUsage)."@en .
 
 :policyUsage
-	a :LeftOperand, owl:NamedIndividual ;
+	a :RightOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy Usage Time"@en ;
 	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
@@ -999,6 +1000,14 @@ odrl:
 	skos:definition "Recurring period of time in which the usage may be exercised."@en ;
 	skos:note "For example, “P7D” indicates a 7 day period. Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
 	skos:note "The data type of the right operand must be xsd:duration"@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:unitOfCount
+	a :LeftOperand, owl:NamedIndividual ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Unit Of Count"@en ;
+	skos:definition "The unit of measure to be counted."@en ;
+	skos:note "Typically used with Duties to indicate the unit entity to be counted."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :version

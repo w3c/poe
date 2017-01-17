@@ -713,7 +713,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Instances of the LeftOperand class represent the left term in a Constraint.</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-leftOperand">leftOperand</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-policyUsage">policyUsage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-unitOfCount">unitOfCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
 </table>
 </section><section id="term-unit"><h3>Unit</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The unit of measurement used for the constraint value.</td></tr>
@@ -738,7 +738,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section></section><section id="constraintNames"><h2>Names for Constraints</h2><section id="term-absolutePosition"><h3>Absolute Position</h3><table class='def propdef' >
+</section></section><section id="constraintLeftOperand"><h2>Constraint Left Operands</h2><section id="term-absolutePosition"><h3>Absolute Position</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A point defined with absolute coordinates.</td></tr>
 <tr><th>Label:</th> <td>Absolute Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/absolutePosition">http://www.w3.org/ns/odrl/2/absolutePosition</a></td></tr>
@@ -914,6 +914,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
+</section><section id="term-unitOfCount"><h3>Unit Of Count</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The unit of measure to be counted.</td></tr>
+<tr><th>Label:</th> <td>Unit Of Count</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/unitOfCount">http://www.w3.org/ns/odrl/2/unitOfCount</a></td></tr>
+<tr><th>Note:</th> <td>Typically used with Duties to indicate the unit entity to be counted.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
 </section><section id="term-version"><h3>Version</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The scope of versions for the asset.</td></tr>
 <tr><th>Label:</th> <td>Version</td></tr>
@@ -1007,12 +1015,12 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section></section><section id="actionValues"><h2>Values for Constraints</h2><section id="term-policyUsage"><h3>Policy Usage Time</h3><table class='def propdef' >
+</section></section><section id="constraintRightOp"><h2>Constraint Right Operands</h2><section id="term-policyUsage"><h3>Policy Usage Time</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>When used as an event in constraints, indicates that the event occurs at the time when the policy is executed.</td></tr>
 <tr><th>Label:</th> <td>Policy Usage Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
 <tr><th>Note:</th> <td>This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
+<tr><th>Class:</th> <td><a href="http://www.w3.org/ns/odrl/2/RightOperand">odrl:RightOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
@@ -3004,6 +3012,15 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
 <li>Designated some terms as non-normative  <a href="https://github.com/w3c/poe/issues/64">(Issue#64)</a></li>
 
        <li>Added Right Operand Reference  <a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></li>
+    
+       <li>Added explict Left Operand   <a href="https://github.com/w3c/poe/issues/84">(Issue#84)</a></li>
+    
+      <li>Added inverse Target link  <a href="https://github.com/w3c/poe/issues/61">(Issue#61)</a></li>
+   
+          <li>Added UnitOfCount constraint  <a href="https://github.com/w3c/poe/issues/58">(Issue#58)</a></li>
+    
+           <li>Updated XML Encoding to support multiple and policy-level Assets, Parties, and Actions.  <a href="https://github.com/w3c/poe/issues/82">(Issue#82)</a></li>
+    
     
 </ul></section>
         
