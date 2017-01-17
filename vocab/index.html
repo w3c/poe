@@ -218,6 +218,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
+</section><section id="term-prohibit"><h3>Prefer Prohibitions</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Prohibitions take preference over permissions.</td></tr>
+<tr><th>Label:</th> <td>Prefer Prohibitions</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/prohibit">http://www.w3.org/ns/odrl/2/prohibit</a></td></tr>
+<tr><th>Note:</th> <td>Used to determine policy conflict outcomes.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
 </section><section id="term-invalid"><h3>Invalidate Policy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>the Action is unknown – and the policy is invalid.</td></tr>
 <tr><th>Label:</th> <td>Invalidate Policy</td></tr>
@@ -675,17 +683,25 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Range:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
-</section><section id="term-rightOperand"><h3>Right Operand</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The right operand in a constraint expression.</td></tr>
-<tr><th>Label:</th> <td>Right Operand</td></tr>
+</section><section id="term-rightOperand"><h3>Has Right Operand</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The operand applied to an instance of a constraint.</td></tr>
+<tr><th>Label:</th> <td>Has Right Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperand">http://www.w3.org/ns/odrl/2/rightOperand</a></td></tr>
 <tr><th>Sub-properties:</th> <td><a href="#term-proximity">proximity</a>, <a href="#term-timedCount">timedCount</a></td></tr>
 <tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#any">xsd:any</a>, <a href="http://www.w3.org/ns/odrl/2/RightOperandReference">odrl:RightOperandReference</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
-</section><section id="term-leftOperand"><h3>Left Operand</h3><table class='def propdef' >
+</section><section id="term-rightOperandReference"><h3>Has Right Operand Reference</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>A reference to the operand applied to an instance of a constraint.</td></tr>
+<tr><th>Label:</th> <td>Has Right Operand Reference</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperandReference">http://www.w3.org/ns/odrl/2/rightOperandReference</a></td></tr>
+<tr><th>Note:</th> <td>Represents a URI that must be dereferenced to obtain the actual right operand value</td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-leftOperand"><h3>Has Left Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The left operand in a constraint expression.</td></tr>
-<tr><th>Label:</th> <td>Left Operand</td></tr>
+<tr><th>Label:</th> <td>Has Left Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/leftOperand">http://www.w3.org/ns/odrl/2/leftOperand</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
@@ -718,7 +734,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The current value of the constraint.</td></tr>
 <tr><th>Label:</th> <td>Status</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/status">http://www.w3.org/ns/odrl/2/status</a></td></tr>
-<tr><th>Note:</th> <td>The range of the status property is identical to that of the constraint expression.</td></tr>
+<tr><th>Note:</th> <td>The range of the status property is identical to that of the constraint expression., The range of the status property is identical to that of the operand property selected used in the constraint.</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -831,7 +847,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The specified Product or Service name.</td></tr>
 <tr><th>Label:</th> <td>Product</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/product">http://www.w3.org/ns/odrl/2/product</a></td></tr>
-<tr><th>Note:</th> <td>For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics;, The data type of the right operand must be xsd:decimal</td></tr>
+<tr><th>Note:</th> <td>For example, images may only be reproduced in the XYZ Magazine. This may be used to express [[plus]] semantics., The data type of the right operand must be xsd:decimal.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -846,14 +862,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The party that receives the result of the Action on the Asset.</td></tr>
 <tr><th>Label:</th> <td>Recipient</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/recipient">http://www.w3.org/ns/odrl/2/recipient</a></td></tr>
-<tr><th>Note:</th> <td>The right operand must identify one or more specific parties or categories of party</td></tr>
+<tr><th>Note:</th> <td>The right operand must identify one or more specific parties or categories of party.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-relativePosition"><h3>Relative Position</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A point defined with reference to another position.</td></tr>
 <tr><th>Label:</th> <td>Relative Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativePosition">http://www.w3.org/ns/odrl/2/relativePosition</a></td></tr>
-<tr><th>Note:</th> <td>For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics;</td></tr>
+<tr><th>Note:</th> <td>For example, JPEG image must be positioned at the Top of the Page. This may be used to express [[plus]] semantics.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -861,7 +877,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The relative dimension that the Asset may be resized.</td></tr>
 <tr><th>Label:</th> <td>Relative Size</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativeSize">http://www.w3.org/ns/odrl/2/relativeSize</a></td></tr>
-<tr><th>Note:</th> <td>For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics;</td></tr>
+<tr><th>Note:</th> <td>For example, JPEG image resized to maximum of 200%. This may be used to express [[plus]] semantics.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1173,7 +1189,27 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     <section id="rdfowl">
    	<h2>RDF/OWL Encoding</h2>         
      <p>The current (draft) ODRL Ontology and can be downloaded in <a href="http://w3c.github.io/poe/vocab/ODRL22.ttl">Turtle serialisation</a>.</p>
-<P>Other serialisations (RDF/XML and N-Triples) will be provided when the ODRL Ontology is finalised.</P>    </section>
+<P>Other serialisations (RDF/XML and N-Triples) will be provided when the ODRL Ontology is finalised.</P>
+
+<section id='targetAsset'>
+<h4>Target Asset</h4>
+
+<p>The use of other ontology predicates to associate Assets with Policies MAY be supported using the RDF/OWL encoding. In these cases, the ODRL Policy MUST not define the target Asset, as this will be inferred from the axiom.</p>
+    
+    <p>Consider the below example; the Dublin Core [[dcterms]] license predicate is used to infer the relationship between the Asset and the Policy. This axiom infers that the Asset &lt;http://example.com/asset:9898&gt; is the target Asset for the Policy &lt;http://example.com/policy:0099&gt;.</p>
+    
+<pre class="example highlight hljs xquery">
+@prefix odrl: &lt;http://www.w3.org/ns/odrl/2/> .
+@prefix dct: &lt;http://purl.org/dc/terms/> .
+
+ &lt;http://example.com/asset:9898> dct:license &lt;http://example.com/policy:0099> .
+
+ &lt;http://example.com/policy:0099>
+	  a odrl:Set;
+	  odrl:permission odrl:reproduce ;
+	  odrl:prohibition odrl:modify .
+</pre>
+</section>    </section>
           
     <section id="xml">
    	<h2>XML Encoding</h2>         
@@ -1282,6 +1318,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <li>name &#8211; a URI/Qname/Qcode</li>
 <li>operator &#8211; a URI/Qname/Qcode</li>
 <li>rightOperand &#8211; string, space separated list for set values</li>
+<li>rightOperandReference &#8211; a URI</li>
 <li>dataType &#8211; a URI/Qname/Qcode</li>
 <li>unit &#8211; a URI/Qname/Qcode</li>
 <li>status &#8211; string</li>
@@ -2684,7 +2721,8 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
     &lt;xs:complexType name=&quot;Constraint&quot;&gt;
         &lt;xs:attribute name=&quot;name&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
         &lt;xs:attribute name=&quot;operator&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
-        &lt;xs:attribute name=&quot;rightOperand&quot; type=&quot;o:listOfValues&quot; /&gt; &lt;!--Required Attribute--&gt;
+        &lt;xs:attribute name=&quot;rightOperand&quot; type=&quot;o:listOfValues&quot; /&gt; &lt;!--Required Attribute (if no rightOperandReference)--&gt;
+        &lt;xs:attribute name=&quot;rightOperandReference&quot; type=&quot;xs:anyURI&quot; /&gt; &lt;!--Required Attribute (if no rightOperand)--&gt;
         &lt;xs:attribute name=&quot;dataType&quot; type=&quot;o:URIQnameQcode&quot; /&gt;
         &lt;xs:attribute name=&quot;unit&quot; type=&quot;o:URIQnameQcode&quot; /&gt;
         &lt;xs:attribute name=&quot;status&quot; type=&quot;xs:string&quot; /&gt;
@@ -2935,11 +2973,7 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
         <section class="appendix" id="ack">
 <h2>Acknowledgements</h2>
  <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>.  The output of the ODRL Community Group was fundamental to the current vocabulary and serialisations.</p>
-<p>In particular the editors would like to thank:</p>
-<ul><li>Susanne Guth (Vocabulary)</li>
-    <li>Jonas Öberg (JSON)</li>
-    <li>Lu Ai (JSON)</li></ul>
-<p> for their past editorial contributions.</p>
+<p>In particular the editors would like to thankl Susanne Guth (Vocabulary), Jonas Öberg (JSON), and Lu Ai (JSON) for their past editorial contributions.</p>
 </section>
         
 <section class="appendix" id="community">
@@ -2953,7 +2987,11 @@ _:genid1 &lt;http://example.com/x#collection&gt; &lt;http://example.com/x/databa
      <li>Added compensatingParty term <a href="https://github.com/w3c/poe/issues/53">(Issue#53)</a></li>
     
     <li>Added Assertion Policy Type  <a href="https://github.com/w3c/poe/issues/54">(Issue#54)</a></li>
+    
+<li>Designated some terms as non-normative  <a href="https://github.com/w3c/poe/issues/64">(Issue#64)</a></li>
 
+       <li>Added Right Operand Reference  <a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></li>
+    
 </ul></section>
         
         
