@@ -12,12 +12,15 @@
     </xs:annotation>
     <xs:element name="Policy" type="o:Policy"/>
     <xs:complexType name="Policy">
-                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="o:asset" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="o:action" minOccurs="0" maxOccurs="unbounded"/>
                     <xs:element ref="o:permission" minOccurs="0" maxOccurs="unbounded"/>
                     <xs:element ref="o:prohibition" minOccurs="0" maxOccurs="unbounded"/>
                     <xs:any namespace="##other" processContents="lax" minOccurs="0" 
                                                                    maxOccurs="unbounded"/>
-                </xs:sequence>
+                </xs:choice>
                 <xs:attribute name="uid" type="o:URIQnameQcode" use="required"/>
                 <xs:attribute name="type" type="o:URIQnameQcode" use="required"/>
                 <xs:attribute name="conflict" type="o:ConflictTerm"/>
@@ -31,41 +34,41 @@
     
     <xs:element name="permission" type="o:Permission"/>
     <xs:complexType name="Permission">
-           <xs:sequence>
+             <xs:choice minOccurs="1" maxOccurs="unbounded">
                     <xs:element ref="o:asset" maxOccurs="unbounded"/>
-                    <xs:element ref="o:action" />
+                    <xs:element ref="o:action" maxOccurs="unbounded" />
                     <xs:element ref="o:constraint"  minOccurs="0" maxOccurs="unbounded"/>
                     <xs:element ref="o:party"  minOccurs="0" maxOccurs="unbounded"/>
                     <xs:element ref="o:duty"  minOccurs="0" maxOccurs="unbounded"/>
                     <xs:any namespace="##other" processContents="lax" minOccurs="0" 
                                                                maxOccurs="unbounded"/>
-           </xs:sequence>
+           </xs:choice>
            <xs:attributeGroup ref="o:idAttributes"/>        
     </xs:complexType>
     
     <xs:element name="prohibition" type="o:Prohibition"/> 
     <xs:complexType name="Prohibition">
-        <xs:sequence>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
             <xs:element ref="o:asset"  maxOccurs="unbounded"/>
-            <xs:element ref="o:action" />
+            <xs:element ref="o:action" maxOccurs="unbounded"/>
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party"  minOccurs="0" maxOccurs="unbounded"/>
             <xs:any namespace="##other" processContents="lax" minOccurs="0" 
                                                           maxOccurs="unbounded"/>
-        </xs:sequence>
+        </xs:choice>
         <xs:attributeGroup ref="o:idAttributes"/>
     </xs:complexType>
     
     <xs:element name="duty" type="o:Duty"/>
     <xs:complexType name="Duty">
-        <xs:sequence>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
             <xs:element ref="o:action" minOccurs="0"/> <!--Required Element-->
             <xs:element ref="o:asset"  minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:constraint"  minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party"  minOccurs="0" maxOccurs="unbounded"/>
             <xs:any namespace="##other" processContents="lax" minOccurs="0" 
                                                            maxOccurs="unbounded"/>
-        </xs:sequence>
+        </xs:choice>
         <xs:attribute name="uid" type="o:URIQnameQcode"/>
         <xs:attributeGroup ref="o:idAttributes"/>
     </xs:complexType>
@@ -74,6 +77,7 @@
     <xs:complexType name="Asset">
         <xs:attribute name="uid" type="o:URIQnameQcode" /> <!--Required Attribute-->
         <xs:attribute name="relation" type="o:URIQnameQcode" /> <!--Required Attribute-->
+        <xs:attribute name="scope" type="o:URIQnameQcode"/>
         <xs:attributeGroup ref="o:idAttributes"/>
     </xs:complexType>
     
@@ -93,7 +97,7 @@
     
     <xs:element name="constraint" type="o:Constraint"/>
     <xs:complexType name="Constraint">
-        <xs:attribute name="name" type="o:URIQnameQcode" /> <!--Required Attribute-->
+        <xs:attribute name="name" type="o:URIQnameQcode" /> <!--leftOperand - Required Attribute-->
         <xs:attribute name="operator" type="o:URIQnameQcode" /> <!--Required Attribute-->
         <xs:attribute name="rightOperand" type="o:listOfValues" /> <!--Required Attribute (if no rightOperandReference)-->
         <xs:attribute name="rightOperandReference" type="xs:anyURI" /> <!--Required Attribute (if no rightOperand)-->

@@ -1,14 +1,13 @@
 <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the URIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
 
-<div class="issue">
-    <p>The ODRL XML Schema has not been updated to reflect the current vocabulary changes.</p>
-<p>The complete ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="">downloaded</a>.</p>
+<div class="note">
+<p>The complete ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
 </div>
 
 <p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
 
 
-<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
+<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the ODRL Information Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policyTypes">Policy Types</a> for further details. </P>
 
 <p>The Policy element contains the following attributes:</p>
@@ -28,10 +27,19 @@
 <li>permission, and/or</li>
 <li>prohibition</li>
 </ul>
+
+<p>The Policy element MAY contain the following policy-level elements:</p>
+<ul>
+<li>asset,</li>
+<li>party, and/or</li>
+<li>action</li>
+</ul>
+
 <p>The Asset and Relation association class are merged into a single Asset element to represent both the Asset and how it is related to the Permission/Prohibition/Duty. The Asset element contains the following attributes:</p>
 <ul>
 <li>uid &#8211; a URI/Qname/Qcode</li>
 <li>relation &#8211; a URI/Qname/Qcode</li>
+<li>scope &#8211; a URI/Qname/Qcode</li>
 <li>id &#8211; an local identifier for this element</li>
 <li>idref &#8211; a reference to an Asset element</li>
 </ul>
@@ -110,9 +118,10 @@
 <li>id &#8211; an local identifier for this element</li>
 <li>idref &#8211; a reference to an Constraint element</li>
 </ul>
+<P>NOTE: The Constraint <b>name</b> attribute is called <b>leftOperand</b> in the ODRL Information Model.</P>
 <p>Constraint element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>name (REQUIRED), operator (REQUIRED), rightOperand (REQUIRED), dataType (OPTIONAL), unit (OPTIONAL), status (OPTIONAL), id (OPTIONAL), or</li>
+<li>name (REQUIRED), operator (REQUIRED), rightOperand and/or rightOperandReference (REQUIRED), dataType (OPTIONAL), unit (OPTIONAL), status (OPTIONAL), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
 <p>In some cases where Duties refer to (external) Assets, it will be necessary to package the ODRL XML expression with the representation of that (external) Asset. This XML Encoding specification does not mandate any specific packaging mechanism as communities will utilise their preferred options for data interoperability.</p>
