@@ -92,35 +92,9 @@ writeGroup('assetRelations');
     </section>
             
 </section>
+
         
-<section id="examples" class="informative">
-	<h2>Scenarios - Encoding Examples</h2>
-<?php
-	$examples = array(
-		'example1' => 'Set',
-		'example2' => 'Offer',
-		'example3' => 'Agreement',
-		'example4' => 'Request',
-		'example5' => 'Ticket',
-		'example6' => 'Offer and next policy',
-		'example7' => 'Privacy policy',
-		'example8' => 'Permission and prohibition',
-		'example9' => 'Inheritance',
-		'example10' => 'Social network',
-		'example11' => 'Multiple assets',
-	);
-
-	/* printExample(FILENAME-BASE, HTML-ID, TITLE); */
-
-	foreach($examples as $name => $title)
-	{
-		printExample($name, 'sc-' . $name, $title);
-	}
-?>
-</section>
-
-             
-   <section id="privacy-consideration">
+<section id="privacy-consideration">
    	<h2>Privacy Considerations</h2>         
      <?php
         readfile(dirname(__FILE__) . '/parts/privacy-consideration.html');
