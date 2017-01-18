@@ -683,11 +683,18 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Range:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
+</section><section id="term-RightOperand"><h3>Right Operand</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Right operands for constraint expressions.</td></tr>
+<tr><th>Label:</th> <td>Right Operand</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/RightOperand">http://www.w3.org/ns/odrl/2/RightOperand</a></td></tr>
+<tr><th>Note:</th> <td>Instances of the RightOperand class represent the right term in a Constraint.</td></tr>
+<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-policyUsage">policyUsage</a></td></tr>
+</table>
 </section><section id="term-rightOperand"><h3>Has Right Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The operand applied to an instance of a constraint.</td></tr>
 <tr><th>Label:</th> <td>Has Right Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperand">http://www.w3.org/ns/odrl/2/rightOperand</a></td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-proximity">proximity</a>, <a href="#term-timedCount">timedCount</a></td></tr>
 <tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#any">xsd:any</a>, <a href="http://www.w3.org/ns/odrl/2/RightOperandReference">odrl:RightOperandReference</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
@@ -699,13 +706,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section><section id="term-leftOperand"><h3>Has Left Operand</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The left operand in a constraint expression.</td></tr>
-<tr><th>Label:</th> <td>Has Left Operand</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/leftOperand">http://www.w3.org/ns/odrl/2/leftOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
-</table>
 </section><section id="term-LeftOperand"><h3>Left Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Left operands for constraint expressions.</td></tr>
 <tr><th>Label:</th> <td>Left Operand</td></tr>
@@ -714,6 +714,13 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-leftOperand">leftOperand</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-unitOfCount">unitOfCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
+</table>
+</section><section id="term-leftOperand"><h3>Has Left Operand</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The left operand in a constraint expression.</td></tr>
+<tr><th>Label:</th> <td>Has Left Operand</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/leftOperand">http://www.w3.org/ns/odrl/2/leftOperand</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-unit"><h3>Unit</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The unit of measurement used for the constraint value.</td></tr>
@@ -1020,7 +1027,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Policy Usage Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
 <tr><th>Note:</th> <td>This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised.</td></tr>
-<tr><th>Class:</th> <td><a href="http://www.w3.org/ns/odrl/2/RightOperand">odrl:RightOperand</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-RightOperand">RightOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
@@ -1028,7 +1035,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Party</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
 <tr><th>Note:</th> <td>The Party entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata.</td></tr>
-<tr><th>Sub-classes:</th> <td><a href="#term-All">All</a>, <a href="#term-All2ndConnections">All2ndConnections</a>, <a href="#term-AllConnections">AllConnections</a>, <a href="#term-AllGroups">AllGroups</a>, <a href="#term-Group">Group</a>, <a href="#term-Individual">Individual</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
 </table>
 </section><section id="term-function"><h3>Function</h3><table class='def propdef' >
@@ -1038,6 +1044,21 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-payeeParty">payeeParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</section><section id="term-PartyScope"><h3>Party Scope</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Scopes for Party Scope expressions.</td></tr>
+<tr><th>Label:</th> <td>Party Scope</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyScope">http://www.w3.org/ns/odrl/2/PartyScope</a></td></tr>
+<tr><th>Note:</th> <td>Instances of the PartyScope class represent the terms for the scope property of Parties.</td></tr>
+<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-All">All</a>, <a href="#term-All2ndConnections">All2ndConnections</a>, <a href="#term-AllConnections">AllConnections</a>, <a href="#term-AllGroups">AllGroups</a>, <a href="#term-Group">Group</a>, <a href="#term-Individual">Individual</a></td></tr>
+</table>
+</section><section id="term-scope"><h3>Scope</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The identifier of a scope that narrows the extent of the entity.</td></tr>
+<tr><th>Label:</th> <td>Scope</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td></tr>
+<tr><th>Note:</th> <td>Used to define scopes for Assets and Parties.</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
 </table>
 </section></section><section id="partyRoles"><h2>Party Functions</h2><section id="term-assignee"><h3>Assignee</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party is the recipient of the policy statement.</td></tr>
@@ -1106,7 +1127,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Group</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Group">http://www.w3.org/ns/odrl/2/Group</a></td></tr>
 <tr><th>Note:</th> <td>Must be supported.</td></tr>
-<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-Individual"><h3>Individual</h3><table class='def propdef' >
@@ -1114,14 +1135,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Individual</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Individual">http://www.w3.org/ns/odrl/2/Individual</a></td></tr>
 <tr><th>Note:</th> <td>MUST be supported.</td></tr>
-<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
 </table>
 </section><section id="term-All"><h3>All</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the collective individuals within a context.</td></tr>
 <tr><th>Label:</th> <td>All</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/All">http://www.w3.org/ns/odrl/2/All</a></td></tr>
 <tr><th>Note:</th> <td>For example, may be used to indicate all the users of a specific social network the party is a member of. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-AllConnections"><h3>All Connections</h3><table class='def propdef' >
@@ -1129,7 +1150,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>All Connections</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td></tr>
 <tr><th>Note:</th> <td>For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-All2ndConnections"><h3>All Second-level Connections</h3><table class='def propdef' >
@@ -1137,7 +1158,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>All Second-level Connections</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/All2ndConnections">http://www.w3.org/ns/odrl/2/All2ndConnections</a></td></tr>
 <tr><th>Note:</th> <td>For example, may be used to indicate all “friends of friends” of the Party. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-AllGroups"><h3>All Groups</h3><table class='def propdef' >
@@ -1145,7 +1166,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>All Groups</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td></tr>
 <tr><th>Note:</th> <td>For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="assetConcepts"><h2>Asset Concepts</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
@@ -1164,6 +1185,13 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</section><section id="term-scope"><h3>Scope</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The identifier of a scope that narrows the extent of the entity.</td></tr>
+<tr><th>Label:</th> <td>Scope</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td></tr>
+<tr><th>Note:</th> <td>Used to define scopes for Assets and Parties.</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
 </table>
 </section></section><section id="assetRelations"><h2>Asset Relations</h2><section id="term-target"><h3>Target</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The target property specifies the Asset upon which the Action is performed.</td></tr>

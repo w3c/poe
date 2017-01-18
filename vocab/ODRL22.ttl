@@ -115,7 +115,8 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Asset Concepts"@en ;
     skos:member :Asset ;
-    skos:member :relation .
+    skos:member :relation ;
+    skos:member :scope .
 
 <http://www.w3.org/ns/odrl/2/#assetRelations>
     a skos:Collection ;
@@ -128,7 +129,10 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Party Concepts"@en ;
     skos:member :Party ;
-    skos:member :function .
+    skos:member :function ;
+    skos:member :PartyScope ;
+    skos:member :scope .
+
 
 <http://www.w3.org/ns/odrl/2/#partyRoles>
     a skos:Collection ;
@@ -234,10 +238,11 @@ odrl:
     skos:member :constraint ;
     skos:member :Operator ;
     skos:member :operator ;
+	skos:member :RightOperand ;
     skos:member :rightOperand ;
     skos:member :rightOperandReference ;
-	skos:member :leftOperand ;
 	skos:member :LeftOperand ;
+	skos:member :leftOperand ;
     skos:member :unit ;
     skos:member :dataType ;
     skos:member :status .
@@ -602,6 +607,18 @@ odrl:
 	rdfs:domain :Rule ;
 	rdfs:range :Party .
 
+:scope
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Scope"@en ;
+	skos:definition "The identifier of a scope that narrows the extent of the entity."@en ;
+	skos:note "Used to define scopes for Assets and Parties."@en ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :Asset :Party ) ;
+	] .
+
+
 :action
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
@@ -866,13 +883,6 @@ odrl:
 	skos:definition "Specification of a defined event applicable to the asset usage."@en ;
 	skos:note "For example, asset may be used at the “FIFA World Cup” only. To express events related to undertaking Duties, specific event values may be defined (eg see policyUsage)."@en .
 
-:policyUsage
-	a :RightOperand, owl:NamedIndividual ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Policy Usage Time"@en ;
-	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
-	skos:note "This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised."@en ;
-    skos:scopeNote "Non-Normative"@en .
 
 :fileFormat
 	a :LeftOperand, owl:NamedIndividual ;
@@ -1025,7 +1035,27 @@ odrl:
 	skos:definition "Specification of a digital locale."@en ;
 	skos:note "For example, an Internet domain or IP address range."@en ;
     skos:scopeNote "Non-Normative"@en .
-	
+
+
+## RightOperand
+
+:RightOperand
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "Right Operand"@en ;
+	skos:definition "Right operands for constraint expressions."@en ;
+	skos:note "Instances of the RightOperand class represent the right term in a Constraint."@en .
+
+:policyUsage
+	a :RightOperand, owl:NamedIndividual ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Policy Usage Time"@en ;
+	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
+	skos:note "This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+
 ## Actions
 
 :use
@@ -1591,9 +1621,16 @@ odrl:
 
 ## Scopes
 
+:PartyScope
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "Party Scope"@en ;
+	skos:definition "Scopes for Party Scope expressions."@en ;
+	skos:note "Instances of the PartyScope class represent the terms for the scope property of Parties."@en .
+
 :All
-	a rdfs:Class, owl:Class ;
-	rdfs:subClassOf :Party ;
+	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "All"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the collective individuals within a context."@en ;
@@ -1601,8 +1638,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :All2ndConnections
-	a rdfs:Class, owl:Class ;
-	rdfs:subClassOf :Party ;
+	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "All Second-level Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the second-level connections to the Party."@en ;
@@ -1610,8 +1646,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :AllConnections
-	a rdfs:Class, owl:Class ;
-	rdfs:subClassOf :Party ;
+	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "All Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the first-level connections of the Party."@en ;
@@ -1619,8 +1654,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :AllGroups
-	a rdfs:Class, owl:Class ;
-	rdfs:subClassOf :Party ;
+	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "All Groups"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the group connections of the Party."@en ;
@@ -1628,8 +1662,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :Group
-	a rdfs:Class, owl:Class ;
-	rdfs:subClassOf :Party ;
+	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Group"@en ;
 	skos:definition "Specifies that the scope of the relationship is the defined group with multiple individual members."@en ;
@@ -1637,8 +1670,7 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :Individual
-	a rdfs:Class, owl:Class ;
-	rdfs:subClassOf :Party ;
+	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Individual"@en ;
 	skos:definition "Specifies that the scope of the relationship is the single Party individual."@en ;
@@ -1721,7 +1753,7 @@ odrl:
 
 :proximity
 	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:subPropertyOf :rightOperand ;
+##	rdfs:subPropertyOf :rightOperand ;
 	rdfs:isDefinedBy odrl: ;
 	ont:deprecatedBy <http://www.openmobilealliance.com/> ;
 	rdfs:label "proximity"@en ;
@@ -1730,7 +1762,7 @@ odrl:
 
 :timedCount
 	a rdf:Property , owl:DatatypeProperty ;
-	rdfs:subPropertyOf :rightOperand ;
+##	rdfs:subPropertyOf :rightOperand ;
 	rdfs:isDefinedBy odrl: ;
 	ont:deprecatedBy <http://www.openmobilealliance.com/> ;
 	rdfs:label "Timed Count"@en ;
