@@ -320,9 +320,40 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <section id="provenace">
 <h4>Policy Provenance</h4>
          
-       <p>Additional attributes MAY be added to the <code>Policy</code> entity to support additional functions and requirements. Typically, these will be from different community vocabularies. For example, to indicate the issued date or valid dates of the <code>Policy</code> entity, use of the <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> would be recommended.</p>
-    
-         <P>...more to be added here...</P>
+       <p>Provenance attributes MAY be added to the <code>Policy</code> entity to support additional authenticity, integrity, and interpretation. Typically, these will be from external community vocabularies. </p>
+         
+         <p>The following Dublin Core Metadata Terms [[!DCTERMS]] SHOULD be used:</p>
+            <ul>
+         <li>dc:creator - the individual, agent, or organisation that authored the Policy.</li>
+         <li>dc:issued - the date (and time) the Policy was first issued.</li>
+         <li>dc:modified -  the date (and time) the Policy was updated.</li>
+        <li>dc:coverage -  the jurisdiction under which the Policy is relevant.</li>
+        <li>dc:replaces -  the identifier (uid) of a Policy that this Policy supersedes.</li>
+        <li>dc:isReplacedBy -  the identifier (uid) of a Policy that supersedes this Policy.</li>
+         </ul>
+         
+    <p>The processing model for Policies with the above provenance properties include:</p>
+    <ol>
+    <li>If a Policy contains the <B>dc:isReplacedBy</B> property, then the identified Policy MUST be retrieved and processed.</li>
+    </ol>
+         
+<p><b>Example Use Case:</b>The below Policy contains provenace properties that indicate who created it, when it was issued, which jurisdiction is relevant, and an older version of the Policy it replaces.</p>        
+         
+<pre class="example highlight hljs xquery">
+{
+    "@context": [{ "odrl": "http://www.w3.org/ns/odrl/2/",
+                   "dc": "http://purl.org/dc/terms/ }],
+    "type": "odrl:Agreement",
+    "uid": "http://example.com/policy:8888",
+    "dc:creator": "billie@example.com",
+    "dc:issued": "2017-01-01:12:00",
+    "dc:jurisiction: "Queensland, Australia",
+    "dc:replaces: "http://example.com/policy:8887",
+    "permission": [{ ... }]
+}  
+</pre>
+         
+         
          
     </section>
     
@@ -1131,6 +1162,8 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
            <li>Support Policy-level Assets, Parties, and Actions. <a href="https://github.com/w3c/poe/issues/82">(Issue#82)</a></li>
     
        <li>Clarified and simplifed Policy Inhertiance. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
+    
+     <li>Added Policy Provenance section. <a href="https://github.com/w3c/poe/issues/48">(Issue#48)</a></li>
     
     
 </ul>
