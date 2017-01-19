@@ -125,7 +125,45 @@
 <li>idref (REQUIRED)</li>
 </ol>
 <p>In some cases where Duties refer to (external) Assets, it will be necessary to package the ODRL XML expression with the representation of that (external) Asset. This XML Encoding specification does not mandate any specific packaging mechanism as communities will utilise their preferred options for data interoperability.</p>
+
 <section>
+<h2>XML Example</h2>
+<p>The below example shows the XML serialisation of an ODRL Policy. In this example, the target asset and assigner and asignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country for a compensation payment of EUR5,000. </p>
+<pre class="example highlight xml">
+&lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
+                type="http://www.w3.org/ns/odrl/2/Agreement">
+    &lt;o:asset uid="http://example.com/music:4545" 
+             relation="http://www.w3.org/ns/odrl/2/target"/>
+    &lt;o:party uid="http://example.com/sony"
+             function="http://www.w3.org/ns/odrl/2/assigner"/>
+    &lt;o:party uid="http://example.com/billie"
+             function="http://www.w3.org/ns/odrl/2/assignee"/>
+    &lt;o:permission>
+        &lt;o:action name="http://www.w3.org/ns/odrl/2/play"/>
+        &lt;o:duty>
+            &lt;o:action name="http://www.w3.org/ns/odrl/2/acceptTracking"/>
+        &lt;/o:duty>
+    &lt;/o:permission>
+    &lt;o:permission>
+        &lt;o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
+        &lt;o:constraint name="http://www.w3.org/ns/odrl/2/spatial" 
+                      operator="http://www.w3.org/ns/odrl/2/eq" 
+                      rightOperand="http://vocab.getty.edu/tgn/1000080"/>
+        &lt;o:duty>
+            &lt;o:action name="http://www.w3.org/ns/odrl/2/compensate"/>
+            &lt;o:constraint name="http://www.w3.org/ns/odrl/2/payAmount"
+                operator="http://www.w3.org/ns/odrl/2/eq"
+                rightOperand="5000.00" 
+                unit="http://cvx.iptc.org/iso4217a:EUR"/>
+        &lt;/o:duty>
+    &lt;/o:permission>  
+&lt;/o:Policy>
+</pre>
+    
+</section>
+
+<section>   
+    
 <h2>XML Linking</h2>    
 <p>To support repeating the same element content across Permissions and Prohibitions, the Asset, Party, Constraint, Action, and Duty elements support the xml id and idref attributes. Any of these element that has been identified using the id attribute can then be referred to by an element with the same name using the idref attribute. In this case, the referring element must have no other content. </p>
     <p>As shown in the below example, the Prohibition refers to elements defined in the Permission, except for the Constraint element. In this case, the assignee can play the music asset in Italy but not in France.</p>
@@ -157,6 +195,7 @@
    &lt;/o:prohibition>
 &lt;/o:Policy>
 </pre>
+    
 </div>
     <p>Note that there is an important distinction when using this feature with the Duty element which also has the uid attribute. The uid attribute is used to refer to the same Duty from multiple Permissions. In this case the Duty has to be performed only once to gain access to all the Permissions. When using the id and idref attributes then the semantics change as in this case the Duty must be performed for each time it is referenced (potentially, many times). Note that the use of the uid and id attribute for the same Duty element is not permitted.</p>
 </section>
@@ -173,7 +212,7 @@
        type="http://www.w3.org/ns/odrl/2/Set" uid="http://example.com/policy:ABAABA">
       &lt;o:permission>
         &lt;o:asset uid="#item8HEX"/>
-        &lt;o:action name="http://w3.org/ns/odrl/vocab#distribute"/>
+        &lt;o:action name="http://w3.org/ns/odrl/2/distribute"/>
         &lt;o:constraint name="http://www.w3.org/ns/odrl/2/dateTime" 
              operator="http://www.w3.org/ns/odrl/2/gteq" rightOperand="2011-11-11"/>
       &lt;/o:permission>
