@@ -339,8 +339,8 @@ function writeTermAppendix($term)
     echo '<tr id="term-' . $tname . '">';
 	echo '<td>' . htmlspecialchars($term->get('rdfs:label')) . '</td>';
 	echo '<td>' .$term->htmlLink(). '</td>';
-    echo '<td> <a href="' . htmlspecialchars($term->get('ont:deprecatedBy')) . '"';
-    echo '>' . htmlspecialchars($term->get('ont:deprecatedBy')) . '</a></td>';
+    echo '<td> <a href="' . htmlspecialchars($term->get('owl:equivalentProperty')) . '"';
+    echo '>' . htmlspecialchars($term->get('owl:equivalentProperty')) . '</a></td>';
     
 	echo '</tr>';
 }

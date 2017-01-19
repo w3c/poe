@@ -9,10 +9,9 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcmit: <http://purl.org/dc/dcmitype/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
-@prefix ont: <http://purl.org/net/ns/ontology-annot#> .
+
 
 odrl:
 	a owl:Ontology , voaf:Vocabulary ;
@@ -853,10 +852,10 @@ odrl:
 :device
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	owl:equivalentProperty :system ;
 	rdfs:label "Device"@en ;
 	skos:definition "An identifiable computing system."@en ;
-	ont:deprecatedBy :systemDevice .
+    owl:deprecated true ;
+	owl:equivalentProperty :systemDevice .
 
 :systemDevice
 	a :LeftOperand, owl:NamedIndividual ;
@@ -998,10 +997,10 @@ odrl:
 :system
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy :systemDevice ;
-	owl:equivalentProperty :device ;
 	rdfs:label "System"@en ;
-	skos:definition "An identifiable computing system."@en .
+	skos:definition "An identifiable computing system."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty :systemDevice .
 
 :timeInterval
 	a :LeftOperand, owl:NamedIndividual ;
@@ -1118,17 +1117,19 @@ odrl:
 :append
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy :modify ;
 	rdfs:label "Append"@en ;
-	skos:definition "The act of adding to the end of an asset."@en .
+	skos:definition "The act of adding to the end of an asset."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty :modify .
 
 :appendTo
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Append To"@en ;
 	skos:broaderTransitive odrl:writeTo ;	
-	ont:deprecatedBy :modify ;
-	skos:definition "The act of appending data to the Asset without modifying the Asset in any other way."@en .
+	skos:definition "The act of appending data to the Asset without modifying the Asset in any other way."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty :modify .
 
 :archive
 	a :Action, skos:Concept ;
@@ -1160,7 +1161,8 @@ odrl:
 	owl:sameAs :reproduce ;
 	rdfs:label "Copy"@en ;
 	skos:definition "The act of making an exact reproduction of the asset."@en ;
-	ont:deprecatedBy :reproduce .
+    owl:deprecated true ;
+	owl:equivalentProperty :reproduce .
 
 :delete
 	a :Action, skos:Concept ;
@@ -1223,7 +1225,9 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Export"@en ;
 	skos:definition "The act of transforming the asset into a new form."@en ;
-	ont:deprecatedBy :transform .
+    owl:deprecated true ;
+	owl:equivalentProperty :transform .
+
 
 :extract
 	a :Action, skos:Concept ;
@@ -1280,21 +1284,25 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Lease"@en ;
 	skos:definition "The act of making available the asset to a third-party for a fixed period of time with exchange of value."@en ;
-	ont:deprecatedBy rdf:nil .
+    owl:deprecated true .
+
 
 :license
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "License"@en ;
 	skos:definition "The act of granting the right to use the asset to a third-party."@en ;
-	ont:deprecatedBy :grantUse .
+    owl:deprecated true ;
+	owl:equivalentProperty :grantUse .
+
 
 :lend
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Lend"@en ;
 	skos:definition "The act of making available the asset to a third-party for a fixed period of time without exchange of value."@en ;
-	ont:deprecatedBy rdf:nil .
+    owl:deprecated true .
+
 
 :modify
 	a :Action, skos:Concept ;
@@ -1334,7 +1342,9 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Pay"@en ;
 	skos:definition "The act of paying a financial amount to a party for use of the asset."@en ;
-	ont:deprecatedBy :compensate .
+    owl:deprecated true ;
+	owl:equivalentProperty :compensate .
+
 
 :play
 	a :Action, skos:Concept ;	
@@ -1358,7 +1368,8 @@ odrl:
 	rdfs:label "Preview"@en ;
 	skos:definition "The act of providing a short preview of the asset."@en ;
     skos:note "Use a time constraint with the appropriate action."@en ;
-	ont:deprecatedBy rdf:nil .
+    owl:deprecated true .
+
 
 :print
 	a :Action, skos:Concept ;
@@ -1399,7 +1410,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Secondary Use"@en ;
 	skos:definition "The act of using the asset for a purpose other than the purpose it was intended for."@en ;
-	ont:deprecatedBy rdf:nil .
+    owl:deprecated true .
+
 
 :sell
 	a :Action, skos:Concept ;
@@ -1462,7 +1474,9 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Write"@en ;
 	skos:definition "The act of writing to the asset."@en ;
-	ont:deprecatedBy :modify .
+    owl:deprecated true ;
+	owl:equivalentProperty :modify .
+
 
 :writeTo
 	a :Action, skos:Concept ;
@@ -1470,7 +1484,9 @@ odrl:
 	rdfs:label "Write to"@en ;
 	skos:broaderTransitive odrl:use ;
 	skos:definition "The act of adding data to the Asset."@en ;
-	ont:deprecatedBy :modify .
+    owl:deprecated true ;
+	owl:equivalentProperty :modify .
+
 
 ## Functions
 
@@ -1520,10 +1536,11 @@ odrl:
 :payeeParty
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:subPropertyOf :function ;
-	ont:deprecatedBy :compensatedParty ;
 	rdfs:label "Payee Party"@en ;
-	skos:definition "The Party is the recipient of the payment."@en .
+	skos:definition "The Party is the recipient of the payment."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty :compensatedParty .
+
 
 :compensatedParty
 	a rdf:Property , owl:ObjectProperty ;
@@ -1681,91 +1698,98 @@ odrl:
 :adHocShare
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.openmobilealliance.com/> ;
 	rdfs:label "Ad-hoc sharing"@en ;
 	skos:definition "The act of sharing the asset to parties in close proximity to the owner."@en ;
-    skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/adhoc-share"@en .
+    skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/adhoc-share"@en ;
+    owl:deprecated true .
 
 :extractChar
 	a :Action, skos:Concept ;
 	skos:broader :extract ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.editeur.org/21/ONIX-PL/> ;
 	rdfs:label "Extract character"@en ;
 	skos:definition "The act of extracting (replicating) unchanged characters from the asset."@en ;
     skos:note "Must be supported."@en ;
- skos:note "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-char"@en .
+ skos:note "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-char"@en ;
+  owl:deprecated true .
 
 :extractPage
 	a :Action, skos:Concept ;
 	skos:broader :extract ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.editeur.org/21/ONIX-PL/> ;
 	rdfs:label "Extract page"@en ;
 	skos:definition "The act of extracting (replicating) unchanged pages from the asset."@en ;
- skos:note "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-page"@en .
+ skos:note "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-page"@en ;
+    owl:deprecated true .
 
 
 :extractWord
 	a :Action, skos:Concept ;
 	skos:broader :extract ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.editeur.org/21/ONIX-PL/> ;
 	rdfs:label "Extract word"@en ;
 	skos:definition "The act of extracting (replicating) unchanged words from the asset."@en ;
- skos:note "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-word"@en .
-
+ skos:note "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-word"@en ;
+    owl:deprecated true .
 
 :attachPolicy
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://creativecommons.org/ns#Notice> ;
 	rdfs:label "Attach policy"@en ;
-	skos:definition "The act of keeping the policy notice with the asset."@en .
+	skos:definition "The act of keeping the policy notice with the asset."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty <http://creativecommons.org/ns#Notice> .
 
 :attachSource
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://creativecommons.org/ns#SourceCode> ;
 	rdfs:label "Attach source"@en ;
-	skos:definition "The act of attaching the source of the asset and its derivatives."@en .
+	skos:definition "The act of attaching the source of the asset and its derivatives."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty <http://creativecommons.org/ns#SourceCode> .
 
 :shareAlike
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://creativecommons.org/ns#ShareAlike> ;
 	rdfs:label "Share-alike"@en ;
-	skos:definition "The act of distributing any derivative asset under the same terms as the original asset."@en .
+	skos:definition "The act of distributing any derivative asset under the same terms as the original asset."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty <http://creativecommons.org/ns#ShareAlike> .
 
 :commercialize
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://creativecommons.org/ns#CommercialUse> ;
 	rdfs:label "Commercialize"@en ;
-	skos:definition "The act of using the asset in a business environment."@en .
+	skos:definition "The act of using the asset in a business environment."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty <http://creativecommons.org/ns#CommercialUse> .
 
 :share
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://creativecommons.org/ns#Distribution> ;
 	rdfs:label "Share"@en ;
-	skos:definition "The act of the non-commercial reproduction and distribution of the asset to third-parties."@en .
+	skos:definition "The act of the non-commercial reproduction and distribution of the asset to third-parties."@en ;
+    owl:deprecated true ;
+	owl:equivalentProperty <http://creativecommons.org/ns#Distribution> .
+
 
 :proximity
 	a rdf:Property , owl:DatatypeProperty ;
 ##	rdfs:subPropertyOf :rightOperand ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.openmobilealliance.com/> ;
 	rdfs:label "proximity"@en ;
 	skos:definition "An value indicating the closeness or nearness."@en ;
-    skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/proximity ."@en .
+    skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/proximity ."@en ;
+    owl:deprecated true .
 
 :timedCount
 	a rdf:Property , owl:DatatypeProperty ;
 ##	rdfs:subPropertyOf :rightOperand ;
 	rdfs:isDefinedBy odrl: ;
-	ont:deprecatedBy <http://www.openmobilealliance.com/> ;
 	rdfs:label "Timed Count"@en ;
 	skos:definition "The number of seconds after which timed metering use of the asset begins."@en ;
 	rdfs:range rdfs:Literal ;
-    skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/timed-count ."@en .
+    skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/timed-count ."@en ;
+    owl:deprecated true .
+
+
