@@ -375,14 +375,14 @@ odrl:
 	rdfs:subClassOf :Asset ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy"@en ;
-	skos:definition "An entity to capture the statements of the policy."@en ;
+	skos:definition "An entity to represent the rules of the policy."@en ;
 	skos:note "A top level entity for describing policies."@en .
 
 :ConflictTerm
 	a rdfs:Class, owl:Class ;
 	rdfs:isDefinedBy odrl: ;
-    skos:definition "Is used to resolve conflicts arising from the merging of policies, specifically when there are conflicting Actions in the Permissions and Prohibitions."@en ;
-    skos:note "Instances of ConflictTerm describe policies for resolving conflicts."@en ;
+    skos:definition "Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy."@en ;
+    skos:note "Instances of ConflictTerm describe strategies for resolving conflicts."@en ;
 	rdfs:label "Conflict Preference"@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -513,7 +513,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Profile"@en ;
-	skos:definition "The identifier of an ODRL Profile that this Policy conforms to."@en ;
+	skos:definition "The identifier of an ODRL Profile that the current Policy conforms to."@en ;
 	skos:note "ODRL Profiles may be defined by community groups and express additional semantics."@en ;
 	rdfs:domain :Policy ;
 	rdfs:range rdfs:Resource .

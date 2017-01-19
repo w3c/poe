@@ -81,7 +81,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     </div>
         
 <section id="policyConcepts"><h2>Policy Concepts</h2><section id="term-Policy"><h3>Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An entity to capture the statements of the policy.</td></tr>
+<tr><th>Definition:</th> <td>An entity to represent the rules of the policy.</td></tr>
 <tr><th>Label:</th> <td>Policy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
 <tr><th>Note:</th> <td>A top level entity for describing policies.</td></tr>
@@ -99,7 +99,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Properties:</th> <td><a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-function">function</a>, <a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
 </table>
 </section><section id="term-profile"><h3>Profile</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The identifier of an ODRL Profile that this Policy conforms to.</td></tr>
+<tr><th>Definition:</th> <td>The identifier of an ODRL Profile that the current Policy conforms to.</td></tr>
 <tr><th>Label:</th> <td>Profile</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/profile">http://www.w3.org/ns/odrl/2/profile</a></td></tr>
 <tr><th>Note:</th> <td>ODRL Profiles may be defined by community groups and express additional semantics.</td></tr>
@@ -193,10 +193,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="conflictConcepts"><h2>Handle Policy Conflicts</h2><section id="term-ConflictTerm"><h3>Conflict Preference</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Is used to resolve conflicts arising from the merging of policies, specifically when there are conflicting Actions in the Permissions and Prohibitions.</td></tr>
+<tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>
 <tr><th>Label:</th> <td>Conflict Preference</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/ConflictTerm">http://www.w3.org/ns/odrl/2/ConflictTerm</a></td></tr>
-<tr><th>Note:</th> <td>Instances of ConflictTerm describe policies for resolving conflicts.</td></tr>
+<tr><th>Note:</th> <td>Instances of ConflictTerm describe strategies for resolving conflicts.</td></tr>
 <tr><th>In range of:</th> <td><a href="#term-conflict">conflict</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-invalid">invalid</a>, <a href="#term-perm">perm</a>, <a href="#term-prohibit">prohibit</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
@@ -1862,6 +1862,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
           <li>Added UnitOfCount constraint  <a href="https://github.com/w3c/poe/issues/58">(Issue#58)</a></li>
     
            <li>Updated XML Encoding to support multiple and policy-level Assets, Parties, and Actions.  <a href="https://github.com/w3c/poe/issues/82">(Issue#82)</a></li>
+    
+    
+           <li>Added Scopes to Assets and updated Scopes for Parties.  <a href="https://github.com/w3c/poe/issues/59">(Issue#59)</a></li>
     
     
 </ul></section>
