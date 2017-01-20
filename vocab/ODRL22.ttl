@@ -234,14 +234,14 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Constraint Concepts"@en ;
     skos:member :Constraint ;
-    skos:member :constraint ;
+    skos:member :hasConstraint ;
     skos:member :Operator ;
-    skos:member :operator ;
+    skos:member :hasOperator ;
 	skos:member :RightOperand ;
-    skos:member :rightOperand ;
-    skos:member :rightOperandReference ;
+    skos:member :hasRightOperand ;
+    skos:member :RightOperandReference ;
 	skos:member :LeftOperand ;
-	skos:member :leftOperand ;
+	skos:member :hasLeftOperand ;
     skos:member :unit ;
     skos:member :dataType ;
     skos:member :status .
@@ -458,7 +458,7 @@ odrl:
 	rdfs:range :UndefinedTerm ;
     skos:scopeNote "Non-Normative"@en .
 
-:permission
+:hasPermission
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Permission"@en ;
@@ -470,7 +470,7 @@ odrl:
 		owl:unionOf ( :Permission :Action ) ;
 	] .
 
-:prohibition
+:hasProhibition
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Prohibition"@en ;
@@ -623,7 +623,7 @@ odrl:
 	] .
 
 
-:action
+:hasAction
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Action"@en ;
@@ -632,7 +632,7 @@ odrl:
 	rdfs:domain :Rule ;
 	rdfs:range :Action .
 
-:constraint
+:hasConstraint
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Constraint"@en ;
@@ -641,7 +641,7 @@ odrl:
 	rdfs:domain :Rule ;
 	rdfs:range :Constraint .
 
-:duty
+:hasDuty
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Duty"@en ;
@@ -670,7 +670,7 @@ odrl:
 	skos:definition "The datatype used for the constraint value."@en ;
     skos:note "In RDF encodings, use of the rdf:datatype MAY be used."@en .
 
-:operator
+:hasOperator
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Operator"@en ;
@@ -678,7 +678,7 @@ odrl:
 	rdfs:domain :Constraint ;
 	rdfs:range :Operator .
 
-:rightOperand
+:hasRightOperand
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand"@en ;
@@ -689,16 +689,16 @@ odrl:
 	] ;
 	rdfs:domain :Constraint .
 
-:rightOperandReference
-	a rdf:Property ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has Right Operand Reference"@en ;
-	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
-	skos:note "Represents a URI that must be dereferenced to obtain the actual right operand value"@en ;
-	rdfs:domain :Constraint ;
-    skos:scopeNote "Non-Normative"@en .
+#:rightOperandReference
+#	a rdf:Property ;
+#	rdfs:isDefinedBy odrl: ;
+#	rdfs:label "Has Right Operand Reference"@en ;
+#	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
+#	skos:note "Represents a URI that must be dereferenced to obtain the actual right operand value"@en ;
+#	rdfs:domain :Constraint ;
+#   skos:scopeNote "Non-Normative"@en .
 
-:leftOperand
+:hasLeftOperand
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Left Operand"@en ;
@@ -1136,7 +1136,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Compensate"@en ;
 	skos:definition "The Assigner requires that the Assignees compensates the Assigner (or other specified compensation Party) by some amount of value, if defined, for use of the Asset."@en ;
-	skos:note "The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by operator, rightOperand, dataType and unit"@en .
+	skos:note "The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by hasOperator, hasRightOperand, dataType and unit"@en .
 
 :acceptTracking
 	a :Action, skos:Concept ;
