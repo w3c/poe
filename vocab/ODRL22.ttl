@@ -160,19 +160,19 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Action Concepts"@en ;
     skos:member :Action ;
-    skos:member :action .
+    skos:member :hasAction .
 
 <http://www.w3.org/ns/odrl/2/#permissions>
     a skos:Collection ;
     skos:prefLabel "Permission Concepts"@en ;
     skos:member :Permission ;
-    skos:member :permission .
+    skos:member :hasPermission .
 
 <http://www.w3.org/ns/odrl/2/#prohibitions>
     a skos:Collection ;
     skos:prefLabel "Prohibition Concepts"@en ;
     skos:member :Prohibition ;
-    skos:member :prohibition .
+    skos:member :hasProhibition .
 
 <http://www.w3.org/ns/odrl/2/#actions>
     a skos:Collection ;
@@ -211,7 +211,7 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Duty Concepts"@en ;
     skos:member :Duty ;
-    skos:member :duty ; .
+    skos:member :hasDuty ; .
 
 
 <http://www.w3.org/ns/odrl/2/#dutyActions>
@@ -307,6 +307,12 @@ odrl:
 <http://www.w3.org/ns/odrl/2/#deprecatedTerms>
     a skos:Collection ;
     skos:prefLabel "Deprecated Terms"@en ;
+    skos:member :permission ;
+    skos:member :prohibition ;
+    skos:member :action ;
+    skos:member :duty ;
+    skos:member :constraint ;
+    skos:member :operator ;
     skos:member :device ;
     skos:member :system ;
     skos:member :proximity ;
@@ -1849,3 +1855,77 @@ odrl:
 	rdfs:range rdfs:Literal ;
     skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/timed-count ."@en ;
     owl:deprecated true .
+
+:prohibition
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Prohibition"@en ;
+	skos:definition "Relates the description of an individual Prohibition to a Policy."@en ;
+	skos:note "A prohibition can be specified either in terms of an Action alone, or an instance of Prohibition relating an Action and one or more other attributes."@en ;
+	rdfs:domain :Policy ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :Prohibition  :Action ) ;
+	] ;
+    owl:equivalentProperty :hasProhibition ;
+    owl:deprecated true .
+	
+:permission
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Permission"@en ;
+	skos:definition "Relates the description of an individual Permission to a Policy."@en ;
+	skos:note "A permission can be specified either in terms of an Action alone, or an instance of Permission relating an Action and one or more other attributes."@en ;
+	rdfs:domain :Policy ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :Permission :Action ) ;
+	] ;
+    owl:equivalentProperty :hasPermission ;
+    owl:deprecated true .
+	
+:action
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Action"@en ;
+	skos:definition "The operation relating to the asset for which the Rule is being subjected."@en ;
+	skos:note "A permission must include exactly one action."@en ;
+	rdfs:domain :Rule ;
+	rdfs:range :Action ;
+    owl:equivalentProperty :hasAction ;
+    owl:deprecated true .
+
+:constraint
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Constraint"@en ;
+	skos:definition "The constraint relating to the Rule."@en ;
+	skos:note "One or more constraints which affect the validity of the Rule; e.g. if the Action play is only permitted for a certain period of time."@en ;
+	rdfs:domain :Rule ;
+	rdfs:range :Constraint ;
+    owl:equivalentProperty :hasConstraint ;
+    owl:deprecated true .
+
+:duty
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;rdfs:label "Has Duty"@en ;
+	skos:definition "The duty relating to the Permission."@en ;
+	skos:note "A Duty indicates requirements which must be fulfilled in order to receive the permission."@en ;
+	rdfs:domain :Permission ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :Duty :Action ) ;
+	] ;
+    owl:equivalentProperty :hasDuty ;
+    owl:deprecated true .
+
+:operator
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Operator"@en ;
+	skos:definition "The Boolean operator applied to a constraint and its operands."@en ;
+	rdfs:domain :Constraint ;
+	rdfs:range :Operator ;
+    owl:equivalentProperty :hasOperator ;
+    owl:deprecated true .
+	
