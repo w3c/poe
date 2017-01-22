@@ -160,19 +160,19 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Action Concepts"@en ;
     skos:member :Action ;
-    skos:member :hasAction .
+    skos:member :action .
 
 <http://www.w3.org/ns/odrl/2/#permissions>
     a skos:Collection ;
     skos:prefLabel "Permission Concepts"@en ;
     skos:member :Permission ;
-    skos:member :hasPermission .
+    skos:member :permission .
 
 <http://www.w3.org/ns/odrl/2/#prohibitions>
     a skos:Collection ;
     skos:prefLabel "Prohibition Concepts"@en ;
     skos:member :Prohibition ;
-    skos:member :hasProhibition .
+    skos:member :prohibition .
 
 <http://www.w3.org/ns/odrl/2/#actions>
     a skos:Collection ;
@@ -211,7 +211,7 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Duty Concepts"@en ;
     skos:member :Duty ;
-    skos:member :hasDuty ; .
+    skos:member :duty ; .
 
 
 <http://www.w3.org/ns/odrl/2/#dutyActions>
@@ -234,14 +234,14 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Constraint Concepts"@en ;
     skos:member :Constraint ;
-    skos:member :hasConstraint ;
+    skos:member :constraint ;
     skos:member :Operator ;
-    skos:member :hasOperator ;
+    skos:member :operator ;
 	skos:member :RightOperand ;
-    skos:member :hasRightOperand ;
-    skos:member :RightOperandReference ;
+    skos:member :rightOperand ;
+    skos:member :rightOperandReference ;
 	skos:member :LeftOperand ;
-	skos:member :hasLeftOperand ;
+	skos:member :leftOperand ;
     skos:member :unit ;
     skos:member :dataType ;
     skos:member :status .
@@ -307,12 +307,6 @@ odrl:
 <http://www.w3.org/ns/odrl/2/#deprecatedTerms>
     a skos:Collection ;
     skos:prefLabel "Deprecated Terms"@en ;
-    skos:member :permission ;
-    skos:member :prohibition ;
-    skos:member :action ;
-    skos:member :duty ;
-    skos:member :constraint ;
-    skos:member :operator ;
     skos:member :device ;
     skos:member :system ;
     skos:member :proximity ;
@@ -464,7 +458,7 @@ odrl:
 	rdfs:range :UndefinedTerm ;
     skos:scopeNote "Non-Normative"@en .
 
-:hasPermission
+:permission
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Permission"@en ;
@@ -476,7 +470,7 @@ odrl:
 		owl:unionOf ( :Permission :Action ) ;
 	] .
 
-:hasProhibition
+:prohibition
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Prohibition"@en ;
@@ -629,7 +623,7 @@ odrl:
 	] .
 
 
-:hasAction
+:action
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Action"@en ;
@@ -638,7 +632,7 @@ odrl:
 	rdfs:domain :Rule ;
 	rdfs:range :Action .
 
-:hasConstraint
+:constraint
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Constraint"@en ;
@@ -647,7 +641,7 @@ odrl:
 	rdfs:domain :Rule ;
 	rdfs:range :Constraint .
 
-:hasDuty
+:duty
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Duty"@en ;
@@ -676,7 +670,7 @@ odrl:
 	skos:definition "The datatype used for the constraint value."@en ;
     skos:note "In RDF encodings, use of the rdf:datatype MAY be used."@en .
 
-:hasOperator
+:operator
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Operator"@en ;
@@ -684,7 +678,7 @@ odrl:
 	rdfs:domain :Constraint ;
 	rdfs:range :Operator .
 
-:hasRightOperand
+:rightOperand
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand"@en ;
@@ -692,16 +686,16 @@ odrl:
 	rdfs:range xsd:any ;
 	rdfs:domain :Constraint .
 
-#:rightOperandReference
-#	a rdf:Property ;
-#	rdfs:isDefinedBy odrl: ;
-#	rdfs:label "Has Right Operand Reference"@en ;
-#	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
-#	skos:note "Represents a URI that must be dereferenced to obtain the actual right operand value"@en ;
-#	rdfs:domain :Constraint ;
-#   skos:scopeNote "Non-Normative"@en .
+:rightOperandReference
+	a rdf:Property ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Right Operand Reference"@en ;
+	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
+	skos:note "Represents a URI that must be dereferenced to obtain the actual right operand value"@en ;
+	rdfs:domain :Constraint ;
+    skos:scopeNote "Non-Normative"@en .
 
-:hasLeftOperand
+:leftOperand
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Left Operand"@en ;
@@ -1139,7 +1133,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Compensate"@en ;
 	skos:definition "The Assigner requires that the Assignees compensates the Assigner (or other specified compensation Party) by some amount of value, if defined, for use of the Asset."@en ;
-	skos:note "The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by hasOperator, hasRightOperand, dataType and unit"@en .
+	skos:note "The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by operator, rightOperand, dataType and unit"@en .
 
 :acceptTracking
 	a :Action, skos:Concept ;
@@ -1852,77 +1846,3 @@ odrl:
 	rdfs:range rdfs:Literal ;
     skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/timed-count ."@en ;
     owl:deprecated true .
-
-:prohibition
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has Prohibition"@en ;
-	skos:definition "Relates the description of an individual Prohibition to a Policy."@en ;
-	skos:note "A prohibition can be specified either in terms of an Action alone, or an instance of Prohibition relating an Action and one or more other attributes."@en ;
-	rdfs:domain :Policy ;
-	rdfs:range [
-		a owl:Class ;
-		owl:unionOf ( :Prohibition  :Action ) ;
-	] ;
-    owl:equivalentProperty :hasProhibition ;
-    owl:deprecated true .
-	
-:permission
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has Permission"@en ;
-	skos:definition "Relates the description of an individual Permission to a Policy."@en ;
-	skos:note "A permission can be specified either in terms of an Action alone, or an instance of Permission relating an Action and one or more other attributes."@en ;
-	rdfs:domain :Policy ;
-	rdfs:range [
-		a owl:Class ;
-		owl:unionOf ( :Permission :Action ) ;
-	] ;
-    owl:equivalentProperty :hasPermission ;
-    owl:deprecated true .
-	
-:action
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has Action"@en ;
-	skos:definition "The operation relating to the asset for which the Rule is being subjected."@en ;
-	skos:note "A permission must include exactly one action."@en ;
-	rdfs:domain :Rule ;
-	rdfs:range :Action ;
-    owl:equivalentProperty :hasAction ;
-    owl:deprecated true .
-
-:constraint
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has Constraint"@en ;
-	skos:definition "The constraint relating to the Rule."@en ;
-	skos:note "One or more constraints which affect the validity of the Rule; e.g. if the Action play is only permitted for a certain period of time."@en ;
-	rdfs:domain :Rule ;
-	rdfs:range :Constraint ;
-    owl:equivalentProperty :hasConstraint ;
-    owl:deprecated true .
-
-:duty
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;rdfs:label "Has Duty"@en ;
-	skos:definition "The duty relating to the Permission."@en ;
-	skos:note "A Duty indicates requirements which must be fulfilled in order to receive the permission."@en ;
-	rdfs:domain :Permission ;
-	rdfs:range [
-		a owl:Class ;
-		owl:unionOf ( :Duty :Action ) ;
-	] ;
-    owl:equivalentProperty :hasDuty ;
-    owl:deprecated true .
-
-:operator
-	a rdf:Property , owl:ObjectProperty ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has Operator"@en ;
-	skos:definition "The Boolean operator applied to a constraint and its operands."@en ;
-	rdfs:domain :Constraint ;
-	rdfs:range :Operator ;
-    owl:equivalentProperty :hasOperator ;
-    owl:deprecated true .
-	
