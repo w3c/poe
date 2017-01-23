@@ -143,22 +143,22 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="policy">
 <h3>Policy</h3>
 
-<p>The <code>Policy</code> entity contains the following attributes:</p>
+<p>The Policy entity contains the following attributes:</p>
 <ul>
-<li><code>uid</code>: the unique identification of the <code>Policy</code> entity (REQUIRED)</li>
-<li><code>type</code>: indicates the semantics of the <code>Policy</code> entity (REQUIRED). These are further described in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</li>
-<li><code>conflict</code>: indicates how to handle <code>Policy</code> conflicts (OPTIONAL)</li>
-<li><code>undefined</code>: indicates how to handle undefined <code>Action</code>s (OPTIONAL)</li>
-<li><code>inheritAllowed</code>: indicates if the <code>Policy</code> entity can be inherited (OPTIONAL)</li>
-<li><code>profile</code>: the identifier of the ODRL Profile that this <code>Policy</code> conforms to (OPTIONAL)</li>
+<li><code>uid</code>: the unique identification of the Policy entity (REQUIRED)</li>
+<li><code>type</code>: indicates the semantics of the Policy entity (REQUIRED). These are further described in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</li>
+<li><code>conflict</code>: indicates how to handle Policy conflicts (OPTIONAL)</li>
+<li><code>undefined</code>: indicates how to handle undefined Actions (OPTIONAL)</li>
+<li><code>inheritAllowed</code>: indicates if the Policy entity can be inherited (OPTIONAL)</li>
+<li><code>profile</code>: the identifier of the ODRL Profile that this Policy conforms to (OPTIONAL)</li>
 </ul>
 <p>The <code>uid</code> attribute MUST be a unique identifier.</p>
     
-<p>The range of values for the <code>Policy</code> entity&#8217;s <code>type</code> attribute will be described in the ODRL Vocabulary [[!vocab-odrl]] or in ODRL Profiles. This value MAY also impose further constraints on the Information Model. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities. For example, the ODRL <code>Agreement</code> Policy Type stipluates that it must contain two Parties (an assigner and assignee).</p>
+<p>The range of values for the Policy entity&#8217;s <code>type</code> attribute will be described in the ODRL Vocabulary [[!vocab-odrl]] or in ODRL Profiles. This value MAY also impose further constraints on the Information Model. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities. For example, the ODRL Agreement Policy Type stipluates that it must contain two Parties (an Assigner and Assignee).</p>
     
  
 
-<p><b>Example Use Case</b>: A Policy of type Set states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission read and the Prohibition reproduce. No parties or other elements are involved.</p>
+<p><b>Example Use Case</b>: A Policy of type Set states that the Asset http//example.com/asset:9898 is the target of the Permission read and the Prohibition reproduce. No Parties or other elements are involved.</p>
 
 
 <pre class="example highlight hljs xquery">{
@@ -178,7 +178,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }
 </pre>
 	
-<p><b>Example Use Case</b>: A Policy of type Set states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission reproduce, the Duty attribute to <code>http://example.com/owner:9898</code> and the Prohibition translate. Two parties are involved, namely the Assigner of the Permissions and the Party to be attributed.</p>
+<p><b>Example Use Case</b>: A Policy of type Set states that the Asset http//example.com/asset:9898 is the target of the Permission reproduce, the Duty attribute to http://example.com/owner:9898, and the Prohibition translate. Two Parties are involved, namely the Assigner of the Permissions and the Party to be attributed.</p>
 
 <pre class=" example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
@@ -207,7 +207,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
              
     <p>The ODRL Information Model supports flexibility in the information structures to declare ODRL expressions. A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these apply to all of the enclosing Rules in the Policy.</p>
      
-     <p>At the core <i>atomic</i> level, an ODRL Rule (Permission and/or Prohibition) would typically contain one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the below example:</p>
+     <p>At the core <i>atomic</i> level, an ODRL Rule (Permission and/or Prohibition) would typically contain one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below:</p>
              
 <pre class="example highlight hljs xquery">
 {
@@ -292,7 +292,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }  
 </pre>
 
-<p>To fully expand the Rules, the Policy-level Assets, Parties, and Actions MUST be added to all the Rules in the Policy. As shown below, the policy-level target, assigner, and action are added to the two permission Rules:</p>
+<p>To fully expand the Rules, the Policy-level Assets, Parties, and Actions MUST be added to all the Rules in the Policy. As shown below, the policy-level Target, Assigner, and Action are added to the two permission Rules:</p>
     
 <pre class="example highlight hljs xquery">
 {
@@ -332,7 +332,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <section id="provenace">
 <h4>Policy Provenance</h4>
          
-       <p>Provenance attributes MAY be added to the <code>Policy</code> entity to support additional authenticity, integrity, and interpretation. Typically, these will be from external community vocabularies. </p>
+       <p>Provenance attributes MAY be added to the Policy entity to support additional authenticity, integrity, and interpretation. Typically, these will be from external community vocabularies. </p>
          
          <p>The following Dublin Core Metadata Terms [[!DCTERMS]] SHOULD be used:</p>
             <ul>
@@ -373,7 +373,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <section id="conflict">
 <h4>Policy Conflict</h4>
         
-<p>The <code>conflict</code> attribute is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between <code>Permission</code>s and <code>Prohibition</code>s in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent. For example, one Policy stated that Assignee Fred had been granted an "exclusive" distribution Permission, and the other Policy said the same for Assignee Mary. In the same Policy, conflicts can also arise when the same Action is used in a Permission and a Prohibition. </p>
+<p>The <code>conflict</code> attribute is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent. For example, one Policy stated that Assignee Fred had been granted an "exclusive" distribution Permission, and the other Policy said the same for Assignee Mary. In the same Policy, conflicts can also arise when the same Action is used in a Permission and a Prohibition. </p>
     
     <p>The <code>conflict</code> attribute MUST take one of the following values:</p>
 <ul>
@@ -385,7 +385,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>In cases where both <code>perm</code> and <code>prohibit</code> are used in Policies, and that causes contradictory outcomes (ie the conflict cannot be resolved), then the outcome MUST be an <code>invalid</code> Policy.</p>
 	
-<p><b>Example Use Case</b>: Two policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to use the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits print. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the print action is a subset of the use action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the use Permission will override the print Prohibition.</p>
+<p><b>Example Use Case</b>: Two Policies are associated to the same target Asset http://example.com/asset:1212. The first Policy http://example.com/policy:0001 allows to use the Asset. The second Policy http://example.com/policy:0002 allows for the display of the Asset, but it prohibits print. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the print Action is a subset of the use Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the use Permission will override the print Prohibition.</p>
 
 
 <pre class="example highlight hljs xquery">{
@@ -426,15 +426,15 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <section id="undefined">
 <h4>Undefined Actions</h4>
     
-<p>The <code>undefined</code> attribute is used to indicate how to process unsupported <code>Action</code>s. That is, if an ODRL expression contains an Action that is not from a known (or supported) ODRL vocabulary, how should the action be treated in the context of the whole ODRL Policy?</p>
+<p>The <code>undefined</code> attribute is used to indicate how to process unsupported Actions. That is, if an ODRL expression contains an Action that is not from a known (or supported) ODRL vocabulary, how should the Action be treated in the context of the whole ODRL Policy?</p>
         
  <p>The <code>undefined</code> attribute MUST take one of the following values:</p>
 <ul>
-<li><code>support</code>: the undefined <code>Action</code> is to be <b>supported</b> as part of the Policy &#8211; and the Policy remains valid</li>
-<li><code>ignore</code>: the undefined <code>Action</code> is to be <b>ignored</b> and is not part of the Policy &#8211; and the Policy remains valid</li>
-    <li><code>invalid</code>: the undefined <code>Action</code> is unknown &#8211; and the entire Policy is <b>invalid</b></li>
+<li><code>support</code>: the undefined Action is to be <b>supported</b> as part of the Policy &#8211; and the Policy remains valid</li>
+<li><code>ignore</code>: the undefined Action is to be <b>ignored</b> and is not part of the Policy &#8211; and the Policy remains valid</li>
+    <li><code>invalid</code>: the undefined Action is unknown &#8211; and the entire Policy is <b>invalid</b></li>
 </ul>
-<p>In all cases, systems that process ODRL expressions SHOULD provide mechanisms that adequately address these three outcomes. That is, how the action can be <b>supported</b>, or <b>ignored</b>, or the entire Policy is <b>invalid</b>. </p>
+<p>In all cases, systems that process ODRL expressions SHOULD provide mechanisms that adequately address these three outcomes. That is, how the Action can be <b>supported</b>, or <b>ignored</b>, or the entire Policy is <b>invalid</b>. </p>
 
 
         <p>If the <code>undefined</code> attribute is not explicitly set, its default value of <code>invalid</code> SHALL be used.</p>
@@ -465,30 +465,30 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
     <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the information structures of another (parent) Policy. The inheritance is aimed at <i>including</i> data structures between Policies.</p>
     
-<p>The <code>inheritAllowed</code> attribute in the <code>Policy</code> entity is used to indicate if the <code>Policy</code> expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> attribute MUST take one of the following values:</p>
+<p>The <code>inheritAllowed</code> attribute in the Policy entity is used to indicate if the Policy expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> attribute MUST take one of the following values:</p>
 <ul>
-<li><code>true</code>: the <code>Policy</code> expression can be used for inheritance</li>
-<li><code>false</code>: the <code>Policy</code> expression can not be used for inheritance</li>
+<li><code>true</code>: the Policy expression can be used for inheritance</li>
+<li><code>false</code>: the Policy expression can not be used for inheritance</li>
 </ul>
 <p>If the <code>inheritAllowed</code> attribute is not explicitly set, its default value of <code>true</code> will be used.</p>
-<p>The following attributes SHOULD be used in a child policy that is inheriting from a parent policy in which that parent policy MUST allow inheritance (via the <code>inheritAllowed</code> attribute) :</p>
+<p>The following attributes SHOULD be used in a child Policy that is inheriting from a parent Policy in which that parent Policy MUST allow inheritance (via the <code>inheritAllowed</code> attribute) :</p>
 
     <ul>
-    <li><code>inheritFrom</code>: the identifier of the parent <code>Policy</code> from which this child <code>Policy</code> inherits from</li>
+    <li><code>inheritFrom</code>: the identifier of the parent Policy from which this child Policy inherits from</li>
 <li><code>inheritRelation</code>: the identifier of the relationship context of this inheritance structure</li>
     </ul>
     
     
-<p>The <code>inheritFrom</code> association in the (child) <code>Policy</code> will uniquely identify (via a UID) the (parent) <code>Policy</code> from which the inheritance will be performed.</p>
-<p>The <code>inheritRelation</code> attribute in the (child) <code>Policy</code> will uniquely identify (via a UID) the context of inheritance from the (parent) <code>Policy</code>. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the parties (that are not machine representable). Such terms SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL policies they exchange. This will require the ODRL policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission actions or constraints (etc) that is documented in their business model arrangement.</p>
+<p>The <code>inheritFrom</code> association in the (child) Policy will uniquely identify (via a UID) the (parent) Policy from which the inheritance will be performed.</p>
+<p>The <code>inheritRelation</code> attribute in the (child) Policy will uniquely identify (via a UID) the context of inheritance from the (parent) Policy. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the Parties (that are not machine representable). Such terms SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL Policies they exchange. This will require the ODRL Policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission Actions or constraints (etc) that is documented in their business model arrangement.</p>
 <p>Both the <code>inheritFrom</code> association and <code>inheritRelation</code> attribute may be used independently.</p>
     
 <p>The following restrictions apply when using inheritance:</p>
 <ul>
-<li>Single inheritance is only supported. (One Parent <code>Policy</code> to one or more Child <code>Policy</code> entities. No Child <code>Policy</code> can inherit from two or more Parent <code>Policy</code> entities.)</li>
-<li>Inheritance can be to any depth. (Multiple levels of Children <code>Policy</code> entities.)</li>
+<li>Single inheritance is only supported. (One parent Policy to one or more child Policy entities. No child Policy can inherit from two or more parent Policy entities.)</li>
+<li>Inheritance can be to any depth. (Multiple levels of children Policy entities.)</li>
 <li>Inheritance MUST NOT be circular.</li>
-<li>No state information is transferred from the Parent <code>Policy</code> to the Child <code>Policy</code>.</li>
+<li>No state information is transferred from the parent Policy to the child Policy.</li>
 </ul>
 	
 <p><b>Example Use Case:</b>Consider the below (parent) Policy that has been expressed primarly for inheritance purposes:</p>    
@@ -508,7 +508,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }  
 </pre>
     
-<p>The below (child) Policy includes the inheritFrom attribute pointing to the above (parent) Policy. The (child) policy also includes its own specific policy-level asset, and two Permission Rules.</p>    
+<p>The below (child) Policy includes the inheritFrom attribute pointing to the above (parent) Policy. The (child) Policy also includes its own specific policy-level asset, and two Permission Rules.</p>    
     
     <pre class="example highlight hljs xquery">
 {
@@ -562,7 +562,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>The processing model for ODRL Policy Inheritance includes:</p>
     <ol>
-    <li>A (child) Policy with an inheritFrom attribute MUST first verify that the (parent) Policy does not contain the inhertiAllowed attribute with the value "false".</li>
+    <li>A (child) Policy with an <code>inheritFrom</code> attribute MUST first verify that the (parent) Policy does not contain the <code>inhertiAllowed</code> attribute with the value "false".</li>
    <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
        <ul>
            <li>All policy-level Assets, Parties, Actions.</li>
@@ -577,16 +577,16 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <section id="asset">
 <h3>Asset</h3>
-<p>The <code>Asset</code> entity is the subject of an ODRL policy expression that permissions and prohibitions are applied to. The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> entities that are needed to undertake the Policy expression, such as with the <code>Duty</code> entity. The <code>Asset</code> entity is referred to by the <code>Permission</code> and/or <code>Prohibition</code> entities, and also by the <code>Duty</code> entity.</p>
-<p>The <code>Asset</code> entity contains the following attribute:</p>
+<p>The Asset entity is the subject of an ODRL policy expression that Permissions and Prohibitions are applied to. The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> entities that are needed to undertake the Policy expression, such as with the Duty entity. The Asset entity is referred to by the Permission and/or Prohibition entities, and also by the Duty entity.</p>
+<p>The Asset entity contains the following attribute:</p>
 <ul>
-<li><code>uid</code>: the unique identification of the <code>Asset</code> (REQUIRED)</li>
+<li><code>uid</code>: the unique identification of the Asset (REQUIRED)</li>
     <li><code>scope</code>: defines how the Asset shall be interpreted under different contexts. (OPTIONAL)</li>
 </ul>
-<p>The identification of the <code>Asset</code> entity is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be a URI [[rfc3986]] representing the identifier for the Asset. There MAY also be other alternative identifers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. <p>
+<p>The identification of the Asset entity is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be a URI [[rfc3986]] representing the identifier for the Asset. There MAY also be other alternative identifers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. <p>
     
-    <p>There are some use cases where the ODRL Policy expression MAY be embedded inside the target <code>Asset</code>. In these cases, it MAY be more appropriate to provide, or infer, a link to the <code>Asset</code> entity (as the complete <code>Asset</code> <code>uid</code> may not be known at the time) through the local context. Use of such inference and context MUST be documented in the relevant ODRL Profile.</p>
-<p>Since ODRL policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe <code>Asset</code> entities of particular media types. It is recommended to use already existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> that are appropriate to the <code>Asset</code> type or purpose.</p>
+    <p>There are some use cases where the ODRL Policy expression MAY be embedded inside the target Asset. In these cases, it MAY be more appropriate to provide, or infer, a link to the Asset entity (as the complete Asset <code>uid</code> may not be known at the time) through the local context. Use of such inference and context MUST be documented in the relevant ODRL Profile.</p>
+<p>Since ODRL Policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe Asset entities of particular media types. It is recommended to use already existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> that are appropriate to the Asset type or purpose.</p>
 
 
 <section id="relation">
