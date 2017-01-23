@@ -113,7 +113,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>For example, an ODRL Policy that has the action &#8220;present&#8221; Permission and may also have the action &#8220;print&#8221; Prohibition (as these actions are related hierarchically in the ODRL Vocabulary [[!vocab-odrl]]).</p>
 <p>Note that ODRL Profiles can be developed and used to refine the basic context of an ODRL Policy. Hence, the application of an ODRL Profile must be understood by the consuming community and systems.</p>
-<p>The figure below shows the ODRL Information Model. The <code>Policy</code> is the central entity that holds an ODRL policy together. </p>
+<p>The figure below shows the ODRL Information Model. The Policy is the central entity that holds an ODRL policy together. </p>
 
 <figure>
 	<img src="fig/00Model.png" alt="ODRL Information Model" width="800"/>
@@ -122,21 +122,21 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
   
     
-<p>As the Information Model diagram shows the key <code>Permission</code>, <code>Prohibition</code> and <code>Duty</code> entities are subtypes of the abstract <code><em>Rule</em></code> class. These Rules have the same relationships to the other key entities (<code>Action</code>, <code>Constraint</code>, <code>Asset</code>, and <code>Party</code>). The core difference is in their semantics:</p>
+<p>As the Information Model diagram shows the key Permission, Prohibition and Duty entities are subtypes of the abstract Rule class. These Rules have the same relationships to the other key entities (Action, Constraint, Asset, and Party). The core difference is in their semantics:</p>
 <ul>
-<li><code>Permission</code> says that the <code>Party</code> MAY perform an action,</li>
-<li><code>Duty</code> says that the <code>Party</code> MUST perform an action, and</li>
-<li><code>Prohibition</code> says that the <code>Party</code> MUST NOT perform an action.</li>
+<li>Permission says that the Party MAY perform an Action,</li>
+<li>Duty says that the Party MUST perform an Action, and</li>
+<li>Prohibition says that the Party MUST NOT perform an Action.</li>
 </ul>
 
-<p>The <code><em>Rule</em></code> class also makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <code><em>Rule</em></code>) that are not possible by default.</p>
+<p>The <em>Rule</em> class also makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <em>Rule</em>) that are not possible by default.</p>
     
 <p>The cardinalities shown in the ODRL Information Model allow for the greatest flexibility in expressing associations between the key entities. However, Policy types and ODRL Profiles may express narrower and/or specific cardinalities on these entities.</p>
 
-<p>A <code>Permission</code> MAY allow a particular <code>Action</code> to be executed on a related <code>Asset</code>, e.g., &#8220;play the audio file abc.mp3&#8221;. A <code>Constraint</code> such as &#8220;at most 10 times&#8221; might be added to specify the <code>Permission</code> more precisely. The <code>Party</code> that grants this <code>Permission</code> is linked to it with the <code>Role</code> <code>assigner</code>, the <code>Party</code> that is granted the <code>Permission</code> is linked to it with the <code>Role</code> <code>assignee</code>, e.g., &#8220;assigner VirtualMusicShop grants the Permission to assignee Alice&#8221;. Additionally, a <code>Permission</code> MAY be linked to <code>Duty</code> entities.</p>
-<p>Similar to <code>Permission</code>s, a <code>Duty</code> states that a certain <code>Action</code> MUST be executed by the <code>Party</code> with the <code>Role</code> <code>assignee</code> for the <code>Permission</code> to be valid, e.g. &#8220;Alice must pay 5 Euros in order to get the Permission to play abc.mp3&#8243;.</p>
+<p>A Permission MAY allow a particular Action to be executed on a related Asset, e.g., &#8220;play the audio file abc.mp3&#8221;. A Constraint such as &#8220;at most 10 times&#8221; might be added to specify the Permission more precisely. The Party that grants this Permission is linked to it with the Role Assigner, the Party that is granted the Permission is linked to it with the Role Assignee, e.g., &#8220;assigner VirtualMusicShop grants the Permission to Assignee Alice&#8221;. Additionally, a Permission MAY be linked to Duty entities.</p>
+<p>Similar to Permissions, a Duty states that a certain Action MUST be executed by the Party with the Role Assignee for the Permission to be valid, e.g. &#8220;Alice must pay 5 Euros in order to get the Permission to play abc.mp3&#8243;.</p>
     
-<p>The <code>Prohibition</code> entity is used in the same way as <code>Permission</code>, with the difference that it MUST NOT refer to <code>Duties</code> and that the <code>Action</code> MUST NOT be exercised, e.g. &#8220;Alice is forbidden to use abc.mp3 commercially&#8221;.</p>
+<p>The Prohibition entity is used in the same way as Permission, with the difference that it MUST NOT refer to Duties and that the Action MUST NOT be exercised, e.g. &#8220;Alice is forbidden to use abc.mp3 commercially&#8221;.</p>
     
 <p>The following sections describes each entity of the Information Model in greater detail.</p>
 
@@ -146,7 +146,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The Policy entity contains the following attributes:</p>
 <ul>
 <li><code>uid</code>: the unique identification of the Policy entity (REQUIRED)</li>
-<li><code>type</code>: indicates the semantics of the Policy entity (REQUIRED). These are further described in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</li>
+<li><code>type</code>: indicates the semantics of the Policy entity (REQUIRED). These are further described in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</li>
 <li><code>conflict</code>: indicates how to handle Policy conflicts (OPTIONAL)</li>
 <li><code>undefined</code>: indicates how to handle undefined Actions (OPTIONAL)</li>
 <li><code>inheritAllowed</code>: indicates if the Policy entity can be inherited (OPTIONAL)</li>
@@ -154,7 +154,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </ul>
 <p>The <code>uid</code> attribute MUST be a unique identifier.</p>
     
-<p>The range of values for the Policy entity&#8217;s <code>type</code> attribute will be described in the ODRL Vocabulary [[!vocab-odrl]] or in ODRL Profiles. This value MAY also impose further constraints on the Information Model. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities. For example, the ODRL Agreement Policy Type stipluates that it must contain two Parties (an Assigner and Assignee).</p>
+<p>The range of values for the Policy entity&#8217;s <code>type</code> attribute will be described in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. This value MAY also impose further constraints on the Information Model. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities. For example, the ODRL Agreement Policy Type stipluates that it must contain two Parties (an Assigner and Assignee).</p>
     
  
 
@@ -736,19 +736,19 @@ which database the index outcome should be stored in.</p>
 <h3>Permission</h3>
 
 
-<p>The <code>Permission</code> entity indicates the <code>Action</code>s permitted to be performed on the  <code>Asset</code>.</p>
-<p>An ODRL policy expression MAY contain at least one <code>Permission</code>. It is important to verify the semantics of the <code>Policy</code> <code>type</code> attribute as this SHOULD indicate additional constraints on the Policy expression semantics.</p>
+<p>The Permission entity indicates the Actions permitted to be performed on the Asset.</p>
+<p>An ODRL policy expression MAY contain at least one Permission. It is important to verify the semantics of the Policy <code>type</code> attribute as this SHOULD indicate additional constraints on the Policy expression semantics.</p>
 
-<p>The <code>Permission</code> entity has the following relations:</p>
+<p>The Permission entity has the following relations:</p>
 <ul>
-<li><code>Asset</code>: the <code>Permission</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the linked <code>Action</code> SHOULD be performed (REQUIRED)</li>
-<li><code>Action</code>: the <code>Permission</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that indicates the granted operation on the target <code>Asset</code> (REQUIRED) (Note: this is after the Rule has folowed the processing models defined in the <a href="#structure">Policy Structure</a> section.)</li>
-<li><code>Party</code>: the <code>Permission</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (OPTIONAL)</li>
-<li><code>Constraint</code>: the <code>Permission</code> MAY refer to one or more Constraints which affect the validity of the Permission - it only becomes effective if all of the referred Constraints are true (OPTIONAL). For example; the Action play is only permitted for a certain period of time.</li>
-<li><code>Duty</code>: the <code>Permission</code> MAY refer to one or more <code>Duty</code> entities that indicate a requirement that SHOULD be fulfilled in return for receiving the <code>Permission</code> (OPTIONAL)</li>
+<li><code>Asset</code>: the Permission entity MUST refer to an Asset (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the linked Action SHOULD be performed (REQUIRED)</li>
+<li><code>Action</code>: the Permission entity MUST refer to <em>exactly one</em> Action that indicates the granted operation on the target Asset (REQUIRED) (Note: this is after the Rule has folowed the processing models defined in the <a href="#structure">Policy Structure</a> section.)</li>
+<li><code>Party</code>: the Permission MAY refer to one or more Party entities linked via the Role entity (OPTIONAL)</li>
+<li><code>Constraint</code>: the Permission MAY refer to one or more Constraints which affect the validity of the Permission - it only becomes effective if all of the referred Constraints are true (OPTIONAL). For example; the Action play is only permitted for a certain period of time.</li>
+<li><code>Duty</code>: the Permission MAY refer to one or more Duty entities that indicate a requirement that SHOULD be fulfilled in return for receiving the Permission (OPTIONAL)</li>
 </ul>
 	
-<p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the Ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
+<p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset http//example.com/game:9090, stating that the ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
 
  <pre class="example highlight hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
@@ -772,18 +772,18 @@ which database the index outcome should be stored in.</p>
 <section id="prohibition">
 <h3>Prohibition</h3>
 
-<p>The <code>Prohibition</code> entity indicates the <code>Action</code>s that are prohibited to be performed on the  <code>Asset</code>.
-<p>The <code>Prohibition</code> entity has the following relations:</p>
+<p>The Prohibition entity indicates the Actions that are prohibited to be performed on the Asset.
+<p>The Prohibition entity has the following relations:</p>
 <ul>
-<li><code>Asset</code>: the <code>Prohibition</code> entity MUST refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the <code>Action</code> is prohibited (REQUIRED) (Note: this is after the Rule has folowed the processing models defined in the <a href="#structure">Policy Structure</a> section.)</li>
-<li><code>Action</code>: the <code>Prohibition</code> entity MUST refer to <em>exactly one</em> <code>Action</code> that is prohibited (REQUIRED)</li>
-<li><code>Party</code>: the <code>Prohibition</code> MAY refer to one or more <code>Party</code> entities linked via the <code>Role</code> entity (see Section 2.3.1) (OPTIONAL)</li>
+<li><code>Asset</code>: the Prohibition entity MUST refer to an Asset (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the Action is prohibited (REQUIRED) (Note: this is after the Rule has folowed the processing models defined in the <a href="#structure">Policy Structure</a> section.)</li>
+<li><code>Action</code>: the Prohibition entity MUST refer to <em>exactly one</em> Action that is prohibited (REQUIRED)</li>
+<li><code>Party</code>: the Prohibition MAY refer to one or more Party entities linked via the Role entity (see Section 2.3.1) (OPTIONAL)</li>
     
-    <li><code>Constraint</code>: the <code>Prohibition</code> MAY refer to one or more Constraints which affect the validity of the Prohibition - it only becomes effective if all of the referred Constraints are true (OPTIONAL). For example; the Action display is only prohibited for a certain country.</li>
+    <li><code>Constraint</code>: the Prohibition MAY refer to one or more Constraints which affect the validity of the Prohibition - it only becomes effective if all of the referred Constraints are true (OPTIONAL). For example; the Action display is only prohibited for a certain country.</li>
     
 </ul>
 
-<p><b>Example Use Case</b>: The owner and assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between permissions and prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
+<p><b>Example Use Case</b>: The owner and Assigner of a target Asset http://example.com/photoAlbum:55 needs an Agreement Policy expressing with both a Permission and a Prohibition. Then Assigner Party http://example.com/MyPix:55 assigns the Permission display to the Assignee Party http://example.com/assignee:55 at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between Permissions and Prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
 
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
@@ -811,28 +811,28 @@ which database the index outcome should be stored in.</p>
 <section id="duty">
 <h3>Duty</h3>
 
-<p>A <code>Permission</code> entity MAY include a <code>Duty</code> entity that indicates a requirement that MUST be satisfied in order to undertake the <code>Permission</code>. A <code>Duty</code> MUST only be associated with a <code>Permission</code>. </p>
+<p>A Permission entity MAY include a Duty entity that indicates a requirement that MUST be satisfied in order to undertake the Permission. A Duty MUST only be associated with a Permission. </p>
     
-    <p>The <code>Duty</code> entity contains the following attributes:</p>
+    <p>The Duty entity contains the following attributes:</p>
 <ul>
-<li><code>uid</code>: a unique identification for this <code>Duty</code>. Used to refer a single <code>Duty</code> to multiple <code>Permission</code> entities (OPTIONAL)</li>
+<li><code>uid</code>: a unique identification for this Duty. Used to refer a single Duty to multiple Permission entities (OPTIONAL)</li>
 </ul>
 <p>The <code>Duty</code> entity has the following relations:</p>
 <ul>
 <li><code>Action</code>: indicates the requirement that MUST be performed (REQUIRED). Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
-<li><code>Party</code>: a <code>Duty</code> MAY refer to <code>Party</code> entities with different <code>Role</code>s. If no explicit <code>Party</code> is linked to as <code>assignee</code> or <code>assigner</code>, the <code>Parties</code> with the respective <code>Role</code>s are taken from the referring <code>Permission</code>. (OPTIONAL)</li>
-<li><code>Asset</code>: a <code>Duty</code> entity MAY refer to an <code>Asset</code> (where at least one, and only one, <code>relation</code> value is <code>target</code>) related to satisfying the <code>Duty</code>. (OPTIONAL) For example, a <code>nextPolicy</code> <code>Action</code> must be linked to the identifier of a target policy <code>Asset</code>.</li>
+<li><code>Party</code>: a Duty MAY refer to Party entities with different Roles. If no explicit Party is linked to as Assignee or Assigner, the Parties with the respective Roles are taken from the referring Permission. (OPTIONAL)</li>
+<li><code>Asset</code>: a Duty entity MAY refer to an Asset (where at least one, and only one, <code>relation</code> value is <code>target</code>) related to satisfying the Duty. (OPTIONAL) For example, a <code>nextPolicy</code> Action must be linked to the identifier of a target Policy Asset.</li>
 
-    <li><code>Constraint</code>: a <code>Duty</code> MAY refer to one or more Constraints which affect the fulfillment of the Duty - it is only fulfilled if all of the referred Constraints are true (OPTIONAL). For example; the Duty Action payAmount is only fulfilled if a specific amount is paid.
+    <li><code>Constraint</code>: a Duty MAY refer to one or more Constraints which affect the fulfillment of the Duty - it is only fulfilled if all of the referred Constraints are true (OPTIONAL). For example; the Duty Action payAmount is only fulfilled if a specific amount is paid.
 </li>
        
 </ul>
     
-    <p>If a <code>Permission</code> refers to several <code>Duty</code> entities, <em>all of them</em> MUST be satisfied for the <code>Permission</code> to be undertaken. If several <code>Permission</code> entities refer to one <code>Duty</code>, then the Duty only has to be satisfied <em>once</em> for all the <code>Permission</code> entities.</p>
+    <p>If a Permission refers to several Duty entities, <em>all of them</em> MUST be satisfied for the Permission to be undertaken. If several Permission entities refer to one Duty, then the Duty only has to be satisfied <em>once</em> for all the Permission entities.</p>
     
-<p>Even though a <code>Duty</code> entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the <code>Duty</code> <code>Action</code> MUST be performed. Such business rules MAY be expressed through additional <code>Constraint</code>s.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid, as different business rules may apply such as montly invoicing.</p>
+<p>Even though a Duty entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid, as different business rules may apply such as montly invoicing.</p>
     
-<p><b>Example Use Case</b>: The Party <code>http://example.com/assigner:sony</code> makes and <code>Offer</code> to <code>Play</code> the music file <code>http://example.com/music/1999.mp3</code>. There are two <code>Duties</code> that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this <code>http://www.w3.org/ns/odrl/2/policyUsage</code> must not have occured yet.
+<p><b>Example Use Case</b>: The Party http://example.com/assigner:sony makes and Offer to play the music file http://example.com/music/1999.mp3. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this http://www.w3.org/ns/odrl/2/policyUsage must not have occured yet.
 </p>
 
 
@@ -868,7 +868,7 @@ which database the index outcome should be stored in.</p>
     
 
 
-<p><b>Example Use Case</b>: The Party <code>http://example.com/assigner:77</code> needs to set a Privacy Policy for some data about it. The target Asset <code>http://example.com/personal-data:77</code> of this policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
+<p><b>Example Use Case</b>: The Party http://example.com/assigner:77 needs to set a Privacy Policy for some data about it. The target Asset http://example.com/personal-data:77 of this Policy is personal data, and the Assignee http://example.com/gov:health:au is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the Assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
 
 
 
@@ -906,14 +906,14 @@ which database the index outcome should be stored in.</p>
 <h3>Action</h3>
 
 
-<p>The <code>Action</code> entity (when related to a <code>Permission</code> entity) indicates the operations (e.g. <code>play</code>, <code>copy</code>, etc.) that the <code>assignee</code> (i.e. the consumer) is <em>permitted</em> to perform on the related <code>Asset</code> linked to by <code>Permission</code>. When related to a <code>Prohibition</code>, the <code>Action</code> entity indicates the operations that the <code>assignee</code> (again the consumer) is <em>prohibited</em> to perform on the <code>Asset</code> linked to by <code>Prohibition</code>. Analogously, when related to a <code>Duty</code>, it indicates the operation to be performed.</p>
-<p><code>Action</code> contains the following attribute:</p>
+<p>The Action entity (when related to a Permission entity) indicates the operations (e.g., <code>play</code>, <code>copy</code>, etc.) that the Assignee (i.e., the consumer) is <em>permitted</em> to perform on the related Asset linked to by Permission. When related to a Prohibition, the Action entity indicates the operations that the Assignee (again the consumer) is <em>prohibited</em> to perform on the Asset linked to by Prohibition. Analogously, when related to a Duty, it indicates the operation to be performed.</p>
+<p>Action contains the following attribute:</p>
 <ul>
-<li><code>name</code>: indicates the <code>Action</code> entity term (REQUIRED)</li>
+<li><code>name</code>: indicates the Action entity term (REQUIRED)</li>
 </ul>
-<p>As its value, the <code>name</code> attribute SHOULD take one of a set of <code>Action</code> <em>names</em> which are formally defined in Profiles. The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) profiles to capture additional and refined semantics.</p>
+<p>As its value, the <code>name</code> attribute SHOULD take one of a set of Action <em>names</em> which are formally defined in Profiles. The ODRL vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) Profiles to capture additional and refined semantics.</p>
 
-<p><b>Example Use Case</b>: The Party needs to define an Offer policy granting a permission about the target Asset <code>http://example.com/music:1012</code>, namely the permission to play the Asset.</p> 
+<p><b>Example Use Case</b>: The Party needs to define an Offer policy granting a Permission about the target Asset http://example.com/music:1012, namely the permission to play the Asset.</p> 
 
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
@@ -933,11 +933,11 @@ which database the index outcome should be stored in.</p>
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>The <code>Constraint</code> entity indicates limits and restrictions to the Permission, the Prohibition and the Duty entity. Constraints express a rule for comparing two operands by one operator. If the two operands match the result of the constraint is <b>TRUE</b>.</p>
+    <p>The Constraint entity indicates limits and restrictions to the Permission, the Prohibition and the Duty entities. Constraints express a Rule for comparing two operands by one operator. If the two operands match the result of the Constraint is <b>true</b>.</p>
         <p>
        For example, the &#8220;number of usages&#8221; (<code>leftOperand</code>) must be &#8220;smaller than&#8221; (<code>operator</code>) the &#8220;number 10&#8221; (<code>rightOperand</code>).</p>
        
-<p>If multiple <code>Constraint</code> entities are linked to the same <code>Permission</code>, <code>Prohibition</code>, or <code>Duty</code> entity, then all of the <code>Constraint</code> entities MUST be satisfied. That is, all the <code>Constraint</code> entities are (boolean) <em>and</em>ed. In the case where the same <code>Constraint</code> is repeated, then these MUST be represented as a single <code>Constraint</code> entity using an appropriate <code>operator</code> value (for example, <code>isAnyOf</code>).</p>
+<p>If multiple Constraint entities are linked to the same Permission, Prohibition, or Duty entity, then all of the Constraint entities MUST be satisfied. That is, all the Constraint entities are (boolean) <em>and</em>ed. In the case where the same Constraint is repeated, then these MUST be represented as a single Constraint entity using an appropriate <code>operator</code> value (for example, <code>isAnyOf</code>).</p>
        
 <p>The <code>Constraint</code> entity contains the following attributes:</p>
 <ul>
@@ -956,14 +956,14 @@ which database the index outcome should be stored in.</p>
         </p>
     
     <p>The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. </p>
-    <p>The actual value of the constraint that is to be compared to the <code>leftOperand</code> is either represented with the <code>rightOperand</code> or <code>rightOperandReference</code>. The <code>rightOperand</code> represents the literal value (such as "10" or "http://example.com/c100") and <code>rightOperandReference</code> represents a URI that MUST be dereferenced to obtain the actual value. Only one of these MUST appear in the constraint.  </p>
+    <p>The actual value of the constraint that is to be compared to the <code>leftOperand</code> is either represented with the <code>rightOperand</code> or <code>rightOperandReference</code>. The <code>rightOperand</code> represents the literal value (such as "10" or "http://example.com/c100") and <code>rightOperandReference</code> represents a URI that MUST be dereferenced to obtain the actual value. Only one of these MUST appear in the Constraint.  </p>
         
         <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;.</p>
 
         
-<p>The <code>status</code> provides the current value of the <code>Constraint</code> variable (i.e. current value of <code>leftOperand</code>). This is useful in cases where the current status of <code>Constraint</code>s needs to be captured and expressed in the ODRL Information Model.</p>
+<p>The <code>status</code> provides the current value of the Constraint variable (i.e. current value of <code>leftOperand</code>). This is useful in cases where the current status of Constraints needs to be captured and expressed in the ODRL Information Model.</p>
 
-<p><b>Example Use Case</b>: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential assignee may only offer the display Permission to downstream consumers.</p>
+<p><b>Example Use Case</b>: The Party http://example.com/myPix:6161 wants to assign the Permission distribute directly to the potential buyer of the Permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential Assignee may then distribute the target Asset http://example.com/wallpaper:1234 according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential Assignee may only offer the display Permission to downstream consumers.</p>
 
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
@@ -1022,7 +1022,7 @@ which database the index outcome should be stored in.</p>
     <section id="profile-motivation">
     <h3>Motivation</h3>
         
-<p>The ODRL Information Model serves as a framework to express Policies and the ODRL Vocabulary [[!vocab-odrl]] provides a broad range of common actions for Permissions, Prohibition, Duties as well as Policy Types, Constraint names, Asset relations, and Party roles. For communities that implement ODRL, the entire ODRL Information Framework and the entire Vocabulary would be too onerous when they will typically have very specific needs, as well as needs not covered by the ODRL vocabulary. </p>
+<p>The ODRL Information Model serves as a framework to express Policies and the ODRL vocabulary [[!vocab-odrl]] provides a broad range of common actions for Permissions, Prohibition, Duties as well as Policy Types, Constraint names, Asset relations, and Party roles. For communities that implement ODRL, the entire ODRL Information Framework and the entire Vocabulary would be too onerous when they will typically have very specific needs, as well as needs not covered by the ODRL vocabulary. </p>
 <p>In these common cases, it is strongly recommended that a community create and formally document an ODRL Profile. An ODRL Profile will directly serve the communities needs by excluding features of the ODRL Information Model that they do not require (for example, inheritance) and specifying only the terms of the ODRL Vocabulary they wish to support. In addition, the ODRL Profile may include additional vocabulary terms specific to their community.</p>
         <p>The ODRL Profile may also include specific implementation details on how to determine the status and processing of Rules and Constraints. For example, the ODRL Profile may require the use of a thrid-party time-service to ensure temporal constraints are meet correctly (and will document the API details etc), or document the API to access values that need to be compared to the ODRL expression values (such as what location is the asset currently being used in).</p>
     </section>
@@ -1031,7 +1031,7 @@ which database the index outcome should be stored in.</p>
     <h3>Requirements</h3>
       
 <p>
-    The <code>profile</code> attribute in the <code>Policy</code> entity is used to indicate the identifier (URI) of the ODRL Profile for which the policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile and all the constraints in the ODRL Profile MUST apply to the policy expression. If a consuming system does not understand the ODRL Profile URI, then it MAY continue processing the policy expression, but it SHOULD NOT assume it has interpreted the policy expression correctly. </p>
+    The <code>profile</code> attribute in the <code>Policy</code> entity is used to indicate the identifier (URI) of the ODRL Profile for which the Policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile and all the constraints in the ODRL Profile MUST apply to the Policy expression. If a consuming system does not understand the ODRL Profile URI, then it MAY continue processing the Policy expression, but it SHOULD NOT assume it has interpreted the Policy expression correctly. </p>
     
     <p>If multiple ODRL Profiles are required, then it is recommended that a new identifier SHOULD be created to identify the combination of Profiles (and document the combined Profiles).</p>
 <p>
@@ -1058,9 +1058,9 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
     <ul>
     <li>which features of the ODRL Information Model were supported,</li>
     <li>the supported policy types,</li>
-    <li>the exact list of actions to be supported for Permissions,</li>  
+    <li>the exact list of Actions to be supported for Permissions,</li>  
     <li>more refined definitions of some ODRL vocabulary terms, and</li>
-    <li>additional actions and constraints (specific to the News industry).</li>
+    <li>additional Actions and Constraints (specific to the News industry).</li>
 </ul>
     
     <p>The Open Mobile Alliance (OMA) developed a comprehensive ODRL Profile for the mobile community. Although it was based on the ODRL Version 1.1 specification [[odrl]], the documentation included detailed specifications on the ODRL vocabulary to be supported, new and refined terms, a protocol to exchange ODRL Expressions (over mobile phones), and the relevant encoding schemas. The documentation is available here [[oma-profile]].</p>
@@ -1081,7 +1081,7 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
     
 <section id="extended-relations">
 <h3>Extended Relations</h3>
-<p><code>Extended Relations</code> may tie <code>Permission</code>, <code>Prohibition</code>, <code>Duty</code>, and <code>Constraint</code> entities together with an <code>AND</code>, <code>OR</code> or <code>XOR</code> relationship. Only entities of the same type can be linked with this model. For example, a <code>Permission</code> and <code>Prohibition</code> cannot be linked together within this model. The Extended Relations model supports the following attribute:</p>
+<p><code>Extended Relations</code> may tie Permission, Prohibition, Duty, and Constraint entities together with an <code>AND</code>, <code>OR</code> or <code>XOR</code> relationship. Only entities of the same type can be linked with this model. For example, a Permission and Prohibition cannot be linked together within this model. The Extended Relations model supports the following attribute:</p>
 <ul>
 <li><code>operation</code>: may be set with <em>one</em> of the mathematical values <code>AND</code>, <code>OR</code> and <code>XOR</code>. (<code>OR</code> is the default if not specified.)</li>
 </ul>
@@ -1098,29 +1098,29 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
 </tr>
 <tr>
 <td><code>OR</code></td>
-<td>The related party may perform <em>any</em> (<em>at least</em>) one of the <code>Action</code>s</td>
-<td>The related party MAY NOT perform <em>at least</em> one of the <code>Action</code>s</td>
-<td>The related party MUST perform <em>at least</em> one of the <code>Action</code>s</td>
-<td>The related <code>Permission</code>/<code>Prohibition</code>/<code>Duty</code> is restricted by <em>at least</em> one of the <code>Constraint</code>s</td>
+<td>The related Party may perform <em>any</em> (<em>at least</em>) one of the Actions</td>
+<td>The related Party MAY NOT perform <em>at least</em> one of the Actions</td>
+<td>The related Party MUST perform <em>at least</em> one of the Actions</td>
+<td>The related Permission/Prohibition/Duty is restricted by <em>at least</em> one of the Constraints</td>
 </tr>
     
 <tr>
 <td><code>AND</code></td>
-<td>The related party MUST perform <em>all</em> of the <code>Action</code>s</td>
-<td>The related party MAY NOT perform <em>all</em> of the <code>Action</code>s</td>
-<td>The related party MUST perform <em>all</em> of the <code>Action</code>s</td>
-<td>The related <code>Permission</code>/<code>Prohibition</code>/<code>Duty</code> is restricted by <em>all</em> of the <code>Constraint</code>s</td>
+<td>The related Party MUST perform <em>all</em> of the Actions</td>
+<td>The related Party MAY NOT perform <em>all</em> of the Actions</td>
+<td>The related Party MUST perform <em>all</em> of the Actions</td>
+<td>The related Permission/Prohibition/Duty is restricted by <em>all</em> of the Constraints</td>
 </tr>
 <tr>
 <td><code>XOR</code></td>
-<td>The related party MAY perform only <em>one</em> of the <code>Action</code>s</td>
-<td>The related party MAY NOT perform only <em>one</em> of the <code>Action</code>s</td>
-<td>The related party MUST perform only <em>one</em> of the <code>Action</code>s</td>
-<td>The related <code>Permission</code>/<code>Prohibition</code>/<code>Duty</code> is restricted by only <em>one</em> of the <code>Constraint</code>s.</td>
+<td>The related Party MAY perform only <em>one</em> of the Actions</td>
+<td>The related Party MAY NOT perform only <em>one</em> of the Actions</td>
+<td>The related Party MUST perform only <em>one</em> of the Actions</td>
+<td>The related Permission/Prohibition/Duty is restricted by only <em>one</em> of the Constraints.</td>
 </tr>
 </tbody>
 </table>
-<p>Note that Extended Relations are not needed to assign two or more <code>Permission</code>s to a <code>Party</code> entity. In this case simply use as many <code>Assignee</code> relations between <code>Party</code> and <code>Permission</code> as needed.</p>
+<p>Note that Extended Relations are not needed to assign two or more Permissions to a Party entity. In this case simply use as many Assignee relations between Party and Permission as needed.</p>
     
 </section>
    
