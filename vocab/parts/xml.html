@@ -1,7 +1,7 @@
 <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the URIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
 
 <div class="note">
-<p>The (editors draft) ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
+<p>The (editors draft) ODRL XML Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
 </div>
 
 <p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
@@ -164,7 +164,13 @@
 
 <section>   
     
-<h2>XML Linking</h2>    
+<h2>XML Linking</h2>  
+    
+    <div class="issue">
+    <p>At Risk: The need for id/idref is now not required since the ODRL Information Model supports Policy-level Assets, Parties, and Actions. This feature maybe removed.</p>
+ 
+</div>
+    
 <p>To support repeating the same element content across Permissions and Prohibitions, the Asset, Party, Constraint, Action, and Duty elements support the xml id and idref attributes. Any of these element that has been identified using the id attribute can then be referred to by an element with the same name using the idref attribute. In this case, the referring element must have no other content. </p>
     <p>As shown in the below example, the Prohibition refers to elements defined in the Permission, except for the Constraint element. In this case, the assignee can play the music asset in Italy but not in France.</p>
     
@@ -199,6 +205,37 @@
 </div>
     <p>Note that there is an important distinction when using this feature with the Duty element which also has the uid attribute. The uid attribute is used to refer to the same Duty from multiple Permissions. In this case the Duty has to be performed only once to gain access to all the Permissions. When using the id and idref attributes then the semantics change as in this case the Duty must be performed for each time it is referenced (potentially, many times). Note that the use of the uid and id attribute for the same Duty element is not permitted.</p>
 </section>
+
+<section>
+<h2>Constraint Relations</h2>
+<p>To support constraint relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its "#id".</p>
+ <p>ODRL XML processing systems MUST detect the use of "#id" in the name and rightOperand in Constraints. If detected, the processing model for Constraint relations (defined in [[!odrl-model]]) MUST then be followed.</p>
+<p>The below example shows two constraints defined at the Policy-level with ids "C1" and C2". The Constraint in the permission refers to these using the "#C1" and "#C2" values.</p>   
+    
+<pre class="example highlight xml">
+&lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
+                type="http://www.w3.org/ns/odrl/2/Offer">
+    &lt;o:party uid="http://example.com/billie"
+             function="http://www.w3.org/ns/odrl/2/assignee"/>
+    &lt;o:permission>
+        &lt;o:asset uid="http://example.com/music:4545" 
+                 relation="http://www.w3.org/ns/odrl/2/target"/>
+        &lt;o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
+        &lt;o:constraint name="#C1" 
+                      operator="http://www.w3.org/ns/odrl/2/xor" 
+                      rightOperand="#C2"/>
+    &lt;/o:permission> 
+    &lt;o:constraint id="C1" name="http://www.w3.org/ns/odrl/2/spatial" 
+                  operator="http://www.w3.org/ns/odrl/2/eq" 
+                  rightOperand="http://vocab.getty.edu/tgn/1000080"/>
+    &lt;o:constraint id="C2" name="http://www.w3.org/ns/odrl/2/spatial" 
+                  operator="http://www.w3.org/ns/odrl/2/eq" 
+                 rightOperand="http://vocab.getty.edu/tgn/1000090"/>
+&lt;/o:Policy>
+</pre>
+
+</section>
+
 <section>
 <h2>Inline Assets</h2>
   <p>In some scenarios, the Asset of an ODRL Policy maybe also be XML or HTML markup. In these specific cases, it makes sense to enable the ODRL Policy to be articulated as part of the Asset and to support abbreviated expressions. All default values should be assumed. The preferred method of linking is to utilise the XML ID attribute. The source Asset markup may be identified with an ID attribute and the ODRL Asset element can then refer to this ID as the UID (as a URI hash fragment). An example is shown below.</p>  

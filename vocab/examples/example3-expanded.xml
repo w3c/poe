@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
-                type="http://www.w3.org/ns/odrl/2/Agreement">
-    <o:asset uid="http://example.com/music:4545" 
-             relation="http://www.w3.org/ns/odrl/2/target"/>
-    <o:party uid="http://example.com/sony"
-             function="http://www.w3.org/ns/odrl/2/assigner"/>
+                type="http://www.w3.org/ns/odrl/2/Offer">
     <o:party uid="http://example.com/billie"
              function="http://www.w3.org/ns/odrl/2/assignee"/>
     <o:permission>
-        <o:action name="http://www.w3.org/ns/odrl/2/play"/>
-        <o:duty>
-            <o:action name="http://www.w3.org/ns/odrl/2/acceptTracking"/>
-        </o:duty>
-    </o:permission>
-    <o:permission>
+        <o:asset uid="http://example.com/music:4545" 
+                 relation="http://www.w3.org/ns/odrl/2/target"/>
         <o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
-        <o:constraint name="http://www.w3.org/ns/odrl/2/spatial" 
-                      operator="http://www.w3.org/ns/odrl/2/eq" 
-                      rightOperand="http://vocab.getty.edu/tgn/1000080"/>
-        <o:duty>
-            <o:action name="http://www.w3.org/ns/odrl/2/compensate"/>
-            <o:constraint name="http://www.w3.org/ns/odrl/2/payAmount"
-                operator="http://www.w3.org/ns/odrl/2/eq"
-                rightOperand="5000.00" 
-                unit="http://cvx.iptc.org/iso4217a:EUR"/>
-        </o:duty>
-    </o:permission>  
+        <o:constraint name="#C1" 
+                      operator="http://www.w3.org/ns/odrl/2/xor" 
+                      rightOperand="#C2"/>
+    </o:permission> 
+    <o:constraint id="C1" name="http://www.w3.org/ns/odrl/2/spatial" 
+                  operator="http://www.w3.org/ns/odrl/2/eq" 
+                  rightOperand="http://vocab.getty.edu/tgn/1000080"/>
+    <o:constraint id="C2" name="http://www.w3.org/ns/odrl/2/spatial" 
+                  operator="http://www.w3.org/ns/odrl/2/eq" 
+                 rightOperand="http://vocab.getty.edu/tgn/1000090"/>
 </o:Policy>

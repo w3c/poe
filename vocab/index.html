@@ -1333,7 +1333,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
         <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the URIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
 
 <div class="note">
-<p>The (editors draft) ODRL XML Schema is shown in the <a href="#xmlschema">Appendix.</a> and can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
+<p>The (editors draft) ODRL XML Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
 </div>
 
 <p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
@@ -1496,7 +1496,13 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <section>   
     
-<h2>XML Linking</h2>    
+<h2>XML Linking</h2>  
+    
+    <div class="issue">
+    <p>At Risk: The need for id/idref is now not required since the ODRL Information Model supports Policy-level Assets, Parties, and Actions. This feature maybe removed.</p>
+ 
+</div>
+    
 <p>To support repeating the same element content across Permissions and Prohibitions, the Asset, Party, Constraint, Action, and Duty elements support the xml id and idref attributes. Any of these element that has been identified using the id attribute can then be referred to by an element with the same name using the idref attribute. In this case, the referring element must have no other content. </p>
     <p>As shown in the below example, the Prohibition refers to elements defined in the Permission, except for the Constraint element. In this case, the assignee can play the music asset in Italy but not in France.</p>
     
@@ -1531,6 +1537,37 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </div>
     <p>Note that there is an important distinction when using this feature with the Duty element which also has the uid attribute. The uid attribute is used to refer to the same Duty from multiple Permissions. In this case the Duty has to be performed only once to gain access to all the Permissions. When using the id and idref attributes then the semantics change as in this case the Duty must be performed for each time it is referenced (potentially, many times). Note that the use of the uid and id attribute for the same Duty element is not permitted.</p>
 </section>
+
+<section>
+<h2>Constraint Relations</h2>
+<p>To support constraint relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its "#id".</p>
+ <p>ODRL XML processing systems MUST detect the use of "#id" in the name and rightOperand in Constraints. If detected, the processing model for Constraint relations (defined in [[!odrl-model]]) MUST then be followed.</p>
+<p>The below example shows two constraints defined at the Policy-level with ids "C1" and C2". The Constraint in the permission refers to these using the "#C1" and "#C2" values.</p>   
+    
+<pre class="example highlight xml">
+&lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
+                type="http://www.w3.org/ns/odrl/2/Offer">
+    &lt;o:party uid="http://example.com/billie"
+             function="http://www.w3.org/ns/odrl/2/assignee"/>
+    &lt;o:permission>
+        &lt;o:asset uid="http://example.com/music:4545" 
+                 relation="http://www.w3.org/ns/odrl/2/target"/>
+        &lt;o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
+        &lt;o:constraint name="#C1" 
+                      operator="http://www.w3.org/ns/odrl/2/xor" 
+                      rightOperand="#C2"/>
+    &lt;/o:permission> 
+    &lt;o:constraint id="C1" name="http://www.w3.org/ns/odrl/2/spatial" 
+                  operator="http://www.w3.org/ns/odrl/2/eq" 
+                  rightOperand="http://vocab.getty.edu/tgn/1000080"/>
+    &lt;o:constraint id="C2" name="http://www.w3.org/ns/odrl/2/spatial" 
+                  operator="http://www.w3.org/ns/odrl/2/eq" 
+                 rightOperand="http://vocab.getty.edu/tgn/1000090"/>
+&lt;/o:Policy>
+</pre>
+
+</section>
+
 <section>
 <h2>Inline Assets</h2>
   <p>In some scenarios, the Asset of an ODRL Policy maybe also be XML or HTML markup. In these specific cases, it makes sense to enable the ODRL Policy to be articulated as part of the Asset and to support abbreviated expressions. All default values should be assumed. The preferred method of linking is to utilise the XML ID attribute. The source Asset markup may be identified with an ID attribute and the ODRL Asset element can then refer to this ID as the UID (as a URI hash fragment). An example is shown below.</p>  
@@ -1563,7 +1600,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <div class="issue">
     <p>The ODRL JSON Schema has not been updated to reflect the current vocabulary changes.</p>
-    <p>The complete ODRL JSON Schema is shown in the <a href="#jsonschema">Appendix.</a> and can be <a href="">downloaded</a>.</p>
+    <p>The ODRL JSON Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.json">downloaded</a>.</p>
 </div>
 
 <p>ODRL can express complex contracts and policies which may require quite sophisticated systems to evaluate contractual permissions, restrictions and duties. However, the ODRL in JSON encoding is designed to be lightweight and requires only standard JSON software to generate or parse the representation.</p>
@@ -1596,353 +1633,18 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     </div>    </section>
         
         
+<!-- 
 <section class="appendix normative" id="xmlschema">
-<h2>ODRL XML Schema</h2>
-      <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;xs:schema xmlns:o=&quot;http://www.w3.org/ns/odrl/2/&quot; version=&quot;2.2&quot; 
-           xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
-           targetNamespace=&quot;http://www.w3.org/ns/odrl/2/&quot;
-           elementFormDefault=&quot;qualified&quot; attributeFormDefault=&quot;unqualified&quot;&gt;
-    &lt;xs:annotation&gt;
-        &lt;xs:documentation&gt;
-            This is the XML Schema for ODRL Version 2.2 Working Draft
-            Copyright © 2016 W3C (MIT, ERCIM, Keio, Beihang).
-            W3C liability, trademark and document use rules apply.
-        &lt;/xs:documentation&gt;
-    &lt;/xs:annotation&gt;
-    &lt;xs:element name=&quot;Policy&quot; type=&quot;o:Policy&quot;/&gt;
-    &lt;xs:complexType name=&quot;Policy&quot;&gt;
-                &lt;xs:choice minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;&gt;
-                    &lt;xs:element ref=&quot;o:asset&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:element ref=&quot;o:party&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:element ref=&quot;o:action&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:element ref=&quot;o:permission&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:element ref=&quot;o:prohibition&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; 
-                                                                   maxOccurs=&quot;unbounded&quot;/&gt;
-                &lt;/xs:choice&gt;
-                &lt;xs:attribute name=&quot;uid&quot; type=&quot;o:URIQnameQcode&quot; use=&quot;required&quot;/&gt;
-                &lt;xs:attribute name=&quot;type&quot; type=&quot;o:URIQnameQcode&quot; use=&quot;required&quot;/&gt;
-                &lt;xs:attribute name=&quot;conflict&quot; type=&quot;o:ConflictTerm&quot;/&gt;
-                &lt;xs:attribute name=&quot;undefined&quot; type=&quot;o:UndefinedTerm&quot;/&gt;
-                &lt;xs:attribute name=&quot;inheritAllowed&quot; type=&quot;xs:boolean&quot;/&gt;
-                &lt;xs:attribute name=&quot;inheritFrom&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
-                &lt;xs:attribute name=&quot;inheritRelation&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
-                &lt;xs:attribute name=&quot;profile&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
-                &lt;xs:anyAttribute namespace=&quot;##other&quot; processContents=&quot;lax&quot;/&gt;     
-    &lt;/xs:complexType&gt;
-    
-    &lt;xs:element name=&quot;permission&quot; type=&quot;o:Permission&quot;/&gt;
-    &lt;xs:complexType name=&quot;Permission&quot;&gt;
-             &lt;xs:choice minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;&gt;
-                    &lt;xs:element ref=&quot;o:asset&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:element ref=&quot;o:action&quot; maxOccurs=&quot;unbounded&quot; /&gt;
-                    &lt;xs:element ref=&quot;o:constraint&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:element ref=&quot;o:party&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:element ref=&quot;o:duty&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-                    &lt;xs:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; 
-                                                               maxOccurs=&quot;unbounded&quot;/&gt;
-           &lt;/xs:choice&gt;
-           &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;        
-    &lt;/xs:complexType&gt;
-    
-    &lt;xs:element name=&quot;prohibition&quot; type=&quot;o:Prohibition&quot;/&gt; 
-    &lt;xs:complexType name=&quot;Prohibition&quot;&gt;
-        &lt;xs:choice minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;&gt;
-            &lt;xs:element ref=&quot;o:asset&quot;  maxOccurs=&quot;unbounded&quot;/&gt;
-            &lt;xs:element ref=&quot;o:action&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-            &lt;xs:element ref=&quot;o:constraint&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-            &lt;xs:element ref=&quot;o:party&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-            &lt;xs:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; 
-                                                          maxOccurs=&quot;unbounded&quot;/&gt;
-        &lt;/xs:choice&gt;
-        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
-    &lt;/xs:complexType&gt;
-    
-    &lt;xs:element name=&quot;duty&quot; type=&quot;o:Duty&quot;/&gt;
-    &lt;xs:complexType name=&quot;Duty&quot;&gt;
-        &lt;xs:choice minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;&gt;
-            &lt;xs:element ref=&quot;o:action&quot; minOccurs=&quot;0&quot;/&gt; &lt;!--Required Element--&gt;
-            &lt;xs:element ref=&quot;o:asset&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-            &lt;xs:element ref=&quot;o:constraint&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-            &lt;xs:element ref=&quot;o:party&quot;  minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-            &lt;xs:any namespace=&quot;##other&quot; processContents=&quot;lax&quot; minOccurs=&quot;0&quot; 
-                                                           maxOccurs=&quot;unbounded&quot;/&gt;
-        &lt;/xs:choice&gt;
-        &lt;xs:attribute name=&quot;uid&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
-        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
-    &lt;/xs:complexType&gt;
-    
-    &lt;xs:element name=&quot;asset&quot; type=&quot;o:Asset&quot;/&gt; 
-    &lt;xs:complexType name=&quot;Asset&quot;&gt;
-        &lt;xs:attribute name=&quot;uid&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
-        &lt;xs:attribute name=&quot;relation&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
-        &lt;xs:attribute name=&quot;scope&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
-        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
-    &lt;/xs:complexType&gt;
-    
-    &lt;xs:element name=&quot;party&quot; type=&quot;o:Party&quot;/&gt;
-    &lt;xs:complexType name=&quot;Party&quot;&gt;
-        &lt;xs:attribute name=&quot;uid&quot; type=&quot;o:URIQnameQcode&quot;/&gt; &lt;!--Required Attribute--&gt;
-        &lt;xs:attribute name=&quot;function&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
-        &lt;xs:attribute name=&quot;scope&quot; type=&quot;o:URIQnameQcode&quot;/&gt;
-        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
-    &lt;/xs:complexType&gt;
- 
-    &lt;xs:element name=&quot;action&quot; type=&quot;o:Action&quot;/&gt;
-    &lt;xs:complexType name=&quot;Action&quot;&gt;
-        &lt;xs:attribute name=&quot;name&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
-        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
-    &lt;/xs:complexType&gt;
-    
-    &lt;xs:element name=&quot;constraint&quot; type=&quot;o:Constraint&quot;/&gt;
-    &lt;xs:complexType name=&quot;Constraint&quot;&gt;
-        &lt;xs:attribute name=&quot;name&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--leftOperand - Required Attribute--&gt;
-        &lt;xs:attribute name=&quot;operator&quot; type=&quot;o:URIQnameQcode&quot; /&gt; &lt;!--Required Attribute--&gt;
-        &lt;xs:attribute name=&quot;rightOperand&quot; type=&quot;o:listOfValues&quot; /&gt; &lt;!--Required Attribute (if no rightOperandReference)--&gt;
-        &lt;xs:attribute name=&quot;rightOperandReference&quot; type=&quot;xs:anyURI&quot; /&gt; &lt;!--Required Attribute (if no rightOperand)--&gt;
-        &lt;xs:attribute name=&quot;dataType&quot; type=&quot;o:URIQnameQcode&quot; /&gt;
-        &lt;xs:attribute name=&quot;unit&quot; type=&quot;o:URIQnameQcode&quot; /&gt;
-        &lt;xs:attribute name=&quot;status&quot; type=&quot;xs:string&quot; /&gt;
-        &lt;xs:attributeGroup ref=&quot;o:idAttributes&quot;/&gt;
-    &lt;/xs:complexType&gt;
-    
-    &lt;xs:simpleType name=&quot;listOfValues&quot;&gt;
-        &lt;xs:list itemType=&quot;xs:string&quot;/&gt;
-    &lt;/xs:simpleType&gt;
-     
-    &lt;xs:simpleType name=&quot;ConflictTerm&quot;&gt;
-        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
-            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/perm&quot;/&gt;
-            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/prohibit&quot;/&gt;
-            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/invalid&quot;/&gt;
-        &lt;/xs:restriction&gt;
-    &lt;/xs:simpleType&gt;
-    
-    &lt;xs:simpleType name=&quot;UndefinedTerm&quot;&gt;
-        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
-            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/support&quot;/&gt;
-            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/ignore&quot;/&gt;
-            &lt;xs:enumeration value=&quot;http://www.w3.org/ns/odrl/2/invalid&quot;/&gt;
-        &lt;/xs:restriction&gt;
-    &lt;/xs:simpleType&gt;
-    
-    &lt;xs:simpleType name=&quot;URIQnameQcode&quot;&gt;
-        &lt;xs:union memberTypes=&quot;xs:anyURI xs:QName o:QCode&quot;/&gt;
-    &lt;/xs:simpleType&gt;
-    
-    &lt;xs:simpleType name=&quot;QCode&quot;&gt;
-        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
-            &lt;xs:pattern value=&quot;[^\s:]+:[^\s]+&quot;/&gt;
-        &lt;/xs:restriction&gt;
-        
-    &lt;/xs:simpleType&gt;
-    &lt;xs:attributeGroup name=&quot;idAttributes&quot;&gt;
-        &lt;xs:attribute name=&quot;id&quot; type=&quot;xs:ID&quot;/&gt;
-        &lt;xs:attribute name=&quot;idref&quot; type=&quot;xs:IDREF&quot;/&gt;
-        &lt;xs:anyAttribute namespace=&quot;##other&quot; processContents=&quot;lax&quot;/&gt;
-    &lt;/xs:attributeGroup&gt;
-&lt;/xs:schema&gt;
-</pre></section>
+ <h2>ODRL XML Schema</h2>
+       
+</section>
         
 <section class="appendix normative" id="jsonschema">
 <h2>ODRL JSON Schema</h2>
-       <pre>   {
-    &quot;type&quot;: &quot;object&quot;,
-    &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
-    &quot;title&quot;: &quot;ODRL JSON Schema&quot;,
-    &quot;description&quot;: &quot;JSON Schema for ODRL Version 2.2 Working Draft.&quot;,
-    &quot;id&quot;: &quot;http://www.w3.org/ns/odrl/2/jsonschema#&quot;,
-    &quot;definitions&quot;: {&quot;prohibdutytype&quot;: {
-        &quot;type&quot;: &quot;array&quot;,
-        &quot;items&quot;: {
-            &quot;type&quot;: &quot;object&quot;,
-            &quot;required&quot;: [&quot;action&quot;],
-            &quot;properties&quot;: {
-                &quot;assigner&quot;: {
-                    &quot;type&quot;: &quot;string&quot;,
-                    &quot;format&quot;: &quot;uri&quot;
-                },
-                &quot;assignee&quot;: {
-                    &quot;type&quot;: &quot;string&quot;,
-                    &quot;format&quot;: &quot;uri&quot;
-                },
-                &quot;assignee_scope&quot;: {
-                    &quot;type&quot;: &quot;string&quot;,
-                    &quot;format&quot;: &quot;uri&quot;
-                },
-                &quot;target&quot;: {
-                    &quot;type&quot;: &quot;string&quot;,
-                    &quot;format&quot;: &quot;uri&quot;
-                },
-                &quot;output&quot;: {
-                    &quot;type&quot;: &quot;string&quot;,
-                    &quot;format&quot;: &quot;uri&quot;
-                },
-                &quot;action&quot;: {
-                    &quot;type&quot;: &quot;string&quot;,
-                    &quot;format&quot;: &quot;uri&quot;
-                },
-                &quot;constraints&quot;: {
-                    &quot;type&quot;: &quot;array&quot;,
-                    &quot;items&quot;: {
-                        &quot;type&quot;: &quot;object&quot;,
-                        &quot;required&quot;: [
-                            &quot;name&quot;,
-                            &quot;operator&quot;,
-                            &quot;rightoperand&quot;
-                        ],
-                        &quot;properties&quot;: {
-                            &quot;name&quot;: {
-                                &quot;type&quot;: &quot;string&quot;,
-                                &quot;format&quot;: &quot;uri&quot;
-                            },
-                            &quot;operator&quot;: {
-                                &quot;type&quot;: &quot;string&quot;,
-                                &quot;format&quot;: &quot;uri&quot;
-                            },
-                            &quot;rightoperand&quot;: {&quot;type&quot;: &quot;string&quot;},
-                            &quot;rightoperanddatatype&quot;: {&quot;type&quot;: &quot;string&quot;},
-                            &quot;rightoperandunit&quot;: {&quot;type&quot;: &quot;string&quot;},
-                            &quot;status&quot;: {&quot;type&quot;: &quot;string&quot;}
-                        }
-                    }
-                }
-            },
-            &quot;patternProperties&quot;: {
-                &quot;^[a-z]+party&quot;: {
-                    &quot;type&quot;: &quot;string&quot;,
-                    &quot;format&quot;: &quot;uri&quot;
-                },
-                &quot;^[a-z]+_scope&quot;: {
-                    &quot;type&quot;: &quot;string&quot;,
-                    &quot;format&quot;: &quot;uri&quot;
-                }
-            }
-        }
-    }},
-    &quot;required&quot;: [
-        &quot;policyid&quot;,
-        &quot;policytype&quot;
-    ],
-    &quot;properties&quot;: {
-        &quot;policyid&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;format&quot;: &quot;uri&quot;
-        },
-        &quot;policytype&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;format&quot;: &quot;uri&quot;
-        },
-        &quot;conflict&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;enum&quot;: [
-                &quot;perm&quot;,
-                &quot;prohibit&quot;,
-                &quot;invalid&quot;
-            ]
-        },
-        &quot;undefined&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;enum&quot;: [
-                &quot;support&quot;,
-                &quot;ignore&quot;,
-                &quot;invalid&quot;
-            ]
-        },
-        &quot;inheritallowed&quot;: {&quot;type&quot;: &quot;boolean&quot;},
-        &quot;inheritfrom&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;format&quot;: &quot;uri&quot;
-        },
-        &quot;inheritrelation&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;format&quot;: &quot;uri&quot;
-        },
-        &quot;policyprofile&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;format&quot;: &quot;uri&quot;
-        },
-        &quot;permissions&quot;: {
-            &quot;type&quot;: &quot;array&quot;,
-            &quot;items&quot;: {
-                &quot;type&quot;: &quot;object&quot;,
-                &quot;required&quot;: [&quot;action&quot;],
-                &quot;properties&quot;: {
-                    &quot;assigner&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    },
-                    &quot;assigner_scope&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    },
-                    &quot;assignee&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    },
-                    &quot;assignee_scope&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    },
-                    &quot;target&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    },
-                    &quot;output&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    },
-                    &quot;action&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    },
-                    &quot;constraints&quot;: {
-                        &quot;type&quot;: &quot;array&quot;,
-                        &quot;items&quot;: {
-                            &quot;type&quot;: &quot;object&quot;,
-                            &quot;required&quot;: [
-                                &quot;name&quot;,
-                                &quot;operator&quot;,
-                                &quot;rightoperand&quot;
-                            ],
-                            &quot;properties&quot;: {
-                                &quot;name&quot;: {
-                                    &quot;type&quot;: &quot;string&quot;,
-                                    &quot;format&quot;: &quot;uri&quot;
-                                },
-                                &quot;operator&quot;: {
-                                    &quot;type&quot;: &quot;string&quot;,
-                                    &quot;format&quot;: &quot;uri&quot;
-                                },
-                                &quot;rightoperand&quot;: {&quot;type&quot;: &quot;string&quot;},
-                                &quot;rightoperanddatatype&quot;: {&quot;type&quot;: &quot;string&quot;},
-                                &quot;rightoperandunit&quot;: {&quot;type&quot;: &quot;string&quot;},
-                                &quot;status&quot;: {&quot;type&quot;: &quot;string&quot;}
-                            }
-                        }
-                    },
-                    &quot;duties&quot;: {&quot;$ref&quot;: &quot;#/definitions/prohibdutytype&quot;}
-                },
-                &quot;patternProperties&quot;: {
-                    &quot;^[a-z]+party&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    },
-                    &quot;^[a-z]+_scope&quot;: {
-                        &quot;type&quot;: &quot;string&quot;,
-                        &quot;format&quot;: &quot;uri&quot;
-                    }
-                }
-            }
-        },
-        &quot;prohibitions&quot;: {&quot;$ref&quot;: &quot;#/definitions/prohibdutytype&quot;}
-    }
- 
-}
-</pre> </section>
-    
-        <section class="appendix" id="deprecate">
+        </section>
+ -->
+        
+<section class="appendix" id="deprecate">
 <h2>Deprecated Terms</h2>
  
             <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td> <a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td> <a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td> <a href=""></a></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td> <a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td> <a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td> <a href=""></a></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td> <a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td> <a href=""></a></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td> <a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td> <a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td> <a href=""></a></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td> <a href=""></a></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td> <a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td> <a href=""></a></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td> <a href=""></a></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td> <a href=""></a></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td> <a href=""></a></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td> <a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td> <a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td> <a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td> <a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td> <a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td> <a href=""></a></td></tr></tbody></table>           
