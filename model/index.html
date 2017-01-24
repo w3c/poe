@@ -389,7 +389,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <li>If a Policy has the <code>conflict</code> attribute of <code>perm</code> and there are detected conflicts between a Permission and a Prohibition, then the Permission MUST overide the Prohibition.</li>
  <li>If a Policy has the <code>conflict</code> attribute of <code>prohibit</code> and there are detected conflicts between a Permission and a Prohibition, then the Prohibition MUST overide the Permission.</li>
   <li>If a Policy has the <code>conflict</code> attribute of <code>invalid</code> and there are detected conflicts between a Permission and a Prohibition, then the entire Policy MUST be processed as invalid .</li> 
- <li>If a Policy has the <code>conflict</code> attribute of both <code>perm</code> and  <code>prohibit</code> (for example, after a Policy merge) and there are detected conflicts between a Permission and a Prohibition, then the entire Policy MUST be processed as invalid .</li> 
+ <li>If a Policy has multiple <code>conflict</code> attribute values (for example, after a Policy merge) AND there are detected conflicts between a Permission and a Prohibition, then the entire Policy MUST be processed as invalid .</li> 
     </ol>
        
         
@@ -447,6 +447,19 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 
         <p>If the <code>undefined</code> attribute is not explicitly set, its default value of <code>invalid</code> SHALL be used.</p>
+        
+                
+<p>The processing model for undefined actions includes:</p>
+    <ol>
+     <li>If a Policy has the <code>undefined</code> attribute of <code>support</code> and there are actions in the Policy now known to the processing system, then the processing system MUST support these actions as part of the valid Policy.</li>
+    <li>If a Policy has the <code>undefined</code> attribute of <code>ignore</code> and there are actions in the Policy now known to the processing system, then the processing system MUST disregard these actions as part of the valid Policy.</li>
+    <li>If a Policy has the <code>undefined</code> attribute of <code>invalid</code> and there are actions in the Policy now known to the processing system, then the processing system MUST process the entire Policy as invalid.</li>
+     <li>If a Policy has multiple <code>undefined</code> attribute values (for example, after a Policy merge) AND there are actions in the Policy now known to the processing system, then the entire Policy MUST be processed as invalid.</li> 
+    </ol>
+       
+        
+        
+        
 
   <p><b>Example Use Case</b>: A Policy of type Set states that the Asset can be <i>recorded</i>. The processing system does not understand this Action, and since the <b>undefined</b> attribute is <b>invalid</b>, then the entire Policy is deemed invalid.</p>
         
