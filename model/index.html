@@ -383,7 +383,16 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </ul>
 <p>If the <code>conflict</code> attribute is not explicitly set, its default value of <code>invalid</code> will be used.</p>
 
-<p>In cases where both <code>perm</code> and <code>prohibit</code> are used in Policies, and that causes contradictory outcomes (ie the conflict cannot be resolved), then the outcome MUST be an <code>invalid</code> Policy.</p>
+        
+<p>The processing model for Policies conflict strategies includes:</p>
+    <ol>
+     <li>If a Policy has the <code>conflict</code> attribute of <code>perm</code> and there are detected conflicts between a Permission and a Prohibition, then the Permission MUST overide the Prohibition.</li>
+ <li>If a Policy has the <code>conflict</code> attribute of <code>prohibit</code> and there are detected conflicts between a Permission and a Prohibition, then the Prohibition MUST overide the Permission.</li>
+  <li>If a Policy has the <code>conflict</code> attribute of <code>invalid</code> and there are detected conflicts between a Permission and a Prohibition, then the entire Policy MUST be processed as invalid .</li> 
+ <li>If a Policy has the <code>conflict</code> attribute of both <code>perm</code> and  <code>prohibit</code> (for example, after a Policy merge) and there are detected conflicts between a Permission and a Prohibition, then the entire Policy MUST be processed as invalid .</li> 
+    </ol>
+       
+        
 	
 <p><b>Example Use Case</b>: Two Policies are associated to the same target Asset http://example.com/asset:1212. The first Policy http://example.com/policy:0001 allows to use the Asset. The second Policy http://example.com/policy:0002 allows for the display of the Asset, but it prohibits print. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the print Action is a subset of the use Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the use Permission will override the print Prohibition.</p>
 
