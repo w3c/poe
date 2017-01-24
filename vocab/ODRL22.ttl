@@ -296,7 +296,10 @@ odrl:
     skos:member :isPartOf ;
     skos:member :isAllOf ;
     skos:member :isAnyOf ;
-    skos:member :isNoneOf .
+    skos:member :isNoneOf ;
+    skos:member :or ;
+    skos:member :and ;
+    skos:member :xor .
 
 <http://www.w3.org/ns/odrl/2/#constraintRightOp>
     a skos:Collection ;
@@ -800,6 +803,24 @@ odrl:
 	skos:definition "Indicating that a given value is not equal to the right operand of the Constraint."@en ;
 	rdfs:label "Not equal to"@en .
 
+:or
+	a :Operator, owl:NamedIndividual ;
+	rdfs:isDefinedBy odrl: ;
+	skos:definition "Assuming that left and right operands are both Constraints, this Constraint is satisfied when any of them is satisfied."@en ;
+	rdfs:label "OR"@en .
+	
+:and
+	a :Operator, owl:NamedIndividual ;
+	rdfs:isDefinedBy odrl: ;
+	skos:definition "Assuming that left and right operands are both Constraints, this Constraint is satisfied when both of them are satisfied."@en ;
+	rdfs:label "AND"@en .
+
+:xor
+	a :Operator, owl:NamedIndividual ;
+	rdfs:isDefinedBy odrl: ;
+	skos:definition "Assuming that left and right operands are both Constraints, this Constraint is satisfied when only one of them is satisfied."@en ;
+	rdfs:label "XOR"@en .
+	
 ## LeftOperand
 
 :LeftOperand
