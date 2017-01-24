@@ -261,7 +261,6 @@ odrl:
     skos:member :fileFormat ;
     skos:member :industry ;
     skos:member :language ;
-    skos:member :languageAfter ;
     skos:member :media ;
     skos:member :meteredTime ;
     skos:member :payAmount ;
@@ -932,9 +931,9 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "File Format"@en ;
-	skos:definition "The file format of the Asset while the Action is exercised."@en ;
-	skos:note "Example: Only JPEG files may be taken for an Action."@en ;
-  skos:scopeNote "Non-Normative"@en .
+	skos:definition "The file format of the Asset after exercising the Action."@en ;
+	skos:note "Example: An asset may be transformed into JPEG format."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :industry
 	a :LeftOperand, owl:NamedIndividual ;
@@ -947,17 +946,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Language"@en ;
-	skos:definition "The main natural language of the Asset while the Action is exercised."@en ;
-	skos:note "Example: only with an Asset in Swedish the Action can be exercised. Must use [[bcp47]] codes for language values."@en .
-
-:languageAfter
-	a :LeftOperand, owl:NamedIndividual ;
-	rdfs:isDefinedBy odrl: ;
-	skos:broaderTransitive :language ;
-	rdfs:label "Language After Action"@en ;
 	skos:definition "The main natural language of the Asset after exercising the Action."@en ;
-	skos:note "Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values."@en ;
-  skos:scopeNote "Non-Normative"@en .
+	skos:note "Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values."@en .
   
 :media
 	a :LeftOperand, owl:NamedIndividual ;

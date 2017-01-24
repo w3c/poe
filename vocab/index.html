@@ -708,7 +708,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Instances of the LeftOperand class represent the left term in a Constraint.</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-leftOperand">leftOperand</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-absoluteSpatialAssetPosition">absoluteSpatialAssetPosition</a>, <a href="#term-absoluteTemporalAssetPosition">absoluteTemporalAssetPosition</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-languageAfter">languageAfter</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-namedGeoArea">namedGeoArea</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-relativeSpatialAssetPosition">relativeSpatialAssetPosition</a>, <a href="#term-relativeTemporalAssetPosition">relativeTemporalAssetPosition</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-unitOfCount">unitOfCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-absoluteSpatialAssetPosition">absoluteSpatialAssetPosition</a>, <a href="#term-absoluteTemporalAssetPosition">absoluteTemporalAssetPosition</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-namedGeoArea">namedGeoArea</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-relativeSpatialAssetPosition">relativeSpatialAssetPosition</a>, <a href="#term-relativeTemporalAssetPosition">relativeTemporalAssetPosition</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-unitOfCount">unitOfCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
 </table>
 </section><section id="term-leftOperand"><h3>Has Left Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The left operand in a constraint expression.</td></tr>
@@ -809,10 +809,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-fileFormat"><h3>File Format</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The file format of the Asset while the Action is exercised.</td></tr>
+<tr><th>Definition:</th> <td>The file format of the Asset after exercising the Action.</td></tr>
 <tr><th>Label:</th> <td>File Format</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/fileFormat">http://www.w3.org/ns/odrl/2/fileFormat</a></td></tr>
-<tr><th>Note:</th> <td>Example: Only JPEG files may be taken for an Action.</td></tr>
+<tr><th>Note:</th> <td>Example: An asset may be transformed into JPEG format.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -824,20 +824,11 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-language"><h3>Language</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The main natural language of the Asset while the Action is exercised.</td></tr>
+<tr><th>Definition:</th> <td>The main natural language of the Asset after exercising the Action.</td></tr>
 <tr><th>Label:</th> <td>Language</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/language">http://www.w3.org/ns/odrl/2/language</a></td></tr>
-<tr><th>Note:</th> <td>Example: only with an Asset in Swedish the Action can be exercised. Must use [[bcp47]] codes for language values.</td></tr>
-<tr><th>Narrower terms:</th> <td><a href="#term-languageAfter">languageAfter</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
-</table>
-</section><section id="term-languageAfter"><h3>Language After Action</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The main natural language of the Asset after exercising the Action.</td></tr>
-<tr><th>Label:</th> <td>Language After Action</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/languageAfter">http://www.w3.org/ns/odrl/2/languageAfter</a></td></tr>
 <tr><th>Note:</th> <td>Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-media"><h3>Media Context</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Category of media setting the context for exercising the Action.</td></tr>
