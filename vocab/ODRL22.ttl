@@ -806,20 +806,25 @@ odrl:
 :or
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "Assuming that left and right operands are both Constraints, this Constraint is satisfied when any of them is satisfied."@en ;
-	rdfs:label "OR"@en .
+	skos:definition "The relation is satisfied when any of the Constaint objects is satisfied."@en ;
+	rdfs:label "OR"@en ;
+	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
+    skos:scopeNote "Non-Normative"@en .
 	
 :and
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "Assuming that left and right operands are both Constraints, this Constraint is satisfied when both of them are satisfied."@en ;
+	skos:definition "The relation is satisfied when both of the Constaint objects are satisfied."@en ;
+	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
 	rdfs:label "AND"@en .
 
 :xor
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "Assuming that left and right operands are both Constraints, this Constraint is satisfied when only one of them is satisfied."@en ;
-	rdfs:label "XOR"@en .
+	skos:definition "The relation is satisfied when only one of the Constaint objects is satisfied"@en ;
+	rdfs:label "XOR"@en ;
+	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
+    skos:scopeNote "Non-Normative"@en .
 	
 ## LeftOperand
 
