@@ -585,7 +585,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The processing model for ODRL Policy Inheritance includes:</p>
     <ol>
     <li>A (child) Policy with an <code>inheritFrom</code> attribute MUST first verify that the (parent) Policy does not contain the <code>inhertiAllowed</code> attribute with the value "false".</li>
-   <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
+        <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:</li>
        <ul>
            <li>All policy-level Assets, Parties, Actions.</li>
            <li>All Permission and Prohibition Rules.</li>
@@ -1032,7 +1032,74 @@ which database the index outcome should be stored in.</p>
             <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>
         }]
     }</pre>
-	
+
+    
+<section id="constraint-relations">
+    <h3>Constraint Relations</h3>
+ 
+    <p>Constraint objects MAY also be used as both of the values for the <code>leftOperand</code>and <code>rightOperand</code> of a Constraint expression. This supports more complex constraint relations and allows for two constraints to be compared and processed accordingly. The two constraints MUST be <i>atomic</i> Constraints, that is, not a constraint that includes constraint relations.</p>
+    
+    <p>The applicable <code>operators</code> that can be used for constraint relations are:</p>
+    <ul>
+    <li><code>or</code> -  at least one of the Constraints (in the left or right operand) MUST be satisfied</li>
+    <li><code>xor</code> - only one of the Constraints (in the left or right operand) MUST be satisfied</li>
+    <li><code>and</code> - both of the Constraints (in the left or right operand) MUST be satisfied</li>
+    </ul>
+
+<p>The processing model for Constraint relations includes:</p>
+    <ol>
+       <li>If the Constraint <code>leftOperand</code> refers to a Constraint object, then the <code>rightOperand</code> MUST also refer to a Constraint object.</li>
+       <li>The Constraint objects both MUST be <i>atomic</i> Constraints.</li>
+        <li>The Constraint <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>.</li>
+       <li>If the Constraint <code>operator</code> is <code>or</code> then at least one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li> 
+        <li>If the Constraint <code>operator</code> is <code>xor</code> then at only one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>  
+        <li>If the Constraint <code>operator</code> is <code>and</code> then both of the Constraints (in the left and right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>  
+    </ol>
+
+    
+<p><b>Example Use Case:</b>The Policy below shows the use of Constraint relations. The Permission to play the target asset can either be a maximum of 100 times, or unlimited play until the end of 2017. </p>
+<pre class="example highlight hljs xquery">
+{
+   "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/"
+    }
+    "type": "odrl:Offer",
+    "uid": "http://example.com/policy:88",
+    "permission": [{
+        "target": "http://example.com/book/1999.mp3",
+        "assigner": "http://example.com/org/paisley-park",
+        "action": "odrl:play",
+        "constraint": [{
+                "leftOperand": "http://example.com/policy:88/C1",
+                "operator": "odrl:xor",
+                "rightOperand": "http://example.com/policy:88/C2"
+            }],
+    }],
+   "constraint": {
+       "@id": "http://example.com/policy:88/C1"
+       "leftOperand": "odrl:count",
+       "operator": "odrl:lteq",
+       "rightOperand": "100"
+   },
+   "constraint": {
+       "@id": "http://example.com/policy:88/C2"
+       "leftOperand": "odrl:dateTime",
+       "operator": "odrl:lteq",
+       "rightOperand": "2017-12-31"
+   }
+}  
+</pre>
+    
+    
+</section>
+    
+<section id="constraint-constraint">
+    <h3>Constraints on Constraints</h3>
+    
+    
+</section>
+    
+    
 </section>
 
 </section>
@@ -1090,67 +1157,9 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
  </section>
     
 </section>
-    
-
-
-<section id="experimental" class="informative">
-    
-<h2>Experimental Features</h2> 
-        
-   <div class="issue" data-number="63">
-        <p>Modified verions of Extended Relations will be incorporated into the Model</p>
-    </div>
-    
-<section id="extended-relations">
-<h3>Extended Relations</h3>
-<p><code>Extended Relations</code> may tie Permission, Prohibition, Duty, and Constraint entities together with an <code>AND</code>, <code>OR</code> or <code>XOR</code> relationship. Only entities of the same type can be linked with this model. For example, a Permission and Prohibition cannot be linked together within this model. The Extended Relations model supports the following attribute:</p>
-<ul>
-<li><code>operation</code>: may be set with <em>one</em> of the mathematical values <code>AND</code>, <code>OR</code> and <code>XOR</code>. (<code>OR</code> is the default if not specified.)</li>
-</ul>
-<p>The following table outlines the semantics of Extended Relations with respect to each of the main entity types.</p>
-
-<table class="simple">
-<tbody>
-<tr>
-<td></td>
-<td><code>Permission</code></td>
-<td><code>Prohibition</code></td>
-<td><code>Duty</code></td>
-<td><code>Constraint</code></td>
-</tr>
-<tr>
-<td><code>OR</code></td>
-<td>The related Party may perform <em>any</em> (<em>at least</em>) one of the Actions</td>
-<td>The related Party MAY NOT perform <em>at least</em> one of the Actions</td>
-<td>The related Party MUST perform <em>at least</em> one of the Actions</td>
-<td>The related Permission/Prohibition/Duty is restricted by <em>at least</em> one of the Constraints</td>
-</tr>
-    
-<tr>
-<td><code>AND</code></td>
-<td>The related Party MUST perform <em>all</em> of the Actions</td>
-<td>The related Party MAY NOT perform <em>all</em> of the Actions</td>
-<td>The related Party MUST perform <em>all</em> of the Actions</td>
-<td>The related Permission/Prohibition/Duty is restricted by <em>all</em> of the Constraints</td>
-</tr>
-<tr>
-<td><code>XOR</code></td>
-<td>The related Party MAY perform only <em>one</em> of the Actions</td>
-<td>The related Party MAY NOT perform only <em>one</em> of the Actions</td>
-<td>The related Party MUST perform only <em>one</em> of the Actions</td>
-<td>The related Permission/Prohibition/Duty is restricted by only <em>one</em> of the Constraints.</td>
-</tr>
-</tbody>
-</table>
-<p>Note that Extended Relations are not needed to assign two or more Permissions to a Party entity. In this case simply use as many Assignee relations between Party and Permission as needed.</p>
-    
-</section>
-   
-    
-</section>
  
     
-    <section id="privacyConsiderations" class="informative">
+<section id="privacyConsiderations" class="informative">
 
 <h2>Privacy Considerations</h2>
     <div class="note">
@@ -1198,6 +1207,10 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
        <li>Clarified and simplifed Policy Inhertiance. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
     
      <li>Added Policy Provenance section. <a href="https://github.com/w3c/poe/issues/48">(Issue#48)</a></li>
+    
+    <li>Added Extended Relations to Conflicts. <a href="https://github.com/w3c/poe/issues/63">(Issue#63)</a></li>
+    
+    <li>Added Constraint on Constraint suppport. <a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></li>
     
     
 </ul>
