@@ -1044,20 +1044,22 @@ which database the index outcome should be stored in.</p>
     <li><code>or</code> -  at least one of the Constraints (in the left or right operand) MUST be satisfied</li>
     <li><code>xor</code> - only one of the Constraints (in the left or right operand) MUST be satisfied</li>
     <li><code>and</code> - both of the Constraints (in the left or right operand) MUST be satisfied</li>
+    <li><code>isNecessaryFor</code> - the left operand Constraints MUST be satisfied before processing the left operand Constraint which then MUST be satisfied.</li>
     </ul>
 
 <p>The processing model for Constraint relations includes:</p>
     <ol>
        <li>If the Constraint <code>leftOperand</code> refers to a Constraint object, then the <code>rightOperand</code> MUST also refer to a Constraint object.</li>
        <li>The Constraint objects both MUST be <i>atomic</i> Constraints.</li>
-        <li>The Constraint <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>.</li>
+        <li>The Constraint <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>, <code>isNecessaryFor</code>.</li>
        <li>If the Constraint <code>operator</code> is <code>or</code> then at least one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li> 
         <li>If the Constraint <code>operator</code> is <code>xor</code> then at only one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>  
-        <li>If the Constraint <code>operator</code> is <code>and</code> then both of the Constraints (in the left and right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>  
+        <li>If the Constraint <code>operator</code> is <code>and</code> then both of the Constraints (in the left and right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>
+        <li>If the Constraint <code>operator</code> is <code>isNecessaryFor</code> then the left operand Constraint MUST be satisfied before the right operand Constraint is processed. The right operand Constraint MUST then be satisifed for the entire Constraint to be satisfied.</li>  
     </ol>
 
     
-<p><b>Example Use Case:</b>The Policy below shows the use of Constraint relations. The Permission to play the target asset can either be a maximum of 100 times, or unlimited play until the end of 2017. </p>
+<p><b>Example Use Case:</b>The Policy below shows a Permission to play the target asset that can either be a maximum of 100 times, or unlimited play until the end of 2017. </p>
 <pre class="example highlight hljs xquery">
 {
    "@context": {
@@ -1090,19 +1092,51 @@ which database the index outcome should be stored in.</p>
 }  
 </pre>
     
+<p><b>Example Use Case:</b>The Policy below shows a Permission to distribute photos in which the first constraint (the event "football/game/2017" has passed) is statisfied, then the second constraint (wait for 60 minutes) is processed, and is then satisfied. Note that the <code>operator</code> value of <code>isNecessaryFor</code> is not the same as  <code>and</code> as for the latter both operand Constraints must be satisfied, but could be processed at the same time.  </p>
     
+    30 mins after football match
+    
+<pre class="example highlight hljs xquery">
+{
+   "@context": {
+    "odrl": "http://www.w3.org/ns/odrl/2/"
+    }
+    "type": "odrl:Offer",
+    "uid": "http://example.com/policy:88",
+    "permission": [{
+        "target": "http://example.com/photo.jpg",
+        "assigner": "http://example.com/org/fifa",
+        "action": "odrl:distribute",
+        "constraint": [{
+                "leftOperand": "http://example.com/policy:88/C1",
+                "operator": "odrl:isNecessaryFor",
+                "rightOperand": "http://example.com/policy:88/C2"
+            }],
+    }],
+   "constraint": {
+       "@id": "http://example.com/policy:88/C1"
+       "leftOperand": "odrl:event",
+       "operator": "odrl:gteq",
+       "rightOperand": "http://example.com/football/game/2017"
+   },
+   "constraint": {
+       "@id": "http://example.com/policy:88/C2"
+       "leftOperand": "odrl:dateTime",
+       "operator": "odrl:gteq",
+       "rightOperand": "P60M"
+   }
+}  
+</pre>
+  
 </section>
-    
-<section id="constraint-constraint">
-    <h3>Constraints on Constraints</h3>
-    
+
+
     
 </section>
     
     
 </section>
 
-</section>
 
 
 <section id="profile" class="informative">
@@ -1208,7 +1242,7 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
     
      <li>Added Policy Provenance section. <a href="https://github.com/w3c/poe/issues/48">(Issue#48)</a></li>
     
-    <li>Added Extended Relations to Conflicts. <a href="https://github.com/w3c/poe/issues/63">(Issue#63)</a></li>
+    <li>Added Extended Relations to Constraints. <a href="https://github.com/w3c/poe/issues/63">(Issue#63)</a></li>
     
     <li>Added Constraint on Constraint suppport. <a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></li>
     

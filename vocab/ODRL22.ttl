@@ -300,7 +300,8 @@ odrl:
     skos:member :isNoneOf ;
     skos:member :or ;
     skos:member :and ;
-    skos:member :xor .
+    skos:member :xor ;
+    skos:member :isNecessaryFor .
 
 <http://www.w3.org/ns/odrl/2/#constraintRightOp>
     a skos:Collection ;
@@ -808,7 +809,7 @@ odrl:
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when any of the Constaint objects is satisfied."@en ;
-	rdfs:label "OR"@en ;
+	rdfs:label "Or"@en ;
 	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
     skos:scopeNote "Non-Normative"@en .
 	
@@ -817,16 +818,24 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when both of the Constaint objects are satisfied."@en ;
 	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
-	rdfs:label "AND"@en .
+	rdfs:label "And"@en .
 
 :xor
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when only one of the Constaint objects is satisfied"@en ;
-	rdfs:label "XOR"@en ;
+	rdfs:label "Exclusive Or"@en ;
 	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
     skos:scopeNote "Non-Normative"@en .
 	
+:isNecessaryFor
+	a :Operator, owl:NamedIndividual ;
+	rdfs:isDefinedBy odrl: ;
+	skos:definition "The relation is satisfied when the left operand Constaint object is satisfied, and then the right operand Constraint object is processed and is also satisfied"@en ;
+	rdfs:label "Is Necessary For"@en ;
+	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
 ## LeftOperand
 
 :LeftOperand
