@@ -8,18 +8,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcmit: <http://purl.org/dc/dcmitype/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
-@prefix vann: <http://purl.org/vocab/vann/> .
 
 
 odrl:
 	a owl:Ontology , voaf:Vocabulary ;
 	rdfs:label "ODRL Version 2.2"@en ;
 	owl:versionInfo "2.2" ;
-	vann:preferredNamespaceUri <http://w3.org/ns/odrl/2/> ;
-	vann:preferredNamespacePrefix "odrl" ;
-	vann:example :Asset ;
 	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "James Birmingham", "Víctor Rodríguez-Doncel" ;
 	dct:issued "2017-01-20"^^xsd:date ;
 	dct:contributor "W3C Permissions & Obligations Expression Working Group" ;
@@ -29,38 +24,31 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/ODRL22.ttl>
 	a dcmit:Text ;
-	rdfs:label "ODRL 2.2 (Turtle)"@en ;
-	foaf:primaryTopic odrl: ;
+	rdfs:label "ODRL 2.2 (Turtle Ontology Definition)"@en ;
+	dct:subject odrl: ;
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/text/turtle> .
 
 <http://www.w3.org/ns/odrl/2/ODRL22.rdf>
 	a dcmit:Text ;
-	rdfs:label "ODRL 2.2 (RDF/XML)"@en ;
-	foaf:primaryTopic odrl: ;
+	rdfs:label "ODRL 2.2 (RDF/XML Ontology Definition)"@en ;
+	dct:subject odrl: ;
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/application/rdf+xml> .
 
 <http://www.w3.org/ns/odrl/2/ODRL22.xsd>
 	a dcmit:Text ;
 	rdfs:label "ODRL 2.2 (XML Schema Definition)"@en ;
-	foaf:primaryTopic odrl: ;
+	dct:subject odrl: ;
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/application/xml> .
 
 <http://www.w3.org/ns/odrl/2/ODRL22.json>
 	a dcmit:Text ;
 	rdfs:label "ODRL 2.2 (JSON Schema Definition)"@en ;
-	foaf:primaryTopic odrl: ;
+	dct:subject odrl: ;
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/application/json> .
-
-<http://www.w3.org/ns/odrl/2/ODRL22.html>
-	a dcmit:Text ;
-	rdfs:label "ODRL 2.2 (HTML)"@en ;
-	foaf:primaryTopic odrl: ;
-	dct:isVersionOf odrl: ;
-	dct:format <http://purl.org/NET/mediatypes/text/html> .
 
 
 ## SKOS Collections for Grouping related concepts
@@ -344,18 +332,17 @@ odrl:
 :actions
 	a skos:ConceptScheme ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "ODRL Actions vocabulary"@en ;
-	skos:hasTopConcept :acceptTracking, :adHocShare, :aggregate, :annotate,
-		:anonymize, :append, :archive, :attachPolicy, :attachSource,
-		:attribute, :commercialize, :concurrentUse, :copy, :delete,
+	rdfs:label "ODRL Actions Vocabulary"@en ;
+	skos:hasTopConcept :acceptTracking, :aggregate, :annotate,
+		:anonymize, :archive,
+		:attribute, :concurrentUse, :delete,
 		:derive, :display, :distribute, :digitize, :ensureExclusivity, :execute,
-		:export, :extract, :give, :include, :index, :inform,
-		:install, :lease, :lend, :license, :modify, :move, :nextPolicy,
-		:obtainConsent, :pay, :play, :present, :preview, :print, :read,
-		:reproduce, :reviewPolicy, :secondaryUse, :sell, :share,
-		:shareAlike, :textToSpeech, :transform, :transfer, :translate, :uninstall,
-		:watermark, :write, :use, :grantUse, :compensate, :writeTo,
-		:appendTo .
+		:extract, :give, :include, :index, :inform,
+		:install, :modify, :move, :nextPolicy,
+		:obtainConsent, :play, :present, :print, :read,
+		:reproduce, :reviewPolicy, :sell,
+		:textToSpeech, :transform, :transfer, :translate, :uninstall,
+		:watermark, :use, :grantUse, :compensate .
 
 ## Assets
 
