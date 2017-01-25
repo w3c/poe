@@ -955,11 +955,11 @@ which database the index outcome should be stored in.</p>
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>The Constraint entity indicates limits and restrictions to the Permission, the Prohibition and the Duty entities. Constraints express a Rule for comparing two operands by one operator. If the two operands match the result of the Constraint is <b>true</b>.</p>
+    <p>The Constraint entity indicates limits and restrictions to the Permission, the Prohibition and the Duty entities. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <b>true</b> the result of the Constraint is satisfied.</p>
         <p>
        For example, the &#8220;number of usages&#8221; (<code>leftOperand</code>) must be &#8220;smaller than&#8221; (<code>operator</code>) the &#8220;number 10&#8221; (<code>rightOperand</code>).</p>
        
-<p>If multiple Constraint entities are linked to the same Permission, Prohibition, or Duty entity, then all of the Constraint entities MUST be satisfied. That is, all the Constraint entities are (boolean) <em>and</em>ed. In the case where the same Constraint is repeated, then these MUST be represented as a single Constraint entity using an appropriate <code>operator</code> value (for example, <code>isAnyOf</code>).</p>
+<p>If multiple Constraint entities are linked to the same Permission, Prohibition, or Duty entity, then all of the Constraint entities MUST be satisfied. That is, all the Constraint entities are (boolean) <em>and</em>ed together. In the case where the same Constraint is repeated, then these MUST be represented as a single Constraint entity using an appropriate <code>operator</code> value (for example, <code>isAnyOf</code>).</p>
        
 <p>The <code>Constraint</code> entity contains the following attributes:</p>
 <ul>
@@ -972,15 +972,14 @@ which database the index outcome should be stored in.</p>
 <li><code>status</code>: the current value of the left operand (OPTIONAL)</li>
 </ul>
         
-<p>
-    
-    The <code>leftOperand</code> identifies the left operand of the logic operation for the Constraint, it SHOULD include the entity it constrains and how its value for a comparison has to be retrieved/generated. It MAY include the datatype of the value and it MAY include references to resources for retrieving/generating the value.
+<p>The <code>leftOperand</code> identifies the left operand of the logic expression for the Constraint. The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Vocabulary [[!vocab-odrl]] or from an ODRL Profile. The <code>leftOperand</code> MAY also refer to an complete Constraint object - to be used in a <a href="#constraint-relations">Constraint Relations</a> expression.
         </p>
     
-    <p>The <code>operator</code> identifies the comparative operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221;. </p>
-    <p>The actual value of the constraint that is to be compared to the <code>leftOperand</code> is either represented with the <code>rightOperand</code> or <code>rightOperandReference</code>. The <code>rightOperand</code> represents the literal value (such as "10" or "http://example.com/c100") and <code>rightOperandReference</code> represents a URI that MUST be dereferenced to obtain the actual value. Only one of these MUST appear in the Constraint.  </p>
+<p>The <code>operator</code> identifies the logical operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operand.</p>
+
+<p>The <code>rightOperand</code> identifies the right operand of the logic expression for the Constraint. The <code>rightOperand</code> MAY be the value of the constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as "10" or "http://example.com/c100") and <code>rightOperandReference</code> represents a URI that MUST be dereferenced to obtain the actual value. Only one of these MUST appear in the Constraint. The <code>rightOperand</code> MAY also refer to an complete Constraint object - to be used in a <a href="#constraint-relations">Constraint Relations</a> expression.</p>
         
-        <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;.</p>
+<p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;.</p>
 
         
 <p>The <code>status</code> provides the current value of the Constraint variable (i.e. current value of <code>leftOperand</code>). This is useful in cases where the current status of Constraints needs to be captured and expressed in the ODRL Information Model.</p>
@@ -1052,6 +1051,7 @@ which database the index outcome should be stored in.</p>
        <li>If the Constraint <code>leftOperand</code> refers to a Constraint object, then the <code>rightOperand</code> MUST also refer to a Constraint object.</li>
        <li>The Constraint objects both MUST be <i>atomic</i> Constraints.</li>
         <li>The Constraint <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>, <code>isNecessaryFor</code>.</li>
+        <li>The Constraint MUST not use the <code>rightOperandReference</code>, <code>dataType</code>, <code>unit</code>, or <code>status</code> attributes.</li>
        <li>If the Constraint <code>operator</code> is <code>or</code> then at least one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li> 
         <li>If the Constraint <code>operator</code> is <code>xor</code> then at only one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>  
         <li>If the Constraint <code>operator</code> is <code>and</code> then both of the Constraints (in the left and right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>
