@@ -274,7 +274,7 @@ odrl:
     skos:member :relativeSize ;
     skos:member :resolution ;
     skos:member :spatial ;
-    skos:member :namedGeoArea ;
+    skos:member :spatialCoordinates ;
     skos:member :systemDevice ;
     skos:member :timeInterval ;
     skos:member :unitOfCount ;
@@ -1051,18 +1051,18 @@ odrl:
 :spatial
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Geospatial Area"@en ;
-	skos:definition "A set of coordinates setting the borders of a geospatial area for exercising the Action."@en ;
-	skos:note "Note: The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum. If the latter are ommitted the default values are the altitude of earth's surface at this location and the WGS 84 datum."@en ;
+	rdfs:label "Geospatial Named Area"@en ;
+	skos:definition "A named and identified geospatial area with defined borders for exercising the Action."@en ;
+	skos:note "A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value."@en ;
     skos:scopeNote "Non-Normative"@en .
 
-:namedGeoArea
+:spatialCoordinates
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :spatial;
-	rdfs:label "Named Geospatial Area"@en ;
-	skos:definition "A named and identified geospatial area with defined borders for exercising the Action."@en ;
-	skos:note "Note: A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value."@en ;
+	rdfs:label "Geospatial Coordinates"@en ;
+	skos:definition "A set of coordinates setting the borders of a geospatial area for exercising the Action."@en ;
+	skos:note "The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum. If the latter are ommitted the default values are the altitude of earth's surface at this location and the WGS 84 datum."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :system

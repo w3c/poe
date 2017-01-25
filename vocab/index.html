@@ -708,7 +708,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Instances of the LeftOperand class represent the left term in a Constraint.</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-leftOperand">leftOperand</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-absoluteSpatialAssetPosition">absoluteSpatialAssetPosition</a>, <a href="#term-absoluteTemporalAssetPosition">absoluteTemporalAssetPosition</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-namedGeoArea">namedGeoArea</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-relativeSpatialAssetPosition">relativeSpatialAssetPosition</a>, <a href="#term-relativeTemporalAssetPosition">relativeTemporalAssetPosition</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-unitOfCount">unitOfCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-absoluteSpatialAssetPosition">absoluteSpatialAssetPosition</a>, <a href="#term-absoluteTemporalAssetPosition">absoluteTemporalAssetPosition</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-relativeSpatialAssetPosition">relativeSpatialAssetPosition</a>, <a href="#term-relativeTemporalAssetPosition">relativeTemporalAssetPosition</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-spatialCoordinates">spatialCoordinates</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-unitOfCount">unitOfCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
 </table>
 </section><section id="term-leftOperand"><h3>Has Left Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The left operand in a constraint expression.</td></tr>
@@ -924,20 +924,20 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section><section id="term-spatial"><h3>Geospatial Area</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A set of coordinates setting the borders of a geospatial area for exercising the Action.</td></tr>
-<tr><th>Label:</th> <td>Geospatial Area</td></tr>
+</section><section id="term-spatial"><h3>Geospatial Named Area</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>A named and identified geospatial area with defined borders for exercising the Action.</td></tr>
+<tr><th>Label:</th> <td>Geospatial Named Area</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/spatial">http://www.w3.org/ns/odrl/2/spatial</a></td></tr>
-<tr><th>Note:</th> <td>Note: The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum. If the latter are ommitted the default values are the altitude of earth's surface at this location and the WGS 84 datum.</td></tr>
-<tr><th>Narrower terms:</th> <td><a href="#term-namedGeoArea">namedGeoArea</a></td></tr>
+<tr><th>Note:</th> <td>A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value.</td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-spatialCoordinates">spatialCoordinates</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section><section id="term-namedGeoArea"><h3>Named Geospatial Area</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A named and identified geospatial area with defined borders for exercising the Action.</td></tr>
-<tr><th>Label:</th> <td>Named Geospatial Area</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/namedGeoArea">http://www.w3.org/ns/odrl/2/namedGeoArea</a></td></tr>
-<tr><th>Note:</th> <td>Note: A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value.</td></tr>
+</section><section id="term-spatialCoordinates"><h3>Geospatial Coordinates</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>A set of coordinates setting the borders of a geospatial area for exercising the Action.</td></tr>
+<tr><th>Label:</th> <td>Geospatial Coordinates</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/spatialCoordinates">http://www.w3.org/ns/odrl/2/spatialCoordinates</a></td></tr>
+<tr><th>Note:</th> <td>The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum. If the latter are ommitted the default values are the altitude of earth's surface at this location and the WGS 84 datum.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
