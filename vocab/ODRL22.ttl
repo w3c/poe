@@ -665,7 +665,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Operator"@en ;
-	skos:definition "The Boolean operator applied to a constraint and its operands."@en ;
+	skos:definition "The logical operator applied to a constraint and its operands."@en ;
 	rdfs:domain :Constraint ;
 	rdfs:range :Operator .
 
@@ -796,14 +796,14 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when any of the Constaint objects is satisfied."@en ;
 	rdfs:label "Or"@en ;
-	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
+	skos:note "This operator MUST only be used for Constraint relations, and both left and right operands are constraint objects."@en ;
     skos:scopeNote "Non-Normative"@en .
 	
 :and
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when both of the Constaint objects are satisfied."@en ;
-	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
+	skos:note "This operator MUST only be used for Constraint relations, and both left and right operands are constraint objects."@en ;
 	rdfs:label "And"@en .
 
 :xor
@@ -811,7 +811,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when only one of the Constaint objects is satisfied"@en ;
 	rdfs:label "Exclusive Or"@en ;
-	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
+	skos:note "This operator MUST only be used for Constraint relations, and both left and right operands are constraint objects."@en ;
     skos:scopeNote "Non-Normative"@en .
 	
 :isNecessaryFor
@@ -819,7 +819,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when the left operand Constaint object is satisfied, and then the right operand Constraint object is processed and is also satisfied"@en ;
 	rdfs:label "Is Necessary For"@en ;
-	skos:note "This operator must used for Constraint relations only, and both left and right operands are constraint objects."@en ;
+	skos:note "This operator MUST only be used for Constraint relations, and both left and right operands are constraint objects."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 ## LeftOperand
