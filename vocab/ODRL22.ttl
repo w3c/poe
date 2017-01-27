@@ -238,8 +238,8 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Constraint Left Operands"@en ;
     skos:member :absolutePosition ;
-    skos:member :absoluteSpatialAssetPosition ;
-    skos:member :absoluteTemporalAssetPosition ;
+    skos:member :absoluteSpatialPosition ;
+    skos:member :absoluteTemporalPosition ;
     skos:member :absoluteSize ;
     skos:member :count ;
     skos:member :dateTime ;
@@ -257,8 +257,8 @@ odrl:
     skos:member :purpose ;
     skos:member :recipient ;
     skos:member :relativePosition ;
-    skos:member :relativeSpatialAssetPosition ;
-    skos:member :relativeTemporalAssetPosition ;
+    skos:member :relativeSpatialPosition ;
+    skos:member :relativeTemporalPosition ;
     skos:member :relativeSize ;
     skos:member :resolution ;
     skos:member :spatial ;
@@ -841,7 +841,7 @@ odrl:
 	skos:definition "A point in space or time defined with absolute coordinates the positioning of the Asset has to comply with for excersing the Action."@en ;
 	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it."@en .
 
-:absoluteSpatialAssetPosition
+:absoluteSpatialPosition
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :absolutePosition;
@@ -850,7 +850,7 @@ odrl:
 	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it. Note: see also the Left Operand Relative Spatial Asset Position. "@en ;
   skos:scopeNote "Non-Normative"@en .
 
-:absoluteTemporalAssetPosition
+:absoluteTemporalPosition
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :absolutePosition;
@@ -1001,7 +1001,7 @@ odrl:
 	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it."@en ;
   skos:scopeNote "Non-Normative"@en .
 
-:relativeSpatialAssetPosition
+:relativeSpatialPosition
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :relativePosition;
@@ -1010,7 +1010,7 @@ odrl:
 	skos:note "Note: See the Left Operand absoluteSpatialAssetPosition."@en ;
   skos:scopeNote "Non-Normative"@en .
 
-:relativeTemporalAssetPosition
+:relativeTemporalPosition
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :relativePosition;
