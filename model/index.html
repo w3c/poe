@@ -108,11 +108,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="infoModel">
 <h2>ODRL Information Model</h2>
 
+    <p>The ODRL Information Model enables Policies to express Permissions and Prohibitions related to the usage of Assets. In essence, this explicitly expresses what is allowed and what is not allowed by the Policy, as well as other requirements and parties involved. The aim of the ODRL Information Model is to support flexible Policy expressions by allowing the author to include as much, or as little, expressive detail.</p>
 
-<p>The basic context of an ODRL Policy is that only an explicitly permitted use may be executed. Any use not explicitly permitted is prohibited by default. An ODRL Policy only permits the action explicitly specified in a Permission and all other actions are implicitly prohibited. An action defined in a Prohibition SHOULD only refine (or directly relate to) the semantics of an action defined in one of the Permissions in the ODRL Policy.</p>
-    
-<p>For example, an ODRL Policy that has the action &#8220;present&#8221; Permission and may also have the action &#8220;print&#8221; Prohibition (as these actions are related hierarchically in the ODRL Vocabulary [[!vocab-odrl]]).</p>
-<p>Note that ODRL Profiles can be developed and used to refine the basic context of an ODRL Policy. Hence, the application of an ODRL Profile must be understood by the consuming community and systems.</p>
 <p>The figure below shows the ODRL Information Model. The Policy is the central entity that holds an ODRL policy together. </p>
 
 <figure>
@@ -122,23 +119,15 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
   
     
-<p>As the Information Model diagram shows the key Permission, Prohibition and Duty entities are subtypes of the abstract Rule class. These Rules have the same relationships to the other key entities (Action, Constraint, Asset, and Party). The core difference is in their semantics:</p>
+<p>The ODRL Information Model diagram shows the Permission, Prohibition and Duty classes as subclasses of the abstract Rule class. These Rules have common relationships to the other key classes (specifcially, Action, Asset, Party, and Constraint). However, there are core differences in their semantics:</p>
 <ul>
-<li>Permission says that the Party MAY perform an Action,</li>
-<li>Duty says that the Party MUST perform an Action, and</li>
-<li>Prohibition says that the Party MUST NOT perform an Action.</li>
+<li>A Permission indicates that the Policy expresses an Action that MAY be performed,</li>
+<li>A Prohibition indicates that the Policy expresses an Action that MUST NOT be performed, and</li>
+<li>A Duty indicates that the Policy expresses an Action that MUST be performed (as a requirement to be granted a Permission). </li>
 </ul>
 
-<p>The <em>Rule</em> class also makes it possible to easily extend the Information Model in Profiles by adding policy expressions (as subclasses of <em>Rule</em>) that are not possible by default.</p>
-    
-<p>The cardinalities shown in the ODRL Information Model allow for the greatest flexibility in expressing associations between the key entities. However, Policy types and ODRL Profiles may express narrower and/or specific cardinalities on these entities.</p>
-
-<p>A Permission MAY allow a particular Action to be executed on a related Asset, e.g., &#8220;play the audio file abc.mp3&#8221;. A Constraint such as &#8220;at most 10 times&#8221; might be added to specify the Permission more precisely. The Party that grants this Permission is linked to it with the Role Assigner, the Party that is granted the Permission is linked to it with the Role Assignee, e.g., &#8220;assigner VirtualMusicShop grants the Permission to Assignee Alice&#8221;. Additionally, a Permission MAY be linked to Duty entities.</p>
+<p>As an example, a Permission in a Policy MAY allow a particular Action to be applied to an Asset, e.g., &#8220;play the audio file abc.mp3&#8221;. A Constraint, such as &#8220;at most 10 times&#8221;, MAY be added to express limitations to the Actions. The Party "VirtualMusicShop" that granted this Permission MAY be included with the Role Assigner, and the Party "Alice" that is granted the Permission MAY be included with the Role Assignee.</p>
 <p>Similar to Permissions, a Duty states that a certain Action MUST be executed by the Party with the Role Assignee for the Permission to be valid, e.g. &#8220;Alice must pay 5 Euros in order to get the Permission to play abc.mp3&#8243;.</p>
-    
-<p>The Prohibition entity is used in the same way as Permission, with the difference that it MUST NOT refer to Duties and that the Action MUST NOT be exercised, e.g. &#8220;Alice is forbidden to use abc.mp3 commercially&#8221;.</p>
-    
-<p>The following sections describes each entity of the Information Model in greater detail.</p>
 
 <section id="policy">
 <h3>Policy</h3>
@@ -1163,6 +1152,7 @@ which database the index outcome should be stored in.</p>
 The requirements for communities developing ODRL Profiles MUST document the following: </p>
 <ul>
 <li>Any additions to the Information Model</li>
+<li>Any cardinality changes to the Information Model</li>
 <li>Any aspects of the Information Model that will have different default values or (editorial) interpretations</li>
 <li>Any aspects of the Information Model that is not being supported</li>
 <li>New Vocabulary terms</li>
