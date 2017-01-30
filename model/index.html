@@ -958,6 +958,8 @@ which database the index outcome should be stored in.</p>
     <p>The Constraint entity indicates limits and restrictions to the Permission, the Prohibition and the Duty entities. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <b>true</b> the result of the Constraint is satisfied.</p>
         <p>
        Constraints can express limitations with logical comparisions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). Constraints can also be used for complex Constraint Relations expressions that use two constraint objects as the left and right operand. For example, constraint #1 (<code>leftOperand</code>) must be satisfied or (<code>operator</code>) constraint #2 (<code>rightOperand</code>) must be satisfied.</p>
+    
+    <p>The constraint <code>leftOperand</code> MUST clearly be defined to indicate which entity is the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
        
 <p>If multiple Constraint entities are linked to the same Permission, Prohibition, or Duty entity, then all of the Constraint entities MUST be satisfied. That is, all the Constraint entities are (boolean) <em>and</em>ed together. In the case where the same Constraint is repeated, then these MUST be represented as a single Constraint entity using an appropriate <code>operator</code> value (for example, <code>isAnyOf</code>).</p>
        
@@ -969,7 +971,7 @@ which database the index outcome should be stored in.</p>
 <li><code>rightOperandReference</code>: the right operand of the operation (REQUIRED if no rightOperand)</li>
 <li><code>dataType</code>: the datatype of the rightOperand (OPTIONAL)</li>
 <li><code>unit</code>: the units of the rightOperand (OPTIONAL)</li>
-<li><code>status</code>: the current value of the left operand (OPTIONAL)</li>
+<li><code>status</code>: the current value of the right operand (OPTIONAL)</li>
 </ul>
         
 <p>In case of a Constraint expression, the <code>leftOperand</code> identifies the left operand of the logic expression for the Constraint. The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Vocabulary [[!vocab-odrl]] or from an ODRL Profile. In case of a Constraint Relations expression, the <code>leftOperand</code> MUST  refer to an complete Constraint object (see <a href="#constraint-relations">Constraint Relations</a> for further requirements).
@@ -982,7 +984,7 @@ which database the index outcome should be stored in.</p>
 <p>In case of a Constraint expression, the <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;. In case of a Constraint Relations expression, the <code>dataType</code> attribute MUST NOT be used.</p>
 
         
-<p>In case of a Constraint expression, the <code>status</code> provides the current value of the Constraint variable (i.e. current value of <code>leftOperand</code>). This is useful in cases where the current status of Constraints needs to be captured and expressed in the ODRL Information Model.In case of a Constraint Relations expression, the <code>status</code> attribute MUST NOT be used.</p>
+<p>In case of a Constraint expression, the <code>status</code> provides the current value of the <code>rightOperand</code>. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has alread been exercised 5 times. In case of a Constraint Relations expression, the <code>status</code> attribute MUST NOT be used.</p>
 
 <p><b>Example Use Case</b>: The Party http://example.com/myPix:6161 wants to assign the Permission distribute directly to the potential buyer of the Permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential Assignee may then distribute the target Asset http://example.com/wallpaper:1234 according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential Assignee may only offer the display Permission to downstream consumers.</p>
 
@@ -1036,9 +1038,9 @@ which database the index outcome should be stored in.</p>
 <section id="constraint-relations">
     <h3>Constraint Relations</h3>
  
-    <p>Constraint objects MAY also be used as both of the values for the <code>leftOperand</code>and <code>rightOperand</code> of a Constraint expression. This supports more complex constraint relations and allows for two constraints to be compared and processed accordingly. The two constraints MUST be <i>atomic</i> Constraints, that is, not a constraint that includes constraint relations.</p>
+    <p>Constraint objects MAY also be used as both of the values for the <code>leftOperand</code>and <code>rightOperand</code> of a Constraint expression. This supports more complex Constraint Relations and allows for two constraints to be compared and processed accordingly. The two constraints MUST be <i>atomic</i> Constraints, that is, not a constraint that includes Constraint Relations.</p>
     
-    <p>The applicable <code>operators</code> that can be used for constraint relations are:</p>
+    <p>The applicable <code>operators</code> that can be used for Constraint Relations are:</p>
     <ul>
     <li><code>or</code> -  at least one of the Constraints (in the left or right operand) MUST be satisfied</li>
     <li><code>xor</code> - only one of the Constraints (in the left or right operand) MUST be satisfied</li>
@@ -1046,7 +1048,7 @@ which database the index outcome should be stored in.</p>
     <li><code>isNecessaryFor</code> - the left operand Constraints MUST be satisfied before processing the left operand Constraint which then MUST be satisfied.</li>
     </ul>
 
-<p>The processing model for Constraint relations includes:</p>
+<p>The processing model for Constraint Relations includes:</p>
     <ol>
        <li>If the Constraint <code>leftOperand</code> refers to a Constraint object, then the <code>rightOperand</code> MUST also refer to a Constraint object.</li>
        <li>The Constraint objects both MUST be <i>atomic</i> Constraint expressions.</li>
