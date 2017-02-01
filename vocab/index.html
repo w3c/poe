@@ -1062,7 +1062,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The relation is satisfied when any of the Constaint objects is satisfied.</td></tr>
 <tr><th>Label:</th> <td>Or</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/or">http://www.w3.org/ns/odrl/2/or</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraint relations, and both left and right operands are constraint objects.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Constraint Relations, and both left and right operands are constraint objects.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1070,14 +1070,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The relation is satisfied when both of the Constaint objects are satisfied.</td></tr>
 <tr><th>Label:</th> <td>And</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/and">http://www.w3.org/ns/odrl/2/and</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraint relations, and both left and right operands are constraint objects.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Constraint Relations, and both left and right operands are constraint objects.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
 </section><section id="term-xor"><h3>Exclusive Or</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The relation is satisfied when only one of the Constaint objects is satisfied</td></tr>
 <tr><th>Label:</th> <td>Exclusive Or</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/xor">http://www.w3.org/ns/odrl/2/xor</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraint relations, and both left and right operands are constraint objects.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Constraint Relations, and both left and right operands are constraint objects.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1085,7 +1085,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The relation is satisfied when the left operand Constaint object is satisfied, and then the right operand Constraint object is processed and is also satisfied</td></tr>
 <tr><th>Label:</th> <td>Is Necessary For</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isNecessaryFor">http://www.w3.org/ns/odrl/2/isNecessaryFor</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraint relations, and both left and right operands are constraint objects.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Constraint Relations, and both left and right operands are constraint objects.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1540,8 +1540,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <section>
 <h2>Constraint Relations</h2>
-<p>To support constraint relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its "#id".</p>
- <p>ODRL XML processing systems MUST detect the use of "#id" in the name and rightOperand in Constraints. If detected, the processing model for Constraint relations (defined in [[!odrl-model]]) MUST then be followed.</p>
+<p>To support Constraint Relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its "#id".</p>
+ <p>ODRL XML processing systems MUST detect the use of "#id" in the name and rightOperand in Constraints. If detected, the processing model for Constraint Relations (defined in [[!odrl-model]]) MUST then be followed.</p>
 <p>The below example shows two constraints defined at the Policy-level with ids "C1" and C2". The Constraint in the permission refers to these using the "#C1" and "#C2" values.</p>   
     
 <pre class="example highlight xml">
