@@ -959,7 +959,7 @@ which database the index outcome should be stored in.</p>
 <li><code>rightOperandReference</code>: the right operand of the operation (REQUIRED if no rightOperand)</li>
 <li><code>dataType</code>: the datatype of the rightOperand (OPTIONAL)</li>
 <li><code>unit</code>: the units of the rightOperand (OPTIONAL)</li>
-<li><code>status</code>: the current value of the right operand (OPTIONAL)</li>
+<li><code>status</code>: the current value generated from the leftOperand action (OPTIONAL)</li>
 </ul>
         
 <p>In case of a Constraint expression, the <code>leftOperand</code> identifies the left operand of the logic expression for the Constraint. The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Vocabulary [[!vocab-odrl]] or from an ODRL Profile. In case of a Constraint Relations expression, the <code>leftOperand</code> MUST  refer to an complete Constraint object (see <a href="#constraint-relations">Constraint Relations</a> for further requirements).
@@ -972,7 +972,7 @@ which database the index outcome should be stored in.</p>
 <p>In case of a Constraint expression, the <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;decimal&#8221; or &#8220;datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;. In case of a Constraint Relations expression, the <code>dataType</code> attribute MUST NOT be used.</p>
 
         
-<p>In case of a Constraint expression, the <code>status</code> provides the current value of the <code>rightOperand</code>. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has alread been exercised 5 times. In case of a Constraint Relations expression, the <code>status</code> attribute MUST NOT be used.</p>
+<p>In case of a Constraint expression, the <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has alread been exercised 5 times. In case of a Constraint Relations expression, the <code>status</code> attribute MUST NOT be used.</p>
 
 <p><b>Example Use Case</b>: The Party http://example.com/myPix:6161 wants to assign the Permission distribute directly to the potential buyer of the Permission who will pay 100 EUR for this grant. The distribute Permission is also constrained to a specific country, i.e., Italy. The potential Assignee may then distribute the target Asset http://example.com/wallpaper:1234 according to the nextPolicy target Asset linked directly from this Duty. In this case, the next Policy Asset stipulates that the potential Assignee may only offer the display Permission to downstream consumers.</p>
 
