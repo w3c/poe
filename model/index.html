@@ -134,26 +134,25 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>The Policy entity contains the following attributes:</p>
 <ul>
-<li><code>uid</code>: the unique identification of the Policy entity (REQUIRED)</li>
-<li><code>type</code>: indicates the semantics of the Policy entity (REQUIRED). These are further described in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</li>
+<li><code>uid</code>: the identification of the Policy entity (REQUIRED)</li>
+<li><code>type</code>: indicates the specific type of the Policy entity (REQUIRED).</li>
 <li><code>conflict</code>: indicates how to handle Policy conflicts (OPTIONAL)</li>
 <li><code>undefined</code>: indicates how to handle undefined Actions (OPTIONAL)</li>
 <li><code>inheritAllowed</code>: indicates if the Policy entity can be inherited (OPTIONAL)</li>
 <li><code>profile</code>: the identifier of the ODRL Profile that this Policy conforms to (OPTIONAL)</li>
 </ul>
-<p>The <code>uid</code> attribute MUST be a unique identifier.</p>
-    
-<p>The range of values for the Policy entity&#8217;s <code>type</code> attribute will be described in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. This value MAY also impose further constraints on the Information Model. It is important that the <code>type</code> attribute be clearly understood in policy expressions as the semantics MAY impose restrictions on the expression language constructs such as cardinalities between entities. For example, the ODRL Agreement Policy Type stipluates that it must contain two Parties (an Assigner and Assignee).</p>
+
+<p>The values for the Policy entity&#8217;s <code>type</code> attribute will be described in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. The Policy <code>type</code> describes the context of use of the Policy and MAY include additional constraints that processing systems MUST understand. For example, the "Agreement" Policy type stipulates minimal cardinalities for some for the Information Model entities, which are different than the "Offer" Policy type. In addition, and more importantly, the "Agreement" Policy type expresses that the Permissions/Prohibitions have been granted, but the "Offer" Policy type does not.</p>
     
  
 
-<p><b>Example Use Case</b>: A Policy of type Set states that the Asset http//example.com/asset:9898 is the target of the Permission read and the Prohibition reproduce. No Parties or other elements are involved.</p>
+<p><b>Example Use Case</b>: The below "Set" Policy type states that the Asset http//example.com/asset:9898 is the target of the Permission to perform the action read  and the Prohibition to perform the action reproduce. No Parties or other elements are involved.</p>
 
 
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -167,12 +166,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }
 </pre>
 	
-<p><b>Example Use Case</b>: A Policy of type Set states that the Asset http//example.com/asset:9898 is the target of the Permission reproduce, the Duty attribute to http://example.com/owner:9898, and the Prohibition translate. Two Parties are involved, namely the Assigner of the Permissions and the Party to be attributed.</p>
+<p><b>Example Use Case</b>: The below "Set" Policy type states that the Asset http//example.com/asset:9898 is the target of the Permission to perform the action reproduce, the Duty to perform the action attribute to http://example.com/owner:9898, and the Prohibition to perform the action translate. Two Parties are involved, namely the Assigner of the Permission and the Party to be attributed.</p>
 
 <pre class=" example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -202,7 +201,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Agreement",
     "uid": "http://example.com/policy:8888",
     "permission": [{
@@ -265,7 +264,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Agreement",
     "uid": "http://example.com/policy:8888",
     "target": "http://example.com/music/1999.mp3",
@@ -287,7 +286,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Agreement",
     "uid": "http://example.com/policy:8888",
     "permission": [{
@@ -389,7 +388,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:0001"</span>,
     <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"perm"</span>,
@@ -404,7 +403,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:0002"</span>,
     <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"perm"</span>,
@@ -457,7 +456,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Set",
     "uid": "http://example.com/policy:8888",
     "undefined": "invalid",
@@ -508,7 +507,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Set",
     "uid": "http://example.com/policy:3333",
     "target": "http://example.com/asset:3333",
@@ -525,7 +524,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Agreement",
     "uid": "http://example.com/policy:4444",
     "inheritFrom": "http://example.com/policy:3333",
@@ -548,7 +547,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Agreement",
     "uid": "http://example.com/policy:4444",
     "target": [
@@ -627,7 +626,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
  <pre class="example highlight hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Request"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:3333"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -645,7 +644,7 @@ which database the index outcome should be stored in.</p>
  <pre class="example highlight hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -660,7 +659,7 @@ which database the index outcome should be stored in.</p>
  <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -727,7 +726,7 @@ which database the index outcome should be stored in.</p>
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -764,7 +763,7 @@ which database the index outcome should be stored in.</p>
  <pre class="example highlight hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Ticket"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:9090"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -799,7 +798,7 @@ which database the index outcome should be stored in.</p>
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:5555"</span>,
     <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"odrl:perm"</span>,
@@ -852,7 +851,7 @@ which database the index outcome should be stored in.</p>
 {
    "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Offer",
     "uid": "http://example.com/policy:88",
     "permission": [{
@@ -886,7 +885,7 @@ which database the index outcome should be stored in.</p>
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Privacy"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -929,7 +928,7 @@ which database the index outcome should be stored in.</p>
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1012"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -980,7 +979,7 @@ which database the index outcome should be stored in.</p>
 <pre class="example highlight hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
     <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
     <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
     <span class="hljs-string">"permission"</span>: [{
@@ -1014,7 +1013,7 @@ which database the index outcome should be stored in.</p>
 <pre class="example highlight hljs xquery">{
     <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    }
+    },
         <span class="hljs-string">"type"</span>: <span class="hljs-string">"odrl:Set"</span>,
         <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>,
         <span class="hljs-string">"permission"</span>: [{
@@ -1060,7 +1059,7 @@ which database the index outcome should be stored in.</p>
 {
    "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Offer",
     "uid": "http://example.com/policy:88",
     "permission": [{
@@ -1096,7 +1095,7 @@ which database the index outcome should be stored in.</p>
 {
    "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
-    }
+    },
     "type": "odrl:Offer",
     "uid": "http://example.com/policy:88",
     "permission": [{
