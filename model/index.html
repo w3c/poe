@@ -944,9 +944,11 @@ which database the index outcome should be stored in.</p>
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>The Constraint entity can be used to define restrictions to the Permission, the Prohibition and the Duty entities. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <b>true</b> the result of the Constraint is satisfied.</p>
+    <p>The Constraint entity can be used to define restrictions to the Permission, the Prohibition and the Duty actions. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <b>true</b> the result of the Constraint is satisfied.</p>
         <p>
-       Constraints can express limitations with logical comparisions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). Constraints can also be used for complex Constraint Relations expressions that use two constraint objects as the left and right operand. For example, constraint #1 (<code>leftOperand</code>) must be satisfied or (<code>operator</code>) constraint #2 (<code>rightOperand</code>) must be satisfied.</p>
+       Constraints can express limitations with logical comparisions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). Constraints can also be used for complex Constraint Relations expressions that use two constraint objects as the left and right operand. For example, Constraint #1 (<code>leftOperand</code>) must be satisfied or (<code>operator</code>) Constraint #2 (<code>rightOperand</code>) must be satisfied.</p>
+ 
+    <p>Constraints MUST be checked by processings system at the time of executing the relevant action. If the constraint is satisfied (ie the logical expression is true) then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
     
     <p>The constraint <code>leftOperand</code> MUST clearly be defined to indicate which entity is the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
        
