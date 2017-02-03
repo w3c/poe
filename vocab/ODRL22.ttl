@@ -350,7 +350,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset"@en ;
-	skos:definition "The Asset entity is the subject of an ODRL policy expression that permissions and prohibitions are applied to."@en ;
+	skos:definition "The subject of a Policy that permissions and prohibitions are applied to."@en ;
     skos:note "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata."@en .
 
 ## Parties
@@ -359,7 +359,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Party"@en ;
-	skos:definition "The Party entity is the object of an ODRL policy that performs (or not performs) actions or has a role in a Duty."@en ;
+	skos:definition "Any form of identifiable entity that is the object of a Policy, e.g., a person, a group of people, an organisation, or an agent."@en ;
 	skos:note "The Party entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata."@en .
 
 ## Policies
@@ -369,7 +369,7 @@ odrl:
 	rdfs:subClassOf :Asset ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy"@en ;
-	skos:definition "An entity to represent the rules of the policy."@en ;
+	skos:definition "A set of rules defining what is allowed, disallowed or obligatory over an Asset."@en ;
 	skos:note "A top level entity for describing policies."@en .
 
 :ConflictTerm
@@ -518,7 +518,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Rule"@en ;
-	skos:definition "A common ancestor to Permissions, Prohibitions and Duties."@en ;
+	skos:definition "A set of actions defining the precise Permissions, Prohibitions and Obligations over an Asset."@en ;
 	skos:note "Rule is an abstract concept."@en .
 
 :Permission
@@ -527,7 +527,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Prohibition, :Duty ;
 	rdfs:label "Permission"@en ;
-	skos:definition "A Permission is a rule which indicates the actions the assignee is permitted to perform on the associated asset."@en ;
+	skos:definition "A set of actions that are allowed to be performed over an Asset."@en ;
 	skos:note "In other words, what the assigner (supplier) has granted to the assignee (consumer)."@en .
 
 :Prohibition
@@ -536,7 +536,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Duty, :Permission ;
 	rdfs:label "Prohibition"@en ;
-	skos:definition "A Prohibition is a rule which indicates the Actions that the assignee is prohibited to perform on the related Asset."@en ;
+	skos:definition "A set of actions that are forbidden to be performed over an Asset."@en ;
 	skos:note "Prohibitions are issued by the supplier of the Asset – the Party with the Role assigner."@en .
 
 :Duty
@@ -545,14 +545,14 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Prohibition, :Permission ;
 	rdfs:label "Duty"@en ;
-    skos:definition "A Duty is a rule which indicates a requirement that must be fulfilled in return for being entitled to the referring Permission entity."@en ;
+    skos:definition "A set of actions that are obliged to be performed over an Asset."@en ;
     skos:note "While implying different semantics, the Duty entity is similar to Permission in that it is an Action that must be undertaken."@en .
 
 :Action
 	a rdfs:Class, owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf skos:Concept ;
-	skos:definition "Instances of Action are operations that can be performed."@en ;
+	skos:definition "A set of operations that can be allowed by Permissions, disallowed by Prohibitions, or made obligatory by Duties."@en ;
 	skos:note "Actions may be allowed by Permissions, disalloed by Prohibitions, or made mandatory by Duties."@en ;
 	rdfs:label "Action"@en .
 
@@ -561,7 +561,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Constraint"@en ;
-	skos:definition "The Constraint entity indicates limits and restrictions to the Permission, the Prohibition and the Duty entity."@en ;
+	skos:definition "The limits and restrictions to the Permissions, the Prohibitions and the Duties expressed in the Policy."@en ;
 	skos:note "Parent class of all Constraints."@en .
 
 :relation
