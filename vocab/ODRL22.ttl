@@ -243,6 +243,7 @@ odrl:
     skos:member :absoluteSize ;
     skos:member :count ;
     skos:member :dateTime ;
+    skos:member :delayPeriod ;
     skos:member :deliveryChannel ;
     skos:member :elapsedTime ;
     skos:member :event ;
@@ -286,9 +287,9 @@ odrl:
     skos:member :isAnyOf ;
     skos:member :isNoneOf ;
     skos:member :or ;
-    skos:member :and ;
     skos:member :xor ;
-    skos:member :isNecessaryFor .
+    skos:member :and ;
+    skos:member :andSequence .
 
 <http://www.w3.org/ns/odrl/2/#constraintRightOp>
     a skos:Collection ;
@@ -350,7 +351,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset"@en ;
-	skos:definition "The subject of a Policy that permissions and prohibitions are applied to."@en ;
+	skos:definition "The subject of a Policy that Rules are applied to."@en ;
     skos:note "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata."@en .
 
 ## Parties
@@ -359,8 +360,8 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Party"@en ;
-	skos:definition "Any form of identifiable entity that is the object of a Policy, e.g., a person, a group of people, an organisation, or an agent."@en ;
-	skos:note "The Party entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata."@en .
+	skos:definition "An dentifiable entity that is the object of a Policy."@en ;
+	skos:note "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata."@en .
 
 ## Policies
 
@@ -507,7 +508,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Profile"@en ;
-	skos:definition "The identifier of an ODRL Profile that the current Policy conforms to."@en ;
+	skos:definition "The identifier of an ODRL Profile that the Policy conforms to."@en ;
 	skos:note "ODRL Profiles may be defined by community groups and express additional semantics."@en ;
 	rdfs:domain :Policy ;
 	rdfs:range rdfs:Resource .
@@ -518,7 +519,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Rule"@en ;
-	skos:definition "A set of actions defining the precise Permissions, Prohibitions and Obligations over an Asset."@en ;
+	skos:definition "A set of actions defining the precise Permissions, Prohibitions and obligations over an Asset."@en ;
 	skos:note "Rule is an abstract concept."@en .
 
 :Permission
@@ -545,7 +546,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Prohibition, :Permission ;
 	rdfs:label "Duty"@en ;
-    skos:definition "A set of actions that are obliged to be performed over an Asset."@en ;
+    skos:definition "A set of Actions that are obliged to be performed for Permissions."@en ;
     skos:note "While implying different semantics, the Duty entity is similar to Permission in that it is an Action that must be undertaken."@en .
 
 :Action
@@ -561,7 +562,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Constraint"@en ;
-	skos:definition "The limits and restrictions to the Permissions, the Prohibitions and the Duties expressed in the Policy."@en ;
+	skos:definition "The limits and restrictions to Actions in Rules."@en ;
 	skos:note "Parent class of all Constraints."@en .
 
 :relation
@@ -605,7 +606,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Scope"@en ;
-	skos:definition "The identifier of a scope that narrows the extent of the entity."@en ;
+	skos:definition "The identifier of a scope that provides context to the extent of the entity."@en ;
 	skos:note "Used to define scopes for Assets and Parties."@en ;
 	rdfs:range [
 		a owl:Class ;
@@ -664,7 +665,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Operator"@en ;
-	skos:definition "The logical operator applied to a constraint and its operands."@en ;
+	skos:definition "The logical operator function applied to a constraint and its operands."@en ;
 	rdfs:domain :Constraint ;
 	rdfs:range :Operator .
 
@@ -672,7 +673,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand"@en ;
-	skos:definition "The operand applied to an instance of a constraint."@en ;
+	skos:definition "The right operand in a constraint expression."@en ;
 	rdfs:range xsd:any ;
 	rdfs:domain :Constraint .
 
@@ -697,9 +698,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Status"@en ;
-	skos:definition "The current value of the constraint."@en ;
-	skos:note "The range of the status property is identical to that of the operand property selected used in the constraint."@en ;
-	skos:note "The range of the status property is identical to that of the constraint expression."@en ;
+	skos:definition "the current value generated from the leftOperand action."@en ;
 	rdfs:domain :Constraint ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -795,14 +794,14 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when any of the Constaint objects is satisfied."@en ;
 	rdfs:label "Or"@en ;
-	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands are constraint objects."@en ;
+	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects."@en ;
     skos:scopeNote "Non-Normative"@en .
 	
 :and
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when both of the Constaint objects are satisfied."@en ;
-	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands are constraint objects."@en ;
+	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects."@en ;
 	rdfs:label "And"@en .
 
 :xor
@@ -810,15 +809,15 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when only one of the Constaint objects is satisfied"@en ;
 	rdfs:label "Exclusive Or"@en ;
-	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands are constraint objects."@en ;
+	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects."@en ;
     skos:scopeNote "Non-Normative"@en .
 	
-:isNecessaryFor
+:andSequence
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "The relation is satisfied when the left operand Constaint object is satisfied, and then the right operand Constraint object is processed and is also satisfied"@en ;
-	rdfs:label "Is Necessary For"@en ;
-	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands are constraint objects."@en ;
+	skos:definition "The left operand constraint of a Constraint Relation must deliver a satisfied result before the right operand constraint is evaluated. The right operand constraint may build on the satisfaction of the left operand constraint."@en ;
+	rdfs:label "And Sequence"@en ;
+	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 ## LeftOperand
@@ -864,8 +863,7 @@ odrl:
 	rdfs:label "Absolute Asset Size"@en ;
 	skos:definition "Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects of the Asset after the Action."@en ;
 	skos:note "Example: The image can be resized in width to a maximum of 1000px."@en ;
-	skos:note "Right operand must be a xsd:decimal" ;
-  skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en .
 
 :count
 	a :LeftOperand, owl:NamedIndividual ;
@@ -881,6 +879,14 @@ odrl:
 	skos:definition "The date (and optional time and timezone) to be compared to the time when the Action is exercised or a period to be compared with the duration of exercising the Action."@en ;
 	skos:note "Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The use of Timezone information is strongly recommended."@en ;
 	skos:note "Right operand should be a xsd:date or a xsd:dateTime"@en .
+
+:delayPeriod
+	a :LeftOperand, owl:NamedIndividual ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Action Delay Period"@en ;
+	skos:definition "The Action may be executed after the end of this period. The starting time of the period is triggered by the satisfaction of another temporal constraint in a Constraint Relation."@en ;
+	skos:note "Value must conform to [[iso8601]] as represented in [[xmlschema11-2]] as a xsd:duration"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :deliveryChannel
 	a :LeftOperand, owl:NamedIndividual ;
@@ -904,14 +910,14 @@ odrl:
 	skos:definition "A period of time for exercising the Action. The start of the period is trigged by exercising the Action for the first time."@en ;
 	skos:note "Note: The value of the Right Operand must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
 	skos:note "Data type of the right operand must be xsd:duration" ;
-  skos:scopeNote "Non-Normative"@en .
+   skos:scopeNote "Non-Normative"@en .
 
 :event
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Event Action"@en ;
-	skos:definition "An identified event at which the Action may be exercised."@en ;
-	skos:note "Example: Action may be taken at the “FIFA World Cup 2020” only."@en .
+	skos:definition "An identified event used for exercising the Action."@en ;
+	skos:note "Events are temporal periods of time, and operators can be used to signal before, during or after the event. Example: Action may be taken during the “FIFA World Cup 2020” only."@en .
 
 :fileFormat
 	a :LeftOperand, owl:NamedIndividual ;
@@ -940,7 +946,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Media Context"@en ;
 	skos:definition "Category of media setting the context for exercising the Action."@en ;
-	skos:note "Examples of right operands: the media types electronic, print, advertising, marketing. Note: The used type should not be an IANA MediaType as they are focused on technical characteristica. "@en ;
+	skos:note "Example media types: electronic, print, advertising, marketing. Note: The used type should not be an IANA MediaType as they are focused on technical characteristics. "@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :meteredTime
@@ -948,26 +954,23 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Metered Time"@en ;
 	skos:definition "The period of metered time for exercising the Action."@en ;
-	skos:note "Examples: The asset must be displayed only for max 30 minutes; the asset must be displayed for at least 3 weeks. Note: A more specific variant of this Left Operand may include an identified API which must be used for retrieving the metered time value.  The value delivered by this API must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
-	skos:note "The data type of the right operand must be xsd:duration" ;
-  skos:scopeNote "Non-Normative"@en .
+	skos:note "The value must conform to [[iso8601]] as represented in [[xmlschema11-2]] as an xsd:duration. Examples: The asset must be displayed only for max 30 minutes; the asset must be displayed for at least 3 weeks."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :payAmount
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Payment Amount"@en ;
 	skos:definition "The amount of a payment related to the Action of a Duty."@en ;
-	skos:note "Note: Can be used for compensation duties. The data type property of the Right Operand may be used to indicate the type of the value (eg decimal) and the unit property to indicate the currency."@en ;
-	skos:note "The data type of the right operand must be xsd:decimal" .
+	skos:note "The datatype of the right operand must be xsd:decimal. Note: Can be used for compensation duties. The data type property of the Right Operand may be used to indicate the type of the value (eg decimal) and the unit property to indicate the currency."@en .
 
 :percentage
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset Percentage"@en ;
 	skos:definition "The amount of an Asset - as a percentage - used for exercising the Action."@en ;
-	skos:note "Note: The value is a numeric value from 0 to 100. Example: Extract less than or equal to of 50% of the asset."@en ;
-	skos:note "The data type of the right operand must be xsd:decimal"@en ;
-  skos:scopeNote "Non-Normative"@en .
+	skos:note "The datatype of the right operand must be xsd:decimal from 0 to 100. Example: Extract less than or equal to of 50% of the asset."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :product
 	a :LeftOperand, owl:NamedIndividual ;
@@ -975,7 +978,6 @@ odrl:
 	rdfs:label "Product Context"@en ;
 	skos:definition "Product or service used for exercising the Action."@en ;
 	skos:note "Example: The Asset image may only be reproduced in the XYZ Magazine."@en ;
-	skos:note "The data type of the right operand must be xsd:decimal."@en ;
   skos:scopeNote "Non-Normative"@en .
 
 :purpose
@@ -1641,7 +1643,7 @@ odrl:
 	rdfs:subClassOf :Policy ;
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Agreement"@en ;
-	skos:definition "Policy expressions that are formal contracts (or licenses) stipulating all the terms of usage and all the parties involved."@en ;
+	skos:definition "Policy expressions that are formal contracts (licenses) stipulating all the terms of usage and all the parties involved."@en ;
 	skos:note "An Agreement Policy Type MUST contain a target Asset, a Party  with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Agreement Policy Type will grant the terms of the Policy from the Assigner to the Assignee."@en .
 
 :Assertion

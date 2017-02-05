@@ -1033,24 +1033,23 @@ which database the index outcome should be stored in.</p>
     <li><code>or</code> -  at least one of the Constraints (in the left or right operand) MUST be satisfied</li>
     <li><code>xor</code> - only one of the Constraints (in the left or right operand) MUST be satisfied</li>
     <li><code>and</code> - both of the Constraints (in the left and right operand) MUST be satisfied</li>
-    <li><code>isNecessaryFor</code> - both of the Constraints (in the left and right operand) MUST be satisfied AND the left operand Constraints is a prerequisite for the right operand Constraint.</li>
+    <li><code>andSequence</code> - the left operand constraint must deliver a satisfied result before the right operand constraint is evaluated.</li>
     </ul>
 
-    <p>The <code>isNecessaryFor</code> operator is an example where there are potential conditional requirements between atomic Constraint expressions. This may lead to situations where the outcome is unresolvable, such as "deadlock" if an unsatisfiable Constraint expressions is a prerequisite for other Constraint expressions, or "recursive chaining" if a Constraint expression is referred to many times in numerous Constraint Relations on both operands.</p>
+    <p>The <code>andSequence</code> operator is an example where there are temporal conditional requirements between atomic Constraint expressions. This may lead to situations where the outcome is unresolvable, such as "deadlock" if a Constraint expression is unable to be satisfied. Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</p>
     
     
 <p>The processing model for Constraint Relations includes:</p>
     <ol>
        <li>If the Constraint <code>leftOperand</code> refers to a Constraint object, then the <code>rightOperand</code> MUST also refer to a Constraint object.</li>
        <li>The Constraint objects both MUST be <i>atomic</i> Constraint expressions.</li>
+        <li>The Constraint objects MUST not be the same <i>atomic</i> Constraint expression.</li>
         <li>The Constraint <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>, <code>isNecessaryFor</code>. Other values MAY be defined in ODRL Profiles exclusively for the use of Constraint Relations.</li>
         <li>The Constraint MUST not use the <code>rightOperandReference</code>, <code>dataType</code>, <code>unit</code>, or <code>status</code> attributes.</li>
        <li>If the Constraint <code>operator</code> is <code>or</code> then at least one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li> 
         <li>If the Constraint <code>operator</code> is <code>xor</code> then at only one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>  
         <li>If the Constraint <code>operator</code> is <code>and</code> then both of the Constraints (in the left and right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>
-        <li>If the Constraint <code>operator</code> is <code>isNecessaryFor</code> then the left operand Constraint MUST be satisfied then the right operand Constraint MUST be processed. The right operand Constraint MUST then be satisifed for the entire Constraint to be satisfied.</li>
-        <li>If a Constraint expression (either in the left or right operand) is unsatisfiable AND is required to be satisfied (at some point), then the processing system MUST indicate an appropriate warning message.</li>
-        <li>If the same Constaint expression appears as a left and/or right operand in different Constraint Relations, then the processing system MUST determine if that results in an unsatisfiable chain of Constraint expressions, and MUST indicate an appropriate warning message. </li>
+        <li>If the Constraint <code>operator</code> is <code>andSequence</code> then the left operand Constraint MUST return a satisfied result then the right operand Constraint MUST be evaluated and be satisfied.</li>
     </ol>
 
     
@@ -1087,7 +1086,7 @@ which database the index outcome should be stored in.</p>
 }  
 </pre>
     
-<p><b>Example Use Case:</b>The Policy below shows a Permission to distribute photos in which the first constraint (the event "football/game/2017" has passed) is statisfied, then the second constraint (wait for 60 minutes) is processed, and is then satisfied. Note that the <code>operator</code> value of <code>isNecessaryFor</code> is not the same as  <code>and</code> as for the latter both operand Constraints must be satisfied, but could be processed at the same time.  </p>
+<p><b>Example Use Case:</b>The Policy below shows a Permission to distribute photos in which the first constraint (the event "football/game/2017" has passed) is statisfied, then the second constraint (wait for 60 minutes) is processed, and is then satisfied. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Constraints must be satisfied, but could be processed at the same time.)  </p>
     
     30 mins after football match
     
@@ -1104,7 +1103,7 @@ which database the index outcome should be stored in.</p>
         "action": "odrl:distribute",
         "constraint": [{
                 "leftOperand": "http://example.com/policy:88/C1",
-                "operator": "odrl:isNecessaryFor",
+                "operator": "odrl:andSequence",
                 "rightOperand": "http://example.com/policy:88/C2"
             }],
     }],
@@ -1116,7 +1115,7 @@ which database the index outcome should be stored in.</p>
    },
    "constraint": {
        "@id": "http://example.com/policy:88/C2"
-       "leftOperand": "odrl:dateTime",
+       "leftOperand": "odrl:delayPeriod",
        "operator": "odrl:gteq",
        "rightOperand": "P60M"
    }
