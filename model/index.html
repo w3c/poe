@@ -744,21 +744,22 @@ which database the index outcome should be stored in.</p>
 <h3>Permission</h3>
 
 
-<p>The Permission entity indicates the Actions permitted to be performed on the Asset.</p>
-<p>An ODRL policy expression MAY contain at least one Permission. It is important to verify the semantics of the Policy <code>type</code> attribute as this SHOULD indicate additional constraints on the Policy expression semantics.</p>
+<p>The Permission entity indicates the Actions permitted to be performed on the Asset. An ODRL policy expression MAY contain at least one Permission.</p>
 
-<p>The Permission entity has the following relations:</p>
+<p>The Permission entity has the following attributes:</p>
 <ul>
-<li><code>Asset</code>: the Permission entity MUST refer to an Asset (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the linked Action SHOULD be performed (REQUIRED)</li>
-<li><code>Action</code>: the Permission entity MUST refer to <em>exactly one</em> Action that indicates the granted operation on the target Asset (REQUIRED) (Note: this is after the Rule has folowed the processing models defined in the <a href="#structure">Policy Structure</a> section.)</li>
-<li><code>Party</code>: the Permission MAY refer to one or more Party entities linked via the Role entity (OPTIONAL)</li>
-<li><code>Constraint</code>: the Permission MAY refer to one or more Constraints which affect the validity of the Permission - it only becomes effective if all of the referred Constraints are true (OPTIONAL). For example; the Action play is only permitted for a certain period of time.</li>
-<li><code>Duty</code>: the Permission MAY refer to one or more Duty entities that indicate a requirement that SHOULD be fulfilled in return for receiving the Permission (OPTIONAL)</li>
+<li>The Permission entity MUST refer to a <code>target</code> Asset on which the identified Action MAY be performed. Other <code>relation</code> values for Asset MAY be used.</li>
+<li>The Permission entity MUST refer to an instance of an Action that indicates the granted operation allowed on the target Asset.</li>
+<li>The Permission entity MAY refer to one or more assigner and/or assignee <code>role</code> functions undertaken by Party entities. Other <code>role</code> function values for Party MAY be used.</li>
+<li>The Permission entity MAY refer to one or more <code>constraint</code>s.  The Permission becomes effective if all of the constraints are satisfied.</li>
+<li>The Permission entity MAY refer to one or more <code>duty</code>/ies. The Duty expresses an obligation that MUST be fulfilled in order to be granted the Permission.</li>
 </ul>
-	
-<p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset http//example.com/game:9090, stating that the ticket is valid until the end of the year 2016. Any valid holder of this ticket may exercise this Permission.</p>
 
- <pre class="example highlight hljs xquery">{
+ <p>In addition, the semantics of the Policy <code>type</code> attribute MUST also be included in processing the Permission for validity. The Policy <code>type</code> MAY indicate additional constraints on the expression semantics for Permissions.</p>	
+    
+<p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset http//example.com/game:9090, stating that the ticket is valid until the end of the year 2017. Any valid holder of this ticket may exercise this Permission.</p>
+
+ <pre class="example hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -770,7 +771,7 @@ which database the index outcome should be stored in.</p>
         <span class="hljs-string">"constraint"</span>: [{
             <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:dateTime"</span>,
             <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:lteq"</span>,
-            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"2016-12-31"</span>
+            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"2017-12-31"</span>
         }]
     }]
 }</pre>
@@ -781,7 +782,7 @@ which database the index outcome should be stored in.</p>
 <h3>Prohibition</h3>
 
 <p>The Prohibition entity indicates the Actions that are prohibited to be performed on the Asset.
-<p>The Prohibition entity has the following relations:</p>
+<p>The Prohibition entity has the following attributes:</p>
 <ul>
 <li><code>Asset</code>: the Prohibition entity MUST refer to an Asset (where at least one, and only one, <code>relation</code> value is <code>target</code>) on which the Action is prohibited (REQUIRED) (Note: this is after the Rule has folowed the processing models defined in the <a href="#structure">Policy Structure</a> section.)</li>
 <li><code>Action</code>: the Prohibition entity MUST refer to <em>exactly one</em> Action that is prohibited (REQUIRED)</li>
@@ -825,7 +826,7 @@ which database the index outcome should be stored in.</p>
 <ul>
 <li><code>uid</code>: a unique identification for this Duty. Used to refer a single Duty to multiple Permission entities (OPTIONAL)</li>
 </ul>
-<p>The <code>Duty</code> entity has the following relations:</p>
+<p>The <code>Duty</code> entity has the following attributes:</p>
 <ul>
 <li><code>Action</code>: indicates the requirement that MUST be performed (REQUIRED). Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
 <li><code>Party</code>: a Duty MAY refer to Party entities with different Roles. If no explicit Party is linked to as Assignee or Assigner, the Parties with the respective Roles are taken from the referring Permission. (OPTIONAL)</li>
