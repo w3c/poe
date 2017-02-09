@@ -123,9 +123,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li>A Duty indicates that the Policy expresses an Action that MUST be performed (as a requirement to be granted a Permission). </li>
 </ul>
 
-<p>As an example, a Permission in a Policy MAY allow a particular Action to be applied to an Asset, e.g., &#8220;play the audio file abc.mp3&#8221;. A Constraint, such as &#8220;at most 10 times&#8221;, MAY be added to express limitations to the Actions. The Party "VirtualMusicShop" that granted this Permission MAY be included with the Role Assigner, and the Party "Alice" that is granted the Permission MAY be included with the Role Assignee.</p>
+<blockquote>
+    <p>As an example, a Permission in a Policy MAY allow a particular Action to be applied to an Asset, e.g., &#8220;play the audio file abc.mp3&#8221;. A Constraint, such as &#8220;at most 10 times&#8221;, MAY be added to express limitations to the Actions. The Party "VirtualMusicShop" that granted this Permission MAY be included with the Role Assigner, and the Party "Alice" that is granted the Permission MAY be included with the Role Assignee.</p>
+</blockquote>
+    
 <p>Similar to Permissions, a Duty states that a certain Action MUST be executed by the Party with the Role Assignee for the Permission to be valid, e.g. &#8220;Alice must pay 5 Euros in order to get the Permission to play abc.mp3&#8243;.</p>
 
+    
 <section id="policy">
 <h3>Policy</h3>
 
@@ -139,15 +143,17 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li><code>profile</code>: the identifier of the ODRL Profile that this Policy conforms to (OPTIONAL)</li>
 </ul>
 
-<p>The values for the Policy entity&#8217;s <code>type</code> attribute are described in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. The Policy <code>type</code> describes the context of use of the Policy and MAY include additional constraints that processing systems MUST understand. For example, the "Agreement" Policy type stipulates minimal cardinalities for some for the Information Model entities, which are different than the "Offer" Policy type. In addition, and more importantly, the "Agreement" Policy type expresses that the Permissions/Prohibitions have been granted, but the "Offer" Policy type does not.</p>
-
+<p>The values for the Policy entity&#8217;s <code>type</code> attribute are described in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. The Policy <code>type</code> describes the context of use of the Policy and MAY include additional constraints that processing systems MUST understand.</p>
+<blockquote>    
+    <p> For example, the "Agreement" Policy type stipulates minimal cardinalities for some for the Information Model entities, which are different than the "Offer" Policy type. In addition, and more importantly, the "Agreement" Policy type expresses that the Permissions/Prohibitions have been granted, but the "Offer" Policy type does not.</p>
+    </blockquote>
 <p>To illustrate the concepts described in the Information Model, we will start from basic examples to come to more sophisticated ones when concepts are discussed in more details. </p>
  
+<blockquote>
+<p>Example Use Case: The below "Set" Policy type grants the Permission to read and the Prohibition to reproduce the target Asset http//example.com/asset:9898. No Parties or other elements are involved.</p>
+</blockquote>
 
-<p><b>Example Use Case</b>: The below "Set" Policy type grants the Permission to read and the Prohibition to reproduce the target Asset http//example.com/asset:9898. No Parties or other elements are involved.</p>
-
-
-<pre class="example highlight hljs xquery">{
+<pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -163,10 +169,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     }]
 }
 </pre>
-	
-<p><b>Example Use Case</b>: The below "Set" Policy type states that the Asset http//example.com/asset:9898 is the target of the Permission to perform the action reproduce, the Duty to perform the action attribute to http://example.com/owner:9898, and the Prohibition to perform the action translate. Two Parties are involved, namely the Assigner of the Permission and the Party to be attributed.</p>
-
-<pre class=" example highlight hljs xquery">{
+<blockquote>
+<p>Example Use Case: The below "Set" Policy type states that the Asset http//example.com/asset:9898 is the target of the Permission to perform the action reproduce, the Duty to perform the action attribute to http://example.com/owner:9898, and the Prohibition to perform the action translate. Two Parties are involved, namely the Assigner of the Permission and the Party to be attributed.</p>
+</blockquote>
+<pre class=" example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -195,7 +201,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      
      <p>At the core <i>atomic</i> level, an ODRL Rule (Permission and/or Prohibition) would typically contain one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below:</p>
              
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -216,7 +222,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>As multiple Assets, Parties, and Actions are support for each Rule, then the following (snippet) example with two Assets:</p>
     
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "target": "http://example.com/music/PurpleRain.mp3",
@@ -230,7 +236,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>Would then be mapped to two <i>atomic</i> Rules:</p>
     
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
@@ -258,7 +264,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
        
     <p>An ODRL Policy MAY also declare multiple Assets, Parties, and Actions at the Policy level. This indicates that these are all common to all the enclosing Rules, as shown in the below example:</p>
              
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -280,7 +286,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>To fully expand the Rules, the Policy-level Assets, Parties, and Actions MUST be added to all the Rules in the Policy. As shown below, the policy-level Target, Assigner, and Action are added to the two permission Rules:</p>
     
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -334,10 +340,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <ol>
     <li>If a Policy contains the <B>dc:isReplacedBy</B> property, then the identified Policy MUST be retrieved and processed.</li>
     </ol>
+
+<blockquote>
+<p>Example Use Case:The below Policy contains provenace properties that indicate who created it, when it was issued, which jurisdiction is relevant, and an older version of the Policy it replaces.</p>     </blockquote>
          
-<p><b>Example Use Case:</b>The below Policy contains provenace properties that indicate who created it, when it was issued, which jurisdiction is relevant, and an older version of the Policy it replaces.</p>        
-         
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
 {
     "@context": [{ "odrl": "http://www.w3.org/ns/odrl/2/",
                    "dc": "http://purl.org/dc/terms/ }],
@@ -345,7 +352,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     "uid": "http://example.com/policy:8888",
     "dc:creator": "billie@example.com",
     "dc:issued": "2017-01-01:12:00",
-    "dc:jurisiction: "Queensland, Australia",
+    "dc:coverage: "Queensland, Australia",
     "dc:replaces: "http://example.com/policy:8887",
     "permission": [{ ... }]
 }  
@@ -359,8 +366,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <section id="conflict">
 <h4>Policy Conflict</h4>
         
-<p>The <code>conflict</code> attribute is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent. For example, one Policy stated that Assignee Fred had been granted an "exclusive" distribution Permission, and the other Policy said the same for Assignee Mary. In the same Policy, conflicts can also arise when the same Action is used in a Permission and a Prohibition. </p>
-    
+<p>The <code>conflict</code> attribute is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent.</p>
+        <blockquote>
+            <p>For example, one Policy stated that Assignee Fred had been granted an "exclusive" distribution Permission, and the other Policy said the same for Assignee Mary. In the same Policy, conflicts can also arise when the same Action is used in a Permission and a Prohibition. </p>
+        </blockquote>
     <p>The <code>conflict</code> attribute MUST take one of the following values:</p>
 <ul>
 <li><code>perm</code>: the <code>Permission</code>s MUST override the Prohibitions</li>
@@ -379,11 +388,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     </ol>
        
         
-	
-<p><b>Example Use Case</b>: Two Policies are associated to the same target Asset http://example.com/asset:1212. The first Policy http://example.com/policy:0001 allows to use the Asset. The second Policy http://example.com/policy:0002 allows for the display of the Asset, but it prohibits print. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the print Action is a subset of the use Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the use Permission will override the print Prohibition.</p>
+<blockquote>
+<p>Example Use Case: Two Policies are associated to the same target Asset http://example.com/asset:1212. The first Policy http://example.com/policy:0001 allows to use the Asset. The second Policy http://example.com/policy:0002 allows for the display of the Asset, but it prohibits print. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the print Action is a subset of the use Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the use Permission will override the print Prohibition.</p>
+</blockquote>
 
-
-<pre class="example highlight hljs xquery">{
+<pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -398,7 +407,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }
 </pre>
 
-<pre class="example highlight hljs xquery">{
+<pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -442,15 +451,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <li>If a Policy has the <code>undefined</code> attribute of <code>invalid</code> and there are actions in the Policy now known to the processing system, then the processing system MUST process the entire Policy as invalid.</li>
      <li>If a Policy has multiple <code>undefined</code> attribute values (for example, after a Policy merge) AND there are actions in the Policy now known to the processing system, then the entire Policy MUST be processed as invalid.</li> 
     </ol>
-       
+      
         
-        
-        
+<blockquote>
+  <p>Example Use Case: A Policy of type Set states that the Asset can be <i>recorded</i>. The processing system does not understand this Action, and since the <b>undefined</b> attribute is <b>invalid</b>, then the entire Policy is deemed invalid.</p>
+</blockquote>    
 
-  <p><b>Example Use Case</b>: A Policy of type Set states that the Asset can be <i>recorded</i>. The processing system does not understand this Action, and since the <b>undefined</b> attribute is <b>invalid</b>, then the entire Policy is deemed invalid.</p>
-        
-
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -488,7 +495,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     
 <p>The <code>inheritFrom</code> association in the (child) Policy will uniquely identify (via a UID) the (parent) Policy from which the inheritance will be performed.</p>
-<p>The <code>inheritRelation</code> attribute in the (child) Policy will uniquely identify (via a UID) the context of inheritance from the (parent) Policy. For example, this may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the Parties (that are not machine representable). Such terms SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] or ODRL Profiles. For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL Policies they exchange. This will require the ODRL Policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission Actions or constraints (etc) that is documented in their business model arrangement.</p>
+<p>The <code>inheritRelation</code> attribute in the (child) Policy will uniquely identify (via a UID) the context of inheritance from the (parent) Policy. This may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the Parties (that are not machine representable). Such terms SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] or ODRL Profiles. 
+        <blockquote>
+        <p>For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL Policies they exchange. This will require the ODRL Policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission Actions or constraints (etc) that is documented in their business model arrangement.</p>
+    </blockquote>
 <p>Both the <code>inheritFrom</code> association and <code>inheritRelation</code> attribute may be used independently.</p>
     
 <p>The following restrictions apply when using inheritance:</p>
@@ -498,10 +508,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li>Inheritance MUST NOT be circular.</li>
 <li>No state information is transferred from the parent Policy to the child Policy.</li>
 </ul>
-	
-<p><b>Example Use Case:</b>Consider the below (parent) Policy that has been expressed primarly for inheritance purposes:</p>    
+
+    <blockquote>
+<p>Example Use Case: Consider the below (parent) Policy that has been expressed primarly for inheritance purposes:</p>    
+</blockquote>
     
-    <pre class="example highlight hljs xquery">
+    <pre class="example hljs xquery">
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -518,7 +530,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>The below (child) Policy includes the inheritFrom attribute pointing to the above (parent) Policy. The (child) Policy also includes its own specific policy-level asset, and two Permission Rules.</p>    
     
-    <pre class="example highlight hljs xquery">
+    <pre class="example hljs xquery">
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -541,7 +553,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>After the inheritance is performed - where the (parent) Policy information structures are added to the (child) Policy - the resultant Policy is shown below:</p>    
     
-    <pre class="example highlight hljs xquery">
+    <pre class="example hljs xquery">
 {
     "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -618,10 +630,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The <code>scope</code> attribute URI values SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
     
-    
-<p><b>Example Use Case</b>: The Party http//example.com/guest:0001 needs to display the target Asset http://example.com/asset:3333, but she needs to be granted with the Permission to do so. This request can be implemented through a Policy of the type Request asking for the Permission to display Asset http://example.com/asset:3333.</p>
-
- <pre class="example highlight hljs xquery">{
+ <blockquote>   
+<p>Example Use Case: The Party http//example.com/guest:0001 needs to display the target Asset http://example.com/asset:3333, but she needs to be granted with the Permission to do so. This request can be implemented through a Policy of the type Request asking for the Permission to display Asset http://example.com/asset:3333.</p>
+    </blockquote>
+ <pre class="example hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -634,12 +646,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     }]
 }</pre>
 
-	
-<p><b>Example Use Case</b>: The Party needs to define a Policy exploiting multiple Asset entities. The index Permission is granted to the target Asset http://example.com/archive1011. The x:collection Asset http://example.com/x/database specifies 
+<blockquote>	
+<p>Example Use Case: The Party needs to define a Policy exploiting multiple Asset entities. The index Permission is granted to the target Asset http://example.com/archive1011. The x:collection Asset http://example.com/x/database specifies 
 which database the index outcome should be stored in.</p>
+    </blockquote>
 
-
- <pre class="example highlight hljs xquery">{
+ <pre class="example hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -652,9 +664,10 @@ which database the index outcome should be stored in.</p>
     }]
 }</pre>
     
-    <p><b>Example Use Case</b>: The Policy includes a target Asset http://example.com/media-catalogue that has a scope of http://example.com/imt/jpeg (which, in this case, provides additional context on what characteristics the Asset MUST hold).</p>
-
- <pre class="example highlight hljs xquery">{
+    <blockquote>
+    <p>Example Use Case: The Policy includes a target Asset http://example.com/media-catalogue that has a scope of http://example.com/imt/jpeg (which, in this case, provides additional context on what characteristics the Asset MUST hold).</p>
+    </blockquote>
+ <pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -718,10 +731,11 @@ which database the index outcome should be stored in.</p>
 </ul>
 <p>Other URI values for the <code>scope</code> attribute SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
-	
-<p><b>Example Use Case</b>: The target Asset http://example.com/myPhotos:BdayParty are photos posted to a Social Network site by the Assigner and owner of the photos http://example.com/user44. The Assignee is a Party http://example.com/user44/friends, and represents all the friends of the Assigner. The scope of the Assignee(s) has been set to http://example.com/people/age/18+ (which, in this case provides additional context on what characteristics the Assigee MUST hold).</p>
 
-<pre class="example highlight hljs xquery">{
+    <blockquote>
+<p>Example Use Case: The target Asset http://example.com/myPhotos:BdayParty are photos posted to a Social Network site by the Assigner and owner of the photos http://example.com/user44. The Assignee is a Party http://example.com/user44/friends, and represents all the friends of the Assigner. The scope of the Assignee(s) has been set to http://example.com/people/age/18+ (which, in this case provides additional context on what characteristics the Assigee MUST hold).</p>
+    </blockquote>
+<pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -756,9 +770,9 @@ which database the index outcome should be stored in.</p>
 </ul>
 
  <p>In addition, the semantics of the Policy <code>type</code> attribute MUST also be included in processing the Permission for validity. The Policy <code>type</code> MAY indicate additional constraints on the expression semantics for Permissions.</p>	
-    
-<p><b>Example Use Case</b>: The ticket Policy expresses the play Permission for the target Asset http//example.com/game:9090, stating that the ticket is valid until the end of the year 2017. Any valid holder of this ticket may exercise this Permission.</p>
-
+<blockquote>   
+<p>Example Use Case: The ticket Policy expresses the play Permission for the target Asset http//example.com/game:9090, stating that the ticket is valid until the end of the year 2017. Any valid holder of this ticket may exercise this Permission.</p>
+    </blockquote>
  <pre class="example hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
@@ -792,9 +806,11 @@ which database the index outcome should be stored in.</p>
     
 </ul>
 
-<p><b>Example Use Case</b>: The owner and Assigner of a target Asset http://example.com/photoAlbum:55 needs an Agreement Policy expressing with both a Permission and a Prohibition. Then Assigner Party http://example.com/MyPix:55 assigns the Permission display to the Assignee Party http://example.com/assignee:55 at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between Permissions and Prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
-
-<pre class="example highlight hljs xquery">{
+    <blockquote>
+<p>Example Use Case: The owner and Assigner of a target Asset http://example.com/photoAlbum:55 needs an Agreement Policy expressing with both a Permission and a Prohibition. Then Assigner Party http://example.com/MyPix:55 assigns the Permission display to the Assignee Party http://example.com/assignee:55 at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between Permissions and Prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
+    </blockquote>
+    
+<pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -840,13 +856,14 @@ which database the index outcome should be stored in.</p>
     <p>If a Permission refers to several Duty entities, <em>all of them</em> MUST be satisfied for the Permission to be undertaken. If several Permission entities refer to one Duty, then the Duty only has to be satisfied <em>once</em> for all the Permission entities.</p>
     
 <p>Even though a Duty entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid, as different business rules may apply such as montly invoicing.</p>
-    
-<p><b>Example Use Case</b>: The Party http://example.com/assigner:sony makes and Offer to play the music file http://example.com/music/1999.mp3. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this http://www.w3.org/ns/odrl/2/policyUsage must not have occured yet.
+ 
+    <blockquote>
+<p>Example Use Case: The Party http://example.com/assigner:sony makes and Offer to play the music file http://example.com/music/1999.mp3. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this http://www.w3.org/ns/odrl/2/policyUsage must not have occured yet.
 </p>
+    </blockquote>
 
 
-
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
 {
    "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -876,12 +893,12 @@ which database the index outcome should be stored in.</p>
 </pre>
     
 
+<blockquote>
+<p>Example Use Case: The Party http://example.com/assigner:77 needs to set a Privacy Policy for some data about it. The target Asset http://example.com/personal-data:77 of this Policy is personal data, and the Assignee http://example.com/gov:health:au is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the Assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
+    </blockquote>
 
-<p><b>Example Use Case</b>: The Party http://example.com/assigner:77 needs to set a Privacy Policy for some data about it. The target Asset http://example.com/personal-data:77 of this Policy is personal data, and the Assignee http://example.com/gov:health:au is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the Assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
 
-
-
-<pre class="example highlight hljs xquery">{
+<pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -922,9 +939,11 @@ which database the index outcome should be stored in.</p>
 </ul>
 <p>As its value, the <code>name</code> attribute SHOULD take one of a set of Action <em>names</em> which are formally defined in Profiles. The ODRL vocabulary [[!vocab-odrl]] defines a standard set of potential terms that MAY be used. Communities will develop new (or extend existing) Profiles to capture additional and refined semantics.</p>
 
-<p><b>Example Use Case</b>: The Party needs to define an Offer policy granting a Permission about the target Asset http://example.com/music:1012, namely the permission to play the Asset.</p> 
-
-<pre class="example highlight hljs xquery">{
+    <blockquote>
+<p>Example Use Case: The Party needs to define an Offer policy granting a Permission about the target Asset http://example.com/music:1012, namely the permission to play the Asset.</p> 
+    </blockquote>
+    
+<pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -970,14 +989,16 @@ which database the index outcome should be stored in.</p>
 
 <p>In case of a Constraint expression, the <code>rightOperand</code> identifies the right operand of the logic expression for the Constraint. The <code>rightOperand</code> MAY be the value of the constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as "10" or "http://example.com/c100") and <code>rightOperandReference</code> represents a URI that MUST be dereferenced to obtain the actual value. Only one between <code>rightOperand</code> and <code>rightOperandReference</code> MUST appear in the Constraint. In case of a Constraint Relations expression, the <code>rightOperand</code> MUST refer to an complete Constraint object (see <a href="#constraint-relations">Constraint Relations</a> for further requirements).</p>
         
-<p>In case of a Constraint expression, the <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;decimal&#8221; or &#8220;xsd:datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;. In case of a Constraint Relations expression, the <code>dataType</code> attribute MUST NOT be used.</p>
+<p>In case of a Constraint expression, the <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as &#8220;xsd:decimal&#8221; or &#8220;xsd:datetime&#8221; and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;. In case of a Constraint Relations expression, the <code>dataType</code> attribute MUST NOT be used.</p>
 
         
 <p>In case of a Constraint expression, the <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has alread been exercised 5 times. In case of a Constraint Relations expression, the <code>status</code> attribute MUST NOT be used.</p>
 
-<p><b>Example Use Case</b>: The Party http://example.com/myPix:6161 wants to assign the Permission distribute directly to the potential buyer of the Permission who will pay 100 EUR to be granted with the Permission. The distribute Permission is constrained to a specific country. The potential Assignee may then distribute the target Asset http://example.com/wallpaper:1234 according to the nextPolicy target Asset linked directly from this Permission. The next Policy Asset http://example.com/policy:7171 stipulates that the potential Assignee may only offer the display Permission to downstream consumers.</p>
-
-<pre class="example highlight hljs xquery">{
+<blockquote>
+<p>Example Use Case: The Party http://example.com/myPix:6161 wants to assign the Permission distribute directly to the potential buyer of the Permission who will pay 100 EUR to be granted with the Permission. The distribute Permission is constrained to a specific country. The potential Assignee may then distribute the target Asset http://example.com/wallpaper:1234 according to the nextPolicy target Asset linked directly from this Permission. The next Policy Asset http://example.com/policy:7171 stipulates that the potential Assignee may only offer the display Permission to downstream consumers.</p>
+    </blockquote>
+    
+<pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
@@ -1045,7 +1066,7 @@ which database the index outcome should be stored in.</p>
        <li>If the Constraint <code>leftOperand</code> refers to a Constraint object, then the <code>rightOperand</code> MUST also refer to a Constraint object.</li>
        <li>The Constraint objects both MUST be <i>atomic</i> Constraint expressions.</li>
         <li>The Constraint objects MUST not be the same <i>atomic</i> Constraint expression.</li>
-        <li>The Constraint <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>, <code>isNecessaryFor</code>. Other values MAY be defined in ODRL Profiles exclusively for the use of Constraint Relations.</li>
+        <li>The Constraint <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>, <code>andSequence</code>. Other values MAY be defined in ODRL Profiles exclusively for the use of Constraint Relations.</li>
         <li>The Constraint MUST not use the <code>rightOperandReference</code>, <code>dataType</code>, <code>unit</code>, or <code>status</code> attributes.</li>
        <li>If the Constraint <code>operator</code> is <code>or</code> then at least one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li> 
         <li>If the Constraint <code>operator</code> is <code>xor</code> then at only one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li>  
@@ -1053,9 +1074,11 @@ which database the index outcome should be stored in.</p>
         <li>If the Constraint <code>operator</code> is <code>andSequence</code> then the left operand Constraint MUST return a satisfied result then the right operand Constraint MUST be evaluated and be satisfied.</li>
     </ol>
 
-    
-<p><b>Example Use Case:</b>The Policy below shows a Permission to play the target asset that can either be a maximum of 100 times, or unlimited play until the end of 2017. </p>
-<pre class="example highlight hljs xquery">
+   <blockquote> 
+<p>Example Use Case:The Policy below shows a Permission to play the target asset that can either be a maximum of 100 times, or unlimited play until the end of 2017. </p>  
+    </blockquote>
+           
+<pre class="example hljs xquery">
 {
    "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
@@ -1086,12 +1109,12 @@ which database the index outcome should be stored in.</p>
    }
 }  
 </pre>
+
+    <blockquote>
+<p>Example Use Case: The Policy below shows a Permission to distribute photos in which the first constraint (the event "football/game/2017" has passed) is statisfied, then the second constraint (wait for 60 minutes) is processed, and is then satisfied. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Constraints must be satisfied, but could be processed at the same time.)  </p>
+    </blockquote>
     
-<p><b>Example Use Case:</b>The Policy below shows a Permission to distribute photos in which the first constraint (the event "football/game/2017" has passed) is statisfied, then the second constraint (wait for 60 minutes) is processed, and is then satisfied. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Constraints must be satisfied, but could be processed at the same time.)  </p>
-    
-    30 mins after football match
-    
-<pre class="example highlight hljs xquery">
+<pre class="example hljs xquery">
 {
    "@context": {
     "odrl": "http://www.w3.org/ns/odrl/2/"
