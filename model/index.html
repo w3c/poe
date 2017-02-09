@@ -194,12 +194,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }
 </pre>
 	
-<section id="structure">
-<h4>Policy Structures</h4>
+<section id="composition">
+<h4>Policy Composition</h4>
              
-    <p>The ODRL Information Model supports flexibility in the information structures to declare ODRL expressions. A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these apply to all of the enclosing Rules in the Policy.</p>
+    <p>The ODRL Information Model supports flexibility in the composition of the information entities used to declare ODRL expressions. A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
      
-     <p>At the core <i>atomic</i> level, an ODRL Rule (Permission and/or Prohibition) would typically contain one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below:</p>
+    <p>At the basic level, an ODRL Rule would refer to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <i>atomic</i> level of a Policy where it is <i>irreducible</i> and <i>unambiguous</i>.</p>
              
 <pre class="example hljs xquery">
 {
@@ -220,7 +220,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }  
 </pre>
 
-<p>As multiple Assets, Parties, and Actions are support for each Rule, then the following (snippet) example with two Assets:</p>
+<p>As multiple Assets, Parties, and Actions can be expressed for each Rule, then the following (snippet) example shows two Assets defined for the policy:</p>
     
 <pre class="example hljs xquery">
     "permission": [{
@@ -234,7 +234,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         }]
 </pre>
 
-<p>Would then be mapped to two <i>atomic</i> Rules:</p>
+<p>The above example could then be reduced to two <i>atomic</i> Rules, with the two target assets appearing individually in each:</p>
     
 <pre class="example hljs xquery">
     "permission": [{
@@ -255,14 +255,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         }]
 </pre>
     
-    <p>The processing model for Permission/Prohibition Rules with multiple Assets, Parties, and Actions to generate <i>atomic</i> Rules includes:</p>
+    <p>In order to create the <i>atomic</i> Rules in a Policy, the processing model for policies with multiple Assets, Parties, and Actions includes:</p>
     <ol>
-    <li>If there are multiple Assets (with the same Relation), then create new Rules (one for each Asset) and include one Asset relation, and all the other (non-Asset) entities.</li>
-    <li>If there are multiple Parties (with the same Role), then create new Rules (one for each Party) and include one Party Role, and all the other (non-Party Role) entities.</li>
-    <li>If there are multiple Actions, then create new Rules (one for each Action) and include one Action, and all the other (non-Action) entities.</li>
+    <li>Where there are multiple Assets (with the same Relation), then create new Rules (one for each of these Assets) and include one Asset relation, and include all other (non-Asset) entities.</li>
+    <li>Where there are multiple Parties (with the same Role), then create new Rules (one for each of these Parties) and include one Party Role, and ainclude all other (non-Party Role) entities.</li>
+    <li>Where there are multiple Actions, then create new Rules (one for each of these Actions) and include one Action, and include all other (non-Action) entities.</li>
     </ol>
        
-    <p>An ODRL Policy MAY also declare multiple Assets, Parties, and Actions at the Policy level. This indicates that these are all common to all the enclosing Rules, as shown in the below example:</p>
+    <p>An ODRL Policy MAY also declare multiple Assets, Parties, and Actions at the Policy level (not just within a Rule). This implies that these entities are all common to all the Rules in the Policy, as shown in the below example:</p>
              
 <pre class="example hljs xquery">
 {
@@ -308,13 +308,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     }]
 }  
 </pre>  
-    
-       <p>The processing model for Policies with multiple Assets, Parties, and Actions includes:</p>
+  
+       <p>The processing model for Policies with multiple Assets, Parties, and Actions declared at the Policy-level includes:</p>
     <ol>
-    <li>Replicate all Policy-level Assets in the enclosing Permission/Prohibition Rules.</li>
-   <li>Replicate all Policy-level Parties in the enclosing Permission/Prohibition Rules.</li>
-    <li>Replicate all Policy-level Actions in the enclosing Permission/Prohibition Rules.</li>
-      <li>Follow the processing model (defined above) to create <i>atomic</i> Rules.</li>  
+    <li>Replicate all Policy-level Assets in each and all Permission/Prohibition Rules.</li>
+   <li>Replicate all Policy-level Parties in each and all Permission/Prohibition Rules.</li>
+    <li>Replicate all Policy-level Actions in each and all Permission/Prohibition Rules.</li>
+      <li>Follow the processing model (defined above) to create <i>atomic</i> Rules in the Policy.</li>  
     </ol>
        
     
@@ -478,7 +478,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="inhertiance">
 <h4>Policy Inheritance</h4>
 
-    <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the information structures of another (parent) Policy. The inheritance is aimed at <i>including</i> data structures between Policies.</p>
+    <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the information compositions of another (parent) Policy. The inheritance is aimed at <i>including</i> data compositions between Policies.</p>
     
 <p>The <code>inheritAllowed</code> attribute in the Policy entity is used to indicate if the Policy expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> attribute MUST take one of the following values:</p>
 <ul>
@@ -490,7 +490,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
     <ul>
     <li><code>inheritFrom</code>: the identifier of the parent Policy from which this child Policy inherits from</li>
-<li><code>inheritRelation</code>: the identifier of the relationship context of this inheritance structure</li>
+<li><code>inheritRelation</code>: the identifier of the relationship context for this inheritance</li>
     </ul>
     
     
@@ -551,7 +551,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </pre>
     
 
-<p>After the inheritance is performed - where the (parent) Policy information structures are added to the (child) Policy - the resultant Policy is shown below:</p>    
+<p>After the inheritance is performed - where the (parent) Policy information compositions are added to the (child) Policy - the resultant Policy is shown below:</p>    
     
     <pre class="example hljs xquery">
 {
@@ -588,7 +588,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
            <li>All policy-level Assets, Parties, Actions.</li>
            <li>All Permission and Prohibition Rules.</li>
        </ul>
-      <li>The (child) Policy can then be further expanded (into <i>atomic</i> Rules) by following the processing models defined in the <a href="#structure">Policy Structure</a> section.</li>  
+      <li>The (child) Policy can then be further expanded (into <i>atomic</i> Rules) by following the processing models defined in the <a href="#composition">Policy Composition</a> section.</li>  
     </ol>
         
 	
