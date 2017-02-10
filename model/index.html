@@ -625,18 +625,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The default value for the <code>relation</code> attribute is <code>target</code> which indicates that the Asset is the primary object to which the Rule actions apply.</p>
     
 <p>Other values for the Relation entity SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
-</section>
-	
-<section id="asset-scope">
-<h4>Scope</h4>
     
-    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret the Asset entity. The purpose of <code>scope</code> is to provide additional information about the Asset. For example, the Asset identifier may refer to a resource which many characteristics, but the scope may limit that to only one specific characteristic.</p>
-    
-<p>The <code>scope</code> attribute URI values SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
-</section>
-    
+        
  <blockquote>   
-<p>Example Use Case: The Party http//example.com/guest:0001 needs to display the target Asset http://example.com/asset:3333, but she needs to be granted with the Permission to do so. This request can be implemented through a Policy of the type Request asking for the Permission to display Asset http://example.com/asset:3333.</p>
+<p>Example Use Case: The Party http//example.com/guest:0001 wants to display the target Asset http://example.com/asset:3333, but she needs to be granted with the Permission to do so first. This request can be implemented through a Policy of the type Request asking for the Permission to display Asset http://example.com/asset:3333.</p>
     </blockquote>
  <pre class="example hljs xquery">{
  <span class="hljs-string">"@context"</span>: {
@@ -652,8 +644,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }</pre>
 
 <blockquote>	
-<p>Example Use Case: The Party needs to define a Policy exploiting multiple Asset entities. The index Permission is granted to the target Asset http://example.com/archive1011. The x:collection Asset http://example.com/x/database specifies 
-which database the index outcome should be stored in.</p>
+<p>Example Use Case: The below Policy shows the index action Permission on the target Asset http://example.com/archive1011. Another Asset relation (x:collection) is also expressed to indicate the Asset (http://example.com/x/database) the indexing outcome should be stored in. (These semantics would be defined by the community who created the x:collection relation.)</p>
     </blockquote>
 
  <pre class="example hljs xquery">{
@@ -668,6 +659,17 @@ which database the index outcome should be stored in.</p>
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:index"</span>
     }]
 }</pre>
+    
+</section>
+	
+<section id="asset-scope">
+<h4>Scope</h4>
+    
+    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret the Asset entity. The purpose of <code>scope</code> is to provide additional information about the Asset. For example, the Asset identifier may refer to a resource which many characteristics, but the scope may limit that to only one specific characteristic.</p>
+    
+<p>The <code>scope</code> attribute URI values SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+</section>
+
     
     <blockquote>
     <p>Example Use Case: The Policy includes a target Asset http://example.com/media-catalogue that has a scope of http://example.com/imt/jpeg (which, in this case, provides additional context on what characteristics the Asset MUST hold).</p>
@@ -696,7 +698,7 @@ which database the index outcome should be stored in.</p>
 <section id="party">
 <h3>Party</h3>
     
-<p>The Party entity is the object of an ODRL Policy and can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the Role it plays in the Rule).</p>
+<p>The Party entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the Role it plays in the Rule).</p>
     
 <p>The Party entity has the following attributes:</p>
 <ul>
@@ -704,11 +706,11 @@ which database the index outcome should be stored in.</p>
 <li>The Party entity MUST refer to the <code>function</code> role fulfilled by a Party.</li>
 <li>The Party entity MAY refer to  the <code>scope</code> defining how the role shall be interpreted under different contexts.</li>
 </ul>
-<p>The ODRL Information Model does not provide additional metadata for the Party element. It is recommended to use  existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]], that are appropriate to the Party type or purpose.</p>
+<p>The ODRL Information Model does not provide additional metadata for the Party element. It is recommended to use  existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]], that are appropriate to the Party type.</p>
 
 <section id="role">
 <h4>Role</h4>
-<p>The Role entity is an association class and can be used to link to a Party from either Permission, Duty or Prohibition, indicating which Role the Party takes with respect to the entity that links to it.</p>
+<p>The Role entity is an association class that is used to link a Party from a Rule, to indicate what Role the Party takes with respect to the entity that links to it.</p>
 <p>The Role entity has the following attributes:</p>
 <ul>
 <li>The Role entity MUST refer to the <code>function</code> role the Party is undertaking.</li>
@@ -726,7 +728,7 @@ which database the index outcome should be stored in.</p>
 <section id="party-scope">
 <h4>Scope</h4>
     
-    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret the Party entity. The purpose of <code>scope</code> is to provide additional information about the Party that may also reduce the extent of the Party identifier. For example, the Party identifier may refer to all users at a University, but the scope may limit that to only staff members at the University.</p>
+    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret the Party entity. The purpose of <code>scope</code> is to provide additional information about the Party that may also reduce the extent of the Party identifier. For example, the Party identifier may refer to all users at a University, but the scope may contextualise that to only fulltime staff members at the University.</p>
         
      <p>The <code>scope</code> attribute SHOULD take one of the following values:</p>
 <ul>
@@ -737,7 +739,7 @@ which database the index outcome should be stored in.</p>
 </section>
 
     <blockquote>
-<p>Example Use Case: The target Asset http://example.com/myPhotos:BdayParty are photos posted to a Social Network site by the Assigner and owner of the photos http://example.com/user44. The Assignee is a Party http://example.com/user44/friends, and represents all the friends of the Assigner. The scope of the Assignee(s) has been set to http://example.com/people/age/18+ (which, in this case provides additional context on what characteristics the Assigee MUST hold).</p>
+<p>Example Use Case: The target Asset http://example.com/myPhotos:BdayParty are a set of photos posted to a social network site by the Assigner of the photos http://example.com/user44. The Assignee is a Party http://example.com/user44/friends, and represents all the friends of the Assigner. Since this is a collection of individuals, then the group scope is declared. In addtion, the scope of the Assignee has been also be declared as http://example.com/people/age/18+ (which, in this case, provides additional context on what characteristics the Assignee MUST hold).</p>
     </blockquote>
 <pre class="example hljs xquery">{
 <span class="hljs-string">"@context"</span>: {
@@ -751,7 +753,8 @@ which database the index outcome should be stored in.</p>
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/user44"</span>,
         <span class="hljs-string">"assignee"</span>: [{
                 <span class="hljs-string">"uid"</span>: <span class="hljs-string">"http://example.com/user44/friends"</span>,
-                <span class="hljs-string">"scope"</span>: <span class="hljs-string">"http://example.com/people/age/18+"</span>	
+                <span class="hljs-string">"scope"</span>: <span class="hljs-string">[ "http://www.w3.org/ns/odrl/2/Group", 
+                           "http://example.com/people/age/18+"]</span>	
         }]
     }]
 }</pre>
