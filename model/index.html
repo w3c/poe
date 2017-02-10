@@ -813,7 +813,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 
     <blockquote>
-<p>Example Use Case: The owner and Assigner of a target Asset http://example.com/photoAlbum:55 needs an Agreement Policy expressing with both a Permission and a Prohibition. Then Assigner Party http://example.com/MyPix:55 assigns the Permission display to the Assignee Party http://example.com/assignee:55 at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflict between Permissions and Prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permission entity will take precedence.</p>
+<p>Example Use Case: The owner and Assigner of a target Asset http://example.com/photoAlbum:55 needs an Agreement Policy expressing with both a Permission and a Prohibition. Then Assigner Party http://example.com/MyPix:55 assigns the Permission display to the Assignee Party http://example.com/assignee:55 at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflicts between Permissions and Prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
     </blockquote>
     
 <pre class="example hljs xquery">{
@@ -842,7 +842,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="duty">
 <h3>Duty</h3>
 
-<p>A Permission entity MAY include a Duty entity that indicates a requirement that MUST be satisfied in order to undertake the Permission. A Duty MUST only be associated with a Permission. </p>
+<p>A Permission entity MAY refer to a Duty entity that indicates a requirement that MUST be satisfied for Permissions to become valid. A Duty MUST only be associated with a Permission. </p>
     
 <p>The Duty entity has the following attributes:</p>
     
@@ -865,7 +865,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Even though a Duty entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid, as different business rules may apply such as montly invoicing.</p>
  
     <blockquote>
-<p>Example Use Case: The Party http://example.com/assigner:sony makes and Offer to play the music file http://example.com/music/1999.mp3. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this http://www.w3.org/ns/odrl/2/policyUsage must not have occured yet.
+<p>Example Use Case: The Party http://example.com/assigner:sony makes an Offer to play the music file http://example.com/music/1999.mp3. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this http://www.w3.org/ns/odrl/2/policyUsage must not have occured yet.
 </p>
     </blockquote>
 
@@ -948,7 +948,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The ODRL vocabulary [[!vocab-odrl]] defines a standard set of common Action names that MAY be used.</p>
 
     <blockquote>
-<p>Example Use Case: The Party needs to define an Offer policy granting a Permission about the target Asset http://example.com/music:1012, namely the permission to play the Asset.</p> 
+<p>Example Use Case: The Party needs to define an Offer policy granting a Permission for the target Asset http://example.com/music:1012, namely the permission to play the Asset.</p> 
     </blockquote>
     
 <pre class="example hljs xquery">{
