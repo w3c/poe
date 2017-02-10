@@ -381,10 +381,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         
 <p>The processing model for Policies conflict strategies includes:</p>
     <ol>
-     <li>If a Policy has the <code>conflict</code> attribute of <code>perm</code> and there are detected conflicts between a Permission and a Prohibition, then the Permission MUST overide the Prohibition.</li>
- <li>If a Policy has the <code>conflict</code> attribute of <code>prohibit</code> and there are detected conflicts between a Permission and a Prohibition, then the Prohibition MUST overide the Permission.</li>
-  <li>If a Policy has the <code>conflict</code> attribute of <code>invalid</code> and there are detected conflicts between a Permission and a Prohibition, then the entire Policy MUST be processed as invalid .</li> 
- <li>If a Policy has multiple <code>conflict</code> attribute values (for example, after a Policy merge) AND there are detected conflicts between a Permission and a Prohibition, then the entire Policy MUST be processed as invalid .</li> 
+        <li>If a ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow:</li>
+        <ol>
+           <li>If a Policy has the <code>conflict</code> attribute of <code>perm</code> then any conflicting Permission Rule MUST overide the Prohibition Rule and continue with the Policy as valid.</li>
+ <li>If a Policy has the <code>conflict</code> attribute of <code>prohibit</code> then any conflicting Prohibition Rule MUST overide the Permission Rule and continue with the Policy as valid.</li>
+  <li>If a Policy has the <code>conflict</code> attribute of <code>invalid</code> then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
+ <li>If a Policy has multiple <code>conflict</code> attribute values (for example, after a Policy merge or inheritance) then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
+        </ol>
     </ol>
        
         
