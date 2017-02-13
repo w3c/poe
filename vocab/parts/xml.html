@@ -129,7 +129,7 @@
 <section>
 <h2>XML Example</h2>
 <p>The below example shows the XML serialisation of an ODRL Policy. In this example, the target asset and assigner and asignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country for a compensation payment of EUR5,000. </p>
-<pre class="example highlight xml">
+<pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
                 type="http://www.w3.org/ns/odrl/2/Agreement">
     &lt;o:asset uid="http://example.com/music:4545" 
@@ -175,7 +175,7 @@
     <p>As shown in the below example, the Prohibition refers to elements defined in the Permission, except for the Constraint element. In this case, the assignee can play the music asset in Italy but not in France.</p>
     
 <div id="link-xml">
-<pre class="example highlight xml">
+<pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" type="http://www.w3.org/ns/odrl/2/Set" 
      uid="http://example.com/policy:Z1XZ">
   &lt;o:permission>
@@ -212,7 +212,7 @@
  <p>ODRL XML processing systems MUST detect the use of "#id" in the name and rightOperand in Constraints. If detected, the processing model for Constraint Relations (defined in [[!odrl-model]]) MUST then be followed.</p>
 <p>The below example shows two constraints defined at the Policy-level with ids "C1" and C2". The Constraint in the permission refers to these using the "#C1" and "#C2" values.</p>   
     
-<pre class="example highlight xml">
+<pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
                 type="http://www.w3.org/ns/odrl/2/Offer">
     &lt;o:party uid="http://example.com/billie"
@@ -240,7 +240,7 @@
 <h2>Inline Assets</h2>
   <p>In some scenarios, the Asset of an ODRL Policy maybe also be XML or HTML markup. In these specific cases, it makes sense to enable the ODRL Policy to be articulated as part of the Asset and to support abbreviated expressions. All default values should be assumed. The preferred method of linking is to utilise the XML ID attribute. The source Asset markup may be identified with an ID attribute and the ODRL Asset element can then refer to this ID as the UID (as a URI hash fragment). An example is shown below.</p>  
 <div id="inline-xml">
-<pre class="example highlight xml">
+<pre class="example  xml">
 &lt;rnews:Article xml:id="item8HEX">
     &lt;rnews:title>Allies are Split&lt;rnews:title>
     &lt;rnews:description>Rebel fighters take control...&lt;rnews:description>

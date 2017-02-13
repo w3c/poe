@@ -1,24 +1,6 @@
-<p>This section describes how to encode both the ODRL Model and Vocabulary, including any community developed Profiles, using the JSON syntax [[rfc4627]] and using a JSON Schema [[json-schema]].</p>
+The [[JSON-LD]] context is recommended to ensure consistency between implementations, and should be referenced as <code>http://www.w3.org/ns/odrl/2/</code>. The same IRI should be used as the profile IRI for representations that conform to the model and context.
 
-<div class="issue">
-    <p>The ODRL JSON Schema has not been updated to reflect the current vocabulary changes.</p>
-    <p>The ODRL JSON Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.json">downloaded</a>.</p>
+
+<div class="note">
+<p>The (editors draft) ODRL JSON-LD Context can be <a href="http://w3c.github.io/poe/vocab/ODRL22.jsonld">downloaded</a>.</p>
 </div>
-
-<p>ODRL can express complex contracts and policies which may require quite sophisticated systems to evaluate contractual permissions, restrictions and duties. However, the ODRL in JSON encoding is designed to be lightweight and requires only standard JSON software to generate or parse the representation.</p>
-
-<p>In order to make the JSON encoding of ODRL as natural as possible, certain terms which are represented in the ODRL Vocabulary as values become JSON properties. For example, both assigner and assignee are Role controlled vocabulary values of Party. However, in the JSON encoding, they are expressed as fully-fledged Properties. This contrasts with the XML encoding which has a Party element and a Role attribute.</p>
-
-<p>Similarly, the Asset object has a Relation controlled vocabulary with values of target and output. The JSON encoding directly represents these as first-class properties.</p>
-
-<p>The ODRL Model and  Vocabulary is designed in this manner, in part, to allow for extensibility. In other words, it is possible to add additional types of Party or other kinds of Asset. The JSON ODRL Encoding allows for this by using patternProperties – for example, for additional types of Party or Scope.</p>
-
-<p>Unlike XML, JSON doesn’t support the concept of namespaces. This means that property values need to be expressed using globally unique identifiers, in order to be unambiguous. Therefore, one key implementation decision for ODRL in JSON is to require that terms drawn from the ODRL Vocabulary or any ODRL profile (such as RightsML [[rights-ml]]) must be expressed using complete URLs. (This differs from the XML encoding of ODRL, which allows various short forms of URLs to be used, like QNames [[xml-names]] or QCodes [[news-ml]]).</p>
-
-<p>All of the URIs used in ODRL JSON instances MUST follow those defined in the ODRL Vocabulary. This includes URIs for policy types, actions, operators, operands, functions, scopes, conflict handling terms, and unsupported action-handling terms.</p>
-
-<section>
-
-<h2>A Note on JSON-LD</h2>
-<p>JSON-LD [[json-ld]] (JSON for Linked Data) is a method to convey Linked Data using JSON. It is a W3C Recommendation and it is a JSON syntax for RDF (similar to the RDF/XML and Turtle syntaxes for RDF). If you would prefer to use JSON-LD, it is recommended that you use the ODRL Ontology and appropriate software to parse and serialize the RDF triples using JSON-LD.</p>
-</section>

@@ -81,7 +81,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     </div>
         
 <section id="policyConcepts"><h2>Policy Concepts</h2><section id="term-Policy"><h3>Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A set of rules defining what is allowed, disallowed or obligatory over an Asset.</td></tr>
+<tr><th>Definition:</th> <td>A set of Rules defining what is allowed, disallowed or obligatory over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Policy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
 <tr><th>Note:</th> <td>A top level entity for describing policies.</td></tr>
@@ -1105,7 +1105,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An dentifiable entity that is the object of a Policy.</td></tr>
+<tr><th>Definition:</th> <td>An identifiable entity who undertakes a role in the Policy.</td></tr>
 <tr><th>Label:</th> <td>Party</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
 <tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata.</td></tr>
@@ -1311,7 +1311,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
 <p>Consider the below example; the Dublin Core [[dcterms]] license predicate is used to infer the relationship between the Asset and the Policy.</p>
     
-<pre class="example highlight hljs xquery">
+<pre class="example  hljs xquery">
 @prefix odrl: &lt;http://www.w3.org/ns/odrl/2/> .
 @prefix dct: &lt;http://purl.org/dc/terms/> .
 
@@ -1325,7 +1325,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
 <p>This axiom infers that the Asset &lt;http://example.com/asset:5555&gt; is the target Asset for the Policy &lt;http://example.com/policy:0099&gt;. The final ODRL Offer Policy expression would then be:</p>  
 
-<pre class="example highlight hljs xquery">
+<pre class="example  hljs xquery">
  &lt;http://example.com/policy:0099>
     a odrl:Offer;
     odrl:target &lt;http://example.com/asset:5555> ;
@@ -1468,7 +1468,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <section>
 <h2>XML Example</h2>
 <p>The below example shows the XML serialisation of an ODRL Policy. In this example, the target asset and assigner and asignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country for a compensation payment of EUR5,000. </p>
-<pre class="example highlight xml">
+<pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
                 type="http://www.w3.org/ns/odrl/2/Agreement">
     &lt;o:asset uid="http://example.com/music:4545" 
@@ -1514,7 +1514,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     <p>As shown in the below example, the Prohibition refers to elements defined in the Permission, except for the Constraint element. In this case, the assignee can play the music asset in Italy but not in France.</p>
     
 <div id="link-xml">
-<pre class="example highlight xml">
+<pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" type="http://www.w3.org/ns/odrl/2/Set" 
      uid="http://example.com/policy:Z1XZ">
   &lt;o:permission>
@@ -1551,7 +1551,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
  <p>ODRL XML processing systems MUST detect the use of "#id" in the name and rightOperand in Constraints. If detected, the processing model for Constraint Relations (defined in [[!odrl-model]]) MUST then be followed.</p>
 <p>The below example shows two constraints defined at the Policy-level with ids "C1" and C2". The Constraint in the permission refers to these using the "#C1" and "#C2" values.</p>   
     
-<pre class="example highlight xml">
+<pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
                 type="http://www.w3.org/ns/odrl/2/Offer">
     &lt;o:party uid="http://example.com/billie"
@@ -1579,7 +1579,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <h2>Inline Assets</h2>
   <p>In some scenarios, the Asset of an ODRL Policy maybe also be XML or HTML markup. In these specific cases, it makes sense to enable the ODRL Policy to be articulated as part of the Asset and to support abbreviated expressions. All default values should be assumed. The preferred method of linking is to utilise the XML ID attribute. The source Asset markup may be identified with an ID attribute and the ODRL Asset element can then refer to this ID as the UID (as a URI hash fragment). An example is shown below.</p>  
 <div id="inline-xml">
-<pre class="example highlight xml">
+<pre class="example  xml">
 &lt;rnews:Article xml:id="item8HEX">
     &lt;rnews:title>Allies are Split&lt;rnews:title>
     &lt;rnews:description>Rebel fighters take control...&lt;rnews:description>
@@ -1603,30 +1603,13 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
             
     <section id="json">
    	<h2>JSON-LD Encoding</h2>         
-       <p>This section describes how to encode both the ODRL Model and Vocabulary, including any community developed Profiles, using the JSON syntax [[rfc4627]] and using a JSON Schema [[json-schema]].</p>
+       The [[JSON-LD]] context is recommended to ensure consistency between implementations, and should be referenced as <code>http://www.w3.org/ns/odrl/2/</code>. The same IRI should be used as the profile IRI for representations that conform to the model and context.
 
-<div class="issue">
-    <p>The ODRL JSON Schema has not been updated to reflect the current vocabulary changes.</p>
-    <p>The ODRL JSON Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.json">downloaded</a>.</p>
+
+<div class="note">
+<p>The (editors draft) ODRL JSON-LD Context can be <a href="http://w3c.github.io/poe/vocab/ODRL22.jsonld">downloaded</a>.</p>
 </div>
-
-<p>ODRL can express complex contracts and policies which may require quite sophisticated systems to evaluate contractual permissions, restrictions and duties. However, the ODRL in JSON encoding is designed to be lightweight and requires only standard JSON software to generate or parse the representation.</p>
-
-<p>In order to make the JSON encoding of ODRL as natural as possible, certain terms which are represented in the ODRL Vocabulary as values become JSON properties. For example, both assigner and assignee are Role controlled vocabulary values of Party. However, in the JSON encoding, they are expressed as fully-fledged Properties. This contrasts with the XML encoding which has a Party element and a Role attribute.</p>
-
-<p>Similarly, the Asset object has a Relation controlled vocabulary with values of target and output. The JSON encoding directly represents these as first-class properties.</p>
-
-<p>The ODRL Model and  Vocabulary is designed in this manner, in part, to allow for extensibility. In other words, it is possible to add additional types of Party or other kinds of Asset. The JSON ODRL Encoding allows for this by using patternProperties – for example, for additional types of Party or Scope.</p>
-
-<p>Unlike XML, JSON doesn’t support the concept of namespaces. This means that property values need to be expressed using globally unique identifiers, in order to be unambiguous. Therefore, one key implementation decision for ODRL in JSON is to require that terms drawn from the ODRL Vocabulary or any ODRL profile (such as RightsML [[rights-ml]]) must be expressed using complete URLs. (This differs from the XML encoding of ODRL, which allows various short forms of URLs to be used, like QNames [[xml-names]] or QCodes [[news-ml]]).</p>
-
-<p>All of the URIs used in ODRL JSON instances MUST follow those defined in the ODRL Vocabulary. This includes URIs for policy types, actions, operators, operands, functions, scopes, conflict handling terms, and unsupported action-handling terms.</p>
-
-<section>
-
-<h2>A Note on JSON-LD</h2>
-<p>JSON-LD [[json-ld]] (JSON for Linked Data) is a method to convey Linked Data using JSON. It is a W3C Recommendation and it is a JSON syntax for RDF (similar to the RDF/XML and Turtle syntaxes for RDF). If you would prefer to use JSON-LD, it is recommended that you use the ODRL Ontology and appropriate software to parse and serialize the RDF triples using JSON-LD.</p>
-</section>    </section>
+    </section>
             
 </section>
 
@@ -1659,9 +1642,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
    
         <section class="appendix" id="ack">
 <h2>Acknowledgements</h2>
- <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>.  The output of the ODRL Community Group was fundamental to the current vocabulary and serialisations.</p>
-<p>In particular the editors would like to thankl Susanne Guth (Vocabulary), Jonas Öberg (JSON), and Lu Ai (JSON) for their past editorial contributions.</p>
-</section>
+ <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>. In particular the editors would like to thank Susanne Guth (Vocabulary), Jonas Öberg (JSON), and Lu Ai (JSON) for their past editorial contributions.</p>
+<p>For the current specification, the POE Working Group would like to thank contributions from Gregg Kellogg (JSON-LD Context).</p></section>
         
 <section class="appendix" id="community">
 <h2>Changes from the Community Group Reports</h2>

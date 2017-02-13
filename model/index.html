@@ -71,7 +71,7 @@
 	          <dt><dfn>Asset</dfn></dt>
 	          <dd>The subject of a Policy that Rules are applied to.</dd>
 	          <dt><dfn>Party</dfn></dt>
-	          <dd>An identifiable entity that is the object of a Policy, e.g., a person, a group of people, an organisation, or an agent.</dd>
+	          <dd>An identifiable entity who undertakes a role in the Policy. e.g., a person, a group of people, an organisation, or an agent.</dd>
 	          <dt><dfn>Constraint</dfn></dt>
 	          <dd>The limits and restrictions to Actions in Rules.</dd>
              </dl>
@@ -698,7 +698,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="party">
 <h3>Party</h3>
     
-<p>The Party entity can be any form of identifiable entity, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the Role it plays in the Rule).</p>
+<p>The Party entity can be any form of identifiable entity who undertakes a role in the Policy, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the Role it plays in the Rule).</p>
     
 <p>The Party entity has the following attributes:</p>
 <ul>
@@ -717,8 +717,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </ul>
 <p>The <code>function</code> attribute MUST support the following role values:</p>
 <ul>
-<li><code>assigner</code>: indicates the Party that is assigning the Policy. For example, the Party granting a Permission or requiring a Duty to be performed.</li>
-<li><code>assignee</code>: indicates that the Party that is being assigned the Policy. For example, the Party being granted a Permission or required to perform a Duty.</li>
+<li><code>assigner</code>: indicates the Party that is issuing the Policy. For example, the Party granting a Permission or requiring a Duty to be performed.</li>
+<li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform a Duty.</li>
 </ul>
    
 <p>Other values for the <code>function</code> role attribute MAY be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
