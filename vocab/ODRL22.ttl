@@ -189,6 +189,7 @@ odrl:
     skos:member :read ;
     skos:member :reproduce ;
     skos:member :sell ;
+    skos:member :stream ;
     skos:member :textToSpeech ;
     skos:member :transfer ;
     skos:member :transform ;
@@ -1480,7 +1481,6 @@ odrl:
 	skos:definition "The act of using the asset for a purpose other than the purpose it was intended for."@en ;
     owl:deprecated true .
 
-
 :sell
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
@@ -1489,13 +1489,21 @@ odrl:
 	skos:broaderTransitive :transfer ;
     skos:scopeNote "Non-Normative"@en .
 
+:stream
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Stream"@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to deliver the Asset in real-time."@en ;
+    skos:note "The Asset maybe utilised in real-time as it is being delivered. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
+    skos:scopeNote "Non-Normative"@en .
+
 :textToSpeech
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Text-to-speech"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to have a text Asset read out loud."@en ;
 	skos:broaderTransitive :use ;
-   skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
+    skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
     skos:scopeNote "Non-Normative"@en .
 
 :transfer
