@@ -64,7 +64,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <section id="vocab">
 	<h2>Vocabulary</h2>
 
-      <p>The ODRL Vocabulary formally defines the semantics for the concepts and terms from the ODRL Information Model [[!odrl-model]] and the vocabulary terms that can be used for common use cases for ODRL Policy expressions. The figure below shows the grouping of concepts and terms used in this section.</p>
+      <p>The ODRL Vocabulary formally defines the semantics for the concepts and terms from the ODRL Information Model [[!odrl-model]] and the vocabulary terms that can be used for common use cases for ODRL Policy expressions. </p>
+
+<p>The figure below shows the grouping of concepts and terms used in the ODRL Vocabulary. Each (dark blue) rounded box represents the core concepts from the Information Model, and each (yellow) rectangular box represents a vocabulary of applicable terms. </p>
 
  
 <figure>
@@ -75,9 +77,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <p>The Namespace URI to identify the ODRL model and vocabulary terms is: <code>http://www.w3.org/ns/odrl/2/</code></p>
 
    <div class="issue" data-number="64">
-        <p>This section is normative, meaning that the concepts and terms presented are required by ODRL expression systems. However, a number of terms have yet to reach the level of implementation that warrants them to be deemed normative. As a result, some terms in this section will be explicitly labelled as "non-normative".</p>
+        <p>This section is normative, meaning that the concepts and terms presented are required by ODRL expression systems. However, a number of terms have yet to reach the level of implementation that warrants them to be deemed normative. As a result, some terms in this section are explicitly labelled with the status "non-normative".</p>
        <p>The current terms that are deemed normative are taken from the <a href="https://www.w3.org/2016/poe/wiki/images/8/88/ODRLImplementationSurvey-2016-Dec-07.pdf">ODRL Implementors Survey in December 2016</a> (PDF document). </p>
-           <p> Future versions of the ODRL Vocabulary MAY update these terms as more implementation experience is gained.</p>
+           <p> Future versions of the ODRL Vocabulary MAY update these terms to be normative as more implementation experience is gained, and community feedback.</p>
     </div>
         
 <section id="policyConcepts"><h2>Policy Concepts</h2><section id="term-Policy"><h3>Policy</h3><table class='def propdef' >
@@ -395,10 +397,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-display"><h3>Display</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to display the visual media Asset to an audience or the public.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to display the visual media Asset.</td></tr>
 <tr><th>Label:</th> <td>Display</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/display">http://www.w3.org/ns/odrl/2/display</a></td></tr>
-<tr><th>Note:</th> <td>For example, displaying an image on a screen.</td></tr>
+<tr><th>Note:</th> <td>For example, displaying an image on a screen. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-distribute"><h3>Distribute</h3><table class='def propdef' >
@@ -462,16 +464,18 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-play"><h3>Play</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to perform an audio Asset to an audience.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to perform an audio Asset.</td></tr>
 <tr><th>Label:</th> <td>Play</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/play">http://www.w3.org/ns/odrl/2/play</a></td></tr>
+<tr><th>Note:</th> <td>If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-present"><h3>Present</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to perform or exhibit an Asset to an audience.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to perform or exhibit an Asset.</td></tr>
 <tr><th>Label:</th> <td>Present</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/present">http://www.w3.org/ns/odrl/2/present</a></td></tr>
+<tr><th>Note:</th> <td>If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.</td></tr>
 <tr><th>Narrower terms:</th> <td><a href="#term-display">display</a>, <a href="#term-play">play</a>, <a href="#term-print">print</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
@@ -508,9 +512,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-textToSpeech"><h3>Text-to-speech</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to have a text Asset read out loud to an audience.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to have a text Asset read out loud.</td></tr>
 <tr><th>Label:</th> <td>Text-to-speech</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/textToSpeech">http://www.w3.org/ns/odrl/2/textToSpeech</a></td></tr>
+<tr><th>Note:</th> <td>If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1505,8 +1510,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
 <h2>XML Linking</h2>  
     
-    <div class="issue">
-    <p>At Risk: The need for id/idref is now not required since the ODRL Information Model supports Policy-level Assets, Parties, and Actions. This feature maybe removed.</p>
+    <div class="issue" data-number="82">
+    <p>The need for id/idref is now not required since the ODRL Information Model supports Policy-level Assets, Parties, and Actions. This feature maybe removed.</p>
  
 </div>
     

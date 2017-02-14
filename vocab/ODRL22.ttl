@@ -1260,8 +1260,8 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Display"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to display the visual media Asset to an audience or the public."@en ;
-	skos:note "For example, displaying an image on a screen."@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to display the visual media Asset."@en ;
+	skos:note "For example, displaying an image on a screen. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used."@en ;
 	skos:broaderTransitive :present .
 
 :distribute
@@ -1412,21 +1412,22 @@ odrl:
     owl:deprecated true ;
 	owl:equivalentProperty :compensate .
 
-
 :play
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Play"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to perform an audio Asset to an audience."@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to perform an audio Asset."@en ;
 	skos:broaderTransitive :present ;
+    skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
     skos:scopeNote "Non-Normative"@en .
 
 :present
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Present"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to perform or exhibit an Asset to an audience."@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to perform or exhibit an Asset."@en ;
 	skos:broaderTransitive :use ;
+   skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
     skos:scopeNote "Non-Normative"@en .
 
 :preview
@@ -1492,8 +1493,9 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Text-to-speech"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to have a text Asset read out loud to an audience."@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to have a text Asset read out loud."@en ;
 	skos:broaderTransitive :use ;
+   skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
     skos:scopeNote "Non-Normative"@en .
 
 :transfer
