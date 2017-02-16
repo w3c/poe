@@ -15,9 +15,7 @@
     <p>The Open Digital Rights Language (ODRL) provides a flexible and interoperable information model, vocabulary, and encoding mechanisms for describing statements about content usage. The ODRL Information Model describes the underlying concepts, entities, and relationships that form the foundational basis for the semantics of the ODRL statements. </p>
         <p>Policies are used to explicitly state what are the permitted and prohibited actions over a certain resource. In addition, policies may be integrated with complex constraints (e.g., time constraints) which apply to such actions to impose further restrictions to the uses of the resource. </p>
 
-</section>
-
-    
+</sect
     
 <section id="sotd">
 <p>
@@ -324,9 +322,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <section id="provenace">
 <h4>Policy Provenance</h4>
          
-       <p>Provenance attributes MAY be added to the Policy entity to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[!DCTERMS]] for ODRL Policies.</p>
+       <p>Provenance attributes MAY be added to the Policy entity to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[!dcterms]] for ODRL Policies.</p>
          
-         <p>The following Dublin Core Metadata Terms [[!DCTERMS]] SHOULD be used:</p>
+         <p>The following Dublin Core Metadata Terms [[!dcterms]] SHOULD be used:</p>
             <ul>
          <li>dc:creator - the individual, agent, or organisation that authored the Policy.</li>
          <li>dc:issued - the date (and time) the Policy was first issued.</li>
@@ -342,7 +340,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     </ol>
 
 <blockquote>
-<p>Example Use Case:The below example contains provenace properties that indicate who created the Policy, when the Policy was issued, which jurisdiction the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
+<p>Example Use Case:The below example contains provenace properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
          
 <pre class="example hljs xquery">
 {
@@ -352,7 +350,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     "uid": "http://example.com/policy:8888",
     "dc:creator": "billie@example.com",
     "dc:issued": "2017-01-01:12:00",
-    "dc:coverage: "Queensland, Australia",
+    "dc:coverage: "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD",
     "dc:replaces: "http://example.com/policy:8887",
     "permission": [{ ... }]
 }  
@@ -892,7 +890,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
                 "leftOperand": "odrl:payAmount",
                 "operator": "odrl:eq",
                 "rightOperand": "5.00",
-                "unit": "http://cvx.iptc.org/iso4217a/AUD"
+                "unit": "https://www.currency-iso.org/dam/downloads/lists/list_one.xml#AUD"
             }],
             "constraint": [{
                 "leftOperand": "odrl:event",
@@ -922,7 +920,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         <span class="hljs-string">"constraint"</span>: [{
             <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:purpose"</span>,
             <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
-            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://www.w3.org/2002/01/P3Pv1:contact"</span>
+            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://www.w3.org/2002/01/P3Pv1#contact"</span>
         }],
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/assigner:77"</span>,
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/gov:health:au"</span>,
@@ -1024,7 +1022,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         <span class="hljs-string">"constraint"</span>: [{
             <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:spatial"</span>,
             <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
-            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://www.itu.int/tML/tML-ISO-3166:it"</span>
+            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"https://www.iso.org/obp/ui/#iso:code:3166:IT"</span>
         }],
         <span class="hljs-string">"duty"</span>: [
             {
@@ -1034,7 +1032,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
                     <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
                     <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"100.00"</span>,
                     <span class="hljs-string">"dataType"</span>: <span class="hljs-string">"http://www.w3.org/2001/XMLSchema#decimal"</span>,
-                    <span class="hljs-string">"unit"</span>: <span class="hljs-string">"http://cvx.iptc.org/iso4217a/EUR"</span>
+                    <span class="hljs-string">"unit"</span>: <span class="hljs-string">"https://www.currency-iso.org/dam/downloads/lists/list_one.xml#EUR"</span>
                 }]
             },
             {
