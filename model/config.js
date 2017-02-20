@@ -1,7 +1,7 @@
 var respecConfig = {
         specStatus: "ED",
         shortName:  "odrl-model",
-        publishDate:          "2017-02-16",
+        publishDate:          "2017-02-17",
         editors: [
             {   name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
@@ -24,7 +24,7 @@ var respecConfig = {
         wg:                   "Permissions & Obligations Expression Working Group",
         wgURI:                "https://www.w3.org/2016/poe/",
         wgPublicList:         "public-poe-comments",
-        wgPatentURI:          "https://www.w3.org/2004/01/pp-impl/73180/status",
+        wgPatentURI:          "https://www.w3.org/2004/01/pp-impl/87755/status",
         issueBase:            "https://github.com/w3c/poe/issues/",
         localBiblio: {
             "oma-profile": {
