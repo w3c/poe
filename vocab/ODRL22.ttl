@@ -501,7 +501,7 @@ odrl:
 	skos:definition "Indentifies the type of inheritance."@en ;
 	skos:note "For example, this may indicate the business scenario, such as subscription, or prior arrangements between the parties (that are not machine representable)"@en ;
 	rdfs:domain :Policy ;
-	rdfs:range rdfs:Resource ;
+#	rdfs:range rdfs:Resource ;
     skos:scopeNote "Non-Normative"@en .
 
 
@@ -511,8 +511,8 @@ odrl:
 	rdfs:label "Profile"@en ;
 	skos:definition "The identifier of an ODRL Profile that the Policy conforms to."@en ;
 	skos:note "ODRL Profiles may be defined by community groups and express additional semantics."@en ;
-	rdfs:domain :Policy ;
-	rdfs:range rdfs:Resource .
+	rdfs:domain :Policy .
+#	rdfs:range rdfs:Resource .
 
 ## Permissions, prohibitions and duties
 
@@ -649,7 +649,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:domain :Constraint ;
-	rdfs:range rdfs:Resource ;
+#	rdfs:range rdfs:Resource ;
 	rdfs:label "Unit"@en ;
 	skos:definition "The unit of measurement used for the constraint value."@en .
 
@@ -657,7 +657,7 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:domain :Constraint ;
-	rdfs:range rdfs:Resource ;
+#	rdfs:range rdfs:Resource ;
 	rdfs:label "Datatype"@en ;
 	skos:definition "The datatype used for the constraint value."@en ;
     skos:note "In RDF encodings, use of the rdf:datatype MAY be used."@en .
@@ -675,7 +675,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand"@en ;
 	skos:definition "The right operand in a constraint expression."@en ;
-	rdfs:range xsd:any ;
+#	rdfs:range xsd:any ;
 	rdfs:domain :Constraint .
 
 :rightOperandReference
@@ -1868,3 +1868,28 @@ odrl:
 	rdfs:range rdfs:Literal ;
     skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/timed-count ."@en ;
     owl:deprecated true .
+
+## Declaration of annotation properties to keep the ontology within OWL DL
+	skos:broader rdf:type owl:AnnotationProperty .
+	skos:member rdf:type owl:AnnotationProperty .
+	skos:note rdf:type owl:AnnotationProperty .
+	skos:scopeNote rdf:type owl:AnnotationProperty .
+	skos:prefLabel rdf:type owl:AnnotationProperty .
+	skos:definition rdf:type owl:AnnotationProperty .
+	skos:broaderTransitive rdf:type owl:AnnotationProperty .
+	skos:hasTopConcept rdf:type owl:AnnotationProperty .
+	dct:contributor rdf:type owl:AnnotationProperty .
+	dct:license rdf:type owl:AnnotationProperty .
+	dct:issued rdf:type owl:AnnotationProperty .
+	dct:subject rdf:type owl:AnnotationProperty .
+	dct:creator rdf:type owl:AnnotationProperty .
+	dct:description rdf:type owl:AnnotationProperty .
+	dct:isVersionOf rdf:type owl:AnnotationProperty .
+	dct:format rdf:type owl:AnnotationProperty .
+	dcmit:Text a owl:Class .	
+	skos:Collection a owl:Class .	
+	skos:Concept a owl:Class .	
+	skos:ConceptScheme a owl:Class .	
+	voaf:Vocabulary a owl:Class .
+
+	
