@@ -20,7 +20,7 @@ var respecConfig = {
     wg: "Permissions &amp; Obligations Expression Working Group",
     wgURI: "https://www.w3.org/2016/poe/",
     wgPublicList: "public-poe-comments",
-    wgPatentURI: "http://www.w3.org/2004/01/pp-impl/87755/status",
+    wgPatentURI: "https://www.w3.org/2004/01/pp-impl/87755/status",
     inlineCSS: true,
     noIDLIn: true,
     noLegacyStyle: false,
