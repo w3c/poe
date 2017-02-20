@@ -36,6 +36,10 @@
 		font-weight: bold;
 	}
 	
+	p.contributor {
+  font-size:smaller;
+}
+	
   </style> 
   <script type="text/javascript">
     // This is the script that hides/shows the full descriptions of the use cases
@@ -88,10 +92,10 @@
 	</head>
 	<body>
 		<section  id="abstract">
-			<p>This document includes a set of use cases and requirements, compiled by the Permissions & Obligations Expression (POE) working group, that motivate the expression of statements about digital content usage. All use cases provide realistic examples describing how people and organisations may (or want to be able to) specify statements about digital content usage. The requirements derived from these use cases will be used to guide the development of the POE WG recommendation deliverables for the Information Model, Vocabulary and Encodings. </p>
+			<p>This document includes a set of use cases and requirements, compiled by the <a href="https://www.w3.org/2016/poe/">Permissions & Obligations Expression (POE) Working Group</a>, that motivate the expression of statements about digital content usage. All use cases provide realistic examples describing how people and organisations may (or want to be able to) specify statements about digital content usage. The requirements derived from these use cases will be used to guide the development of the POE WG recommendation deliverables for the Information Model, Vocabulary, and Encodings. </p>
 		</section>
 		<section id='sotd'>
-		<p>This first public working draft of sets out the use cases that will be used to extend the ODRL model that is the starting point for the Working Group. Work is already under way to derive requirements and further use cases are welcome.</p>
+		<p>This is work in progress. The final version of this document planned to be published as a Working Group Note. The current version is the first Public Working Draft.</p>
 		</section>
 		<!--<section  id="intro">
 			<h1>Introduction</h1>
@@ -105,7 +109,7 @@
 						<a href="#UseCases" title="Use Cases">Use Cases</a>
 					</strong> are
 					used to capture and model functional requirements. Use cases
-					describe the system’s behavior under various conditions [[COCKBURN-2000]],
+					describe the system's behavior under various conditions [[COCKBURN-2000]],
 					cataloging who does what with the system, for what purpose, but
 					without concern for system design or implementation. Each use case is identified by a
 					reference number to aid cross-reference from other documentation. A variety of styles may be used to capture use cases,
@@ -129,138 +133,118 @@
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.01">
 				<h2><dfn>POE.UC.01</dfn>: Permissions and obligations for language resources</h2>
-				<ul>
+				<p class="contributor">Víctor Rodríguez on behalf of <a class="external text" href="https://www.w3.org/community/ld4lt/">W3C Linked Data For Language Technology Community Group</a></p>
+	
 					<!-- <li> <strong>Title</strong>: Permissions and Obligations for Language Resources 
 					</li> -->
-					<li> <p class="contributor">Víctor Rodríguez on behalf of <a class="external text" href="https://www.w3.org/community/ld4lt/">W3C Linked Data For Language Technology Community Group</a></p>
-					</li>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Language resources (lexicons, dictionaries, machine translation, etc.) are collected in repositories. Publishers would like to express what is permitted and what it is not.</p>
+					<p>Language resources (lexicons, dictionaries, machine translation, etc.) are collected in repositories. Publishers would like to express what is permitted and what it is not.</p>
 						<p>Language resources are highly valuable resources now being massively translated to Linked Data. See the diagram here: <a class="external text" href="http://linghub.lider-project.eu/llod-cloud">Linguistic Linked Data Cloud</a>.
 							Different Language Resource Catalogs exist, like the one of <a class="external text" href="https://clarin.eu/">CLARIN</a>, or the one of <a class="external text" href="http://metashare.elda.org/">META-SHARE</a>, LRMAP, Linghub, etc. 
 							These resources need to be browsed and queried, and the permissions information must be in a machine-readable form in order to facilitate search-by-permission and in order to allow the automated processing of permission expressions.
-						</p></div>
-
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.01</span>
+						</p>
+				<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.01</span>
 							</div>
-						</li></ul>
+		
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.02 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.02">
 				<h2><dfn>POE.UC.02</dfn>: Conditional Access to Linked Data</h2>
-				<ul>
+		
 					<!-- <li> <strong>Title</strong>: Conditional Access to Linked Data  </li> -->
-					<li> <p class="contributor">Víctor Rodríguez and Nandana Mihindukulasooriya (UPM) on behalf of the ODRL Linked Data profile editors.</p></li>
+					<p class="contributor">Víctor Rodríguez and Nandana Mihindukulasooriya (UPM) on behalf of the ODRL Linked Data profile editors.</p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p> A publisher of Linked Data (or in general a RDF dataset) wants to selectively make available parts (e.g. named graphs) of a dataset. Availability depend on ODRL policies, the context and the ODRL Request and ODRL Ticket. For example, given a dataset, one might want to serve it under the following conditions: "Anybody can access named graph ex:graph1, but can only access ex:graph2 during 2016. Individual triples in ex:graph3 can be accessed at the price of 1 eur cent." 
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.02</span> 
-						
-					</div>
-					</li>
-				</ul>
+					
+					<p> A publisher of Linked Data (or in general a RDF dataset) wants to selectively make available parts (e.g. named graphs) of a dataset. Availability depend on ODRL policies, the context and the ODRL Request and ODRL Ticket. For example, given a dataset, one might want to serve it under the following conditions: "Anybody can access named graph ex:graph1, but can only access ex:graph2 during 2016. Individual triples in ex:graph3 can be accessed at the price of 1 eur cent." 
+						</p>
+	
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.02</span> 
+
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.03 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.03">
 				<h2><dfn>POE.UC.03</dfn>: Published article with embargoed dataset</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Phil Archer & Keith Jeffery on behalf of the VRE4EIC Project </p></li>
+					<p class="contributor">Phil Archer & Keith Jeffery on behalf of the VRE4EIC Project </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p> Researchers are strongly encouraged (and now routinely required) to publish data supporting their scholarly published papers. Irrespective of the terms under which the paper is published (although usually open access), the data is generally expected to be made freely and openly available. However, this may happen after an embargo period. The purpose of the embargo period is to allow the researcher or research team creating the dataset to have a publication based on it published before colleagues can access the dataset and generate their own publications. 
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.03</span>--><strong>TBD</strong> 
-						
-					</div>
-					</li>
-				</ul>
+					
+					<p> Researchers are strongly encouraged (and now routinely required) to publish data supporting their scholarly published papers. Irrespective of the terms under which the paper is published (although usually open access), the data is generally expected to be made freely and openly available. However, this may happen after an embargo period. The purpose of the embargo period is to allow the researcher or research team creating the dataset to have a publication based on it published before colleagues can access the dataset and generate their own publications. 
+						</p>
+	
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.03</span> 
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.04 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.04">
 				<h2><dfn>POE.UC.04</dfn>: Technical documents rules for business process regulatory compliance</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Serena Villata (joint work with Guido Governatori) in the context of the MIREL Project </p></li>
+					<p class="contributor">Serena Villata (joint work with Guido Governatori) in the context of the MIREL Project </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Technical documents describe how to handle and what are the functionalities of a certain product or process. They are intended to provide information about what can/cannot be done with the product or within a certain process. Given the huge dimension of this kind of legal texts and their diffusion in the companies, the advantages of returning a machine-readable representation of such texts would allow to have in this representation a kind of summary of the main constraints expressed in the documents, with invaluable time saving for every person that is expected to read the whole document before obtaining this information. A specific usage of such a kind of texts is that of manually extracting the set of obliged/prohibited/permitted actions in order to check whether certain business processes are compliant with the legal text they should refer to.  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.04</span> 
+					
+					<p>Technical documents describe how to handle and what are the functionalities of a certain product or process (e.g., telecommunication codes). They are intended to provide information about what can/cannot be done with the product or within a certain process. Given the huge dimension of this kind of legal texts and their diffusion in the companies, the advantages of returning a machine-readable representation of such texts would allow to have in this representation a kind of summary of the main constraints expressed in the documents, with invaluable time saving for every person that is expected to read the whole document before obtaining this information. A specific usage of such a kind of texts is that of manually extracting the set of obliged/prohibited/permitted actions in order to check whether certain business processes are compliant with the legal text they should refer to. Moreover, issues related to the merging of updated versions of the documents, with amendments with respect to the policies and duties expressed in the former versions.   
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.04</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.05 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.05">
 				<h2><dfn>POE.UC.05</dfn>: Determine an identifier representing the audience who can access a digital resource</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Mo McRoberts, BBC </p></li>
+					<p class="contributor">Mo McRoberts, BBC </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>The Research & Education Space platform, developed jointly by the BBC and partners, indexes Linked Open Data describing media that is available both to the public, and specifically for those in formal education, primarily in the UK. Even within this latter group, there are a range of different licensing schemes and access mechanisms which are not mutually-exclusive. For queries against the index to return appropriate results for a user, we must track which schemes they (or their institution) is a member of and filter based upon these, which therefore translates into a requirement for the metadata being indexed to include information identifying which are applicable (we term these "audience URIs"). Note that this is not an access-control mechanism (this should be implemented and enforced at the media location), rather a means of ensuring that an optimal user experience is delivered.  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.05</span> 
+					
+					<p>The Research & Education Space platform, developed jointly by the BBC and partners, indexes Linked Open Data describing media that is available both to the public, and specifically for those in formal education, primarily in the UK. Even within this latter group, there are a range of different licensing schemes and access mechanisms which are not mutually-exclusive. For queries against the index to return appropriate results for a user, we must track which schemes they (or their institution) is a member of and filter based upon these, which therefore translates into a requirement for the metadata being indexed to include information identifying which are applicable (we term these "audience URIs"). Note that this is not an access-control mechanism (this should be implemented and enforced at the media location), rather a means of ensuring that an optimal user experience is delivered.  
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.05</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.06 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.06">
 				<h2><dfn>POE.UC.06</dfn>: OpenPHACTS</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Phil Archer for the Big Data Europe Project </p></li>
+					<p class="contributor">Phil Archer for the Big Data Europe Project </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>OpenPHACTS integrates pharmacological data from a wide range of sources and provides an API through which different identifiers for the same thing can be reconciled, reducing barriers to drug discovery in industry, academia and for small businesses. Some data is open but not all. It may come with a variation of a Creative Commons License; some data is visible to all users, some to members, some only to the original data owner.</p>
+					
+					<p>OpenPHACTS integrates pharmacological data from a wide range of sources and provides an API through which different identifiers for the same thing can be reconciled, reducing barriers to drug discovery in industry, academia and for small businesses. Some data is open but not all. It may come with a variation of a Creative Commons License; some data is visible to all users, some to members, some only to the original data owner.</p>
 					<p>
 Rather than attempt to make assertions about what an end user can or cannot do with the data available through its API, OpenPHACTS is careful to simply make clear to its users where data came from and under what terms. It is then up to the end user to assess whether their intended use is, or is not, compliant with those terms.  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.06</span> 
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.06</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.07 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.07">
 				<h2><dfn>POE.UC.07</dfn>: News Permissions and Restrictions</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Stuart Myles</p></li>
+					<p class="contributor">Stuart Myles</p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>In the news industry, rights holders and editors need to establish the permissions and restrictions associated with content.</p>
+					
+					<p>In the news industry, rights holders and editors need to establish the permissions and restrictions associated with content.</p>
 					<p>
 					<dl>
 					<dt>What Do Rights Holders Want?</dt><dd> In general, rights holders will require that a set of permissions, restrictions, and duties be obeyed for a defined set of content. And they can require additional restrictions or duties for individual items within the larger content set. Rights holders wish to restrict the use of their content by factors such as:
@@ -296,301 +280,256 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					 </dl>
 					</dd></dl>  
 					</div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.07</span> 
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.07</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.08 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.08">
 				<h2><dfn>POE.UC.08</dfn>: Atomic Understanding of Common Licenses</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Phil Archer</p></li>
+					<p class="contributor">Phil Archer</p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>The European Data Portal (EDP) harvests and republishes metadata from across Europe. It therefore has to handle a wide variety of inputs, including a variety of licenses attached to datasets (and datasets with no license attached). In order to manage this, the EDP has examined each of the most commonly found licenses and derived a set of atomic permissions and obligations expressed in those licenses with the intention that reusers can assess whether or not a particular combination of datasets is permissible and, if so, under what conditions. Their work itself is available on the <a class="external text" href="http://www.europeandataportal.eu/en/training-library/library/edp-reports">European Data Portal</a> as <strong>Licence Assistant: European Data Portal Licence Compatibility Matrix</strong>. 
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.08</span> 
+					
+					<p>The European Data Portal (EDP) harvests and republishes metadata from across Europe. It therefore has to handle a wide variety of inputs, including a variety of licenses attached to datasets (and datasets with no license attached). In order to manage this, the EDP has examined each of the most commonly found licenses and derived a set of atomic permissions and obligations expressed in those licenses with the intention that users can assess whether or not a particular combination of datasets is permissible and, if so, under what conditions. Their work itself is available on the <a class="external text" href="http://www.europeandataportal.eu/en/training-library/library/edp-reports">European Data Portal</a> as <strong>Licence Assistant: European Data Portal Licence Compatibility Matrix</strong>. 
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.08</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.09 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.09">
 				<h2><dfn>POE.UC.09</dfn>: Base Product</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
+					<p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>A bundled data product, which is sometimes called a 'base product', brings together a set of permissions that can be separately bought into a policy [or package] that is sold for a single price - or provided for free. It is important that the pricing is set at the aggregate level. 
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.09</span> 
+					
+					<p>A bundled data product, which is sometimes called a 'base product', brings together a set of permissions that can be separately bought into a policy [or package] that is sold for a single price - or provided for free. It is important that the pricing is set at the aggregate level. 
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.09</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.10 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.10">
 				<h2><dfn>POE.UC.10</dfn>: Pay-by-Use</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
+					<p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Sometimes things are paid for on a per-usage basis. For instance a SaaS product might charge per account (or per seat), or a definition in legal treatise might be charged for every time it is printed or included in a PDF.  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.10</span> 
+					
+					<p>Sometimes things are paid for on a per-usage basis. For instance a SaaS product might charge per account (or per seat), or a definition in legal treatise might be charged for every time it is printed or included in a PDF.  
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.10</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.11 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.11">
 				<h2><dfn>POE.UC.11</dfn>: Third-Party Rights Management</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
+					<p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>There are some common obligations that must be transmitted if you are acting as an intermediary between the data owner and the data user. Often the owner and the user must sign a contract, the user must acknowledge the copyright of the owner, and the user must acknowledge some other documentation (like a 'Restriction On Distribution Statement').  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.11</span> 
+					
+					<p>There are some common obligations that must be transmitted if you are acting as an intermediary between the data owner and the data user. Often the owner and the user must sign a contract, the user must acknowledge the copyright of the owner, and the user must acknowledge some other documentation (like a 'Restriction On Distribution Statement').  
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.11</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.12 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.12">
 				<h2><dfn>POE.UC.12</dfn>: Tracing Permissions and Obligations through Aggregations and Derivations</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
+					<p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Data sets are often combined (aggregation) and analysed to generate new data sets (derivation). Big data analytics generates extended workflows of such operations. What policies control each step of the process? For example, a synthetic instrument might be generated by following a simple rule: <code>(equity price on NYSE - equity opening price on NYSE) * equity weighting on MSCI Technology Index)</code></p>
+					
+					<p>Data sets are often combined (aggregation) and analysed to generate new data sets (derivation). Big data analytics generates extended workflows of such operations. What policies control each step of the process? For example, a synthetic instrument might be generated by following a simple rule: <code>(equity price on NYSE - equity opening price on NYSE) * equity weighting on MSCI Technology Index)</code></p>
 					<p>Let's say we know the three policies that control equity prices on the New York Stock Exchange, their opening prices, and their index weighting. Then what is the policy that controls the resulting synthetic instrument?  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.12</span> 
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.12</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.13 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.13">
 				<h2><dfn>POE.UC.13</dfn>: Delegation</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
+					<p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Assigners are often corporate entities. They may want to restrict the right to exercise the actions they 'own' to particular groups within their own organisation, or even to an individual. This doesn't feel like an rights assignment (as no rights are being assigned?) but a delegation.  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.13</span> --><strong>TBD</strong>
+					
+					<p>Assigners are often corporate entities. They may want to restrict the right to exercise the actions they 'own' to particular groups within their own organisation, or even to an individual. This doesn't feel like an rights assignment (as no rights are being assigned?) but a delegation.  
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.13</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.14 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.14">
 				<h2><dfn>POE.UC.14</dfn>: A Vote for Extended Relations</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
+					<p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p> Extended relations are an experimental feature of ODRL 2.1. In many cases, they would be necessary for commercial purposes. For example, it might be the case that on the 15th of every month the user must report usage by providing a list of either Access IDs <em>OR</em> Physical IDs. Extended relations would be a way of enabling this.   
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.14</span> 
+					
+					<p> Extended relations are an experimental feature of ODRL 2.1. In many cases, they would be necessary for commercial purposes. For example, it might be the case that on the 15th of every month the user must report usage by providing a list of either Access IDs <em>OR</em> Physical IDs. Extended relations would be a way of enabling this.   
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.14</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.15 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.15">
 				<h2><dfn>POE.UC.15</dfn>: Real-time vs. Delayed Data</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
+					<p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Permissions often vary depending on whether the data is used in real-time (expensive and restrictive) or after a specified delay (cheaper and less restrictive).  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.15</span>--><strong>TBD</strong>
+					
+					<p>Permissions often vary depending on whether the data is used in real-time (expensive and restrictive) or after a specified delay (cheaper and less restrictive).  
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.15</span>
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.16 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.16">
 				<h2><dfn>POE.UC.16</dfn>: Accessing Historical Data</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p></li>
+					<p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Access to historical data is often specified by the access period (how long can you go back in history) and access interval (how often can you sample the history). So a permission might be for access to 7 years of historical data but only on a monthly basis.  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.16</span> 
+					
+					<p>Access to historical data is often specified by the access period (how long can you go back in history) and access interval (how often can you sample the history). So a permission might be for access to 7 years of historical data but only on a monthly basis.  
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.16</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.17 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.17">
 				<h2><dfn>POE.UC.17</dfn>: Asset in a set</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">James Birmingham on behalf of Digital Catapult </p></li>
+					<p class="contributor">James Birmingham on behalf of Digital Catapult </p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>In order to manage a common offer which is applied to many assets, a one-to-many relationship is more preferable than a one-to-one. If the offer can target a set of assets, it must also be able to state that what is offered is <em>n items</em> from the set rather than the whole set.</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.17</span> 
+					
+					<p>In order to manage a common offer which is applied to many assets, a one-to-many relationship is more preferable than a one-to-one. If the offer can target a set of assets, it must also be able to state that what is offered is <em>n items</em> from the set rather than the whole set.</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.17</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.18 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.18">
 				<h2><dfn>POE.UC.18</dfn>: Policy Assertion</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Renato Iannella</p></li>
+					<p class="contributor">Renato Iannella</p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>A common use case is for a general policy statement to be asserted. This is simply a party stating what policy terms they believe they have. Either an assignee can assert what terms they have over an asset and/or an assigner can assert what terms they have over an asset. An assertion does not grant any of the statements. A policy assertion may state that a party is a general rights holder or other roles.  
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.18</span> 
+					
+					<p>A common use case is for a general policy statement to be asserted. This is simply a party stating what policy terms they believe they have. Either an assignee can assert what terms they have over an asset and/or an assigner can assert what terms they have over an asset. An assertion does not grant any of the statements. A policy assertion may state that a party is a general rights holder or other roles.  
+						</p>
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.18</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.19 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.19">
 				<h2><dfn>POE.UC.19</dfn>: Relative Time Constraints</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Michael Steidl</p></li>
+					<p class="contributor">Michael Steidl</p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Sometimes it's required to be able to constrain the applicability of policies according to a relative point in time, e.g.:
+					
+					<p>Sometimes it's required to be able to constrain the applicability of policies according to a relative point in time, e.g.:
 					<ul>
 						<li>Organisers of sport events grant the use of photos or videos relative to the end of a sport event/game. (Note: the live publishing of photos/videos may be granted by a different license.)</li>
 						<li>Speakers at a conference circulate a document with their speech in advance and they permit to publish it only after the speech has ended. </li>
 					</ul>
 					</div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.19</span> 
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.19</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.20 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.20">
 				<h2><dfn>POE.UC.20</dfn>: External Declaration of Payment Amount</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Víctor Rodríguez-Doncel</p></li>
+					<p class="contributor">Víctor Rodríguez-Doncel</p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p><a class="external text" href="http://georg-re.hm/pdf/LREC-2014-META-SHARE.pdf"><i>META-SHARE</i></a> is an open and secure network of repositories for sharing and exchanging language data, tools, and related web services. As of July 2016, it accounted more than 2700 resources. These resources are described with small pieces of metadata according to their <a class="external text" href="http://www.meta-net.eu/meta-share/metadata-schema/">schema</a>.<p>
+					
+					<p><a class="external text" href="http://georg-re.hm/pdf/LREC-2014-META-SHARE.pdf"><i>META-SHARE</i></a> is an open and secure network of repositories for sharing and exchanging language data, tools, and related web services. As of July 2016, it accounted more than 2700 resources. These resources are described with small pieces of metadata according to their <a class="external text" href="http://www.meta-net.eu/meta-share/metadata-schema/">schema</a>.<p>
 					<p>While maintainers of META-SHARE's 32 repositories can edit simple metadata records, they are usually not skilled enough to edit ODRL expressions. Hence they would like to be able to:
 					<ol>
 						<li>Point to a license template (referred by a well-known URI), with a placeholder to for the price.</li>
 						<li>Add a metadata record indicating the specific price of the resource.</li>
 					</ol>
 					</div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-					<div class="visible requirement"><span data-ref-anchor="">POE.UC.20</span> 
+					<strong>Related Requirements: </strong>
+					<span data-ref-anchor="">POE.UC.20</span> 
 						
-					</div>
-					</li>
-				</ul>
+					
 			</section>
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.21 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.21">
 				<h2><dfn>POE.UC.21</dfn>: Specifying the Scope of Constraints</h2>
-				<ul>
+
 					<!-- <li> <strong>Title</strong>:   </li> -->
-					<li> <p class="contributor">Víctor Rodríguez-Doncel</p></li>
+					<p class="contributor">Víctor Rodríguez-Doncel</p>
 					<!--<li> <strong>Industry</strong>: Language resources industry </li>-->
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-					<div class="visible uc"> <p>Depending on the use case, it's often necessary to specify constraints on properties of different kinds of entities (e.g., assets, parties or any other external entities). The exact subject for which those constraints must hold is currently not encodable in ODRL, but has to be inferred from the textual semantics of each of ODRL's 25 constraint terms; which not only leads to ambiguities in terms of interpreted semantics, but might also prove to be not capable of fully covering new usages of ODRL.
-						</p></div>
-					</li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><span data-ref-anchor="">POE.UC.21</span> 
-						</div>
-					</li>
-				</ul>
+					
+					<p>Depending on the use case, it's often necessary to specify constraints on properties of different kinds of entities (e.g., assets, parties or any other external entities). The exact subject for which those constraints must hold is currently not encodable in ODRL, but has to be inferred from the textual semantics of each of ODRL's 25 constraint terms; which not only leads to ambiguities in terms of interpreted semantics, but might also prove to be not capable of fully covering new usages of ODRL.
+						</p>
+					<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.21</span> 
+						
 			</section>
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -598,21 +537,20 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.22">
 				<h2><dfn>POE.UC.22</dfn>: Technical documents rules for business process regulatory compliance</h2>
-				<ul>
-					<li> <p class="contributor">Serena Villata (joint work with Guido Governatori) in the context of the MIREL Project</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<!--<p class="contributor">Serena Villata (joint work with Guido Governatori) in the context of the MIREL Project</p>
+					
+						 
 							<p> Technical documents describe how to handle and what are the functionalities of a certain product or process (e.g., telecommunication codes). They are intended to provide information about what can/cannot be done with the product or within a certain process. Given the huge dimension of this kind of legal texts and their diffusion in the companies, the advantages of returning a machine-readable representation of such texts would allow to have in this representation a kind of summary of the main constraints expressed in the documents, with invaluable time saving for every person that is expected to read the whole document before obtaining this information. A specific usage of such a kind of texts is that of manually extracting the set of obliged/prohibited/permitted actions in order to check whether certain business processes are compliant with the legal text they should refer to. Moreover, issues related to the merging of updated versions of the documents, with amendments with respect to the policies and duties expressed in the former versions.
 							</p>
+													<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.22</span> 
+							-->
 							     <div class="note">
-        <p>Duplicate of <a>POE.UC.04</a></p>
+        <p>Removed -> Duplicate of <a>POE.UC.04</a></p>
     </div>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><span data-ref-anchor="">POE.UC.22</span> 
-						</div>
-					</li>
-				</ul>
+
+						
 			</section>
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -620,18 +558,15 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.23">
 				<h2><dfn>POE.UC.23</dfn>: Deletions Must be Propagated </h2>
-				<ul>
-					<li> <p class="contributor">Brian Ulicny</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Brian Ulicny</p>
+					
+						 
 							<p> Many data providers require that if a record or element of the data is deleted in the source, it must be deleted in any copy and/or aggregation of that data. For example, arrest records must be expunged in public datasets if they are expunged by a court. Twitter requires that deleted tweets not be used in datasets, and so on. 
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.23</span>--><strong>TBD</strong> 
-						</div>
-					</li>
-				</ul>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.23</span> 
+						
 			</section>
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -639,18 +574,15 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.24">
 				<h2><dfn>POE.UC.24</dfn>: Synchronization in a multilayer music description environment </h2>
-				<ul>
-					<li> <p class="contributor">Laboratorio di Informatica Musicale (LIM), Department of Computer Science, Università degli Studi di Milano</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
-							<p> IEEE 1599 is an international XML-based standard that aims to comprehensively describe music content by supporting the representation of heterogeneous music aspects within a single XML document. Moreover, IEEE 1599 lets spatio-temporal relationships emerge among such materials, thanks to the identification of music events inside a common data structure known as the spine: in this way, events can be described in different layers (e.g., a chord’s graphical aspect and its audio performance), as well as multiple times within a single layer (e.g., different music performances of the same events). Consequently, the IEEE 1599 multilayer environment presents two complementary synchronization modes: inter-layer and intra-layer synchronization. Coupling these two categories of synchronization makes it possible to design and implement frameworks that allow new kinds of interaction with media contents and novel music-experience models, as shown in the Music Box area of the EMIPIU web framework (see URL above). Recognizing music events and their synchronization can be seen as an additional intellectual achievement that on one side does not affect the already existing IP rights on media contents, but on the other side requires adequate protection. Consequently, it is desirable to consider a new permission which allows the producer to synchronize different media contents with respect to the other possibly existing permissions, restrictions and duties associated with media contents. 
+
+					<p class="contributor">Laboratorio di Informatica Musicale (LIM), Department of Computer Science, Università degli Studi di Milano</p>
+					
+						 
+							<p> IEEE 1599 is an international XML-based standard that aims to comprehensively describe music content by supporting the representation of heterogeneous music aspects within a single XML document. Moreover, IEEE 1599 lets spatio-temporal relationships emerge among such materials, thanks to the identification of music events inside a common data structure known as the spine: in this way, events can be described in different layers (e.g., a chord's graphical aspect and its audio performance), as well as multiple times within a single layer (e.g., different music performances of the same events). Consequently, the IEEE 1599 multilayer environment presents two complementary synchronization modes: inter-layer and intra-layer synchronization. Coupling these two categories of synchronization makes it possible to design and implement frameworks that allow new kinds of interaction with media contents and novel music-experience models, as shown in the Music Box area of the EMIPIU web framework (see URL above). Recognizing music events and their synchronization can be seen as an additional intellectual achievement that on one side does not affect the already existing IP rights on media contents, but on the other side requires adequate protection. Consequently, it is desirable to consider a new permission which allows the producer to synchronize different media contents with respect to the other possibly existing permissions, restrictions and duties associated with media contents. 
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.24</span>--><strong>TBD</strong> 
-						</div>
-					</li>
-				</ul>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.24</span>
+						
 			</section>
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -658,10 +590,10 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.25">
 				<h2><dfn>POE.UC.25</dfn>: Magazine Media Permissions </h2>
-				<ul>
-					<li> <p class="contributor">Dianne Kennedy, Idealliance </p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Dianne Kennedy, Idealliance </p>
+					
+						 
 							<p> In the Magazine Industry, magazine media companies need the ability to communicate the legal terms of usage permissions (known as licensing terms) that are associated with content (article text and rich media). Specifically:
 							<ul>
 								<li> Magazine media companies wish to define the ability of editors and staff to modify content.</li>
@@ -685,15 +617,10 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 								<li> Magazine media companies wish to define their ability to grant use of content to third party aggregator/syndicators.</li> 
 								<li> Magazine media companies wish to express to third party aggregator/syndicators any legal restrictions on the redistribution of content.</li> 
 							</ul></p>
-														     <div class="note">
-        <p>Potential duplicate of <a>POE.UC.07</a></p>
-    </div>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.25</span>--><strong>TBD</strong> 
-						</div>
-					</li>
-				</ul>
+														  
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.25</span>
+						
 			</section>
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -701,19 +628,16 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.26">
 				<h2><dfn>POE.UC.26</dfn>: Data Quality Policy </h2>
-				<ul>
-					<li> <p class="contributor">Antoine Isaac, Riccardo Albertoni</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
-							<p> Example from the W3C Working Group Data on the Web Best Practices (<a href="https://www.w3.org/2013/dwbp/">https://www.w3.org/2013/dwbp/</a>), more specifically for the Data Quality Vocabulary (<a href="https://www.w3.org/TR/vocab-dqv/">https://www.w3.org/TR/vocab-dqv/</a>). This example specifies that the serviceProvider grants the permission to access the dataset and commits to serve the data with a certain quality, more concretely, 99% availability of a SPARQL endpoint associated with the dataset. This is expressed as a duty on the service provider with a constraint that is defined using a DQV metric (<code>:sparqlEndpointUptime</code>) that has to be greater than a certain value (99). The <code>odrl:assignee</code> is the Party is the recipient of the policy statement and the <code>odrl:assigner</code> is the Party is the issuer of the policy statement. For discussion about this example see <a href="http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html">http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html</a> 
+
+					<p class="contributor">Antoine Isaac, Riccardo Albertoni</p>
+					
+						 
+							<p> Example from the W3C Working Group Data on the Web Best Practices [[dwbp]], more specifically for the Data Quality Vocabulary [[vocab-dqv]]. This example specifies that the serviceProvider grants the permission to access the dataset and commits to serve the data with a certain quality, more concretely, 99% availability of a SPARQL endpoint associated with the dataset. This is expressed as a duty on the service provider with a constraint that is defined using a DQV metric (<code>:sparqlEndpointUptime</code>) that has to be greater than a certain value (e.g., 99). The <code>odrl:assignee</code> is the recipient of the policy statement and the <code>odrl:assigner</code> is the issuer of the policy statement. For discussion about this example see <a href="http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html">http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html</a> 
 							</p>
 							<p> The expression of constraints in ODRL seems quite unfit with expressing general constraints on values in RDF graphs, as we would require here. However, ODRL can be easily extended, and is schedule to undergo refinement in the context of the W3C Permissions & Obligations Expression Working Group. In the future DQV implementers should investigate whether a general constraint expression language like the coming SHACL provides a more appropriate mechanism to be used on top of ODRL permissions and duties. </p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.26</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.26</span>
+						
 			</section>
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -721,196 +645,165 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.27">
 				<h2><dfn>POE.UC.27</dfn>: Europeana/DPLA In Copyright - Educational Use Only </h2>
-				<ul>
-					<li> <p class="contributor">Antoine Isaac, Riccardo Albertoni</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Antoine Isaac, Riccardo Albertoni</p>
+					
+						 
 							<p> Data providers who are also the rights holders of the digital objects in question may want to allow reuse of their digital objects for educational purpose only.
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.27</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.27</span>
+						
 			</section>
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.28 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.28">
 				<h2><dfn>POE.UC.28</dfn>: Enhance discovery of library collection materials </h2>
-				<ul>
-					<li> <p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
-							<p> OCLC (Online Computer Library Center, Inc.) is an online library cooperative that seeks to catalog the world’s library records in order to improve awareness of what books and other resources (electronic and print) are available in participating libraries globally. A better method for collecting information describing copyright ownership of and permissions on a given resource, and a standard set of rights data, including standard terms and clear definitions of those terms, is needed in order to provide consistent and accurate information regarding the permissions associated with the resources catalogued in libraries worldwide, including those currently in the WorldCat database and those that are incoming. Currently, rights and permissions information on catalogued materials is often inconsistent, inaccurate and/or incomplete. 
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> OCLC (Online Computer Library Center, Inc.) is an online library cooperative that seeks to catalog the world's library records in order to improve awareness of what books and other resources (electronic and print) are available in participating libraries globally. A better method for collecting information describing copyright ownership of and permissions on a given resource, and a standard set of rights data, including standard terms and clear definitions of those terms, is needed in order to provide consistent and accurate information regarding the permissions associated with the resources catalogued in libraries worldwide, including those currently in the WorldCat database and those that are incoming. Currently, rights and permissions information on catalogued materials is often inconsistent, inaccurate and/or incomplete. 
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.28</span>--><strong>TBD</strong> 
-						</div>
-					</li>
-				</ul>
-			</section>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.28</span>
+						
+			</section>-->
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.29 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.29">
 				<h2><dfn>POE.UC.29</dfn>: Identify permissions on chapters/ chunks of book content </h2>
-				<ul>
-					<li> <p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
 							<p> Currently, rights and permissions data is captured primarily at the book product level (typically using ONIX). Publishers large and small would like to take advantage of new content licensing opportunities for chapters, chunks, or other portions of the whole work (such as SharedBook) but often do not have sufficient permissions information to do so. A simple system for assigning permissions to chunks of content is needed, including a standard rights language used to collect permissions information from authors and publishers, along with a standard method for communicating permissions data that is machine-readable and travels with the content (in the EPUB or other electronic file, such as in the metadata embedded in an image file).
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.29</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
-			</section>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.29</span>
+						
+			</section>-->
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.30 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.30">
 				<h2><dfn>POE.UC.30</dfn>: Rights licensing data for e-book subscription services</h2>
-				<ul>
-					<li> <p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
 							<p> A number of opportunities exist for book publishers to sell works through subscription services, such as Scribd, Amazon Kindle Unlimited, and Playster, but they are unable to take advantage of these services because a consistent method for collecting and communicating subscription rights data has not been adopted within the industry. Subscription information can now be included in ONIX records (the primary book product metadata standard) but not all service providers are capable of accepting ONIX data. 
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.30</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
-			</section>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.30</span> 
+						
+			</section>-->
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.31 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.31">
 				<h2><dfn>POE.UC.31</dfn>: Improve internal rights management systems (large book publishers)</h2>
-				<ul>
-					<li> <p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
 							<p> Most large book publishers have developed their own internal databases/systems for managing rights and permissions information, but in many cases these systems have become out of date and insufficient for tracking the kinds of granular rights data needed to take advantage of new and forthcoming opportunities for content licensing. In addition, in many cases rights departments at large publishing houses are segmented from acquisitions and editorial departments, deepening the divide between the rights information collected for new works and that which is needed—digital assets are not always defined from the point of acquisition. A standard set of discrete permissions data including a variety of digital rights would provide an efficient system for publishers to begin collecting this information. Currently a large amount of revenue is left on the table because of insufficient knowledge of rights held, and lack of an efficient system for collecting and communicating permissions data that incorporates the breadth of licensing models available. A standardized model and vocabulary for expressing permissions and obligations information would facilitate both the management of content licensed from others and the monetization of content licensed to others. </p>
-							<p>To be clear, this use case does not envision creating a standard for publishers to use as the sole basis for their internal databases/systems; rather, it envisions a standard way of ingesting and outputting rights and permissions information, with which publishers’ internal databases should interoperate.</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.31</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
-			</section>
+							<p>To be clear, this use case does not envision creating a standard for publishers to use as the sole basis for their internal databases/systems; rather, it envisions a standard way of ingesting and outputting rights and permissions information, with which publishers' internal databases should interoperate.</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.31</span> 
+						
+			</section>-->
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.32 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.32">
 				<h2><dfn>POE.UC.32</dfn>:  Improve efficiency of foreign rights transactions (University Press)</h2>
-				<ul>
-					<li> <p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
-							<p> A university press holds a large database of work, including books, journals, and other electronic resources, and regularly sub-licenses foreign and translations rights to international clients. The database is housed in an internal system but insufficient rights information exists due in part to the lack of a clear system for collecting and managing rights and permissions information. The UP needs a standard system for labeling rights held and rights sold/purchased in order to efficiently execute rights deals internationally. Consistency of contractual language terminology and meaning among international trading partners is key: rights language across internal database and clients’ database is often misaligned. Additionally, many transactions are still done or initiated in person; these transactions are difficult to track because of database limitations—currently, status; interactions; and contacts for international rights transactions on a large number of titles gets lost.
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> A university press holds a large database of work, including books, journals, and other electronic resources, and regularly sub-licenses foreign and translations rights to international clients. The database is housed in an internal system but insufficient rights information exists due in part to the lack of a clear system for collecting and managing rights and permissions information. The UP needs a standard system for labeling rights held and rights sold/purchased in order to efficiently execute rights deals internationally. Consistency of contractual language terminology and meaning among international trading partners is key: rights language across internal database and clients' database is often misaligned. Additionally, many transactions are still done or initiated in person; these transactions are difficult to track because of database limitations—currently, status; interactions; and contacts for international rights transactions on a large number of titles gets lost.
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.32</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
-			</section>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.32</span> 
+						
+			</section>-->
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.33 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.33">
 				<h2><dfn>POE.UC.33</dfn>: Disambiguate access permission from copyright permission (University Press)</h2>
-				<ul>
-					<li> <p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
 							<p> Clear terminology for permissions and obligations associated with accessing a work— be it through a library, classroom (for course materials), software application, online repository, or other portal needs to be established and defined in a standard way so that the licensing environment (library, classroom, etc.) can treat works from multiple rights holders according to such permissions and obligations. This access is distinct from copyright held on the work and needs to be treated as such in metadata that is attached to a work. University presses, who regularly provide access to published works to students across a variety of platforms, have a particular need to see access better accounted for in rights data.
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.33</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
-			</section>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.33</span> 
+						
+			</section>-->
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.34 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.34">
 				<h2><dfn>POE.UC.34</dfn>: Library collection management and access </h2>
-				<ul>
-					<li> <p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
 							<p> Improve the flow of rights data among publishers, libraries, and library service providers. No single metadata standard is used among book publishers, libraries, and service providers to communicate rights and permissions data for library materials. Clear rights data is not being communicated to libraries: several libraries, both university-based and public, report a lack of consistent and accurate rights and permissions information for the content in their collections, inhibiting libraries from providing electronic access to a large portion of content and making library collection data difficult to manage. This is especially true for print works which libraries wish to digitize and make available to patrons or publicly. 
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.34</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
-			</section>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.34</span> 
+						
+			</section>-->
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.35 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.35">
 				<h2><dfn>POE.UC.35</dfn>: Rights licensing for custom textbook publishing (higher education publishers)</h2>
-				<ul>
-					<li> <p class="contributor">Bill Rosenblatt on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
-							<p> Higher education curriculum service providers (e.g. e-textbook services) would like to be able to offer course instructors the ability to compose single textbook volumes (whether in print or ebook) from materials sourced from multiple publications from one publisher or  multiple publishers. For example, an instructor could assemble a custom physics textbook with a chapter on angular momentum from one publisher’s textbook, friction from another publisher’s textbook, gravity from another, etc., plus her own treatment of magnetic fields.  One of the reasons why no one has been able to offer a scalable service of this type is the difficulty of licensing content from multiple higher ed publishers in a flexible and automated manner.
+
+					<p class="contributor">Bill Rosenblatt on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> Higher education curriculum service providers (e.g. e-textbook services) would like to be able to offer course instructors the ability to compose single textbook volumes (whether in print or ebook) from materials sourced from multiple publications from one publisher or  multiple publishers. For example, an instructor could assemble a custom physics textbook with a chapter on angular momentum from one publisher's textbook, friction from another publisher's textbook, gravity from another, etc., plus her own treatment of magnetic fields.  One of the reasons why no one has been able to offer a scalable service of this type is the difficulty of licensing content from multiple higher education publishers in a flexible and automated manner.
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.35</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
-			</section>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.35</span> 
+						
+			</section>-->
 			
 			<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.36 %%%%%%%%%%%% 
-			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 			<section id="POE.UC.36">
 				<h2><dfn>POE.UC.36</dfn>: Users need to know the permissions and obligations associated with using a given publication</h2>
-				<ul>
-					<li> <p class="contributor">Bill Kasdorf on behalf of the Book Industry Study Group (BISG)</p></li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Full use case description (click to collapse):</div>
-						<div class="visible uc"> 
+
+					<p class="contributor">Bill Kasdorf on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
 							<p> The user of a publication currently has little or no way to know what permissions and obligations associated with a publication given to her by a friend or checked out of a library. She is not the original purchaser so she has not acknowledged any purchase or licensing agreement. She may be aware of general copyright requirements, but there may be other permissions or obligations associated with using the publication that she needs to know.
 							</p>
-						</div> </li>
-					<li> <div class="expandOrCollapse" onclick="toggleVisibility(this)">Related Requirements (click to expand):</div>
-						<div class="visible requirement"><!--<span data-ref-anchor="">POE.UC.36</span> --><strong>TBD</strong>
-						</div>
-					</li>
-				</ul>
-			</section>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.36</span> 
+						
+			</section>-->
 			
 		</section>
 		<section id="Requirements">
 			<h1>Requirements</h1>
-			<p>This section lists the requirements arising from the use-cases catalogued in this document. </p>
-			<!--Specific requirements that have been de-prioritized or rejected have been left in the document for completeness, but are shown as struck out.</p>-->
+			<p>This section lists the requirements arising from the use-cases catalogued in this document. Specific requirements that have been de-prioritized or rejected have been left in the document for completeness, but are shown as struck out.</p>
 				<section id="POE.R.DM">
     <h2>POE.R.DM - Data Model</h2>
         <section id="POE.R.DM.01">
@@ -941,7 +834,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
         <section id="POE.R.DM.06">
 			<h3><dfn>POE.R.DM.06</dfn>: Support relative time constraints</h3>
 			<em>Extend the temporal constraints by setting a time reference, any period in the rightOperand refers to this point in time. For a relativeTimePeriod constraint the rightOperand has to provide a time period as value. </em>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.16</a>,<a data-set-anchor="">POE.UC.19</a></p>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.03</a>,<a data-set-anchor="">POE.UC.15</a>,<a data-set-anchor="">POE.UC.16</a>,<a data-set-anchor="">POE.UC.19</a></p>
 		</section>
         <section id="POE.R.DM.07">
 			<h3><dfn>POE.R.DM.07</dfn>: Define a category property for class Party</h3>
@@ -951,46 +844,37 @@ Rather than attempt to make assertions about what an end user can or cannot do w
         <section id="POE.R.DM.08">
 			<h3><dfn>POE.R.DM.08</dfn>: Add a category property to Asset</h3>
 			<em>A new property of the class Asset should define the category of the Asset. </em>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a>,<a data-set-anchor="">POE.UC.17</a></p>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a>,<a data-set-anchor="">POE.UC.17</a>,<a data-set-anchor="">POE.UC.24</a></p>
 		</section>
         <section id="POE.R.DM.09">
 			<h3><dfn>POE.R.DM.09</dfn>: Complex Constraints</h3>
 			<em>Express complex constraints such as 'No use in UK after 7 days'. </em>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.07</a></p>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.03</a>,<a data-set-anchor="">POE.UC.07</a>,<a data-set-anchor="">POE.UC.15</a>,<a data-set-anchor="">POE.UC.23</a>,<a data-set-anchor="">POE.UC.26</a>,<a data-set-anchor="">POE.UC.27</a></p>
 		</section>
         <section id="POE.R.DM.10">
 			<h3><dfn>POE.R.DM.10</dfn>: Extended Relations</h3>
 			<em>Being able to tie Permission, Prohibition, Duty, and Constraint entities together with an AND, OR or XOR relationship</em>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.14</a></p>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.14</a>,<a data-set-anchor="">POE.UC.25</a></p>
 		</section>
         <section id="POE.R.DM.11">
-			<h3><dfn>POE.R.DM.11</dfn>: Remedies</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
+			<h3><strike><dfn>POE.R.DM.11</dfn>: Remedies</strike></h3>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.02</a></p>
 		</section>
         <section id="POE.R.DM.12">
 			<h3><dfn>POE.R.DM.12</dfn>: Grouping party entities</h3>
 			<em>Being able to assign multiple individuals of type Party to a Group for which permissions/prohibitions/duties can be specified. </em>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.05</a></p>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.05</a>,<a data-set-anchor="">POE.UC.24</a></p>
 		</section>
 
 		</section>
 		<section id="POE.R.V">
     <h2>POE.R.V - Vocabulary</h2>
         <section id="POE.R.V.01">
-			<h3><dfn>POE.R.V.01</dfn>: Add rights holder terms to Roles of a Party Vocabulary</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a>,<a data-set-anchor="">POE.UC.18</a></p>
+			<h3><strike><dfn>POE.R.V.01</dfn>: Add rights holder terms to Roles of a Party Vocabulary</strike></h3>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a>,<a data-set-anchor="">POE.UC.13</a>,<a data-set-anchor="">POE.UC.18</a></p>
 		</section>
         <section id="POE.R.V.02">
-			<h3><dfn>POE.R.V.02</dfn>: Add term for redepositing to Duty Vocabulary</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
+			<h3><strike><dfn>POE.R.V.02</dfn>: Add term for redepositing to Duty Vocabulary</strike></h3>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a></p>
 		</section>
         <section id="POE.R.V.03">
@@ -1000,42 +884,27 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 		</section>
 
        <section id="POE.R.V.08">
-			<h3><dfn>POE.R.V.08</dfn>: Add terms to the Action Vocabulary</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
+			<h3><strike><dfn>POE.R.V.08</dfn>: Add terms to the Action Vocabulary</strike></h3>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.11</a></p>
 		</section>
         <section id="POE.R.V.09">
-			<h3><dfn>POE.R.V.09</dfn>: Add Linked Data related actions to Action Vocabulary</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
+			<h3><strike><dfn>POE.R.V.09</dfn>: Add Linked Data related actions to Action Vocabulary</strike></h3>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.02</a></p>
 		</section>
         <section id="POE.R.V.10">
 			<h3><dfn>POE.R.V.10</dfn>: Add terms to the Roles of a Party Vocabulary</h3>
 			<em>Add the role compensatingParty to the Party Role Vocabulary </em>
-			<div class="issue">
-				<p>Not a requirement</p>
-			</div>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.11</a></p>
 		</section>
         <section id="POE.R.V.11">
 			<h3><dfn>POE.R.V.11</dfn>: New Party Category Vocabulary</h3>
 			<em>Create a new vocabulary with a basic set of terms for the requested new category property of the Party class. </em>
-			<div class="issue">
-				<p>Not a requirement</p>
-			</div>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a></p>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a>,<a data-set-anchor="">POE.UC.25</a></p>
 		</section>
         <section id="POE.R.V.12">
 			<h3><dfn>POE.R.V.12</dfn>: New Asset Category Vocabulary</h3>
 			<em>Create a new vocabulary with a basic set of terms for the requested new category property of the Asset class. </em>
-			<div class="issue">
-				<p>Not a requirement</p>
-			</div>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a>,<a data-set-anchor="">POE.UC.17</a></p>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a>,<a data-set-anchor="">POE.UC.17</a>,<a data-set-anchor="">POE.UC.24</a></p>
 		</section>
 
         <section id="POE.R.V.15">
@@ -1046,7 +915,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
         <section id="POE.R.V.16">
 			<h3><dfn>POE.R.V.16</dfn>: Assertion Policy Type</h3>
 			<em>It should be possible to define policies of type Assertion. An Assertion policy does not grant any permissions/prohibitions, but reflects policy terms that a party believes to have.</em>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.18</a></p>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.13</a>,<a data-set-anchor="">POE.UC.18</a></p>
 		</section>
 		</section>
 		 <section id="POE.R.E">
@@ -1054,80 +923,50 @@ Rather than attempt to make assertions about what an end user can or cannot do w
         <section id="POE.R.E.01">
 			<h3><dfn>POE.R.E.01</dfn>: Referring to external resources for defining payment fees</h3>
 			<em>Define how to specify a fee by referring to an resource outside a policy document </em>
-			<div class="issue">
-				<p>Not a requirement</p>
-			</div>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a></p>
 		</section>
 		</section>
 <section id="POE.R.R">
     <h2>POE.R.R - Processing Rules</h2>
         <section id="POE.R.R.01">
-			<h3><dfn>POE.R.R.01</dfn>: Define rules for matching permissions/prohibitions against specific use cases</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
+			<h3><strike><dfn>POE.R.R.01</dfn>: Define rules for matching permissions/prohibitions against specific use cases</strike></h3>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.04</a>,<a data-set-anchor="">POE.UC.12</a></p>
 		</section>
        <section id="POE.R.R.02">
-			<h3><dfn>POE.R.R.02</dfn>: Define a language for controlling processing policies</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
+			<h3><strike><dfn>POE.R.R.02</dfn>: Define a language for controlling processing policies</strike></h3>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.04</a>,<a data-set-anchor="">POE.UC.12</a></p>
 		</section>
         <section id="POE.R.R.03">
 			<h3><dfn>POE.R.R.03</dfn>: Define processing rules for versioned policies</h3>
 			<em>Rules defining how different versions of a policy with the same identifier should be processed should be specified.</em>
-			<div class="issue">
-				<p>Not a requirement for ODRL</p>
-			</div>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.04</a></p>
 		</section>
         <section id="POE.R.R.04">
-			<h3><dfn>POE.R.R.04</dfn>: Support to auto-generate a policy from a template plus provided parameter values</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
+			<h3><strike><dfn>POE.R.R.04</dfn>: Support to auto-generate a policy from a template plus provided parameter values</strike></h3>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a></p>
 		</section>
         <section id="POE.R.R.05">
 			<h3><dfn>POE.R.R.05</dfn>: Guidance on Rights Assignments through Aggregation and Derivation</h3>
 			<em>Provide guidance and examples of managing rights assignments through aggregations.</em>
-			<div class="issue">
-				<p>Not a requirement for ODRL</p>
-			</div>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.06</a>,<a data-set-anchor="">POE.UC.12</a></p>
 		</section>
        <section id="POE.R.R.06">
 			<h3><dfn>POE.R.R.06</dfn>: Guidance on Specifying Subsets of Assets</h3>
-			<em>Provide guidance and examples of specifying subsets of data as the object of the odrl:target predicate.</em>
-			<div class="issue">
-				<p>Not a requirement for ODRL</p>
-			</div>
+			<em>Provide guidance and examples of specifying subsets of data as the object of the <code>odrl:target</code> predicate.</em>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.02</a>,<a data-set-anchor="">POE.UC.06</a>,<a data-set-anchor="">POE.UC.07</a></p>
 		</section>
         <section id="POE.R.R.07">
-			<h3><dfn>POE.R.R.07</dfn>: Guidance on Conflicting Permissions</h3>
-			<div class="note">
-				<p>Rejected</p>
-			</div>
-			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.22</a></p>
+			<h3><strike><dfn>POE.R.R.07</dfn>: Guidance on Conflicting Permissions</strike></h3>
+			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.04</a></p>
 		</section>
         <section id="POE.R.R.08">
 			<h3><dfn>POE.R.R.08</dfn>: Guidance on the Provenance of Policies</h3>
 			<em>Provide guidance and examples of expressing the provenance of the interpretation of the original document, recognising that the original source remains normative.</em>
-			<div class="issue">
-				<p>Not a requirement for ODRL</p>
-			</div>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.08</a></p>
 		</section>
         <section id="POE.R.R.09">
 			<h3><dfn>POE.R.R.09</dfn>: Make policies accessible by URL</h3>
 			<em>Encourage POE implementers to make policies accessible as a web resource by a URL and http content negotiation should be supported to deliver a specific request format. </em>
-			<div class="issue">
-				<p>Not a requirement for ODRL</p>
-			</div>
 			<p class="relatedUseCases"><a data-set-anchor="">POE.UC.01</a></p>
 		</section>
 </section>
