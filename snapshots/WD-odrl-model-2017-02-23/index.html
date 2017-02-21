@@ -15,16 +15,16 @@
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title">ODRL Information Model</h1>
-    <h2 id="w3c-working-draft-21-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Working Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-21">21 February 2017</time></h2>
+    <h2 id="w3c-working-draft-23-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Working Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-23">23 February 2017</time></h2>
     <dl>
       <dt>This version:</dt>
-      <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-odrl-model-20170221/">https://www.w3.org/TR/2017/WD-odrl-model-20170221/</a></dd>
+      <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-odrl-model-20170223/">https://www.w3.org/TR/2017/WD-odrl-model-20170223/</a></dd>
       <dt>Latest published version:</dt>
       <dd><a href="https://www.w3.org/TR/odrl-model/">https://www.w3.org/TR/odrl-model/</a></dd>
       <dt>Latest editor's draft:</dt>
       <dd><a href="https://w3c.github.io/poe/model/">https://w3c.github.io/poe/model/</a></dd>
       <dt>Previous Version:</dt>
-      <dd><a href="https://www.w3.org/TR/2016/WD-odrl-model-20160721/">https://www.w3.org/TR/2016/WD-odrl-model-20160721/</a></dd>
+      <dd><a rel="dcterms:replaces" href="https://www.w3.org/TR/2016/WD-odrl-model-20160721/">https://www.w3.org/TR/2016/WD-odrl-model-20160721/</a></dd>
       <dt>Editors:</dt>
       <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><meta property="foaf:name" content="Renato Iannella"><a class="u-url url p-name fn" property="foaf:homepage" href="https://au.linkedin.com/in/riannella">Renato Iannella</a>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.monegraph.com/">Monegraph</a>, <span class="ed_mailto"><a class="u-email email" property="foaf:mbox" href="mailto:r@iannel.la">r@iannel.la</a></span></span>
         <span property="rdf:rest" resource="_:editor1"></span>
@@ -348,7 +348,7 @@
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
-    <span class="hljs-string">"@uid"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
+    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
         <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:reproduce"</span>,
@@ -446,7 +446,7 @@
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
-    <span class="hljs-string">"@uid"</span>: <span class="hljs-string">"http://example.com/policy:8888"</span>,
+    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:8888"</span>,
     <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/music/1999.mp3"</span>,
     <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/org/sony-music"</span>,
     <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:play"</span>,
@@ -469,7 +469,7 @@
     <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
-    <span class="hljs-string">"@uid"</span>: <span class="hljs-string">"http://example.com/policy:8888"</span>,
+    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:8888"</span>,
     <span class="hljs-string">"permission"</span>: [{
         <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/music/1999.mp3"</span>,
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/org/sony-music"</span>,
@@ -1161,7 +1161,8 @@
                 <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:payAmount"</span>,
                 <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
                 <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"5.00"</span>,
-                <span class="hljs-string">"unit"</span>: <span class="hljs-string">"https://www.currency-iso.org/dam/downloads/lists/list_one.xml#AUD"</span>
+                <span class="hljs-string">"unit"</span>: 
+                  <span class="hljs-string">"https://www.currency-iso.org/dam/downloads/lists/list_one.xml#AUD"</span>
             }],
             <span class="hljs-string">"constraint"</span>: [{
                 <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:event"</span>,
@@ -1313,7 +1314,8 @@
                     <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
                     <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"100.00"</span>,
                     <span class="hljs-string">"dataType"</span>: <span class="hljs-string">"http://www.w3.org/2001/XMLSchema#decimal"</span>,
-                    <span class="hljs-string">"unit"</span>: <span class="hljs-string">"https://www.currency-iso.org/dam/downloads/lists/list_one.xml#EUR"</span>
+                    <span class="hljs-string">"unit"</span>: 
+                      <span class="hljs-string">"https://www.currency-iso.org/dam/downloads/lists/list_one.xml#EUR"</span>
                 }]
             },
             {
