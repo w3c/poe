@@ -68,8 +68,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
    <div class="issue" data-number="64">
         <p>This section is normative, meaning that the concepts and terms presented are required by ODRL expression systems. However, a number of terms have yet to reach the level of implementation that warrants them to be deemed normative. As a result, some terms in this section are explicitly labelled with the status "non-normative".</p>
-       <p>The current terms that are deemed normative are taken from the <a href="https://www.w3.org/2016/poe/wiki/images/8/88/ODRLImplementationSurvey-2016-Dec-07.pdf">ODRL Implementors Survey in December 2016</a> (PDF document). </p>
-           <p> Future versions of the ODRL Vocabulary MAY update these terms to be normative as more implementation experience is gained, and community feedback.</p>
+       <p>The current terms that are marked normative are taken from the <a href="https://www.w3.org/2016/poe/wiki/images/8/88/ODRLImplementationSurvey-2016-Dec-07.pdf">ODRL Implementors Survey in December 2016</a> (PDF document). </p>
+           <p>Future versions of the ODRL Vocabulary MAY update these terms to be normative based on more implementation experience, from community feedback, as well as determintion as to the core parts of the ODRL Information Model.</p>
     </div>
         
 <section id="policyConcepts"><h2>Policy Concepts</h2><section id="term-Policy"><h3>Policy</h3><table class='def propdef' >
@@ -95,7 +95,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Profile</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/profile">http://www.w3.org/ns/odrl/2/profile</a></td></tr>
 <tr><th>Note:</th> <td>ODRL Profiles may be defined by community groups and express additional semantics.</td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
 </section></section><section id="policyTypes"><h2>Policy Types</h2><section id="term-Agreement"><h3>Agreement</h3><table class='def propdef' >
@@ -180,7 +179,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Inherit Relation</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td></tr>
 <tr><th>Note:</th> <td>For example, this may indicate the business scenario, such as subscription, or prior arrangements between the parties (that are not machine representable)</td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -306,7 +304,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Action</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Action">http://www.w3.org/ns/odrl/2/Action</a></td></tr>
 <tr><th>Note:</th> <td>Actions may be allowed by Permissions, disalloed by Prohibitions, or made mandatory by Duties.</td></tr>
-<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2004/02/skos/core#Concept">skos:Concept</a></td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Concept">Concept</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-action">action</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-acceptTracking">acceptTracking</a>, <a href="#term-adHocShare">adHocShare</a>, <a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-append">append</a>, <a href="#term-appendTo">appendTo</a>, <a href="#term-archive">archive</a>, <a href="#term-attachPolicy">attachPolicy</a>, <a href="#term-attachSource">attachSource</a>, <a href="#term-attribute">attribute</a>, <a href="#term-commercialize">commercialize</a>, <a href="#term-compensate">compensate</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-copy">copy</a>, <a href="#term-delete">delete</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-ensureExclusivity">ensureExclusivity</a>, <a href="#term-execute">execute</a>, <a href="#term-export">export</a>, <a href="#term-extract">extract</a>, <a href="#term-extractChar">extractChar</a>, <a href="#term-extractPage">extractPage</a>, <a href="#term-extractWord">extractWord</a>, <a href="#term-give">give</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-include">include</a>, <a href="#term-index">index</a>, <a href="#term-inform">inform</a>, <a href="#term-install">install</a>, <a href="#term-lease">lease</a>, <a href="#term-lend">lend</a>, <a href="#term-license">license</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-nextPolicy">nextPolicy</a>, <a href="#term-obtainConsent">obtainConsent</a>, <a href="#term-pay">pay</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-preview">preview</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-reviewPolicy">reviewPolicy</a>, <a href="#term-secondaryUse">secondaryUse</a>, <a href="#term-sell">sell</a>, <a href="#term-share">share</a>, <a href="#term-shareAlike">shareAlike</a>, <a href="#term-stream">stream</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transfer">transfer</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-uninstall">uninstall</a>, <a href="#term-use">use</a>, <a href="#term-watermark">watermark</a>, <a href="#term-write">write</a>, <a href="#term-writeTo">writeTo</a></td></tr>
 </table>
@@ -693,7 +691,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The right operand in a constraint expression.</td></tr>
 <tr><th>Label:</th> <td>Has Right Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperand">http://www.w3.org/ns/odrl/2/rightOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#any">xsd:any</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-rightOperandReference"><h3>Has Right Operand Reference</h3><table class='def propdef' >
@@ -724,7 +721,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The unit of measurement used for the constraint value.</td></tr>
 <tr><th>Label:</th> <td>Unit</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/unit">http://www.w3.org/ns/odrl/2/unit</a></td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-dataType"><h3>Datatype</h3><table class='def propdef' >
@@ -732,7 +728,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Datatype</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dataType">http://www.w3.org/ns/odrl/2/dataType</a></td></tr>
 <tr><th>Note:</th> <td>In RDF encodings, use of the rdf:datatype MAY be used.</td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-status"><h3>Status</h3><table class='def propdef' >
