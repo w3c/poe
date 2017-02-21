@@ -363,7 +363,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     
     <section id="conflict">
-<h4>Policy Conflict</h4>
+<h4>Policy Conflict Strategy</h4>
         
 <p>The <code>conflict</code> attribute is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent.</p>
         <blockquote>
@@ -647,6 +647,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     }]
 }</pre>
 
+    <div class="note">
+    <p>In the above example, the JSON-LD representation for Relation directly uses <code>target</code> as the token, as this has been mapped as a sub-property of the <code>relation</code> property.</p>
+    </div>
+    
 <blockquote>	
 <p>Example Use Case: The below Policy shows the index action Permission on the target Asset http://example.com/archive1011. Another Asset relation (x:collection) is also expressed to indicate the Asset (http://example.com/x/database) the indexing outcome should be stored in. (These semantics would be defined by the community who created the x:collection relation.)</p>
     </blockquote>
@@ -755,6 +759,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 }  
 </pre>
     
+    <div class="note">
+    <p>In the above example, the JSON-LD representation for Role directly uses <code>assigner</code> and <code>assignee</code> as the token, as this has been mapped as sub-properties of the <code>function</code> property.</p>
+    </div>
     
     </section>
     
