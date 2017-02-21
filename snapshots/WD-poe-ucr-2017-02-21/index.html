@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html typeof="bibo:Document w3p:WD" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="dc:language" content="en" lang="">
+  <style>
+    /*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+    
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      padding: 0.5em;
+      color: #333;
+      background: #f8f8f8;
+    }
+    
+    .hljs-comment,
+    .hljs-quote {
+      color: #998;
+      font-style: italic;
+    }
+    
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-subst {
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .hljs-number,
+    .hljs-literal,
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag .hljs-attr {
+      color: #008080;
+    }
+    
+    .hljs-string,
+    .hljs-doctag {
+      color: #d14;
+    }
+    
+    .hljs-title,
+    .hljs-section,
+    .hljs-selector-id {
+      color: #900;
+      font-weight: bold;
+    }
+    
+    .hljs-subst {
+      font-weight: normal;
+    }
+    
+    .hljs-type,
+    .hljs-class .hljs-title {
+      color: #458;
+      font-weight: bold;
+    }
+    
+    .hljs-tag,
+    .hljs-name,
+    .hljs-attribute {
+      color: #000080;
+      font-weight: normal;
+    }
+    
+    .hljs-regexp,
+    .hljs-link {
+      color: #009926;
+    }
+    
+    .hljs-symbol,
+    .hljs-bullet {
+      color: #990073;
+    }
+    
+    .hljs-built_in,
+    .hljs-builtin-name {
+      color: #0086b3;
+    }
+    
+    .hljs-meta {
+      color: #999;
+      font-weight: bold;
+    }
+    
+    .hljs-deletion {
+      background: #fdd;
+    }
+    
+    .hljs-addition {
+      background: #dfd;
+    }
+    
+    .hljs-emphasis {
+      font-style: italic;
+    }
+    
+    .hljs-strong {
+      font-weight: bold;
+    }
+  </style>
+  <style>
+    /* --- ISSUES/NOTES --- */
+    
+    div.issue-title,
+    div.note-title,
+    div.ednote-title,
+    div.warning-title {
+      padding-right: 1em;
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.issue-title {
+      color: #e05252;
+    }
+    
+    div.note-title,
+    div.ednote-title {
+      color: #2b2;
+    }
+    
+    div.warning-title {
+      color: #f22;
+    }
+    
+    div.issue-title span,
+    div.note-title span,
+    div.ednote-title span,
+    div.warning-title span {
+      text-transform: uppercase;
+    }
+    
+    div.note,
+    div.issue,
+    div.ednote,
+    div.warning {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    
+    .note>p:first-child,
+    .ednote>p:first-child,
+    .issue>p:first-child,
+    .warning>p:first-child {
+      margin-top: 0
+    }
+    
+    .issue,
+    .note,
+    .ednote,
+    .warning {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+    }
+    
+    div.issue,
+    div.note,
+    div.ednote,
+    div.warning {
+      padding: 1em 1.2em 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    span.note,
+    span.ednote,
+    span.issue,
+    span.warning {
+      padding: .1em .5em .15em;
+    }
+    
+    .issue {
+      border-color: #e05252;
+      background: #fbe9e9;
+    }
+    
+    .note,
+    .ednote {
+      border-color: #52e052;
+      background: #e9fbe9;
+    }
+    
+    .warning {
+      border-color: #f11;
+      border-width: .2em;
+      border-style: solid;
+      background: #fbe9e9;
+    }
+    
+    .warning-title:before {
+      content: "⚠";
+      /*U+26A0 WARNING SIGN*/
+      font-size: 3em;
+      float: left;
+      height: 100%;
+      padding-right: .3em;
+      vertical-align: top;
+      margin-top: -0.5em;
+    }
+    
+    li.task-list-item {
+      list-style: none;
+    }
+    
+    input.task-list-item-checkbox {
+      margin: 0 0.35em 0.25em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style id="respec-mainstyle">
+    /*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+    /* Override code highlighter background */
+    
+    .hljs {
+      background: transparent !important;
+    }
+    /* --- INLINES --- */
+    
+    em.rfc2119 {
+      text-transform: lowercase;
+      font-variant: small-caps;
+      font-style: normal;
+      color: #900;
+    }
+    
+    h1 acronym,
+    h2 acronym,
+    h3 acronym,
+    h4 acronym,
+    h5 acronym,
+    h6 acronym,
+    a acronym,
+    h1 abbr,
+    h2 abbr,
+    h3 abbr,
+    h4 abbr,
+    h5 abbr,
+    h6 abbr,
+    a abbr {
+      border: none;
+    }
+    
+    dfn {
+      font-weight: bold;
+    }
+    
+    a.internalDFN {
+      color: inherit;
+      border-bottom: 1px solid #99c;
+      text-decoration: none;
+    }
+    
+    a.externalDFN {
+      color: inherit;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    a.bibref {
+      text-decoration: none;
+    }
+    
+    cite .bibref {
+      font-style: normal;
+    }
+    
+    code {
+      color: #C83500;
+    }
+    
+    th code {
+      color: inherit;
+    }
+    /* --- TOC --- */
+    
+    .toc a,
+    .tof a {
+      text-decoration: none;
+    }
+    
+    a .secno,
+    a .figno {
+      color: #000;
+    }
+    
+    ul.tof,
+    ol.tof {
+      list-style: none outside none;
+    }
+    
+    .caption {
+      margin-top: 0.5em;
+      font-style: italic;
+    }
+    /* --- TABLE --- */
+    
+    table.simple {
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-bottom: 3px solid #005a9c;
+    }
+    
+    .simple th {
+      background: #005a9c;
+      color: #fff;
+      padding: 3px 5px;
+      text-align: left;
+    }
+    
+    .simple th[scope="row"] {
+      background: inherit;
+      color: inherit;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple tr:nth-child(even) {
+      background: #f0f6ff;
+    }
+    /* --- DL --- */
+    
+    .section dd>p:first-child {
+      margin-top: 0;
+    }
+    
+    .section dd>p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section dd {
+      margin-bottom: 1em;
+    }
+    
+    .section dl.attrs dd,
+    .section dl.eldef dd {
+      margin-bottom: 0;
+    }
+    
+    .respec-hidden {
+      display: none;
+    }
+    
+    #respec-ui {
+      position: fixed;
+      display: flex;
+      flex-direction: row-reverse;
+      top: 20px;
+      right: 20px;
+      width: 202px;
+      text-align: right;
+    }
+    
+    #respec-pill,
+    .respec-info-button {
+      background: #fff;
+      height: 2.5em;
+      color: rgb(120, 120, 120);
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 8px 0 rgba(100, 100, 100, .5);
+    }
+    
+    .respec-info-button {
+      border: none;
+      opacity: .5;
+      border-radius: 2em;
+      margin-right: 1em;
+      min-width: 3.5em;
+    }
+    
+    .respec-info-button:focus {
+      opacity: 1;
+      transition: opacity .2s;
+    }
+    
+    #respec-pill:disabled {
+      font-size: 2.8px;
+      text-indent: -9999em;
+      border-top: 1.1em solid rgba(40, 40, 40, 0.2);
+      border-right: 1.1em solid rgba(40, 40, 40, 0.2);
+      border-bottom: 1.1em solid rgba(40, 40, 40, 0.2);
+      border-left: 1.1em solid #ffffff;
+      transform: translateZ(0);
+      animation: respec-spin .5s infinite linear;
+      box-shadow: none;
+    }
+    
+    #respec-pill:disabled,
+    #respec-pill:disabled:after {
+      border-radius: 50%;
+      width: 10em;
+      height: 10em;
+    }
+    
+    @keyframes respec-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    #respec-pill:hover,
+    #respec-pill:focus {
+      color: rgb(0, 0, 0);
+      background-color: rgb(245, 245, 245);
+      transition: color .2s;
+    }
+    
+    #respec-menu {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: #fff;
+      box-shadow: 1px 1px 8px 0 rgba(100, 100, 100, .5);
+      width: 200px;
+      display: none;
+      text-align: left;
+      margin-top: 32px;
+      font-size: .8em;
+    }
+    
+    #respec-menu li {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .respec-save-button {
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 5px;
+      display: block;
+      width: 100%;
+      color: #000;
+      text-decoration: none;
+      text-align: center;
+      font-size: inherit;
+    }
+    
+    #respec-ui button:focus,
+    #respec-pill:focus,
+    .respec-option:focus {
+      outline: 0;
+      outline-style: none;
+    }
+    
+    #respec-pill-error {
+      background-color: red;
+      color: white;
+    }
+    
+    #respec-pill-warning {
+      background-color: orange;
+      color: white;
+    }
+    
+    .respec-warning-list,
+    .respec-error-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: sans-serif;
+      background-color: rgb(255, 251, 230);
+      font-size: .9em;
+    }
+    
+    .respec-warning-list li,
+    .respec-error-list li {
+      padding: 0.4em 0.7em;
+    }
+    
+    .respec-warning-list li::before {
+      content: "⚠️";
+      padding-right: .5em;
+    }
+    
+    .respec-warning-list li {
+      color: rgb(92, 59, 0);
+      border-bottom: thin solid rgb(255, 245, 194);
+    }
+    
+    .respec-error-list,
+    .respec-error-list li {
+      background-color: rgb(255, 240, 240);
+    }
+    
+    .respec-error-list li::before {
+      content: "💥";
+      padding-right: .5em;
+    }
+    
+    .respec-error-list li {
+      padding: 0.4em 0.7em;
+      color: rgb(92, 59, 0);
+      border-bottom: thin solid rgb(255, 215, 215);
+    }
+    
+    #respec-overlay {
+      display: block;
+      opacity: 0;
+      position: fixed;
+      z-index: 10000;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+      background: #000;
+    }
+    
+    .respec-modal {
+      display: block;
+      position: fixed;
+      opacity: 0;
+      z-index: 11000;
+      margin: auto;
+      top: 10%;
+      background: #fff;
+      border: 5px solid #666;
+      min-width: 20%;
+      width: 85%;
+      padding: 0;
+      max-height: 80%;
+      overflow-y: auto;
+      margin: 0 -.5cm
+    }
+    
+    @media screen and (min-width: 78em) {
+      .respec-modal {
+        width: 64%;
+      }
+    }
+    
+    .respec-modal h3 {
+      margin: 0;
+      padding: .2em;
+      text-align: center;
+      color: black;
+      background: linear-gradient(to bottom, rgba(238, 238, 238, 1) 0%, rgba(238, 238, 238, 1) 50%, rgba(204, 204, 204, 1) 100%);
+      font-size: 1em;
+    }
+    
+    .respec-modal .inside p {
+      padding-left: 1cm;
+    }
+    
+    #respec-menu button.respec-option {
+      background: white;
+      padding: 0 .2cm;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-size: inherit;
+      padding: 1.2em 1.2em;
+    }
+    
+    #respec-menu button.respec-option:hover,
+    #respec-menu button:focus {
+      background-color: #eeeeee;
+    }
+    
+    .respec-cmd-icon {
+      padding-right: .5em;
+    }
+    
+    #respec-ui button.respec-option:last-child {
+      border: none;
+      border-radius: inherit;
+    }
+    
+    .respec-offending-element {
+      display: inline-block;
+      position: relative;
+      background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x;
+    }
+    
+    @media print {
+      .removeOnSave {
+        display: none;
+      }
+    }
+  </style>
+  <title>POE Use Cases and Requirements</title>
+
+
+
+  <!-- taken from "Spatial Data on the Web Use Cases & Requirements" -->
+  <style type="text/css">
+    .contributor:before {
+      content: "Contributed by: ";
+      font-weight: bold;
+    }
+    
+    .relatedRequirements:before {
+      content: "Related requirements: ";
+      font-weight: bold;
+    }
+    
+    .relatedUseCases:before {
+      content: "Related use cases: ";
+      font-weight: bold;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .visible {
+      display: block;
+    }
+    
+    .toggleVis {
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .expandOrCollapse {
+      font-weight: bold;
+    }
+    
+    p.contributor {
+      font-size: smaller;
+    }
+  </style>
+  <script type="text/javascript">
+    // This is the script that hides/shows the full descriptions of the use cases
+    // The default is visible so that they're accessible without scripting
+    // Init makes them all hidden and writes in the toggle link
+
+    window.onload = init;
+
+    function init()
+    {
+      var divs = document.getElementsByTagName("div");
+      for (var i = 0; i < divs.length; i++)
+      {
+        //   if (divs[i+1].className=='visible uc') {
+        //    divs[i+1].className = 'hidden uc';
+        //				divs[i].innerHTML = 'Full use case description (click to expand):';
+
+        // } else 
+        if (divs[i + 1].className == 'visible requirement')
+        {
+          divs[i + 1].className = 'hidden requirement';
+          divs[i].innerHTML = 'Related requirements (click to expand):';
+
+        }
+      }
+    }
+
+    // And here's the toggle function
+
+    function toggleVisibility(elem)
+    { // expand or collapse the next div
+      var divs = document.getElementsByTagName("div");
+      for (var i = 0; i < divs.length; i++) // find the next div element
+        if (divs[i] == elem)
+        {
+          var item = divs[i + 1];
+        }
+      if (item)
+      {
+        if (item.className == 'hidden uc')
+        {
+          item.className = 'visible uc';
+          elem.innerHTML = 'Full use case description (click to collapse):';
+        }
+        else if (item.className == 'visible uc')
+        {
+          item.className = 'hidden uc';
+          elem.innerHTML = 'Full use case description (click to expand):';
+        }
+        else if (item.className == 'hidden requirement')
+        {
+          item.className = 'visible requirement';
+          elem.innerHTML = 'Related requirements (click to collapse):';
+        }
+        else if (item.className == 'visible requirement')
+        {
+          item.className = 'hidden requirement';
+          elem.innerHTML = 'Related requirements (click to expand):';
+        }
+      }
+    }
+  </script>
+  <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD">
+  <link rel="canonical" href="https://www.w3.org/TR/poe-ucr/">
+  <meta name="generator" content="ReSpec 10.2.1">
+  <script id="initialUserConfig" type="application/json">
+    {
+      "preProcess": [
+        null
+      ],
+      "specStatus": "WD",
+      "shortName": "poe-ucr",
+      "publishDate": "2017-02-21",
+      "previousMaturity": "NOTE",
+      "previousPublishDate": "2016-07-21",
+      "previousURI": "https://www.w3.org/TR/2016/NOTE-poe-ucr-20160721/",
+      "edDraftURI": "https://w3c.github.io/poe/ucr/",
+      "editors": [
+      {
+        "name": "Michael Steidl",
+        "company": "The Copyright Hub"
+      },
+      {
+        "name": "Simon Steyskal",
+        "url": "http://steyskal.info/",
+        "company": "WU Vienna/Siemens AG"
+      },
+      {
+        "name": "Benedict Whittam Smith",
+        "company": "Thomson Reuters"
+      }],
+      "wg": "Permissions &amp; Obligations Expression Working Group",
+      "wgURI": "https://www.w3.org/2016/poe/",
+      "wgPublicList": "public-poe-comments",
+      "wgPatentURI": "https://www.w3.org/2004/01/pp-impl/87755/status",
+      "inlineCSS": true,
+      "noIDLIn": true,
+      "noLegacyStyle": false,
+      "noRecTrack": true,
+      "localBiblio":
+      {
+        "SCHEMA-ORG":
+        {
+          "href": "http://schema.org/",
+          "title": "Schema.org"
+        }
+      },
+      "issueBase": "https://www.w3.org/2016/poe/track/issues/"
+    }
+  </script>
+</head>
+<body aria-busy="false" class="h-entry" role="document" id="respecDocument">
+  <div class="head" role="contentinfo" id="respecHeader">
+    <p>
+      <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
+    </p>
+    <h1 class="title p-name" id="title" property="dcterms:title">POE Use Cases and Requirements</h1>
+    <h2 id="w3c-working-draft-21-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Working Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-21">21 February 2017</time></h2>
+    <dl>
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-poe-ucr-20170221/">https://www.w3.org/TR/2017/WD-poe-ucr-20170221/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="https://www.w3.org/TR/poe-ucr/">https://www.w3.org/TR/poe-ucr/</a></dd>
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="https://w3c.github.io/poe/ucr/">https://w3c.github.io/poe/ucr/</a></dd>
+      <dt>Previous version:</dt>
+      <dd><a rel="dcterms:replaces" href="https://www.w3.org/TR/2016/NOTE-poe-ucr-20160721/">https://www.w3.org/TR/2016/NOTE-poe-ucr-20160721/</a></dd>
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Michael Steidl</span>, The Copyright Hub</span>
+        <span property="rdf:rest" resource="_:editor1"></span>
+      </dd>
+      <dd class="p-author h-card vcard" resource="_:editor1"><span property="rdf:first" typeof="foaf:Person"><meta property="foaf:name" content="Simon Steyskal"><a class="u-url url p-name fn" property="foaf:homepage" href="http://steyskal.info/">Simon Steyskal</a>, WU Vienna/Siemens AG</span>
+        <span property="rdf:rest" resource="_:editor2"></span>
+      </dd>
+      <dd class="p-author h-card vcard" resource="_:editor2"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Benedict Whittam Smith</span>, Thomson Reuters</span>
+        <span property="rdf:rest" resource="rdf:nil"></span>
+      </dd>
+
+    </dl>
+    <p class="copyright">
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2017
+
+      <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+      <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
+      <abbr title="World Wide Web Consortium">W3C</abbr> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+      <a rel="license" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
+    </p>
+    <hr title="Separator for header">
+  </div>
+
+  <section id="abstract" class="introductory" property="dc:abstract">
+    <h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+    <p>This document includes a set of use cases and requirements, compiled by the <a href="https://www.w3.org/2016/poe/">Permissions &amp; Obligations Expression (POE) Working Group</a>, that motivate the expression of statements about digital content usage. All use cases provide realistic examples describing how people and organisations may (or want to be able to) specify statements about digital content usage. The requirements derived from these use cases will be used to guide the development of the POE WG recommendation deliverables for the Information Model, Vocabulary, and Encodings. </p>
+  </section>
+
+  <section id="sotd" class="introductory">
+    <h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+    <p>
+      <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>
+    </p>
+
+    <p>This is work in progress. The final version of this document planned to be published as a Working Group Note. The current version is the first Public Working Draft.</p>
+
+    <p>
+      This document was published by the <a href="https://www.w3.org/2016/poe/">Permissions &amp; Obligations Expression Working Group</a> as a Working Draft. If you wish to make comments regarding this document, please send them to
+      <a href="mailto:public-poe-comments@w3.org">public-poe-comments@w3.org</a> (<a href="mailto:public-poe-comments-request@w3.org?subject=subscribe">subscribe</a>,
+      <a href="https://lists.w3.org/Archives/Public/public-poe-comments/">archives</a>). All comments are welcome.
+    </p>
+    <p>
+      Publication as a Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+    </p>
+    <p>
+      This document was produced by a group operating under the
+      <a id="sotd_patent" property="w3p:patentRules" href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+              Policy</a>. The group does not expect this document to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/87755/status" rel="disclosure">public list of any patent
+                disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
+      <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+              Claim(s)</a> must disclose the information in accordance with
+      <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+    </p>
+    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+    </p>
+
+  </section>
+  <nav id="toc">
+    <h2 class="introductory" id="table-of-contents" resource="#table-of-contents"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2>
+    <ol class="toc" role="directory">
+      <li class="tocline"><a href="#intro" class="tocxref"><span class="secno">1. </span>Organization of this Document</a></li>
+      <li class="tocline"><a href="#UseCases" class="tocxref"><span class="secno">2. </span>Use Cases</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#POE.UC.01" class="tocxref"><span class="secno">2.1 </span><span data-dfn-type="dfn">POE.UC.01</span>: Permissions and obligations for language resources</a></li>
+          <li class="tocline"><a href="#POE.UC.02" class="tocxref"><span class="secno">2.2 </span><span data-dfn-type="dfn">POE.UC.02</span>: Conditional Access to Linked Data</a></li>
+          <li class="tocline"><a href="#POE.UC.03" class="tocxref"><span class="secno">2.3 </span><span data-dfn-type="dfn">POE.UC.03</span>: Published article with embargoed dataset</a></li>
+          <li class="tocline"><a href="#POE.UC.04" class="tocxref"><span class="secno">2.4 </span><span data-dfn-type="dfn">POE.UC.04</span>: Technical documents rules for business process regulatory compliance</a></li>
+          <li class="tocline"><a href="#POE.UC.05" class="tocxref"><span class="secno">2.5 </span><span data-dfn-type="dfn">POE.UC.05</span>: Determine an identifier representing the audience who can access a digital resource</a></li>
+          <li class="tocline"><a href="#POE.UC.06" class="tocxref"><span class="secno">2.6 </span><span data-dfn-type="dfn">POE.UC.06</span>: OpenPHACTS</a></li>
+          <li class="tocline"><a href="#POE.UC.07" class="tocxref"><span class="secno">2.7 </span><span data-dfn-type="dfn">POE.UC.07</span>: News Permissions and Restrictions</a></li>
+          <li class="tocline"><a href="#POE.UC.08" class="tocxref"><span class="secno">2.8 </span><span data-dfn-type="dfn">POE.UC.08</span>: Atomic Understanding of Common Licenses</a></li>
+          <li class="tocline"><a href="#POE.UC.09" class="tocxref"><span class="secno">2.9 </span><span data-dfn-type="dfn">POE.UC.09</span>: Base Product</a></li>
+          <li class="tocline"><a href="#POE.UC.10" class="tocxref"><span class="secno">2.10 </span><span data-dfn-type="dfn">POE.UC.10</span>: Pay-by-Use</a></li>
+          <li class="tocline"><a href="#POE.UC.11" class="tocxref"><span class="secno">2.11 </span><span data-dfn-type="dfn">POE.UC.11</span>: Third-Party Rights Management</a></li>
+          <li class="tocline"><a href="#POE.UC.12" class="tocxref"><span class="secno">2.12 </span><span data-dfn-type="dfn">POE.UC.12</span>: Tracing Permissions and Obligations through Aggregations and Derivations</a></li>
+          <li class="tocline"><a href="#POE.UC.13" class="tocxref"><span class="secno">2.13 </span><span data-dfn-type="dfn">POE.UC.13</span>: Delegation</a></li>
+          <li class="tocline"><a href="#POE.UC.14" class="tocxref"><span class="secno">2.14 </span><span data-dfn-type="dfn">POE.UC.14</span>: A Vote for Extended Relations</a></li>
+          <li class="tocline"><a href="#POE.UC.15" class="tocxref"><span class="secno">2.15 </span><span data-dfn-type="dfn">POE.UC.15</span>: Real-time vs. Delayed Data</a></li>
+          <li class="tocline"><a href="#POE.UC.16" class="tocxref"><span class="secno">2.16 </span><span data-dfn-type="dfn">POE.UC.16</span>: Accessing Historical Data</a></li>
+          <li class="tocline"><a href="#POE.UC.17" class="tocxref"><span class="secno">2.17 </span><span data-dfn-type="dfn">POE.UC.17</span>: Asset in a set</a></li>
+          <li class="tocline"><a href="#POE.UC.18" class="tocxref"><span class="secno">2.18 </span><span data-dfn-type="dfn">POE.UC.18</span>: Policy Assertion</a></li>
+          <li class="tocline"><a href="#POE.UC.19" class="tocxref"><span class="secno">2.19 </span><span data-dfn-type="dfn">POE.UC.19</span>: Relative Time Constraints</a></li>
+          <li class="tocline"><a href="#POE.UC.20" class="tocxref"><span class="secno">2.20 </span><span data-dfn-type="dfn">POE.UC.20</span>: External Declaration of Payment Amount</a></li>
+          <li class="tocline"><a href="#POE.UC.21" class="tocxref"><span class="secno">2.21 </span><span data-dfn-type="dfn">POE.UC.21</span>: Specifying the Scope of Constraints</a></li>
+          <li class="tocline"><a href="#POE.UC.22" class="tocxref"><span class="secno">2.22 </span><span data-dfn-type="dfn">POE.UC.22</span>: Technical documents rules for business process regulatory compliance</a></li>
+          <li class="tocline"><a href="#POE.UC.23" class="tocxref"><span class="secno">2.23 </span><span data-dfn-type="dfn">POE.UC.23</span>: Deletions Must be Propagated </a></li>
+          <li class="tocline"><a href="#POE.UC.24" class="tocxref"><span class="secno">2.24 </span><span data-dfn-type="dfn">POE.UC.24</span>: Synchronization in a multilayer music description environment </a></li>
+          <li class="tocline"><a href="#POE.UC.25" class="tocxref"><span class="secno">2.25 </span><span data-dfn-type="dfn">POE.UC.25</span>: Magazine Media Permissions </a></li>
+          <li class="tocline"><a href="#POE.UC.26" class="tocxref"><span class="secno">2.26 </span><span data-dfn-type="dfn">POE.UC.26</span>: Data Quality Policy </a></li>
+          <li class="tocline"><a href="#POE.UC.27" class="tocxref"><span class="secno">2.27 </span><span data-dfn-type="dfn">POE.UC.27</span>: Europeana/DPLA In Copyright - Educational Use Only </a></li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#Requirements" class="tocxref"><span class="secno">3. </span>Requirements</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#POE.R.DM" class="tocxref"><span class="secno">3.1 </span>POE.R.DM - Data Model</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#POE.R.DM.01" class="tocxref"><span class="secno">3.1.1 </span><span data-dfn-type="dfn">POE.R.DM.01</span>: Define how constraints on a party can be expressed </a></li>
+              <li class="tocline"><a href="#POE.R.DM.02" class="tocxref"><span class="secno">3.1.2 </span><span data-dfn-type="dfn">POE.R.DM.02</span>: Define target of a constraint</a></li>
+              <li class="tocline"><a href="#POE.R.DM.03" class="tocxref"><span class="secno">3.1.3 </span><span data-dfn-type="dfn">POE.R.DM.03</span>: Introduce policy template</a></li>
+              <li class="tocline"><a href="#POE.R.DM.04" class="tocxref"><span class="secno">3.1.4 </span><span data-dfn-type="dfn">POE.R.DM.04</span>: Support versioning policies</a></li>
+              <li class="tocline"><a href="#POE.R.DM.05" class="tocxref"><span class="secno">3.1.5 </span><span data-dfn-type="dfn">POE.R.DM.05</span>: Set a global price for all permissions of a policy</a></li>
+              <li class="tocline"><a href="#POE.R.DM.06" class="tocxref"><span class="secno">3.1.6 </span><span data-dfn-type="dfn">POE.R.DM.06</span>: Support relative time constraints</a></li>
+              <li class="tocline"><a href="#POE.R.DM.07" class="tocxref"><span class="secno">3.1.7 </span><span data-dfn-type="dfn">POE.R.DM.07</span>: Define a category property for class Party</a></li>
+              <li class="tocline"><a href="#POE.R.DM.08" class="tocxref"><span class="secno">3.1.8 </span><span data-dfn-type="dfn">POE.R.DM.08</span>: Add a category property to Asset</a></li>
+              <li class="tocline"><a href="#POE.R.DM.09" class="tocxref"><span class="secno">3.1.9 </span><span data-dfn-type="dfn">POE.R.DM.09</span>: Complex Constraints</a></li>
+              <li class="tocline"><a href="#POE.R.DM.10" class="tocxref"><span class="secno">3.1.10 </span><span data-dfn-type="dfn">POE.R.DM.10</span>: Extended Relations</a></li>
+              <li class="tocline"><a href="#POE.R.DM.11" class="tocxref"><span class="secno">3.1.11 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.DM.11</span>: Remedies</span></a></li>
+              <li class="tocline"><a href="#POE.R.DM.12" class="tocxref"><span class="secno">3.1.12 </span><span data-dfn-type="dfn">POE.R.DM.12</span>: Grouping party entities</a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#POE.R.V" class="tocxref"><span class="secno">3.2 </span>POE.R.V - Vocabulary</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#POE.R.V.01" class="tocxref"><span class="secno">3.2.1 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.V.01</span>: Add rights holder terms to Roles of a Party Vocabulary</span></a></li>
+              <li class="tocline"><a href="#POE.R.V.02" class="tocxref"><span class="secno">3.2.2 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.V.02</span>: Add term for redepositing to Duty Vocabulary</span></a></li>
+              <li class="tocline"><a href="#POE.R.V.03" class="tocxref"><span class="secno">3.2.3 </span><span data-dfn-type="dfn">POE.R.V.03</span>: Add concept of 'unit-of-count' to Duty Constraint Vocabulary</a></li>
+              <li class="tocline"><a href="#POE.R.V.08" class="tocxref"><span class="secno">3.2.4 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.V.08</span>: Add terms to the Action Vocabulary</span></a></li>
+              <li class="tocline"><a href="#POE.R.V.09" class="tocxref"><span class="secno">3.2.5 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.V.09</span>: Add Linked Data related actions to Action Vocabulary</span></a></li>
+              <li class="tocline"><a href="#POE.R.V.10" class="tocxref"><span class="secno">3.2.6 </span><span data-dfn-type="dfn">POE.R.V.10</span>: Add terms to the Roles of a Party Vocabulary</a></li>
+              <li class="tocline"><a href="#POE.R.V.11" class="tocxref"><span class="secno">3.2.7 </span><span data-dfn-type="dfn">POE.R.V.11</span>: New Party Category Vocabulary</a></li>
+              <li class="tocline"><a href="#POE.R.V.12" class="tocxref"><span class="secno">3.2.8 </span><span data-dfn-type="dfn">POE.R.V.12</span>: New Asset Category Vocabulary</a></li>
+              <li class="tocline"><a href="#POE.R.V.15" class="tocxref"><span class="secno">3.2.9 </span><span data-dfn-type="dfn">POE.R.V.15</span>: Reference to Source License</a></li>
+              <li class="tocline"><a href="#POE.R.V.16" class="tocxref"><span class="secno">3.2.10 </span><span data-dfn-type="dfn">POE.R.V.16</span>: Assertion Policy Type</a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#POE.R.E" class="tocxref"><span class="secno">3.3 </span>POE.R.E - Encoding</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#POE.R.E.01" class="tocxref"><span class="secno">3.3.1 </span><span data-dfn-type="dfn">POE.R.E.01</span>: Referring to external resources for defining payment fees</a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#POE.R.R" class="tocxref"><span class="secno">3.4 </span>POE.R.R - Processing Rules</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#POE.R.R.01" class="tocxref"><span class="secno">3.4.1 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.R.01</span>: Define rules for matching permissions/prohibitions against specific use cases</span></a></li>
+              <li class="tocline"><a href="#POE.R.R.02" class="tocxref"><span class="secno">3.4.2 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.R.02</span>: Define a language for controlling processing policies</span></a></li>
+              <li class="tocline"><a href="#POE.R.R.03" class="tocxref"><span class="secno">3.4.3 </span><span data-dfn-type="dfn">POE.R.R.03</span>: Define processing rules for versioned policies</a></li>
+              <li class="tocline"><a href="#POE.R.R.04" class="tocxref"><span class="secno">3.4.4 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.R.04</span>: Support to auto-generate a policy from a template plus provided parameter values</span></a></li>
+              <li class="tocline"><a href="#POE.R.R.05" class="tocxref"><span class="secno">3.4.5 </span><span data-dfn-type="dfn">POE.R.R.05</span>: Guidance on Rights Assignments through Aggregation and Derivation</a></li>
+              <li class="tocline"><a href="#POE.R.R.06" class="tocxref"><span class="secno">3.4.6 </span><span data-dfn-type="dfn">POE.R.R.06</span>: Guidance on Specifying Subsets of Assets</a></li>
+              <li class="tocline"><a href="#POE.R.R.07" class="tocxref"><span class="secno">3.4.7 </span><span style="text-decoration:line-through;"><span data-dfn-type="dfn">POE.R.R.07</span>: Guidance on Conflicting Permissions</span></a></li>
+              <li class="tocline"><a href="#POE.R.R.08" class="tocxref"><span class="secno">3.4.8 </span><span data-dfn-type="dfn">POE.R.R.08</span>: Guidance on the Provenance of Policies</a></li>
+              <li class="tocline"><a href="#POE.R.R.09" class="tocxref"><span class="secno">3.4.9 </span><span data-dfn-type="dfn">POE.R.R.09</span>: Make policies accessible by URL</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </nav>
+
+  <!--<section  id="intro">
+			<h1>Introduction</h1>
+		</section>-->
+
+  <section id="intro" typeof="bibo:Chapter" resource="#intro" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-intro" resource="#h-intro"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Organization of this Document</span>
+    </h2>
+    <p>This document is organized as follows:</p>
+    <ul>
+      <li>
+        <strong>
+						<a href="#UseCases" title="Use Cases">Use Cases</a>
+					</strong> are used to capture and model functional requirements. Use cases describe the system's behavior under various conditions [<cite><a class="bibref" href="#bib-COCKBURN-2000">COCKBURN-2000</a></cite>], cataloging who does what with the system, for what purpose, but without concern for system design or implementation. Each use case is identified by a reference number to aid cross-reference from other documentation. A variety of styles may be used to capture use cases, from a simple narrative to a structured description with actors, pre/post conditions, and non-functional requirements raised by the use case.
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <strong>
+						<a href="#Requirements" title="Requirements">Requirements</a>
+					</strong> list functional and non-functional requirements for the deliverables of the Working Group, and the use cases they may be derived from/related to.
+      </li>
+    </ul>
+  </section>
+
+  <section id="UseCases" typeof="bibo:Chapter" resource="#UseCases" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-usecases" resource="#h-usecases"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Use Cases</span>
+    </h2>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.01 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.01" typeof="bibo:Chapter" resource="#POE.UC.01" property="bibo:hasPart">
+      <h3 id="h-poe.uc.01" resource="#h-poe.uc.01"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.1 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.01">POE.UC.01</dfn>: Permissions and obligations for language resources</span>
+      </h3>
+      <p class="contributor">Víctor Rodríguez on behalf of <a class="external text" href="https://www.w3.org/community/ld4lt/"><abbr title="World Wide Web Consortium">W3C</abbr> Linked Data For Language Technology Community Group</a></p>
+
+      <!-- <li> <strong>Title</strong>: Permissions and Obligations for Language Resources 
+					</li> -->
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+      <p>Language resources (lexicons, dictionaries, machine translation, etc.) are collected in repositories. Publishers would like to express what is permitted and what it is not.</p>
+      <p>Language resources are highly valuable resources now being massively translated to Linked Data. See the diagram here: <a class="external text" href="http://linghub.lider-project.eu/llod-cloud">Linguistic Linked Data Cloud</a>. Different Language Resource Catalogs exist, like the one of <a class="external text" href="https://clarin.eu/">CLARIN</a>, or the one of <a class="external text" href="http://metashare.elda.org/">META-SHARE</a>, LRMAP, Linghub, etc. These resources need to be browsed and queried, and the permissions information must be in a machine-readable form in order to facilitate search-by-permission and in order to allow the automated processing of permission expressions.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.01">POE.R.DM.01</a>, <a href="#POE.R.DM.07">POE.R.DM.07</a>, <a href="#POE.R.DM.08">POE.R.DM.08</a>, <a href="#POE.R.V.01">POE.R.V.01</a>, <a href="#POE.R.V.02">POE.R.V.02</a>, <a href="#POE.R.V.11">POE.R.V.11</a>, <a href="#POE.R.V.12">POE.R.V.12</a>, <a href="#POE.R.E.01">POE.R.E.01</a>, <a href="#POE.R.R.04">POE.R.R.04</a>, <a href="#POE.R.R.09">POE.R.R.09</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.02 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.02" typeof="bibo:Chapter" resource="#POE.UC.02" property="bibo:hasPart">
+      <h3 id="h-poe.uc.02" resource="#h-poe.uc.02"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.02">POE.UC.02</dfn>: Conditional Access to Linked Data</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>: Conditional Access to Linked Data  </li> -->
+      <p class="contributor">Víctor Rodríguez and Nandana Mihindukulasooriya (UPM) on behalf of the ODRL Linked Data profile editors.</p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p> A publisher of Linked Data (or in general a RDF dataset) wants to selectively make available parts (e.g. named graphs) of a dataset. Availability depend on ODRL policies, the context and the ODRL Request and ODRL Ticket. For example, given a dataset, one might want to serve it under the following conditions: <em>"Anybody can access named graph <code>ex:graph1</code>, but can only access <code>ex:graph2</code> during 2016. Individual triples in <code>ex:graph3</code> can be accessed at the price of 1 € cent."</em>
+      </p>
+
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.11">POE.R.DM.11</a>, <a href="#POE.R.V.09">POE.R.V.09</a>, <a href="#POE.R.R.06">POE.R.R.06</a></span>
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.03 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.03" typeof="bibo:Chapter" resource="#POE.UC.03" property="bibo:hasPart">
+      <h3 id="h-poe.uc.03" resource="#h-poe.uc.03"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.3 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.03">POE.UC.03</dfn>: Published article with embargoed dataset</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Phil Archer &amp; Keith Jeffery on behalf of the VRE4EIC Project </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p> Researchers are strongly encouraged (and now routinely required) to publish data supporting their scholarly published papers. Irrespective of the terms under which the paper is published (although usually open access), the data is generally expected to be made freely and openly available. However, this may happen after an embargo period. The purpose of the embargo period is to allow the researcher or research team creating the dataset to have a publication based on it published before colleagues can access the dataset and generate their own publications.
+      </p>
+
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.06">POE.R.DM.06</a>, <a href="#POE.R.DM.09">POE.R.DM.09</a></span>
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.04 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.04" typeof="bibo:Chapter" resource="#POE.UC.04" property="bibo:hasPart">
+      <h3 id="h-poe.uc.04" resource="#h-poe.uc.04"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.4 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.04">POE.UC.04</dfn>: Technical documents rules for business process regulatory compliance</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Serena Villata (joint work with Guido Governatori) in the context of the MIREL Project </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>Technical documents describe how to handle and what are the functionalities of a certain product or process (e.g., telecommunication codes). They are intended to provide information about what can/cannot be done with the product or within a certain process. Given the huge dimension of this kind of legal texts and their diffusion in the companies, the advantages of returning a machine-readable representation of such texts would allow to have in this representation a kind of summary of the main constraints expressed in the documents, with invaluable time saving for every person that is expected to read the whole document before obtaining this information. A specific usage of such a kind of texts is that of manually extracting the set of obliged/prohibited/permitted actions in order to check whether certain business processes are compliant with the legal text they should refer to. Moreover, issues related to the merging of updated versions of the documents, with amendments with respect to the policies and duties expressed in the former versions.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.04">POE.R.DM.04</a>, <a href="#POE.R.R.01">POE.R.R.01</a>, <a href="#POE.R.R.02">POE.R.R.02</a>, <a href="#POE.R.R.03">POE.R.R.03</a>, <a href="#POE.R.R.07">POE.R.R.07</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.05 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.05" typeof="bibo:Chapter" resource="#POE.UC.05" property="bibo:hasPart">
+      <h3 id="h-poe.uc.05" resource="#h-poe.uc.05"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.5 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.05">POE.UC.05</dfn>: Determine an identifier representing the audience who can access a digital resource</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Mo McRoberts, BBC </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>The Research &amp; Education Space platform, developed jointly by the BBC and partners, indexes Linked Open Data describing media that is available both to the public, and specifically for those in formal education, primarily in the UK. Even within this latter group, there are a range of different licensing schemes and access mechanisms which are not mutually-exclusive. For queries against the index to return appropriate results for a user, we must track which schemes they (or their institution) is a member of and filter based upon these, which therefore translates into a requirement for the metadata being indexed to include information identifying which are applicable (we term these "audience URIs"). Note that this is not an access-control mechanism (this should be implemented and enforced at the media location), rather a means of ensuring that an optimal user experience is delivered.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.12">POE.R.DM.12</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.06 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.06" typeof="bibo:Chapter" resource="#POE.UC.06" property="bibo:hasPart">
+      <h3 id="h-poe.uc.06" resource="#h-poe.uc.06"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.6 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.06">POE.UC.06</dfn>: OpenPHACTS</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Phil Archer for the Big Data Europe Project </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>OpenPHACTS integrates pharmacological data from a wide range of sources and provides an API through which different identifiers for the same thing can be reconciled, reducing barriers to drug discovery in industry, academia and for small businesses. Some data is open but not all. It may come with a variation of a Creative Commons License; some data is visible to all users, some to members, some only to the original data owner.</p>
+      <p>
+        Rather than attempt to make assertions about what an end user can or cannot do with the data available through its API, OpenPHACTS is careful to simply make clear to its users where data came from and under what terms. It is then up to the end user to assess whether their intended use is, or is not, compliant with those terms.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.R.05">POE.R.R.05</a>, <a href="#POE.R.R.06">POE.R.R.06</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.07 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.07" typeof="bibo:Chapter" resource="#POE.UC.07" property="bibo:hasPart">
+      <h3 id="h-poe.uc.07" resource="#h-poe.uc.07"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.7 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.07">POE.UC.07</dfn>: News Permissions and Restrictions</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Stuart Myles</p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>In the news industry, rights holders and editors need to establish the permissions and restrictions associated with content.</p>
+      <p>
+      </p>
+      <dl>
+        <dt>What Do Rights Holders Want?</dt>
+        <dd> In general, rights holders will require that a set of permissions, restrictions, and duties be obeyed for a defined set of content. And they can require additional restrictions or duties for individual items within the larger content set. Rights holders wish to restrict the use of their content by factors such as:
+          <ul>
+            <li>Geography (e.g. "No use in China")</li>
+            <li>Time (e.g. "No archive after 3 days")</li>
+            <li>Distribution channel (e.g. "No mobile")</li>
+          </ul>
+          They also want to enforce duties such as:
+          <ul>
+            <li>Payment (e.g. "You can use this photo online for EUR80")</li>
+            <li>Attribution (e.g. "Credit Kyoto News")</li>
+          </ul>
+          Often, rights holders need to constrain the use of their content in complex ways, i.e., with combined constraints (e.g, "No use in UK after 7 days"). Generally, rights holders want to be able to:
+          <dl>
+            <dt>Create a bundle of permissions, restrictions and duties</dt>
+            <dd>The rights holder creates a set of permissions and restrictions with constraints, together with any duties that the editor must perform, in order to unlock the permissions. The set may be associated with one or more sets of content. Therefore the policy bundle must have a unique identifier. </dd>
+            <dt>Identify one or more items of content to be treated as a set</dt>
+            <dd>The rights holder defines one or more content items which are to be treated as a set. The set must have a unique identifier.</dd>
+            <dt>Bind a policy to a set of content</dt>
+            <dd>The rights holder asserts that a given set of content is governed by a given policy. Note that a given content item might be a member of more than one set of content. Therefore, a given content item may have more than one policy associated with it. </dd>
+          </dl>
+        </dd>
+
+        <!--</p>-->
+        <dt>What Do Editors Want?</dt>
+        <dd> Ideally, not to worry about rights at all. Essentially, editors want to know the answer to the question "Can I use this content in this way?" and, if the answer is yes, "Are there any duties?". It is not unusual for editors to have access to content that they are not permitted to republish. Or that they can only republish in certain ways (e.g., only in print but not on a mobile app). Editors want to be able to:
+          <dl>
+            <dt>Create a bundle of action and context"</dt>
+            <dd>An editor identifies a content use in context, meaning a particular action they propose to take with pieces of content (e.g. "print", "distribute", "archive") and any relevant context for that action (e.g. location="France"). The types of context for an action correspond to possible constraints which could apply to the use of a piece of content. The use is not tied to one particular piece of content. The use must have a unique identifier. </dd>
+            <dt>Determine whether a use is permitted for a particular content item</dt>
+            <dd>At the point where an Editor wishes to use a particular piece of content in a particular way, the policies must be evaluated to determine whether it is permitted and whether there are any duties that must be fulfilled. The possible results are therefore: "yes", "no" or "maybe". </dd>
+          </dl>
+        </dd>
+      </dl>
+      <p></p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.09">POE.R.DM.09</a>, <a href="#POE.R.R.06">POE.R.R.06</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.08 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.08" typeof="bibo:Chapter" resource="#POE.UC.08" property="bibo:hasPart">
+      <h3 id="h-poe.uc.08" resource="#h-poe.uc.08"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.8 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.08">POE.UC.08</dfn>: Atomic Understanding of Common Licenses</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Phil Archer</p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>The European Data Portal (EDP) harvests and republishes metadata from across Europe. It therefore has to handle a wide variety of inputs, including a variety of licenses attached to datasets (and datasets with no license attached). In order to manage this, the EDP has examined each of the most commonly found licenses and derived a set of atomic permissions and obligations expressed in those licenses with the intention that users can assess whether or not a particular combination of datasets is permissible and, if so, under what conditions. Their work itself is available on the <a class="external text" href="http://www.europeandataportal.eu/en/training-library/library/edp-reports">European Data Portal</a> as <strong>Licence Assistant: European Data Portal Licence Compatibility Matrix</strong>.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.V.15">POE.R.V.15</a>, <a href="#POE.R.R.08">POE.R.R.08</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.09 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.09" typeof="bibo:Chapter" resource="#POE.UC.09" property="bibo:hasPart">
+      <h3 id="h-poe.uc.09" resource="#h-poe.uc.09"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.9 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.09">POE.UC.09</dfn>: Base Product</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>A bundled data product, which is sometimes called a 'base product', brings together a set of permissions that can be separately bought into a policy [or package] that is sold for a single price - or provided for free. It is important that the pricing is set at the aggregate level.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.05">POE.R.DM.05</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.10 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.10" typeof="bibo:Chapter" resource="#POE.UC.10" property="bibo:hasPart">
+      <h3 id="h-poe.uc.10" resource="#h-poe.uc.10"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.10 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.10">POE.UC.10</dfn>: Pay-by-Use</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>Sometimes things are paid for on a per-usage basis. For instance a SaaS product might charge per account (or per seat), or a definition in legal treatise might be charged for every time it is printed or included in a PDF.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.V.03">POE.R.V.03</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.11 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.11" typeof="bibo:Chapter" resource="#POE.UC.11" property="bibo:hasPart">
+      <h3 id="h-poe.uc.11" resource="#h-poe.uc.11"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.11 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.11">POE.UC.11</dfn>: Third-Party Rights Management</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>There are some common obligations that must be transmitted if you are acting as an intermediary between the data owner and the data user. Often the owner and the user must sign a contract, the user must acknowledge the copyright of the owner, and the user must acknowledge some other documentation (like a 'Restriction On Distribution Statement').
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.V.08">POE.R.V.08</a>, <a href="#POE.R.V.10">POE.R.V.10</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.12 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.12" typeof="bibo:Chapter" resource="#POE.UC.12" property="bibo:hasPart">
+      <h3 id="h-poe.uc.12" resource="#h-poe.uc.12"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.12 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.12">POE.UC.12</dfn>: Tracing Permissions and Obligations through Aggregations and Derivations</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>Data sets are often combined (aggregation) and analysed to generate new data sets (derivation). Big data analytics generates extended workflows of such operations. What policies control each step of the process? For example, a synthetic instrument might be generated by following a simple rule: <em>(equity price on NYSE - equity opening price on NYSE) * equity weighting on MSCI Technology Index)</em></p>
+      <p>Let's say we know the three policies that control equity prices on the New York Stock Exchange, their opening prices, and their index weighting. Then what is the policy that controls the resulting synthetic instrument?
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.R.01">POE.R.R.01</a>, <a href="#POE.R.R.02">POE.R.R.02</a>, <a href="#POE.R.R.05">POE.R.R.05</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.13 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.13" typeof="bibo:Chapter" resource="#POE.UC.13" property="bibo:hasPart">
+      <h3 id="h-poe.uc.13" resource="#h-poe.uc.13"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.13 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.13">POE.UC.13</dfn>: Delegation</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>Assigners are often corporate entities. They may want to restrict the right to exercise the actions they 'own' to particular groups within their own organisation, or even to an individual. This doesn't feel like an rights assignment (as no rights are being assigned?) but a delegation.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.V.01">POE.R.V.01</a>, <a href="#POE.R.V.16">POE.R.V.16</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.14 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.14" typeof="bibo:Chapter" resource="#POE.UC.14" property="bibo:hasPart">
+      <h3 id="h-poe.uc.14" resource="#h-poe.uc.14"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.14 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.14">POE.UC.14</dfn>: A Vote for Extended Relations</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p> Extended relations are an experimental feature of ODRL 2.1. In many cases, they would be necessary for commercial purposes. For example, it might be the case that on the 15th of every month the user must report usage by providing a list of either Access IDs OR Physical IDs. Extended relations would be a way of enabling this.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.10">POE.R.DM.10</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.15 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.15" typeof="bibo:Chapter" resource="#POE.UC.15" property="bibo:hasPart">
+      <h3 id="h-poe.uc.15" resource="#h-poe.uc.15"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.15 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.15">POE.UC.15</dfn>: Real-time vs. Delayed Data</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>Permissions often vary depending on whether the data is used in real-time (expensive and restrictive) or after a specified delay (cheaper and less restrictive).
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.06">POE.R.DM.06</a>, <a href="#POE.R.DM.09">POE.R.DM.09</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.16 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.16" typeof="bibo:Chapter" resource="#POE.UC.16" property="bibo:hasPart">
+      <h3 id="h-poe.uc.16" resource="#h-poe.uc.16"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.16 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.16">POE.UC.16</dfn>: Accessing Historical Data</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Ben Whittam Smith on behalf of Thomson Reuters </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>Access to historical data is often specified by the access period (how long can you go back in history) and access interval (how often can you sample the history). So a permission might be for access to 7 years of historical data but only on a monthly basis.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.06">POE.R.DM.06</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.17 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.17" typeof="bibo:Chapter" resource="#POE.UC.17" property="bibo:hasPart">
+      <h3 id="h-poe.uc.17" resource="#h-poe.uc.17"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.17 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.17">POE.UC.17</dfn>: Asset in a set</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">James Birmingham on behalf of Digital Catapult </p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>In order to manage a common offer which is applied to many assets, a one-to-many relationship is more preferable than a one-to-one. If the offer can target a set of assets, it must also be able to state that what is offered is <em>n</em> items from the set rather than the whole set.</p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.08">POE.R.DM.08</a>, <a href="#POE.R.V.12">POE.R.V.12</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.18 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.18" typeof="bibo:Chapter" resource="#POE.UC.18" property="bibo:hasPart">
+      <h3 id="h-poe.uc.18" resource="#h-poe.uc.18"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.18 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.18">POE.UC.18</dfn>: Policy Assertion</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Renato Iannella</p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>A common use case is for a general policy statement to be asserted. This is simply a party stating what policy terms they believe they have. Either an assignee can assert what terms they have over an asset and/or an assigner can assert what terms they have over an asset. An assertion does not grant any of the statements. A policy assertion may state that a party is a general rights holder or other roles.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.V.01">POE.R.V.01</a>, <a href="#POE.R.V.16">POE.R.V.16</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.19 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.19" typeof="bibo:Chapter" resource="#POE.UC.19" property="bibo:hasPart">
+      <h3 id="h-poe.uc.19" resource="#h-poe.uc.19"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.19 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.19">POE.UC.19</dfn>: Relative Time Constraints</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Michael Steidl</p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>Sometimes it's required to be able to constrain the applicability of policies according to a relative point in time, e.g.:
+      </p>
+      <ul>
+        <li>Organisers of sport events grant the use of photos or videos relative to the end of a sport event/game. (Note: the live publishing of photos/videos may be granted by a different license.)</li>
+        <li>Speakers at a conference circulate a document with their speech in advance and they permit to publish it only after the speech has ended. </li>
+      </ul>
+      <p></p>
+
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.06">POE.R.DM.06</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.20 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.20" typeof="bibo:Chapter" resource="#POE.UC.20" property="bibo:hasPart">
+      <h3 id="h-poe.uc.20" resource="#h-poe.uc.20"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.20 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.20">POE.UC.20</dfn>: External Declaration of Payment Amount</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Víctor Rodríguez-Doncel</p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p><a class="external text" href="http://georg-re.hm/pdf/LREC-2014-META-SHARE.pdf"><i>META-SHARE</i></a> is an open and secure network of repositories for sharing and exchanging language data, tools, and related web services. As of July 2016, it accounted more than 2700 resources. These resources are described with small pieces of metadata according to their <a class="external text" href="http://www.meta-net.eu/meta-share/metadata-schema/">schema</a>.</p>
+      <p>
+      </p>
+      <p>While maintainers of META-SHARE's 32 repositories can edit simple metadata records, they are usually not skilled enough to edit ODRL expressions. Hence they would like to be able to:
+      </p>
+      <ol>
+        <li>Point to a license template (referred by a well-known URI), with a placeholder to for the price.</li>
+        <li>Add a metadata record indicating the specific price of the resource.</li>
+      </ol>
+      <p></p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.03">POE.R.DM.03</a></span>
+
+
+    </section>
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.21 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.21" typeof="bibo:Chapter" resource="#POE.UC.21" property="bibo:hasPart">
+      <h3 id="h-poe.uc.21" resource="#h-poe.uc.21"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.21 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.21">POE.UC.21</dfn>: Specifying the Scope of Constraints</span>
+      </h3>
+
+      <!-- <li> <strong>Title</strong>:   </li> -->
+      <p class="contributor">Víctor Rodríguez-Doncel</p>
+      <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
+
+      <p>Depending on the use case, it's often necessary to specify constraints on properties of different kinds of entities (e.g., assets, parties or any other external entities). The exact subject for which those constraints must hold is currently not encodable in ODRL, but has to be inferred from the textual semantics of each of ODRL's 25 constraint terms; which not only leads to ambiguities in terms of interpreted semantics, but might also prove to be not capable of fully covering new usages of ODRL.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.02">POE.R.DM.02</a></span>
+
+    </section>
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.22 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.22" typeof="bibo:Chapter" resource="#POE.UC.22" property="bibo:hasPart">
+      <h3 id="h-poe.uc.22" resource="#h-poe.uc.22"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.22 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.22">POE.UC.22</dfn>: Technical documents rules for business process regulatory compliance</span>
+      </h3>
+
+      <!--<p class="contributor">Serena Villata (joint work with Guido Governatori) in the context of the MIREL Project</p>
+					
+						 
+							<p> Technical documents describe how to handle and what are the functionalities of a certain product or process (e.g., telecommunication codes). They are intended to provide information about what can/cannot be done with the product or within a certain process. Given the huge dimension of this kind of legal texts and their diffusion in the companies, the advantages of returning a machine-readable representation of such texts would allow to have in this representation a kind of summary of the main constraints expressed in the documents, with invaluable time saving for every person that is expected to read the whole document before obtaining this information. A specific usage of such a kind of texts is that of manually extracting the set of obliged/prohibited/permitted actions in order to check whether certain business processes are compliant with the legal text they should refer to. Moreover, issues related to the merging of updated versions of the documents, with amendments with respect to the policies and duties expressed in the former versions.
+							</p>
+													<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.22</span> 
+							-->
+      <div class="note">
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note1"><span>Note</span></div>
+        <div class="">
+          <p>Removed -&gt; Duplicate of <a href="#dfn-poe.uc.04" class="internalDFN" data-link-type="dfn">POE.UC.04</a></p>
+        </div>
+      </div>
+
+
+    </section>
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.23 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.23" typeof="bibo:Chapter" resource="#POE.UC.23" property="bibo:hasPart">
+      <h3 id="h-poe.uc.23" resource="#h-poe.uc.23"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.23 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.23">POE.UC.23</dfn>: Deletions Must be Propagated </span>
+      </h3>
+
+      <p class="contributor">Brian Ulicny</p>
+
+
+      <p> Many data providers require that if a record or element of the data is deleted in the source, it must be deleted in any copy and/or aggregation of that data. For example, arrest records must be expunged in public datasets if they are expunged by a court. Twitter requires that deleted tweets not be used in datasets, and so on.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.09">POE.R.DM.09</a></span>
+
+    </section>
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.24 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.24" typeof="bibo:Chapter" resource="#POE.UC.24" property="bibo:hasPart">
+      <h3 id="h-poe.uc.24" resource="#h-poe.uc.24"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.24 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.24">POE.UC.24</dfn>: Synchronization in a multilayer music description environment </span>
+      </h3>
+
+      <p class="contributor">Laboratorio di Informatica Musicale (LIM), Department of Computer Science, Universitá degli Studi di Milano</p>
+
+
+      <p> IEEE 1599 is an international XML-based standard that aims to comprehensively describe music content by supporting the representation of heterogeneous music aspects within a single XML document. Moreover, IEEE 1599 lets spatio-temporal relationships emerge among such materials, thanks to the identification of music events inside a common data structure known as the spine: in this way, events can be described in different layers (e.g., a chord's graphical aspect and its audio performance), as well as multiple times within a single layer (e.g., different music performances of the same events). Consequently, the IEEE 1599 multilayer environment presents two complementary synchronization modes: inter-layer and intra-layer synchronization. Coupling these two categories of synchronization makes it possible to design and implement frameworks that allow new kinds of interaction with media contents and novel music-experience models, as shown in the Music Box area of the EMIPIU web framework (see URL above). Recognizing music events and their synchronization can be seen as an additional intellectual achievement that on one side does not affect the already existing IP rights on media contents, but on the other side requires adequate protection. Consequently, it is desirable to consider a new permission which allows the producer to synchronize different media contents with respect to the other possibly existing permissions, restrictions and duties associated with media contents.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.08">POE.R.DM.08</a>, <a href="#POE.R.DM.12">POE.R.DM.12</a>, <a href="#POE.R.V.12">POE.R.V.12</a></span>
+
+    </section>
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.25 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.25" typeof="bibo:Chapter" resource="#POE.UC.25" property="bibo:hasPart">
+      <h3 id="h-poe.uc.25" resource="#h-poe.uc.25"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.25 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.25">POE.UC.25</dfn>: Magazine Media Permissions </span>
+      </h3>
+
+      <p class="contributor">Dianne Kennedy, Idealliance </p>
+      <p> In the Magazine Industry, magazine media companies need the ability to communicate the legal terms of usage permissions (known as licensing terms) that are associated with content (article text and rich media). Specifically:
+      </p>
+      <ul>
+        <li> Magazine media companies wish to define the ability of editors and staff to modify content.</li>
+        <li> Magazine media companies wish to define the ability of editors and staff to translate textual content by language.</li>
+        <li> Magazine media companies also want to note the following duties:
+          <ul>
+            <li> Payment (e.g. <em>"You can use this photo online for EUR80"</em>).</li>
+            <li> Attribution (e.g. <em>"Credit Kyoto News"</em>)</li>
+            <li> Notification (e.g. <em>"University of North Carolina"</em>)</li>
+            <li> Approval (e.g. <em>"Major League Baseball"</em>)</li>
+          </ul>
+        </li>
+        <li> Magazine media companies wish to define their ability to use content for promotional purposes.</li>
+        <li> Magazine media companies wish to restrict the primary distribution of their content by:
+          <ul>
+            <li> Geography/Spatial (e.g. <em>"only (US, CA)"</em>)</li>
+            <li> Time (e.g. <em>"No distribution before dd/mm/yyyy"</em>)</li>
+            <li> Territory/Recipient (e.g. <em>"North America"</em>)</li>
+            <li> Editorial Delivery Channel (e.g. <em>"Print only"</em>)</li>
+            <li> Promotional Delivery Channel (e.g. <em>"email"</em>)</li>
+          </ul>
+        </li>
+        <li> Magazine media companies wish to define their ability to grant use of content to third party aggregator/syndicator.</li>
+        <li> Magazine media companies wish to express to third party aggregator/syndicator any legal restrictions on the redistribution of content.</li>
+      </ul>
+      <p></p>
+
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.10">POE.R.DM.10</a>, <a href="#POE.R.V.11">POE.R.V.11</a></span>
+
+    </section>
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.26 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.26" typeof="bibo:Chapter" resource="#POE.UC.26" property="bibo:hasPart">
+      <h3 id="h-poe.uc.26" resource="#h-poe.uc.26"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.26 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.26">POE.UC.26</dfn>: Data Quality Policy </span>
+      </h3>
+
+      <p class="contributor">Antoine Isaac, Riccardo Albertoni</p>
+
+
+      <p> Example from the <abbr title="World Wide Web Consortium">W3C</abbr> Working Group Data on the Web Best Practices [<cite><a class="bibref" href="#bib-dwbp">dwbp</a></cite>], more specifically for the Data Quality Vocabulary [<cite><a class="bibref" href="#bib-vocab-dqv">vocab-dqv</a></cite>]. This example specifies that the serviceProvider grants the permission to access the dataset and commits to serve the data with a certain quality, more concretely, 99% availability of a SPARQL endpoint associated with the dataset. This is expressed as a duty on the service provider with a constraint that is defined using a DQV metric (<code>:sparqlEndpointUptime</code>) that has to be greater than a certain value (e.g., 99). The <code>odrl:assignee</code> is the recipient of the policy statement and the <code>odrl:assigner</code> is the issuer of the policy statement. For discussion about this example see <a href="http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html">http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html</a>
+      </p>
+      <p> The expression of constraints in ODRL seems quite unfit with expressing general constraints on values in RDF graphs, as we would require here. However, ODRL can be easily extended, and is schedule to undergo refinement in the context of the <abbr title="World Wide Web Consortium">W3C</abbr> Permissions &amp; Obligations Expression Working Group. In the future DQV implementers should investigate whether a general constraint expression language like the coming SHACL provides a more appropriate mechanism to be used on top of ODRL permissions and duties. </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.09">POE.R.DM.09</a></span>
+
+    </section>
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.27 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+    <section id="POE.UC.27" typeof="bibo:Chapter" resource="#POE.UC.27" property="bibo:hasPart">
+      <h3 id="h-poe.uc.27" resource="#h-poe.uc.27"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.27 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.27">POE.UC.27</dfn>: Europeana/DPLA In Copyright - Educational Use Only </span>
+      </h3>
+
+      <p class="contributor">Antoine Isaac, Riccardo Albertoni</p>
+
+
+      <p> Data providers who are also the rights holders of the digital objects in question may want to allow reuse of their digital objects for educational purpose only.
+      </p>
+      <strong>Related Requirements: </strong>
+      <span data-ref-anchor=""><a href="#POE.R.DM.09">POE.R.DM.09</a></span>
+
+    </section>
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.28 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.28">
+				<h2><dfn>POE.UC.28</dfn>: Enhance discovery of library collection materials </h2>
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> OCLC (Online Computer Library Center, Inc.) is an online library cooperative that seeks to catalog the world's library records in order to improve awareness of what books and other resources (electronic and print) are available in participating libraries globally. A better method for collecting information describing copyright ownership of and permissions on a given resource, and a standard set of rights data, including standard terms and clear definitions of those terms, is needed in order to provide consistent and accurate information regarding the permissions associated with the resources catalogued in libraries worldwide, including those currently in the WorldCat database and those that are incoming. Currently, rights and permissions information on catalogued materials is often inconsistent, inaccurate and/or incomplete. 
+							</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.28</span>
+						
+			</section>-->
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.29 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.29">
+				<h2><dfn>POE.UC.29</dfn>: Identify permissions on chapters/ chunks of book content </h2>
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> Currently, rights and permissions data is captured primarily at the book product level (typically using ONIX). Publishers large and small would like to take advantage of new content licensing opportunities for chapters, chunks, or other portions of the whole work (such as SharedBook) but often do not have sufficient permissions information to do so. A simple system for assigning permissions to chunks of content is needed, including a standard rights language used to collect permissions information from authors and publishers, along with a standard method for communicating permissions data that is machine-readable and travels with the content (in the EPUB or other electronic file, such as in the metadata embedded in an image file).
+							</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.29</span>
+						
+			</section>-->
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.30 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.30">
+				<h2><dfn>POE.UC.30</dfn>: Rights licensing data for e-book subscription services</h2>
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> A number of opportunities exist for book publishers to sell works through subscription services, such as Scribd, Amazon Kindle Unlimited, and Playster, but they are unable to take advantage of these services because a consistent method for collecting and communicating subscription rights data has not been adopted within the industry. Subscription information can now be included in ONIX records (the primary book product metadata standard) but not all service providers are capable of accepting ONIX data. 
+							</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.30</span> 
+						
+			</section>-->
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.31 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.31">
+				<h2><dfn>POE.UC.31</dfn>: Improve internal rights management systems (large book publishers)</h2>
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> Most large book publishers have developed their own internal databases/systems for managing rights and permissions information, but in many cases these systems have become out of date and insufficient for tracking the kinds of granular rights data needed to take advantage of new and forthcoming opportunities for content licensing. In addition, in many cases rights departments at large publishing houses are segmented from acquisitions and editorial departments, deepening the divide between the rights information collected for new works and that which is needed—digital assets are not always defined from the point of acquisition. A standard set of discrete permissions data including a variety of digital rights would provide an efficient system for publishers to begin collecting this information. Currently a large amount of revenue is left on the table because of insufficient knowledge of rights held, and lack of an efficient system for collecting and communicating permissions data that incorporates the breadth of licensing models available. A standardized model and vocabulary for expressing permissions and obligations information would facilitate both the management of content licensed from others and the monetization of content licensed to others. </p>
+							<p>To be clear, this use case does not envision creating a standard for publishers to use as the sole basis for their internal databases/systems; rather, it envisions a standard way of ingesting and outputting rights and permissions information, with which publishers' internal databases should interoperate.</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.31</span> 
+						
+			</section>-->
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.32 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.32">
+				<h2><dfn>POE.UC.32</dfn>:  Improve efficiency of foreign rights transactions (University Press)</h2>
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> A university press holds a large database of work, including books, journals, and other electronic resources, and regularly sub-licenses foreign and translations rights to international clients. The database is housed in an internal system but insufficient rights information exists due in part to the lack of a clear system for collecting and managing rights and permissions information. The UP needs a standard system for labeling rights held and rights sold/purchased in order to efficiently execute rights deals internationally. Consistency of contractual language terminology and meaning among international trading partners is key: rights language across internal database and clients' database is often misaligned. Additionally, many transactions are still done or initiated in person; these transactions are difficult to track because of database limitations—currently, status; interactions; and contacts for international rights transactions on a large number of titles gets lost.
+							</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.32</span> 
+						
+			</section>-->
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.33 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.33">
+				<h2><dfn>POE.UC.33</dfn>: Disambiguate access permission from copyright permission (University Press)</h2>
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> Clear terminology for permissions and obligations associated with accessing a work— be it through a library, classroom (for course materials), software application, online repository, or other portal needs to be established and defined in a standard way so that the licensing environment (library, classroom, etc.) can treat works from multiple rights holders according to such permissions and obligations. This access is distinct from copyright held on the work and needs to be treated as such in metadata that is attached to a work. University presses, who regularly provide access to published works to students across a variety of platforms, have a particular need to see access better accounted for in rights data.
+							</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.33</span> 
+						
+			</section>-->
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.34 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.34">
+				<h2><dfn>POE.UC.34</dfn>: Library collection management and access </h2>
+
+					<p class="contributor">Julie Morris on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> Improve the flow of rights data among publishers, libraries, and library service providers. No single metadata standard is used among book publishers, libraries, and service providers to communicate rights and permissions data for library materials. Clear rights data is not being communicated to libraries: several libraries, both university-based and public, report a lack of consistent and accurate rights and permissions information for the content in their collections, inhibiting libraries from providing electronic access to a large portion of content and making library collection data difficult to manage. This is especially true for print works which libraries wish to digitize and make available to patrons or publicly. 
+							</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.34</span> 
+						
+			</section>-->
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.35 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.35">
+				<h2><dfn>POE.UC.35</dfn>: Rights licensing for custom textbook publishing (higher education publishers)</h2>
+
+					<p class="contributor">Bill Rosenblatt on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> Higher education curriculum service providers (e.g. e-textbook services) would like to be able to offer course instructors the ability to compose single textbook volumes (whether in print or ebook) from materials sourced from multiple publications from one publisher or  multiple publishers. For example, an instructor could assemble a custom physics textbook with a chapter on angular momentum from one publisher's textbook, friction from another publisher's textbook, gravity from another, etc., plus her own treatment of magnetic fields.  One of the reasons why no one has been able to offer a scalable service of this type is the difficulty of licensing content from multiple higher education publishers in a flexible and automated manner.
+							</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.35</span> 
+						
+			</section>-->
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			     %%%%%%%%%%%% POE.UC.36 %%%%%%%%%%%% 
+			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			<section id="POE.UC.36">
+				<h2><dfn>POE.UC.36</dfn>: Users need to know the permissions and obligations associated with using a given publication</h2>
+
+					<p class="contributor">Bill Kasdorf on behalf of the Book Industry Study Group (BISG)</p>
+					
+						 
+							<p> The user of a publication currently has little or no way to know what permissions and obligations associated with a publication given to her by a friend or checked out of a library. She is not the original purchaser so she has not acknowledged any purchase or licensing agreement. She may be aware of general copyright requirements, but there may be other permissions or obligations associated with using the publication that she needs to know.
+							</p>
+						<strong>Related Requirements: </strong>
+						<span data-ref-anchor="">POE.UC.36</span> 
+						
+			</section>-->
+
+  </section>
+
+  <section id="Requirements" typeof="bibo:Chapter" resource="#Requirements" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-requirements" resource="#h-requirements"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Requirements</span>
+    </h2>
+    <p>This section lists the requirements arising from the use-cases catalogued in this document. Specific requirements that have been de-prioritized or rejected have been left in the document for completeness, but are shown as struck out.</p>
+
+    <section id="POE.R.DM" typeof="bibo:Chapter" resource="#POE.R.DM" property="bibo:hasPart">
+      <h3 id="h-poe.r.dm" resource="#h-poe.r.dm"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span>POE.R.DM - Data Model</span>
+      </h3>
+
+      <section id="POE.R.DM.01" typeof="bibo:Chapter" resource="#POE.R.DM.01" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.01" resource="#h-poe.r.dm.01"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.1 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.01">POE.R.DM.01</dfn>: Define how constraints on a party can be expressed </span>
+        </h4>
+        <em>A single option for applying a constraint to a party (of a specific role) should be defined. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a></p>
+      </section>
+
+      <section id="POE.R.DM.02" typeof="bibo:Chapter" resource="#POE.R.DM.02" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.02" resource="#h-poe.r.dm.02"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.2 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.02">POE.R.DM.02</dfn>: Define target of a constraint</span>
+        </h4>
+        <em>It should be possible to define the target of a constraint inside a Permission, Prohibition or Duty: e.g. a constraint of human age applies to the Assignee, a constraint of play time applies to Assets (of type audio or video), etc. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.21" class="internalDFN" data-link-type="dfn">POE.UC.21</a></p>
+      </section>
+
+      <section id="POE.R.DM.03" typeof="bibo:Chapter" resource="#POE.R.DM.03" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.03" resource="#h-poe.r.dm.03"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.3 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.03">POE.R.DM.03</dfn>: Introduce policy template</span>
+        </h4>
+        <em>The current data model assumes a policy instance includes all required data explicitly. This should be extended to policy instances which include explicit data and variables for values which are defined by parameters provided by an access to this template.</em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.20" class="internalDFN" data-link-type="dfn">POE.UC.20</a></p>
+      </section>
+
+      <section id="POE.R.DM.04" typeof="bibo:Chapter" resource="#POE.R.DM.04" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.04" resource="#h-poe.r.dm.04"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.4 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.04">POE.R.DM.04</dfn>: Support versioning policies</span>
+        </h4>
+        <em>The Data Model should be extended to support the versioning of a policy. In addition to the existing identifiers of a policy means for expressing a version of this policy should specified. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.04" class="internalDFN" data-link-type="dfn">POE.UC.04</a></p>
+      </section>
+
+      <section id="POE.R.DM.05" typeof="bibo:Chapter" resource="#POE.R.DM.05" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.05" resource="#h-poe.r.dm.05"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.5 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.05">POE.R.DM.05</dfn>: Set a global price for all permissions of a policy</span>
+        </h4>
+        <em>It should be possible to define the price for duty/duties of payment for all permissions of a policy in a global way - while currently the payment duty must be defined for each permission individually. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.09" class="internalDFN" data-link-type="dfn">POE.UC.09</a></p>
+      </section>
+
+      <section id="POE.R.DM.06" typeof="bibo:Chapter" resource="#POE.R.DM.06" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.06" resource="#h-poe.r.dm.06"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.6 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.06">POE.R.DM.06</dfn>: Support relative time constraints</span>
+        </h4>
+        <em>Extend the temporal constraints by setting a time reference, any period in the rightOperand refers to this point in time. For a relativeTimePeriod constraint the rightOperand has to provide a time period as value. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.03" class="internalDFN" data-link-type="dfn">POE.UC.03</a>,<a data-set-anchor="" href="#dfn-poe.uc.15" class="internalDFN" data-link-type="dfn">POE.UC.15</a>,<a data-set-anchor="" href="#dfn-poe.uc.16" class="internalDFN" data-link-type="dfn">POE.UC.16</a>,<a data-set-anchor="" href="#dfn-poe.uc.19" class="internalDFN" data-link-type="dfn">POE.UC.19</a></p>
+      </section>
+
+      <section id="POE.R.DM.07" typeof="bibo:Chapter" resource="#POE.R.DM.07" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.07" resource="#h-poe.r.dm.07"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.7 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.07">POE.R.DM.07</dfn>: Define a category property for class Party</span>
+        </h4>
+        <em>A property of the class Party should define the category of the Party. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a></p>
+      </section>
+
+      <section id="POE.R.DM.08" typeof="bibo:Chapter" resource="#POE.R.DM.08" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.08" resource="#h-poe.r.dm.08"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.8 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.08">POE.R.DM.08</dfn>: Add a category property to Asset</span>
+        </h4>
+        <em>A new property of the class Asset should define the category of the Asset. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a>,<a data-set-anchor="" href="#dfn-poe.uc.17" class="internalDFN" data-link-type="dfn">POE.UC.17</a>,<a data-set-anchor="" href="#dfn-poe.uc.24" class="internalDFN" data-link-type="dfn">POE.UC.24</a></p>
+      </section>
+
+      <section id="POE.R.DM.09" typeof="bibo:Chapter" resource="#POE.R.DM.09" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.09" resource="#h-poe.r.dm.09"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.9 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.09">POE.R.DM.09</dfn>: Complex Constraints</span>
+        </h4>
+        <em>Express complex constraints such as 'No use in UK after 7 days'. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.03" class="internalDFN" data-link-type="dfn">POE.UC.03</a>,<a data-set-anchor="" href="#dfn-poe.uc.07" class="internalDFN" data-link-type="dfn">POE.UC.07</a>,<a data-set-anchor="" href="#dfn-poe.uc.15" class="internalDFN" data-link-type="dfn">POE.UC.15</a>,<a data-set-anchor="" href="#dfn-poe.uc.23" class="internalDFN" data-link-type="dfn">POE.UC.23</a>,<a data-set-anchor="" href="#dfn-poe.uc.26" class="internalDFN" data-link-type="dfn">POE.UC.26</a>,<a data-set-anchor="" href="#dfn-poe.uc.27" class="internalDFN" data-link-type="dfn">POE.UC.27</a></p>
+      </section>
+
+      <section id="POE.R.DM.10" typeof="bibo:Chapter" resource="#POE.R.DM.10" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.10" resource="#h-poe.r.dm.10"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.10 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.10">POE.R.DM.10</dfn>: Extended Relations</span>
+        </h4>
+        <em>Being able to tie Permission, Prohibition, Duty, and Constraint entities together with an AND, OR or XOR relationship</em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.14" class="internalDFN" data-link-type="dfn">POE.UC.14</a>,<a data-set-anchor="" href="#dfn-poe.uc.25" class="internalDFN" data-link-type="dfn">POE.UC.25</a></p>
+      </section>
+
+      <section id="POE.R.DM.11" typeof="bibo:Chapter" resource="#POE.R.DM.11" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.11" resource="#h-poe.r.dm.11"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.11 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.11">POE.R.DM.11</dfn>: Remedies</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.02" class="internalDFN" data-link-type="dfn">POE.UC.02</a></p>
+      </section>
+
+      <section id="POE.R.DM.12" typeof="bibo:Chapter" resource="#POE.R.DM.12" property="bibo:hasPart">
+        <h4 id="h-poe.r.dm.12" resource="#h-poe.r.dm.12"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1.12 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.dm.12">POE.R.DM.12</dfn>: Grouping party entities</span>
+        </h4>
+        <em>Being able to assign multiple individuals of type Party to a Group for which permissions/prohibitions/duties can be specified. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.05" class="internalDFN" data-link-type="dfn">POE.UC.05</a>,<a data-set-anchor="" href="#dfn-poe.uc.24" class="internalDFN" data-link-type="dfn">POE.UC.24</a></p>
+      </section>
+
+    </section>
+
+    <section id="POE.R.V" typeof="bibo:Chapter" resource="#POE.R.V" property="bibo:hasPart">
+      <h3 id="h-poe.r.v" resource="#h-poe.r.v"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2 </span>POE.R.V - Vocabulary</span>
+      </h3>
+
+      <section id="POE.R.V.01" typeof="bibo:Chapter" resource="#POE.R.V.01" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.01" resource="#h-poe.r.v.01"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.1 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.v.01">POE.R.V.01</dfn>: Add rights holder terms to Roles of a Party Vocabulary</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a>,<a data-set-anchor="" href="#dfn-poe.uc.13" class="internalDFN" data-link-type="dfn">POE.UC.13</a>,<a data-set-anchor="" href="#dfn-poe.uc.18" class="internalDFN" data-link-type="dfn">POE.UC.18</a></p>
+      </section>
+
+      <section id="POE.R.V.02" typeof="bibo:Chapter" resource="#POE.R.V.02" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.02" resource="#h-poe.r.v.02"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.2 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.v.02">POE.R.V.02</dfn>: Add term for redepositing to Duty Vocabulary</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a></p>
+      </section>
+
+      <section id="POE.R.V.03" typeof="bibo:Chapter" resource="#POE.R.V.03" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.03" resource="#h-poe.r.v.03"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.3 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.v.03">POE.R.V.03</dfn>: Add concept of 'unit-of-count' to Duty Constraint Vocabulary</span>
+        </h4>
+        <em>Being able to define a 'unit-of-count' for duty actions, e.g., define what should be reported via odrl:inform (for each userAccount). </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.10" class="internalDFN" data-link-type="dfn">POE.UC.10</a></p>
+      </section>
+
+      <section id="POE.R.V.08" typeof="bibo:Chapter" resource="#POE.R.V.08" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.08" resource="#h-poe.r.v.08"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.4 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.v.08">POE.R.V.08</dfn>: Add terms to the Action Vocabulary</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.11" class="internalDFN" data-link-type="dfn">POE.UC.11</a></p>
+      </section>
+
+      <section id="POE.R.V.09" typeof="bibo:Chapter" resource="#POE.R.V.09" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.09" resource="#h-poe.r.v.09"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.5 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.v.09">POE.R.V.09</dfn>: Add Linked Data related actions to Action Vocabulary</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.02" class="internalDFN" data-link-type="dfn">POE.UC.02</a></p>
+      </section>
+
+      <section id="POE.R.V.10" typeof="bibo:Chapter" resource="#POE.R.V.10" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.10" resource="#h-poe.r.v.10"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.6 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.v.10">POE.R.V.10</dfn>: Add terms to the Roles of a Party Vocabulary</span>
+        </h4>
+        <em>Add the role compensatingParty to the Party Role Vocabulary </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.11" class="internalDFN" data-link-type="dfn">POE.UC.11</a></p>
+      </section>
+
+      <section id="POE.R.V.11" typeof="bibo:Chapter" resource="#POE.R.V.11" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.11" resource="#h-poe.r.v.11"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.7 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.v.11">POE.R.V.11</dfn>: New Party Category Vocabulary</span>
+        </h4>
+        <em>Create a new vocabulary with a basic set of terms for the requested new category property of the Party class. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a>,<a data-set-anchor="" href="#dfn-poe.uc.25" class="internalDFN" data-link-type="dfn">POE.UC.25</a></p>
+      </section>
+
+      <section id="POE.R.V.12" typeof="bibo:Chapter" resource="#POE.R.V.12" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.12" resource="#h-poe.r.v.12"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.8 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.v.12">POE.R.V.12</dfn>: New Asset Category Vocabulary</span>
+        </h4>
+        <em>Create a new vocabulary with a basic set of terms for the requested new category property of the Asset class. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a>,<a data-set-anchor="" href="#dfn-poe.uc.17" class="internalDFN" data-link-type="dfn">POE.UC.17</a>,<a data-set-anchor="" href="#dfn-poe.uc.24" class="internalDFN" data-link-type="dfn">POE.UC.24</a></p>
+      </section>
+
+      <section id="POE.R.V.15" typeof="bibo:Chapter" resource="#POE.R.V.15" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.15" resource="#h-poe.r.v.15"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.9 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.v.15">POE.R.V.15</dfn>: Reference to Source License</span>
+        </h4>
+        <em>Ability to link from a Policy or a Permission to the original (text-based) license. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.08" class="internalDFN" data-link-type="dfn">POE.UC.08</a></p>
+      </section>
+
+      <section id="POE.R.V.16" typeof="bibo:Chapter" resource="#POE.R.V.16" property="bibo:hasPart">
+        <h4 id="h-poe.r.v.16" resource="#h-poe.r.v.16"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.10 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.v.16">POE.R.V.16</dfn>: Assertion Policy Type</span>
+        </h4>
+        <em>It should be possible to define policies of type Assertion. An Assertion policy does not grant any permissions/prohibitions, but reflects policy terms that a party believes to have.</em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.13" class="internalDFN" data-link-type="dfn">POE.UC.13</a>,<a data-set-anchor="" href="#dfn-poe.uc.18" class="internalDFN" data-link-type="dfn">POE.UC.18</a></p>
+      </section>
+    </section>
+
+    <section id="POE.R.E" typeof="bibo:Chapter" resource="#POE.R.E" property="bibo:hasPart">
+      <h3 id="h-poe.r.e" resource="#h-poe.r.e"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3 </span>POE.R.E - Encoding</span>
+      </h3>
+
+      <section id="POE.R.E.01" typeof="bibo:Chapter" resource="#POE.R.E.01" property="bibo:hasPart">
+        <h4 id="h-poe.r.e.01" resource="#h-poe.r.e.01"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.e.01">POE.R.E.01</dfn>: Referring to external resources for defining payment fees</span>
+        </h4>
+        <em>Define how to specify a fee by referring to an resource outside a policy document </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a></p>
+      </section>
+    </section>
+
+    <section id="POE.R.R" typeof="bibo:Chapter" resource="#POE.R.R" property="bibo:hasPart">
+      <h3 id="h-poe.r.r" resource="#h-poe.r.r"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4 </span>POE.R.R - Processing Rules</span>
+      </h3>
+
+      <section id="POE.R.R.01" typeof="bibo:Chapter" resource="#POE.R.R.01" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.01" resource="#h-poe.r.r.01"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.1 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.r.01">POE.R.R.01</dfn>: Define rules for matching permissions/prohibitions against specific use cases</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.04" class="internalDFN" data-link-type="dfn">POE.UC.04</a>,<a data-set-anchor="" href="#dfn-poe.uc.12" class="internalDFN" data-link-type="dfn">POE.UC.12</a></p>
+      </section>
+
+      <section id="POE.R.R.02" typeof="bibo:Chapter" resource="#POE.R.R.02" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.02" resource="#h-poe.r.r.02"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.2 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.r.02">POE.R.R.02</dfn>: Define a language for controlling processing policies</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.04" class="internalDFN" data-link-type="dfn">POE.UC.04</a>,<a data-set-anchor="" href="#dfn-poe.uc.12" class="internalDFN" data-link-type="dfn">POE.UC.12</a></p>
+      </section>
+
+      <section id="POE.R.R.03" typeof="bibo:Chapter" resource="#POE.R.R.03" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.03" resource="#h-poe.r.r.03"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.3 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.r.03">POE.R.R.03</dfn>: Define processing rules for versioned policies</span>
+        </h4>
+        <em>Rules defining how different versions of a policy with the same identifier should be processed should be specified.</em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.04" class="internalDFN" data-link-type="dfn">POE.UC.04</a></p>
+      </section>
+
+      <section id="POE.R.R.04" typeof="bibo:Chapter" resource="#POE.R.R.04" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.04" resource="#h-poe.r.r.04"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.4 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.r.04">POE.R.R.04</dfn>: Support to auto-generate a policy from a template plus provided parameter values</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a></p>
+      </section>
+
+      <section id="POE.R.R.05" typeof="bibo:Chapter" resource="#POE.R.R.05" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.05" resource="#h-poe.r.r.05"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.5 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.r.05">POE.R.R.05</dfn>: Guidance on Rights Assignments through Aggregation and Derivation</span>
+        </h4>
+        <em>Provide guidance and examples of managing rights assignments through aggregations.</em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.06" class="internalDFN" data-link-type="dfn">POE.UC.06</a>,<a data-set-anchor="" href="#dfn-poe.uc.12" class="internalDFN" data-link-type="dfn">POE.UC.12</a></p>
+      </section>
+
+      <section id="POE.R.R.06" typeof="bibo:Chapter" resource="#POE.R.R.06" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.06" resource="#h-poe.r.r.06"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.6 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.r.06">POE.R.R.06</dfn>: Guidance on Specifying Subsets of Assets</span>
+        </h4>
+        <em>Provide guidance and examples of specifying subsets of data as the object of the <code>odrl:target</code> predicate.</em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.02" class="internalDFN" data-link-type="dfn">POE.UC.02</a>,<a data-set-anchor="" href="#dfn-poe.uc.06" class="internalDFN" data-link-type="dfn">POE.UC.06</a>,<a data-set-anchor="" href="#dfn-poe.uc.07" class="internalDFN" data-link-type="dfn">POE.UC.07</a></p>
+      </section>
+
+      <section id="POE.R.R.07" typeof="bibo:Chapter" resource="#POE.R.R.07" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.07" resource="#h-poe.r.r.07"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.7 </span><span style="text-decoration:line-through;"><dfn data-dfn-type="dfn" id="dfn-poe.r.r.07">POE.R.R.07</dfn>: Guidance on Conflicting Permissions</span></span>
+        </h4>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.04" class="internalDFN" data-link-type="dfn">POE.UC.04</a></p>
+      </section>
+
+      <section id="POE.R.R.08" typeof="bibo:Chapter" resource="#POE.R.R.08" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.08" resource="#h-poe.r.r.08"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.8 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.r.08">POE.R.R.08</dfn>: Guidance on the Provenance of Policies</span>
+        </h4>
+        <em>Provide guidance and examples of expressing the provenance of the interpretation of the original document, recognising that the original source remains normative.</em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.08" class="internalDFN" data-link-type="dfn">POE.UC.08</a></p>
+      </section>
+
+      <section id="POE.R.R.09" typeof="bibo:Chapter" resource="#POE.R.R.09" property="bibo:hasPart">
+        <h4 id="h-poe.r.r.09" resource="#h-poe.r.r.09"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.9 </span><dfn data-dfn-type="dfn" id="dfn-poe.r.r.09">POE.R.R.09</dfn>: Make policies accessible by URL</span>
+        </h4>
+        <em>Encourage POE implementers to make policies accessible as a web resource by a URL and http content negotiation should be supported to deliver a specific request format. </em>
+        <p class="relatedUseCases"><a data-set-anchor="" href="#dfn-poe.uc.01" class="internalDFN" data-link-type="dfn">POE.UC.01</a></p>
+      </section>
+    </section>
+  </section>
+
+
+  <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to Top">↑</abbr></a></p>
+  <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+</body>
+</html>
