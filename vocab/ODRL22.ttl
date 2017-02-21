@@ -70,22 +70,24 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#conflictConcepts>
     a skos:Collection ;
-    skos:prefLabel "Handle Policy Conflicts"@en ;
+    skos:prefLabel "Policy Conflict Strategy"@en ;
     skos:member :ConflictTerm ;
     skos:member :conflict ;
     skos:member :perm ;
-    skos:member :prohibit ;
-    skos:member :invalid .
+    skos:member :prohibit .
 
 <http://www.w3.org/ns/odrl/2/#undefinedConcepts>
     a skos:Collection ;
-    skos:prefLabel "Handle Undefined Policy Terms"@en ;
+    skos:prefLabel "Undefined Policy Actions"@en ;
     skos:member :UndefinedTerm ;
     skos:member :undefined ;
     skos:member :ignore ;
-    skos:member :invalid ;
     skos:member :support .
 
+<http://www.w3.org/ns/odrl/2/#undefinedConflictConcepts>
+    a skos:Collection ;
+    skos:prefLabel "Undefined and Policy Conflict"@en ;
+    skos:member :invalid .
 
 <http://www.w3.org/ns/odrl/2/#policyTypes>
     a skos:Collection ;
@@ -102,8 +104,7 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Asset Concepts"@en ;
     skos:member :Asset ;
-    skos:member :relation ;
-    skos:member :scope .
+    skos:member :relation .
 
 <http://www.w3.org/ns/odrl/2/#assetRelations>
     a skos:Collection ;
@@ -117,7 +118,11 @@ odrl:
     skos:prefLabel "Party Concepts"@en ;
     skos:member :Party ;
     skos:member :function ;
-    skos:member :PartyScope ;
+    skos:member :PartyScope .
+
+<http://www.w3.org/ns/odrl/2/#partyAssetConcepts>
+    a skos:Collection ;
+    skos:prefLabel "Party and Asset Concepts"@en ;
     skos:member :scope .
 
 
@@ -418,8 +423,8 @@ odrl:
 	a :ConflictTerm, :UndefinedTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Invalidate Policy"@en ;
-	skos:definition "the Action is unknown – and the policy is invalid."@en ;
-	skos:note "Used to support actions not known to the policy system."@en ;
+	skos:definition "The policy is invalid."@en ;
+	skos:note "Used to indicate the policy is invalid for Conflict strategy and Undefined actions."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :support

@@ -156,33 +156,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-inheritRelation">inheritRelation</a>, <a href="#term-profile">profile</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section></section><section id="inheritanceConcepts"><h2>Policy Inheritance</h2><section id="term-inheritAllowed"><h3>Inheritance Allowed</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicates if the Policy entity can be inherited.</td></tr>
-<tr><th>Label:</th> <td>Inheritance Allowed</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritAllowed">http://www.w3.org/ns/odrl/2/inheritAllowed</a></td></tr>
-<tr><th>Note:</th> <td>A boolean value.</td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-inheritFrom"><h3>Inherits From</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Relates a (child) policy to another (parent) policy from which terms are inherited.</td></tr>
-<tr><th>Label:</th> <td>Inherits From</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritFrom">http://www.w3.org/ns/odrl/2/inheritFrom</a></td></tr>
-<tr><th>Note:</th> <td>The child policy will inherit from the parent policy</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-inheritRelation"><h3>Inherit Relation</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indentifies the type of inheritance.</td></tr>
-<tr><th>Label:</th> <td>Inherit Relation</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td></tr>
-<tr><th>Note:</th> <td>For example, this may indicate the business scenario, such as subscription, or prior arrangements between the parties (that are not machine representable)</td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="conflictConcepts"><h2>Handle Policy Conflicts</h2><section id="term-ConflictTerm"><h3>Conflict Preference</h3><table class='def propdef' >
+</section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Preference</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>
 <tr><th>Label:</th> <td>Conflict Preference</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/ConflictTerm">http://www.w3.org/ns/odrl/2/ConflictTerm</a></td></tr>
@@ -216,15 +190,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section><section id="term-invalid"><h3>Invalidate Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>the Action is unknown – and the policy is invalid.</td></tr>
-<tr><th>Label:</th> <td>Invalidate Policy</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/invalid">http://www.w3.org/ns/odrl/2/invalid</a></td></tr>
-<tr><th>Note:</th> <td>Used to support actions not known to the policy system.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a>, <a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="undefinedConcepts"><h2>Handle Undefined Policy Terms</h2><section id="term-UndefinedTerm"><h3>Undefined Term</h3><table class='def propdef' >
+</section></section><section id="undefinedConcepts"><h2>Undefined Policy Actions</h2><section id="term-UndefinedTerm"><h3>Undefined Term</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Is used to indicate how to support Actions that are not part of any vocabulary or profile in the policy expression system</td></tr>
 <tr><th>Label:</th> <td>Undefined Term</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td></tr>
@@ -250,14 +216,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section><section id="term-invalid"><h3>Invalidate Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>the Action is unknown – and the policy is invalid.</td></tr>
-<tr><th>Label:</th> <td>Invalidate Policy</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/invalid">http://www.w3.org/ns/odrl/2/invalid</a></td></tr>
-<tr><th>Note:</th> <td>Used to support actions not known to the policy system.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a>, <a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
 </section><section id="term-support"><h3>Support Undefined Actions</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Action is to be supported as part of the policy – and the policy remains valid.</td></tr>
 <tr><th>Label:</th> <td>Support Undefined Actions</td></tr>
@@ -265,6 +223,213 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Used to support actions not known to the policy system.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section></section><section id="undefinedConflictConcepts"><h2>Undefined and Policy Conflict</h2><section id="term-invalid"><h3>Invalidate Policy</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The policy is invalid.</td></tr>
+<tr><th>Label:</th> <td>Invalidate Policy</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/invalid">http://www.w3.org/ns/odrl/2/invalid</a></td></tr>
+<tr><th>Note:</th> <td>Used to indicate the policy is invalid for Conflict strategy and Undefined actions.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a>, <a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section></section><section id="inheritanceConcepts"><h2>Policy Inheritance</h2><section id="term-inheritAllowed"><h3>Inheritance Allowed</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicates if the Policy entity can be inherited.</td></tr>
+<tr><th>Label:</th> <td>Inheritance Allowed</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritAllowed">http://www.w3.org/ns/odrl/2/inheritAllowed</a></td></tr>
+<tr><th>Note:</th> <td>A boolean value.</td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-inheritFrom"><h3>Inherits From</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Relates a (child) policy to another (parent) policy from which terms are inherited.</td></tr>
+<tr><th>Label:</th> <td>Inherits From</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritFrom">http://www.w3.org/ns/odrl/2/inheritFrom</a></td></tr>
+<tr><th>Note:</th> <td>The child policy will inherit from the parent policy</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-inheritRelation"><h3>Inherit Relation</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indentifies the type of inheritance.</td></tr>
+<tr><th>Label:</th> <td>Inherit Relation</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td></tr>
+<tr><th>Note:</th> <td>For example, this may indicate the business scenario, such as subscription, or prior arrangements between the parties (that are not machine representable)</td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section></section><section id="assetConcepts"><h2>Asset Concepts</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The subject of a Policy that Rules are applied to.</td></tr>
+<tr><th>Label:</th> <td>Asset</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a></td></tr>
+<tr><th>Note:</th> <td>The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata.</td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
+</table>
+</section><section id="term-relation"><h3>Relation</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Relation is an abstract property which creates an explicit link between an Action and an Asset.</td></tr>
+<tr><th>Label:</th> <td>Relation</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relation">http://www.w3.org/ns/odrl/2/relation</a></td></tr>
+<tr><th>Note:</th> <td>Sub-properties of relation are used to define the nature of that link.</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</section></section><section id="assetRelations"><h2>Asset Relations</h2><section id="term-target"><h3>Target</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The target property specifies the Asset upon which the Action is performed.</td></tr>
+<tr><th>Label:</th> <td>Target</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/target">http://www.w3.org/ns/odrl/2/target</a></td></tr>
+<tr><th>Note:</th> <td>Or not performed by Prohibitions.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</section><section id="term-output"><h3>Output</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The output property specifies the Asset which is created from the output of the Action.</td></tr>
+<tr><th>Label:</th> <td>Output</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/output">http://www.w3.org/ns/odrl/2/output</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>An identifiable entity who undertakes a role in the Policy.</td></tr>
+<tr><th>Label:</th> <td>Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
+<tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata.</td></tr>
+<tr><th>In range of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
+</table>
+</section><section id="term-function"><h3>Function</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule.</td></tr>
+<tr><th>Label:</th> <td>Function</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+</table>
+</section><section id="term-PartyScope"><h3>Party Scope</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Scopes for Party Scope expressions.</td></tr>
+<tr><th>Label:</th> <td>Party Scope</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyScope">http://www.w3.org/ns/odrl/2/PartyScope</a></td></tr>
+<tr><th>Note:</th> <td>Instances of the PartyScope class represent the terms for the scope property of Parties.</td></tr>
+<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-All">All</a>, <a href="#term-All2ndConnections">All2ndConnections</a>, <a href="#term-AllConnections">AllConnections</a>, <a href="#term-AllGroups">AllGroups</a>, <a href="#term-Group">Group</a>, <a href="#term-Individual">Individual</a></td></tr>
+</table>
+</section></section><section id="partyRoles"><h2>Party Functions</h2><section id="term-assignee"><h3>Assignee</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party is the recipient of the policy statement.</td></tr>
+<tr><th>Label:</th> <td>Assignee</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assignee">http://www.w3.org/ns/odrl/2/assignee</a></td></tr>
+<tr><th>Note:</th> <td>Must be supported.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</section><section id="term-assigner"><h3>Assigner</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party is the issuer of the policy statement.</td></tr>
+<tr><th>Label:</th> <td>Assigner</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assigner">http://www.w3.org/ns/odrl/2/assigner</a></td></tr>
+<tr><th>Note:</th> <td>Must be supported.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</section><section id="term-attributedParty"><h3>Attributed Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party to be attributed.</td></tr>
+<tr><th>Label:</th> <td>Attributed Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/attributedParty">http://www.w3.org/ns/odrl/2/attributedParty</a></td></tr>
+<tr><th>Note:</th> <td>Maybe specified as part of the attribute action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</section><section id="term-compensatedParty"><h3>Compensated Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party is the recipient of the compensation.</td></tr>
+<tr><th>Label:</th> <td>Compensated Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr>
+<tr><th>Note:</th> <td>Maybe specified as part of the compensate duty action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-compensatingParty"><h3>Compensating Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party that is the provider of the compensation.</td></tr>
+<tr><th>Label:</th> <td>Compensating Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/compensatingParty">http://www.w3.org/ns/odrl/2/compensatingParty</a></td></tr>
+<tr><th>Note:</th> <td>Maybe specified as part of the compensate duty action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-consentingParty"><h3>Consenting Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party to obtain consent from.</td></tr>
+<tr><th>Label:</th> <td>Consenting Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/consentingParty">http://www.w3.org/ns/odrl/2/consentingParty</a></td></tr>
+<tr><th>Note:</th> <td>Maybe specified as part of the obtainConsent action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</section><section id="term-informedParty"><h3>Informed Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party to be informed of all uses.</td></tr>
+<tr><th>Label:</th> <td>Informed Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/informedParty">http://www.w3.org/ns/odrl/2/informedParty</a></td></tr>
+<tr><th>Note:</th> <td>Maybe specified as part of the inform action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-trackingParty"><h3>Tracking Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party is the usage tracker.</td></tr>
+<tr><th>Label:</th> <td>Tracking Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/trackingParty">http://www.w3.org/ns/odrl/2/trackingParty</a></td></tr>
+<tr><th>Note:</th> <td>May be specified as part of the acceptTracking action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</section></section><section id="partyScopes"><h2>Party Scopes</h2><section id="term-Group"><h3>Group</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is the defined group with multiple individual members.</td></tr>
+<tr><th>Label:</th> <td>Group</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Group">http://www.w3.org/ns/odrl/2/Group</a></td></tr>
+<tr><th>Note:</th> <td>Must be supported.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-Individual"><h3>Individual</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is the single Party individual.</td></tr>
+<tr><th>Label:</th> <td>Individual</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Individual">http://www.w3.org/ns/odrl/2/Individual</a></td></tr>
+<tr><th>Note:</th> <td>MUST be supported.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
+</table>
+</section><section id="term-All"><h3>All</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the collective individuals within a context.</td></tr>
+<tr><th>Label:</th> <td>All</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/All">http://www.w3.org/ns/odrl/2/All</a></td></tr>
+<tr><th>Note:</th> <td>For example, may be used to indicate all the users of a specific social network the party is a member of. Note that “group” scope is also assumed.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-AllConnections"><h3>All Connections</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the first-level connections of the Party.</td></tr>
+<tr><th>Label:</th> <td>All Connections</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td></tr>
+<tr><th>Note:</th> <td>For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-All2ndConnections"><h3>All Second-level Connections</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the second-level connections to the Party.</td></tr>
+<tr><th>Label:</th> <td>All Second-level Connections</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/All2ndConnections">http://www.w3.org/ns/odrl/2/All2ndConnections</a></td></tr>
+<tr><th>Note:</th> <td>For example, may be used to indicate all “friends of friends” of the Party. Note that “group” scope is also assumed.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-AllGroups"><h3>All Groups</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the group connections of the Party.</td></tr>
+<tr><th>Label:</th> <td>All Groups</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td></tr>
+<tr><th>Note:</th> <td>For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section></section><section id="partyAssetConcepts"><h2>Party and Asset Concepts</h2><section id="term-scope"><h3>Scope</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The identifier of a scope that provides context to the extent of the entity.</td></tr>
+<tr><th>Label:</th> <td>Scope</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td></tr>
+<tr><th>Note:</th> <td>Used to define scopes for Assets and Parties.</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
 </table>
 </section></section><section id="permissions"><h2>Permission Concepts</h2><section id="term-Permission"><h3>Permission</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A set of actions that are allowed to be performed over an Asset.</td></tr>
@@ -1100,186 +1265,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
 <tr><th>Note:</th> <td>This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-RightOperand">RightOperand</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identifiable entity who undertakes a role in the Policy.</td></tr>
-<tr><th>Label:</th> <td>Party</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
-<tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata.</td></tr>
-<tr><th>In range of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
-</table>
-</section><section id="term-function"><h3>Function</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule.</td></tr>
-<tr><th>Label:</th> <td>Function</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-</table>
-</section><section id="term-PartyScope"><h3>Party Scope</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Scopes for Party Scope expressions.</td></tr>
-<tr><th>Label:</th> <td>Party Scope</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyScope">http://www.w3.org/ns/odrl/2/PartyScope</a></td></tr>
-<tr><th>Note:</th> <td>Instances of the PartyScope class represent the terms for the scope property of Parties.</td></tr>
-<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-All">All</a>, <a href="#term-All2ndConnections">All2ndConnections</a>, <a href="#term-AllConnections">AllConnections</a>, <a href="#term-AllGroups">AllGroups</a>, <a href="#term-Group">Group</a>, <a href="#term-Individual">Individual</a></td></tr>
-</table>
-</section><section id="term-scope"><h3>Scope</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The identifier of a scope that provides context to the extent of the entity.</td></tr>
-<tr><th>Label:</th> <td>Scope</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td></tr>
-<tr><th>Note:</th> <td>Used to define scopes for Assets and Parties.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
-</table>
-</section></section><section id="partyRoles"><h2>Party Functions</h2><section id="term-assignee"><h3>Assignee</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party is the recipient of the policy statement.</td></tr>
-<tr><th>Label:</th> <td>Assignee</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assignee">http://www.w3.org/ns/odrl/2/assignee</a></td></tr>
-<tr><th>Note:</th> <td>Must be supported.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
-</table>
-</section><section id="term-assigner"><h3>Assigner</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party is the issuer of the policy statement.</td></tr>
-<tr><th>Label:</th> <td>Assigner</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assigner">http://www.w3.org/ns/odrl/2/assigner</a></td></tr>
-<tr><th>Note:</th> <td>Must be supported.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
-</table>
-</section><section id="term-attributedParty"><h3>Attributed Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party to be attributed.</td></tr>
-<tr><th>Label:</th> <td>Attributed Party</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/attributedParty">http://www.w3.org/ns/odrl/2/attributedParty</a></td></tr>
-<tr><th>Note:</th> <td>Maybe specified as part of the attribute action.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-</table>
-</section><section id="term-compensatedParty"><h3>Compensated Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party is the recipient of the compensation.</td></tr>
-<tr><th>Label:</th> <td>Compensated Party</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr>
-<tr><th>Note:</th> <td>Maybe specified as part of the compensate duty action.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-compensatingParty"><h3>Compensating Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party that is the provider of the compensation.</td></tr>
-<tr><th>Label:</th> <td>Compensating Party</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/compensatingParty">http://www.w3.org/ns/odrl/2/compensatingParty</a></td></tr>
-<tr><th>Note:</th> <td>Maybe specified as part of the compensate duty action.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-consentingParty"><h3>Consenting Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party to obtain consent from.</td></tr>
-<tr><th>Label:</th> <td>Consenting Party</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/consentingParty">http://www.w3.org/ns/odrl/2/consentingParty</a></td></tr>
-<tr><th>Note:</th> <td>Maybe specified as part of the obtainConsent action.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-</table>
-</section><section id="term-informedParty"><h3>Informed Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party to be informed of all uses.</td></tr>
-<tr><th>Label:</th> <td>Informed Party</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/informedParty">http://www.w3.org/ns/odrl/2/informedParty</a></td></tr>
-<tr><th>Note:</th> <td>Maybe specified as part of the inform action.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-trackingParty"><h3>Tracking Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party is the usage tracker.</td></tr>
-<tr><th>Label:</th> <td>Tracking Party</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/trackingParty">http://www.w3.org/ns/odrl/2/trackingParty</a></td></tr>
-<tr><th>Note:</th> <td>May be specified as part of the acceptTracking action.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-</table>
-</section></section><section id="partyScopes"><h2>Party Scopes</h2><section id="term-Group"><h3>Group</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is the defined group with multiple individual members.</td></tr>
-<tr><th>Label:</th> <td>Group</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Group">http://www.w3.org/ns/odrl/2/Group</a></td></tr>
-<tr><th>Note:</th> <td>Must be supported.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-Individual"><h3>Individual</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is the single Party individual.</td></tr>
-<tr><th>Label:</th> <td>Individual</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Individual">http://www.w3.org/ns/odrl/2/Individual</a></td></tr>
-<tr><th>Note:</th> <td>MUST be supported.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-</table>
-</section><section id="term-All"><h3>All</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the collective individuals within a context.</td></tr>
-<tr><th>Label:</th> <td>All</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/All">http://www.w3.org/ns/odrl/2/All</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be used to indicate all the users of a specific social network the party is a member of. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-AllConnections"><h3>All Connections</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the first-level connections of the Party.</td></tr>
-<tr><th>Label:</th> <td>All Connections</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-All2ndConnections"><h3>All Second-level Connections</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the second-level connections to the Party.</td></tr>
-<tr><th>Label:</th> <td>All Second-level Connections</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/All2ndConnections">http://www.w3.org/ns/odrl/2/All2ndConnections</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be used to indicate all “friends of friends” of the Party. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-AllGroups"><h3>All Groups</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the group connections of the Party.</td></tr>
-<tr><th>Label:</th> <td>All Groups</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="assetConcepts"><h2>Asset Concepts</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The subject of a Policy that Rules are applied to.</td></tr>
-<tr><th>Label:</th> <td>Asset</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a></td></tr>
-<tr><th>Note:</th> <td>The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata.</td></tr>
-<tr><th>Sub-classes:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>In range of:</th> <td><a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
-</table>
-</section><section id="term-relation"><h3>Relation</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Relation is an abstract property which creates an explicit link between an Action and an Asset.</td></tr>
-<tr><th>Label:</th> <td>Relation</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relation">http://www.w3.org/ns/odrl/2/relation</a></td></tr>
-<tr><th>Note:</th> <td>Sub-properties of relation are used to define the nature of that link.</td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-</table>
-</section><section id="term-scope"><h3>Scope</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The identifier of a scope that provides context to the extent of the entity.</td></tr>
-<tr><th>Label:</th> <td>Scope</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td></tr>
-<tr><th>Note:</th> <td>Used to define scopes for Assets and Parties.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
-</table>
-</section></section><section id="assetRelations"><h2>Asset Relations</h2><section id="term-target"><h3>Target</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The target property specifies the Asset upon which the Action is performed.</td></tr>
-<tr><th>Label:</th> <td>Target</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/target">http://www.w3.org/ns/odrl/2/target</a></td></tr>
-<tr><th>Note:</th> <td>Or not performed by Prohibitions.</td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-</table>
-</section><section id="term-output"><h3>Output</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The output property specifies the Asset which is created from the output of the Action.</td></tr>
-<tr><th>Label:</th> <td>Output</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/output">http://www.w3.org/ns/odrl/2/output</a></td></tr>
-<tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section>    
