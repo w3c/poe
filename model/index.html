@@ -378,16 +378,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>If the <code>conflict</code> attribute is not explicitly set, the default value of <code>invalid</code> will be used.</p>
 
         
-<p>The processing model for Policies conflict strategies includes:</p>
-    <ol>
-        <li>If a ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow:</li>
+<p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
+   
         <ol>
            <li>If a Policy has the <code>conflict</code> attribute of <code>perm</code> then any conflicting Permission Rule MUST overide the Prohibition Rule and continue with the Policy as valid.</li>
  <li>If a Policy has the <code>conflict</code> attribute of <code>prohibit</code> then any conflicting Prohibition Rule MUST overide the Permission Rule and continue with the Policy as valid.</li>
   <li>If a Policy has the <code>conflict</code> attribute of <code>invalid</code> then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
  <li>If a Policy has multiple <code>conflict</code> attribute values (for example, after a Policy merge or inheritance) then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
         </ol>
-    </ol>
        
         
 <blockquote>
@@ -590,11 +588,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The processing model for ODRL Policy Inheritance includes:</p>
     <ol>
     <li>A (child) Policy with an <code>inheritFrom</code> attribute MUST first verify that the (parent) Policy does not contain the <code>inheritAllowed</code> attribute with the value "false".</li>
-        <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:</li>
+        <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
        <ul>
            <li>All policy-level Assets, Parties, Actions.</li>
            <li>All Permission and Prohibition Rules.</li>
        </ul>
+            </li>
       <li>The (child) Policy can then be further expanded (into <i>atomic</i> Rules) by following the processing models defined in the <a href="#composition">Policy Composition</a> section.</li>  
     </ol>
         
