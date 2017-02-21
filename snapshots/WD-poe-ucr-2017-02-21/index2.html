@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html typeof="bibo:Document w3p:WD" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#" lang="en">
+<html typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#" lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -704,7 +704,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     }
   </script>
   <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
-  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD">
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/poe-ucr/">
   <meta name="generator" content="ReSpec 10.2.1">
   <script id="initialUserConfig" type="application/json">
@@ -712,12 +712,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       "preProcess": [
         null
       ],
-      "specStatus": "WD",
+      "specStatus": "ED",
       "shortName": "poe-ucr",
-      "publishDate": "2017-02-21",
-      "previousMaturity": "NOTE",
-      "previousPublishDate": "2016-07-21",
-      "previousURI": "https://www.w3.org/TR/2016/NOTE-poe-ucr-20160721/",
       "edDraftURI": "https://w3c.github.io/poe/ucr/",
       "editors": [
       {
@@ -759,7 +755,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title">POE Use Cases and Requirements</h1>
-    <h2 id="w3c-working-draft-21-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Working Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-21">21 February 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-21-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-21">21 February 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="https://www.w3.org/TR/2017/WD-poe-ucr-20170221/">https://www.w3.org/TR/2017/WD-poe-ucr-20170221/</a></dd>
@@ -767,8 +763,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <dd><a href="https://www.w3.org/TR/poe-ucr/">https://www.w3.org/TR/poe-ucr/</a></dd>
       <dt>Latest editor's draft:</dt>
       <dd><a href="https://w3c.github.io/poe/ucr/">https://w3c.github.io/poe/ucr/</a></dd>
-      <dt>Previous version:</dt>
-      <dd><a rel="dcterms:replaces" href="https://www.w3.org/TR/2016/NOTE-poe-ucr-20160721/">https://www.w3.org/TR/2016/NOTE-poe-ucr-20160721/</a></dd>
       <dt>Editors:</dt>
       <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Michael Steidl</span>, The Copyright Hub</span>
         <span property="rdf:rest" resource="_:editor1"></span>
@@ -808,17 +802,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>This is work in progress. The final version of this document planned to be published as a Working Group Note. The current version is the first Public Working Draft.</p>
 
     <p>
-      This document was published by the <a href="https://www.w3.org/2016/poe/">Permissions &amp; Obligations Expression Working Group</a> as a Working Draft. If you wish to make comments regarding this document, please send them to
+      This document was published by the <a href="https://www.w3.org/2016/poe/">Permissions &amp; Obligations Expression Working Group</a> as an Editor's Draft. If you wish to make comments regarding this document, please send them to
       <a href="mailto:public-poe-comments@w3.org">public-poe-comments@w3.org</a> (<a href="mailto:public-poe-comments-request@w3.org?subject=subscribe">subscribe</a>,
       <a href="https://lists.w3.org/Archives/Public/public-poe-comments/">archives</a>). All comments are welcome.
     </p>
     <p>
-      Publication as a Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+      Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
     </p>
     <p>
       This document was produced by a group operating under the
       <a id="sotd_patent" property="w3p:patentRules" href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
-              Policy</a>. The group does not expect this document to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+              Policy</a>.
       <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/87755/status" rel="disclosure">public list of any patent
                 disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
       <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
@@ -949,6 +943,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <!--OddPage-->
     <h2 id="h-usecases" resource="#h-usecases"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Use Cases</span>
     </h2>
+	
+	
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			     %%%%%%%%%%%% POE.UC.01 %%%%%%%%%%%% 
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
@@ -956,7 +952,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section id="POE.UC.01" typeof="bibo:Chapter" resource="#POE.UC.01" property="bibo:hasPart">
       <h3 id="h-poe.uc.01" resource="#h-poe.uc.01"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.1 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.01">POE.UC.01</dfn>: Permissions and obligations for language resources</span>
       </h3>
-      <p class="contributor">Víctor Rodríguez on behalf of <a class="external text" href="https://www.w3.org/community/ld4lt/"><abbr title="World Wide Web Consortium">W3C</abbr> Linked Data For Language Technology Community Group</a></p>
+      <p class="contributor">V&iacute;ctor Rodr&iacute;guez on behalf of <a class="external text" href="https://www.w3.org/community/ld4lt/"><abbr title="World Wide Web Consortium">W3C</abbr> Linked Data For Language Technology Community Group</a></p>
 
       <!-- <li> <strong>Title</strong>: Permissions and Obligations for Language Resources 
 					</li> -->
@@ -978,10 +974,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </h3>
 
       <!-- <li> <strong>Title</strong>: Conditional Access to Linked Data  </li> -->
-      <p class="contributor">Víctor Rodríguez and Nandana Mihindukulasooriya (UPM) on behalf of the ODRL Linked Data profile editors.</p>
+      <p class="contributor">V&iacute;ctor Rodr&iacute;guez and Nandana Mihindukulasooriya (UPM) on behalf of the ODRL Linked Data profile editors.</p>
       <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 
-      <p> A publisher of Linked Data (or in general a RDF dataset) wants to selectively make available parts (e.g. named graphs) of a dataset. Availability depend on ODRL policies, the context and the ODRL Request and ODRL Ticket. For example, given a dataset, one might want to serve it under the following conditions: <em>"Anybody can access named graph <code>ex:graph1</code>, but can only access <code>ex:graph2</code> during 2016. Individual triples in <code>ex:graph3</code> can be accessed at the price of 1 € cent."</em>
+      <p> A publisher of Linked Data (or in general a RDF dataset) wants to selectively make available parts (e.g. named graphs) of a dataset. Availability depend on ODRL policies, the context and the ODRL Request and ODRL Ticket. For example, given a dataset, one might want to serve it under the following conditions: <em>"Anybody can access named graph <code>ex:graph1</code>, but can only access <code>ex:graph2</code> during 2016. Individual triples in <code>ex:graph3</code> can be accessed at the price of 1 &euro; cent."</em>
       </p>
 
       <strong>Related Requirements: </strong>
@@ -1104,9 +1100,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </dl>
         </dd>
 
+
         <!--</p>-->
         <dt>What Do Editors Want?</dt>
-        <dd> Ideally, not to worry about rights at all. Essentially, editors want to know the answer to the question "Can I use this content in this way?" and, if the answer is yes, "Are there any duties?". It is not unusual for editors to have access to content that they are not permitted to republish. Or that they can only republish in certain ways (e.g., only in print but not on a mobile app). Editors want to be able to:
+        <dd> Ideally, not to worry about rights at all. Essentially, editors want to know the answer to the question "Can I use this content in this way?" and, if the answer is yes, "Are there any duties?". It is not unusual for editors to have access to content that they are not permitted to republish. Or that they can only republish in certain ways (e.g., only in print but not on a mobile application). Editors want to be able to:
           <dl>
             <dt>Create a bundle of action and context"</dt>
             <dd>An editor identifies a content use in context, meaning a particular action they propose to take with pieces of content (e.g. "print", "distribute", "archive") and any relevant context for that action (e.g. location="France"). The types of context for an action correspond to possible constraints which could apply to the use of a piece of content. The use is not tied to one particular piece of content. The use must have a unique identifier. </dd>
@@ -1115,7 +1112,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </dl>
         </dd>
       </dl>
-      <p></p>
+
       <strong>Related Requirements: </strong>
       <span data-ref-anchor=""><a href="#POE.R.DM.09">POE.R.DM.09</a>, <a href="#POE.R.R.06">POE.R.R.06</a></span>
 
@@ -1343,13 +1340,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 
       <p>Sometimes it's required to be able to constrain the applicability of policies according to a relative point in time, e.g.:
-      </p>
+
       <ul>
         <li>Organisers of sport events grant the use of photos or videos relative to the end of a sport event/game. (Note: the live publishing of photos/videos may be granted by a different license.)</li>
         <li>Speakers at a conference circulate a document with their speech in advance and they permit to publish it only after the speech has ended. </li>
       </ul>
-      <p></p>
-
+      </p>
       <strong>Related Requirements: </strong>
       <span data-ref-anchor=""><a href="#POE.R.DM.06">POE.R.DM.06</a></span>
 
@@ -1364,19 +1360,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </h3>
 
       <!-- <li> <strong>Title</strong>:   </li> -->
-      <p class="contributor">Víctor Rodríguez-Doncel</p>
+      <p class="contributor">V&iacute;ctor Rodr&iacute;guez-Doncel</p>
       <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 
       <p><a class="external text" href="http://georg-re.hm/pdf/LREC-2014-META-SHARE.pdf"><i>META-SHARE</i></a> is an open and secure network of repositories for sharing and exchanging language data, tools, and related web services. As of July 2016, it accounted more than 2700 resources. These resources are described with small pieces of metadata according to their <a class="external text" href="http://www.meta-net.eu/meta-share/metadata-schema/">schema</a>.</p>
-      <p>
-      </p>
+
       <p>While maintainers of META-SHARE's 32 repositories can edit simple metadata records, they are usually not skilled enough to edit ODRL expressions. Hence they would like to be able to:
-      </p>
+      
       <ol>
         <li>Point to a license template (referred by a well-known URI), with a placeholder to for the price.</li>
         <li>Add a metadata record indicating the specific price of the resource.</li>
-      </ol>
-      <p></p>
+      </ol></p>
+
       <strong>Related Requirements: </strong>
       <span data-ref-anchor=""><a href="#POE.R.DM.03">POE.R.DM.03</a></span>
 
@@ -1391,7 +1386,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </h3>
 
       <!-- <li> <strong>Title</strong>:   </li> -->
-      <p class="contributor">Víctor Rodríguez-Doncel</p>
+      <p class="contributor">V&iacute;ctor Rodr&iacute;guez-Doncel</p>
       <!--<li> <strong>Industry</strong>: Language resources industry </li>-->
 
       <p>Depending on the use case, it's often necessary to specify constraints on properties of different kinds of entities (e.g., assets, parties or any other external entities). The exact subject for which those constraints must hold is currently not encodable in ODRL, but has to be inferred from the textual semantics of each of ODRL's 25 constraint terms; which not only leads to ambiguities in terms of interpreted semantics, but might also prove to be not capable of fully covering new usages of ODRL.
@@ -1453,7 +1448,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <h3 id="h-poe.uc.24" resource="#h-poe.uc.24"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.24 </span><dfn data-dfn-type="dfn" id="dfn-poe.uc.24">POE.UC.24</dfn>: Synchronization in a multilayer music description environment </span>
       </h3>
 
-      <p class="contributor">Laboratorio di Informatica Musicale (LIM), Department of Computer Science, Universitá degli Studi di Milano</p>
+      <p class="contributor">Laboratorio di Informatica Musicale (LIM), Department of Computer Science, Universit&iacute;� degli Studi di Milano</p>
 
 
       <p> IEEE 1599 is an international XML-based standard that aims to comprehensively describe music content by supporting the representation of heterogeneous music aspects within a single XML document. Moreover, IEEE 1599 lets spatio-temporal relationships emerge among such materials, thanks to the identification of music events inside a common data structure known as the spine: in this way, events can be described in different layers (e.g., a chord's graphical aspect and its audio performance), as well as multiple times within a single layer (e.g., different music performances of the same events). Consequently, the IEEE 1599 multilayer environment presents two complementary synchronization modes: inter-layer and intra-layer synchronization. Coupling these two categories of synchronization makes it possible to design and implement frameworks that allow new kinds of interaction with media contents and novel music-experience models, as shown in the Music Box area of the EMIPIU web framework (see URL above). Recognizing music events and their synchronization can be seen as an additional intellectual achievement that on one side does not affect the already existing IP rights on media contents, but on the other side requires adequate protection. Consequently, it is desirable to consider a new permission which allows the producer to synchronize different media contents with respect to the other possibly existing permissions, restrictions and duties associated with media contents.
@@ -1472,6 +1467,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </h3>
 
       <p class="contributor">Dianne Kennedy, Idealliance </p>
+
+
       <p> In the Magazine Industry, magazine media companies need the ability to communicate the legal terms of usage permissions (known as licensing terms) that are associated with content (article text and rich media). Specifically:
       </p>
       <ul>
