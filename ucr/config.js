@@ -3,7 +3,7 @@ var respecConfig = {
     specStatus: "WD",
     shortName: "poe-ucr",
     previousMaturity:     "NOTE",
-    previousPublishDate:  "2016-07-21",
+    previousPublishDate:  "2016-07-23",
     previousURI:          "https://www.w3.org/TR/2016/NOTE-poe-ucr-20160721/",
     edDraftURI: "https://w3c.github.io/poe/ucr/",
    editors: [{   name:       "Michael Steidl",
