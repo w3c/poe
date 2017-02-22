@@ -104,7 +104,8 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Asset Concepts"@en ;
     skos:member :Asset ;
-    skos:member :relation .
+    skos:member :relation ;
+    skos:member :AssetScope .
 
 <http://www.w3.org/ns/odrl/2/#assetRelations>
     a skos:Collection ;
@@ -616,9 +617,8 @@ odrl:
 	skos:note "Used to define scopes for Assets and Parties."@en ;
 	rdfs:range [
 		a owl:Class ;
-		owl:unionOf ( :Asset :Party ) ;
+		owl:unionOf ( :AssetScope :PartyScope ) ;
 	] .
-
 
 :action
 	a rdf:Property , owl:ObjectProperty ;
@@ -1719,6 +1719,14 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 ## Scopes
+
+:AssetScope
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "Asset Scope"@en ;
+	skos:definition "Scopes for Asset Scope expressions."@en ;
+	skos:note "Instances of the AssetScope class represent the terms for the scope property of Assets."@en .
 
 :PartyScope
 	a rdfs:Class , owl:Class ;
