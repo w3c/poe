@@ -1,13 +1,11 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>POE Use Cases and Requirements</title>
-		<script src='https://www.w3.org/Tools/respec/respec-w3c-common'
-				async="async" class='remove'></script>
+		<meta charset='utf-8'>
+		<script src='https://www.w3.org/Tools/respec/respec-w3c-common.js' class='remove'></script>
 						<script src='dfn_index.js' class='remove'></script>
-		<script class="remove" src="config.js"></script>
-		<!-- taken from "Spatial Data on the Web Use Cases & Requirements" -->
+						    <script class="remove" src="config.js"></script>
   <style type="text/css">
   .contributor:before {
     content: "Contributed by: ";
@@ -41,54 +39,6 @@
 }
 
   </style>
-  <script type="text/javascript">
-    // This is the script that hides/shows the full descriptions of the use cases
-    // The default is visible so that they're accessible without scripting
-    // Init makes them all hidden and writes in the toggle link
-
-    window.onload = init;
-
-    function init() {
-	    var divs = document.getElementsByTagName("div");
-      for (var i = 0; i < divs.length; i++ ) {
-     //   if (divs[i+1].className=='visible uc') {
-      //    divs[i+1].className = 'hidden uc';
-	 //				divs[i].innerHTML = 'Full use case description (click to expand):';
-
-       // } else
-		if (divs[i+1].className=='visible requirement') {
-          divs[i+1].className = 'hidden requirement';
-	 				divs[i].innerHTML = 'Related requirements (click to expand):';
-
-        }
-      }
-    }
-
-    // And here's the toggle function
-
-		function toggleVisibility(elem) {	// expand or collapse the next div
-			var divs = document.getElementsByTagName("div");
-			for(var i = 0; i < divs.length;i++) // find the next div element
-				if(divs[i] == elem) {
-					var item = divs[i + 1];
-				}
-			if (item) {
-				if (item.className=='hidden uc') {
-					item.className = 'visible uc';
-					elem.innerHTML = 'Full use case description (click to collapse):';
-				}	else if(item.className=='visible uc'){
-					item.className = 'hidden uc';
-					elem.innerHTML = 'Full use case description (click to expand):';
-				} else if (item.className=='hidden requirement') {
-					item.className = 'visible requirement';
-					elem.innerHTML = 'Related requirements (click to collapse):';
-				}	else if(item.className=='visible requirement'){
-					item.className = 'hidden requirement';
-					elem.innerHTML = 'Related requirements (click to expand):';
-				}
-			}
-		}
-  </script>
 	</head>
 	<body>
 		<section  id="abstract">
@@ -631,7 +581,7 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 					<p class="contributor">Antoine Isaac, Riccardo Albertoni</p>
 
 
-							<p> Example from the W3C Working Group Data on the Web Best Practices [[dwbp]], more specifically for the Data Quality Vocabulary [[vocab-dqv]]. This example specifies that the serviceProvider grants the permission to access the dataset and commits to serve the data with a certain quality, more concretely, 99% availability of a SPARQL endpoint associated with the dataset. This is expressed as a duty on the service provider with a constraint that is defined using a DQV metric (<code>:sparqlEndpointUptime</code>) that has to be greater than a certain value (e.g., 99). The <code>odrl:assignee</code> is the recipient of the policy statement and the <code>odrl:assigner</code> is the issuer of the policy statement. For discussion about this example see <a href="http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html">http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html</a>
+							<p> Example from the W3C Working Group Data on the Web Best Practices [dwbp], more specifically for the Data Quality Vocabulary [vocab-dqv]. This example specifies that the serviceProvider grants the permission to access the dataset and commits to serve the data with a certain quality, more concretely, 99% availability of a SPARQL endpoint associated with the dataset. This is expressed as a duty on the service provider with a constraint that is defined using a DQV metric (<code>:sparqlEndpointUptime</code>) that has to be greater than a certain value (e.g., 99). The <code>odrl:assignee</code> is the recipient of the policy statement and the <code>odrl:assigner</code> is the issuer of the policy statement. For discussion about this example see <a href="http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html">http://lists.w3.org/Archives/Public/public-odrl/2016Feb/0000.html</a>
 							</p>
 							<p> The expression of constraints in ODRL seems quite unfit with expressing general constraints on values in RDF graphs, as we would require here. However, ODRL can be easily extended, and is schedule to undergo refinement in the context of the W3C Permissions & Obligations Expression Working Group. In the future DQV implementers should investigate whether a general constraint expression language like the coming SHACL provides a more appropriate mechanism to be used on top of ODRL permissions and duties. </p>
 						<strong>Related Requirements: </strong>
