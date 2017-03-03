@@ -1019,7 +1019,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <p>The constraint <code>leftOperand</code> MUST clearly be defined to indicate which entity is the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
     
     
-    <p>If multiple Constraint entities are linked to the same Permission, Prohibition, or Duty entity, then all the Constraint entities within the Rule MUST be satisfied. That is, all the Constraint entities are (boolean) <em>and</em>ed together</p>
+    <p>When multiple Constraints are attached to the same Rule they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied.</p>
        
 <p>The Constraint entity has the following attributes:</p>
 <ul>
