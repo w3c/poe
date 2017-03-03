@@ -18,10 +18,9 @@ var respecConfig = {
     wgURI: "https://www.w3.org/2016/poe/",
     wgPublicList: "public-poe-comments",
     wgPatentURI: "https://www.w3.org/2004/01/pp-impl/87755/status",
-    inlineCSS: true,
-    noIDLIn: true,
-    noLegacyStyle: false,
-    noRecTrack: true,
+    inlineCSS: "true",
+	lint: "false",
+    noRecTrack: "true",
     localBiblio: {
       "SCHEMA-ORG":{
         "href":"http://schema.org/",
