@@ -381,10 +381,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
    
         <ol>
-           <li>If a Policy has the <code>conflict</code> attribute of <code>perm</code> then any conflicting Permission Rule MUST overide the Prohibition Rule and continue with the Policy as valid.</li>
- <li>If a Policy has the <code>conflict</code> attribute of <code>prohibit</code> then any conflicting Prohibition Rule MUST overide the Permission Rule and continue with the Policy as valid.</li>
+           <li>If a Policy has the <code>conflict</code> attribute of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
+ <li>If a Policy has the <code>conflict</code> attribute of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule and continue with the Policy as valid.</li>
   <li>If a Policy has the <code>conflict</code> attribute of <code>invalid</code> then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
- <li>If a Policy has multiple <code>conflict</code> attribute values (for example, after a Policy merge or inheritance) then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
+ <li>If a Policy has multiple <code>conflict</code> attribute values (for example, after a Policy merge or inheritance) then processing MUST not continue and the entire Policy MUST be invalid.</li> 
         </ol>
        
         
@@ -810,10 +810,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The Permission entity has the following attributes:</p>
 <ul>
 <li>The Permission entity MUST refer to a <code>target</code> Asset on which the identified Action MAY be performed. Other <code>relation</code> values for Asset MAY be used.</li>
-<li>The Permission entity MUST refer to an instance of an Action that indicates the granted operation allowed on the target Asset.</li>
+<li>The Permission entity MUST refer to an instance of an Action that indicates the operation allowed on the target Asset.</li>
 <li>The Permission entity MAY refer to one or more assigner and/or assignee <code>role</code> functions undertaken by Party entities. Other <code>role</code> function values for Party MAY be used.</li>
 <li>The Permission entity MAY refer to one or more <code>constraint</code>s. The Permission becomes effective if all of the constraints are satisfied.</li>
-<li>The Permission entity MAY refer to one or more <code>duty</code>/ies. The Duty expresses an obligation that MUST be fulfilled before the Permission being granted.</li>
+<li>The Permission entity MAY refer to one or more <code>duty</code>/ies. The Duty expresses an obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
 
 <blockquote>   
@@ -989,7 +989,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The ODRL vocabulary [[!vocab-odrl]] defines a standard set of common Action names that MAY be used.</p>
 
     <blockquote>
-<p>Example Use Case: The Party needs to define an Offer policy granting a Permission for the target Asset http://example.com/music:1012, namely the permission to play the Asset.</p> 
+<p>Example Use Case: The Party expresses an Offer policy for the target Asset http://example.com/music:1012, namely the Permission to play the Asset.</p> 
     </blockquote>
     
 <pre class="example hljs xquery">{
@@ -1010,9 +1010,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>The Constraint entity can be used to define restrictions to the Permission, the Prohibition and the Duty actions. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <b>true</b> the result of the Constraint is satisfied.</p>
+    <p>The Constraint entity can be used to define the context in which to process Actions in Rules, such as limitations, restrictions, or interpretations that must be applied to the Actions. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <b>true</b> the result of the Constraint is satisfied.</p>
         <p>
-       Constraints can express limitations with logical comparisions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). Constraints can also be used for complex Constraint Relations expressions that use two constraint objects as the left and right operand. For example, Constraint #1 (<code>leftOperand</code>) must be satisfied or (<code>operator</code>) Constraint #2 (<code>rightOperand</code>) must be satisfied.</p>
+       Constraints can express these contexts with logical comparisions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). Constraints can also be used for complex Constraint Relations expressions that use two constraint objects as the left and right operand. For example, Constraint #1 (<code>leftOperand</code>) must be satisfied or (<code>operator</code>) Constraint #2 (<code>rightOperand</code>) must be satisfied.</p>
  
     <p>Constraints MUST be checked by processings system at the time of executing the relevant action. If the constraint is satisfied (ie the logical expression is true) then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
     
@@ -1126,7 +1126,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     </ol>
 
    <blockquote> 
-<p>Example Use Case:The Policy below shows a Permission to play the target asset that can either be a maximum of 100 times, or unlimited play until the end of 2017. </p>  
+<p>Example Use Case:The Policy below shows a Permission to play the target asset that can either be a maximum of 100 times, or unlimited play until the end of 2017 (but not both). </p>  
     </blockquote>
            
 <pre class="example hljs xquery">
@@ -1162,7 +1162,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </pre>
 
     <blockquote>
-<p>Example Use Case: The Policy below shows a Permission to distribute photos in which the first constraint (the event "football/game/2017" has passed) is statisfied, then the second constraint (wait for 60 minutes) is processed, and is then satisfied. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Constraints must be satisfied, but could be processed at the same time.)  </p>
+<p>Example Use Case: The Policy below shows a Permission to distribute photos in which the first constraint (the event "football/game/2017") has concluded, then the second constraint (wait for 60 minutes) has passed. The operator <code>andSequence</code> requires that first the constraint in the leftOperand is satisfied - the event has closed - and this triggers the Action Delay Period after which the action of the permission may be excercised. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Constraints must be satisfied, but could be processed at the same time.)  </p>
     </blockquote>
     
 <pre class="example hljs xquery">
@@ -1185,7 +1185,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
    "constraint": {
        "@id": "http://example.com/policy:88/C1"
        "leftOperand": "odrl:event",
-       "operator": "odrl:gteq",
+       "operator": "odrl:gt",
        "rightOperand": "http://example.com/football/game/2017"
    },
    "constraint": {
