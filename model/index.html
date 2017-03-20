@@ -19,7 +19,7 @@
     
 <section id="sotd">
 <p>
-  <b>This is a work in progress. No section should be considered final, and the absence of any content does not imply that such content is out of scope, or may not appear in the future. If you feel something should be covered, please <a href="mailto:public-poe-comments@w3.org">tell us.</a></b>
+  <strong>This is a work in progress. No section should be considered final, and the absence of any content does not imply that such content is out of scope, or may not appear in the future. If you feel something should be covered, please <a href="mailto:public-poe-comments@w3.org">tell us.</a></strong>
 </p>
 </section>
     
@@ -200,7 +200,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
              
     <p>The ODRL Information Model supports flexibility in the composition of the information entities used to declare ODRL expressions. A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
      
-    <p>At the basic level, an ODRL Rule would refer to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <i>atomic</i> level of a Policy where it is <i>irreducible</i> and <i>unambiguous</i>.</p>
+    <p>At the basic level, an ODRL Rule would refer to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is <em>irreducible</em> and <em>unambiguous</em>.</p>
              
 <pre class="example hljs xquery">
 {
@@ -235,7 +235,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         }]
 </pre>
 
-<p>The above example could then be reduced to two <i>atomic</i> Rules, with the two target assets appearing individually in each:</p>
+<p>The above example could then be reduced to two <em>atomic</em> Rules, with the two target assets appearing individually in each:</p>
     
 <pre class="example hljs xquery">
     "permission": [{
@@ -256,7 +256,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         }]
 </pre>
     
-    <p>In order to create the <i>atomic</i> Rules in a Policy, the processing model for policies with multiple Assets, Parties, and Actions includes:</p>
+    <p>In order to create the <em>atomic</em> Rules in a Policy, the processing model for policies with multiple Assets, Parties, and Actions includes:</p>
     <ol>
     <li>Where there are multiple Assets (with the same Relation), then create new Rules (one for each of these Assets) and include one Asset relation, and include all other (non-Asset) entities.</li>
     <li>Where there are multiple Parties (with the same Role), then create new Rules (one for each of these Parties) and include one Party Role, and ainclude all other (non-Party Role) entities.</li>
@@ -315,7 +315,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <li>Replicate all Policy-level Assets in each and all Permission/Prohibition Rules.</li>
    <li>Replicate all Policy-level Parties in each and all Permission/Prohibition Rules.</li>
     <li>Replicate all Policy-level Actions in each and all Permission/Prohibition Rules.</li>
-      <li>Follow the processing model (defined above) to create <i>atomic</i> Rules in the Policy.</li>  
+      <li>Follow the processing model (defined above) to create <em>atomic</em> Rules in the Policy.</li>  
     </ol>
        
     
@@ -339,7 +339,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
          
     <p>The processing model for Policies with the above provenance properties include:</p>
     <ol>
-    <li>If a Policy contains the <B>dc:isReplacedBy</B> property, then the identified Policy MUST be retrieved and processed.</li>
+    <li>If a Policy contains the <strong>dc:isReplacedBy</strong> property, then the identified Policy MUST be retrieved and processed.</li>
     </ol>
 
 <blockquote>
@@ -439,11 +439,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         
  <p>The <code>undefined</code> attribute MUST take one of the following values:</p>
 <ul>
-<li><code>support</code>: the undefined Action is to be <b>supported</b> as part of the Policy &#8211; and the Policy remains valid</li>
-<li><code>ignore</code>: the undefined Action is to be <b>ignored</b> and is not part of the Policy &#8211; and the Policy remains valid</li>
-    <li><code>invalid</code>: the undefined Action is unknown &#8211; and the entire Policy is <b>invalid</b></li>
+<li><code>support</code>: the undefined Action is to be <strong>supported</strong> as part of the Policy &#8211; and the Policy remains valid</li>
+<li><code>ignore</code>: the undefined Action is to be <strong>ignored</strong> and is not part of the Policy &#8211; and the Policy remains valid</li>
+    <li><code>invalid</code>: the undefined Action is unknown &#8211; and the entire Policy is <strong>invalid</strong></li>
 </ul>
-<p>In all cases, systems that process ODRL expressions SHOULD provide mechanisms that adequately address these three outcomes. That is, how the Action can be <b>supported</b>, or <b>ignored</b>, or the entire Policy is <b>invalid</b>. </p>
+<p>In all cases, systems that process ODRL expressions SHOULD provide mechanisms that adequately address these three outcomes. That is, how the Action can be <strong>supported</strong>, or <strong>ignored</strong>, or the entire Policy is <strong>invalid</strong>. </p>
 
 
         <p>If the <code>undefined</code> attribute is not explicitly set, its default value of <code>invalid</code> SHALL be used.</p>
@@ -459,7 +459,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
       
         
 <blockquote>
-  <p>Example Use Case: A Policy of type Set states that the Asset can be <i>recorded</i>. The processing system does not understand this Action, and since the <b>undefined</b> attribute is <b>invalid</b>, then the entire Policy is deemed invalid.</p>
+  <p>Example Use Case: A Policy of type Set states that the Asset can be <em>recorded</em>. The processing system does not understand this Action, and since the <strong>undefined</strong> attribute is <strong>invalid</strong>, then the entire Policy is deemed invalid.</p>
 </blockquote>    
 
 <pre class="example hljs xquery">
@@ -483,7 +483,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="inhertiance">
 <h4>Policy Inheritance</h4>
 
-    <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the information compositions of another (parent) Policy. The inheritance is aimed at <i>including</i> data compositions between Policies.</p>
+    <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the information compositions of another (parent) Policy. The inheritance is aimed at <em>including</em> data compositions between Policies.</p>
     
 <p>The <code>inheritAllowed</code> attribute in the Policy entity is used to indicate if the Policy expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> attribute MUST take one of the following values:</p>
 <ul>
@@ -594,7 +594,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
            <li>All Permission and Prohibition Rules.</li>
        </ul>
             </li>
-      <li>The (child) Policy can then be further expanded (into <i>atomic</i> Rules) by following the processing models defined in the <a href="#composition">Policy Composition</a> section.</li>  
+      <li>The (child) Policy can then be further expanded (into <em>atomic</em> Rules) by following the processing models defined in the <a href="#composition">Policy Composition</a> section.</li>  
     </ol>
         
 	
@@ -1010,7 +1010,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>The Constraint entity can be used to define the context in which to process Actions in Rules, such as limitations, restrictions, or interpretations that must be applied to the Actions. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <b>true</b> the result of the Constraint is satisfied.</p>
+    <p>The Constraint entity can be used to define the context in which to process Actions in Rules, such as limitations, restrictions, or interpretations that must be applied to the Actions. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <strong>true</strong> the result of the Constraint is satisfied.</p>
         <p>
        Constraints can express these contexts with logical comparisions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). Constraints can also be used for complex Constraint Relations expressions that use two constraint objects as the left and right operand. For example, Constraint #1 (<code>leftOperand</code>) must be satisfied or (<code>operator</code>) Constraint #2 (<code>rightOperand</code>) must be satisfied.</p>
  
@@ -1099,7 +1099,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="constraint-relations">
     <h3>Constraint Relations</h3>
  
-    <p>Constraint objects MAY also be used as both of the values for the <code>leftOperand</code> and <code>rightOperand</code> of a Constraint expression. This supports more complex Constraint Relations and allows for two constraints to be compared and processed accordingly. The two constraints MUST be <i>atomic</i> Constraints, that is, not a constraint that includes other Constraint Relations.</p>
+    <p>Constraint objects MAY also be used as both of the values for the <code>leftOperand</code> and <code>rightOperand</code> of a Constraint expression. This supports more complex Constraint Relations and allows for two constraints to be compared and processed accordingly. The two constraints MUST be <em>atomic</em> Constraints, that is, not a constraint that includes other Constraint Relations.</p>
     
     <p>The applicable <code>operators</code> that can be used for Constraint Relations are:</p>
     <ul>
@@ -1115,8 +1115,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The processing model for Constraint Relations includes:</p>
     <ol>
        <li>If the Constraint <code>leftOperand</code> refers to a Constraint object, then the <code>rightOperand</code> MUST also refer to a Constraint object.</li>
-       <li>The Constraint objects both MUST be <i>atomic</i> Constraint expressions.</li>
-        <li>The Constraint objects MUST not be the same <i>atomic</i> Constraint expression.</li>
+       <li>The Constraint objects both MUST be <em>atomic</em> Constraint expressions.</li>
+        <li>The Constraint objects MUST not be the same <em>atomic</em> Constraint expression.</li>
         <li>The Constraint <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>, <code>andSequence</code>. Other values MAY be defined in ODRL Profiles exclusively for the use of Constraint Relations.</li>
         <li>The Constraint MUST not use the <code>rightOperandReference</code>, <code>dataType</code>, <code>unit</code>, or <code>status</code> attributes.</li>
        <li>If the Constraint <code>operator</code> is <code>or</code> then at least one of the Constraints (in the left or right operands) MUST be satisfied for the entire Constraint to be satisfied.</li> 
