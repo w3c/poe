@@ -63,7 +63,7 @@ writeGroup('constraintRightOp');
         </div>
         
     <section id="rdfowl">
-   	<h2>RDF/OWL Encoding</h2>         
+   	<h3>RDF/OWL Encoding</h3>         
      <?php
         readfile(dirname(__FILE__) . '/parts/rdfowl.html');
         ?>
@@ -327,8 +327,13 @@ function writeTermAppendix($term)
     echo '<tr id="term-' . $tname . '">';
 	echo '<td>' . htmlspecialchars($term->get('rdfs:label')) . '</td>';
 	echo '<td>' .$term->htmlLink(). '</td>';
-    echo '<td> <a href="' . htmlspecialchars($term->get('owl:equivalentProperty')) . '"';
-    echo '>' . htmlspecialchars($term->get('owl:equivalentProperty')) . '</a></td>';
+    echo '<td>';
+    if(($term->get('owl:equivalentProperty')) !== null)
+    {
+      echo '<a href="' . htmlspecialchars($term->get('owl:equivalentProperty')) . '"';
+      echo '>' . htmlspecialchars($term->get('owl:equivalentProperty')) . '</a>';
+    }
+    echo '</td>';
     
 	echo '</tr>';
 }
