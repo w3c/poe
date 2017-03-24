@@ -55,23 +55,23 @@
      <dl class="termlist">
                  
 	          <dt><dfn>Policy</dfn></dt>
-	          <dd>A set of Rules defining what is allowed, disallowed or obligatory over an Asset.</dd>
+	          <dd>A Rule expressing what Action is allowed and/or disallowed over an Asset.</dd>
 	          <dt><dfn>Rule</dfn></dt>
-	          <dd>A set of Actions defining the precise Permissions, Prohibitions and obligations over an Asset.</dd>
+	          <dd>A Permission, Prohibition or Duty that expresses an Action that may, must not, and must be performed (respectively)</dd>
 	          <dt><dfn>Action</dfn></dt>
-	          <dd>An operation that can be allowed by Permissions, disallowed by Prohibitions, or made obligatory by Duties.</dd>
+	          <dd>An operation that is applicable to an Asset</dd>
                   <dt><dfn>Permission</dfn></dt>
-                  <dd>A set of Actions that are allowed to be performed over an Asset.</dd>
+                  <dd>An Action that may be performed over an Asset.</dd>
                   <dt><dfn>Prohibition</dfn></dt>
-                  <dd>A set of Actions that are forbidden to be performed over an Asset.</dd>
+                  <dd>An Action that must not be performed over an Asset.</dd>
                   <dt><dfn>Duty</dfn></dt>
-	          <dd>A set of Actions that are obliged to be performed for Permissions.</dd>
+	          <dd>An Action that must be performed as a requirement for the applicable Permission to become valid.</dd>
 	          <dt><dfn>Asset</dfn></dt>
-	          <dd>The subject of a Policy that Rules are applied to.</dd>
+	          <dd>An identifiable resource that is the subject of the Rule</dd>
 	          <dt><dfn>Party</dfn></dt>
-	          <dd>An identifiable entity who undertakes a role in the Policy. e.g., a person, a group of people, an organisation, or an agent.</dd>
+	          <dd>An identifiable entity who may undertake a Role in the Policy</dd>
 	          <dt><dfn>Constraint</dfn></dt>
-	          <dd>The limits and restrictions to Actions in Rules.</dd>
+	          <dd>The context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</dd>
              </dl>
 	
 </section>
@@ -329,7 +329,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
          
          <p>The following Dublin Core Metadata Terms [[!dcterms]] SHOULD be used:</p>
             <ul>
-         <li>dc:creator - the individual, agent, or organisation that authored the Policy.</li>
+         <li>dc:creator - the individual, agent, or organisation that authored the Policy.</li>      <li>dc:description - a human-readable representation or summary of the Policy.</li>
          <li>dc:issued - the date (and time) the Policy was first issued.</li>
          <li>dc:modified -  the date (and time) the Policy was updated.</li>
         <li>dc:coverage -  the jurisdiction under which the Policy is relevant.</li>
@@ -603,7 +603,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <section id="asset">
 <h3>Asset</h3>
-<p>The Asset entity is the subject of an ODRL policy expression that Permissions and Prohibitions are applied to. The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> entities that are needed to undertake the Policy expression, such as with the Duty entity. The Asset entity is referred to by the Permission and/or Prohibition entities, and also by the Duty entity.</p>
+<p>The Asset entity is a resource that is the subject of an ODRL Rule. The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> entities that are needed to undertake the Policy expression, such as with the Duty entity. The Asset entity is referred to by the Permission and/or Prohibition entities, and also by the Duty entity.</p>
 <p>The Asset entity has the following attributes:</p>
     
 <ul>
@@ -980,7 +980,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <h3>Action</h3>
 
 
-<p>The Action entity indicates the operations that are <em>permitted</em> to be performed on the target Asset when related to a Permission entity. When related to a Prohibition, the Action entity indicates the operation that is <em>prohibited</em> to be perform on the target Asset. When related to a Duty, the Action entity indicates the operation that is obligatory to be performed.</p>
+<p>The Action entity indicates an operation that is applicable to an Asset. The Action is <em>permitted</em> to be performed on the target Asset when related to a Permission entity. When related to a Prohibition, the Action entity indicates the operation that is <em>prohibited</em> to be perform on the target Asset. When related to a Duty, the Action entity indicates the operation that is obligatory to be performed.</p>
     
 <p>The Action entity has the following attribute:</p>
 <ul>
