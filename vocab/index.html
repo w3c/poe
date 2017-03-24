@@ -311,7 +311,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule.</td></tr>
 <tr><th>Label:</th> <td>Function</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
 </table>
@@ -346,6 +346,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Maybe specified as part of the attribute action.</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 </table>
+</section><section id="term-attributingParty"><h3>Attributing Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party who undertakes the attribution.</td></tr>
+<tr><th>Label:</th> <td>Attributing Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/attributingParty">http://www.w3.org/ns/odrl/2/attributingParty</a></td></tr>
+<tr><th>Note:</th> <td>Maybe specified as part of the attribute action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
 </section><section id="term-compensatedParty"><h3>Compensated Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party is the recipient of the compensation.</td></tr>
 <tr><th>Label:</th> <td>Compensated Party</td></tr>
@@ -369,6 +377,28 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Maybe specified as part of the obtainConsent action.</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 </table>
+</section><section id="term-consentedParty"><h3>Consented Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party who obtains the consent.</td></tr>
+<tr><th>Label:</th> <td>Consented Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/consentedParty">http://www.w3.org/ns/odrl/2/consentedParty</a></td></tr>
+<tr><th>Note:</th> <td>Maybe specified as part of the obtainConsent action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-contractingParty"><h3>Contracting Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party who is offering the contract.</td></tr>
+<tr><th>Label:</th> <td>Contracting Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/contractingParty">http://www.w3.org/ns/odrl/2/contractingParty</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-contractedParty"><h3>Contracted Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party who is being contracted.</td></tr>
+<tr><th>Label:</th> <td>Contracted Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/contractedParty">http://www.w3.org/ns/odrl/2/contractedParty</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
 </section><section id="term-informedParty"><h3>Informed Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party to be informed of all uses.</td></tr>
 <tr><th>Label:</th> <td>Informed Party</td></tr>
@@ -377,12 +407,28 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
+</section><section id="term-informingParty"><h3>Informing Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party who provides the inform use data.</td></tr>
+<tr><th>Label:</th> <td>Informing Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/informingParty">http://www.w3.org/ns/odrl/2/informingParty</a></td></tr>
+<tr><th>Note:</th> <td>Maybe specified as part of the inform action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
 </section><section id="term-trackingParty"><h3>Tracking Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party is the usage tracker.</td></tr>
+<tr><th>Definition:</th> <td>The Party who is tracking usage.</td></tr>
 <tr><th>Label:</th> <td>Tracking Party</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/trackingParty">http://www.w3.org/ns/odrl/2/trackingParty</a></td></tr>
 <tr><th>Note:</th> <td>May be specified as part of the acceptTracking action.</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+</table>
+</section><section id="term-trackedParty"><h3>Tracked Party</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The Party whose usage is being tracked.</td></tr>
+<tr><th>Label:</th> <td>Tracked Party</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/trackedParty">http://www.w3.org/ns/odrl/2/trackedParty</a></td></tr>
+<tr><th>Note:</th> <td>May be specified as part of the acceptTracking action.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="partyScopes"><h2>Party Scopes</h2><section id="term-Group"><h3>Group</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Specifies that the scope of the relationship is the defined group with multiple individual members.</td></tr>
@@ -1669,6 +1715,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     <li>Added Constraint on Constraint operator term. <a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></li>
     
        <li>Added Stream to the vocabulary. <a href="https://github.com/w3c/poe/issues/103">(Issue#103)</a></li>
+    
+        <li>Added additional Party roles. <a href="https://github.com/w3c/poe/issues/110">(Issue#110)</a></li>
     
     
 </ul></section>

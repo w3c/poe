@@ -133,11 +133,17 @@ odrl:
     skos:member :assignee ;
     skos:member :assigner ;
     skos:member :attributedParty ;
+    skos:member :attributingParty ;
     skos:member :compensatedParty ;
     skos:member :compensatingParty ;
     skos:member :consentingParty ;
+    skos:member :consentedParty ;
+    skos:member :contractingParty ;
+    skos:member :contractedParty ;
     skos:member :informedParty ;
-    skos:member :trackingParty .
+    skos:member :informingParty ;
+    skos:member :trackingParty ;
+    skos:member :trackedParty .
 
 
 <http://www.w3.org/ns/odrl/2/#partyScopes>
@@ -1598,6 +1604,15 @@ odrl:
 	skos:definition "The Party to be attributed."@en ;
 	skos:note "Maybe specified as part of the attribute action."@en .
 
+:attributingParty
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subPropertyOf :function ;
+	rdfs:label "Attributing Party"@en ;
+	skos:definition "The Party who undertakes the attribution."@en ;
+	skos:note "Maybe specified as part of the attribute action."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
 :consentingParty
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
@@ -1606,12 +1621,30 @@ odrl:
 	skos:definition "The Party to obtain consent from."@en ;
 	skos:note "Maybe specified as part of the obtainConsent action."@en .
 
+:consentedParty
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subPropertyOf :function ;
+	rdfs:label "Consented Party"@en ;
+	skos:definition "The Party who obtains the consent."@en ;
+	skos:note "Maybe specified as part of the obtainConsent action."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
 :informedParty
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Informed Party"@en ;
 	skos:definition "The Party to be informed of all uses."@en ;
+	skos:note "Maybe specified as part of the inform action."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:informingParty
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subPropertyOf :function ;
+	rdfs:label "Informing Party"@en ;
+	skos:definition "The Party who provides the inform use data."@en ;
 	skos:note "Maybe specified as part of the inform action."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1647,8 +1680,33 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Tracking Party"@en ;
-	skos:definition "The Party is the usage tracker."@en ;
+	skos:definition "The Party who is tracking usage."@en ;
 	skos:note "May be specified as part of the acceptTracking action."@en .
+
+:trackedParty
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subPropertyOf :function ;
+	rdfs:label "Tracked Party"@en ;
+	skos:definition "The Party whose usage is being tracked."@en ;
+	skos:note "May be specified as part of the acceptTracking action."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:contractingParty
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subPropertyOf :function ;
+	rdfs:label "Contracting Party"@en ;
+	skos:definition "The Party who is offering the contract."@en ;
+    skos:scopeNote "Non-Normative"@en .
+
+:contractedParty
+	a rdf:Property , owl:ObjectProperty ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subPropertyOf :function ;
+	rdfs:label "Contracted Party"@en ;
+	skos:definition "The Party who is being contracted."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 ## Policies
 
