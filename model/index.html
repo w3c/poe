@@ -813,7 +813,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li>The Permission entity MAY refer to one or more <code>constraint</code>s. The Permission becomes effective if all of the constraints are satisfied.</li>
 <li>The Permission entity MAY refer to one or more <code>duty</code>/ies. The Duty expresses an obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
-
+<p>For a Permission to become effective, it must be valid (ie its constraints are satisfied) and all of the Permission's Duties must be fulfilled.</p>
 <blockquote>   
 <p>Example Use Case: The ticket Policy expresses the play Permission for the target Asset http//example.com/game:9090, stating that the ticket is valid until the end of the year 2017. Any valid holder of this ticket may exercise this Permission.</p>
     </blockquote>
@@ -880,7 +880,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="duty">
 <h3>Duty</h3>
 
-<p>A Permission entity MAY refer to a Duty entity that indicates a requirement that MUST be satisfied for Permissions to become valid. A Duty MUST only be associated with a Permission. </p>
+<p>A Permission entity MAY refer to a Duty entity that indicates a requirement that MUST be satisfied for Permissions to become valid. A Duty is in effect as long as its associated permission is valid (i.e., the Permission's constraints are alll satisfied). A Duty MUST only be associated with a Permission. </p>
     
 <p>The Duty entity has the following attributes:</p>
     
@@ -891,7 +891,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <li>The Duty entity MAY refer to a <code>target</code> Asset on which the identified Action MUST be performed. Other <code>relation</code> values for Asset MAY be used. For example, a <code>nextPolicy</code> Action MUST be linked to the identifier of a target Policy asset.</li>
 
-<li>The Duty entity MAY refer to one or more <code>constraint</code>s.  The Duty becomes effective if all of the constraints are satisfied.</li>
+<li>The Duty entity MAY refer to one or more <code>constraint</code>s.  A Duty is considered to be fulfilled if its constraints are satisfied.</li>
 
 <li>The Duty entity MAY refer to a identifier for this Duty instance. Note: this is used to refer the same Duty to multiple Permission entities.</li>
     
@@ -900,7 +900,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     <p>If a Permission refers to several Duty entities, <em>all of them</em> MUST be satisfied for the Permission to be undertaken. If several Permission entities refer to one Duty, then the Duty only has to be satisfied <em>once</em> for all the Permission entities.</p>
     
-<p>Even though a Duty entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid, as different business rules may apply such as montly invoicing.</p>
+<p>Even though a Duty entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as montly invoicing.</p>
  
     <blockquote>
 <p>Example Use Case: The Party http://example.com/assigner:sony makes an Offer to play the music file http://example.com/music/1999.mp3. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this http://www.w3.org/ns/odrl/2/policyUsage must not have occured yet.
