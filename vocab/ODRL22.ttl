@@ -15,7 +15,7 @@ odrl:
 	a owl:Ontology , voaf:Vocabulary ;
 	rdfs:label "ODRL Version 2.2"@en ;
 	owl:versionInfo "2.2" ;
-	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "James Birmingham", "Víctor Rodríguez-Doncel" ;
+	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "Víctor Rodríguez-Doncel" ;
 	dct:issued "2017-01-20"^^xsd:date ;
 	dct:contributor "W3C Permissions & Obligations Expression Working Group" ;
 	dct:description "The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model."@en ;
@@ -65,8 +65,7 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Policy Inheritance"@en ;
     skos:member :inheritAllowed ;
-    skos:member :inheritFrom ;
-    skos:member :inheritRelation .
+    skos:member :inheritFrom .
 
 <http://www.w3.org/ns/odrl/2/#conflictConcepts>
     a skos:Collection ;
@@ -338,7 +337,8 @@ odrl:
     skos:member :shareAlike ;
     skos:member :commercialize ;
     skos:member :share ;
-    skos:member :timedCount .
+    skos:member :timedCount ;
+    skos:member :inheritRelation .
 
 
 ## SKOS Concept Schemes
@@ -512,9 +512,9 @@ odrl:
 	rdfs:label "Inherit Relation"@en ;
 	skos:definition "Indentifies the type of inheritance."@en ;
 	skos:note "For example, this may indicate the business scenario, such as subscription, or prior arrangements between the parties (that are not machine representable)"@en ;
-	rdfs:domain :Policy ;
+#	rdfs:domain :Policy ;
 #	rdfs:range rdfs:Resource ;
-    skos:scopeNote "Non-Normative"@en .
+    owl:deprecated true .
 
 
 :profile

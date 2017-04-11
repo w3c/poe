@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    publishDate:  "2017-03-24",
+    publishDate:  "2017-04-11",
     edDraftURI: "https://w3c.github.io/poe/vocab/",
     editors: [
      {    name:       "Renato Iannella",
@@ -25,12 +25,6 @@ var respecConfig = {
                     url:        "https://www.linkedin.com/in/stuart-myles-60a985",
                     company:    "Invited Expert",
                     mailto:     "SMyles@ap.org"
-                },
-     {  name:       "James Birmingham",
-                    url:        "https://uk.linkedin.com/in/james-birmingham-1a49a91",
-                    company:    "Digital Catapult",
-                   companyURL: "http://www.digicatapult.org.uk",
-                    mailto:     "james.birmingham@digicatapult.org.uk"
                 },
            {  name:       "Víctor Rodríguez-Doncel",
                     url:        "https://www.linkedin.com/in/victor-rodriguez-doncel-554b5213/en",

@@ -489,21 +489,15 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li><code>false</code>: the Policy expression can not be used for inheritance</li>
 </ul>
 <p>If the <code>inheritAllowed</code> attribute is not explicitly set, its default value of <code>true</code> will be used.</p>
-<p>The following attributes SHOULD be used in a child Policy that is inheriting from a parent Policy in which that parent Policy MUST allow inheritance (via the <code>inheritAllowed</code> attribute) :</p>
+<p>The following attribute SHOULD be used in a child Policy that is inheriting from a parent Policy in which that parent Policy MUST allow inheritance (via the <code>inheritAllowed</code> attribute) :</p>
 
     <ul>
     <li><code>inheritFrom</code>: the identifier of the parent Policy from which this child Policy inherits from</li>
-<li><code>inheritRelation</code>: the identifier of the relationship context for this inheritance</li>
     </ul>
     
     
 <p>The <code>inheritFrom</code> association in the (child) Policy will uniquely identify (via a UID) the (parent) Policy from which the inheritance will be performed.</p>
-<p>The <code>inheritRelation</code> attribute in the (child) Policy will uniquely identify (via a UID) the context of inheritance from the (parent) Policy. This may indicate the business scenario, such as <em>subscription</em>, or prior arrangements between the Parties (that are not machine representable). Such terms SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] or ODRL Profiles. 
-        <blockquote>
-        <p>For example, an Assigner and Assignee may have a historical arrangement related to the specific use of content they make available to each other. The business model (identified with a URI) is used in the <code>inheritRelation</code> attribute in their subsequent ODRL Policies they exchange. This will require the ODRL Policy to be interpreted with the additional information identified by the URI. For example, this may include additional permission Actions or constraints (etc) that is documented in their business model arrangement.</p>
-    </blockquote>
-<p>Both the <code>inheritFrom</code> association and <code>inheritRelation</code> attribute may be used independently.</p>
-    
+
 <p>The following restrictions apply when using inheritance:</p>
 <ul>
 <li>Single inheritance is only supported. (One parent Policy to one or more child Policy entities. No child Policy can inherit from two or more parent Policy entities.)</li>
@@ -1313,6 +1307,7 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
     
     <li>Added Constraint on Constraint suppport. <a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></li>
     
+     <li>Removed inheritRelation attribute. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
     
 </ul>
 </section>
