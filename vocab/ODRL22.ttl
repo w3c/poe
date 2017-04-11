@@ -364,7 +364,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset"@en ;
-	skos:definition "An identifiable resource that is the subject of the Rule."@en ;
+	skos:definition "An identifiable resource that is the subject of a Rule."@en ;
     skos:note "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata."@en .
 
 ## Parties
@@ -373,7 +373,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Party"@en ;
-	skos:definition "An identifiable entity who may undertake a Role in the Policy."@en ;
+	skos:definition "An identifiable entity who may undertake a Role in a Policy."@en ;
 	skos:note "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata."@en .
 
 ## Policies
@@ -383,8 +383,8 @@ odrl:
 	rdfs:subClassOf :Asset ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy"@en ;
-	skos:definition "A set of Rules defining what is allowed, disallowed or obligatory over an Asset."@en ;
-	skos:note "A top level entity for describing policies."@en .
+	skos:definition "A Rule expressing what Action is allowed and/or disallowed over an Asset."@en ;
+	skos:note "A Policy may contain multiple Rules."@en .
 
 :ConflictTerm
 	a rdfs:Class, owl:Class ;
@@ -532,7 +532,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Rule"@en ;
-	skos:definition "A Permission, Prohibition or Duty that expresses an Action that may, must not, and must be performed (respectively)."@en ;
+	skos:definition "A Permission, Prohibition or Duty that expresses an Action that may, must not, or must be performed (respectively)"@en ;
 	skos:note "Rule is an abstract concept."@en .
 
 :Permission
@@ -559,7 +559,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Prohibition, :Permission ;
 	rdfs:label "Duty"@en ;
-    skos:definition "An Action that must be performed as a requirement for the applicable Permission to become valid."@en ;
+    skos:definition "An Action that has been agreed to be performed as a requirement for the applicable Permission to become valid."@en ;
     skos:note "While implying different semantics, the Duty entity is similar to Permission in that it is an Action that must be undertaken."@en .
 
 :Action

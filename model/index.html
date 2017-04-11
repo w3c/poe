@@ -54,23 +54,23 @@
 
      <dl class="termlist">
                  
-	          <dt><dfn>Policy</dfn></dt>
+	       <dt><dfn>Policy</dfn></dt>
 	          <dd>A Rule expressing what Action is allowed and/or disallowed over an Asset.</dd>
-	          <dt><dfn>Rule</dfn></dt>
+	       <dt><dfn>Rule</dfn></dt>
 	          <dd>A Permission, Prohibition or Duty that expresses an Action that may, must not, or must be performed (respectively)</dd>
-	          <dt><dfn>Action</dfn></dt>
+	       <dt><dfn>Action</dfn></dt>
 	          <dd>An operation that is applicable to an Asset</dd>
-                  <dt><dfn>Permission</dfn></dt>
+            <dt><dfn>Permission</dfn></dt>
                   <dd>An Action that may be performed over an Asset.</dd>
-                  <dt><dfn>Prohibition</dfn></dt>
+            <dt><dfn>Prohibition</dfn></dt>
                   <dd>An Action that must not be performed over an Asset.</dd>
-                  <dt><dfn>Duty</dfn></dt>
-	          <dd>An Action that must be performed as a requirement for the applicable Permission to become valid.</dd>
-	          <dt><dfn>Asset</dfn></dt>
-	          <dd>An identifiable resource that is the subject of the Rule</dd>
-	          <dt><dfn>Party</dfn></dt>
-	          <dd>An identifiable entity who may undertake a Role in the Policy</dd>
-	          <dt><dfn>Constraint</dfn></dt>
+            <dt><dfn>Duty</dfn></dt>
+	          <dd>An Action that has been agreed to be performed as a requirement for the applicable Permission to become valid.</dd>
+	       <dt><dfn>Asset</dfn></dt>
+	          <dd>An identifiable resource that is the subject of a Rule</dd>
+	       <dt><dfn>Party</dfn></dt>
+	          <dd>An identifiable entity who may undertake a Role in a Policy</dd>
+	       <dt><dfn>Constraint</dfn></dt>
 	          <dd>The context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</dd>
              </dl>
 	
@@ -118,14 +118,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <ul>
 <li>A Permission indicates that the Policy expresses an Action that MAY be performed,</li>
 <li>A Prohibition indicates that the Policy expresses an Action that MUST NOT be performed, and</li>
-<li>A Duty indicates that the Policy expresses an Action that MUST be performed (as a requirement to be granted a Permission). </li>
+<li>A Duty indicates that the Policy expresses an agreed Action that MUST be performed (as a requirement to be granted a Permission). </li>
 </ul>
 
 <blockquote>
     <p>As an example, a Permission in a Policy MAY allow a particular Action to be applied to an Asset, e.g., &#8220;play the audio file abc.mp3&#8221;. A Constraint, such as &#8220;at most 10 times&#8221;, MAY be added to express limitations to the Actions. The Party "VirtualMusicShop" that granted this Permission MAY be included with the Role Assigner, and the Party "Alice" that is granted the Permission MAY be included with the Role Assignee.</p>
 </blockquote>
     
-<p>Similar to Permissions, a Duty states that a certain Action MUST be executed by the Party with the Role Assignee for the Permission to be valid, e.g. &#8220;Alice must pay 5 Euros in order to get the Permission to play abc.mp3&#8243;.</p>
+<p>Similar to Permissions, a Duty states that a certain agreed Action MUST be executed by the Party with the Role Assignee for the Permission to be valid, e.g. &#8220;Alice must pay 5 Euros in order to get the Permission to play abc.mp3&#8243;.</p>
 
     
 <section id="policy">
@@ -716,8 +716,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </ul>
 <p>The <code>function</code> attribute MUST support the following role values:</p>
 <ul>
-<li><code>assigner</code>: indicates the Party that is issuing the Policy. For example, the Party granting a Permission or requiring a Duty to be performed.</li>
-<li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform a Duty.</li>
+<li><code>assigner</code>: indicates the Party that is issuing the Policy. For example, the Party granting a Permission or requiring an agreed Duty to be performed.</li>
+<li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
 </ul>
    
 <p>Other values for the <code>function</code> role attribute MAY be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
@@ -805,7 +805,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li>The Permission entity MUST refer to an instance of an Action that indicates the operation allowed on the target Asset.</li>
 <li>The Permission entity MAY refer to one or more assigner and/or assignee <code>role</code> functions undertaken by Party entities. Other <code>role</code> function values for Party MAY be used.</li>
 <li>The Permission entity MAY refer to one or more <code>constraint</code>s. The Permission becomes effective if all of the constraints are satisfied.</li>
-<li>The Permission entity MAY refer to one or more <code>duty</code>/ies. The Duty expresses an obligation that MUST be fulfilled in order for the Permission to be valid.</li>
+<li>The Permission entity MAY refer to one or more <code>duty</code>/ies. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
 <p>For a Permission to become effective, it must be valid (ie its constraints are satisfied) and all of the Permission's Duties must be fulfilled.</p>
 <blockquote>   
@@ -874,16 +874,16 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="duty">
 <h3>Duty</h3>
 
-<p>A Permission entity MAY refer to a Duty entity that indicates a requirement that MUST be satisfied for Permissions to become valid. A Duty is in effect as long as its associated permission is valid (i.e., the Permission's constraints are alll satisfied). A Duty MUST only be associated with a Permission. </p>
+<p>A Permission entity MAY refer to a Duty entity that indicates an agreed requirement that MUST be satisfied for Permissions to become valid. A Duty is in effect as long as its associated permission is valid (i.e., the Permission's constraints are alll satisfied). A Duty MUST only be associated with a Permission. </p>
     
 <p>The Duty entity has the following attributes:</p>
     
 <ul>
-<li>The Duty entity MUST refer to an instance of an Action that indicates the operation that MUST be performed. Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
+<li>The Duty entity MUST refer to an instance of an Action that indicates the agreed operation that MUST be performed. Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
     
 <li>The Duty entity MAY refer to one or more assigner and/or assignee <code>role</code> functions to be undertaken by Party entities. Note: If no explicit role is specified as Assignee or Assigner, the Parties with the respective Roles are taken from the referring Permission. Other <code>role</code> function values for Party MAY be used.</li>
     
-<li>The Duty entity MAY refer to a <code>target</code> Asset on which the identified Action MUST be performed. Other <code>relation</code> values for Asset MAY be used. For example, a <code>nextPolicy</code> Action MUST be linked to the identifier of a target Policy asset.</li>
+<li>The Duty entity MAY refer to a <code>target</code> Asset on which the identified agreed Action MUST be performed. Other <code>relation</code> values for Asset MAY be used. For example, a <code>nextPolicy</code> Action MUST be linked to the identifier of a target Policy asset.</li>
 
 <li>The Duty entity MAY refer to one or more <code>constraint</code>s.  A Duty is considered to be fulfilled if its constraints are satisfied.</li>
 
@@ -892,9 +892,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </ul>
     
     
-    <p>If a Permission refers to several Duty entities, <em>all of them</em> MUST be satisfied for the Permission to be undertaken. If several Permission entities refer to one Duty, then the Duty only has to be satisfied <em>once</em> for all the Permission entities.</p>
+    <p>If a Permission refers to several Duty entities, <em>all of them</em> MUST be agreed to be satisfied for the Permission to be undertaken. If several Permission entities refer to one Duty, then the Duty only has to be satisfied <em>once</em> for all the Permission entities.</p>
     
-<p>Even though a Duty entity is mandatory, the ODRL model does not specify any conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as montly invoicing.</p>
+<p>Even though a Duty entity is mandatory (ie agreed to be undertaken by the parties), the ODRL model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as montly invoicing.</p>
  
     <blockquote>
 <p>Example Use Case: The Party http://example.com/assigner:sony makes an Offer to play the music file http://example.com/music/1999.mp3. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this http://www.w3.org/ns/odrl/2/policyUsage must not have occured yet.

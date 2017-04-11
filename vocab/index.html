@@ -73,17 +73,17 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     </div>
         
 <section id="policyConcepts"><h2>Policy Concepts</h2><section id="term-Policy"><h3>Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A set of Rules defining what is allowed, disallowed or obligatory over an Asset.</td></tr>
+<tr><th>Definition:</th> <td>A Rule expressing what Action is allowed and/or disallowed over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Policy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
-<tr><th>Note:</th> <td>A top level entity for describing policies.</td></tr>
+<tr><th>Note:</th> <td>A Policy may contain multiple Rules.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Agreement">Agreement</a>, <a href="#term-Assertion">Assertion</a>, <a href="#term-Offer">Offer</a>, <a href="#term-Privacy">Privacy</a>, <a href="#term-Request">Request</a>, <a href="#term-Set">Set</a>, <a href="#term-Ticket">Ticket</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-undefined">undefined</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-inheritFrom">inheritFrom</a></td></tr>
 </table>
 </section><section id="term-Rule"><h3>Rule</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A Permission, Prohibition or Duty that expresses an Action that may, must not, and must be performed (respectively).</td></tr>
+<tr><th>Definition:</th> <td>A Permission, Prohibition or Duty that expresses an Action that may, must not, or must be performed (respectively)</td></tr>
 <tr><th>Label:</th> <td>Rule</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
 <tr><th>Note:</th> <td>Rule is an abstract concept.</td></tr>
@@ -251,7 +251,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="assetConcepts"><h2>Asset Concepts</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identifiable resource that is the subject of the Rule.</td></tr>
+<tr><th>Definition:</th> <td>An identifiable resource that is the subject of a Rule.</td></tr>
 <tr><th>Label:</th> <td>Asset</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a></td></tr>
 <tr><th>Note:</th> <td>The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata.</td></tr>
@@ -293,7 +293,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="partyConcepts"><h2>Party Concepts</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identifiable entity who may undertake a Role in the Policy.</td></tr>
+<tr><th>Definition:</th> <td>An identifiable entity who may undertake a Role in a Policy.</td></tr>
 <tr><th>Label:</th> <td>Party</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
 <tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata.</td></tr>
@@ -749,7 +749,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section></section><section id="duties"><h2>Duty Concepts</h2><section id="term-Duty"><h3>Duty</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An Action that must be performed as a requirement for the applicable Permission to become valid.</td></tr>
+<tr><th>Definition:</th> <td>An Action that has been agreed to be performed as a requirement for the applicable Permission to become valid.</td></tr>
 <tr><th>Label:</th> <td>Duty</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Duty">http://www.w3.org/ns/odrl/2/Duty</a></td></tr>
 <tr><th>Note:</th> <td>While implying different semantics, the Duty entity is similar to Permission in that it is an Action that must be undertaken.</td></tr>
