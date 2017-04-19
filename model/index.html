@@ -539,8 +539,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     "permission": [{
         "assignee": "http://example.com/guest:0001",
         "action": "odrl:display"
-    }],
-    "permission": [{
+    },
+    {
         "assignee": "http://example.com/guest:0002",
         "action": "odrl:print"
     }]
@@ -564,12 +564,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     "permission": [{
         "assignee": "http://example.com/guest:0001",
         "action": "odrl:display"
-    }],
-    "permission": [{
+    },
+    {
         "assignee": "http://example.com/guest:0002",
         "action": "odrl:print"
-    }],
-    "permission": [{
+    },
+    {
         "action": "odrl:use"
     }]
 }  
@@ -921,8 +921,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
                 "rightOperand": "5.00",
                 "unit": 
                   "https://www.currency-iso.org/dam/downloads/lists/list_one.xml#AUD"
-            }],
-            "constraint": [{
+            },
+            {
                 "leftOperand": "odrl:event",
                 "operator": "odrl:lt",
                 "rightOperand": "odrl:policyUsage"
@@ -1138,18 +1138,18 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
                 "rightOperand": "http://example.com/policy:88/C2"
             }],
     }],
-   "constraint": {
+   "constraint": [{
        "@id": "http://example.com/policy:88/C1"
        "leftOperand": "odrl:count",
        "operator": "odrl:lteq",
        "rightOperand": "100"
    },
-   "constraint": {
+   {
        "@id": "http://example.com/policy:88/C2"
        "leftOperand": "odrl:dateTime",
        "operator": "odrl:lteq",
        "rightOperand": "2017-12-31"
-   }
+   }]
 }  
 </pre>
 
@@ -1174,18 +1174,18 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
                 "rightOperand": "http://example.com/policy:88/C2"
             }],
     }],
-   "constraint": {
+   "constraint": [{
        "@id": "http://example.com/policy:88/C1"
        "leftOperand": "odrl:event",
        "operator": "odrl:gt",
        "rightOperand": "http://example.com/football/game/2017"
    },
-   "constraint": {
+   {
        "@id": "http://example.com/policy:88/C2"
        "leftOperand": "odrl:delayPeriod",
        "operator": "odrl:gteq",
        "rightOperand": "P60M"
-   }
+   }]
 }  
 </pre>
   
