@@ -225,8 +225,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <pre class="example hljs xquery">
     "permission": [{
-        "target": "http://example.com/music/1999.mp3",
-        "target": "http://example.com/music/PurpleRain.mp3",
+        "target": [ "http://example.com/music/1999.mp3",
+                    "http://example.com/music/PurpleRain.mp3"],
         "assigner": "http://example.com/org/sony-music",
         "assignee": "http://example.com/people/billie",
         "action": "odrl:play",
@@ -245,8 +245,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         "action": "odrl:play",
         "constraint": "...",
         "duty": "..."
-        }]
-    "permission": [{
+        },
+        {
         "target": "http://example.com/music/PurpleRain.mp3",
         "assigner": "http://example.com/org/sony-music",
         "assignee": "http://example.com/people/billie",
@@ -295,10 +295,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     "@type": "odrl:Agreement",
     "@id": "http://example.com/policy:8888",
     "permission": [{
+        "assignee": "http://example.com/people/billie",
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
-        "action": "odrl:play",
-        "assignee": "http://example.com/people/billie"
+        "action": "odrl:play"
         },
         {
         "assignee": "http://example.com/people/murphy"
