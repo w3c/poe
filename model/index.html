@@ -612,14 +612,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="relation">
 <h4>Relation</h4>
 
-<p>The Relation entity is an association class and is used to link to an Asset from either Rule, indicating how the Asset SHOULD be utilised in respect to the entity that links to it.</p>
-<p>The Relation entity has the the following attribute:</p>
+<p>The Relation class is used to link to an Asset from either Rule, indicating how the Asset SHOULD be utilised in respect to the entity that links to it.</p>
+<p>The Relation entity has the following attribute:</p>
 <ul>
-<li>The Relation entity MUST refer to the <code>relation</code> indicating the relationship of the Asset to the Rule.</li>
+<li>The Relation entity MUST refer to a <code>relation</code> indicating the associated link between the Asset and the Rule.</li>
 </ul>
-<p>The default value for the <code>relation</code> attribute is <code>target</code> which indicates that the Asset is the primary object to which the Rule actions apply.</p>
+<p>The <code>relation</code> link of <code>target</code> MUST be supported which indicates that the Asset is the primary object to which the Rule actions apply.</p>
     
-<p>Other values for the Relation entity SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other <code>relation</code> links SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
         
  <blockquote>   
@@ -934,7 +934,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 
 <blockquote>
-<p>Example Use Case: The Party http://example.com/assigner:77 needs to set a Privacy Policy for some data about it. The target Asset http://example.com/personal-data:77 of this Policy is personal data, and the Assignee http://example.com/gov:health:au is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. The purpose value is taken from the P3P privacy purpose vocabulary. Additionally, the Party has stipulated that the Assignee must delete the Asset after a 30 day period, i.e., retention policy.</p>
+<p>Example Use Case: The Party http://example.com/assigner:77 needs to set a Privacy Policy for some data about it. The target Asset http://example.com/personal-data:77 of this Policy is personal data, and the Assignee http://example.com/gov:health:au is allowed to distribute the Asset only for the purpose of contacting the subject of the Personal Data. Additionally, the Party has stipulated that the Assignee must delete the Asset after a 30 day period, i.e., a retention policy.</p>
     </blockquote>
 
 
@@ -950,7 +950,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         <span class="hljs-string">"constraint"</span>: [{
             <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:purpose"</span>,
             <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
-            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://www.w3.org/2002/01/P3Pv1#contact"</span>
+            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://example.com/privacy/contact"</span>
         }],
         <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/assigner:77"</span>,
         <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/gov:health:au"</span>,
