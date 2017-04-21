@@ -9,7 +9,9 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcmit: <http://purl.org/dc/dcmitype/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
-
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns> .
 
 odrl:
 	a owl:Ontology , voaf:Vocabulary ;
@@ -374,6 +376,10 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Party"@en ;
 	skos:definition "An identifiable entity who may undertake a Role in a Policy."@en ;
+	rdfs:subClassOf [
+		a owl:Class ;
+		owl:unionOf ( schema:Person schema:Organization foaf:Agent ) ;
+	]
 	skos:note "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata."@en .
 
 ## Policies
@@ -568,6 +574,7 @@ odrl:
 	rdfs:subClassOf skos:Concept ;
 	skos:definition "An operation that is applicable to an Asset."@en ;
 	skos:note "Actions may be allowed by Permissions, disallowed by Prohibitions, or made mandatory by Duties."@en ;
+	rdfs:subClassOf schema:Action ;
 	rdfs:label "Action"@en .
 
 :Constraint
