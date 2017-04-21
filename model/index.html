@@ -82,7 +82,7 @@
 <h2>Relationship to the W3C ODRL Community Group Reports</h2>
 
     
-<p>The basis for the deliverables for the Permissions &amp; Obligations Expression Working Group are the reports created by the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a>. The ODRL Community Group has developed a family of specifications to support innovative expression of  asset usage for the publication, distribution and consumption of content services.
+<p>The basis for the deliverables for the Permissions &amp; Obligations Expression Working Group are the reports created by the <code><a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a></code>. The ODRL Community Group has developed a family of specifications to support innovative expression of  asset usage for the publication, distribution and consumption of content services.
 The final outputs of the ODRL Community Group were the ODRL Version 2.1 specifications that were a major update for ODRL and superseded the original ODRL Version 1.1 [[odrl]] (published as a W3C NOTE).</p>
     
 <p>The following documents are part of the ODRL Community Group report series:</p>
@@ -606,7 +606,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>The identification of the Asset entity is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be a URI [[rfc3986]] representing the identifier of the Asset. There MAY also be other alternative identifiers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. To identify inline/indirect Assets, then URI fragments may be used. <p>
     
-    <p>Since ODRL Policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe Asset entities of particular media types. It is recommended to use already existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a> that are appropriate to the Asset type or purpose.</p>
+    <p>Since ODRL Policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe Asset entities of particular media types. It is recommended to use already existing metadata standards, such as <code><a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a></code> that are appropriate to the Asset type or purpose.</p>
 
 
 <section id="relation">
@@ -1233,13 +1233,13 @@ The requirements for communities developing ODRL Profiles MUST document the foll
   
 <p>The community SHOULD also create a machine-readable schema for their ODRL Profile following the appropriate serialisations options outlined in the ODRL Vocabulary and Expression specification [[!vocab-odrl]]. In this case, the ODRL Profile URI MUST also be used as the serialisation namespace URI.</p>
 
-<p>It is also recommended to share the ODRL Profile with the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a> for feedback and comments. In addition, the W3C ODRL Community Group may host the ODRL Profile documents on their website. </p>
+<p>It is also recommended to share the ODRL Profile with the <code><a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a></code> for feedback and comments. In addition, the W3C ODRL Community Group may host the ODRL Profile documents on their website. </p>
     </section>
     
 <section id="profile-example">
     <h3>Profile Examples</h3>
 <p>
-An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a href="https://www.iptc.org">International Press and Telecommuncations Council</a> for the communication of usage policies, primarily in association with the licensed distribution and use of news content by news gathering agencies, publishers, licensing organisations, business intermediaries and business consumers in the online news market-place. The RightsML ODRL Profile clearly documented:</p>
+An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <code><a href="https://www.iptc.org">International Press and Telecommuncations Council</a></code> for the communication of usage policies, primarily in association with the licensed distribution and use of news content by news gathering agencies, publishers, licensing organisations, business intermediaries and business consumers in the online news market-place. The RightsML ODRL Profile clearly documented:</p>
     <ul>
     <li>which features of the ODRL Information Model were supported,</li>
     <li>the supported policy types,</li>
@@ -1262,52 +1262,52 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <a 
             <p>An ODRL policy can be of type "Privacy".</p>
         <p>Need to add this section for the W3C Horizontal Review on Privacy Considerations.</p>
     
-        <P>Need to address the <a href="http://gregnorc.github.io/ping-privacy-questions/">W3C PING Privacy Questions</a></P>
+        <P>Need to address the <code><a href="http://gregnorc.github.io/ping-privacy-questions/">W3C PING Privacy Questions</a></code></P>
     </div>
 </section>
 
 <section class="appendix">
 <h3>Acknowledgements</h3>
 
-<p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>. In particular the editors would like to thank Susanne Guth, Daniel Paehler, and Andreas Kasten for their past editorial contributions.</p>
+<p>The POE Working Group gratefully acknowledges the contributions of the <code><a href="http://www.w3.org/community/odrl/">ODRL Community Group</a></code> and the earlier <code><a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a></code>. In particular the editors would like to thank Susanne Guth, Daniel Paehler, and Andreas Kasten for their past editorial contributions.</p>
 </section>
 
 <section class="appendix" id="community">
   <h3>Changes from the ODRL Community Group Reports</h3>
 <p>Significant changes in this specification from the ODRL Community Group's draft include:
 <ul>
-<li>Added abstract Rule class to the Informaton Model <a href="https://github.com/w3c/poe/issues/24">(Issue#24)</a></li>
-<li>Clarified Permission cardinality <a href="https://github.com/w3c/poe/issues/17">(Issue#17)</a></li>
-<li>Clarified Duty obligations <a href="https://github.com/w3c/poe/issues/18">(Issue#18)</a></li>
-<li>Clarified Duty only applicable to Permission   <a href="https://github.com/w3c/poe/issues/19">(Issue#19)</a></li>
-<li>Clarified conflict of Permissions/Prohibitions may arise also within the same policy <a href="https://github.com/w3c/poe/issues/20">(Issue#20)</a></li>
-<li>Clarified Party definition and its relation with role <a href="https://github.com/w3c/poe/issues/23">(Issue#23)</a></li>
+<li>Added abstract Rule class to the Informaton Model <code><a href="https://github.com/w3c/poe/issues/24">(Issue#24)</a></code></li>
+<li>Clarified Permission cardinality <code><a href="https://github.com/w3c/poe/issues/17">(Issue#17)</a></code></li>
+<li>Clarified Duty obligations <code><a href="https://github.com/w3c/poe/issues/18">(Issue#18)</a></code></li>
+<li>Clarified Duty only applicable to Permission  <code><a href="https://github.com/w3c/poe/issues/19">(Issue#19)</a></code></li>
+<li>Clarified conflict of Permissions/Prohibitions may arise also within the same policy <code><a href="https://github.com/w3c/poe/issues/20">(Issue#20)</a></code></li>
+<li>Clarified Party definition and its relation with role <code><a href="https://github.com/w3c/poe/issues/23">(Issue#23)</a></code></li>
     
-<li>Additional description on the purpose and use of ODRL Profiles.<a href="https://github.com/w3c/poe/issues/49">(Issue#49)</a></li>
+<li>Additional description on the purpose and use of ODRL Profiles.<code><a href="https://github.com/w3c/poe/issues/49">(Issue#49)</a></code></li>
  
-    <li>Modified UML model to have Inheritance as separate association class.<a href="https://github.com/w3c/poe/issues/51">(Issue#51)</a></li>
+    <li>Modified UML model to have Inheritance as separate association class.<code><a href="https://github.com/w3c/poe/issues/51">(Issue#51)</a></code></li>
 
-    <li>Added example use cases through-out the Model sections and have removed the Scenarios sections (as they are covered in the examples).<a href="https://github.com/w3c/poe/issues/50">(Issue#50)</a></li>
+    <li>Added example use cases through-out the Model sections and have removed the Scenarios sections (as they are covered in the examples).<code><a href="https://github.com/w3c/poe/issues/50">(Issue#50)</a></code></li>
 
-        <li>Updated the Scope for Parties (and new for Assets) to allow any URI to scope the characerisitics of the entity. <a href="https://github.com/w3c/poe/issues/59">(Issue#59)</a></li>
+        <li>Updated the Scope for Parties (and new for Assets) to allow any URI to scope the characerisitics of the entity. <code><a href="https://github.com/w3c/poe/issues/59">(Issue#59)</a></code></li>
 
-       <li>Added rightOperandReference to Constraint. <a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></li>
+       <li>Added rightOperandReference to Constraint. <code><a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></code></li>
     
-      <li>Clarified Constraint related definitions. <a href="https://github.com/w3c/poe/issues/81">(Issue#81)</a></li>
+      <li>Clarified Constraint related definitions. <code><a href="https://github.com/w3c/poe/issues/81">(Issue#81)</a></code></li>
     
-         <li>Support multiple Assets, Parties, and Actions. <a href="https://github.com/w3c/poe/issues/73">(Issue#73)</a></li>
+         <li>Support multiple Assets, Parties, and Actions. <code><a href="https://github.com/w3c/poe/issues/73">(Issue#73)</a></code></li>
     
-           <li>Support Policy-level Assets, Parties, and Actions. <a href="https://github.com/w3c/poe/issues/82">(Issue#82)</a></li>
+           <li>Support Policy-level Assets, Parties, and Actions. <code><a href="https://github.com/w3c/poe/issues/82">(Issue#82)</a></code></li>
     
-       <li>Clarified and simplifed Policy Inhertiance. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
+       <li>Clarified and simplifed Policy Inhertiance. <code><a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></code></li>
     
-     <li>Added Policy Provenance section. <a href="https://github.com/w3c/poe/issues/48">(Issue#48)</a></li>
+     <li>Added Policy Provenance section. <code><a href="https://github.com/w3c/poe/issues/48">(Issue#48)</a></code></li>
     
-    <li>Added Extended Relations to Constraints. <a href="https://github.com/w3c/poe/issues/63">(Issue#63)</a></li>
+    <li>Added Extended Relations to Constraints. <code><a href="https://github.com/w3c/poe/issues/63">(Issue#63)</a></code></li>
     
-    <li>Added Constraint on Constraint suppport. <a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></li>
+    <li>Added Constraint on Constraint suppport. <code><a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></code></li>
     
-     <li>Removed inheritRelation attribute. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
+     <li>Removed inheritRelation attribute. <code><a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></code></li>
     
 </ul>
 </section>
