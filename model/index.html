@@ -43,7 +43,6 @@
 <section id="serialization">
 <h3>Serialization of the Model</h3>
 
-<p>The ODRL Information Model is formally specified using UML notation [[!uml]].</p>
 <p>The examples throughout the document are serialized as [[json-ld]]. For normative serialisations, including the JSON context, please refer to the ODRL Vocabulary and Expression [[!vocab-odrl]].</p>	
 </section>
 	
@@ -107,7 +106,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
     <p>The ODRL Information Model enables Policies to express Permissions and Prohibitions related to the usage of Assets. In essence, this explicitly expresses what is allowed and what is not allowed by the Policy, as well as other requirements and parties involved. The aim of the ODRL Information Model is to support flexible Policy expressions by allowing the author to include as much, or as little, expressive detail.</p>
 
-<p>The figure below shows the ODRL Information Model. The Policy is the central entity that holds an ODRL policy together. </p>
+<p>The figure below shows the ODRL Information Model. The Policy is the central class that holds an ODRL policy together. </p>
 
 <figure>
 	<img src="fig/00Model.svg" alt="ODRL Information Model" width="800"/>
@@ -133,19 +132,19 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="policy">
 <h3>Policy</h3>
 
-<p>The Policy entity has the following attributes:</p>
+<p>A Policy has the following attributes:</p>
 <ul>
-<li>The Policy entity MUST refer to the <code>uid</code> identification of the Policy entity.</li>
-<li>The Policy entity MUST refer to the <code>type</code> indicating the specific type of Policy entity.</li>
-<li>The Policy entity MAY refer to the <code>conflict</code> attribute indicating how to handle Policy conflicts.</li>
-<li>The Policy entity MAY refer to the <code>undefined</code> attribute indicating how to handle undefined Actions.</li>
-<li>The Policy entity MAY refer to the <code>inheritAllowed</code> attribute indicating the Policy entity can be inherited by other Policies.</li>
-<li>The Policy entity MAY refer to the ODRL <code>profile</code> identifier that this Policy conforms to.</li>
+<li>A Policy  MUST refer to the <code>uid</code> identification of the Policy.</li>
+<li>A Policy  MUST refer to the <code>type</code> indicating the specific type of Policy.</li>
+<li>A Policy  MAY refer to the <code>conflict</code> attribute indicating how to handle Policy conflicts.</li>
+<li>A Policy  MAY refer to the <code>undefined</code> attribute indicating how to handle undefined Actions.</li>
+<li>A Policy  MAY refer to the <code>inheritAllowed</code> attribute indicating a Policy can be inherited by other Policies.</li>
+<li>A Policy  MAY refer to the ODRL <code>profile</code> identifier that this Policy conforms to.</li>
 </ul>
 
-<p>The values for the Policy entity&#8217;s <code>type</code> attribute are described in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. The Policy <code>type</code> describes the context of use of the Policy and MAY include additional constraints that processing systems MUST understand.</p>
+<p>The values for the Policy <code>type</code> attribute are described in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. The Policy <code>type</code> describes the context of use of the Policy and MAY include additional constraints that processing systems MUST understand.</p>
 <blockquote>    
-    <p> For example, the "Agreement" Policy type stipulates minimal cardinalities for some for the Information Model entities, which are different than the "Offer" Policy type. In addition, and more importantly, the "Agreement" Policy type expresses that the Permissions/Prohibitions have been granted, but the "Offer" Policy type does not. </p>
+    <p> For example, the "Agreement" Policy type stipulates minimal cardinalities for some for the Policy classes, which are different than the "Offer" Policy type. In addition, and more importantly, the "Agreement" Policy type expresses that the Permissions/Prohibitions have been granted, but the "Offer" Policy type does not. </p>
     </blockquote>
 <p>To illustrate the concepts described in the Information Model, we will start from basic examples to come to more sophisticated ones when concepts are discussed in more details. </p>
  
@@ -200,7 +199,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="composition">
 <h4>Policy Composition</h4>
              
-    <p>The ODRL Information Model supports flexibility in the composition of the information entities used to declare ODRL expressions. A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
+    <p>The ODRL Information Model supports flexibility in the composition of the ODRL expressions. A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
      
     <p>At the basic level, an ODRL Rule would refer to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is <em>irreducible</em> and <em>unambiguous</em>.</p>
              
@@ -326,7 +325,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <section id="provenace">
 <h4>Policy Provenance</h4>
          
-       <p>Provenance attributes MAY be added to the Policy entity to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[!dcterms]] for ODRL Policies.</p>
+       <p>Provenance attributes MAY be added to a Policy to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[!dcterms]] for ODRL Policies.</p>
          
          <p>The following Dublin Core Metadata Terms [[!dcterms]] SHOULD be used:</p>
             <ul>
@@ -370,13 +369,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         
 <p>The <code>conflict</code> attribute is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent.</p>
       
-    <p>The <code>conflict</code> attribute MUST take one of the following values:</p>
+    <p>The <code>conflict</code> attribute MUST take one of the following:</p>
 <ul>
 <li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
 <li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
 </ul>
-<p>If the <code>conflict</code> attribute is not explicitly set, the default value of <code>invalid</code> will be used.</p>
+<p>If the <code>conflict</code> attribute is not explicitly set, the default of <code>invalid</code> will be used.</p>
 
         
 <p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
@@ -438,7 +437,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
              
 <p>The <code>undefined</code> attribute is used to indicate how to process unsupported Actions. That is, if an ODRL expression contains an Action that is not from a known (or supported) ODRL vocabulary, how should the Action be treated in the context of the whole ODRL Policy?</p>
         
- <p>The <code>undefined</code> attribute MUST take one of the following values:</p>
+ <p>The <code>undefined</code> attribute MUST take one of the following:</p>
 <ul>
 <li><code>support</code>: the undefined Action is to be <strong>supported</strong> as part of the Policy &#8211; and the Policy remains valid</li>
 <li><code>ignore</code>: the undefined Action is to be <strong>ignored</strong> and is not part of the Policy &#8211; and the Policy remains valid</li>
@@ -447,7 +446,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>In all cases, systems that process ODRL expressions SHOULD provide mechanisms that adequately address these three outcomes. That is, how the Action can be <strong>supported</strong>, or <strong>ignored</strong>, or the entire Policy is <strong>invalid</strong>. </p>
 
 
-        <p>If the <code>undefined</code> attribute is not explicitly set, its default value of <code>invalid</code> SHALL be used.</p>
+        <p>If the <code>undefined</code> attribute is not explicitly set, its default of <code>invalid</code> SHALL be used.</p>
         
                 
 <p>The processing model for undefined actions includes:</p>
@@ -485,7 +484,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
     <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the information entities that the (parent) Policy is composed of. ODRL inheritance is aimed at <em>including</em> information entities from parent to child Policies.</p>
     
-<p>The <code>inheritAllowed</code> attribute in the Policy entity is used to indicate if the Policy expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> attribute MUST take one of the following values:</p>
+<p>The <code>inheritAllowed</code> attribute in the Policy is used to indicate if the Policy expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> attribute MUST take one of the following:</p>
 <ul>
 <li><code>true</code>: the Policy expression can be used for inheritance</li>
 <li><code>false</code>: the Policy expression can not be used for inheritance</li>
@@ -597,16 +596,16 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <section id="asset">
 <h3>Asset</h3>
-<p>The Asset entity is a resource that is the subject of an ODRL Rule. The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> entities that are needed to undertake the Policy expression, such as with the Duty entity. The Asset entity is referred to by the Permission and/or Prohibition entities, and also by the Duty entity.</p>
-<p>The Asset entity has the following attributes:</p>
+<p>An Asset is a resource that is the subject of an ODRL Rule. The Asset can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> entities that are needed to undertake the Policy expression, such as with a Duty. A Asset is referred to by the Permission and/or Prohibition, and also by the Duty.</p>
+<p>An Asset  has the following attributes:</p>
     
 <ul>
-<li>The Asset entity MUST refer to <code>uid</code> identification of the Asset</li>
-<li>The Asset entity MAY refer to the <code>scope</code> defining how the Asset shall be interpreted under different contexts.</li>
+<li>A Asset MUST refer to <code>uid</code> identification of the Asset</li>
+<li>A Asset  MAY refer to the <code>scope</code> defining how the Asset shall be interpreted under different contexts.</li>
 </ul>
     
 
-<p>The identification of the Asset entity is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be a URI [[rfc3986]] representing the identifier of the Asset. There MAY also be other alternative identifiers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. To identify inline/indirect Assets, then URI fragments may be used. <p>
+<p>The identification of a Asset is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be a URI [[rfc3986]] representing the identifier of the Asset. There MAY also be other alternative identifiers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. To identify inline/indirect Assets, then URI fragments may be used. <p>
     
     <p>Since ODRL Policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe Asset entities of particular media types. It is recommended to use already existing metadata standards, such as <code><a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a></code> that are appropriate to the Asset type or purpose.</p>
 
@@ -614,10 +613,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="relation">
 <h4>Relation</h4>
 
-<p>The Relation class is used to link to an Asset from either Rule, indicating how the Asset SHOULD be utilised in respect to the entity that links to it.</p>
-<p>The Relation entity has the following attribute:</p>
+<p>The Relation class is used to link to an Asset from either Rule, indicating how the Asset SHOULD be utilised in respect to the Rule that links to it.</p>
+<p>A Relation  has the following attribute:</p>
 <ul>
-<li>The Relation entity MUST refer to a <code>relation</code> indicating the associated link between the Asset and the Rule.</li>
+<li>A Relation  MUST refer to a <code>relation</code> indicating the associated link between the Asset and the Rule.</li>
 </ul>
 <p>The <code>relation</code> link of <code>target</code> MUST be supported which indicates that the Asset is the primary object to which the Rule actions apply.</p>
     
@@ -666,7 +665,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="asset-scope">
 <h4>Scope</h4>
     
-    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret the Asset entity. The purpose of <code>scope</code> is to provide additional information about the Asset. For example, the Asset identifier may refer to a resource with many characteristics, but the scope may limit that to only one specific characteristic.</p>
+    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret an Asset. The purpose of <code>scope</code> is to provide additional information about the Asset. For example, the Asset identifier may refer to a resource with many characteristics, but the scope may limit that to only one specific characteristic.</p>
     
 <p>The <code>scope</code> attribute URI values SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
@@ -699,30 +698,30 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="party">
 <h3>Party</h3>
     
-<p>The Party entity can be any form of identifiable entity who undertakes a role in the Policy, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the Role it plays in the Rule).</p>
+<p>A Party can be any form of identifiable entity who undertakes a role in the Policy, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the Role it plays in the Rule).</p>
     
-<p>The Party entity has the following attributes:</p>
+<p>A Party has the following attributes:</p>
 <ul>
-<li>The Party entity MUST refer to <code>uid</code> identification of the Party</li>
-<li>The Party entity MUST refer to the <code>function</code> role fulfilled by a Party.</li>
-<li>The Party entity MAY refer to  the <code>scope</code> defining how the role shall be interpreted under different contexts.</li>
+<li>A Party  MUST refer to <code>uid</code> identification of the Party</li>
+<li>A Party  MUST refer to the <code>function</code> role fulfilled by a Party.</li>
+<li>A Party  MAY refer to  the <code>scope</code> defining how the role shall be interpreted under different contexts.</li>
 </ul>
 <p>The ODRL Information Model does not provide additional metadata for the Party element. It is recommended to use  existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]], that are appropriate to the Party type.</p>
 
 <section id="role">
 <h4>Role</h4>
-<p>The Role entity is an association class that is used to link a Party from a Rule, to indicate what Role the Party takes with respect to the entity that links to it.</p>
-<p>The Role entity has the following attributes:</p>
+<p>A Role is an association that is used to link a Party from a Rule, to indicate what Role the Party takes with respect to the Rule that links to it.</p>
+<p>A Role  has the following attributes:</p>
 <ul>
-<li>The Role entity MUST refer to the <code>function</code> role the Party is undertaking.</li>
+<li>A Role  MUST refer to the <code>function</code> role the Party is undertaking.</li>
 </ul>
-<p>The <code>function</code> attribute MUST support the following role values:</p>
+<p>The <code>function</code> attribute MUST support the following roles:</p>
 <ul>
 <li><code>assigner</code>: indicates the Party that is issuing the Policy. For example, the Party granting a Permission or requiring an agreed Duty to be performed.</li>
 <li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
 </ul>
    
-<p>Other values for the <code>function</code> role attribute MAY be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other roles for the <code>function</code>  attribute MAY be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
             
 <blockquote>
@@ -764,12 +763,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="party-scope">
 <h4>Scope</h4>
     
-    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret the Party entity. The purpose of <code>scope</code> is to provide additional information about the Party that may also reduce the extent of the Party identifier. For example, the Party identifier may refer to all users at a University, but the scope may contextualise that to only fulltime staff members at the University.</p>
+    <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret a Party. The purpose of <code>scope</code> is to provide additional information about the Party that may also reduce the extent of the Party identifier. For example, the Party identifier may refer to all users at a University, but the scope may contextualise that to only fulltime staff members at the University.</p>
         
-     <p>The <code>scope</code> attribute SHOULD take one of the following values:</p>
+     <p>The <code>scope</code> attribute SHOULD be one of the following:</p>
 <ul>
-<li><code>individual</code>: indicates that the Party entity is a single individual. The linked Permission, Duty or Prohibition is applicable for that individual only.</li>
-<li><code>group</code>: indicates that the Party entity represents a group. The group consisting of many individual members. The linked Permission, Duty or Prohibition is applicable for each member of that group. For example, a Permission to play a movie 5 times is valid for each Party member or the Duty to pay 3 EUR has to be fulfilled by each Party member.</li>
+<li><code>individual</code>: indicates that a Party  is a single individual. The linked Permission, Duty or Prohibition is applicable for that individual only.</li>
+<li><code>group</code>: indicates that a Party  represents a group. The group consisting of many individual members. The linked Permission, Duty or Prohibition is applicable for each member of that group. For example, a Permission to play a movie 5 times is valid for each Party member or the Duty to pay 3 EUR has to be fulfilled by each Party member.</li>
 </ul>
 <p>Other URI values for the <code>scope</code> attribute SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
@@ -801,15 +800,15 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <h3>Permission</h3>
 
 
-<p>The Permission entity specifies the Actions permitted to be performed on an Asset. An ODRL policy expression MAY contain at least one Permission.</p>
+<p>A Permission  specifies the Actions permitted to be performed on an Asset. An ODRL policy expression MAY contain at least one Permission.</p>
 
-<p>The Permission entity has the following attributes:</p>
+<p>A Permission  has the following attributes:</p>
 <ul>
-<li>The Permission entity MUST refer to a <code>target</code> Asset on which the identified Action MAY be performed. Other <code>relation</code> values for Asset MAY be used.</li>
-<li>The Permission entity MUST refer to an instance of an Action that indicates the operation allowed on the target Asset.</li>
-<li>The Permission entity MAY refer to one or more assigner and/or assignee <code>role</code> functions undertaken by Party entities. Other <code>role</code> function values for Party MAY be used.</li>
-<li>The Permission entity MAY refer to one or more <code>constraint</code>s. The Permission becomes effective if all of the constraints are satisfied.</li>
-<li>The Permission entity MAY refer to one or more <code>duty</code>/ies. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
+<li>A Permission  MUST refer to a <code>target</code> Asset on which the identified Action MAY be performed. Other <code>relation</code> values for Asset MAY be used.</li>
+<li>A Permission  MUST refer to an instance of an Action that indicates the operation allowed on the target Asset.</li>
+<li>A Permission  MAY refer to one or more assigner and/or assignee <code>role</code> functions undertaken by Party entities. Other <code>role</code> function values for Party MAY be used.</li>
+<li>A Permission  MAY refer to one or more <code>constraint</code>s. The Permission becomes effective if all of the constraints are satisfied.</li>
+<li>A Permission  MAY refer to one or more <code>duty</code>/ies. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
 <p>For a Permission to become effective, it must be valid (ie its constraints are satisfied) and all of the Permission's Duties must be fulfilled.</p>
 <blockquote>   
@@ -837,14 +836,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="prohibition">
 <h3>Prohibition</h3>
 
-<p>The Prohibition entity indicates the Actions that are prohibited to be performed on the Asset.
-<p>The Prohibition entity has the following attributes:</p>
+<p>A Prohibition indicates the Actions that are prohibited to be performed on the Asset.
+<p>A Prohibition  has the following attributes:</p>
     
 <ul>
-<li>The Prohibition entity MUST refer to a <code>target</code> Asset on which the identified Action MUST NOT be performed. Other <code>relation</code> values for Asset MAY be used.</li>
-<li>The Prohibition entity MUST refer to an instance of an Action that indicates the operation NOT allowed on the target Asset.</li>
-<li>The Prohibition entity MAY refer to one or more assigner and/or assignee <code>role</code> functions undertaken by Party entities. Other <code>role</code> function values for Party MAY be used.</li>
-<li>The Prohibition entity MAY refer to one or more <code>constraint</code>s.  The Prohibition becomes effective if all of the constraints are satisfied.</li>
+<li>A Prohibition  MUST refer to a <code>target</code> Asset on which the identified Action MUST NOT be performed. Other <code>relation</code> values for Asset MAY be used.</li>
+<li>A Prohibition  MUST refer to an instance of an Action that indicates the operation NOT allowed on the target Asset.</li>
+<li>A Prohibition  MAY refer to one or more assigner and/or assignee <code>role</code> functions undertaken by Party entities. Other <code>role</code> function values for Party MAY be used.</li>
+<li>A Prohibition  MAY refer to one or more <code>constraint</code>s.  The Prohibition becomes effective if all of the constraints are satisfied.</li>
 </ul>
 
 
@@ -880,25 +879,25 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>A Permission MAY refer to one or more Duties which indicate obligations that MUST be fulfilled in order for the Permission to be valid. A Duty is in effect as long as its associated permission is valid (i.e., the Permission's constraints are alll satisfied). A Duty MUST only be associated with a Permission. </p>
     
-<p>The Duty entity has the following attributes:</p>
+<p>A Duty  has the following attributes:</p>
     
 <ul>
-<li>The Duty entity MUST refer to an instance of an Action that indicates the agreed operation that MUST be performed. Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
+<li>A Duty  MUST refer to an instance of an Action that indicates the agreed operation that MUST be performed. Note: It is assumed that the assigned Party has the appropriate permissions to perform this action.</li>
     
-<li>The Duty entity MAY refer to one or more assigner and/or assignee <code>role</code> functions to be undertaken by Party entities. Note: If no explicit role is specified as Assignee or Assigner, the Parties with the respective Roles are taken from the referring Permission. Other <code>role</code> function values for Party MAY be used.</li>
+<li>A Duty  MAY refer to one or more assigner and/or assignee <code>role</code> functions to be undertaken by Party entities. Note: If no explicit role is specified as Assignee or Assigner, the Parties with the respective Roles are taken from the referring Permission. Other <code>role</code> functions for Party MAY be used.</li>
     
-<li>The Duty entity MAY refer to a <code>target</code> Asset on which the identified agreed Action MUST be performed. Other <code>relation</code> values for Asset MAY be used. For example, a <code>nextPolicy</code> Action MUST be linked to the identifier of a target Policy asset.</li>
+<li>A Duty  MAY refer to a <code>target</code> Asset on which the identified agreed Action MUST be performed. Other <code>relation</code>s  for Asset MAY be used. For example, a <code>nextPolicy</code> Action MUST be linked to the identifier of a target Policy asset.</li>
 
-<li>The Duty entity MAY refer to one or more <code>constraint</code>s.  A Duty is considered to be fulfilled if its constraints are satisfied.</li>
+<li>A Duty  MAY refer to one or more <code>constraint</code>s.  A Duty is considered to be fulfilled if its constraints are satisfied.</li>
 
-<li>The Duty entity MAY refer to a identifier for this Duty instance. Note: this is used to refer the same Duty to multiple Permission entities.</li>
+<li>A Duty  MAY refer to a identifier for this Duty instance. Note: this is used to refer the same Duty to multiple Permission entities.</li>
     
 </ul>
     
     
     <p>If a Permission refers to several Duty entities, <em>all of them</em> MUST be agreed to be satisfied for the Permission to be undertaken. If several Permission entities refer to one Duty, then the Duty only has to be satisfied <em>once</em> for all the Permission entities.</p>
     
-<p>Even though a Duty entity is mandatory (ie agreed to be undertaken by the parties), the ODRL model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as montly invoicing.</p>
+<p>Even though a Duty is mandatory (ie agreed to be undertaken by the parties), the ODRL model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as montly invoicing.</p>
  
     <blockquote>
 <p>Example Use Case: The Party http://example.com/assigner:sony makes an Offer to play the music file http://example.com/music/1999.mp3. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of this http://www.w3.org/ns/odrl/2/policyUsage must not have occured yet.
@@ -976,11 +975,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <h3>Action</h3>
 
 
-<p>The Action entity indicates an operation that is applicable to an Asset. The Action is <em>permitted</em> to be performed on the target Asset when related to a Permission entity. When related to a Prohibition, the Action entity indicates the operation that is <em>prohibited</em> to be perform on the target Asset. When related to a Duty, the Action entity indicates the operation that is obligatory to be performed.</p>
+<p>An Action  indicates an operation that is applicable to an Asset. The Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be perform on the target Asset. When related to a Duty, the Action indicates the operation that is obligatory to be performed.</p>
     
-<p>The Action entity has the following attribute:</p>
+<p>An Action has the following attribute:</p>
 <ul>
-<li>The Action entity MUST refer to an instance of an Action <code>name</code>.</li>
+<li>An Action  MUST refer to an instance of an Action <code>name</code>.</li>
 </ul>
 <p>The ODRL vocabulary [[!vocab-odrl]] defines a standard set of common Action names that MAY be used.</p>
 
@@ -1006,26 +1005,26 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>The Constraint entity can be used to define the context in which to process Actions in Rules, such as limitations, restrictions, or interpretations that must be applied to the Actions. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <strong>true</strong> the result of the Constraint is satisfied.</p>
+    <p>A Constraint  can be used to define the context in which to process Actions in Rules, such as limitations, restrictions, or interpretations that must be applied to the Actions. Constraints are a logical expression for comparing two operands by one operator. If the logical expression evalutes to <strong>true</strong> the result of the Constraint is satisfied.</p>
         <p>
        Constraints can express these contexts with logical comparisions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). Constraints can also be used for complex Constraint Relations expressions that use two constraint objects as the left and right operand. For example, Constraint #1 (<code>leftOperand</code>) must be satisfied or (<code>operator</code>) Constraint #2 (<code>rightOperand</code>) must be satisfied.</p>
  
     <p>Constraints MUST be checked by processings system at the time of executing the relevant action. If the constraint is satisfied (ie the logical expression is true) then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
     
-    <p>The constraint <code>leftOperand</code> MUST clearly be defined to indicate which entity is the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
+    <p>The constraint <code>leftOperand</code> MUST clearly be defined to indicate the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
     
     
     <p>When multiple Constraints are attached to the same Rule they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied.</p>
        
-<p>The Constraint entity has the following attributes:</p>
+<p>A Constraint  has the following attributes:</p>
 <ul>
-<li>The Constraint entity MUST refer to the <code>leftOperand.</code></li>
-<li>The Constraint entity MUST refer to the <code>operator</code> function.</li>
-<li>The Constraint entity MUST refer to the <code>rightOperand</code> (Note: only if no rightOperandReference appears.)</li>
-<li>The Constraint entity MUST refer to the <code>rightOperandReference</code>(Note: only if no rightOperand appears.)</li>
-<li>The Constraint entity MAY refer to the <code>dataType</code> of the rightOperand.</li>
-<li>The Constraint entity MAY refer to the <code>unit</code>s of the rightOperand.</li>
-<li>The Constraint entity MAY refer to the <code>status</code> of the current value generated from the leftOperand action.</li>
+<li>A Constraint  MUST refer to the <code>leftOperand.</code></li>
+<li>A Constraint  MUST refer to the <code>operator</code> function.</li>
+<li>A Constraint  MUST refer to the <code>rightOperand</code> (Note: only if no rightOperandReference appears.)</li>
+<li>A Constraint  MUST refer to the <code>rightOperandReference</code>(Note: only if no rightOperand appears.)</li>
+<li>A Constraint  MAY refer to the <code>dataType</code> of the rightOperand.</li>
+<li>A Constraint  MAY refer to the <code>unit</code>s of the rightOperand.</li>
+<li>A Constraint  MAY refer to the <code>status</code> of the current value generated from the leftOperand action.</li>
 </ul>
         
 <p>In case of a Constraint expression, the <code>leftOperand</code> identifies the left operand of the logic expression for the Constraint. The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Vocabulary [[!vocab-odrl]] or from an ODRL Profile. In case of a Constraint Relations expression, the <code>leftOperand</code> MUST refer to a complete Constraint object (see <a href="#constraint-relations">Constraint Relations</a> for further requirements).
@@ -1219,7 +1218,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <h3>Requirements</h3>
       
 <p>
-    The <code>profile</code> attribute in the <code>Policy</code> entity is used to indicate the identifier (URI) of the ODRL Profile for which the Policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile and all the constraints in the ODRL Profile MUST apply to the Policy expression. If a consuming system does not understand the ODRL Profile URI, then it MAY continue processing the Policy expression, but it SHOULD NOT assume it has interpreted the Policy expression correctly. </p>
+    The <code>profile</code> attribute in a <code>Policy</code>  is used to indicate the identifier (URI) of the ODRL Profile for which the Policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile and all the constraints in the ODRL Profile MUST apply to the Policy expression. If a consuming system does not understand the ODRL Profile URI, then it MAY continue processing the Policy expression, but it SHOULD NOT assume it has interpreted the Policy expression correctly. </p>
     
     <p>If multiple ODRL Profiles are required, then it is recommended that a new identifier SHOULD be created to identify the combination of Profiles (and document the combined Profiles).</p>
 <p>
