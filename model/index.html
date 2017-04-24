@@ -44,7 +44,7 @@
 <h3>Serialization of the Model</h3>
 
 <p>The ODRL Information Model is formally specified using UML notation [[!uml]].</p>
-<p>The examples throughout the document are serialized as [[json-ld]]. For normative serialisations, please refer to the ODRL Vocabulary and Expression [[!vocab-odrl]].</p>	
+<p>The examples throughout the document are serialized as [[json-ld]]. For normative serialisations, including the JSON context, please refer to the ODRL Vocabulary and Expression [[!vocab-odrl]].</p>	
 </section>
 	
 <section id="conformance"></section>
@@ -154,8 +154,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </blockquote>
 
 <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
@@ -176,8 +176,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: The below "Set" Policy type states that the Asset http//example.com/asset:9898 is the target of the Permission to perform the action reproduce, the Duty to perform the action attribute to http://example.com/owner:9898, and the Prohibition to perform the action translate. Two Parties are involved, namely the Assigner of the Permission and the Party to be attributed.</p>
 </blockquote>
 <pre class=" example hljs json">{
-<span class="hljs-attr">"@context"</span>: {
-    <span class="hljs-attr">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-attr">"@context"</span>: {
+        <span class="hljs-attr">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-attr">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
@@ -207,7 +207,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
     "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+        "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Agreement",
     "@id": "http://example.com/policy:8888",
@@ -271,7 +271,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
     "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+        "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Agreement",
     "@id": "http://example.com/policy:8888",
@@ -292,7 +292,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
     "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+        "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Agreement",
     "@id": "http://example.com/policy:8888",
@@ -348,8 +348,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
          
 <pre class="example hljs json">
 {
-    "@context": [{ "odrl": "http://www.w3.org/ns/odrl/2/",
-                   "dc": "http://purl.org/dc/terms/" }],
+    "@context": { 
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "dc": "http://purl.org/dc/terms/"
+    },
     "@type": "odrl:Agreement",
     "@id": "http://example.com/policy:8888",
     "dc:creator": "billie@example.com",
@@ -392,8 +394,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </blockquote>
 
 <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:0001"</span>,
@@ -407,8 +409,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </pre>
 
 <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:0002"</span>,
@@ -464,7 +466,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
     "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+        "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Set",
     "@id": "http://example.com/policy:8888",
@@ -513,7 +515,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <pre class="example hljs json">
 {
     "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+        "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Set",
     "@id": "http://example.com/policy:3333",
@@ -530,7 +532,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <pre class="example hljs json">
 {
     "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+        "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Agreement",
     "@id": "http://example.com/policy:4444",
@@ -553,7 +555,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <pre class="example hljs json">
 {
     "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+        "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Agreement",
     "@id": "http://example.com/policy:4444",
@@ -626,8 +628,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: The Party http//example.com/guest:0001 wants to display the target Asset http://example.com/asset:3333, but she needs to be granted with the Permission to do so first. This request can be implemented through a Policy of the type Request asking for the Permission to display Asset http://example.com/asset:3333.</p>
     </blockquote>
  <pre class="example hljs json">{
- <span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+         <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Request"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:3333"</span>,
@@ -647,8 +649,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     </blockquote>
 
  <pre class="example hljs json">{
- <span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
@@ -674,8 +676,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <p>Example Use Case: The Policy defines a target Asset http://example.com/media-catalogue that has a scope of http://example.com/imt/jpeg (which, in this case, provides additional context on what characteristics the Asset MUST hold).</p>
     </blockquote>
  <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
@@ -729,8 +731,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <pre class="example hljs json">
 {
-    "@context": [{ "odrl": "http://www.w3.org/ns/odrl/2/",
-                   "vCard": "http://www.w3.org/2006/vcard/ns#" }],
+    "@context": {
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "vCard": "http://www.w3.org/2006/vcard/ns#"
+    },
     "@type": "odrl:Agreement",
     "@id": "http://example.com/policy:8888",
     "permission": [{
@@ -774,8 +778,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: The target Asset http://example.com/myPhotos:BdayParty are a set of photos posted to a social network site by the Assigner of the photos http://example.com/user44. The Assignee is a Party http://example.com/user44/friends, and represents all the friends of the Assigner. Since this is a collection of individuals, then the group scope is declared. In addtion, the scope of the Assignee has been also be declared as http://example.com/people/age/18+ (which, in this case, provides additional context on what characteristics the Assignee MUST hold).</p>
     </blockquote>
 <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
@@ -812,8 +816,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: The ticket Policy expresses the play Permission for the target Asset http//example.com/game:9090, stating that the ticket is valid until the end of the year 2017. Any valid holder of this ticket may exercise this Permission.</p>
     </blockquote>
  <pre class="example hljs json">{
- <span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+     <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Ticket"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:9090"</span>,
@@ -849,8 +853,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     </blockquote>
     
 <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:5555"</span>,
@@ -905,7 +909,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
    "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+       "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Offer",
     "@id": "http://example.com/policy:88",
@@ -939,8 +943,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 
 <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Privacy"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
@@ -985,8 +989,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     </blockquote>
     
 <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1012"</span>,
@@ -1041,8 +1045,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     </blockquote>
     
 <pre class="example hljs json">{
-<span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+    <span class="hljs-string">"@context"</span>: {
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
     <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
     <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
@@ -1077,7 +1081,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
  
 {
     <span class="hljs-string">"@context"</span>: {
-    <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
+        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
     },
         <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
         <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>,
@@ -1123,8 +1127,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
            
 <pre class="example hljs json">
 {
-   "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+    "@context": {
+       "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Offer",
     "@id": "http://example.com/policy:88",
@@ -1159,8 +1163,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <pre class="example hljs json">
 {
-   "@context": {
-    "odrl": "http://www.w3.org/ns/odrl/2/"
+    "@context": {
+        "odrl": "http://www.w3.org/ns/odrl/2/"
     },
     "@type": "odrl:Offer",
     "@id": "http://example.com/policy:88",
