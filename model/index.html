@@ -597,7 +597,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="asset">
 <h3>Asset</h3>
 <p>An Asset is a resource that is the subject of an ODRL Rule. The Asset can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> entities that are needed to undertake the Policy expression, such as with a Duty. A Asset is referred to by the Permission and/or Prohibition, and also by the Duty.</p>
-<p>An Asset  has the following attributes:</p>
+<p>An Asset has the following attributes:</p>
     
 <ul>
 <li>A Asset MUST refer to <code>uid</code> identification of the Asset</li>
@@ -605,7 +605,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </ul>
     
 
-<p>The identification of a Asset is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be a URI [[rfc3986]] representing the identifier of the Asset. There MAY also be other alternative identifiers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. To identify inline/indirect Assets, then URI fragments may be used. <p>
+<p>The identification of a Asset is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be an IRI [[rfc3987]] representing the identifier of the Asset. There MAY also be other alternative identifiers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. To identify inline/indirect Assets, then URI fragments may be used. <p>
     
     <p>Since ODRL Policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe Asset entities of particular media types. It is recommended to use already existing metadata standards, such as <code><a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a></code> that are appropriate to the Asset type or purpose.</p>
 
@@ -667,7 +667,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     <p>The <code>scope</code> attribute SHOULD be used to indicate the context under which to interpret an Asset. The purpose of <code>scope</code> is to provide additional information about the Asset. For example, the Asset identifier may refer to a resource with many characteristics, but the scope may limit that to only one specific characteristic.</p>
     
-<p>The <code>scope</code> attribute URI values SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>The <code>scope</code> attribute IRI values SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 
     
@@ -770,7 +770,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li><code>individual</code>: indicates that a Party  is a single individual. The linked Permission, Duty or Prohibition is applicable for that individual only.</li>
 <li><code>group</code>: indicates that a Party  represents a group. The group consisting of many individual members. The linked Permission, Duty or Prohibition is applicable for each member of that group. For example, a Permission to play a movie 5 times is valid for each Party member or the Duty to pay 3 EUR has to be fulfilled by each Party member.</li>
 </ul>
-<p>Other URI values for the <code>scope</code> attribute SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other IRI values for the <code>scope</code> attribute SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 
     <blockquote>
@@ -1032,7 +1032,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>In case of a Constraint expression, the <code>operator</code> identifies the logical operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operand. In case of a Constraint Relations expression the operator identifiers the logic relationship of two constraints using operators like 'and' or 'exclusive or'.</p>
 
-<p>In case of a Constraint expression, the <code>rightOperand</code> identifies the right operand of the logic expression for the Constraint. The <code>rightOperand</code> MAY be the value of the constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as <code>10</code> or <code>http://example.com/c100</code>) and <code>rightOperandReference</code> represents a URI that MUST be dereferenced to obtain the actual value. Only one between <code>rightOperand</code> and <code>rightOperandReference</code> MUST appear in the Constraint. In case of a Constraint Relations expression, the <code>rightOperand</code> MUST refer to an complete Constraint object (see <a href="#constraint-relations">Constraint Relations</a> for further requirements).</p>
+<p>In case of a Constraint expression, the <code>rightOperand</code> identifies the right operand of the logic expression for the Constraint. The <code>rightOperand</code> MAY be the value of the constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as <code>10</code> or <code>http://example.com/c100</code>) and <code>rightOperandReference</code> represents an IRI that MUST be dereferenced to obtain the actual value. Only one between <code>rightOperand</code> and <code>rightOperandReference</code> MUST appear in the Constraint. In case of a Constraint Relations expression, the <code>rightOperand</code> MUST refer to an complete Constraint object (see <a href="#constraint-relations">Constraint Relations</a> for further requirements).</p>
         
 <p>In case of a Constraint expression, the <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;. In case of a Constraint Relations expression, the <code>dataType</code> attribute MUST NOT be used.</p>
 
@@ -1218,7 +1218,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <h3>Requirements</h3>
       
 <p>
-    The <code>profile</code> attribute in a <code>Policy</code>  is used to indicate the identifier (URI) of the ODRL Profile for which the Policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile and all the constraints in the ODRL Profile MUST apply to the Policy expression. If a consuming system does not understand the ODRL Profile URI, then it MAY continue processing the Policy expression, but it SHOULD NOT assume it has interpreted the Policy expression correctly. </p>
+    The <code>profile</code> attribute in a <code>Policy</code>  is used to indicate the identifier (IRI) of the ODRL Profile for which the Policy expression conforms to. This attribute is OPTIONAL, but if the attribute appears, then any consuming system MUST understand the identified ODRL Profile and all the constraints in the ODRL Profile MUST apply to the Policy expression. If a consuming system does not understand the ODRL Profile, then it MAY continue processing the Policy expression, but it SHOULD NOT assume it has interpreted the Policy expression correctly. </p>
     
     <p>If multiple ODRL Profiles are required, then it is recommended that a new identifier SHOULD be created to identify the combination of Profiles (and document the combined Profiles).</p>
 <p>
@@ -1231,10 +1231,10 @@ The requirements for communities developing ODRL Profiles MUST document the foll
 <li>New Vocabulary terms</li>
 <li>Vocabulary terms not explicitly being suported</li>
 <li>Vocabulary terms with more specific interpretations</li>
-<li>The ODRL Profile identifier (URI)</li>
+<li>The ODRL Profile identifier (IRI)</li>
     </ul>
   
-<p>The community SHOULD also create a machine-readable schema for their ODRL Profile following the appropriate serialisations options outlined in the ODRL Vocabulary and Expression specification [[!vocab-odrl]]. In this case, the ODRL Profile URI MUST also be used as the serialisation namespace URI.</p>
+<p>The community SHOULD also create a machine-readable schema for their ODRL Profile following the appropriate serialisations options outlined in the ODRL Vocabulary and Expression specification [[!vocab-odrl]]. In this case, the ODRL Profile IRI MUST also be used as the serialisation namespace.</p>
 
 <p>It is also recommended to share the ODRL Profile with the <code><a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a></code> for feedback and comments. In addition, the W3C ODRL Community Group may host the ODRL Profile documents on their website. </p>
     </section>
@@ -1311,6 +1311,9 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <co
     <li>Added Constraint on Constraint suppport. <code><a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></code></li>
     
      <li>Removed inheritRelation attribute. <code><a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></code></li>
+    
+        
+     <li>Replaced URI with IRI for I18N <code><a href="https://github.com/w3c/poe/issues/133">(Issue#133)</a></code></li>
     
 </ul>
 </section>

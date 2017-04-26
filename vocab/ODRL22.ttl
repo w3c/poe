@@ -11,14 +11,14 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix schema: <http://schema.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 
 odrl:
 	a owl:Ontology , voaf:Vocabulary ;
 	rdfs:label "ODRL Version 2.2"@en ;
 	owl:versionInfo "2.2" ;
 	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "Víctor Rodríguez-Doncel" ;
-	dct:issued "2017-01-20"^^xsd:date ;
+	dct:issued "2017-04-26"^^xsd:date ;
 	dct:contributor "W3C Permissions & Obligations Expression Working Group" ;
 	dct:description "The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model."@en ;
 	rdfs:comment "This is the RDF ontology for ODRL Version 2.2 (working draft)."@en ;
@@ -379,8 +379,8 @@ odrl:
 	rdfs:subClassOf [
 		a owl:Class ;
 		owl:unionOf ( schema:Person schema:Organization foaf:Person foaf:Organization vcard:Individual vcard:Organization ) ;
-	]
-	skos:note "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF [[foaf]] metadata."@en .
+	];
+	skos:note "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]]."@en .
 
 ## Policies
 
@@ -701,7 +701,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand Reference"@en ;
 	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
-	skos:note "Represents a URI that must be dereferenced to obtain the actual right operand value"@en ;
+	skos:note "Represents an IRI that must be dereferenced to obtain the actual right operand value"@en ;
 	rdfs:domain :Constraint ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -873,7 +873,7 @@ odrl:
 	skos:broaderTransitive :absolutePosition;
 	rdfs:label "Absolute Temporal Asset Position"@en ;
 	skos:definition "The absolute temporal positions in a media stream the Asset has to fit in after the Action."@en ;
-	skos:note "Note: Use with Actions including the Asset in a larger media stream. The fragement part of a Media Fragement URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream."@en ;
+	skos:note "Note: Use with Actions including the Asset in a larger media stream. The fragment part of a Media Fragment URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream."@en ;
   skos:scopeNote "Non-Normative"@en .
 
 :absoluteSize
@@ -1060,7 +1060,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Geospatial Named Area"@en ;
 	skos:definition "A named and identified geospatial area with defined borders for exercising the Action."@en ;
-	skos:note "A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. A URI should be used to represent this value."@en ;
+	skos:note "A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. An IRI should be used to represent this value."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :spatialCoordinates
