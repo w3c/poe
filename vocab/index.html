@@ -1319,10 +1319,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
     <section id="encodings">
 	<h2>Vocabulary Encodings</h2>
-
-        <div class="note">
-        <p>Add a list of all Namespace URIs used.</p>
-        </div>
+     <p>This specification describes a number of serialization syntaxes for the ODRL Vocabulary.</p> 
+<p>ODRL expression documents MUST be serialized using the UTF-8 character encoding.</p>    </section>
+          
         
     <section id="rdfowl">
    	<h3>RDF/OWL Encoding</h3>         
@@ -1340,7 +1339,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
 <p>Consider the below example; the Dublin Core [[dcterms]] license predicate is used to infer the relationship between the Asset and the Policy.</p>
     
-<pre class="example  hljs json">
+<pre class="example hljs tutle">
 @prefix odrl: &lt;http://www.w3.org/ns/odrl/2/> .
 @prefix dct: &lt;http://purl.org/dc/terms/> .
 
@@ -1354,7 +1353,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
 <p>This axiom infers that the Asset &lt;http://example.com/asset:5555&gt; is the target Asset for the Policy &lt;http://example.com/policy:0099&gt;. The final ODRL Offer Policy expression would then be:</p>  
 
-<pre class="example  hljs json">
+<pre class="example  hljs turtle">
  &lt;http://example.com/policy:0099>
     a odrl:Offer;
     odrl:target &lt;http://example.com/asset:5555> ;
@@ -1366,13 +1365,13 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
           
     <section id="xml">
    	<h2>XML Encoding</h2>         
-        <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the URIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
+        <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the IRIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
 
 <div class="note">
 <p>The (editors draft) ODRL XML Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
 </div>
 
-<p>To enable compact URIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
+<p>To enable compact IRIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
 
 
 <p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the ODRL Information Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
@@ -1380,13 +1379,13 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <p>The Policy element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; a URI/Qname/Qcode (REQUIRED)</li>
-<li>type &#8211; a URI/Qname/Qcode (REQUIRED)</li>
+<li>uid &#8211; an IRI/Qname/Qcode (REQUIRED)</li>
+<li>type &#8211; an IRI/Qname/Qcode (REQUIRED)</li>
 <li>conflict &#8211; fixed enumeration (defined in XML Schema)</li>
 <li>undefined &#8211; fixed enumeration (defined in XML Schema)</li>
 <li>inheritAllowed &#8211; a boolean</li>
-<li>inheritFrom &#8211; a URI/Qname/Qcode</li>
-<li>profile &#8211; a URI/Qname/Qcode</li>
+<li>inheritFrom &#8211; an IRI/Qname/Qcode</li>
+<li>profile &#8211; an IRI/Qname/Qcode</li>
 </ul>
 
 <p>The Policy element MAY contain the following elements:</p>
@@ -1404,9 +1403,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <p>The Asset and Relation association class are merged into a single Asset element to represent both the Asset and how it is related to the Permission/Prohibition/Duty. The Asset element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; a URI/Qname/Qcode</li>
-<li>relation &#8211; a URI/Qname/Qcode</li>
-<li>scope &#8211; a URI/Qname/Qcode</li>
+<li>uid &#8211; an IRI/Qname/Qcode</li>
+<li>relation &#8211; an IRI/Qname/Qcode</li>
+<li>scope &#8211; an IRI/Qname/Qcode</li>
 <li>id &#8211; an local identifier for this element</li>
 <li>idref &#8211; a reference to an Asset element</li>
 </ul>
@@ -1417,10 +1416,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ol>
 <p>The Party and Role association class are merged into a single Party element to represent both the Party and the role to the Permission/Prohibition/Duty. The Party element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; a URI/Qname/Qcode</li>
-<li>function &#8211; a URI/Qname/Qcode</li>
-<li>scope &#8211; a URI/Qname/Qcode</li>
-<li>id &#8211; an local identifier for this element</li>
+<li>uid &#8211; an IRI/Qname/Qcode</li>
+<li>function &#8211; an IRI/Qname/Qcode</li>
+<li>scope &#8211; an IRI/Qname/Qcode</li>
+<li>id &#8211; a local identifier for this element</li>
 <li>idref &#8211; a reference to a Party element</li>
 </ul>
 <p>Party element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
@@ -1452,8 +1451,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ul>
 <p>The Duty element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; a URI/Qname/Qcode</li>
-<li>id &#8211; an local identifier for this element</li>
+<li>uid &#8211; an IRI/Qname/Qcode</li>
+<li>id &#8211; a local identifier for this element</li>
 <li>idref &#8211; a reference to an Duty element</li>
 </ul>
 <p>Duty element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
@@ -1464,8 +1463,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ol>
 <p>The Action element contains the following attribute:</p>
 <ul>
-<li>name &#8211; a URI/Qname/Qcode</li>
-<li>id &#8211; an local identifier for this element</li>
+<li>name &#8211; an IRI/Qname/Qcode</li>
+<li>id &#8211; a local identifier for this element</li>
 <li>idref &#8211; a reference to an Action element</li>
 </ul>
 <p>Action element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
@@ -1475,14 +1474,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ol>
 <p>The Constraint element contains the following attributes:</p>
 <ul>
-<li>name &#8211; a URI/Qname/Qcode</li>
-<li>operator &#8211; a URI/Qname/Qcode</li>
+<li>name &#8211; an IRI/Qname/Qcode</li>
+<li>operator &#8211; an IRI/Qname/Qcode</li>
 <li>rightOperand &#8211; string, space separated list for set values</li>
-<li>rightOperandReference &#8211; a URI</li>
-<li>dataType &#8211; a URI/Qname/Qcode</li>
-<li>unit &#8211; a URI/Qname/Qcode</li>
+<li>rightOperandReference &#8211; an IRI</li>
+<li>dataType &#8211; an IRI/Qname/Qcode</li>
+<li>unit &#8211; an IRI/Qname/Qcode</li>
 <li>status &#8211; string</li>
-<li>id &#8211; an local identifier for this element</li>
+<li>id &#8211; a local identifier for this element</li>
 <li>idref &#8211; a reference to an Constraint element</li>
 </ul>
 <P>NOTE: The Constraint <strong>name</strong> attribute is called <strong>leftOperand</strong> in the ODRL Information Model.</P>
@@ -1605,7 +1604,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <section>
 <h2>Inline Assets</h2>
-  <p>In some scenarios, the Asset of an ODRL Policy maybe also be XML or HTML markup. In these specific cases, it makes sense to enable the ODRL Policy to be articulated as part of the Asset and to support abbreviated expressions. All default values should be assumed. The preferred method of linking is to utilise the XML ID attribute. The source Asset markup may be identified with an ID attribute and the ODRL Asset element can then refer to this ID as the UID (as a URI hash fragment). An example is shown below.</p>  
+  <p>In some scenarios, the Asset of an ODRL Policy maybe also be XML or HTML markup. In these specific cases, it makes sense to enable the ODRL Policy to be articulated as part of the Asset and to support abbreviated expressions. All default values should be assumed. The preferred method of linking is to utilise the XML ID attribute. The source Asset markup may be identified with an ID attribute and the ODRL Asset element can then refer to this ID as the UID (as an IRI hash fragment). An example is shown below.</p>  
 <div id="inline-xml">
 <pre class="example  xml">
 &lt;rnews:Article xml:id="item8HEX">
@@ -1631,8 +1630,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
             
     <section id="json">
    	<h2>JSON-LD Encoding</h2>         
-       The [[json-ld]] context is recommended to ensure consistency between implementations, and should be referenced as <code>http://www.w3.org/ns/odrl.jsonld</code>.
-
+       <p>The JSON-LD [[json-ld]] serialisation uses the <code>@context</code> property to define the processing context. Implementations producing ODRL expressions should include a <code>@context</code> property value using the URL <code>http://www.w3.org/ns/odrl.jsonld</code>.</p>
 
 <div class="note">
 <p>The (editors draft) ODRL JSON-LD Context can be <a href="http://w3c.github.io/poe/vocab/ODRL22.jsonld">downloaded</a>.</p>
@@ -1644,11 +1642,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
         
 <section id="privacy-consideration">
    	<h2>Privacy Considerations</h2>         
-        <div class="note">
-    <p>An ODRL policy can be of type "Privacy".</p>
-        <p>Need to add this section for the W3C Horizontal Review on Privacy Considerations.</p>
-        <P>Need to address the <a href="http://gregnorc.github.io/ping-privacy-questions/">W3C PING Privacy Questions</a></P>
-    </div>    </section>
+     <p>
+    ODRL Policies that support the <code>Privacy</code> type may contain links to potentially sensitive personal information such as the identity of parties and the identity of the existance of assets containing such data related to the parties. Implementations that produce or consume ODRL Privacy expressions must take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
+
+</p>    </section>
         
         
 <!-- 

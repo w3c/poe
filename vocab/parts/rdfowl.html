@@ -12,7 +12,7 @@
     
 <p>Consider the below example; the Dublin Core [[dcterms]] license predicate is used to infer the relationship between the Asset and the Policy.</p>
     
-<pre class="example  hljs json">
+<pre class="example hljs tutle">
 @prefix odrl: &lt;http://www.w3.org/ns/odrl/2/> .
 @prefix dct: &lt;http://purl.org/dc/terms/> .
 
@@ -26,7 +26,7 @@
     
 <p>This axiom infers that the Asset &lt;http://example.com/asset:5555&gt; is the target Asset for the Policy &lt;http://example.com/policy:0099&gt;. The final ODRL Offer Policy expression would then be:</p>  
 
-<pre class="example  hljs json">
+<pre class="example  hljs turtle">
  &lt;http://example.com/policy:0099>
     a odrl:Offer;
     odrl:target &lt;http://example.com/asset:5555> ;
