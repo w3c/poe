@@ -149,7 +149,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>To illustrate the concepts described in the Information Model, we will start from basic examples to come to more sophisticated ones when concepts are discussed in more details. </p>
  
 <blockquote>
-<p>Example Use Case: The below "Set" Policy type grants the Permission to read and the Prohibition to reproduce the target Asset http//example.com/asset:9898. No Parties or other elements are involved.</p>
+<p>Example Use Case: The below <code>Set</code> Policy type grants the Permission to read and the Prohibition to reproduce the target Asset <code>http//example.com/asset:9898</code>. No Parties or other elements are involved.</p>
 </blockquote>
 
 <pre class="example hljs json">{
@@ -172,7 +172,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         <P>For the examples in this document, the ODRL Information Model <code>uid</code> and  <code>type</code> attributes are mapped to the JSON-LD <code>@id</code> and <code>@type</code> tokens.</P>
     </div>
 <blockquote>
-<p>Example Use Case: The below "Set" Policy type states that the Asset http//example.com/asset:9898 is the target of the Permission to perform the action reproduce, the Duty to perform the action attribute to <code>http://example.com/owner:9898</code>, and the Prohibition to perform the action translate. Two Parties are involved, namely the Assigner of the Permission and the Party to be attributed.</p>
+<p>Example Use Case: The below <code>Set</code> Policy type states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission to perform the action reproduce, the Duty to perform the action attribute to <code>http://example.com/owner:9898</code>, and the Prohibition to perform the action translate. Two Parties are involved, namely the Assigner of the Permission and the Party to be attributed.</p>
 </blockquote>
 <pre class=" example hljs json">{
     <span class="hljs-attr">"@context"</span>: {
@@ -600,15 +600,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>An Asset has the following attributes:</p>
     
 <ul>
-<li>A Asset MUST refer to <code>uid</code> identification of the Asset</li>
-<li>A Asset  MAY refer to the <code>scope</code> defining how the Asset shall be interpreted under different contexts.</li>
+<li>An Asset MUST refer to the <code>uid</code> identification of the Asset as an IRI [[!rfc3987]].</li>
+<li>An Asset  MAY refer to the <code>scope</code> defining how the Asset shall be interpreted under different contexts.</li>
 </ul>
     
-
-<p>The identification of a Asset is a key foundation of the ODRL Policy language. In general, the <code>uid</code> SHOULD be an IRI [[rfc3987]] representing the identifier of the Asset. There MAY also be other alternative identifiers, or identification mechanisms that could be used. For example, to identify specific parts of an Asset, Media Fragments URI [[media-frags]] may be utilised. To identify groups or a range of Assets, then POWDER [[powder-primer]], URI Templates [[rfc6570]], or URI wildcards may be utilised. To identify inline/indirect Assets, then URI fragments may be used. <p>
+<p>By default the Asset <code>uid</code> is expressed as an IRI (which are internationalised URIs). ODRL expressions MAY also use URI Templates [[rfc6570]] to denote several Assets or Media Fragments URI [[media-frags]] to identify a specific part of an Asset.<p>
     
-    <p>Since ODRL Policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe Asset entities of particular media types. It is recommended to use already existing metadata standards, such as <code><a href="http://dublincore.org/documents/dcmi-terms/" rel="external nofollow">Dublin Core Metadata Terms</a></code> that are appropriate to the Asset type or purpose.</p>
-
+<p>Since ODRL Policies could deal with any kind of asset, the ODRL Information Model does not provide additional metadata to describe Asset entities of particular media types. It is recommended to use already existing metadata standards, such as <code><a href="http://dublincore.org/documents/dcmi-terms/">Dublin Core Metadata Terms</a></code> that are appropriate to the Asset type or purpose.</p>
 
 <section id="relation">
 <h4>Relation</h4>
@@ -624,7 +622,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
         
  <blockquote>   
-<p>Example Use Case: The Party http//example.com/guest:0001 wants to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the Permission to do so first. This request can be implemented through a Policy of the type Request asking for the Permission to display Asset <code>http://example.com/asset:3333</code>.</p>
+<p>Example Use Case: The Party http//example.com/guest:0001 wants to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the Permission to do so first. This request can be implemented through a Policy of the type <code>Request</code> asking for the Permission to display Asset <code>http://example.com/asset:3333</code>.</p>
     </blockquote>
  <pre class="example hljs json">{
     <span class="hljs-string">"@context"</span>: {
