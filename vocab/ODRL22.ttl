@@ -1723,7 +1723,7 @@ odrl:
 	rdfs:subClassOf :Policy ;
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Agreement"@en ;
-	skos:definition "Policy expressions that are formal contracts (licenses) stipulating all the terms of usage and all the parties involved."@en ;
+	skos:definition "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
 	skos:note "An Agreement Policy Type MUST contain a target Asset, a Party  with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Agreement Policy Type will grant the terms of the Policy from the Assigner to the Assignee."@en .
 
 :Assertion
@@ -1732,7 +1732,7 @@ odrl:
 	rdfs:subClassOf :Policy ;
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket ;
 	rdfs:label "Assertion"@en ;
-	skos:definition "Policy expressions that reflect terms that Parties claim to hold."@en ;
+	skos:definition "A Policy that asserts a Rule over an Asset from parties."@en ;
 	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion policy type does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy Type MUST contain a target Asset, a Party with any role, and at least one of a Permission or Prohibition rule."@en .
 
 :Offer
@@ -1741,7 +1741,7 @@ odrl:
 	rdfs:subClassOf :Policy ;
 	owl:disjointWith :Agreement, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Offer"@en ;
-	skos:definition "Policy expression that proposes terms of usage from an Asset owner."@en ;
+	skos:definition "A Policy that proposes a Rule over an Asset from an assigner."@en ;
 	skos:note "A Offer Policy Type MUST contain a target Asset, a Party with Assigner role, and at least one of a Permission or Prohibition rule. The Offer Policy Type MAY contain a Party  with Assignee role, but MUST not grant any privileges to that Party."@en .
 
 :Privacy
@@ -1750,7 +1750,7 @@ odrl:
 	rdfs:subClassOf :Policy ;
 	owl:disjointWith :Agreement, :Offer, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Privacy"@en ;
-	skos:definition "Policy expression that stipulates the terms of usage over personal information."@en ;
+	skos:definition "A Policy that expresses a Rule over an Asset containing personal information."@en ;
 	skos:note "A Privacy Policy Type MUST contain a target Asset, a Party with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
    skos:scopeNote "Non-Normative"@en .
 
@@ -1760,7 +1760,7 @@ odrl:
 	rdfs:subClassOf :Policy ;
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Set, :Ticket, :Assertion ;
 	rdfs:label "Request"@en ;
-	skos:definition "Policy expression that proposes terms of usage to an Asset owner."@en ;
+	skos:definition "A Policy that proposes a Rule over an Asset from an assignee."@en ;
 	skos:note "A Request Policy Type MUST contain a target Asset, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner role if this is known. No privileges are granted to any Party."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1770,7 +1770,7 @@ odrl:
 	rdfs:subClassOf :Policy ;
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Ticket, :Assertion ;
 	rdfs:label "Set"@en ;
-	skos:definition "Policy expression that consists of entities from the complete model."@en ;
+	skos:definition "A Policy that expresses a Rule over an Asset."@en ;
 	skos:note "A Set Policy Type MUST contain a target Asset, and at least one Rule. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined)."@en .
 
 :Ticket
@@ -1779,7 +1779,7 @@ odrl:
 	rdfs:subClassOf :Policy ;
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Set, :Assertion ;
 	rdfs:label "Ticket"@en ;
-	skos:definition "Policy expression that stipulates the terms of usage and is redeemable by any Party who currently holds the Ticket in their possession."@en ;
+	skos:definition "A Policy that grants the holder a Rule over an Asset from an assigner."@en ;
 	skos:note "A Offer Policy Type MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Offer MAY contain the Party  with Assigner role and a Party with Assignee role. A Ticket (or Voucher) may be anonymous or personalised, where the holder of that Ticket may remain unknown or has to be identified. The holder, or if known, the Assignee, is being granted the terms of the Ticket from the Assigner (in known)."@en ;
     skos:scopeNote "Non-Normative"@en .
 
