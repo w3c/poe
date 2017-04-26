@@ -152,46 +152,42 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: The below <code>Set</code> Policy type grants the Permission to read and the Prohibition to reproduce the target Asset <code>http//example.com/asset:9898</code>. No Parties or other elements are involved.</p>
 </blockquote>
 
-<pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:read"</span>
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:1010",
+    "permission": [{
+        "target": "http://example.com/asset:9898",
+        "action": "read"
     }],
-    <span class="hljs-string">"prohibition"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:reproduce"</span>
+    "prohibition": [{
+        "target": "http://example.com/asset:9898",
+        "action": "reproduce"
     }]
 }
 </pre>
-    <div class="note">
-        <P>For the examples in this document, the ODRL Information Model <code>uid</code> and  <code>type</code> attributes are mapped to the JSON-LD <code>@id</code> and <code>@type</code> tokens.</P>
-    </div>
+ 
 <blockquote>
 <p>Example Use Case: The below <code>Set</code> Policy type states that the Asset <code>http//example.com/asset:9898</code> is the target of the Permission to perform the action reproduce, the Duty to perform the action attribute to <code>http://example.com/owner:9898</code>, and the Prohibition to perform the action translate. Two Parties are involved, namely the Assigner of the Permission and the Party to be attributed.</p>
 </blockquote>
-<pre class=" example hljs json">{
-    <span class="hljs-attr">"@context"</span>: {
-        <span class="hljs-attr">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
-    <span class="hljs-attr">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1010"</span>,
-    <span class="hljs-attr">"permission"</span>: [{
-        <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-attr">"action"</span>: <span class="hljs-string">"odrl:reproduce"</span>,
-        <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/assigner:88"</span>,
-        <span class="hljs-attr">"duty"</span>: [{
-                <span class="hljs-attr">"action"</span>: <span class="hljs-string">"odrl:attribute"</span>,
-                <span class="hljs-attr">"attributedParty"</span>: <span class="hljs-string">"http://example.com/owner:9898"</span>
+<pre class=" example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:1010",
+    "permission": [{
+        "target": "http://example.com/asset:9898",
+        "action": "reproduce",
+        "assigner": "http://example.com/assigner:88",
+        "duty": [{
+                "action": "attribute",
+                "attributedParty": "http://example.com/owner:9898"
         }]
     }],
-    <span class="hljs-attr">"prohibition"</span>: [{
-        <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898"</span>,
-        <span class="hljs-attr">"action"</span>: <span class="hljs-string">"odrl:translate"</span>
+    "prohibition": [{
+        "target": "http://example.com/asset:9898",
+        "action": "translate"
     }]
 }
 </pre>
@@ -205,16 +201,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
              
 <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Agreement",
-    "@id": "http://example.com/policy:8888",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
         "assignee": "http://example.com/people/billie",
-        "action": "odrl:play",
+        "action": "play",
         "constraint": "...",
         "duty": "..."
     }]
@@ -224,37 +218,39 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>As multiple Assets, Parties, and Actions can be expressed for each Rule, then the following (snippet) example shows two Assets defined for the policy:</p>
     
 <pre class="example hljs json">
-{    "permission": [{
+{
+    "permission": [{
         "target": [ "http://example.com/music/1999.mp3",
                     "http://example.com/music/PurpleRain.mp3"],
         "assigner": "http://example.com/org/sony-music",
         "assignee": "http://example.com/people/billie",
-        "action": "odrl:play",
+        "action": "play",
         "constraint": "...",
         "duty": "..."
-        }]
+    }]
 }
 </pre>
 
 <p>The above example could then be reduced to two <em>atomic</em> Rules, with the two target assets appearing individually in each:</p>
     
 <pre class="example hljs json">
-{    "permission": [{
+{
+    "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
         "assignee": "http://example.com/people/billie",
-        "action": "odrl:play",
+        "action": "play",
         "constraint": "...",
         "duty": "..."
-        },
-        {
+    },
+    {
         "target": "http://example.com/music/PurpleRain.mp3",
         "assigner": "http://example.com/org/sony-music",
         "assignee": "http://example.com/people/billie",
-        "action": "odrl:play",
+        "action": "play",
         "constraint": "...",
         "duty": "..."
-        }]
+    }]
 }
 </pre>
     
@@ -269,14 +265,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
              
 <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Agreement",
-    "@id": "http://example.com/policy:8888",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
     "target": "http://example.com/music/1999.mp3",
     "assigner": "http://example.com/org/sony-music",
-    "action": "odrl:play",
+    "action": "play",
     "permission": [{
         "assignee": "http://example.com/people/billie"
         },
@@ -290,22 +284,20 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Agreement",
-    "@id": "http://example.com/policy:8888",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
     "permission": [{
         "assignee": "http://example.com/people/billie",
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
-        "action": "odrl:play"
+        "action": "play"
         },
         {
-        "assignee": "http://example.com/people/murphy"
+        "assignee": "http://example.com/people/murphy",
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
-        "action": "odrl:play",
+        "action": "play",
         }]
 }  
 </pre>  
@@ -329,12 +321,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
          
          <p>The following Dublin Core Metadata Terms [[!dcterms]] SHOULD be used:</p>
             <ul>
-         <li>dc:creator - the individual, agent, or organisation that authored the Policy.</li>      <li>dc:description - a human-readable representation or summary of the Policy.</li>
-         <li>dc:issued - the date (and time) the Policy was first issued.</li>
-         <li>dc:modified -  the date (and time) the Policy was updated.</li>
-        <li>dc:coverage -  the jurisdiction under which the Policy is relevant.</li>
-        <li>dc:replaces -  the identifier (uid) of a Policy that this Policy supersedes.</li>
-        <li>dc:isReplacedBy -  the identifier (uid) of a Policy that supersedes this Policy.</li>
+         <li><code>dc:creator</code> - the individual, agent, or organisation that authored the Policy.</li>      <li><code>dc:description</code> - a human-readable representation or summary of the Policy.</li>
+         <li><code>dc:issued</code> - the date (and time) the Policy was first issued.</li>
+         <li><code>dc:modified</code> -  the date (and time) the Policy was updated.</li>
+        <li><code>dc:coverage</code> -  the jurisdiction under which the Policy is relevant.</li>
+        <li><code>dc:replaces</code> -  the identifier (uid) of a Policy that this Policy supersedes.</li>
+        <li><code>dc:isReplacedBy</code> -  the identifier (uid) of a Policy that supersedes this Policy.</li>
          </ul>
          
     <p>The processing model for Policies with the above provenance properties include:</p>
@@ -347,12 +339,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
          
 <pre class="example hljs json">
 {
-    "@context": { 
-        "odrl": "http://www.w3.org/ns/odrl/2/",
-        "dc": "http://purl.org/dc/terms/"
-    },
-    "@type": "odrl:Agreement",
-    "@id": "http://example.com/policy:8888",
+    "@context": [
+        "http://www.w3.org/ns/odrl.jsonld",
+        { "dc": "http://purl.org/dc/terms/" }
+    ],
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
     "dc:creator": "billie@example.com",
     "dc:issued": "2017-01-01:12:00",
     "dc:coverage": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD",
@@ -392,38 +384,38 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: Two Policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to use the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits print. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> attribute being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the print Action is a subset of the use Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the use Permission will override the print Prohibition.</p>
 </blockquote>
 
-<pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:0001"</span>,
-    <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"perm"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:use"</span>,
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:181"</span>
+        
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:0001",
+    "conflict": "perm",
+    "permission": [{
+        "target": "http://example.com/asset:1212",
+        "action": "use",
+        "assigner": "http://example.com/owner:181"
     }]
 }
 </pre>
 
-<pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:0002"</span>,
-    <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"perm"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>,
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/owner:182"</span>
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:0002",
+    "conflict": "perm",
+    "permission": [{
+        "target": "http://example.com/asset:1212",
+        "action": "display",
+        "assigner": "http://example.com/owner:182"
     }],
-    <span class="hljs-string">"prohibition"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:1212"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:print"</span>
+    "prohibition": [{
+        "target": "http://example.com/asset:1212",
+        "action": "print"
     }]
-}</pre>
+}
+</pre>
 
 <p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
     </section>
@@ -464,12 +456,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Set",
-    "@id": "http://example.com/policy:8888",
-    "undefined": "odrl:invalid",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:8888",
+    "undefined": "invalid",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "action": "http://example.com/ns/recorded"
@@ -513,15 +503,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Set",
-    "@id": "http://example.com/policy:3333",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:3333",
     "target": "http://example.com/asset:3333",
     "assigner": "http://example.com/boss:0001",
     "permission": [{
-        "action": "odrl:use"
+        "action": "use"
     }]
 }  
 </pre>
@@ -530,20 +518,18 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Agreement",
-    "@id": "http://example.com/policy:4444",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:4444",
     "inheritFrom": "http://example.com/policy:3333",
     "target": "http://example.com/asset:5555",
     "permission": [{
         "assignee": "http://example.com/guest:0001",
-        "action": "odrl:display"
+        "action": "display"
     },
     {
         "assignee": "http://example.com/guest:0002",
-        "action": "odrl:print"
+        "action": "print"
     }]
 }  
 </pre>
@@ -553,25 +539,23 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Agreement",
-    "@id": "http://example.com/policy:4444",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:4444",
     "target": [
        "http://example.com/asset:5555",
        "http://example.com/asset:3333" ]
     "assigner": "http://example.com/boss:0001",
     "permission": [{
         "assignee": "http://example.com/guest:0001",
-        "action": "odrl:display"
+        "action": "display"
     },
     {
         "assignee": "http://example.com/guest:0002",
-        "action": "odrl:print"
+        "action": "print"
     },
     {
-        "action": "odrl:use"
+        "action": "use"
     }]
 }  
 </pre>
@@ -624,18 +608,18 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
  <blockquote>   
 <p>Example Use Case: The Party http//example.com/guest:0001 wants to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the Permission to do so first. This request can be implemented through a Policy of the type <code>Request</code> asking for the Permission to display Asset <code>http://example.com/asset:3333</code>.</p>
     </blockquote>
- <pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-         <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Request"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:3333"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/asset:3333"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>,
-        <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/guest:0001"</span>
+ <pre class="example hljs json">
+ {
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Request",
+    "uid": "http://example.com/policy:3333",
+    "permission": [{
+        "target": "http://example.com/asset:3333",
+        "action": "display",
+        "assignee": "http://example.com/guest:0001"
     }]
-}</pre>
+}
+</pre>
 
     <div class="note">
     <p>In the above example, the JSON-LD representation for Relation directly uses <code>target</code> as the token, as this has been mapped as a sub-property of the <code>relation</code> property.</p>
@@ -645,18 +629,18 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: The below Policy shows the index action Permission on the target Asset <code>http://example.com/archive1011</code>. Another Asset relation <code>x:collection</code> is also expressed to indicate the Asset <code>http://example.com/x/database</code> the indexing outcome should be stored in. (These semantics would be defined by the community who created the <code>x:collection</code> relation.)</p>
     </blockquote>
 
- <pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/archive1011"</span>,
-        <span class="hljs-string">"x:collection"</span>: <span class="hljs-string">"http://example.com/x/database"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:index"</span>
+ <pre class="example hljs json">
+ {
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:1011",
+    "permission": [{
+        "target": "http://example.com/archive1011",
+        "x:collection": "http://example.com/x/database",
+        "action": "index"
     }]
-}</pre>
+}
+</pre>
     
 </section>
 	
@@ -672,23 +656,21 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <blockquote>
     <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that has a scope of <code>http://example.com/imt/jpeg</code> (which, in this case, provides additional context on what characteristics the Asset MUST hold).</p>
     </blockquote>
- <pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: [{
-                <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/media-catalogue"</span>,
-                <span class="hljs-string">"scope"</span>: <span class="hljs-string">"http://example.com/imt/jpeg"</span>	
+ <pre class="example hljs json">
+ {
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Offer",
+    "uid": "http://example.com/policy:4444",
+    "permission": [{
+        "target": [{
+                "uid": "http://example.com/media-catalogue",
+                "scope": "http://example.com/imt/jpeg"	
         }],
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:use"</span>,
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/user88"</span>
+        "action": "use",
+        "assigner": "http://example.com/user88"
     }]
 }</pre>
-    
-    
+
 	
 </section>
 
@@ -728,25 +710,25 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/",
-        "vCard": "http://www.w3.org/2006/vcard/ns#"
-    },
-    "@type": "odrl:Agreement",
-    "@id": "http://example.com/policy:8888",
+    "@context": [
+        "http://www.w3.org/ns/odrl.jsonld",
+        { "vcard": "http://www.w3.org/2006/vcard/ns#" }
+    ],
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": {
-            "@type": [ "odrl:Party", "vcard:Organization" ],
-            "@id":  "http://example.com/org/sony-music",
+            "type": [ "Party", "vcard:Organization" ],
+            "uid":  "http://example.com/org/sony-music",
             "vcard:fn": "Sony Music LCC",
             "vcard:hasEmail": "sony-contact@example.com" },
         "assignee": {
-            "@type": [ "odrl:Party", "vcard:Individual" ],
-            "@id":  "http://example.com/people/billie",
+            "type": [ "Party", "vcard:Individual" ],
+            "uid":  "http://example.com/people/billie",
             "vcard:fn": "Billie Zhan",
             "vcard:hasEmail": "billie@example.com"},
-        "action": "odrl:play"
+        "action": "play"
     }]
 }  
 </pre>
@@ -774,26 +756,55 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <blockquote>
 <p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> are a set of photos posted to a social network site by the Assigner of the photos <code>http://example.com/user44</code>. The Assignee is a Party <code>http://example.com/user44/friends</code>, and represents all the friends of the Assigner. Since this is a collection of individuals, then the group scope is declared. In addtion, the scope of the Assignee has been also be declared as <code>http://example.com/people/age/18+</code> (which, in this case, provides additional context on what characteristics the Assignee MUST hold).</p>
     </blockquote>
-<pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/myPhotos:BdayParty"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>,
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/user44"</span>,
-        <span class="hljs-string">"assignee"</span>: [{
-                <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/user44/friends"</span>,
-                <span class="hljs-string">"scope"</span>: <span class="hljs-string">[ "http://www.w3.org/ns/odrl/2/Group", 
-                           "http://example.com/people/age/18+"]</span>	
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:4444",
+    "permission": [{
+        "target": "http://example.com/myPhotos:BdayParty",
+        "action": "display",
+        "assigner": "http://example.com/user44",
+        "assignee": [{
+                "uid": "http://example.com/user44/friends",
+                "scope": [ "Group", "http://example.com/people/age/18+"]	
         }]
     }]
 }</pre>
 
 </section>
 
+<section id="action">
+<h3>Action</h3>
+
+
+<p>An Action  indicates an operation that is applicable to an Asset. The Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be perform on the target Asset. When related to a Duty, the Action indicates the operation that is obligatory to be performed.</p>
+    
+<p>An Action has the following attribute:</p>
+<ul>
+<li>An Action  MUST refer to an instance of an Action <code>name</code>.</li>
+</ul>
+<p>The ODRL vocabulary [[!vocab-odrl]] defines a standard set of common Action names that MAY be used.</p>
+
+    <blockquote>
+<p>Example Use Case: The Party expresses an Offer policy for the target Asset <code>http://example.com/music:1012</code>, namely the Permission to play the Asset.</p> 
+    </blockquote>
+    
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Offer",
+    "uid": "http://example.com/policy:1012",
+    "permission": [{
+            "target": "http://example.com/music:1012",
+            "action": "play"
+     }]
+}
+</pre>
+	
+	
+</section>
+    
 <section id="permission">
 <h3>Permission</h3>
 
@@ -812,22 +823,22 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <blockquote>   
 <p>Example Use Case: The ticket Policy expresses the play Permission for the target Asset http//example.com/game:9090, stating that the ticket is valid until the end of the year 2017. Any valid holder of this ticket may exercise this Permission.</p>
     </blockquote>
- <pre class="example hljs json">{
-     <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Ticket"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:9090"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/game:9090"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:play"</span>,
-        <span class="hljs-string">"constraint"</span>: [{
-            <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:dateTime"</span>,
-            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:lteq"</span>,
-            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"2017-12-31"</span>
+ <pre class="example hljs json">
+ {
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Ticket",
+    "uid": "http://example.com/policy:9090",
+    "permission": [{
+        "target": "http://example.com/game:9090",
+        "action": "play",
+        "constraint": [{
+            "leftOperand": "dateTime",
+            "operator": "lteq",
+            "rightOperand": "2017-12-31"
         }]
     }]
-}</pre>
+}
+</pre>
 
 </section>
 
@@ -849,26 +860,26 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: The owner and Assigner of a target Asset <code>http://example.com/photoAlbum:55</code> needs an Agreement Policy expressing with both a Permission and a Prohibition. Then Assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission display to the Assignee Party <code>http://example.com/assignee:55</code> at the same time they are prohibited from archiving the target Asset. Additionally, in case of any conflicts between Permissions and Prohibitions, the conflict attribute is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
     </blockquote>
     
-<pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Agreement"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:5555"</span>,
-    <span class="hljs-string">"conflict"</span>: <span class="hljs-string">"odrl:perm"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/photoAlbum:55"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>,
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/MyPix:55"</span>,
-        <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:55"</span>
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:5555",
+    "conflict": "perm",
+    "permission": [{
+        "target": "http://example.com/photoAlbum:55",
+        "action": "display",
+        "assigner": "http://example.com/MyPix:55",
+        "assignee": "http://example.com/assignee:55"
     }],
-    <span class="hljs-string">"prohibition"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/photoAlbum:55"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:archive"</span>,
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/MyPix:55"</span>,
-        <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/assignee:55"</span>
+    "prohibition": [{
+        "target": "http://example.com/photoAlbum:55",
+        "action": "archive",
+        "assigner": "http://example.com/MyPix:55",
+        "assignee": "http://example.com/assignee:55"
     }]
-}</pre>
+}
+</pre>
 	
 </section>
 
@@ -905,28 +916,26 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <pre class="example hljs json">
 {
-   "@context": {
-       "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Offer",
-    "@id": "http://example.com/policy:88",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Offer",
+    "uid": "http://example.com/policy:88",
     "permission": [{
         "assigner": "http://example.com/assigner:sony",
         "target": "http://example.com/music/1999.mp3",
-        "action": "odrl:play",
+        "action": "play",
         "duty": [{
-            "action": "odrl:compensate",
+            "action": "compensate",
             "constraint": [{
-                "leftOperand": "odrl:payAmount",
-                "operator": "odrl:eq",
+                "leftOperand": "payAmount",
+                "operator": "eq",
                 "rightOperand": "5.00",
                 "unit": 
                   "https://www.currency-iso.org/dam/downloads/lists/list_one.xml#AUD"
             },
             {
-                "leftOperand": "odrl:event",
-                "operator": "odrl:lt",
-                "rightOperand": "odrl:policyUsage"
+                "leftOperand": "event",
+                "operator": "lt",
+                "rightOperand": "policyUsage"
             }]
         }]
     }]
@@ -939,66 +948,37 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     </blockquote>
 
 
-<pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Privacy"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/personal-data:77"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:distribute"</span>,
-        <span class="hljs-string">"constraint"</span>: [{
-            <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:purpose"</span>,
-            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
-            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"http://example.com/privacy/contact"</span>
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Privacy",
+    "uid": "http://example.com/policy:7777",
+    "permission": [{
+        "target": "http://example.com/personal-data:77",
+        "action": "distribute",
+        "constraint": [{
+            "leftOperand": "purpose",
+            "operator": "eq",
+            "rightOperand": "http://example.com/privacy/contact"
         }],
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/assigner:77"</span>,
-        <span class="hljs-string">"assignee"</span>: <span class="hljs-string">"http://example.com/gov:health:au"</span>,
-        <span class="hljs-string">"duty"</span>: [{
-            <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:delete"</span>,
-            <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/personal-data:77"</span>,
-            <span class="hljs-string">"constraint"</span>: [{
-                <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:dateTime"</span>,
-                <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
-                <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"P30D"</span>
+        "assigner": "http://example.com/assigner:77",
+        "assignee": "http://example.com/gov:health:au",
+        "duty": [{
+            "action": "delete",
+            "target": "http://example.com/personal-data:77",
+            "constraint": [{
+                "leftOperand": "dateTime",
+                "operator": "eq",
+                "rightOperand": "P30D"
             }]
         }]
     }]
-}</pre>
+}
+</pre>
 	
 </section>	
 	
-<section id="action">
-<h3>Action</h3>
 
-
-<p>An Action  indicates an operation that is applicable to an Asset. The Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be perform on the target Asset. When related to a Duty, the Action indicates the operation that is obligatory to be performed.</p>
-    
-<p>An Action has the following attribute:</p>
-<ul>
-<li>An Action  MUST refer to an instance of an Action <code>name</code>.</li>
-</ul>
-<p>The ODRL vocabulary [[!vocab-odrl]] defines a standard set of common Action names that MAY be used.</p>
-
-    <blockquote>
-<p>Example Use Case: The Party expresses an Offer policy for the target Asset <code>http://example.com/music:1012</code>, namely the Permission to play the Asset.</p> 
-    </blockquote>
-    
-<pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:1012"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-            <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/music:1012"</span>,
-            <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:play"</span>
-     }]
-}</pre>
-	
-	
-</section>
 
 <section id="constraint">
 <h3>Constraint</h3>
@@ -1041,52 +1021,50 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>Example Use Case: The Party <code>http://example.com/myPix:6161</code> wants to assign the Permission distribute directly to the potential buyer of the Permission who will pay 100 EUR to be granted with the Permission. The distribute Permission is constrained to a specific country. The potential Assignee may then distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the nextPolicy target Asset linked directly from this Permission. The next Policy Asset <code>http://example.com/policy:7171</code> stipulates that the potential Assignee may only offer the display Permission to downstream consumers.</p>
     </blockquote>
     
-<pre class="example hljs json">{
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-    <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Offer"</span>,
-    <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:6161"</span>,
-    <span class="hljs-string">"permission"</span>: [{
-        <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/wallpaper:1234"</span>,
-        <span class="hljs-string">"assigner"</span>: <span class="hljs-string">"http://example.com/myPix:6161"</span>,
-        <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:distribute"</span>,
-        <span class="hljs-string">"constraint"</span>: [{
-            <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:spatial"</span>,
-            <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
-            <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"https://www.iso.org/obp/ui/#iso:code:3166:IT"</span>
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Offer",
+    "uid": "http://example.com/policy:6161",
+    "permission": [{
+        "target": "http://example.com/wallpaper:1234",
+        "assigner": "http://example.com/myPix:6161",
+        "action": "distribute",
+        "constraint": [{
+            "leftOperand": "spatial",
+            "operator": "eq",
+            "rightOperand": "https://www.iso.org/obp/ui/#iso:code:3166:IT"
         }],
-        <span class="hljs-string">"duty"</span>: [
+        "duty": [
             {
-                <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:compensate"</span>,
-                <span class="hljs-string">"constraint"</span>: [{
-                    <span class="hljs-string">"leftOperand"</span>: <span class="hljs-string">"odrl:payAmount"</span>,
-                    <span class="hljs-string">"operator"</span>: <span class="hljs-string">"odrl:eq"</span>,
-                    <span class="hljs-string">"rightOperand"</span>: <span class="hljs-string">"100.00"</span>,
-                    <span class="hljs-string">"dataType"</span>: <span class="hljs-string">"http://www.w3.org/2001/XMLSchema#decimal"</span>,
-                    <span class="hljs-string">"unit"</span>: 
-                      <span class="hljs-string">"https://www.currency-iso.org/dam/downloads/lists/list_one.xml#EUR"</span>
+                "action": "compensate",
+                "constraint": [{
+                    "leftOperand": "payAmount",
+                    "operator": "eq",
+                    "rightOperand": "100.00",
+                    "dataType": "http://www.w3.org/2001/XMLSchema#decimal",
+                    "unit": 
+                      "https://www.currency-iso.org/dam/downloads/lists/list_one.xml#EUR"
                 }]
             },
             {
-                <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:nextPolicy"</span>,
-                <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>
+                "action": "nextPolicy",
+                "target": "http://example.com/policy:7171"
             }
         ]
     }]
 }
  
 {
-    <span class="hljs-string">"@context"</span>: {
-        <span class="hljs-string">"odrl"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl/2/"</span>
-    },
-        <span class="hljs-string">"@type"</span>: <span class="hljs-string">"odrl:Set"</span>,
-        <span class="hljs-string">"@id"</span>: <span class="hljs-string">"http://example.com/policy:7171"</span>,
-        <span class="hljs-string">"permission"</span>: [{
-            <span class="hljs-string">"target"</span>: <span class="hljs-string">"http://example.com/wallpaper:1234"</span>,
-            <span class="hljs-string">"action"</span>: <span class="hljs-string">"odrl:display"</span>
-        }]
-    }</pre>
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:7171",
+    "permission": [{
+        "target": "http://example.com/wallpaper:1234",
+        "action": "display"
+    }]
+}
+</pre>
 
     
 <section id="constraint-relations">
@@ -1124,67 +1102,63 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
            
 <pre class="example hljs json">
 {
-    "@context": {
-       "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Offer",
-    "@id": "http://example.com/policy:88",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Offer",
+    "uid": "http://example.com/policy:88",
     "permission": [{
         "target": "http://example.com/book/1999.mp3",
         "assigner": "http://example.com/org/paisley-park",
-        "action": "odrl:play",
+        "action": "play",
         "constraint": [{
                 "leftOperand": "http://example.com/policy:88/C1",
-                "operator": "odrl:xor",
+                "operator": "xor",
                 "rightOperand": "http://example.com/policy:88/C2"
             }],
     }],
    "constraint": [{
-       "@id": "http://example.com/policy:88/C1"
-       "leftOperand": "odrl:count",
-       "operator": "odrl:lteq",
+       "uid": "http://example.com/policy:88/C1"
+       "leftOperand": "count",
+       "operator": "lteq",
        "rightOperand": "100"
    },
    {
-       "@id": "http://example.com/policy:88/C2"
-       "leftOperand": "odrl:dateTime",
-       "operator": "odrl:lteq",
+       "uid": "http://example.com/policy:88/C2"
+       "leftOperand": "dateTime",
+       "operator": "lteq",
        "rightOperand": "2017-12-31"
    }]
 }  
 </pre>
 
     <blockquote>
-<p>Example Use Case: The Policy below shows a Permission to distribute photos in which the first constraint (the event <code>http://example.com/football/game/2017</code>) has concluded (the operator <code>odrl:gt</code> indicating this), then the second constraint (wait for 60 minutes) has passed. The operator <code>andSequence</code> requires that first the constraint in the leftOperand is satisfied - the event has closed - and this triggers the Action Delay Period after which the action of the permission may be excercised. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Constraints must be satisfied, but could be processed at the same time.)  </p>
+<p>Example Use Case: The Policy below shows a Permission to distribute photos in which the first constraint (the event <code>http://example.com/football/game/2017</code>) has concluded (the operator <code>gt</code> indicating this), then the second constraint (wait for 60 minutes) has passed. The operator <code>andSequence</code> requires that first the constraint in the leftOperand is satisfied - the event has closed - and this triggers the Action Delay Period after which the action of the permission may be excercised. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Constraints must be satisfied, but could be processed at the same time.)  </p>
     </blockquote>
     
 <pre class="example hljs json">
 {
-    "@context": {
-        "odrl": "http://www.w3.org/ns/odrl/2/"
-    },
-    "@type": "odrl:Offer",
-    "@id": "http://example.com/policy:88",
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Offer",
+    "uid": "http://example.com/policy:88",
     "permission": [{
         "target": "http://example.com/photo.jpg",
         "assigner": "http://example.com/org/fifa",
-        "action": "odrl:distribute",
+        "action": "distribute",
         "constraint": [{
                 "leftOperand": "http://example.com/policy:88/C1",
-                "operator": "odrl:andSequence",
+                "operator": "andSequence",
                 "rightOperand": "http://example.com/policy:88/C2"
             }],
     }],
    "constraint": [{
-       "@id": "http://example.com/policy:88/C1"
-       "leftOperand": "odrl:event",
-       "operator": "odrl:gt",
+       "uid": "http://example.com/policy:88/C1"
+       "leftOperand": "event",
+       "operator": "gt",
        "rightOperand": "http://example.com/football/game/2017"
    },
    {
-       "@id": "http://example.com/policy:88/C2"
-       "leftOperand": "odrl:delayPeriod",
-       "operator": "odrl:gteq",
+       "uid": "http://example.com/policy:88/C2"
+       "leftOperand": "delayPeriod",
+       "operator": "gteq",
        "rightOperand": "P60M"
    }]
 }  
