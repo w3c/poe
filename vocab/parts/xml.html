@@ -1,4 +1,4 @@
-<p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the IRIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
+<p>ODRL Policy expressions can be encoded in XML [[xml]] serialisations as defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the ODRL Vocabulary IRIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
 
 <div class="note">
 <p>The (editors draft) ODRL XML Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
@@ -7,18 +7,19 @@
 <p>To enable compact IRIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
 
 
-<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the ODRL Information Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
+<p>Each of the classes from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each class property will be represented as an XML attribute of the parent element. The fixed values defined in the ODRL Information Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED. </p>
+<p>Note that the Rule class is not represented in the XML encoding, only the child classes; Permission, Prohibition, and Duty.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policyTypes">Policy Types</a> for further details. </P>
 
 <p>The Policy element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; an IRI/Qname/Qcode (REQUIRED)</li>
-<li>type &#8211; an IRI/Qname/Qcode (REQUIRED)</li>
-<li>conflict &#8211; fixed enumeration (defined in XML Schema)</li>
-<li>undefined &#8211; fixed enumeration (defined in XML Schema)</li>
-<li>inheritAllowed &#8211; a boolean</li>
-<li>inheritFrom &#8211; an IRI/Qname/Qcode</li>
-<li>profile &#8211; an IRI/Qname/Qcode</li>
+<li>uid - an IRI/Qname/Qcode (REQUIRED)</li>
+<li>type -an IRI/Qname/Qcode (REQUIRED)</li>
+<li>conflict - fixed enumeration (defined in XML Schema)</li>
+<li>undefined - fixed enumeration (defined in XML Schema)</li>
+<li>inheritAllowed - a boolean</li>
+<li>inheritFrom - an IRI/Qname/Qcode</li>
+<li>profile -an IRI/Qname/Qcode </li>
 </ul>
 
 <p>The Policy element MAY contain the following elements:</p>
@@ -34,26 +35,26 @@
 <li>action</li>
 </ul>
 
-<p>The Asset and Relation association class are merged into a single Asset element to represent both the Asset and how it is related to the Permission/Prohibition/Duty. The Asset element contains the following attributes:</p>
+<p>The Asset class is a single asset element to represent both the Asset uid and how it is related to the Rule. The Asset element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; an IRI/Qname/Qcode</li>
-<li>relation &#8211; an IRI/Qname/Qcode</li>
-<li>scope &#8211; an IRI/Qname/Qcode</li>
-<li>id &#8211; an local identifier for this element</li>
-<li>idref &#8211; a reference to an Asset element</li>
+<li>uid - an IRI/Qname/Qcode</li>
+<li>relation - an IRI/Qname/Qcode</li>
+<li>scope - an IRI/Qname/Qcode</li>
+<li>id - an local identifier for this element</li>
+<li>idref - a reference to an Asset element</li>
 </ul>
 <p>Asset element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
 <li>uid (REQUIRED), relation (REQUIRED), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
-<p>The Party and Role association class are merged into a single Party element to represent both the Party and the role to the Permission/Prohibition/Duty. The Party element contains the following attributes:</p>
+<p>The Party class is a single party element to represent both the Party uid and the functional role to the Rule. The Party element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; an IRI/Qname/Qcode</li>
-<li>function &#8211; an IRI/Qname/Qcode</li>
-<li>scope &#8211; an IRI/Qname/Qcode</li>
-<li>id &#8211; a local identifier for this element</li>
-<li>idref &#8211; a reference to a Party element</li>
+<li>uid - an IRI/Qname/Qcode</li>
+<li>function - an IRI/Qname/Qcode</li>
+<li>scope - an IRI/Qname/Qcode</li>
+<li>id - a local identifier for this element</li>
+<li>idref - a reference to a Party element</li>
 </ul>
 <p>Party element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
@@ -62,31 +63,31 @@
 </ol>
 <p>The Permission element contains the following elements:</p>
 <ul>
-<li>asset &#8211; (REQUIRED)</li>
-<li>action &#8211; (REQUIRED)</li>
+<li>asset (REQUIRED)</li>
+<li>action (REQUIRED)</li>
 <li>constraint</li>
 <li>party</li>
 <li>duty</li>
 </ul>
 <p>The Prohibition element contains the following elements:</p>
 <ul>
-<li>asset &#8211; (REQUIRED)</li>
-<li>action &#8211; (REQUIRED)</li>
+<li>asset (REQUIRED)</li>
+<li>action (REQUIRED)</li>
 <li>constraint</li>
 <li>party</li>
 </ul>
 <p>The Duty element contains the following elements:</p>
 <ul>
-<li>action &#8211; (REQUIRED)</li>
+<li>action (REQUIRED)</li>
 <li>constraint</li>
 <li>asset</li>
 <li>party</li>
 </ul>
 <p>The Duty element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; an IRI/Qname/Qcode</li>
-<li>id &#8211; a local identifier for this element</li>
-<li>idref &#8211; a reference to an Duty element</li>
+<li>uid - an IRI/Qname/Qcode</li>
+<li>id - a local identifier for this element</li>
+<li>idref - a reference to an Duty element</li>
 </ul>
 <p>Duty element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
@@ -94,11 +95,11 @@
 <li>id (REQUIRED), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
-<p>The Action element contains the following attribute:</p>
+<p>The Action element contains the following attributes:</p>
 <ul>
-<li>name &#8211; an IRI/Qname/Qcode</li>
-<li>id &#8211; a local identifier for this element</li>
-<li>idref &#8211; a reference to an Action element</li>
+<li>name - an IRI/Qname/Qcode </li>
+<li>id - a local identifier for this element</li>
+<li>idref - a reference to an Action element</li>
 </ul>
 <p>Action element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
@@ -107,15 +108,15 @@
 </ol>
 <p>The Constraint element contains the following attributes:</p>
 <ul>
-<li>name &#8211; an IRI/Qname/Qcode</li>
-<li>operator &#8211; an IRI/Qname/Qcode</li>
-<li>rightOperand &#8211; string, space separated list for set values</li>
-<li>rightOperandReference &#8211; an IRI</li>
-<li>dataType &#8211; an IRI/Qname/Qcode</li>
-<li>unit &#8211; an IRI/Qname/Qcode</li>
-<li>status &#8211; string</li>
-<li>id &#8211; a local identifier for this element</li>
-<li>idref &#8211; a reference to an Constraint element</li>
+<li>name - an IRI/Qname/Qcode</li>
+<li>operator - an IRI/Qname/Qcode</li>
+<li>rightOperand - string, space separated list for set values</li>
+<li>rightOperandReference - an IRI</li>
+<li>dataType - an IRI/Qname/Qcode</li>
+<li>unit - an IRI/Qname/Qcode</li>
+<li>status - string</li>
+<li>id - a local identifier for this element</li>
+<li>idref - a reference to an Constraint element</li>
 </ul>
 <P>NOTE: The Constraint <strong>name</strong> attribute is called <strong>leftOperand</strong> in the ODRL Information Model.</P>
 <p>Constraint element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
@@ -127,7 +128,7 @@
 
 <section>
 <h2>XML Example</h2>
-<p>The below example shows the XML serialisation of an ODRL Policy. In this example, the target asset and assigner and asignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country for a compensation payment of EUR5,000. </p>
+<p>The below example shows the XML serialisation of an ODRL Policy. In this example, the target asset and assigner and assignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country for a compensation payment of EUR5,000. </p>
 <pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
                 type="http://www.w3.org/ns/odrl/2/Agreement">
@@ -207,9 +208,9 @@
 
 <section>
 <h2>Constraint Relations</h2>
-<p>To support Constraint Relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its "#id".</p>
- <p>ODRL XML processing systems MUST detect the use of "#id" in the name and rightOperand in Constraints. If detected, the processing model for Constraint Relations (defined in [[!odrl-model]]) MUST then be followed.</p>
-<p>The below example shows two constraints defined at the Policy-level with ids "C1" and C2". The Constraint in the permission refers to these using the "#C1" and "#C2" values.</p>   
+<p>To support Constraint Relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its <code>#id</code>.</p>
+ <p>ODRL XML processing systems MUST detect the use of <code>#id</code> in the name attribute and rightOperand in Constraints. If detected, the processing model for Constraint Relations (defined in [[!odrl-model]]) MUST then be followed.</p>
+<p>The below example shows two constraints defined at the Policy-level with ids <code>C1</code> and <code>C2</code>. The Constraint in the permission refers to these using the <code>#C1</code> and <code>#C2</code> values.</p>   
     
 <pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
