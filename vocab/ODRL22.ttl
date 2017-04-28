@@ -729,7 +729,7 @@ odrl:
 	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Operator"@en ;
 	skos:definition "Operators for constraint expressions."@en ;
-	skos:note "Instances of the Operator class represent boolean operators."@en .
+	skos:note "Instances of the Operator class representing boolean operators and logical relationships."@en .
 
 :eq
 	a :Operator, owl:NamedIndividual ;
@@ -811,32 +811,32 @@ odrl:
 :or
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "The relation is satisfied when any of the Constaint objects is satisfied."@en ;
+	skos:definition "The relation is satisfied when any of the Constraints are satisfied."@en ;
 	rdfs:label "Or"@en ;
-	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects."@en ;
+	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en ;
     skos:scopeNote "Non-Normative"@en .
 	
 :and
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "The relation is satisfied when both of the Constaint objects are satisfied."@en ;
-	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects."@en ;
+	skos:definition "The relation is satisfied when both of the Constraints are satisfied."@en ;
+	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en ;
 	rdfs:label "And"@en .
 
 :xor
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "The relation is satisfied when only one of the Constaint objects is satisfied"@en ;
+	skos:definition "The relation is satisfied when only one of the Constaints is satisfied"@en ;
 	rdfs:label "Exclusive Or"@en ;
-	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects."@en ;
+	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en ;
     skos:scopeNote "Non-Normative"@en .
 	
 :andSequence
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	skos:definition "The left operand constraint of a Constraint Relation must deliver a satisfied result before the right operand constraint is evaluated. The right operand constraint may build on the satisfaction of the left operand constraint."@en ;
+	skos:definition "The relation is satisfied when the left operand Atomic Constraint  delivers a satisfied result before the right operand Atomic Constraint is evaluated. The right operand Atomic Constraint may build on the satisfaction of the left operand Atomic Constraint."@en ;
 	rdfs:label "And Sequence"@en ;
-	skos:note "This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects."@en ;
+	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 ## LeftOperand

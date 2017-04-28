@@ -54,9 +54,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <section id="vocab">
 	<h2>Vocabulary</h2>
 
-      <p>The ODRL Vocabulary formally defines the semantics for the concepts and terms from the ODRL Information Model [[!odrl-model]] and the vocabulary terms that can be used for common use cases for ODRL Policy expressions. </p>
+      <p>The ODRL Vocabulary defines the semantics for the concepts and terms from the ODRL Information Model [[!odrl-model]] and the vocabulary terms that can be used for common use cases for ODRL Policy expressions. </p>
 
-<p>The figure below shows the grouping of concepts and terms used in the ODRL Vocabulary. Each (dark blue) rounded box represents the core concepts from the Information Model, and each (yellow) rectangular box represents a vocabulary of applicable terms. </p>
+<p>The figure below shows the grouping of concepts and terms used in the ODRL Vocabulary. Each (dark blue) box represents the core concepts from the Information Model, and each (white)  box represents a vocabulary of applicable terms. </p>
 
  
 <figure>
@@ -98,7 +98,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
 </section></section><section id="policyTypes"><h2>Policy Types</h2><section id="term-Agreement"><h3>Agreement</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expressions that are formal contracts (licenses) stipulating all the terms of usage and all the parties involved.</td></tr>
+<tr><th>Definition:</th> <td>A Policy that grants the assignee a Rule over an Asset from an assigner.</td></tr>
 <tr><th>Label:</th> <td>Agreement</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Agreement">http://www.w3.org/ns/odrl/2/Agreement</a></td></tr>
 <tr><th>Note:</th> <td>An Agreement Policy Type MUST contain a target Asset, a Party  with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Agreement Policy Type will grant the terms of the Policy from the Assigner to the Assignee.</td></tr>
@@ -106,7 +106,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Assertion"><h3>Assertion</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expressions that reflect terms that Parties claim to hold.</td></tr>
+<tr><th>Definition:</th> <td>A Policy that asserts a Rule over an Asset from parties.</td></tr>
 <tr><th>Label:</th> <td>Assertion</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Assertion">http://www.w3.org/ns/odrl/2/Assertion</a></td></tr>
 <tr><th>Note:</th> <td>For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion policy type does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy Type MUST contain a target Asset, a Party with any role, and at least one of a Permission or Prohibition rule.</td></tr>
@@ -114,7 +114,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Offer"><h3>Offer</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expression that proposes terms of usage from an Asset owner.</td></tr>
+<tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assigner.</td></tr>
 <tr><th>Label:</th> <td>Offer</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Offer">http://www.w3.org/ns/odrl/2/Offer</a></td></tr>
 <tr><th>Note:</th> <td>A Offer Policy Type MUST contain a target Asset, a Party with Assigner role, and at least one of a Permission or Prohibition rule. The Offer Policy Type MAY contain a Party  with Assignee role, but MUST not grant any privileges to that Party.</td></tr>
@@ -122,7 +122,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Privacy"><h3>Privacy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expression that stipulates the terms of usage over personal information.</td></tr>
+<tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset containing personal information.</td></tr>
 <tr><th>Label:</th> <td>Privacy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Privacy">http://www.w3.org/ns/odrl/2/Privacy</a></td></tr>
 <tr><th>Note:</th> <td>A Privacy Policy Type MUST contain a target Asset, a Party with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner.</td></tr>
@@ -131,7 +131,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-Request"><h3>Request</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expression that proposes terms of usage to an Asset owner.</td></tr>
+<tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assignee.</td></tr>
 <tr><th>Label:</th> <td>Request</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Request">http://www.w3.org/ns/odrl/2/Request</a></td></tr>
 <tr><th>Note:</th> <td>A Request Policy Type MUST contain a target Asset, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner role if this is known. No privileges are granted to any Party.</td></tr>
@@ -140,7 +140,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-Set"><h3>Set</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expression that consists of entities from the complete model.</td></tr>
+<tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Set</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Set">http://www.w3.org/ns/odrl/2/Set</a></td></tr>
 <tr><th>Note:</th> <td>A Set Policy Type MUST contain a target Asset, and at least one Rule. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined).</td></tr>
@@ -148,7 +148,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Ticket"><h3>Ticket</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Policy expression that stipulates the terms of usage and is redeemable by any Party who currently holds the Ticket in their possession.</td></tr>
+<tr><th>Definition:</th> <td>A Policy that grants the holder a Rule over an Asset from an assigner.</td></tr>
 <tr><th>Label:</th> <td>Ticket</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Ticket">http://www.w3.org/ns/odrl/2/Ticket</a></td></tr>
 <tr><th>Note:</th> <td>A Offer Policy Type MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Offer MAY contain the Party  with Assigner role and a Party with Assignee role. A Ticket (or Voucher) may be anonymous or personalised, where the holder of that Ticket may remain unknown or has to be identified. The holder, or if known, the Assignee, is being granted the terms of the Ticket from the Assigner (in known).</td></tr>
@@ -878,7 +878,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>Operators for constraint expressions.</td></tr>
 <tr><th>Label:</th> <td>Operator</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Operator">http://www.w3.org/ns/odrl/2/Operator</a></td></tr>
-<tr><th>Note:</th> <td>Instances of the Operator class represent boolean operators.</td></tr>
+<tr><th>Note:</th> <td>Instances of the Operator class representing boolean operators and logical relationships.</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-operator">operator</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-and">and</a>, <a href="#term-andSequence">andSequence</a>, <a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a>, <a href="#term-or">or</a>, <a href="#term-xor">xor</a></td></tr>
@@ -1275,33 +1275,33 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-or"><h3>Or</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when any of the Constaint objects is satisfied.</td></tr>
+<tr><th>Definition:</th> <td>The relation is satisfied when any of the Constraints are satisfied.</td></tr>
 <tr><th>Label:</th> <td>Or</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/or">http://www.w3.org/ns/odrl/2/or</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-xor"><h3>Exclusive Or</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when only one of the Constaint objects is satisfied</td></tr>
+<tr><th>Definition:</th> <td>The relation is satisfied when only one of the Constaints is satisfied</td></tr>
 <tr><th>Label:</th> <td>Exclusive Or</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/xor">http://www.w3.org/ns/odrl/2/xor</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-and"><h3>And</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when both of the Constaint objects are satisfied.</td></tr>
+<tr><th>Definition:</th> <td>The relation is satisfied when both of the Constraints are satisfied.</td></tr>
 <tr><th>Label:</th> <td>And</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/and">http://www.w3.org/ns/odrl/2/and</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
 </section><section id="term-andSequence"><h3>And Sequence</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The left operand constraint of a Constraint Relation must deliver a satisfied result before the right operand constraint is evaluated. The right operand constraint may build on the satisfaction of the left operand constraint.</td></tr>
+<tr><th>Definition:</th> <td>The relation is satisfied when the left operand Atomic Constraint  delivers a satisfied result before the right operand Atomic Constraint is evaluated. The right operand Atomic Constraint may build on the satisfaction of the left operand Atomic Constraint.</td></tr>
 <tr><th>Label:</th> <td>And Sequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/andSequence">http://www.w3.org/ns/odrl/2/andSequence</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraint Relations, and both left and right operands MUST be constraint objects.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1320,7 +1320,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     <section id="encodings">
 	<h2>Vocabulary Encodings</h2>
      <p>This specification describes a number of serialization syntaxes for the ODRL Vocabulary.</p> 
-<p>ODRL expression documents MUST be serialized using the UTF-8 character encoding.</p>    </section>
+<p>Implementations of ODRL expressions MUST be serialized using the UTF-8 character encoding.</p>    </section>
           
         
     <section id="rdfowl">
@@ -1365,7 +1365,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
           
     <section id="xml">
    	<h2>XML Encoding</h2>         
-        <p>The ODRL statements can be encoded in XML [[xml]] defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the IRIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
+        <p>ODRL Policy expressions can be encoded in XML [[xml]] serialisations as defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the ODRL Vocabulary IRIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
 
 <div class="note">
 <p>The (editors draft) ODRL XML Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
@@ -1374,18 +1374,19 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <p>To enable compact IRIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
 
 
-<p>Each of the core entities (UML Classes) from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each entity attribute will be represented as an XML attribute of the parent element. The fixed values defined in the ODRL Information Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED.</p>
+<p>Each of the classes from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each class property will be represented as an XML attribute of the parent element. The fixed values defined in the ODRL Information Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED. </p>
+<p>Note that the Rule class is not represented in the XML encoding, only the child classes; Permission, Prohibition, and Duty.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policyTypes">Policy Types</a> for further details. </P>
 
 <p>The Policy element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; an IRI/Qname/Qcode (REQUIRED)</li>
-<li>type &#8211; an IRI/Qname/Qcode (REQUIRED)</li>
-<li>conflict &#8211; fixed enumeration (defined in XML Schema)</li>
-<li>undefined &#8211; fixed enumeration (defined in XML Schema)</li>
-<li>inheritAllowed &#8211; a boolean</li>
-<li>inheritFrom &#8211; an IRI/Qname/Qcode</li>
-<li>profile &#8211; an IRI/Qname/Qcode</li>
+<li>uid - an IRI/Qname/Qcode (REQUIRED)</li>
+<li>type -an IRI/Qname/Qcode (REQUIRED)</li>
+<li>conflict - fixed enumeration (defined in XML Schema)</li>
+<li>undefined - fixed enumeration (defined in XML Schema)</li>
+<li>inheritAllowed - a boolean</li>
+<li>inheritFrom - an IRI/Qname/Qcode</li>
+<li>profile -an IRI/Qname/Qcode </li>
 </ul>
 
 <p>The Policy element MAY contain the following elements:</p>
@@ -1401,26 +1402,26 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <li>action</li>
 </ul>
 
-<p>The Asset and Relation association class are merged into a single Asset element to represent both the Asset and how it is related to the Permission/Prohibition/Duty. The Asset element contains the following attributes:</p>
+<p>The Asset class is a single asset element to represent both the Asset uid and how it is related to the Rule. The Asset element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; an IRI/Qname/Qcode</li>
-<li>relation &#8211; an IRI/Qname/Qcode</li>
-<li>scope &#8211; an IRI/Qname/Qcode</li>
-<li>id &#8211; an local identifier for this element</li>
-<li>idref &#8211; a reference to an Asset element</li>
+<li>uid - an IRI/Qname/Qcode</li>
+<li>relation - an IRI/Qname/Qcode</li>
+<li>scope - an IRI/Qname/Qcode</li>
+<li>id - an local identifier for this element</li>
+<li>idref - a reference to an Asset element</li>
 </ul>
 <p>Asset element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
 <li>uid (REQUIRED), relation (REQUIRED), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
-<p>The Party and Role association class are merged into a single Party element to represent both the Party and the role to the Permission/Prohibition/Duty. The Party element contains the following attributes:</p>
+<p>The Party class is a single party element to represent both the Party uid and the functional role to the Rule. The Party element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; an IRI/Qname/Qcode</li>
-<li>function &#8211; an IRI/Qname/Qcode</li>
-<li>scope &#8211; an IRI/Qname/Qcode</li>
-<li>id &#8211; a local identifier for this element</li>
-<li>idref &#8211; a reference to a Party element</li>
+<li>uid - an IRI/Qname/Qcode</li>
+<li>function - an IRI/Qname/Qcode</li>
+<li>scope - an IRI/Qname/Qcode</li>
+<li>id - a local identifier for this element</li>
+<li>idref - a reference to a Party element</li>
 </ul>
 <p>Party element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
@@ -1429,31 +1430,31 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ol>
 <p>The Permission element contains the following elements:</p>
 <ul>
-<li>asset &#8211; (REQUIRED)</li>
-<li>action &#8211; (REQUIRED)</li>
+<li>asset (REQUIRED)</li>
+<li>action (REQUIRED)</li>
 <li>constraint</li>
 <li>party</li>
 <li>duty</li>
 </ul>
 <p>The Prohibition element contains the following elements:</p>
 <ul>
-<li>asset &#8211; (REQUIRED)</li>
-<li>action &#8211; (REQUIRED)</li>
+<li>asset (REQUIRED)</li>
+<li>action (REQUIRED)</li>
 <li>constraint</li>
 <li>party</li>
 </ul>
 <p>The Duty element contains the following elements:</p>
 <ul>
-<li>action &#8211; (REQUIRED)</li>
+<li>action (REQUIRED)</li>
 <li>constraint</li>
 <li>asset</li>
 <li>party</li>
 </ul>
 <p>The Duty element contains the following attributes:</p>
 <ul>
-<li>uid &#8211; an IRI/Qname/Qcode</li>
-<li>id &#8211; a local identifier for this element</li>
-<li>idref &#8211; a reference to an Duty element</li>
+<li>uid - an IRI/Qname/Qcode</li>
+<li>id - a local identifier for this element</li>
+<li>idref - a reference to an Duty element</li>
 </ul>
 <p>Duty element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
@@ -1461,11 +1462,11 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <li>id (REQUIRED), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
-<p>The Action element contains the following attribute:</p>
+<p>The Action element contains the following attributes:</p>
 <ul>
-<li>name &#8211; an IRI/Qname/Qcode</li>
-<li>id &#8211; a local identifier for this element</li>
-<li>idref &#8211; a reference to an Action element</li>
+<li>name - an IRI/Qname/Qcode </li>
+<li>id - a local identifier for this element</li>
+<li>idref - a reference to an Action element</li>
 </ul>
 <p>Action element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
@@ -1474,15 +1475,15 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ol>
 <p>The Constraint element contains the following attributes:</p>
 <ul>
-<li>name &#8211; an IRI/Qname/Qcode</li>
-<li>operator &#8211; an IRI/Qname/Qcode</li>
-<li>rightOperand &#8211; string, space separated list for set values</li>
-<li>rightOperandReference &#8211; an IRI</li>
-<li>dataType &#8211; an IRI/Qname/Qcode</li>
-<li>unit &#8211; an IRI/Qname/Qcode</li>
-<li>status &#8211; string</li>
-<li>id &#8211; a local identifier for this element</li>
-<li>idref &#8211; a reference to an Constraint element</li>
+<li>name - an IRI/Qname/Qcode</li>
+<li>operator - an IRI/Qname/Qcode</li>
+<li>rightOperand - string, space separated list for set values</li>
+<li>rightOperandReference - an IRI</li>
+<li>dataType - an IRI/Qname/Qcode</li>
+<li>unit - an IRI/Qname/Qcode</li>
+<li>status - string</li>
+<li>id - a local identifier for this element</li>
+<li>idref - a reference to an Constraint element</li>
 </ul>
 <P>NOTE: The Constraint <strong>name</strong> attribute is called <strong>leftOperand</strong> in the ODRL Information Model.</P>
 <p>Constraint element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
@@ -1494,7 +1495,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <section>
 <h2>XML Example</h2>
-<p>The below example shows the XML serialisation of an ODRL Policy. In this example, the target asset and assigner and asignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country for a compensation payment of EUR5,000. </p>
+<p>The below example shows the XML serialisation of an ODRL Policy. In this example, the target asset and assigner and assignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country for a compensation payment of EUR5,000. </p>
 <pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
                 type="http://www.w3.org/ns/odrl/2/Agreement">
@@ -1574,9 +1575,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <section>
 <h2>Constraint Relations</h2>
-<p>To support Constraint Relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its "#id".</p>
- <p>ODRL XML processing systems MUST detect the use of "#id" in the name and rightOperand in Constraints. If detected, the processing model for Constraint Relations (defined in [[!odrl-model]]) MUST then be followed.</p>
-<p>The below example shows two constraints defined at the Policy-level with ids "C1" and C2". The Constraint in the permission refers to these using the "#C1" and "#C2" values.</p>   
+<p>To support Constraint Relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its <code>#id</code>.</p>
+ <p>ODRL XML processing systems MUST detect the use of <code>#id</code> in the name attribute and rightOperand in Constraints. If detected, the processing model for Constraint Relations (defined in [[!odrl-model]]) MUST then be followed.</p>
+<p>The below example shows two constraints defined at the Policy-level with ids <code>C1</code> and <code>C2</code>. The Constraint in the permission refers to these using the <code>#C1</code> and <code>#C2</code> values.</p>   
     
 <pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
