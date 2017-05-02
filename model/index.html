@@ -103,7 +103,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="infoModel">
 <h2>ODRL Information Model</h2>
 
-<p>The ODRL Information Model represents Policies to express Permissions and Prohibitions related to the usage of Assets. The Information Model explicitly expresses what is allowed and what is not allowed by the Policy, as well as other terms, requirements, and parties involved. The aim of the ODRL Information Model is to enable flexible Policy expressions by allowing the policy author to include as much, or as little, detail in the Policies.</p>
+<p>The ODRL Information Model represents Policies that express Permissions, Prohibitions and Duties related to the usage of Assets. The Information Model explicitly expresses what is allowed and what is not allowed by the Policy, as well as other terms, requirements, and parties involved. The aim of the ODRL Information Model is to enable flexible Policy expressions by allowing the policy author to include as much, or as little, detail in the Policies.</p>
 
 <p>The figure below shows the ODRL Information Model.</p>
 
@@ -827,7 +827,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li>A Rule  MAY refer to one or more Constraints via the <code>constraint</code> property. The Rule becomes effective if all of the Constraints are satisfied.</li>
     <li>A Rule MAY refer to a <code>uid</code> to enable the Rule to be identified by other Rules.</li>
 </ul>
-<p>For a Rule to become effective, it MUST be valid (ie it's constraints are satisfied).</p>
+<p>For a Rule to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
 
     
     
@@ -835,13 +835,13 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <h3>Permission</h3>
 
 
-<p>A Permission class is a specific type of Rule that specifies the Actions that MAY be <strong>permitted</strong> to be performed on an Asset. The Permission class inherits all the properties from the Rule class.</p>
+<p>A Permission class is a specific type of Rule that specifies the Actions that MAY be <strong>performed</strong> on an Asset. The Permission class inherits all the properties from the Rule class.</p>
 
 <p>In addition to the Rule properties, the Permission class has the following properties:</p>
 <ul>
     <li>A Permission  MAY refer to one or more Duties via the <code>duty</code> property. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
-<p>For a Permission to become effective, it MUST be valid (ie its constraints are satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
+<p>For a Permission to become effective, it MUST be valid (ie all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
     
 <blockquote>   
 <p>Example Use Case: The Policy <code>Ticket</code> type expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the ticket is valid until the end of the year 2017. Any valid holder of this ticket may exercise this Permission.</p>
@@ -868,9 +868,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="prohibition">
 <h3>Prohibition</h3>
 
-<p>A Prohibition class is a specific type of Rule that specifies the Actions that MUST NOT be <strong>permitted</strong> to be performed on an Asset. The Prohibition class inherits all the properties from the Rule class.</p>
+<p>A Prohibition class is a specific type of Rule that specifies the Actions that MUST NOT be <strong>performed</strong> on an Asset. The Prohibition class inherits all the properties from the Rule class.</p>
 
-<p>For a Prohibition to become effective, it MUST be valid (ie its constraints are satisfied).</p>
+<p>For a Prohibition to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
 
     <blockquote>
 <p>Example Use Case: The assigner of a target Asset <code>http://example.com/photoAlbum:55</code> expresses an Agreement Policy with both a Permission and a Prohibition. The assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission <code>display</code> to the assignee Party <code>http://example.com/assignee:55</code> at the same time a Prohibition to <code>archive</code> the target Asset. Additionally, in case of any conflicts between Permissions and Prohibitions, the conflict property is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
@@ -996,7 +996,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     <p>A Constraint can be used to define the context in which to process Actions in Rules, such as limitations, restrictions, or interpretations that are applied to the Actions. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are logically compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>.</p>
     
-    <p>Constraints MUST be checked by ODRL Processors  at the time of executing the relevant action. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
+    <p>ODRL Processors MUST check all constraints at the time of executing the relevant Action. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
  
     <p>When multiple Constraints apply to the same Rule they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied.</p>
     
