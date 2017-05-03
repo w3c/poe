@@ -1030,7 +1030,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <p>The <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times.</p>
 
 <blockquote>
-<p>Example Use Case: The Party <code>http://example.com/myPix:6161</code> wants to offer the  <code>distribute</code> Permission for a specific country for the target Asset. The offer has two Duties to <code>compensate</code> the assigner and a <code>nextPolicy</code>. The potential assignee may distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the Policy target Asset. The Policy Asset <code>http://example.com/policy:7171</code> stipulates that the potential assignee may only offer the <code>display</code> Permission to downstream consumers.</p>
+<p>Example Use Case: In the first example below, the Party <code>http://example.com/myPix:6161</code> wants to offer the  <code>distribute</code> Permission for a specific country for the target Asset. The offer has two Duties to <code>compensate</code> the assigner and a <code>nextPolicy</code>. The potential assignee may distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the Policy target Asset. The second exmaple shows that the Policy  <code>http://example.com/policy:7171</code> stipulates  the potential assignee may only offer the <code>display</code> Permission to other parties.</p>
     </blockquote>
     
 <pre class="example hljs json">
@@ -1066,7 +1066,9 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
         ]
     }]
 }
- 
+</pre>
+    
+<pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "type": "Set",
