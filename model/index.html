@@ -659,18 +659,21 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     <p>The <code>scope</code> property SHOULD be used to indicate the context under which to interpret an Asset. The purpose of <code>scope</code> is to provide additional contextual information about the Asset. For example, the Asset identifier may refer to a resource with many characteristics, but the <code>scope</code> may limit that to only one specific characteristic.</p>
     
-<p>The <code>scope</code> property IRI values SHOULD be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>The <code>scope</code> property IRI values SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 
     
     <blockquote>
-    <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that has a <code>scope</code> of <code>http://example.com/imt/jpeg</code> (which, in this case, provides additional context on what characteristics the Asset MUST hold).</p>
+    <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that has a scope of <code>http://example.com/imt/jpeg</code>. That scope specifies further context on what characteristics the Asset must hold.</p>
+        <p>The scope is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the scope and profile URIs are not mere identifiers but dereference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
+        </p>
     </blockquote>
  <pre class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "type": "Offer",
     "uid": "http://example.com/policy:4444",
+    "profile": "http://example.com/profiles/01",
     "permission": [{
         "target": [{
                 "uid": "http://example.com/media-catalogue",
