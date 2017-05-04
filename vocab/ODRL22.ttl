@@ -57,7 +57,7 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#policyConcepts>
     a skos:Collection ;
-    skos:prefLabel "Policy Concepts"@en ;
+    skos:prefLabel "Policy"@en ;
     skos:member :Policy ;
     skos:member :Rule ;
     skos:member :profile .
@@ -103,7 +103,7 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#assetConcepts>
     a skos:Collection ;
-    skos:prefLabel "Asset Concepts"@en ;
+    skos:prefLabel "Asset"@en ;
     skos:member :Asset ;
     skos:member :relation ;
     skos:member :AssetScope .
@@ -117,14 +117,14 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#partyConcepts>
     a skos:Collection ;
-    skos:prefLabel "Party Concepts"@en ;
+    skos:prefLabel "Party"@en ;
     skos:member :Party ;
     skos:member :function ;
     skos:member :PartyScope .
 
 <http://www.w3.org/ns/odrl/2/#partyAssetConcepts>
     a skos:Collection ;
-    skos:prefLabel "Party and Asset Concepts"@en ;
+    skos:prefLabel "Party and Asset"@en ;
     skos:member :scope .
 
 
@@ -159,19 +159,19 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#actionConcepts>
     a skos:Collection ;
-    skos:prefLabel "Action Concepts"@en ;
+    skos:prefLabel "Action"@en ;
     skos:member :Action ;
     skos:member :action .
 
 <http://www.w3.org/ns/odrl/2/#permissions>
     a skos:Collection ;
-    skos:prefLabel "Permission Concepts"@en ;
+    skos:prefLabel "Permission"@en ;
     skos:member :Permission ;
     skos:member :permission .
 
 <http://www.w3.org/ns/odrl/2/#prohibitions>
     a skos:Collection ;
-    skos:prefLabel "Prohibition Concepts"@en ;
+    skos:prefLabel "Prohibition"@en ;
     skos:member :Prohibition ;
     skos:member :prohibition .
 
@@ -211,7 +211,7 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#duties>
     a skos:Collection ;
-    skos:prefLabel "Duty Concepts"@en ;
+    skos:prefLabel "Duty"@en ;
     skos:member :Duty ;
     skos:member :duty ; .
 
@@ -234,7 +234,7 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#constraints>
     a skos:Collection ;
-    skos:prefLabel "Constraint Concepts"@en ;
+    skos:prefLabel "Constraint"@en ;
     skos:member :Constraint ;
     skos:member :constraint ;
     skos:member :Operator ;
@@ -386,7 +386,6 @@ odrl:
 
 :Policy
 	a rdfs:Class , owl:Class ;
-	rdfs:subClassOf :Asset ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy"@en ;
 	skos:definition "A Rule expressing what Action is allowed and/or disallowed over an Asset."@en ;
@@ -420,7 +419,7 @@ odrl:
 	a rdfs:Class, owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Is used to indicate how to support Actions that are not part of any vocabulary or profile in the policy expression system."@en ;
-	skos:note "Instances of UndefinedTerm describe policies for processing unsupported actions."@en ;
+	skos:note "Instances of UndefinedTerm describe strategies for processing unsupported actions."@en ;
 	rdfs:label "Undefined Term"@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -565,8 +564,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Prohibition, :Permission ;
 	rdfs:label "Duty"@en ;
-    skos:definition "An Action that has been agreed to be performed as a requirement for the applicable Permission to become valid."@en ;
-    skos:note "While implying different semantics, the Duty entity is similar to Permission in that it is an Action that must be undertaken."@en .
+    skos:definition "An Action that has been agreed to be performed as a requirement for the applicable Permission to become valid."@en .
 
 :Action
 	a rdfs:Class, owl:Class ;
@@ -1002,7 +1000,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Purpose"@en ;
 	skos:definition "Purpose for exercising the Action."@en ;
-	skos:note "Example: Educational use. Note: Purpose values from [[p3p]] may also be used."@en .
+	skos:note "Example: Educational use."@en .
 
 :recipient
 	a :LeftOperand, owl:NamedIndividual ;
@@ -1590,7 +1588,7 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Assignee"@en ;
 	skos:definition "The Party is the recipient of the policy statement."@en ;
-	skos:note "Must be supported."@en ;
+	rdfs:domain :Rule ;
 	rdfs:range :Party .
 
 :assigner
@@ -1599,7 +1597,7 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Assigner"@en ;
 	skos:definition "The Party is the issuer of the policy statement."@en ;
-	skos:note "Must be supported."@en ;
+	rdfs:domain :Rule ;
 	rdfs:range :Party .
 
 :attributedParty
@@ -1837,15 +1835,13 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Group"@en ;
 	skos:definition "Specifies that the scope of the relationship is the defined group with multiple individual members."@en ;
-	skos:note "Must be supported."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :Individual
 	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Individual"@en ;
-	skos:definition "Specifies that the scope of the relationship is the single Party individual."@en ;
-	skos:note "MUST be supported."@en .
+	skos:definition "Specifies that the scope of the relationship is the single Party individual."@en .
 
 ## Deprecated terms
 
@@ -1863,7 +1859,6 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Extract character"@en ;
 	skos:definition "The act of extracting (replicating) unchanged characters from the asset."@en ;
-    skos:note "Must be supported."@en ;
  skos:note "This original term and URI from the ONIX specification should be used: http://www.editeur.org/onix-pl/extract-char ."@en ;
   owl:deprecated true .
 

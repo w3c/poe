@@ -254,6 +254,7 @@ function writeTerm($term)
 	$html .= $term->propertyRow("Deprecates", "^ont:deprecatedBy");
 	$html .= $term->propertyRow("Sub-classes", "^rdfs:subClassOf");
 	$html .= $term->propertyRow("Sub-properties", "^rdfs:subPropertyOf");
+    $html .= $term->propertyRow("Broader terms", "skos:broaderTransitive");
 	$html .= $term->propertyRow("Narrower terms", "^skos:broaderTransitive");
  
 	$html .= $term->propertyRow("Properties", "^rdfs:domain");
