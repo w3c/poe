@@ -116,15 +116,16 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>The ODRL Information Model includes the following classes:
     <ul>
-    <li>Policy - expresses Rules that are allowed (via the permission property) and/or disallowed (via the prohibition property) over an Asset.</li>
-    <li>Rule - the abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features. A Rule can express the Action (via the action property), the Asset (via the relation property), the Constraint (via the constraint property), and the Party (via the function property). </li>
-    <li>Action - expresses an operation that can be applied to an Asset.</li>
-    <li>Permission - expresses the Action that MAY be performed. The Permission MAY also include the Duty (via the duty property) that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
-    <li>Prohibition - expresses the Action that MUST NOT be performed.</li>
-    <li>Duty - expresses the Action that has been agreed to be performed as a requirement for the applicable Permission to become valid.</li>
-    <li>Asset - an identifiable resource that is related to a Rule. Examples of relation include target.</li>
-    <li>Party - an identifiable entity who may undertake a role (via the function property)in a Rule. Examples of functions include assigner and assignee. </li>
-    <li>Constraint - the context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</li>
+        <li><code>Policy</code> - expresses Rules that are allowed (via the permission property) and/or disallowed (via the prohibition property) over an Asset.</li>
+    <li><code>Asset</code> - an identifiable resource that is related to a Rule. Examples of relation include target.</li>
+    <li><code>Party</code> - an identifiable entity who may undertake a role (via the function property)in a Rule. Examples of functions include assigner and assignee. </li>
+    <li><code>Action</code> - expresses an operation that can be applied to an Asset.</li>
+    <li><code>Rule</code> - the abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features. A Rule can express the Action (via the action property), the Asset (via the relation property), the Constraint (via the constraint property), and the Party (via the function property). </li>
+    <li><code>Permission</code> - expresses the Action that MAY be performed. The Permission MAY also include the Duty (via the duty property) that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
+    <li><code>Prohibition</code> - expresses the Action that MUST NOT be performed.</li>
+    <li><code>Duty</code> - expresses the Action that has been agreed to be performed as a requirement for the applicable Permission to become valid.</li>
+
+    <li><code>Constraint</code> - the context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</li>
     </ul>
 
 <div class="note">
@@ -138,22 +139,22 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="policy">
 <h3>Policy</h3>
 
-<p>A Policy has the following properties:</p>
+<p>A Policy MUST have the following properties:</p>
 <ul>
-<li>A Policy  MUST refer to the <code>uid</code> identification of the Policy.</li>
-<li>A Policy  MUST refer to the <code>type</code> indicating the specific type of Policy.</li>
-<li>A Policy MUST refer to the <code>permission</code> and/or <code>prohibition</code> Rule.</li>
-<li>A Policy  MAY refer to the <code>conflict</code> property indicating how to handle Policy conflicts.</li>
-<li>A Policy  MAY refer to the <code>undefined</code> property indicating how to handle undefined Actions.</li>
-<li>A Policy  MAY refer to the <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies.</li>
-<li>A Policy  MAY refer to the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to.</li>
+<li>The <code>uid</code> identification of the Policy.</li>
+<li>The <code>type</code> indicating the specific type of Policy.</li>
+<li>A <code>permission</code> and/or <code>prohibition</code> Rule.</li>
+</ul>  
+
+<p>The Policy <code>type</code> describes the context of use of the Policy and MAY include additional constraints that ODRL processors MUST understand. The Policy <code>type</code> are documented in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. For example, the <strong>Agreement</strong> Policy type stipulates minimal cardinalities for some for the Policy classes and properties, which are different from the <strong>Offer</strong> Policy type. In addition, and more importantly, the <strong>Agreement</strong> Policy type states that the Permissions/Prohibitions have been actually been <em>granted</em> to the Party, but the <strong>Offer</strong> Policy type does not. </p>
+
+<p>A Policy MAY also have the following properties:</p>
+<ul>
+<li>The <code>conflict</code> property indicating how to handle Policy conflicts.(See <a href="#conflict">Policy Conflict Strategy</a> for more details.)</li>
+<li>The <code>undefined</code> property indicating how to handle undefined Actions. (See <a href="#undefined">Undefined Actions</a> for more details.)</li>
+<li>The <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies. (See <a href="#inhertiance">Policy Inheritance</a> for more details.)</li>
+<li>The <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See <a href="#profile">ODRL Profiles</a> for more details.)</li>
 </ul>
-
-<p>The Policy <code>type</code> describes the context of use of the Policy and MAY include additional constraints that ODRL processors MUST understand. The Policy <code>type</code> are documented in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles.</p>
-
-<blockquote>    
-    <p> For example, the <strong>Agreement</strong> Policy type stipulates minimal cardinalities for some for the Policy classes and properties, which are different from the <strong>Offer</strong> Policy type. In addition, and more importantly, the <strong>Agreement</strong> Policy type states that the Permissions/Prohibitions have been actually been granted to the Party, but the <strong>Offer</strong> Policy type does not. </p>
-    </blockquote>
     
 <p>To illustrate the concepts described in the Information Model, some examples are presented to describe them in more detail.</p>
  
@@ -200,395 +201,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     }]
 }
 </pre>
-	
-<section id="composition">
-<h4>Policy Composition</h4>
-             
-    <p>A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
-     
-    <p>At the core level, an ODRL Rule would refer to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is an <em>irreducible</em> and <em>unambiguous</em> Rule.</p>
-             
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
-    "uid": "http://example.com/policy:7777",
-    "permission": [{
-        "target": "http://example.com/music/1999.mp3",
-        "assigner": "http://example.com/org/sony-music",
-        "assignee": "http://example.com/people/billie",
-        "action": "play",
-        "constraint": "...",
-        "duty": "..."
-    }]
-} 
-</pre>
 
-<p>As multiple Assets, Parties, and Actions can be expressed for each Rule, the following example shows two Assets defined for the policy:</p>
-    
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
-    "uid": "http://example.com/policy:8888",
-    "permission": [{
-        "target": [ "http://example.com/music/1999.mp3",
-                    "http://example.com/music/PurpleRain.mp3"],
-        "assigner": "http://example.com/org/sony-music",
-        "assignee": "http://example.com/people/billie",
-        "action": "play",
-        "constraint": "...",
-        "duty": "..."
-    }]
-}
-</pre>
-
-<p>The above example could then be reduced to two <em>atomic</em> Rules, with the two target assets appearing individually in each:</p>
-    
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
-    "uid": "http://example.com/policy:8888",
-    "permission": [{
-        "target": "http://example.com/music/1999.mp3",
-        "assigner": "http://example.com/org/sony-music",
-        "assignee": "http://example.com/people/billie",
-        "action": "play",
-        "constraint": "...",
-        "duty": "..."
-    },
-    {
-        "target": "http://example.com/music/PurpleRain.mp3",
-        "assigner": "http://example.com/org/sony-music",
-        "assignee": "http://example.com/people/billie",
-        "action": "play",
-        "constraint": "...",
-        "duty": "..."
-    }]
-}
-</pre>
-    
-    <p>In order to create the <em>atomic</em> Rules in a Policy, the processing model for policies with multiple Assets, Parties, and Actions includes:</p>
-    <ol>
-    <li>Where there are multiple Assets (with the same relation), then create new Rules (one for each of these Assets) and include only one Asset relation, and include all other (non-Asset) properties, in each Rule</li>
-    <li>Where there are multiple Parties (with the same function), then create new Rules (one for each of these Parties) and include only one Party function, and include all other (non-Party) properties, in each Rule.</li>
-    <li>Where there are multiple Actions, then create new Rules (one for each of these Actions) and include only one Action, and include all other (non-Action) properties, in each Rule.</li>
-    </ol>
-       
-    <p>An ODRL Policy MAY also declare multiple Assets, Parties, and Actions at the Policy level (not just within a Rule). This implies that these classes are all common to all the Rules in the Policy, as shown in the below example:</p>
-             
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
-    "uid": "http://example.com/policy:8888",
-    "target": "http://example.com/music/1999.mp3",
-    "assigner": "http://example.com/org/sony-music",
-    "action": "play",
-    "permission": [{
-        "assignee": "http://example.com/people/billie"
-        },
-        {
-        "assignee": "http://example.com/people/murphy"
-        }]
-}  
-</pre>
-
-<p>To fully expand the Rules, the Policy-level Assets, Parties, and Actions MUST be added to all the Rules in the Policy. As shown below, the policy-level target, assigner, and action are added to the two permission Rules:</p>
-    
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
-    "uid": "http://example.com/policy:8888",
-    "permission": [{
-        "assignee": "http://example.com/people/billie",
-        "target": "http://example.com/music/1999.mp3",
-        "assigner": "http://example.com/org/sony-music",
-        "action": "play"
-        },
-        {
-        "assignee": "http://example.com/people/murphy",
-        "target": "http://example.com/music/1999.mp3",
-        "assigner": "http://example.com/org/sony-music",
-        "action": "play",
-        }]
-}  
-</pre>  
-  
-    <p>The processing model for Policies with multiple Assets, Parties, and Actions declared at the Policy-level includes:</p>
-    <ol>
-    <li>Replicate all Policy-level Assets in each and all Permission/Prohibition Rules.</li>
-   <li>Replicate all Policy-level Parties in each and all Permission/Prohibition Rules.</li>
-    <li>Replicate all Policy-level Actions in each and all Permission/Prohibition Rules.</li>
-      <li>Follow the processing model (defined above) to create <em>atomic</em> Rules in the Policy.</li>  
-    </ol>
-       
-    
-    
-    </section>
-             
-     <section id="provenace">
-<h4>Policy Provenance</h4>
-         
-       <p>Provenance properties MAY be added to a Policy to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[!dcterms]] for ODRL Policies.</p>
-         
-         <p>The following Dublin Core Metadata Terms [[!dcterms]] SHOULD be used:</p>
-            <ul>
-         <li><code>dc:creator</code> - the individual, agent, or organisation that authored the Policy.</li>      <li><code>dc:description</code> - a human-readable representation or summary of the Policy.</li>
-         <li><code>dc:issued</code> - the date (and time) the Policy was first issued.</li>
-         <li><code>dc:modified</code> -  the date (and time) the Policy was updated.</li>
-        <li><code>dc:coverage</code> -  the jurisdiction under which the Policy is relevant.</li>
-        <li><code>dc:replaces</code> -  the identifier (uid) of a Policy that this Policy supersedes.</li>
-        <li><code>dc:isReplacedBy</code> -  the identifier (uid) of a Policy that supersedes this Policy.</li>
-         </ul>
-         
-    <p>The processing model for Policies with the above provenance properties include:</p>
-    <ol>
-    <li>If a Policy contains the <code>dc:isReplacedBy</code> property, then a processor MUST consider the first Policy invalid and MUST retrieve and process the identified Policy.</li>
-    </ol>
-
-<blockquote>
-<p>Example Use Case: The below example contains provenance properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
-         
-<pre class="example hljs json">
-{
-    "@context": [
-        "http://www.w3.org/ns/odrl.jsonld",
-        { "dc": "http://purl.org/dc/terms/" }
-    ],
-    "type": "Agreement",
-    "uid": "http://example.com/policy:8888",
-    "dc:creator": "billie@example.com",
-    "dc:issued": "2017-01-01:12:00",
-    "dc:coverage": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD",
-    "dc:replaces": "http://example.com/policy:8887",
-    "permission": [{   }]
-}  
-</pre>
-         
-    </section>
-    
-    
-    <section id="conflict">
-<h4>Policy Conflict Strategy</h4>
-        
-<p>The <code>conflict</code> property is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent.</p>
-      
-    <p>The <code>conflict</code> property MUST take one of the following values:</p>
-<ul>
-<li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
-<li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
-<li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
-</ul>
-<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used.</p>
-
-        
-<p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
-   
-<ol>
-        <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
- <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule and continue with the Policy as valid.</li>
-  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
- <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then processing MUST not continue and the entire Policy MUST be invalid.</li> 
-        </ol>
-       
-        
-<blockquote>
-<p>Example Use Case: Two Policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to <code>use</code> the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits <code>print</code>. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> property being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the <code>print</code> Action is a subset of the <code>use</code> Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the <code>use</code> Permission will override the <code>print</code> Prohibition.</p>
-</blockquote>
-
-        
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
-    "uid": "http://example.com/policy:0001",
-    "conflict": "perm",
-    "permission": [{
-        "target": "http://example.com/asset:1212",
-        "action": "use",
-        "assigner": "http://example.com/owner:181"
-    }]
-}
-</pre>
-
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
-    "uid": "http://example.com/policy:0002",
-    "conflict": "perm",
-    "permission": [{
-        "target": "http://example.com/asset:1212",
-        "action": "display",
-        "assigner": "http://example.com/owner:182"
-    }],
-    "prohibition": [{
-        "target": "http://example.com/asset:1212",
-        "action": "print"
-    }]
-}
-</pre>
-
-<p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
-    </section>
-    <section id="undefined">
-<h4>Undefined Actions</h4>
-    
-        
-<div class="issue" data-number="105">
-    <p>The detection of undefined actions is viewed to be implementation-specific, and too vague to be part of the Information Model. This feature maybe removed in future versions.</p>
-</div>
-             
-<p>The <code>undefined</code> property is used to indicate how to process unsupported Actions. That is, if an ODRL expression contains an Action that is not from a known (or supported) ODRL vocabulary, how should the Action be treated in the context of the whole ODRL Policy?</p>
-        
- <p>The <code>undefined</code> property MUST take one of the following values:</p>
-<ul>
-<li><code>support</code>: the undefined Action is to be <strong>supported</strong> as part of the Policy &#8211; and the Policy remains valid</li>
-<li><code>ignore</code>: the undefined Action is to be <strong>ignored</strong> and is not part of the Policy &#8211; and the Policy remains valid</li>
-    <li><code>invalid</code>: the undefined Action is unknown &#8211; and the entire Policy is <strong>invalid</strong></li>
-</ul>
-<p>In all cases, ODRL processors SHOULD provide mechanisms that adequately address these three outcomes. That is, how the Action can be <strong>supported</strong>, or <strong>ignored</strong>, or the entire Policy is <strong>invalid</strong>. </p>
-
-
-        <p>If the <code>undefined</code> property is not explicitly set, its default of <code>invalid</code> SHALL be used.</p>
-        
-                
-<p>The processing model for undefined actions includes:</p>
-    <ol>
-     <li>If a Policy has the <code>undefined</code> property of <code>support</code> and there are actions in the Policy now known to the processing system, then the processing system MUST support these actions as part of the valid Policy.</li>
-    <li>If a Policy has the <code>undefined</code> property of <code>ignore</code> and there are actions in the Policy now known to the processing system, then the processing system MUST disregard these actions as part of the valid Policy.</li>
-    <li>If a Policy has the <code>undefined</code> property of <code>invalid</code> and there are actions in the Policy now known to the processing system, then the processing system MUST process the entire Policy as invalid.</li>
-     <li>If a Policy has multiple <code>undefined</code> property values (for example, after a Policy merge) AND there are actions in the Policy now known to the processing system, then the entire Policy MUST be processed as invalid.</li> 
-    </ol>
-      
-        
-<blockquote>
-  <p>Example Use Case: A Policy of type <code>Set</code> states that the Asset can be <em>recorded</em>. The processing system does not understand this Action, and since the <code>undefined</code> property is <code>invalid</code>, then the entire Policy is deemed invalid.</p>
-</blockquote>    
-
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
-    "uid": "http://example.com/policy:8888",
-    "undefined": "invalid",
-    "permission": [{
-        "target": "http://example.com/music/1999.mp3",
-        "action": "http://example.com/ns/recorded"
-        }]
-}  
-</pre>
-        
-    </section>
-    
-<section id="inhertiance">
-<h4>Policy Inheritance</h4>
-
-    <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the atomic Rules of the (parent) Policy.</p>
-    
-<p>The <code>inheritAllowed</code> property in the Policy is used to indicate if the Policy expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> property MUST take one of the following values:</p>
-<ul>
-<li><code>true</code>: the Policy expression MAY be used for inheritance</li>
-<li><code>false</code>: the Policy expression MUST NOT be used for inheritance</li>
-</ul>
-<p>If the <code>inheritAllowed</code> property is not explicitly set, its default value of <code>true</code> will be used.</p>
-    
-<p>The following property SHOULD be used in a child Policy that is inheriting from a parent Policy in which that parent Policy MUST allow inheritance (via the <code>inheritAllowed</code> property) :</p>
-
-    <ul>
-    <li><code>inheritFrom</code>: the identifier (<code>uid</code>) of the parent Policy from which this child Policy inherits from</li>
-    </ul>
-
-
-<p>The following restrictions apply when using inheritance:</p>
-<ul>
-<li>Single inheritance is only supported. That is, one parent Policy to one or more child Policies. No child Policy can inherit from two or more parent Policies.</li>
-<li>Inheritance can be to any depth. (Multiple levels of children Policies.)</li>
-<li>Inheritance MUST NOT be circular.</li>
-<li>No state information is transferred from the parent Policy to the child Policy.</li>
-</ul>
-
-    <blockquote>
-<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:3333</code> that has been expressed primarily for inheritance purposes:</p>    
-</blockquote>
-    
-    <pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
-    "uid": "http://example.com/policy:3333",
-    "inheritAllowed": "true",
-    "target": "http://example.com/asset:3333",
-    "assigner": "http://example.com/boss:0001",
-    "permission": [{
-        "action": "use"
-    }]
-}  
-</pre>
-    
-<p>The child Policy <code>http://example.com/policy:4444</code> includes the <code>inheritFrom property</code> pointing to the parent Policy <code>http://example.com/policy:3333</code>. The child Policy also includes its own specific policy-level asset, and two Permission Rules.</p>    
-    
-    <pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
-    "uid": "http://example.com/policy:4444",
-    "inheritFrom": "http://example.com/policy:3333",
-    "target": "http://example.com/asset:5555",
-    "permission": [{
-        "assignee": "http://example.com/guest:0001",
-        "action": "display"
-    },
-    {
-        "assignee": "http://example.com/guest:0002",
-        "action": "print"
-    }]
-}  
-</pre>
-    
-
-<p>After the inheritance is performed - where the (parent) Policy atomic Rules are added to the (child) Policy - the resulting Policy is as follows:</p>    
-    
-    <pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
-    "uid": "http://example.com/policy:4444",
-    "target": [ "http://example.com/asset:5555", "http://example.com/asset:3333" ],
-    "assigner": "http://example.com/boss:0001",
-    "permission": [{
-        "assignee": "http://example.com/guest:0001",
-        "action": "display"
-    },
-    {
-        "assignee": "http://example.com/guest:0002",
-        "action": "print"
-    },
-    {
-        "action": "use"
-    }]
-}  
-</pre>
-    
-   
-    
-<p>The processing model for ODRL Policy Inheritance includes:</p>
-    <ol>
-    <li>A (child) Policy with an <code>inheritFrom</code> property MUST first verify that the (parent) Policy does not contain the <code>inheritAllowed</code> property with the value <strong>false</strong>.</li>
-        <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
-       <ul>
-           <li>All policy-level Assets, Parties, Actions.</li>
-           <li>All Permission and Prohibition Rules.</li>
-       </ul>
-            </li>
-      <li>The (child) Policy can then be further expanded (into <em>atomic</em> Rules) by following the processing models defined in the <a href="#composition">Policy Composition</a> section.</li>  
-    </ol>
-        
-	
-</section>
 </section>
 
 <section id="asset">
@@ -1028,7 +641,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 
 <p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> MAY be the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as <code>10</code> or <code>http://example.com/c100</code>) and <code>rightOperandReference</code> represents an IRI that MUST be dereferenced to obtain the actual value. Only one of <code>rightOperand</code> and <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
         
-<p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU dollars&#8221;.</p>
+<p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU currency&#8221;.</p>
 
 <p>The <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times.</p>
 
@@ -1198,7 +811,399 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     
 </section>
 
+    	
+<section id="composition">
+<h4>Policy Composition</h4>
+             
+    <p>A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
+     
+    <p>At the core level, an ODRL Rule would refer to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is a irreducible Rule (that is, not able to be reduced or further simplified).</p>
+             
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:7777",
+    "permission": [{
+        "target": "http://example.com/music/1999.mp3",
+        "assigner": "http://example.com/org/sony-music",
+        "assignee": "http://example.com/people/billie",
+        "action": "play",
+        "constraint": "...",
+        "duty": "..."
+    }]
+} 
+</pre>
+
+<p>As multiple Assets, Parties, and Actions can be expressed for each Rule, the following example shows two Assets defined for the policy:</p>
+    
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
+    "permission": [{
+        "target": [ "http://example.com/music/1999.mp3",
+                    "http://example.com/music/PurpleRain.mp3"],
+        "assigner": "http://example.com/org/sony-music",
+        "assignee": "http://example.com/people/billie",
+        "action": "play",
+        "constraint": "...",
+        "duty": "..."
+    }]
+}
+</pre>
+
+<p>The above example could then be reduced to two <em>atomic</em> Rules, with the two target assets appearing individually in each:</p>
+    
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
+    "permission": [{
+        "target": "http://example.com/music/1999.mp3",
+        "assigner": "http://example.com/org/sony-music",
+        "assignee": "http://example.com/people/billie",
+        "action": "play",
+        "constraint": "...",
+        "duty": "..."
+    },
+    {
+        "target": "http://example.com/music/PurpleRain.mp3",
+        "assigner": "http://example.com/org/sony-music",
+        "assignee": "http://example.com/people/billie",
+        "action": "play",
+        "constraint": "...",
+        "duty": "..."
+    }]
+}
+</pre>
+    
+    <p>In order to create the <em>atomic</em> Rules in a Policy, the processing model for policies with multiple Assets, Parties, and Actions includes:</p>
+    <ol>
+    <li>Where there are multiple Assets (with the same relation), then create new Rules (one for each of these Assets) and include only one Asset relation, and include all other (non-Asset) properties, in each Rule</li>
+    <li>Where there are multiple Parties (with the same function), then create new Rules (one for each of these Parties) and include only one Party function, and include all other (non-Party) properties, in each Rule.</li>
+    <li>Where there are multiple Actions, then create new Rules (one for each of these Actions) and include only one Action, and include all other (non-Action) properties, in each Rule.</li>
+    </ol>
+       
+    <p>An ODRL Policy MAY also declare multiple Assets, Parties, and Actions at the Policy level (not just within a Rule). This implies that these classes are all common to all the Rules in the Policy, as shown in the below example:</p>
+             
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
+    "target": "http://example.com/music/1999.mp3",
+    "assigner": "http://example.com/org/sony-music",
+    "action": "play",
+    "permission": [{
+        "assignee": "http://example.com/people/billie"
+        },
+        {
+        "assignee": "http://example.com/people/murphy"
+        }]
+}  
+</pre>
+
+<p>To fully expand the Rules, the Policy-level Assets, Parties, and Actions MUST be added to all the Rules in the Policy. As shown below, the policy-level target, assigner, and action are added to the two permission Rules:</p>
+    
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
+    "permission": [{
+        "assignee": "http://example.com/people/billie",
+        "target": "http://example.com/music/1999.mp3",
+        "assigner": "http://example.com/org/sony-music",
+        "action": "play"
+        },
+        {
+        "assignee": "http://example.com/people/murphy",
+        "target": "http://example.com/music/1999.mp3",
+        "assigner": "http://example.com/org/sony-music",
+        "action": "play",
+        }]
+}  
+</pre>  
+  
+    <p>The processing model for Policies with multiple Assets, Parties, and Actions declared at the Policy-level includes:</p>
+    <ol>
+    <li>Replicate all Policy-level Assets in each and all Permission/Prohibition Rules.</li>
+   <li>Replicate all Policy-level Parties in each and all Permission/Prohibition Rules.</li>
+    <li>Replicate all Policy-level Actions in each and all Permission/Prohibition Rules.</li>
+      <li>Follow the processing model (defined above) to create <em>atomic</em> Rules in the Policy.</li>  
+    </ol>
+       
+    
+    
+    </section>
+             
+     <section id="provenace">
+<h4>Policy Provenance</h4>
+         
+       <p>Provenance properties MAY be added to a Policy to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[!dcterms]] for ODRL Policies.</p>
+         
+         <p>The following Dublin Core Metadata Terms [[!dcterms]] SHOULD be used:</p>
+            <ul>
+         <li><code>dc:creator</code> - the individual, agent, or organisation that authored the Policy.</li>      <li><code>dc:description</code> - a human-readable representation or summary of the Policy.</li>
+         <li><code>dc:issued</code> - the date (and time) the Policy was first issued.</li>
+         <li><code>dc:modified</code> -  the date (and time) the Policy was updated.</li>
+        <li><code>dc:coverage</code> -  the jurisdiction under which the Policy is relevant.</li>
+        <li><code>dc:replaces</code> -  the identifier (uid) of a Policy that this Policy supersedes.</li>
+        <li><code>dc:isReplacedBy</code> -  the identifier (uid) of a Policy that supersedes this Policy.</li>
+         </ul>
+         
+    <p>The processing model for Policies with the above provenance properties include:</p>
+    <ol>
+    <li>If a Policy contains the <code>dc:isReplacedBy</code> property, then a processor MUST consider the first Policy invalid and MUST retrieve and process the identified Policy.</li>
+    </ol>
+
+<blockquote>
+<p>Example Use Case: The below example contains provenance properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
+         
+<pre class="example hljs json">
+{
+    "@context": [
+        "http://www.w3.org/ns/odrl.jsonld",
+        { "dc": "http://purl.org/dc/terms/" }
+    ],
+    "type": "Agreement",
+    "uid": "http://example.com/policy:8888",
+    "dc:creator": "billie@example.com",
+    "dc:issued": "2017-01-01:12:00",
+    "dc:coverage": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD",
+    "dc:replaces": "http://example.com/policy:8887",
+    "permission": [{   }]
+}  
+</pre>
+         
+    </section>
+    
+    
+    <section id="conflict">
+<h4>Policy Conflict Strategy</h4>
+        
+<p>The <code>conflict</code> property is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent.</p>
+      
+    <p>The <code>conflict</code> property MUST take one of the following values:</p>
+<ul>
+<li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
+<li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
+<li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
+</ul>
+<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used.</p>
+
+        
+<p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
+   
+<ol>
+        <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
+ <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule and continue with the Policy as valid.</li>
+  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
+ <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then processing MUST not continue and the entire Policy MUST be invalid.</li> 
+        </ol>
+       
+        
+<blockquote>
+<p>Example Use Case: Two Policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to <code>use</code> the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits <code>print</code>. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> property being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the <code>print</code> Action is a specialisation of the <code>use</code> Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the <code>use</code> Permission will override the <code>print</code> Prohibition.</p>
+</blockquote>
+
+        
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:0001",
+    "conflict": "perm",
+    "permission": [{
+        "target": "http://example.com/asset:1212",
+        "action": "use",
+        "assigner": "http://example.com/owner:181"
+    }]
+}
+</pre>
+
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:0002",
+    "conflict": "perm",
+    "permission": [{
+        "target": "http://example.com/asset:1212",
+        "action": "display",
+        "assigner": "http://example.com/owner:182"
+    }],
+    "prohibition": [{
+        "target": "http://example.com/asset:1212",
+        "action": "print"
+    }]
+}
+</pre>
+
+<p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
+    </section>
+    <section id="undefined">
+<h4>Undefined Actions</h4>
+    
+        
+<div class="issue" data-number="105">
+    <p>The detection of undefined actions is viewed to be implementation-specific, and too vague to be part of the Information Model. This feature maybe removed in future versions.</p>
+</div>
+             
+<p>The <code>undefined</code> property is used to indicate how to process unsupported Actions. That is, if an ODRL expression contains an Action that is not from a known (or supported) ODRL vocabulary, how should the Action be treated in the context of the whole ODRL Policy?</p>
+        
+ <p>The <code>undefined</code> property MUST take one of the following values:</p>
+<ul>
+<li><code>support</code>: the undefined Action is to be <strong>supported</strong> as part of the Policy &#8211; and the Policy remains valid</li>
+<li><code>ignore</code>: the undefined Action is to be <strong>ignored</strong> and is not part of the Policy &#8211; and the Policy remains valid</li>
+    <li><code>invalid</code>: the undefined Action is unknown &#8211; and the entire Policy is <strong>invalid</strong></li>
+</ul>
+<p>In all cases, ODRL processors SHOULD provide mechanisms that adequately address these three outcomes. That is, how the Action can be <strong>supported</strong>, or <strong>ignored</strong>, or the entire Policy is <strong>invalid</strong>. </p>
+
+
+        <p>If the <code>undefined</code> property is not explicitly set, its default of <code>invalid</code> SHALL be used.</p>
+        
+                
+<p>The processing model for undefined actions includes:</p>
+    <ol>
+     <li>If a Policy has the <code>undefined</code> property of <code>support</code> and there are actions in the Policy now known to the processing system, then the processing system MUST support these actions as part of the valid Policy.</li>
+    <li>If a Policy has the <code>undefined</code> property of <code>ignore</code> and there are actions in the Policy now known to the processing system, then the processing system MUST disregard these actions as part of the valid Policy.</li>
+    <li>If a Policy has the <code>undefined</code> property of <code>invalid</code> and there are actions in the Policy now known to the processing system, then the processing system MUST process the entire Policy as invalid.</li>
+     <li>If a Policy has multiple <code>undefined</code> property values (for example, after a Policy merge) AND there are actions in the Policy now known to the processing system, then the entire Policy MUST be processed as invalid.</li> 
+    </ol>
+      
+        
+<blockquote>
+  <p>Example Use Case: A Policy of type <code>Set</code> states that the Asset can be <em>recorded</em>. The processing system does not understand this Action, and since the <code>undefined</code> property is <code>invalid</code>, then the entire Policy is deemed invalid.</p>
+</blockquote>    
+
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:8888",
+    "undefined": "invalid",
+    "permission": [{
+        "target": "http://example.com/music/1999.mp3",
+        "action": "http://example.com/ns/recorded"
+        }]
+}  
+</pre>
+        
+    </section>
+    
+<section id="inhertiance">
+<h4>Policy Inheritance</h4>
+
+    <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the atomic Rules of the (parent) Policy.</p>
+    
+<p>The <code>inheritAllowed</code> property in the Policy is used to indicate if the Policy expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> property MUST take one of the following values:</p>
+<ul>
+<li><code>true</code>: the Policy expression MAY be used for inheritance</li>
+<li><code>false</code>: the Policy expression MUST NOT be used for inheritance</li>
+</ul>
+<p>If the <code>inheritAllowed</code> property is not explicitly set, its default value of <code>true</code> will be used.</p>
+    
+<p>The following property SHOULD be used in a child Policy that is inheriting from a parent Policy in which that parent Policy MUST allow inheritance (via the <code>inheritAllowed</code> property) :</p>
+
+    <ul>
+    <li><code>inheritFrom</code>: the identifier (<code>uid</code>) of the parent Policy from which this child Policy inherits from</li>
+    </ul>
+
+
+<p>The following restrictions apply when using inheritance:</p>
+<ul>
+<li>Single inheritance is only supported. That is, one parent Policy to one or more child Policies. No child Policy can inherit from two or more parent Policies.</li>
+<li>Inheritance can be to any depth. (Multiple levels of children Policies.)</li>
+<li>Inheritance MUST NOT be circular.</li>
+<li>No state information is transferred from the parent Policy to the child Policy.</li>
+</ul>
+
+    <blockquote>
+<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:3333</code> that has been expressed primarily for inheritance purposes:</p>    
+</blockquote>
+    
+    <pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Set",
+    "uid": "http://example.com/policy:3333",
+    "inheritAllowed": "true",
+    "target": "http://example.com/asset:3333",
+    "assigner": "http://example.com/boss:0001",
+    "permission": [{
+        "action": "use"
+    }]
+}  
+</pre>
+    
+<p>The child Policy <code>http://example.com/policy:4444</code> includes the <code>inheritFrom property</code> pointing to the parent Policy <code>http://example.com/policy:3333</code>. The child Policy also includes its own specific policy-level asset, and two Permission Rules.</p>    
+    
+    <pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:4444",
+    "inheritFrom": "http://example.com/policy:3333",
+    "target": "http://example.com/asset:5555",
+    "permission": [{
+        "assignee": "http://example.com/guest:0001",
+        "action": "display"
+    },
+    {
+        "assignee": "http://example.com/guest:0002",
+        "action": "print"
+    }]
+}  
+</pre>
+    
+
+<p>After the inheritance is performed - where the (parent) Policy atomic Rules are added to the (child) Policy - the resulting Policy is as follows:</p>    
+    
+    <pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "type": "Agreement",
+    "uid": "http://example.com/policy:4444",
+    "target": [ "http://example.com/asset:5555", "http://example.com/asset:3333" ],
+    "assigner": "http://example.com/boss:0001",
+    "permission": [{
+        "assignee": "http://example.com/guest:0001",
+        "action": "display"
+    },
+    {
+        "assignee": "http://example.com/guest:0002",
+        "action": "print"
+    },
+    {
+        "action": "use"
+    }]
+}  
+</pre>
+    
+   
+    
+<p>The processing model for ODRL Policy Inheritance includes:</p>
+    <ol>
+    <li>A (child) Policy with an <code>inheritFrom</code> property MUST first verify that the (parent) Policy does not contain the <code>inheritAllowed</code> property with the value <strong>false</strong>.</li>
+        <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
+       <ul>
+           <li>All policy-level Assets, Parties, Actions.</li>
+           <li>All Permission and Prohibition Rules.</li>
+       </ul>
+            </li>
+      <li>The (child) Policy can then be further expanded (into <em>atomic</em> Rules) by following the processing models defined in the <a href="#composition">Policy Composition</a> section.</li>  
+    </ol>
+        
+	
 </section>
+
+</section>
+    
+    
     
 
 <section id="profile" class="informative">
