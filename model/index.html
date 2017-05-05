@@ -210,8 +210,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>An Asset has the following properties:</p>
     
 <ul>
-<li>An Asset MUST refer to the <code>uid</code> identification of the Asset as an IRI [[!rfc3987]].</li>
-<li>An Asset  MAY refer to the <code>scope</code> defining how the Asset shall be interpreted under different contexts.</li>
+<li>An Asset MUST have a <code>uid</code> identification of the Asset using an IRI [[!rfc3987]].</li>
+<li>An Asset MAY have a <code>scope</code> defining how the Asset shall be interpreted under different contexts.</li>
 </ul>
     
 <p>By default the Asset <code>uid</code> is expressed as an IRI (which are internationalised URIs). ODRL expressions MAY also use URI Templates [[rfc6570]] to denote several Assets or Media Fragments URI [[media-frags]] to identify a specific part of an Asset.<p>
@@ -270,15 +270,17 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="asset-scope">
 <h4>Scope</h4>
     
-    <p>The <code>scope</code> property SHOULD be used to indicate the context under which to interpret an Asset. The purpose of <code>scope</code> is to provide additional contextual information about the Asset. For example, the Asset identifier may refer to a resource with many characteristics, but the <code>scope</code> may limit that to only one specific characteristic.</p>
+    <p>The <code>scope</code> property SHOULD be used to indicate the context under which to identify the Asset. The purpose of <code>scope</code> is to provide additional contextual information about the Asset that more precisely identifies the target for the Policy.
+        The <code>scope</code> feature is useful is there is no ability to directly identify the target Asset with a <code>uid</code> identifier.
+        For example, the Asset identifier may refer to a resource that is a collection or items with many different characteristics, but the <code>scope</code> may identify one specific characteristic only. That <code>scope</code> would then identify the actual target Asset(s) for the Policy.</p>
     
 <p>The <code>scope</code> property IRI values SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
 </section>
 
     
     <blockquote>
-    <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that has a scope of <code>http://example.com/imt/jpeg</code>. That scope specifies further context on what characteristics the Asset must hold.</p>
-        <p>The scope is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the scope and profile URIs are not mere identifiers but dereference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
+    <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that is a collection of multimedia files. The target Asset also has a scope of <code>http://example.com/imt/jpeg</code>. That scope specifies further context on what characteristics the Asset items must hold - in this case, the target Asset(s) will be all the files identified by the taget <code>uid</code> that are of type "jpeg".</p>
+        <p>The <code>scope</code> is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the scope and profile URIs are not mere identifiers but dereference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
         </p>
     </blockquote>
  <pre class="example hljs json">
@@ -308,9 +310,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>A Party has the following properties:</p>
 <ul>
-<li>A Party  MUST refer to <code>uid</code> identification of the Party</li>
-<li>A Party  MUST refer to the <code>function</code> role fulfilled by a Party.</li>
-<li>A Party  MAY refer to  the <code>scope</code> defining how the party shall be interpreted under different contexts.</li>
+<li>A Party MUST have a <code>uid</code> identification of the Party</li>
+<li>A Party MUST have the <code>function</code> role fulfilled by a Party.</li>
+<li>A Party MAY have a <code>scope</code> defining how the party shall be interpreted under different contexts.</li>
 </ul>
 <p>The ODRL Information Model does not provide additional metadata for the Party class. It is recommended to use existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]] that are appropriate to the Party type.</p>
  
@@ -362,22 +364,25 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <p>In the above example, the JSON-LD representation for <code>function</code> directly uses <code>assigner</code> and <code>assignee</code> as the token, as this has been mapped as sub-properties of the parent <code>function</code> property in this serialisation.</p>
     </div>
     
-    </section>
+</section>
     
     
 <section id="party-scope">
 <h4>Scope</h4>
     
-    <p>The <code>scope</code> property SHOULD be used to indicate the context under which to interpret a Party. The purpose of <code>scope</code> is to provide additional information about the Party that may also reduce the extent of the Party identified. For example, the Party identifier may refer to all users at a University, but the scope may contextualise that to only fulltime staff members at the University.</p>
+<p>The <code>scope</code> property SHOULD be used to indicate the context under which to identify the Party. The purpose of <code>scope</code> is to provide additional contextual information about the Party that more precisely identifies the extent of the Party identified. The <code>scope</code> feature is useful is there is no ability to directly identify the intended Party with a <code>uid</code> identifier.
+        For example, the Party identifier may refer to all users at a University, but the <code>scope</code> may contextualise that to only "fulltime staff members" at the University.</p>
         
      <p>The <code>scope</code> property MAY be one of the following:</p>
 <ul>
 <li><code>Individual</code>: indicates that a Party is a single individual. The linked Permission, Duty or Prohibition is applicable for that individual only.</li>
 <li><code>Group</code>: indicates that a Party represents a group of individual members. The linked Permission, Duty or Prohibition is applicable to each member of that group. For example, a Permission to play a movie 5 times is valid for <strong>every</strong> Party member or the Duty to pay 3 EUR has to be fulfilled by <strong>every</strong> Party member.</li>
 </ul>
-<p>Other IRI values for the <code>scope</code> property MAY be defined in the ODRL vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
-</section>
-
+    
+<p>Other <code>scope</code> property IRI values SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+    
+  
+    
     <blockquote>
 <p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> are a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee is a Party <code>http://example.com/user44/friends</code>, and represents all the friends of the assigner. Since this is a collection of individuals, then the <code>Group</code> scope is declared. In addition, the <code>scope</code> of the Assignee has been also be declared as <code>http://example.com/people/age/18+</code> (which, in this case, provides additional context on what characteristics each assignee MUST hold).</p>
     </blockquote>
@@ -399,6 +404,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 </section>
 
+    </section>
+    
 <section id="action">
 <h3>Action</h3>
 
@@ -437,11 +444,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>The Rule class has the following properties:</p>
 <ul>
-<li>A Rule MUST refer to a <code>target</code> Asset. Other <code>relation</code> values for Asset MAY be used.</li>
-<li>A Rule MUST refer to an Action via the <code>action</code> property.</li>
-<li>A Rule MAY refer to one or more assigner and/or assignee <code>function</code> roles undertaken by Party entities. Other <code>function</code> properties for Party MAY be used.</li>
-<li>A Rule  MAY refer to one or more Constraints via the <code>constraint</code> property. The Rule becomes effective if all of the Constraints are satisfied.</li>
-    <li>A Rule MAY refer to a <code>uid</code> to enable the Rule to be identified by other Rules.</li>
+<li>A Rule MUST have a <code>target</code> Asset. Other <code>relation</code> values for Asset MAY be used.</li>
+<li>A Rule MUST have an Action via the <code>action</code> property.</li>
+<li>A Rule MAY have one or more assigner and/or assignee <code>function</code> roles undertaken by Party entities. Other <code>function</code> properties for Party MAY be used.</li>
+<li>A Rule  MAY have one or more Constraints via the <code>constraint</code> property. The Rule becomes effective if all of the Constraints are satisfied.</li>
+    <li>A Rule MAY have a <code>uid</code> identifier to enable the Rule to be identified by other Rules.</li>
 </ul>
 <p>For a Rule to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
 
@@ -455,7 +462,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>In addition to the Rule properties, the Permission class has the following properties:</p>
 <ul>
-    <li>A Permission  MAY refer to one or more Duties via the <code>duty</code> property. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
+    <li>A Permission  MAY have one or more Duties via the <code>duty</code> property. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
 <p>For a Permission to become effective, it MUST be valid (ie all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
     
@@ -523,14 +530,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>In addition to the Rule properties, the Duty class has these additional requirements:</p>
 <ul>
    <li>A Duty MUST only be associated with a Permission.</li> 
-    <li>A Duty MAY refer to a <code>target</code> Asset on which the agreed Action MUST be performed. 
+    <li>A Duty MAY have a <code>target</code> Asset on which the agreed Action MUST be performed. 
   <li>It is assumed that any assigned Party has the appropriate permissions to perform the Duty Action.</li>
-<li>If no explicit Party <code>function</code> is specified as assignee or assigner of the Duty, the Parties with the respective functional roles are taken from the referring Permission. Other <code>function</code> rules for Party MAY be used for Duties.</li>
+<li>If no explicit Party <code>function</code> is specified as assignee or assigner of the Duty, the Parties with the respective functional roles are taken from the referring Permission. Other <code>function</code> roles for Party MAY be used for Duties (for example, Compensated Party or Tracking Party).</li>
 
 </ul>
     
     
-<p>If a Permission refers to several Duty entities then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
+<p>If a Permission has several Duty entities then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
     
 <p>Even though a Duty is mandatory (ie agreed to be undertaken by the Parties), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
  
@@ -639,7 +646,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     
 <p>The <code>operator</code> identifies the logical operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
-<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> MAY be the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as <code>10</code> or <code>http://example.com/c100</code>) and <code>rightOperandReference</code> represents an IRI that MUST be dereferenced to obtain the actual value. Only one of <code>rightOperand</code> and <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
+<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> MAY be the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as <code>10</code> or <code>http://example.com/c100</code>) and <code>rightOperandReference</code> represents an IRI that MUST be dereferenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI. Only one of <code>rightOperand</code> and <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
         
 <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU currency&#8221;.</p>
 
@@ -756,13 +763,13 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
             }],
     }],
    "constraint": [{
-       "uid": "http://example.com/policy:88/C1"
+       "uid": "http://example.com/policy:88/C1",
        "leftOperand": "count",
        "operator": "lteq",
        "rightOperand": "100"
    },
    {
-       "uid": "http://example.com/policy:88/C2"
+       "uid": "http://example.com/policy:88/C2",
        "leftOperand": "dateTime",
        "operator": "lteq",
        "rightOperand": "2017-12-31"
@@ -790,13 +797,13 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
             }],
     }],
    "constraint": [{
-       "uid": "http://example.com/policy:88/C1"
+       "uid": "http://example.com/policy:88/C1",
        "leftOperand": "event",
        "operator": "gt",
        "rightOperand": "http://example.com/football/game/2017"
    },
    {
-       "uid": "http://example.com/policy:88/C2"
+       "uid": "http://example.com/policy:88/C2",
        "leftOperand": "delayPeriod",
        "operator": "gteq",
        "rightOperand": "P60M"
@@ -817,7 +824,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
              
     <p>A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
      
-    <p>At the core level, an ODRL Rule would refer to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is a irreducible Rule (that is, not able to be reduced or further simplified).</p>
+    <p>At the core level, an ODRL Rule would include one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is a irreducible Rule (that is, not able to be reduced or further simplified).</p>
              
 <pre class="example hljs json">
 {
@@ -1119,43 +1126,41 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <li>Single inheritance is only supported. That is, one parent Policy to one or more child Policies. No child Policy can inherit from two or more parent Policies.</li>
 <li>Inheritance can be to any depth. (Multiple levels of children Policies.)</li>
 <li>Inheritance MUST NOT be circular.</li>
-<li>No state information is transferred from the parent Policy to the child Policy.</li>
+<li>No constraint <code>status</code> information is transferred from the parent Policy to the child Policy. That is, if the parent Policy had <code>status</code> properties with values, then these values would be nulled.</li>
 </ul>
 
     <blockquote>
-<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:3333</code> that has been expressed primarily for inheritance purposes:</p>    
+<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assinger wishes to provide default permissions for all Policies). It does not include any target Asset and allows the archive and annotate Permissions and the aggregate Prohibition.</p>    
 </blockquote>
     
     <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "type": "Set",
-    "uid": "http://example.com/policy:3333",
+    "uid": "http://example.com/policy:default",
     "inheritAllowed": "true",
-    "target": "http://example.com/asset:3333",
-    "assigner": "http://example.com/boss:0001",
+    "assigner": "http://example.com/org-01",
     "permission": [{
-        "action": "use"
+        "action": [ "archive", "annotate" ]
+    }],
+    "prohibition": [{
+        "action": "aggregate"
     }]
 }  
 </pre>
     
-<p>The child Policy <code>http://example.com/policy:4444</code> includes the <code>inheritFrom property</code> pointing to the parent Policy <code>http://example.com/policy:3333</code>. The child Policy also includes its own specific policy-level asset, and two Permission Rules.</p>    
+<p>The child Policy <code>http://example.com/policy:4444</code> below includes the <code>inheritFrom property</code> pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also includes the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
     
-    <pre class="example hljs json">
+<pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "type": "Agreement",
     "uid": "http://example.com/policy:4444",
-    "inheritFrom": "http://example.com/policy:3333",
-    "target": "http://example.com/asset:5555",
+    "inheritFrom": "http://example.com/policy:default",
     "permission": [{
-        "assignee": "http://example.com/guest:0001",
-        "action": "display"
-    },
-    {
-        "assignee": "http://example.com/guest:0002",
-        "action": "print"
+        "target": "http://example.com/asset:5555",
+        "action": [ "display", "print" ],
+        "assignee": "http://example.com/user:0001"
     }]
 }  
 </pre>
@@ -1168,20 +1173,17 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "type": "Agreement",
     "uid": "http://example.com/policy:4444",
-    "target": [ "http://example.com/asset:5555", "http://example.com/asset:3333" ],
-    "assigner": "http://example.com/boss:0001",
+    "inheritFrom": "http://example.com/policy:default",
     "permission": [{
-        "assignee": "http://example.com/guest:0001",
-        "action": "display"
-    },
-    {
-        "assignee": "http://example.com/guest:0002",
-        "action": "print"
-    },
-    {
-        "action": "use"
+        "target": "http://example.com/asset:5555",
+        "action": [ "archive", "annotate", "display", "print" ],
+        "assignee": "http://example.com/user:0001",
+        "assigner": "http://example.com/org-01"
+    }],
+    "prohibition": [{
+        "action": "aggregate"
     }]
-}  
+}
 </pre>
     
    
