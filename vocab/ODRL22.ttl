@@ -396,7 +396,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
     skos:definition "Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy."@en ;
     skos:note "Instances of ConflictTerm describe strategies for resolving conflicts."@en ;
-	rdfs:label "Conflict Preference"@en ;
+	rdfs:label "Conflict Stratey Preference"@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :perm
@@ -451,8 +451,8 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Handle Policy Conflicts"@en ;
-	skos:definition "Relates a conflict-resolution mechansim to a Policy."@en ;
-	skos:note "If no mechanism is specified, the default is invalid."@en ;
+	skos:definition "The conflict-resolution strategy for a Policy."@en ;
+	skos:note "If no strategy is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
 	rdfs:range :ConflictTerm ;
     skos:scopeNote "Non-Normative"@en .
@@ -461,8 +461,8 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Handle Undefined Term"@en ;
-	skos:definition "Relates the mechanism used for handling undefined actions to a Policy."@en ;
-	skos:note "If no mechanism is specified, the default is invalid."@en ;
+	skos:definition "Relates the strategy used for handling undefined actions to a Policy."@en ;
+	skos:note "If no strategy is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
 	rdfs:range :UndefinedTerm ;
     skos:scopeNote "Non-Normative"@en .
@@ -1817,7 +1817,7 @@ odrl:
 :AllConnections
 	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "All Connections"@en ;
+	rdfs:label "All First-Level Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the first-level connections of the Party."@en ;
 	skos:note "For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed."@en ;
     skos:scopeNote "Non-Normative"@en .
@@ -1825,7 +1825,7 @@ odrl:
 :AllGroups
 	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "All Groups"@en ;
+	rdfs:label "All Group Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the group connections of the Party."@en ;
 	skos:note "For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed."@en ;
     skos:scopeNote "Non-Normative"@en .
