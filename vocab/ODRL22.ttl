@@ -375,7 +375,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Party"@en ;
-	skos:definition "An identifiable entity who may undertake a Role in a Policy."@en ;
+	skos:definition "An identifiable entity who may undertake a functional role in a Policy."@en ;
 	rdfs:subClassOf [
 		a owl:Class ;
 		owl:unionOf ( schema:Person schema:Organization foaf:Person foaf:Organization vcard:Individual vcard:Organization ) ;
@@ -556,7 +556,7 @@ odrl:
 	owl:disjointWith :Duty, :Permission ;
 	rdfs:label "Prohibition"@en ;
 	skos:definition "An Action that must not be performed over an Asset."@en ;
-	skos:note "Prohibitions are issued by the supplier of the Asset – the Party with the Role assigner."@en .
+	skos:note "Prohibitions are issued by the supplier of the Asset – the Party with the function assigner."@en .
 
 :Duty
 	a rdfs:Class , owl:Class ;
@@ -615,7 +615,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Function"@en ;
-	skos:definition "Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule."@en ;
+	skos:definition "Function is an abstract property whose sub-properties define the functional roles which may be fulfilled by a party in relation to a Rule."@en ;
 	rdfs:domain :Rule ;
 	rdfs:range :Party .
 
@@ -1167,7 +1167,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Accept Tracking"@en ;
 	skos:definition "The Assigner requires that the Assignees accepts that the use of the Asset may be tracked."@en ;
-	skos:note "The collected information may be tracked by the Assigner, or may link to a Party with the role function “trackingParty”."@en ;
+	skos:note "The collected information may be tracked by the Assigner, or may link to a Party with the role “trackingParty” function."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 
@@ -1227,7 +1227,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Attribute"@en ;
 	skos:definition "The Assigner requires that the Assignees attributes the Asset to the Assigner or an attributed Party."@en ;
-	skos:note "May link to an Asset with the attribution information. May link to a Party with the role function “attributedParty”."@en .
+	skos:note "May link to an Asset with the attribution information. May link to a Party with the  role “attributedParty” function."@en .
 
 :concurrentUse
 	a :Action, skos:Concept ;
@@ -1350,7 +1350,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Inform"@en ;
 	skos:definition "The Assigner requires that the Assignees inform the Assigner or an informed Party that an action has been performed on or in relation to the Asset."@en ;
-	skos:note "May link to a Party with the role function “informedParty”."@en ;
+	skos:note "May link to a Party with the role “informedParty” function."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :install
@@ -1416,7 +1416,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Obtain Consent"@en ;
 	skos:definition "The Assigner requires that the Assignees obtains explicit consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset."@en ;
-	skos:note "Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role function “consentingParty”."@en ;
+	skos:note "Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role “consentingParty” function."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :pay
@@ -1721,7 +1721,7 @@ odrl:
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Agreement"@en ;
 	skos:definition "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
-	skos:note "An Agreement Policy Type MUST contain a target Asset, a Party  with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Agreement Policy Type will grant the terms of the Policy from the Assigner to the Assignee."@en .
+	skos:note "An Agreement Policy Type MUST contain a target Asset, a Party  with Assigner function, a Party with Assignee fuction, and at least one of a Permission or Prohibition rule. The Agreement Policy Type will grant the terms of the Policy from the Assigner to the Assignee."@en .
 
 :Assertion
 	a rdfs:Class , owl:Class ;
@@ -1730,7 +1730,7 @@ odrl:
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket ;
 	rdfs:label "Assertion"@en ;
 	skos:definition "A Policy that asserts a Rule over an Asset from parties."@en ;
-	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion policy type does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy Type MUST contain a target Asset, a Party with any role, and at least one of a Permission or Prohibition rule."@en .
+	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion policy type does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy Type MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule."@en .
 
 :Offer
 	a rdfs:Class , owl:Class ;
@@ -1739,7 +1739,7 @@ odrl:
 	owl:disjointWith :Agreement, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Offer"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assigner."@en ;
-	skos:note "A Offer Policy Type MUST contain a target Asset, a Party with Assigner role, and at least one of a Permission or Prohibition rule. The Offer Policy Type MAY contain a Party  with Assignee role, but MUST not grant any privileges to that Party."@en .
+	skos:note "A Offer Policy Type MUST contain a target Asset, a Party with Assigner function, and at least one of a Permission or Prohibition rule. The Offer Policy Type MAY contain a Party  with Assignee function, but MUST not grant any privileges to that Party."@en .
 
 :Privacy
 	a rdfs:Class , owl:Class ;
@@ -1748,7 +1748,7 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Privacy"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset containing personal information."@en ;
-	skos:note "A Privacy Policy Type MUST contain a target Asset, a Party with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
+	skos:note "A Privacy Policy Type MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
    skos:scopeNote "Non-Normative"@en .
 
 :Request
@@ -1758,7 +1758,7 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Set, :Ticket, :Assertion ;
 	rdfs:label "Request"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assignee."@en ;
-	skos:note "A Request Policy Type MUST contain a target Asset, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner role if this is known. No privileges are granted to any Party."@en ;
+	skos:note "A Request Policy Type MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :Set
@@ -1777,7 +1777,7 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Set, :Assertion ;
 	rdfs:label "Ticket"@en ;
 	skos:definition "A Policy that grants the holder a Rule over an Asset from an assigner."@en ;
-	skos:note "A Ticket Policy Type MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner role and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage."@en ;
+	skos:note "A Ticket Policy Type MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 ## Scopes
