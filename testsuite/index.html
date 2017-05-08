@@ -65,6 +65,24 @@
 </aside>
 
 <aside class="example invalid" title='(Invalid) (<a href="invalid-policyMin1">Canonical</a>, <a href="invalid-policyMin1.xml">XML</a>, <a href="invalid-policyMin1.json">JSON-LD</a>, <a href="invalid-policyMin1.ttl">Turtle</a>, <a href="invalid-policyMin1.nt">NT</a>)'>
+<p>The following example is invalid as the policy does not have a <code>uid</code>.</p>
+<pre>
+[]
+	a odrl:Set;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:target &lt;http://example.com/asset:9898&gt; ;
+		odrl:action odrl:reproduce
+	] ;
+	odrl:prohibition [
+		a odrl:Prohibition ;
+		odrl:target &lt;http://example.com/asset:9898&gt; ;
+		odrl:action odrl:modify
+	] .
+</pre>
+</aside>
+
+<aside class="example invalid" title='(Invalid) (<a href="invalid-policyMin2">Canonical</a>, <a href="invalid-policyMin2.xml">XML</a>, <a href="invalid-policyMin2.json">JSON-LD</a>, <a href="invalid-policyMin2.ttl">Turtle</a>, <a href="invalid-policyMin2.nt">NT</a>)'>
 <p>The following example is invalid as it does not include a <code>type</code>.</p>
 <pre>
 &lt;http://example.com/policy:0099&gt;
@@ -82,7 +100,7 @@
 
 </aside>
 
-<aside class="example invalid" title='(Invalid) (<a href="invalid-policyMin2">Canonical</a>, <a href="invalid-policyMin2.xml">XML</a>, <a href="invalid-policyMin2.json">JSON-LD</a>, <a href="invalid-policyMin2.ttl">Turtle</a>, <a href="invalid-policyMin2.nt">NT</a>)'>
+<aside class="example invalid" title='(Invalid) (<a href="invalid-policyMin3">Canonical</a>, <a href="invalid-policyMin3.xml">XML</a>, <a href="invalid-policyMin3.json">JSON-LD</a>, <a href="invalid-policyMin3.ttl">Turtle</a>, <a href="invalid-policyMin3.nt">NT</a>)'>
 <p>The following example is invalid as it does not include either a <code>permission</code> or <code>prohibition</code>.</p>
 <pre>
 &lt;http://example.com/policy:0099&gt;
