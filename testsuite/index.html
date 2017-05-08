@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ODRL Test Suite</title>
+		 <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
+    <script class="remove" src="config.js"></script>
+  <style type="text/css">
+  aside.valid {
+    border-color:green;
+    background-color:rgb(200,249,230);
+  }
+  aside.invalid {
+    border-color: rebeccaPurple;
+    background-color:rgb(249,214,244);
+  }
+
+  aside.example p.interpretation::before {
+    content: "Interpretation: ";
+    font-weight: bold;
+  }
+
+  </style>
+	</head>
+	<body>
+<section  id="abstract">
+  <p>This document provides a test suite for the ODRL specifications.</p>
+</section>
+<section id="sotd">
+	<p>This is a work in progress. Further examples will be added.</p>
+</section>
+<section id="intro"><h2>Introduction</h2>
+    <p>The ODRL Model [[odrl-model]] defines a number of conditions that MUST be met if the data is to be valid. This test suite is intended to provide examples of valid and invalid data against which any consuming software can be tested. Examples are provided in multiple serializations.</p>
+</section>
+
+<section id="policyMin">
+  <h2>Minimum Policy</h2>
+  <p>Section 3.1 of the ODRL Model states:</p>
+  <blockquote><p>A Policy MUST have the following properties:</p>
+<ul>
+<li>The <code>uid</code> identification of the Policy.</li>
+<li>The <code>type</code> indicating the specific type of Policy.</li>
+<li>A <code>permission</code> and/or <code>prohibition</code> Rule.</li>
+</ul></blockquote>
+
+
+<aside class="example valid" title='(Valid) (<a href="valid-policyMin">Canonical</a>, <a href="valid-policyMin.xml">XML</a>, <a href="valid-policyMin.json">JSON-LD</a>, <a href="valid-policyMin.ttl">Turtle</a>, <a href="valid-policyMin.nt">NT</a>)'>
+<p>The following example is valid as it includes a identifier of the policy (<code>http://example.com/policy:0099</code>), the specifict <code>type</code> (<code>odrl:Set</code>) and a <code>Permission</code>. A <code>prohibition</code> rule is also included.</p>
+<pre>
+&lt;http://example.com/policy:0099&gt;
+	a odrl:Set;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:target &lt;http://example.com/asset:9898&gt; ;
+		odrl:action odrl:reproduce
+	] ;
+	odrl:prohibition [
+		a odrl:Prohibition ;
+		odrl:target &lt;http://example.com/asset:9898&gt; ;
+		odrl:action odrl:modify
+	] .
+</pre>
+<p class="interpretation">The asset at <code>http://example.com/asset:9898</code> may be reproduced but not modified.</p>
+</aside>
+
+<aside class="example invalid" title='(Invalid) (<a href="invalid-policyMin1">Canonical</a>, <a href="invalid-policyMin1.xml">XML</a>, <a href="invalid-policyMin1.json">JSON-LD</a>, <a href="invalid-policyMin1.ttl">Turtle</a>, <a href="invalid-policyMin1.nt">NT</a>)'>
+<p>The following example is invalid as it does not include a <code>type</code>.</p>
+<pre>
+&lt;http://example.com/policy:0099&gt;
+	odrl:permission [
+		a odrl:Permission ;
+		odrl:target &lt;http://example.com/asset:9898&gt; ;
+		odrl:action odrl:reproduce
+	] ;
+	odrl:prohibition [
+		a odrl:Prohibition ;
+		odrl:target &lt;http://example.com/asset:9898&gt; ;
+		odrl:action odrl:modify
+	] .
+</pre>
+
+</aside>
+
+<aside class="example invalid" title='(Invalid) (<a href="invalid-policyMin2">Canonical</a>, <a href="invalid-policyMin2.xml">XML</a>, <a href="invalid-policyMin2.json">JSON-LD</a>, <a href="invalid-policyMin2.ttl">Turtle</a>, <a href="invalid-policyMin2.nt">NT</a>)'>
+<p>The following example is invalid as it does not include either a <code>permission</code> or <code>prohibition</code>.</p>
+<pre>
+&lt;http://example.com/policy:0099&gt;
+	a odrl:Set.
+</pre></aside>
+</section>
+
+	</body>
+</html>
