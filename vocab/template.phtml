@@ -29,7 +29,7 @@
     
 <?php
 writeGroup('policyConcepts');
-writeGroup('policyTypes');
+writeGroup('policySubClasses');
 writeGroup('conflictConcepts');
 writeGroup('undefinedConcepts');
 writeGroup('undefinedConflictConcepts');
@@ -55,14 +55,12 @@ writeGroup('constraintRightOp');
     
 </section>
 
-    <section id="encodings">
+<section id="encodings">
 	<h2>Vocabulary Encodings</h2>
      <?php
         readfile(dirname(__FILE__) . '/parts/encode.html');
         ?>
-    </section>
-          
-        
+     
     <section id="rdfowl">
    	<h3>RDF/OWL Encoding</h3>         
      <?php
@@ -82,12 +80,12 @@ writeGroup('constraintRightOp');
        <?php
         readfile(dirname(__FILE__) . '/parts/json.html');  
           ?>
-    </section>
-            
-</section>
+    </section>    
+     
+ </section>
 
         
-<section id="privacy-consideration">
+<section id="privacy-consideration" class="informative">
    	<h2>Privacy Considerations</h2>         
      <?php
         readfile(dirname(__FILE__) . '/parts/privacy-consideration.html');

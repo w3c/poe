@@ -18,7 +18,7 @@ odrl:
 	rdfs:label "ODRL Version 2.2"@en ;
 	owl:versionInfo "2.2" ;
 	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "Víctor Rodríguez-Doncel" ;
-	dct:issued "2017-04-26"^^xsd:date ;
+	dct:issued "2017-05-09"^^xsd:date ;
 	dct:contributor "W3C Permissions & Obligations Expression Working Group" ;
 	dct:description "The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model."@en ;
 	rdfs:comment "This is the RDF ontology for ODRL Version 2.2 (working draft)."@en ;
@@ -45,12 +45,12 @@ odrl:
 	dct:isVersionOf odrl: ;
 	dct:format <http://purl.org/NET/mediatypes/application/xml> .
 
-<http://www.w3.org/ns/odrl/2/ODRL22.json>
+<http://www.w3.org/ns/odrl/2/ODRL22.jsonld>
 	a dcmit:Text ;
-	rdfs:label "ODRL 2.2 (JSON Schema Definition)"@en ;
+	rdfs:label "ODRL 2.2 (JSON-LD Definition)"@en ;
 	dct:subject odrl: ;
 	dct:isVersionOf odrl: ;
-	dct:format <http://purl.org/NET/mediatypes/application/json> .
+	dct:format <http://purl.org/NET/mediatypes/application/ld+json> .
 
 
 ## SKOS Collections for Grouping related concepts
@@ -90,9 +90,9 @@ odrl:
     skos:prefLabel "Undefined and Policy Conflict"@en ;
     skos:member :invalid .
 
-<http://www.w3.org/ns/odrl/2/#policyTypes>
+<http://www.w3.org/ns/odrl/2/#policySubClasses>
     a skos:Collection ;
-    skos:prefLabel "Policy Types"@en ;
+    skos:prefLabel "Policy Subclasses"@en ;
     skos:member :Agreement ;
     skos:member :Assertion ;
     skos:member :Offer ;
@@ -1721,7 +1721,7 @@ odrl:
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Agreement"@en ;
 	skos:definition "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
-	skos:note "An Agreement Policy Type MUST contain a target Asset, a Party  with Assigner function, a Party with Assignee fuction, and at least one of a Permission or Prohibition rule. The Agreement Policy Type will grant the terms of the Policy from the Assigner to the Assignee."@en .
+	skos:note "An Agreement Policy MUST contain a target Asset, a Party  with Assigner function, a Party with Assignee fuction, and at least one of a Permission or Prohibition rule. The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en .
 
 :Assertion
 	a rdfs:Class , owl:Class ;
@@ -1730,7 +1730,7 @@ odrl:
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket ;
 	rdfs:label "Assertion"@en ;
 	skos:definition "A Policy that asserts a Rule over an Asset from parties."@en ;
-	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion policy type does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy Type MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule."@en .
+	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule."@en .
 
 :Offer
 	a rdfs:Class , owl:Class ;
@@ -1739,7 +1739,7 @@ odrl:
 	owl:disjointWith :Agreement, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Offer"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assigner."@en ;
-	skos:note "A Offer Policy Type MUST contain a target Asset, a Party with Assigner function, and at least one of a Permission or Prohibition rule. The Offer Policy Type MAY contain a Party  with Assignee function, but MUST not grant any privileges to that Party."@en .
+	skos:note "A Offer Policy  MUST contain a target Asset, a Party with Assigner function, and at least one of a Permission or Prohibition rule. The Offer Policy  MAY contain a Party  with Assignee function, but MUST not grant any privileges to that Party."@en .
 
 :Privacy
 	a rdfs:Class , owl:Class ;
@@ -1748,7 +1748,7 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Privacy"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset containing personal information."@en ;
-	skos:note "A Privacy Policy Type MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
+	skos:note "A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
    skos:scopeNote "Non-Normative"@en .
 
 :Request
@@ -1758,7 +1758,7 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Set, :Ticket, :Assertion ;
 	rdfs:label "Request"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assignee."@en ;
-	skos:note "A Request Policy Type MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party."@en ;
+	skos:note "A Request Policy  MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :Set
@@ -1768,7 +1768,7 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Ticket, :Assertion ;
 	rdfs:label "Set"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset."@en ;
-	skos:note "A Set Policy Type MUST contain a target Asset, and at least one Rule. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined)."@en .
+	skos:note "A Set Policy MUST contain a target Asset, and at least one Rule. A Set Policy is the default Policy subclass. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined)."@en .
 
 :Ticket
 	a rdfs:Class , owl:Class ;
@@ -1777,7 +1777,7 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Set, :Assertion ;
 	rdfs:label "Ticket"@en ;
 	skos:definition "A Policy that grants the holder a Rule over an Asset from an assigner."@en ;
-	skos:note "A Ticket Policy Type MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage."@en ;
+	skos:note "A Ticket Policy MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 ## Scopes

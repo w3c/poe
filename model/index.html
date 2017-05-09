@@ -109,29 +109,33 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <figure>
 	<img src="fig/00Model.svg" alt="ODRL Information Model" width="800"/>
-    <figcaption>ODRL Information Model</figcaption>
+    <figcaption>ODRL Information Model (Also available in <a href="fig/00Model.png">PNG format</a>)</figcaption>
 </figure>
 
   
     
 <p>The ODRL Information Model includes the following classes:
     <ul>
-        <li><code>Policy</code> - expresses Rules that are allowed (via the permission property) and/or disallowed (via the prohibition property) over an Asset.</li>
+        <li><code>Policy</code> - expresses Rules that are allowed (via the permission property) and/or disallowed (via the prohibition property) over an Asset. The Policy class is the  parent class to the Set, Offer, and Agreement classes.</li>
+        <ul>
+        <li><code>Set</code> - a subclass of Policy that supports expressing Rules.</li>
+        <li><code>Offer</code> - a subclass of Policy that supports offerings of Rules from assigner Parties.</li>
+        <li><code>Agreement</code> - a subclass of Policy that supports granting of Rules  from assigner to assignee Parties. </li>
+        </ul>
     <li><code>Asset</code> - an identifiable resource that is related to a Rule. Examples of relation include target.</li>
     <li><code>Party</code> - an identifiable entity who may undertake a role (via the function property)in a Rule. Examples of functions include assigner and assignee. </li>
     <li><code>Action</code> - expresses an operation that can be applied to an Asset.</li>
-    <li><code>Rule</code> - the abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features. A Rule can express the Action (via the action property), the Asset (via the relation property), the Constraint (via the constraint property), and the Party (via the function property). </li>
+    <li><code>Rule</code> - express the Action (via the action property), the Asset (via the relation property), the Constraint (via the constraint property), and the Party (via the function property) of the Rule. The Rule class is an abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features.</li>
+        <ul>
     <li><code>Permission</code> - expresses the Action that MAY be performed. The Permission MAY also include the Duty (via the duty property) that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
     <li><code>Prohibition</code> - expresses the Action that MUST NOT be performed.</li>
     <li><code>Duty</code> - expresses the Action that has been agreed to be performed as a requirement for the applicable Permission to become valid.</li>
-
+    </ul>
     <li><code>Constraint</code> - the context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</li>
     </ul>
 
 <div class="note">
 <p>The ODRL Information Model provides a <em>logical view</em> of the components of the Policy model. The <em>implementable view</em> of the ODRL Information Model is provided by various encoding serialisations as normatively described in the ODRL Vocabulary &amp; Expression document [[odrl-vocab]]. The mapping of the logical Information Model components to the implementable serialisations may require some trade-offs and/or differences depending on the features supported by the serialisation language.</p>
-    <p>For example, the structured XML serialisation does not support the Rule class and represents Actions and Constraints with a series of XML element attributes. The semantic RDF/OWL serialisations maps the Policy type property into subclasses of the Policy class and treats function and relation as an abstract property type.
-    </p>
 </div>
     
 <p>The following sections provide further details on the ODRL Information Model. </p>
@@ -142,11 +146,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>A Policy MUST have the following properties:</p>
 <ul>
 <li>The <code>uid</code> identification of the Policy.</li>
-<li>The <code>type</code> indicating the specific type of Policy.</li>
 <li>A <code>permission</code> and/or <code>prohibition</code> Rule.</li>
 </ul>  
-
-<p>The Policy <code>type</code> describes the context of use of the Policy and MAY include additional constraints that ODRL processors MUST understand. The Policy <code>type</code> are documented in the ODRL vocabulary [[!vocab-odrl]] or in ODRL Profiles. For example, the <strong>Agreement</strong> Policy type stipulates minimal cardinalities for some for the Policy classes and properties, which are different from the <strong>Offer</strong> Policy type. In addition, and more importantly, the <strong>Agreement</strong> Policy type states that the Permissions/Prohibitions have been actually been <em>granted</em> to the Party, but the <strong>Offer</strong> Policy type does not. </p>
 
 <p>A Policy MAY also have the following properties:</p>
 <ul>
@@ -155,53 +156,105 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li>The <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies. (See <a href="#inhertiance">Policy Inheritance</a> for more details.)</li>
 <li>The <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See <a href="#profile">ODRL Profiles</a> for more details.)</li>
 </ul>
+
+<p>An ODRL Policy MAY be subclasssed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses are documented in the ODRL Vocabulary [[!vocab-odrl]] or in ODRL Profiles. 
     
-<p>To illustrate the concepts described in the Information Model, some examples are presented to describe them in more detail.</p>
- 
+<section id="policy-set">
+<h3>Set</h3> 
+
+    <p>An ODRL Policy of subclass <code>Set</code> represents any combination of Rules. The <code>Set</code> Policy subclass is also the default subclass of Policy (if none is specified) and does not assert any additional cardinalities or semantics.</p>
+
+    <p>The <code>Set</code> Policy subclass:</p>
+    <ul>
+        <li>MUST include at least one Rule.</li>
+    </ul>
+
 <blockquote>
-<p>Example Use Case: The below <code>Set</code> Policy type grants the Permission to <code>read</code> and the Prohibition to <code>reproduce</code> the target Asset <code>http//example.com/asset:9898</code>.</p>
+<p>Example Use Case: The below <code>Set</code> Policy includes the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code>.</p>
 </blockquote>
 
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
+    "@type": "Set",
     "uid": "http://example.com/policy:1010",
     "permission": [{
-        "target": "http://example.com/asset:9898",
-        "action": "read"
-    }],
-    "prohibition": [{
-        "target": "http://example.com/asset:9898",
-        "action": "reproduce"
+        "target": "http://example.com/asset:9898.movie",
+        "action": "play"
     }]
 }
 </pre>
- 
+    
+    <div class="note">
+    <p>For the examples in this document, the ODRL Policy subclasses are mapped to the JSON-LD @type tokens.</p>
+        <p>The above example could have also used <code>Policy</code> instead of <code>Set</code>.</p>
+    </div>
+    
+</section>
+
+<section id="policy-offer">
+<h3>Offer</h3> 
+
+<p>An ODRL Policy of subclass <code>Offer</code> represents Rules that are being offered from assigner Parties. An <code>Offer</code> is typically used to make available Policies to a wider audience, but does not grant any Rules.</p>
+    
+    <p>The <code>Offer</code> Policy subclass:</p>
+    <ul>
+        <li>MUST include at least one Rule.</li>
+        <li>MUST include at least one Party with <code>assigner</code> functional role.</li>
+    </ul>
+
 <blockquote>
-<p>Example Use Case: The below <code>Set</code> Policy type states that the Asset <code>http//example.com/asset:9898</code> is the <code>target</code> of the Permission to perform the action <code>reproduce</code>, the Duty to perform the action <code>attribute</code> to <code>http://example.com/owner:9898</code>, and the Prohibition to perform the action <code>translate</code>. Two Parties are involved, namely the <code>assigner</code> of the Permission and the <code>attributedParty</code>.</p>
+<p>Example Use Case: The below <code>Offer</code> Policy (based on the previous example) includes offering the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code>.</p>
 </blockquote>
-<pre class=" example hljs json">
+
+<pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
-    "uid": "http://example.com/policy:1010",
+    "@type": "Offer",
+    "uid": "http://example.com/policy:1011",
     "permission": [{
-        "target": "http://example.com/asset:9898",
-        "action": "reproduce",
-        "assigner": "http://example.com/assigner:88",
-        "duty": [{
-                "action": "attribute",
-                "attributedParty": "http://example.com/owner:9898"
-        }]
-    }],
-    "prohibition": [{
-        "target": "http://example.com/asset:9898",
-        "action": "translate"
+        "target": "http://example.com/asset:9898.movie",
+        "assigner": "http://example.com/party:org:abc",
+        "action": "play"
     }]
 }
 </pre>
 
+</section>
+    
+<section id="policy-agreement">
+<h3>Agreement</h3> 
+
+<p>An ODRL Policy of subclass <code>Agreement</code> represents Rules that have been granted from assigner to assignee Parties. An <code>Agreement</code> is typically used to grant the terms of the Rules between the Parties.</p>
+    
+    <p>The <code>Agreement</code> Policy subclass:</p>
+    <ul>
+        <li>MUST include at least one Rule.</li>
+        <li>MUST include at least one Party with <code>assigner</code> functional role.</li>
+        <li>MUST include at least one Party with <code>assignee</code> functional role.</li>
+    </ul>
+
+<blockquote>
+<p>Example Use Case: The below <code>Agreement</code> Policy (based on the previous example) includes granting the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code> for the assignee Party <code>http://example.com/party:person:billie</code>.</p>
+</blockquote>
+
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:1011",
+    "permission": [{
+        "target": "http://example.com/asset:9898.movie",
+        "assigner": "http://example.com/party:org:abc",
+        "assigner": "http://example.com/party:person:billie",
+        "action": "play"
+    }]
+}
+</pre>
+
+</section>
+    
+    
 </section>
 
 <section id="asset">
@@ -229,17 +282,17 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
         
  <blockquote>   
-<p>Example Use Case: The Party <code>http//example.com/guest:0001</code> wants to display the target Asset <code>http://example.com/asset:3333</code>, but she needs to be granted with the Permission to do so first. This request can be implemented through a Policy of the type <code>Request</code> asking for the Permission to display the <code>target</code> Asset <code>http://example.com/asset:3333</code>.</p>
+<p>Example Use Case: The assigner Party <code>http//example.com/party:0001</code> offers to display the <code>target</code> Asset <code>http://example.com/asset:3333</code>.</p>
     </blockquote>
  <pre class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Request",
+    "@type": "Offer",
     "uid": "http://example.com/policy:3333",
     "permission": [{
         "target": "http://example.com/asset:3333",
         "action": "display",
-        "assignee": "http://example.com/guest:0001"
+        "assigner": "http://example.com/party:0001"
     }]
 }
 </pre>
@@ -255,7 +308,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
  <pre class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
+    "@type": "Policy",
     "uid": "http://example.com/policy:1011",
     "permission": [{
         "target": "http://example.com/archive1011",
@@ -286,7 +339,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
  <pre class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Offer",
+    "@type": "Offer",
     "uid": "http://example.com/policy:4444",
     "profile": "http://example.com/profiles/01",
     "permission": [{
@@ -314,7 +367,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li>A Party MUST have the <code>function</code> role fulfilled by a Party.</li>
 <li>A Party MAY have a <code>scope</code> defining how the party shall be interpreted under different contexts.</li>
 </ul>
-<p>The ODRL Information Model does not provide additional metadata for the Party class. It is recommended to use existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]] that are appropriate to the Party type.</p>
+<p>The ODRL Information Model does not provide additional metadata for the Party class. It is recommended to use existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</p>
  
     
 <section id="function">
@@ -341,17 +394,17 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         "http://www.w3.org/ns/odrl.jsonld",
         { "vcard": "http://www.w3.org/2006/vcard/ns#" }
     ],
-    "type": "Agreement",
+    "@type": "Agreement",
     "uid": "http://example.com/policy:8888",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": {
-            "type": [ "Party", "vcard:Organization" ],
+            "@type": [ "Party", "vcard:Organization" ],
             "uid":  "http://example.com/org/sony-music",
             "vcard:fn": "Sony Music LCC",
             "vcard:hasEmail": "sony-contact@example.com" },
         "assignee": {
-            "type": [ "Party", "vcard:Individual" ],
+            "@type": [ "Party", "vcard:Individual" ],
             "uid":  "http://example.com/people/billie",
             "vcard:fn": "Billie Zhan",
             "vcard:hasEmail": "billie@example.com"},
@@ -389,7 +442,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Agreement",
     "uid": "http://example.com/policy:4444",
     "permission": [{
         "target": "http://example.com/myPhotos:BdayParty",
@@ -423,7 +476,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Offer",
+    "@type": "Offer",
     "uid": "http://example.com/policy:1012",
     "permission": [{
             "target": "http://example.com/music:1012",
@@ -458,7 +511,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <h3>Permission</h3>
 
 
-<p>A Permission class is a specific type of Rule that specifies the Actions that MAY be <strong>performed</strong> on an Asset. The Permission class inherits all the properties from the Rule class.</p>
+<p>A Permission class is a  subclass of Rule that specifies the Actions that MAY be <strong>performed</strong> on an Asset. The Permission class inherits all the properties from the Rule class.</p>
 
 <p>In addition to the Rule properties, the Permission class has the following properties:</p>
 <ul>
@@ -467,15 +520,16 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>For a Permission to become effective, it MUST be valid (ie all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
     
 <blockquote>   
-<p>Example Use Case: The Policy <code>Ticket</code> type expresses the play Permission for the target Asset <code>http//example.com/game:9090</code>, stating that the ticket is valid until the end of the year 2017. Any valid holder of this ticket may exercise this Permission.</p>
+<p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play Permission for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
     </blockquote>
  <pre class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Ticket",
+    "@type": "Offer",
     "uid": "http://example.com/policy:9090",
     "permission": [{
         "target": "http://example.com/game:9090",
+        "assigner": "http://example.com/org:xyz",
         "action": "play",
         "constraint": [{
             "leftOperand": "dateTime",
@@ -491,7 +545,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="prohibition">
 <h3>Prohibition</h3>
 
-<p>A Prohibition class is a specific type of Rule that specifies the Actions that MUST NOT be <strong>performed</strong> on an Asset. The Prohibition class inherits all the properties from the Rule class.</p>
+<p>A Prohibition class is a  subclass of Rule that specifies the Actions that MUST NOT be <strong>performed</strong> on an Asset. The Prohibition class inherits all the properties from the Rule class.</p>
 
 <p>For a Prohibition to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
 
@@ -502,7 +556,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Agreement",
     "uid": "http://example.com/policy:5555",
     "conflict": "perm",
     "permission": [{
@@ -525,7 +579,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="duty">
 <h3>Duty</h3>
 
-<p>A Duty class is a specific type of Rule that specifies agreed Actions that are <strong>obligatory</strong> and MUST be fulfilled. A Duty is only associated with a Permission. The Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled. The Duty class inherits all the properties from the Rule class.</p>
+<p>A Duty class is a subclass of Rule that specifies agreed Actions that are <strong>obligatory</strong> and MUST be fulfilled. A Duty is only associated with a Permission. The Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled. The Duty class inherits all the properties from the Rule class.</p>
 
 <p>In addition to the Rule properties, the Duty class has these additional requirements:</p>
 <ul>
@@ -550,7 +604,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Offer",
+    "@type": "Offer",
     "uid": "http://example.com/policy:88",
     "permission": [{
         "assigner": "http://example.com/assigner:sony",
@@ -577,14 +631,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 
 <blockquote>
-<p>Example Use Case: The assigner Party <code>http://example.com/person:77</code> needs to set a Privacy Policy for some data about themselves. The target Asset <code>http://example.com/personal-data:77</code> of this Policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to <code>read</code> the Asset only for the <code>purpose</code> of contacting the subject of the personal data. Additionally, the assigner Party has stipulated that the assignee must delete the Asset 30 days after when they first <code>read</code> the Asset.</p>
+<p>Example Use Case: The assigner Party <code>http://example.com/person:77</code> needs to set a <code>Privacy</code> Policy for some data about themselves. The target Asset <code>http://example.com/personal-data:77</code> of this Policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to <code>read</code> the Asset only for the <code>purpose</code> of contacting the subject of the personal data. Additionally, the assigner Party has stipulated that the assignee must delete the Asset 30 days after when they first <code>read</code> the Asset.</p>
     </blockquote>
 
 
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Privacy",
+    "@type": "Privacy",
     "uid": "http://example.com/policy:7777",
     "permission": [{
         "target": "http://example.com/personal-data:77",
@@ -659,7 +713,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Offer",
+    "@type": "Offer",
     "uid": "http://example.com/policy:6161",
     "permission": [{
         "target": "http://example.com/wallpaper:1234",
@@ -694,7 +748,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
+    "@type": "Set",
     "uid": "http://example.com/policy:7171",
     "permission": [{
         "target": "http://example.com/wallpaper:1234",
@@ -750,7 +804,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Offer",
+    "@type": "Offer",
     "uid": "http://example.com/policy:88",
     "permission": [{
         "target": "http://example.com/book/1999.mp3",
@@ -784,7 +838,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Offer",
+    "@type": "Offer",
     "uid": "http://example.com/policy:88",
     "permission": [{
         "target": "http://example.com/photo.jpg",
@@ -829,7 +883,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Policy",
     "uid": "http://example.com/policy:7777",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
@@ -847,7 +901,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Policy",
     "uid": "http://example.com/policy:8888",
     "permission": [{
         "target": [ "http://example.com/music/1999.mp3",
@@ -866,7 +920,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Policy",
     "uid": "http://example.com/policy:8888",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
@@ -899,7 +953,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Policy",
     "uid": "http://example.com/policy:8888",
     "target": "http://example.com/music/1999.mp3",
     "assigner": "http://example.com/org/sony-music",
@@ -918,7 +972,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Policy",
     "uid": "http://example.com/policy:8888",
     "permission": [{
         "assignee": "http://example.com/people/billie",
@@ -976,7 +1030,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
         "http://www.w3.org/ns/odrl.jsonld",
         { "dc": "http://purl.org/dc/terms/" }
     ],
-    "type": "Agreement",
+    "@type": "Policy",
     "uid": "http://example.com/policy:8888",
     "dc:creator": "billie@example.com",
     "dc:issued": "2017-01-01:12:00",
@@ -1021,7 +1075,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
+    "@type": "Policy",
     "uid": "http://example.com/policy:0001",
     "conflict": "perm",
     "permission": [{
@@ -1035,7 +1089,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
+    "@type": "Policy",
     "uid": "http://example.com/policy:0002",
     "conflict": "perm",
     "permission": [{
@@ -1090,7 +1144,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
+    "@type": "Set",
     "uid": "http://example.com/policy:8888",
     "undefined": "invalid",
     "permission": [{
@@ -1136,7 +1190,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Set",
+    "@type": "Policy",
     "uid": "http://example.com/policy:default",
     "inheritAllowed": "true",
     "assigner": "http://example.com/org-01",
@@ -1149,12 +1203,12 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 }  
 </pre>
     
-<p>The child Policy <code>http://example.com/policy:4444</code> below includes the <code>inheritFrom property</code> pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also includes the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
+<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below includes the <code>inheritFrom property</code> pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also includes the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
     
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Agreement",
     "uid": "http://example.com/policy:4444",
     "inheritFrom": "http://example.com/policy:default",
     "permission": [{
@@ -1171,7 +1225,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "type": "Agreement",
+    "@type": "Agreement",
     "uid": "http://example.com/policy:4444",
     "inheritFrom": "http://example.com/policy:default",
     "permission": [{
@@ -1250,7 +1304,7 @@ The requirements for communities developing ODRL Profiles MUST document the foll
 An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <code><a href="https://www.iptc.org">International Press and Telecommunications Council</a></code> for the communication of usage policies, primarily in association with the licensed distribution and use of news content by news gathering agencies, publishers, licensing organisations, business intermediaries and business consumers in the online news market-place. The RightsML ODRL Profile clearly documented:</p>
     <ul>
     <li>which features of the ODRL Information Model were supported,</li>
-    <li>the supported policy types,</li>
+    <li>the supported Policy classes,</li>
     <li>the exact list of Actions to be supported for Permissions,</li>  
     <li>more refined definitions of some ODRL vocabulary terms, and</li>
     <li>additional Actions and Constraints (specific to the News industry).</li>
@@ -1267,7 +1321,7 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <co
 
 <h2>Privacy Considerations</h2>
   <p>
-    ODRL Policies that support the <code>Privacy</code> type may contain links to potentially sensitive personal information such as the identity of parties and the identity of the existence of assets containing such data related to the parties. Implementations that produce or consume ODRL Privacy expressions must take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
+    ODRL Policies that support the <code>Privacy</code> Policy subclass may contain links to potentially sensitive personal information such as the identity of parties and the identity of the existence of assets containing such data related to the parties. Implementations that produce or consume ODRL Privacy expressions must take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
 
 </p>
 </section>
@@ -1318,9 +1372,12 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <co
         
      <li>Replaced URI with IRI for I18N <code><a href="https://github.com/w3c/poe/issues/133">(Issue#133)</a></code></li>
     
-    <li>Updated Information Model to be based on Class/Property concepts and removed UML requirements.<code><a href="https://github.com/w3c/poe/issues/22">(Issue#128)</a></code></li>
+    <li>Updated Information Model to be based on Class/Property concepts and removed UML requirements.<code><a href="https://github.com/w3c/poe/issues/128">(Issue#128)</a></code></li>
     
-    <li>Split Constraints into Atomic and Compound Constraints <code><a href="https://github.com/w3c/poe/issues/22">(Issue#117)</a></code></li>
+    <li>Split Constraints into Atomic and Compound Constraints <code><a href="https://github.com/w3c/poe/issues/117">(Issue#117)</a></code></li>
+    
+    <li>Removed the type property and replaced with subclasses of Policy. Added Set/Offer/Agreement to the IM. Set is now default for Policy. <code><a href="https://github.com/w3c/poe/issues/154">(Issue#154)</a></code></li>
+    
     
 </ul>
 </section>

@@ -26,7 +26,7 @@
    </p>
 
 </section>
-<section id="community-group">
+<section id="community-group" class="informative">
   
 <h2>Relationship to the W3C ODRL Community Group Reports</h2>
 
@@ -60,8 +60,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
  
 <figure>
-	<img src="vocab-groups.svg" alt="ODRL Vocabulary groups"/>
-    <figcaption>ODRL Vocabulary Groups</figcaption>
+	<img src="vocab.svg" alt="ODRL Vocabulary Groups"/>
+    <figcaption>ODRL Vocabulary Groups (Also available in <a href="fig/vocab.png">PNG format</a>)</figcaption>
 </figure>
 
 <p>The Namespace URI to identify the ODRL model and vocabulary terms is: <code>http://www.w3.org/ns/odrl/2/</code></p>
@@ -96,11 +96,11 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>ODRL Profiles may be defined by community groups and express additional semantics.</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
-</section></section><section id="policyTypes"><h2>Policy Types</h2><section id="term-Agreement"><h3>Agreement</h3><table class='def propdef' >
+</section></section><section id="policySubClasses"><h2>Policy Subclasses</h2><section id="term-Agreement"><h3>Agreement</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that grants the assignee a Rule over an Asset from an assigner.</td></tr>
 <tr><th>Label:</th> <td>Agreement</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Agreement">http://www.w3.org/ns/odrl/2/Agreement</a></td></tr>
-<tr><th>Note:</th> <td>An Agreement Policy Type MUST contain a target Asset, a Party  with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Agreement Policy Type will grant the terms of the Policy from the Assigner to the Assignee.</td></tr>
+<tr><th>Note:</th> <td>An Agreement Policy MUST contain a target Asset, a Party  with Assigner function, a Party with Assignee fuction, and at least one of a Permission or Prohibition rule. The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
@@ -108,7 +108,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>A Policy that asserts a Rule over an Asset from parties.</td></tr>
 <tr><th>Label:</th> <td>Assertion</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Assertion">http://www.w3.org/ns/odrl/2/Assertion</a></td></tr>
-<tr><th>Note:</th> <td>For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion policy type does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy Type MUST contain a target Asset, a Party with any role, and at least one of a Permission or Prohibition rule.</td></tr>
+<tr><th>Note:</th> <td>For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
@@ -116,7 +116,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assigner.</td></tr>
 <tr><th>Label:</th> <td>Offer</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Offer">http://www.w3.org/ns/odrl/2/Offer</a></td></tr>
-<tr><th>Note:</th> <td>A Offer Policy Type MUST contain a target Asset, a Party with Assigner role, and at least one of a Permission or Prohibition rule. The Offer Policy Type MAY contain a Party  with Assignee role, but MUST not grant any privileges to that Party.</td></tr>
+<tr><th>Note:</th> <td>A Offer Policy  MUST contain a target Asset, a Party with Assigner function, and at least one of a Permission or Prohibition rule. The Offer Policy  MAY contain a Party  with Assignee function, but MUST not grant any privileges to that Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
@@ -124,7 +124,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset containing personal information.</td></tr>
 <tr><th>Label:</th> <td>Privacy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Privacy">http://www.w3.org/ns/odrl/2/Privacy</a></td></tr>
-<tr><th>Note:</th> <td>A Privacy Policy Type MUST contain a target Asset, a Party with Assigner role, a Party with Assignee role, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner.</td></tr>
+<tr><th>Note:</th> <td>A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
@@ -133,7 +133,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assignee.</td></tr>
 <tr><th>Label:</th> <td>Request</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Request">http://www.w3.org/ns/odrl/2/Request</a></td></tr>
-<tr><th>Note:</th> <td>A Request Policy Type MUST contain a target Asset, a Party with Assignee role, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner role if this is known. No privileges are granted to any Party.</td></tr>
+<tr><th>Note:</th> <td>A Request Policy  MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
@@ -142,7 +142,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Set</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Set">http://www.w3.org/ns/odrl/2/Set</a></td></tr>
-<tr><th>Note:</th> <td>A Set Policy Type MUST contain a target Asset, and at least one Rule. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined).</td></tr>
+<tr><th>Note:</th> <td>A Set Policy MUST contain a target Asset, and at least one Rule. A Set Policy is the default Policy subclass. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined).</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
@@ -150,14 +150,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>A Policy that grants the holder a Rule over an Asset from an assigner.</td></tr>
 <tr><th>Label:</th> <td>Ticket</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Ticket">http://www.w3.org/ns/odrl/2/Ticket</a></td></tr>
-<tr><th>Note:</th> <td>A Ticket Policy Type MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner role and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage.</td></tr>
+<tr><th>Note:</th> <td>A Ticket Policy MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Preference</h3><table class='def propdef' >
+</section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Stratey Preference</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>
-<tr><th>Label:</th> <td>Conflict Preference</td></tr>
+<tr><th>Label:</th> <td>Conflict Stratey Preference</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/ConflictTerm">http://www.w3.org/ns/odrl/2/ConflictTerm</a></td></tr>
 <tr><th>Note:</th> <td>Instances of ConflictTerm describe strategies for resolving conflicts.</td></tr>
 <tr><th>In range of:</th> <td><a href="#term-conflict">conflict</a></td></tr>
@@ -165,10 +165,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-conflict"><h3>Handle Policy Conflicts</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Relates a conflict-resolution mechansim to a Policy.</td></tr>
+<tr><th>Definition:</th> <td>The conflict-resolution strategy for a Policy.</td></tr>
 <tr><th>Label:</th> <td>Handle Policy Conflicts</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/conflict">http://www.w3.org/ns/odrl/2/conflict</a></td></tr>
-<tr><th>Note:</th> <td>If no mechanism is specified, the default is invalid.</td></tr>
+<tr><th>Note:</th> <td>If no strategy is specified, the default is invalid.</td></tr>
 <tr><th>Range:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
@@ -199,10 +199,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-undefined"><h3>Handle Undefined Term</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Relates the mechanism used for handling undefined actions to a Policy.</td></tr>
+<tr><th>Definition:</th> <td>Relates the strategy used for handling undefined actions to a Policy.</td></tr>
 <tr><th>Label:</th> <td>Handle Undefined Term</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td></tr>
-<tr><th>Note:</th> <td>If no mechanism is specified, the default is invalid.</td></tr>
+<tr><th>Note:</th> <td>If no strategy is specified, the default is invalid.</td></tr>
 <tr><th>Range:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
@@ -290,7 +290,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="partyConcepts"><h2>Party</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identifiable entity who may undertake a Role in a Policy.</td></tr>
+<tr><th>Definition:</th> <td>An identifiable entity who may undertake a functional role in a Policy.</td></tr>
 <tr><th>Label:</th> <td>Party</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
 <tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</td></tr>
@@ -298,7 +298,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>In range of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
 </table>
 </section><section id="term-function"><h3>Function</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the roles which may be fulfilled by a party in relation to a Rule.</td></tr>
+<tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the functional roles which may be fulfilled by a party in relation to a Rule.</td></tr>
 <tr><th>Label:</th> <td>Function</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
 <tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
@@ -441,9 +441,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section><section id="term-AllConnections"><h3>All Connections</h3><table class='def propdef' >
+</section><section id="term-AllConnections"><h3>All First-Level Connections</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the first-level connections of the Party.</td></tr>
-<tr><th>Label:</th> <td>All Connections</td></tr>
+<tr><th>Label:</th> <td>All First-Level Connections</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td></tr>
 <tr><th>Note:</th> <td>For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
@@ -457,9 +457,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section><section id="term-AllGroups"><h3>All Groups</h3><table class='def propdef' >
+</section><section id="term-AllGroups"><h3>All Group Connections</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the group connections of the Party.</td></tr>
-<tr><th>Label:</th> <td>All Groups</td></tr>
+<tr><th>Label:</th> <td>All Group Connections</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td></tr>
 <tr><th>Note:</th> <td>For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
@@ -493,7 +493,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>An Action that must not be performed over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Prohibition</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Prohibition">http://www.w3.org/ns/odrl/2/Prohibition</a></td></tr>
-<tr><th>Note:</th> <td>Prohibitions are issued by the supplier of the Asset – the Party with the Role assigner.</td></tr>
+<tr><th>Note:</th> <td>Prohibitions are issued by the supplier of the Asset – the Party with the function assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-relation">relation</a>, <a href="#term-output">output</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
 </table>
@@ -789,7 +789,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The Assigner requires that the Assignees accepts that the use of the Asset may be tracked.</td></tr>
 <tr><th>Label:</th> <td>Accept Tracking</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/acceptTracking">http://www.w3.org/ns/odrl/2/acceptTracking</a></td></tr>
-<tr><th>Note:</th> <td>The collected information may be tracked by the Assigner, or may link to a Party with the role function “trackingParty”.</td></tr>
+<tr><th>Note:</th> <td>The collected information may be tracked by the Assigner, or may link to a Party with the role “trackingParty” function.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -797,7 +797,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The Assigner requires that the Assignees attributes the Asset to the Assigner or an attributed Party.</td></tr>
 <tr><th>Label:</th> <td>Attribute</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/attribute">http://www.w3.org/ns/odrl/2/attribute</a></td></tr>
-<tr><th>Note:</th> <td>May link to an Asset with the attribution information. May link to a Party with the role function “attributedParty”.</td></tr>
+<tr><th>Note:</th> <td>May link to an Asset with the attribution information. May link to a Party with the  role “attributedParty” function.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-compensate"><h3>Compensate</h3><table class='def propdef' >
@@ -834,7 +834,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The Assigner requires that the Assignees inform the Assigner or an informed Party that an action has been performed on or in relation to the Asset.</td></tr>
 <tr><th>Label:</th> <td>Inform</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inform">http://www.w3.org/ns/odrl/2/inform</a></td></tr>
-<tr><th>Note:</th> <td>May link to a Party with the role function “informedParty”.</td></tr>
+<tr><th>Note:</th> <td>May link to a Party with the role “informedParty” function.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -849,7 +849,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The Assigner requires that the Assignees obtains explicit consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset.</td></tr>
 <tr><th>Label:</th> <td>Obtain Consent</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/obtainConsent">http://www.w3.org/ns/odrl/2/obtainConsent</a></td></tr>
-<tr><th>Note:</th> <td>Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role function “consentingParty”.</td></tr>
+<tr><th>Note:</th> <td>Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role “consentingParty” function.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1342,12 +1342,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
 </section>
 
-    <section id="encodings">
+<section id="encodings">
 	<h2>Vocabulary Encodings</h2>
      <p>This specification describes a number of serialization syntaxes for the ODRL Vocabulary.</p> 
-<p>Implementations of ODRL expressions MUST be serialized using the UTF-8 character encoding.</p>    </section>
-          
-        
+<p>Implementations of ODRL expressions MUST be serialized using the UTF-8 character encoding.</p>     
     <section id="rdfowl">
    	<h3>RDF/OWL Encoding</h3>         
      
@@ -1413,6 +1411,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <li>inheritFrom - an IRI/Qname/Qcode</li>
 <li>profile -an IRI/Qname/Qcode </li>
 </ul>
+
+<P><strong>NOTE:</strong> The  <strong>type</strong> attribute is used to express the ODRL Policy subclass.</P>
 
 <p>The Policy element MAY contain the following elements:</p>
 <ul>
@@ -1510,7 +1510,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to an Constraint element</li>
 </ul>
-<P>NOTE: The Constraint <strong>name</strong> attribute is called <strong>leftOperand</strong> in the ODRL Information Model.</P>
+<P><strong>NOTE:</strong> The Constraint <strong>name</strong> attribute is called <strong>leftOperand</strong> in the ODRL Information Model.</P>
 <p>Constraint element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
 <li>name (REQUIRED), operator (REQUIRED), rightOperand and/or rightOperandReference (REQUIRED), dataType (OPTIONAL), unit (OPTIONAL), status (OPTIONAL), id (OPTIONAL), or</li>
@@ -1661,15 +1661,15 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <div class="note">
 <p>The (editors draft) ODRL JSON-LD Context can be <a href="http://w3c.github.io/poe/vocab/ODRL22.jsonld">downloaded</a>.</p>
 </div>
-    </section>
-            
-</section>
+    </section>    
+     
+ </section>
 
         
-<section id="privacy-consideration">
+<section id="privacy-consideration" class="informative">
    	<h2>Privacy Considerations</h2>         
      <p>
-    ODRL Policies that support the <code>Privacy</code> type may contain links to potentially sensitive personal information such as the identity of parties and the identity of the existance of assets containing such data related to the parties. Implementations that produce or consume ODRL Privacy expressions must take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
+    ODRL Policies that support the <code>Privacy</code> subclass may contain links to potentially sensitive personal information such as the identity of parties and the identity of the existance of assets containing such data related to the parties. Implementations that produce or consume ODRL Privacy expressions must take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
 
 </p>    </section>
         
