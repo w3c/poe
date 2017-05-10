@@ -143,18 +143,14 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="policy">
 <h3>Policy</h3>
 
-<p>A Policy MUST have the following properties:</p>
+<p>The Policy class has the following properties:</p>
 <ul>
-<li>The <code>uid</code> identification of the Policy.</li>
-<li>A <code>permission</code> and/or <code>prohibition</code> Rule.</li>
-</ul>  
-
-<p>A Policy MAY also have the following properties:</p>
-<ul>
-<li>The <code>conflict</code> property indicating how to handle Policy conflicts.(See <a href="#conflict">Policy Conflict Strategy</a> for more details.)</li>
-<li>The <code>undefined</code> property indicating how to handle undefined Actions. (See <a href="#undefined">Undefined Actions</a> for more details.)</li>
-<li>The <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies. (See <a href="#inhertiance">Policy Inheritance</a> for more details.)</li>
-<li>The <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See <a href="#profile">ODRL Profiles</a> for more details.)</li>
+<li>A Policy MUST include the <code>uid</code> identification of the Policy.</li>
+<li>A Policy MUST include the <code>permission</code> and/or <code>prohibition</code> Rule.</li>  
+<li>A Policy MAY include the <code>conflict</code> property indicating how to handle Policy conflicts.(See <a href="#conflict">Policy Conflict Strategy</a> for more details.)</li>
+<li>A Policy MAY include the <code>undefined</code> property indicating how to handle undefined Actions. (See <a href="#undefined">Undefined Actions</a> for more details.)</li>
+<li>A Policy MAY include the <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies. (See <a href="#inhertiance">Policy Inheritance</a> for more details.)</li>
+<li>A Policy MAY include the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See <a href="#profile">ODRL Profiles</a> for more details.)</li>
 </ul>
 
 <p>An ODRL Policy MAY be subclasssed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses are documented in the ODRL Vocabulary [[!vocab-odrl]] or in ODRL Profiles. 
@@ -164,9 +160,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
     <p>An ODRL Policy of subclass <code>Set</code> represents any combination of Rules. The <code>Set</code> Policy subclass is also the default subclass of Policy (if none is specified) and does not assert any additional cardinalities or semantics.</p>
 
-    <p>The <code>Set</code> Policy subclass:</p>
+    <p>The <code>Set</code> Policy subclass has the following:</p>
     <ul>
-        <li>MUST include at least one Rule.</li>
+        <li>A Set MUST include at least one Rule.</li>
     </ul>
 
 <blockquote>
@@ -197,10 +193,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>An ODRL Policy of subclass <code>Offer</code> represents Rules that are being offered from assigner Parties. An <code>Offer</code> is typically used to make available Policies to a wider audience, but does not grant any Rules.</p>
     
-    <p>The <code>Offer</code> Policy subclass:</p>
+    <p>The <code>Offer</code> Policy subclass has the following:</p>
     <ul>
-        <li>MUST include at least one Rule.</li>
-        <li>MUST include at least one Party with <code>assigner</code> functional role.</li>
+        <li>An Offer MUST include at least one Rule.</li>
+        <li>An Offer MUST include at least one Party with <code>assigner</code> functional role.</li>
     </ul>
 
 <blockquote>
@@ -227,11 +223,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>An ODRL Policy of subclass <code>Agreement</code> represents Rules that have been granted from assigner to assignee Parties. An <code>Agreement</code> is typically used to grant the terms of the Rules between the Parties.</p>
     
-    <p>The <code>Agreement</code> Policy subclass:</p>
+    <p>The <code>Agreement</code> Policy subclass has the following:</p>
     <ul>
-        <li>MUST include at least one Rule.</li>
-        <li>MUST include at least one Party with <code>assigner</code> functional role.</li>
-        <li>MUST include at least one Party with <code>assignee</code> functional role.</li>
+        <li>An Agreement MUST include at least one Rule.</li>
+        <li>An Agreement MUST include at least one Party with <code>assigner</code> functional role.</li>
+        <li>An Agreement MUST include at least one Party with <code>assignee</code> functional role.</li>
     </ul>
 
 <blockquote>
@@ -260,7 +256,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="asset">
 <h3>Asset</h3>
 <p>An Asset is a resource that is the subject of an ODRL Rule. The Asset can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> classes that are needed to undertake the Policy expression, such as with a Duty. An Asset is referred to by the Permission and/or Prohibition, and also by the Duty.</p>
-<p>An Asset has the following properties:</p>
+<p>The Asset class has the following properties:</p>
     
 <ul>
 <li>An Asset MUST have a <code>uid</code> identification of the Asset using an IRI [[!rfc3987]].</li>
@@ -361,7 +357,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>A Party can be any form of identifiable entity who undertakes a role in the Policy, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the function it plays in the Rule).</p>
     
-<p>A Party has the following properties:</p>
+<p>The Party class has the following properties:</p>
 <ul>
 <li>A Party MUST have a <code>uid</code> identifier of the Party</li>
 <li>A Party MUST have a <code>function</code> indicating the role undertaken by the Party.</li>
@@ -685,15 +681,15 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 Atomic Constraints can express these contexts with logical comparisons. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
 </p>
        
-<p>An Atomic Constraint has the following properties:</p>
+<p>The Atomic Constraint class has the following properties:</p>
 <ul>
-<li><code>leftOperand</code> - the left operand (REQUIRED)</li>
-<li><code>operator</code>- the logical operation (REQUIRED)</li>
-<li><code>rightOperand</code> - the right operand (REQUIRED if no rightOperandReference appears)</li>
-<li><code>rightOperandReference</code> - a reference to a right operand (REQUIRED if no rightOperand appears)</li>
-<li><code>dataType</code> - the type of the rightOperand/Reference. (OPTIONAL)</li>
-<li><code>unit</code> - the unit value of the rightOperand/Reference (OPTIONAL)</li>
-<li><code>status</code> - the current value generated from the leftOperand action (OPTIONAL)</li>
+<li>An Atomic Constraint MUST have a <code>leftOperand</code> - the left operand</li>
+<li>An Atomic Constraint MUST have an <code>operator</code>- the logical operation</li>
+<li>An Atomic Constraint MUST have a <code>rightOperand</code> - the right operand (only REQUIRED if no rightOperandReference appears)</li>
+<li>An Atomic Constraint MUST have a <code>rightOperandReference</code> - a reference to a right operand (only REQUIRED if no rightOperand appears)</li>
+<li>An Atomic Constraint MAY  have a <code>dataType</code> - the type of the rightOperand/Reference</li>
+<li>An Atomic Constraint MAY have a <code>unit</code> - the unit value of the rightOperand/Reference</li>
+<li>An Atomic Constraint MAY have a <code>status</code> - the current value generated from the leftOperand action</li>
 </ul>
         
     
@@ -767,11 +763,11 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     Compound Constraints refer to two exisiting Atomic Constraints as the left and right operand. For example, Atomic Constraint #1 (<code>leftOperand</code>) must be satisfied <strong>or</strong> (<code>operator</code>) Atomic Constraint #2 (<code>rightOperand</code>) must be satisfied. The Compound Constraint operator identifiers the logical relationship between the two Atomic Constraints using operators such as <strong>and</strong> or <strong>exclusive or</strong>.</p>
 
       
-<p>A Compound Constraint has the following properties:</p>
+<p>The Compound Constraint class has the following properties:</p>
 <ul>
-<li><code>leftOperand</code> - the left operand (REQUIRED)</li>
-<li><code>operator</code>- the logical relationship (REQUIRED)</li>
-<li><code>rightOperand</code> - the right operand (REQUIRED)</li>
+<li>A Compound Constraint MUST have a <code>leftOperand</code> - the left operand</li>
+<li>A Compound Constraint MUST have a <code>operator</code>- the logical relationship</li>
+<li>A Compound Constraint MUST have a <code>rightOperand</code> - the right operand</li>
 </ul>
         
     
