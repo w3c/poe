@@ -108,8 +108,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The figure below shows the ODRL Information Model.</p>
 
 <figure>
-	<img src="fig/00Model.svg" alt="ODRL Information Model" width="800"/>
-    <figcaption>ODRL Information Model (Also available in <a href="fig/00Model.png">PNG format</a>)</figcaption>
+	<img src="00Model.svg" alt="ODRL Information Model" width="800"/>
+    <figcaption>ODRL Information Model (Also available in <a href="00Model.png">PNG format</a>)</figcaption>
 </figure>
 
   
@@ -148,7 +148,6 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <li>A Policy MUST include the <code>uid</code> identification of the Policy.</li>
 <li>A Policy MUST include the <code>permission</code> and/or <code>prohibition</code> Rule.</li>  
 <li>A Policy MAY include the <code>conflict</code> property indicating how to handle Policy conflicts.(See <a href="#conflict">Policy Conflict Strategy</a> for more details.)</li>
-<li>A Policy MAY include the <code>undefined</code> property indicating how to handle undefined Actions. (See <a href="#undefined">Undefined Actions</a> for more details.)</li>
 <li>A Policy MAY include the <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies. (See <a href="#inhertiance">Policy Inheritance</a> for more details.)</li>
 <li>A Policy MAY include the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See <a href="#profile">ODRL Profiles</a> for more details.)</li>
 </ul>
@@ -1103,55 +1102,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 
 <p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
     </section>
-    <section id="undefined">
-<h4>Undefined Actions</h4>
     
-        
-<div class="issue" data-number="105">
-    <p>The detection of undefined actions is viewed to be implementation-specific, and too vague to be part of the Information Model. This feature maybe removed in future versions.</p>
-</div>
-             
-<p>The <code>undefined</code> property is used to indicate how to process unsupported Actions. That is, if an ODRL expression contains an Action that is not from a known (or supported) ODRL vocabulary, how should the Action be treated in the context of the whole ODRL Policy?</p>
-        
- <p>The <code>undefined</code> property MUST take one of the following values:</p>
-<ul>
-<li><code>support</code>: the undefined Action is to be <strong>supported</strong> as part of the Policy &#8211; and the Policy remains valid</li>
-<li><code>ignore</code>: the undefined Action is to be <strong>ignored</strong> and is not part of the Policy &#8211; and the Policy remains valid</li>
-    <li><code>invalid</code>: the undefined Action is unknown &#8211; and the entire Policy is <strong>invalid</strong></li>
-</ul>
-<p>In all cases, ODRL processors SHOULD provide mechanisms that adequately address these three outcomes. That is, how the Action can be <strong>supported</strong>, or <strong>ignored</strong>, or the entire Policy is <strong>invalid</strong>. </p>
-
-
-        <p>If the <code>undefined</code> property is not explicitly set, its default of <code>invalid</code> SHALL be used.</p>
-        
-                
-<p>The processing model for undefined actions includes:</p>
-    <ol>
-     <li>If a Policy has the <code>undefined</code> property of <code>support</code> and there are actions in the Policy now known to the processing system, then the processing system MUST support these actions as part of the valid Policy.</li>
-    <li>If a Policy has the <code>undefined</code> property of <code>ignore</code> and there are actions in the Policy now known to the processing system, then the processing system MUST disregard these actions as part of the valid Policy.</li>
-    <li>If a Policy has the <code>undefined</code> property of <code>invalid</code> and there are actions in the Policy now known to the processing system, then the processing system MUST process the entire Policy as invalid.</li>
-     <li>If a Policy has multiple <code>undefined</code> property values (for example, after a Policy merge) AND there are actions in the Policy now known to the processing system, then the entire Policy MUST be processed as invalid.</li> 
-    </ol>
-      
-        
-<blockquote>
-  <p>Example Use Case: A Policy of type <code>Set</code> states that the Asset can be <em>recorded</em>. The processing system does not understand this Action, and since the <code>undefined</code> property is <code>invalid</code>, then the entire Policy is deemed invalid.</p>
-</blockquote>    
-
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Set",
-    "uid": "http://example.com/policy:8888",
-    "undefined": "invalid",
-    "permission": [{
-        "target": "http://example.com/music/1999.mp3",
-        "action": "http://example.com/ns/recorded"
-        }]
-}  
-</pre>
-        
-    </section>
     
 <section id="inhertiance">
 <h4>Policy Inheritance</h4>
@@ -1375,6 +1326,7 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <co
     
     <li>Removed the type property and replaced with subclasses of Policy. Added Set/Offer/Agreement to the IM. Set is now default for Policy. <code><a href="https://github.com/w3c/poe/issues/154">(Issue#154)</a></code></li>
     
+     <li>Removed (deprecated) the Undefined Actions section. <code><a href="https://github.com/w3c/poe/issues/139">(Issue#139)</a></code></li>
     
 </ul>
 </section>

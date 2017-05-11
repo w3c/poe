@@ -61,12 +61,12 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
  
 <figure>
 	<img src="vocab.svg" alt="ODRL Vocabulary Groups"/>
-    <figcaption>ODRL Vocabulary Groups (Also available in <a href="fig/vocab.png">PNG format</a>)</figcaption>
+    <figcaption>ODRL Vocabulary Groups (Also available in <a href="vocab.png">PNG format</a>)</figcaption>
 </figure>
 
 <p>The Namespace URI to identify the ODRL model and vocabulary terms is: <code>http://www.w3.org/ns/odrl/2/</code></p>
 
-   <div class="issue" data-number="64">
+   <div class="issue" data-number="155">
         <p>This section is normative, meaning that the concepts and terms presented are required by ODRL expression systems. However, a number of terms have yet to reach the level of implementation that warrants them to be deemed normative. As a result, some terms in this section are explicitly labelled with the status "non-normative".</p>
        <p>The current terms that are marked normative are taken from the <a href="https://www.w3.org/2016/poe/wiki/images/8/88/ODRLImplementationSurvey-2016-Dec-07.pdf">ODRL Implementors Survey in December 2016</a> (PDF document). </p>
            <p>Future versions of the ODRL Vocabulary MAY update these terms to be normative based on more implementation experience, from community feedback, as well as determintion as to the core parts of the ODRL Information Model.</p>
@@ -78,7 +78,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
 <tr><th>Note:</th> <td>A Policy may contain multiple Rules.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Agreement">Agreement</a>, <a href="#term-Assertion">Assertion</a>, <a href="#term-Offer">Offer</a>, <a href="#term-Privacy">Privacy</a>, <a href="#term-Request">Request</a>, <a href="#term-Set">Set</a>, <a href="#term-Ticket">Ticket</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-undefined">undefined</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-inheritFrom">inheritFrom</a></td></tr>
 </table>
 </section><section id="term-Rule"><h3>Rule</h3><table class='def propdef' >
@@ -102,7 +102,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Agreement">http://www.w3.org/ns/odrl/2/Agreement</a></td></tr>
 <tr><th>Note:</th> <td>An Agreement Policy MUST contain a target Asset, a Party  with Assigner function, a Party with Assignee fuction, and at least one of a Permission or Prohibition rule. The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Assertion"><h3>Assertion</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that asserts a Rule over an Asset from parties.</td></tr>
@@ -110,7 +110,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Assertion">http://www.w3.org/ns/odrl/2/Assertion</a></td></tr>
 <tr><th>Note:</th> <td>For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Offer"><h3>Offer</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assigner.</td></tr>
@@ -118,7 +118,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Offer">http://www.w3.org/ns/odrl/2/Offer</a></td></tr>
 <tr><th>Note:</th> <td>A Offer Policy  MUST contain a target Asset, a Party with Assigner function, and at least one of a Permission or Prohibition rule. The Offer Policy  MAY contain a Party  with Assignee function, but MUST not grant any privileges to that Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Privacy"><h3>Privacy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset containing personal information.</td></tr>
@@ -126,7 +126,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Privacy">http://www.w3.org/ns/odrl/2/Privacy</a></td></tr>
 <tr><th>Note:</th> <td>A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-Request"><h3>Request</h3><table class='def propdef' >
@@ -135,7 +135,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Request">http://www.w3.org/ns/odrl/2/Request</a></td></tr>
 <tr><th>Note:</th> <td>A Request Policy  MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-Set"><h3>Set</h3><table class='def propdef' >
@@ -144,7 +144,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Set">http://www.w3.org/ns/odrl/2/Set</a></td></tr>
 <tr><th>Note:</th> <td>A Set Policy MUST contain a target Asset, and at least one Rule. A Set Policy is the default Policy subclass. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined).</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Ticket"><h3>Ticket</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that grants the holder a Rule over an Asset from an assigner.</td></tr>
@@ -152,101 +152,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Ticket">http://www.w3.org/ns/odrl/2/Ticket</a></td></tr>
 <tr><th>Note:</th> <td>A Ticket Policy MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-undefined">undefined</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Stratey Preference</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>
-<tr><th>Label:</th> <td>Conflict Stratey Preference</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/ConflictTerm">http://www.w3.org/ns/odrl/2/ConflictTerm</a></td></tr>
-<tr><th>Note:</th> <td>Instances of ConflictTerm describe strategies for resolving conflicts.</td></tr>
-<tr><th>In range of:</th> <td><a href="#term-conflict">conflict</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-invalid">invalid</a>, <a href="#term-perm">perm</a>, <a href="#term-prohibit">prohibit</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-conflict"><h3>Handle Policy Conflicts</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The conflict-resolution strategy for a Policy.</td></tr>
-<tr><th>Label:</th> <td>Handle Policy Conflicts</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/conflict">http://www.w3.org/ns/odrl/2/conflict</a></td></tr>
-<tr><th>Note:</th> <td>If no strategy is specified, the default is invalid.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-perm"><h3>Prefer Permissions</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Permissions take preference over prohibitions.</td></tr>
-<tr><th>Label:</th> <td>Prefer Permissions</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/perm">http://www.w3.org/ns/odrl/2/perm</a></td></tr>
-<tr><th>Note:</th> <td>Used to determine policy conflict outcomes.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-prohibit"><h3>Prefer Prohibitions</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Prohibitions take preference over permissions.</td></tr>
-<tr><th>Label:</th> <td>Prefer Prohibitions</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/prohibit">http://www.w3.org/ns/odrl/2/prohibit</a></td></tr>
-<tr><th>Note:</th> <td>Used to determine policy conflict outcomes.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="undefinedConcepts"><h2>Undefined Policy Actions</h2><section id="term-UndefinedTerm"><h3>Undefined Term</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Is used to indicate how to support Actions that are not part of any vocabulary or profile in the policy expression system.</td></tr>
-<tr><th>Label:</th> <td>Undefined Term</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td></tr>
-<tr><th>Note:</th> <td>Instances of UndefinedTerm describe strategies for processing unsupported actions.</td></tr>
-<tr><th>In range of:</th> <td><a href="#term-undefined">undefined</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-ignore">ignore</a>, <a href="#term-invalid">invalid</a>, <a href="#term-support">support</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-undefined"><h3>Handle Undefined Term</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Relates the strategy used for handling undefined actions to a Policy.</td></tr>
-<tr><th>Label:</th> <td>Handle Undefined Term</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td></tr>
-<tr><th>Note:</th> <td>If no strategy is specified, the default is invalid.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-ignore"><h3>Ignore Undefined Actions</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Action is to be ignored and is not part of the policy – and the policy remains valid.</td></tr>
-<tr><th>Label:</th> <td>Ignore Undefined Actions</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/ignore">http://www.w3.org/ns/odrl/2/ignore</a></td></tr>
-<tr><th>Note:</th> <td>Used to support actions not known to the policy system.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-support"><h3>Support Undefined Actions</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Action is to be supported as part of the policy – and the policy remains valid.</td></tr>
-<tr><th>Label:</th> <td>Support Undefined Actions</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/support">http://www.w3.org/ns/odrl/2/support</a></td></tr>
-<tr><th>Note:</th> <td>Used to support actions not known to the policy system.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="undefinedConflictConcepts"><h2>Undefined and Policy Conflict</h2><section id="term-invalid"><h3>Invalidate Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The policy is invalid.</td></tr>
-<tr><th>Label:</th> <td>Invalidate Policy</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/invalid">http://www.w3.org/ns/odrl/2/invalid</a></td></tr>
-<tr><th>Note:</th> <td>Used to indicate the policy is invalid for Conflict strategy and Undefined actions.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a>, <a href="#term-UndefinedTerm">UndefinedTerm</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="inheritanceConcepts"><h2>Policy Inheritance</h2><section id="term-inheritAllowed"><h3>Inheritance Allowed</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicates if the Policy entity can be inherited.</td></tr>
-<tr><th>Label:</th> <td>Inheritance Allowed</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritAllowed">http://www.w3.org/ns/odrl/2/inheritAllowed</a></td></tr>
-<tr><th>Note:</th> <td>A boolean value.</td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-inheritFrom"><h3>Inherits From</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Relates a (child) policy to another (parent) policy from which terms are inherited.</td></tr>
-<tr><th>Label:</th> <td>Inherits From</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritFrom">http://www.w3.org/ns/odrl/2/inheritFrom</a></td></tr>
-<tr><th>Note:</th> <td>The child policy will inherit from the parent policy</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="assetConcepts"><h2>Asset</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
@@ -1338,6 +1244,66 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-RightOperand">RightOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
+</section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Stratey Preference</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>
+<tr><th>Label:</th> <td>Conflict Stratey Preference</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/ConflictTerm">http://www.w3.org/ns/odrl/2/ConflictTerm</a></td></tr>
+<tr><th>Note:</th> <td>Instances of ConflictTerm describe strategies for resolving conflicts.</td></tr>
+<tr><th>In range of:</th> <td><a href="#term-conflict">conflict</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-invalid">invalid</a>, <a href="#term-perm">perm</a>, <a href="#term-prohibit">prohibit</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-conflict"><h3>Handle Policy Conflicts</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The conflict-resolution strategy for a Policy.</td></tr>
+<tr><th>Label:</th> <td>Handle Policy Conflicts</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/conflict">http://www.w3.org/ns/odrl/2/conflict</a></td></tr>
+<tr><th>Note:</th> <td>If no strategy is specified, the default is invalid.</td></tr>
+<tr><th>Range:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-perm"><h3>Prefer Permissions</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Permissions take preference over prohibitions.</td></tr>
+<tr><th>Label:</th> <td>Prefer Permissions</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/perm">http://www.w3.org/ns/odrl/2/perm</a></td></tr>
+<tr><th>Note:</th> <td>Used to determine policy conflict outcomes.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-prohibit"><h3>Prefer Prohibitions</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Prohibitions take preference over permissions.</td></tr>
+<tr><th>Label:</th> <td>Prefer Prohibitions</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/prohibit">http://www.w3.org/ns/odrl/2/prohibit</a></td></tr>
+<tr><th>Note:</th> <td>Used to determine policy conflict outcomes.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-invalid"><h3>Invalidate Policy</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The policy is invalid.</td></tr>
+<tr><th>Label:</th> <td>Invalidate Policy</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/invalid">http://www.w3.org/ns/odrl/2/invalid</a></td></tr>
+<tr><th>Note:</th> <td>Used to indicate the policy is invalid for Conflict Strategy.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section></section><section id="inheritanceConcepts"><h2>Policy Inheritance</h2><section id="term-inheritAllowed"><h3>Inheritance Allowed</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicates if the Policy entity can be inherited.</td></tr>
+<tr><th>Label:</th> <td>Inheritance Allowed</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritAllowed">http://www.w3.org/ns/odrl/2/inheritAllowed</a></td></tr>
+<tr><th>Note:</th> <td>A boolean value.</td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
+</section><section id="term-inheritFrom"><h3>Inherits From</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Relates a (child) policy to another (parent) policy from which terms are inherited.</td></tr>
+<tr><th>Label:</th> <td>Inherits From</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritFrom">http://www.w3.org/ns/odrl/2/inheritFrom</a></td></tr>
+<tr><th>Note:</th> <td>The child policy will inherit from the parent policy</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Status:</th> <td>Non-Normative</td></tr>
+</table>
 </section></section>    
     
 </section>
@@ -1406,7 +1372,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <li>uid - an IRI/Qname/Qcode (REQUIRED)</li>
 <li>type -an IRI/Qname/Qcode (REQUIRED)</li>
 <li>conflict - fixed enumeration (defined in XML Schema)</li>
-<li>undefined - fixed enumeration (defined in XML Schema)</li>
 <li>inheritAllowed - a boolean</li>
 <li>inheritFrom - an IRI/Qname/Qcode</li>
 <li>profile -an IRI/Qname/Qcode </li>
@@ -1688,7 +1653,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <section class="appendix" id="deprecate">
 <h2>Deprecated Terms</h2>
  
-            <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td><a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td><a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td><a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td></td></tr><tr id="term-inheritRelation"><td>Inherit Relation</td><td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td><td></td></tr></tbody></table>           
+            <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td><a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td><a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td><a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td></td></tr><tr id="term-inheritRelation"><td>Inherit Relation</td><td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td><td></td></tr><tr id="term-UndefinedTerm"><td>Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td><td></td></tr><tr id="term-undefined"><td>Handle Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td><td></td></tr><tr id="term-ignore"><td>Ignore Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/ignore">http://www.w3.org/ns/odrl/2/ignore</a></td><td></td></tr><tr id="term-support"><td>Support Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/support">http://www.w3.org/ns/odrl/2/support</a></td><td></td></tr></tbody></table>           
 </section>
    
         <section class="appendix" id="ack">
@@ -1734,6 +1699,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
         <li>Added additional Party roles. <a href="https://github.com/w3c/poe/issues/110">(Issue#110)</a></li>
     
        <li>Deprecated inheritRelation. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
+    
+     <li>Removed (deprecated) the Undefined Actions vocab terms. <code><a href="https://github.com/w3c/poe/issues/139">(Issue#139)</a></code></li>
     
 </ul></section>
         

@@ -25,7 +25,6 @@
                 <xs:attribute name="uid" type="o:URIQnameQcode" use="required"/>
                 <xs:attribute name="type" type="o:URIQnameQcode" use="required"/>
                 <xs:attribute name="conflict" type="o:ConflictTerm"/>
-                <xs:attribute name="undefined" type="o:UndefinedTerm"/>
                 <xs:attribute name="inheritAllowed" type="xs:boolean"/>
                 <xs:attribute name="inheritFrom" type="o:URIQnameQcode"/>
                 <xs:attribute name="profile" type="o:URIQnameQcode"/>
@@ -115,14 +114,6 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="http://www.w3.org/ns/odrl/2/perm"/>
             <xs:enumeration value="http://www.w3.org/ns/odrl/2/prohibit"/>
-            <xs:enumeration value="http://www.w3.org/ns/odrl/2/invalid"/>
-        </xs:restriction>
-    </xs:simpleType>
-    
-    <xs:simpleType name="UndefinedTerm">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="http://www.w3.org/ns/odrl/2/support"/>
-            <xs:enumeration value="http://www.w3.org/ns/odrl/2/ignore"/>
             <xs:enumeration value="http://www.w3.org/ns/odrl/2/invalid"/>
         </xs:restriction>
     </xs:simpleType>

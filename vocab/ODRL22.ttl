@@ -75,20 +75,9 @@ odrl:
     skos:member :ConflictTerm ;
     skos:member :conflict ;
     skos:member :perm ;
-    skos:member :prohibit .
-
-<http://www.w3.org/ns/odrl/2/#undefinedConcepts>
-    a skos:Collection ;
-    skos:prefLabel "Undefined Policy Actions"@en ;
-    skos:member :UndefinedTerm ;
-    skos:member :undefined ;
-    skos:member :ignore ;
-    skos:member :support .
-
-<http://www.w3.org/ns/odrl/2/#undefinedConflictConcepts>
-    a skos:Collection ;
-    skos:prefLabel "Undefined and Policy Conflict"@en ;
+    skos:member :prohibit ;
     skos:member :invalid .
+
 
 <http://www.w3.org/ns/odrl/2/#policySubClasses>
     a skos:Collection ;
@@ -340,7 +329,12 @@ odrl:
     skos:member :commercialize ;
     skos:member :share ;
     skos:member :timedCount ;
-    skos:member :inheritRelation .
+    skos:member :inheritRelation ;
+    skos:member :UndefinedTerm ;
+    skos:member :undefined ;
+    skos:member :ignore ;
+    skos:member :support .
+
 
 
 ## SKOS Concept Schemes
@@ -421,7 +415,7 @@ odrl:
 	skos:definition "Is used to indicate how to support Actions that are not part of any vocabulary or profile in the policy expression system."@en ;
 	skos:note "Instances of UndefinedTerm describe strategies for processing unsupported actions."@en ;
 	rdfs:label "Undefined Term"@en ;
-    skos:scopeNote "Non-Normative"@en .
+    owl:deprecated true .
 
 :ignore
 	a :UndefinedTerm, owl:NamedIndividual ;
@@ -429,14 +423,14 @@ odrl:
 	rdfs:label "Ignore Undefined Actions"@en ;
 	skos:definition "The Action is to be ignored and is not part of the policy – and the policy remains valid."@en ;
 	skos:note "Used to support actions not known to the policy system."@en ;
-    skos:scopeNote "Non-Normative"@en .
+    owl:deprecated true .
 
 :invalid
-	a :ConflictTerm, :UndefinedTerm, owl:NamedIndividual ;
+	a :ConflictTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Invalidate Policy"@en ;
 	skos:definition "The policy is invalid."@en ;
-	skos:note "Used to indicate the policy is invalid for Conflict strategy and Undefined actions."@en ;
+	skos:note "Used to indicate the policy is invalid for Conflict Strategy."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :support
@@ -445,7 +439,7 @@ odrl:
 	rdfs:label "Support Undefined Actions"@en ;
 	skos:definition "The Action is to be supported as part of the policy – and the policy remains valid."@en ;
 	skos:note "Used to support actions not known to the policy system."@en ;
-    skos:scopeNote "Non-Normative"@en .
+    owl:deprecated true .
 
 :conflict
 	a rdf:Property , owl:ObjectProperty ;
@@ -463,9 +457,8 @@ odrl:
 	rdfs:label "Handle Undefined Term"@en ;
 	skos:definition "Relates the strategy used for handling undefined actions to a Policy."@en ;
 	skos:note "If no strategy is specified, the default is invalid."@en ;
-	rdfs:domain :Policy ;
 	rdfs:range :UndefinedTerm ;
-    skos:scopeNote "Non-Normative"@en .
+    owl:deprecated true .
 
 :permission
 	a rdf:Property , owl:ObjectProperty ;
