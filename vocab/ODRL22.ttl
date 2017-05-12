@@ -883,17 +883,18 @@ odrl:
 :dateTime
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Action Datetime or Period"@en ;
-	skos:definition "The date (and optional time and timezone) to be compared to the time when the Action is exercised or a period to be compared with the duration of exercising the Action."@en ;
-	skos:note "Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The use of Timezone information is strongly recommended."@en ;
-	skos:note "Right operand should be a xsd:date or a xsd:dateTime"@en .
+	rdfs:label "Action Datetime"@en ;
+	skos:definition "The date (and optional time and timezone) to be compared to the time when the Action is exercised."@en ;
+	skos:note "Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]. The use of Timezone information is strongly recommended."@en ;
+	skos:note "The Action of the Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Action can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time."@en .
 
 :delayPeriod
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Action Delay Period"@en ;
-	skos:definition "The Action may be executed after the end of this period. The point in time triggering this period MAY be defined by another temporal constraint expressed by a Constrations Relation."@en ;
-	skos:note "Value must conform to [[iso8601]] as represented in [[xmlschema11-2]] as a xsd:duration. This maybe used with the odrl:andSequence operator. "@en ;
+	skos:definition "The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator)."@en ;
+	skos:note "Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used."@en ;
+	skos:note "Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :deliveryChannel
@@ -915,10 +916,10 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Elapsed Time"@en ;
-	skos:definition "A period of time for exercising the Action. The start of the period is trigged by exercising the Action for the first time."@en ;
-	skos:note "Note: The value of the Right Operand must conform to [[iso8601]] as represented in [[xmlschema11-2]]."@en ;
-	skos:note "Data type of the right operand must be xsd:duration" ;
-   skos:scopeNote "Non-Normative"@en .
+	skos:definition "The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time."@en ;
+	skos:note "Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used."@en ;
+	skos:note "Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action." ;
+    skos:scopeNote "Non-Normative"@en .
 
 :event
 	a :LeftOperand, owl:NamedIndividual ;
@@ -961,8 +962,9 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Metered Time"@en ;
-	skos:definition "The period of metered time for exercising the Action."@en ;
-	skos:note "The value must conform to [[iso8601]] as represented in [[xmlschema11-2]] as an xsd:duration. Examples: The asset must be displayed only for max 30 minutes; the asset must be displayed for at least 3 weeks."@en ;
+	skos:definition "The Action may be exercised for an accumulated amount of this time period."@en ;
+	skos:note "Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used."@en ;
+	skos:note "Example: <code>meteredTime eq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes. This means that the action can be expercised for 5 minutes each day over 12 days." ;
     skos:scopeNote "Non-Normative"@en .
 
 :payAmount
@@ -1082,8 +1084,9 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Recurring Time Interval"@en ;
-	skos:definition "A recurring period of time after which the Action can or cannot be exercised again."@en ;
-	skos:note "Example: “P7D” indicates a 7 day period. Note: the value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The data type of the right operand must be xsd:duration."@en ;
+	skos:definition "The Action may be exercised within a recurring period of time after which the Action can or cannot be exercised again until the time period has elapsed."@en ;
+	skos:note "Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used."@en ;
+	skos:note "Example: <code>timeInterval eq P7D</code> indicates that the action can be exercised once every 7 day period." ;
     skos:scopeNote "Non-Normative"@en .
 
 :unitOfCount
@@ -1125,10 +1128,9 @@ odrl:
 	a :RightOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy Usage Time"@en ;
-	skos:definition "When used as an event in constraints, indicates that the event occurs at the time when the policy is executed."@en ;
-	skos:note "This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised."@en ;
+	skos:definition "Indicates the time when the policy is exercised."@en ;
+	skos:note "This can be used to express constraints related to the time the policy is exercised. For example,  <code>event lt policyUsage</code> expresses a constraint on the Action to occur before the policy is exercised. Other operators may be used to indicate during (eg) or after (gt, gte) policy usage."@en ;
     skos:scopeNote "Non-Normative"@en .
-
 
 ## Actions
 

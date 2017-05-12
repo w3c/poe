@@ -915,18 +915,18 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Should be a positive integer</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
-</section><section id="term-dateTime"><h3>Action Datetime or Period</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The date (and optional time and timezone) to be compared to the time when the Action is exercised or a period to be compared with the duration of exercising the Action.</td></tr>
-<tr><th>Label:</th> <td>Action Datetime or Period</td></tr>
+</section><section id="term-dateTime"><h3>Action Datetime</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The date (and optional time and timezone) to be compared to the time when the Action is exercised.</td></tr>
+<tr><th>Label:</th> <td>Action Datetime</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dateTime">http://www.w3.org/ns/odrl/2/dateTime</a></td></tr>
-<tr><th>Note:</th> <td>Right operand should be a xsd:date or a xsd:dateTime, Value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The use of Timezone information is strongly recommended.</td></tr>
+<tr><th>Note:</th> <td>Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]. The use of Timezone information is strongly recommended., The Action of the Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Action can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-delayPeriod"><h3>Action Delay Period</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Action may be executed after the end of this period. The point in time triggering this period MAY be defined by another temporal constraint expressed by a Constrations Relation.</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator).</td></tr>
 <tr><th>Label:</th> <td>Action Delay Period</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/delayPeriod">http://www.w3.org/ns/odrl/2/delayPeriod</a></td></tr>
-<tr><th>Note:</th> <td>Value must conform to [[iso8601]] as represented in [[xmlschema11-2]] as a xsd:duration. This maybe used with the odrl:andSequence operator. </td></tr>
+<tr><th>Note:</th> <td>Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action., Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -938,10 +938,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-elapsedTime"><h3>Elapsed Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A period of time for exercising the Action. The start of the period is trigged by exercising the Action for the first time.</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time.</td></tr>
 <tr><th>Label:</th> <td>Elapsed Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/elapsedTime">http://www.w3.org/ns/odrl/2/elapsedTime</a></td></tr>
-<tr><th>Note:</th> <td>Data type of the right operand must be xsd:duration, Note: The value of the Right Operand must conform to [[iso8601]] as represented in [[xmlschema11-2]].</td></tr>
+<tr><th>Note:</th> <td>Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action., Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -983,10 +983,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-meteredTime"><h3>Metered Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The period of metered time for exercising the Action.</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised for an accumulated amount of this time period.</td></tr>
 <tr><th>Label:</th> <td>Metered Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/meteredTime">http://www.w3.org/ns/odrl/2/meteredTime</a></td></tr>
-<tr><th>Note:</th> <td>The value must conform to [[iso8601]] as represented in [[xmlschema11-2]] as an xsd:duration. Examples: The asset must be displayed only for max 30 minutes; the asset must be displayed for at least 3 weeks.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>meteredTime eq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes. This means that the action can be expercised for 5 minutes each day over 12 days., Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1097,10 +1097,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-timeInterval"><h3>Recurring Time Interval</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A recurring period of time after which the Action can or cannot be exercised again.</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised within a recurring period of time after which the Action can or cannot be exercised again until the time period has elapsed.</td></tr>
 <tr><th>Label:</th> <td>Recurring Time Interval</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/timeInterval">http://www.w3.org/ns/odrl/2/timeInterval</a></td></tr>
-<tr><th>Note:</th> <td>Example: “P7D” indicates a 7 day period. Note: the value must conform to [[iso8601]] as represented in [[xmlschema11-2]]. The data type of the right operand must be xsd:duration.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>timeInterval eq P7D</code> indicates that the action can be exercised once every 7 day period., Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1237,10 +1237,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section></section><section id="constraintRightOp"><h2>Constraint Right Operands</h2><section id="term-policyUsage"><h3>Policy Usage Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>When used as an event in constraints, indicates that the event occurs at the time when the policy is executed.</td></tr>
+<tr><th>Definition:</th> <td>Indicates the time when the policy is exercised.</td></tr>
 <tr><th>Label:</th> <td>Policy Usage Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
-<tr><th>Note:</th> <td>This will enable constraints to be expressed such as “event lt o:policyUsage” indicating before the policy is exercised.</td></tr>
+<tr><th>Note:</th> <td>This can be used to express constraints related to the time the policy is exercised. For example,  <code>event lt policyUsage</code> expresses a constraint on the Action to occur before the policy is exercised. Other operators may be used to indicate during (eg) or after (gt, gte) policy usage.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-RightOperand">RightOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
