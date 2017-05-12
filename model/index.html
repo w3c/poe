@@ -493,24 +493,27 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>The Rule class has the following properties:</p>
 <ul>
-<li>A Rule MUST have a <code>target</code> Asset. Other <code>relation</code> values for Asset MAY be used.</li>
 <li>A Rule MUST have an Action via the <code>action</code> property.</li>
-<li>A Rule MAY have one or more assigner and/or assignee <code>function</code> roles undertaken by Party entities. Other <code>function</code> properties for Party MAY be used.</li>
+<li>A Rule MAY have an Asset via the <code><em>relation</em></code> property</li>
+<li>A Rule MAY have one or more Parties via the <code><em>function</em></code> property</li>
 <li>A Rule  MAY have one or more Constraints via the <code>constraint</code> property. The Rule becomes effective if all of the Constraints are satisfied.</li>
-    <li>A Rule MAY have a <code>uid</code> identifier to enable the Rule to be identified by other Rules.</li>
+<li>A Rule MAY have a <code>uid</code> identifier to enable the Rule to be identified by other Rules.</li>
 </ul>
+<p>The abstract <code><em>relation</em></code> and <code><em>function</em></code> properties MUST be represented as explicit types of these properties in the subclasses of a Rule.</p>
+
 <p>For a Rule to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
 
-    
     
 <section id="permission">
 <h3>Permission</h3>
 
 
-<p>A Permission class is a  subclass of Rule that specifies the Actions that MAY be <strong>performed</strong> on an Asset. The Permission class inherits all the properties from the Rule class.</p>
+<p>A Permission class is a subclass of Rule that specifies the Actions that MAY be <strong>performed</strong> on an Asset. The Permission class inherits all the properties from the Rule class.</p>
 
-<p>In addition to the Rule properties, the Permission class has the following properties:</p>
+<p>In addition to the Rule properties, the Permission class has the following:</p>
 <ul>
+    <li>A Permission MUST have an Asset via the <code>target</code> relation property. Other types of relation properties for Asset MAY be used.</li>
+    <li>>A Permission MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
     <li>A Permission  MAY have one or more Duties via the <code>duty</code> property. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
 <p>For a Permission to become effective, it MUST be valid (ie all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
@@ -542,6 +545,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <h3>Prohibition</h3>
 
 <p>A Prohibition class is a  subclass of Rule that specifies the Actions that MUST NOT be <strong>performed</strong> on an Asset. The Prohibition class inherits all the properties from the Rule class.</p>
+    
+<p>In addition to the Rule properties, the Prohibition class has the following:</p>
+<ul>
+    <li>A Prohibition MUST have an Asset via the <code>target</code> relation property. Other types of relation properties for Asset MAY be used.</li>
+    <li>>A Prohibition MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
+</ul>
 
 <p>For a Prohibition to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
 
@@ -577,13 +586,12 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>A Duty class is a subclass of Rule that specifies agreed Actions that are <strong>obligatory</strong> and MUST be fulfilled. A Duty is only associated with a Permission. The Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled. The Duty class inherits all the properties from the Rule class.</p>
 
-<p>In addition to the Rule properties, the Duty class has these additional requirements:</p>
+<p>In addition to the Rule properties, the Duty class has the following:</p>
 <ul>
    <li>A Duty MUST only be associated with a Permission.</li> 
-    <li>A Duty MAY have a <code>target</code> Asset on which the agreed Action MUST be performed. 
+     <li>A Duty MAY have an Asset via the <code>target</code> relation property on which the agreed Action MUST be performed. Other types of relation properties for Asset MAY be used.</li>
   <li>It is assumed that any assigned Party has the appropriate permissions to perform the Duty Action.</li>
-<li>If no explicit Party <code>function</code> is specified as assignee or assigner of the Duty, the Parties with the respective functional roles are taken from the referring Permission. Other <code>function</code> roles for Party MAY be used for Duties (for example, Compensated Party or Tracking Party).</li>
-
+    <li>>A Duty MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. If the functional roles are not specified in the Duty, then the respective functions are assumed to be the same as in the referring Permission. Other types of function properties for Party MAY be used (for example, Compensated Party or Tracking Party).</li>
 </ul>
     
     
