@@ -463,7 +463,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
     <p>An Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be performed on the target Asset. When related to a Duty, the Action indicates the agreed operation that is <em>obligatory</em> to be performed.</p>
     
-<p>The ODRL vocabulary [[!vocab-odrl]] defines a standard set of common Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
+<p>The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of common Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
 
     <blockquote>
 <p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset.</p> 
@@ -476,6 +476,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     "uid": "http://example.com/policy:1012",
     "permission": [{
             "target": "http://example.com/music:1012",
+            "assigner": "http://example.com/org:abc",
             "action": "play"
      }]
 }
@@ -635,7 +636,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 
 <blockquote>
-<p>Example Use Case: The assigner Party <code>http://example.com/person:77</code> needs to set a <code>Privacy</code> Policy for some data about themselves. The target Asset <code>http://example.com/personal-data:77</code> of this Policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to <code>read</code> the Asset only for the <code>purpose</code> of contacting the subject of the personal data. Additionally, the assigner Party has stipulated that the assignee must delete the Asset 30 days after when they first <code>read</code> the Asset.</p>
+<p>Example Use Case: The assigner Party <code>http://example.com/person:77</code> needs to set a <code>Privacy</code> Policy for some data about themselves. (The Privacy Policy subclass is defined in the ODRL Vocabulary [[!vocab-odrl]].) The target Asset <code>http://example.com/personal-data:77</code> of this Policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to <code>read</code> the Asset only for the <code>purpose</code> of contacting the subject of the personal data. Additionally, the assigner Party has stipulated that the assignee must delete the Asset 30 days after when they first <code>read</code> the Asset.</p>
     </blockquote>
 
 
@@ -1040,7 +1041,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     "dc:issued": "2017-01-01:12:00",
     "dc:coverage": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD",
     "dc:replaces": "http://example.com/policy:8887",
-    "permission": [{   }]
+    "permission": [{...}]
 }  
 </pre>
          
@@ -1149,11 +1150,12 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     "@type": "Policy",
     "uid": "http://example.com/policy:default",
     "inheritAllowed": "true",
-    "assigner": "http://example.com/org-01",
     "permission": [{
+        "assigner": "http://example.com/org-01",
         "action": [ "archive", "annotate" ]
     }],
     "prohibition": [{
+        "assigner": "http://example.com/org-01",
         "action": "aggregate"
     }]
 }  
@@ -1176,7 +1178,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 </pre>
     
 
-<p>After the inheritance is performed - where the (parent) Policy atomic Rules are added to the (child) Policy - the resulting Policy is as follows:</p>    
+<p>After the inheritance is performed - where the (parent) Policy atomic Rules are added to the (child) Policy - the resulting Policy is shown below. As this is an Agreement Policy, the assignee also becomes part of the inherited Prohibition.</p>    
     
     <pre class="example hljs json">
 {
@@ -1187,11 +1189,13 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     "permission": [{
         "target": "http://example.com/asset:5555",
         "action": [ "archive", "annotate", "display", "print" ],
-        "assignee": "http://example.com/user:0001",
-        "assigner": "http://example.com/org-01"
+        "assigner": "http://example.com/org-01",
+        "assignee": "http://example.com/user:0001"
     }],
     "prohibition": [{
-        "action": "aggregate"
+        "action": "aggregate",
+        "assigner": "http://example.com/org-01",
+        "assignee": "http://example.com/user:0001"
     }]
 }
 </pre>
