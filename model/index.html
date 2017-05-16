@@ -1048,71 +1048,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     </section>
     
     
-    <section id="conflict">
-<h4>Policy Conflict Strategy</h4>
-        
-<p>The <code>conflict</code> property is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies about the same Asset and the resultant Actions are inconsistent.</p>
-      
-    <p>The <code>conflict</code> property MUST take one of the following values:</p>
-<ul>
-<li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
-<li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
-<li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
-</ul>
-<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used.</p>
-
-        
-<p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
-   
-<ol>
-        <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
- <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule and continue with the Policy as valid.</li>
-  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
- <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then processing MUST not continue and the entire Policy MUST be invalid.</li> 
-        </ol>
-       
-        
-<blockquote>
-<p>Example Use Case: Two Policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to <code>use</code> the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits <code>print</code>. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> property being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the <code>print</code> Action is a specialisation of the <code>use</code> Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the <code>use</code> Permission will override the <code>print</code> Prohibition.</p>
-</blockquote>
-
-        
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Policy",
-    "uid": "http://example.com/policy:0001",
-    "conflict": "perm",
-    "permission": [{
-        "target": "http://example.com/asset:1212",
-        "action": "use",
-        "assigner": "http://example.com/owner:181"
-    }]
-}
-</pre>
-
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Policy",
-    "uid": "http://example.com/policy:0002",
-    "conflict": "perm",
-    "permission": [{
-        "target": "http://example.com/asset:1212",
-        "action": "display",
-        "assigner": "http://example.com/owner:182"
-    }],
-    "prohibition": [{
-        "target": "http://example.com/asset:1212",
-        "action": "print"
-    }]
-}
-</pre>
-
-<p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
-    </section>
-    
-    
+ 
 <section id="inhertiance">
 <h4>Policy Inheritance</h4>
 
@@ -1216,6 +1152,73 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
         
 	
 </section>
+    
+       <section id="conflict">
+<h4>Policy Conflict Strategy</h4>
+        
+<p>The <code>conflict</code> property is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies as a result of <a href="#inhertiance">Policy Inheritance</a> and the resultant Rules are inconsistent.</p>
+      
+    <p>The <code>conflict</code> property MUST take one of the following values:</p>
+<ul>
+<li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
+<li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
+<li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
+</ul>
+<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used.</p>
+
+        
+<p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
+   
+<ol>
+        <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
+ <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule and continue with the Policy as valid.</li>
+  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
+ <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then processing MUST not continue and the entire Policy MUST be invalid.</li> 
+        </ol>
+       
+        
+<blockquote>
+<p>Example Use Case: Two Policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to <code>use</code> the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits <code>print</code>. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> property being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the <code>print</code> Action is a specialisation of the <code>use</code> Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the <code>use</code> Permission will override the <code>print</code> Prohibition.</p>
+</blockquote>
+
+        
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Policy",
+    "uid": "http://example.com/policy:0001",
+    "conflict": "perm",
+    "permission": [{
+        "target": "http://example.com/asset:1212",
+        "action": "use",
+        "assigner": "http://example.com/owner:181"
+    }]
+}
+</pre>
+
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Policy",
+    "uid": "http://example.com/policy:0002",
+    "conflict": "perm",
+    "permission": [{
+        "target": "http://example.com/asset:1212",
+        "action": "display",
+        "assigner": "http://example.com/owner:182"
+    }],
+    "prohibition": [{
+        "target": "http://example.com/asset:1212",
+        "action": "print"
+    }]
+}
+</pre>
+
+<p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
+    </section>
+    
+    
+    
 
 </section>
     
