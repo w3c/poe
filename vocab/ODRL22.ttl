@@ -601,7 +601,10 @@ odrl:
 	rdfs:subPropertyOf :relation ;
 	rdfs:label "Target"@en ;
 	skos:definition "The target property indicates the Asset that is the primary subject to which the Rule action directly applies."@en ;
-	rdfs:domain :Rule ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Rule :Policy ) ;
+	] ;
 	rdfs:range :Asset .
 
 :function
@@ -628,7 +631,10 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Action"@en ;
 	skos:definition "The operation relating to the Asset for which the Rule is being subjected."@en ;
-	rdfs:domain :Rule ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Rule :Policy ) ;
+	] ;
 	rdfs:range :Action .
 
 :constraint
@@ -1583,7 +1589,10 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Assignee"@en ;
 	skos:definition "The Party is the recipient of the policy statement."@en ;
-	rdfs:domain :Rule ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Rule :Policy ) ;
+	] ;
 	rdfs:range :Party .
 
 :assigner
@@ -1592,7 +1601,10 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Assigner"@en ;
 	skos:definition "The Party is the issuer of the policy statement."@en ;
-	rdfs:domain :Rule ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Rule :Policy ) ;
+	] ;
 	rdfs:range :Party .
 
 :attributedParty
