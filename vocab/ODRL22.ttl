@@ -582,7 +582,10 @@ odrl:
 	rdfs:label "Relation"@en ;
 	skos:definition "Relation is an abstract property which creates an explicit link between an Action and an Asset."@en ;
 	skos:note "Sub-properties of relation are used to define the nature of that link."@en ;
-	rdfs:domain :Rule ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Rule :Policy ) ;
+	] ;
 	rdfs:range :Asset .
 
 :output
@@ -612,7 +615,10 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Function"@en ;
 	skos:definition "Function is an abstract property whose sub-properties define the functional roles which may be fulfilled by a party in relation to a Rule."@en ;
-	rdfs:domain :Rule ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Rule :Policy ) ;
+	] ;
 	rdfs:range :Party .
 
 :scope
