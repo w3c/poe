@@ -1360,21 +1360,18 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <p>The (editors draft) ODRL XML Schema can be <a href="http://w3c.github.io/poe/vocab/ODRL22.xsd">downloaded</a>.</p>
 </div>
 
-<p>To enable compact IRIs, this encoding also supports the use of Qualified Names (QNames) [[xml-names]] for the specification of the value identifiers. In addition, Qualified Codes (QCodes) [[news-ml]] MAY also be used for vocabulary values. QCodes are similar to QNames but also allow a digit as the first character of the value.</p>
-
-
 <p>Each of the classes from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each class property will be represented as an XML attribute of the parent element. The fixed values defined in the ODRL Information Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED. </p>
 <p>Note that the Rule class is not represented in the XML encoding, only the child classes; Permission, Prohibition, and Duty.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policyTypes">Policy Types</a> for further details. </P>
 
 <p>The Policy element contains the following attributes:</p>
 <ul>
-<li>uid - an IRI/Qname/Qcode (REQUIRED)</li>
-<li>type -an IRI/Qname/Qcode (REQUIRED)</li>
+<li>uid - an IRI (REQUIRED)</li>
+<li>type -an IRI (REQUIRED)</li>
 <li>conflict - fixed enumeration (defined in XML Schema)</li>
 <li>inheritAllowed - a boolean</li>
-<li>inheritFrom - an IRI/Qname/Qcode</li>
-<li>profile -an IRI/Qname/Qcode </li>
+<li>inheritFrom - an IRI</li>
+<li>profile -an IRI </li>
 </ul>
 
 <P><strong>NOTE:</strong> The  <strong>type</strong> attribute is used to express the ODRL Policy subclass.</P>
@@ -1394,9 +1391,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
 <p>The Asset class is a single asset element to represent both the Asset uid and how it is related to the Rule. The Asset element contains the following attributes:</p>
 <ul>
-<li>uid - an IRI/Qname/Qcode</li>
-<li>relation - an IRI/Qname/Qcode</li>
-<li>scope - an IRI/Qname/Qcode</li>
+<li>uid - an IRI</li>
+<li>relation - an IRI</li>
+<li>scope - an IRI</li>
 <li>id - an local identifier for this element</li>
 <li>idref - a reference to an Asset element</li>
 </ul>
@@ -1407,9 +1404,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ol>
 <p>The Party class is a single party element to represent both the Party uid and the functional role to the Rule. The Party element contains the following attributes:</p>
 <ul>
-<li>uid - an IRI/Qname/Qcode</li>
-<li>function - an IRI/Qname/Qcode</li>
-<li>scope - an IRI/Qname/Qcode</li>
+<li>uid - an IRI</li>
+<li>function - an IRI</li>
+<li>scope - an IRI</li>
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to a Party element</li>
 </ul>
@@ -1442,7 +1439,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ul>
 <p>The Duty element contains the following attributes:</p>
 <ul>
-<li>uid - an IRI/Qname/Qcode</li>
+<li>uid - an IRI</li>
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to an Duty element</li>
 </ul>
@@ -1454,7 +1451,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ol>
 <p>The Action element contains the following attributes:</p>
 <ul>
-<li>name - an IRI/Qname/Qcode </li>
+<li>name - an IRI </li>
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to an Action element</li>
 </ul>
@@ -1465,12 +1462,12 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 </ol>
 <p>The Constraint element contains the following attributes:</p>
 <ul>
-<li>name - an IRI/Qname/Qcode</li>
-<li>operator - an IRI/Qname/Qcode</li>
+<li>name - an IRI</li>
+<li>operator - an IRI</li>
 <li>rightOperand - string, space separated list for set values</li>
 <li>rightOperandReference - an IRI</li>
-<li>dataType - an IRI/Qname/Qcode</li>
-<li>unit - an IRI/Qname/Qcode</li>
+<li>dataType - an IRI</li>
+<li>unit - an IRI</li>
 <li>status - string</li>
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to an Constraint element</li>
@@ -1701,6 +1698,12 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
        <li>Deprecated inheritRelation. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
     
      <li>Removed (deprecated) the Undefined Actions vocab terms. <code><a href="https://github.com/w3c/poe/issues/139">(Issue#139)</a></code></li>
+    
+      
+     <li>Removed period support from dateTime constraint. <code><a href="https://github.com/w3c/poe/issues/118">(Issue#118)</a></code></li>
+    
+    <li>Removed support for Qnames and Qcodes in XML serialisation. <code><a href="https://github.com/w3c/poe/issues/151">(Issue#151)</a></code></li>
+    
     
 </ul></section>
         
