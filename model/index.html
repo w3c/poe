@@ -57,7 +57,7 @@
 	       <dt><dfn>Rule</dfn></dt>
 	          <dd>A Permission, Prohibition, or Duty that expresses an Action that may, must not, or must be performed (respectively)</dd>
 	       <dt><dfn>Action</dfn></dt>
-	          <dd>An operation that is applicable to an Asset</dd>
+	          <dd>An operation that is applicable to a Rule</dd>
             <dt><dfn>Permission</dfn></dt>
                   <dd>An Action that may be performed over an Asset.</dd>
             <dt><dfn>Prohibition</dfn></dt>
@@ -124,7 +124,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
         </ul>
     <li><code>Asset</code> - an identifiable resource that is associated to a Rule via the abstract <em>relation</em> property.</li>
     <li><code>Party</code> - an identifiable entity who may undertake a functional role in a Rule via the abstract <em>function</em> property.</li>
-    <li><code>Action</code> - expresses an operation that can be applied to an Asset.</li>
+    <li><code>Action</code> - expresses an operation that is associated with a Rule.</li>
     <li><code>Rule</code> - expresses the Action via the <strong>action</strong> property, the Asset via the abstract <em>relation</em> property, the Constraint via the <strong>constraint</strong> property, and the Party via the abstract <em>function</em> property of the Rule. The Rule class is an abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features.</li>
         <ul>
     <li><code>Permission</code> - expresses the Action that MAY be performed. The Permission MAY also include the Duty via the <strong>duty</strong> property that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
@@ -470,9 +470,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <h3>Action</h3>
 
 
-<p>An Action indicates an operation that can be applied to an Asset. An Action is associated to the Asset with the <code>action</code> property in a Rule.
+    <p>The Action is an operation that is associated with a Rule. </p>
     
-    <p>An Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be performed on the target Asset. When related to a Duty, the Action indicates the agreed operation that is <em>obligatory</em> to be performed.</p>
+    <p>The Rule provides the specific interpretations of the Action. For example; an Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be performed on the target Asset. When related to a Duty, the Action indicates the agreed operation that is <em>obligatory</em> to be performed by a Party</p>
     
 <p>The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of common Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
 
@@ -525,7 +525,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>In addition to the Rule properties, the Permission class has the following:</p>
 <ul>
     <li>A Permission MUST have an Asset via the <code>target</code> relation property. Other types of relation properties for Asset MAY be used.</li>
-    <li>>A Permission MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
+    <li>A Permission MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
     <li>A Permission  MAY have one or more Duties via the <code>duty</code> property. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
 <p>For a Permission to become effective, it MUST be valid (ie all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
@@ -561,7 +561,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>In addition to the Rule properties, the Prohibition class has the following:</p>
 <ul>
     <li>A Prohibition MUST have an Asset via the <code>target</code> relation property. Other types of relation properties for Asset MAY be used.</li>
-    <li>>A Prohibition MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
+    <li>A Prohibition MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
 </ul>
 
 <p>For a Prohibition to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
