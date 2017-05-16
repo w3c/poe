@@ -168,12 +168,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="policy-set">
 <h3>Set</h3> 
 
-    <p>An ODRL Policy of subclass <code>Set</code> represents any combination of Rules. The <code>Set</code> Policy subclass is also the default subclass of Policy (if none is specified) and does not assert any additional cardinalities or semantics.</p>
+    <p>An ODRL Policy of subclass <code>Set</code> represents any combination of Rules. The <code>Set</code> Policy subclass is also the default subclass of Policy (if none is specified).</p>
 
-    <p>The <code>Set</code> Policy subclass has the following:</p>
-    <ul>
-        <li>A Set MUST include at least one Rule.</li>
-    </ul>
+    <p>An ODRL Policy of type Set MUST include at least one Rule.</p>
 
 <blockquote>
 <p>Example Use Case: The below <code>Set</code> Policy includes the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code>.</p>
@@ -203,10 +200,10 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>An ODRL Policy of subclass <code>Offer</code> represents Rules that are being offered from assigner Parties. An <code>Offer</code> is typically used to make available Policies to a wider audience, but does not grant any Rules.</p>
     
-    <p>The <code>Offer</code> Policy subclass has the following:</p>
+    <p>An ODRL Policy of type <code>Offer</code>:</p>
     <ul>
-        <li>An Offer MUST include at least one Rule.</li>
-        <li>An Offer MUST include at least one Party with <code>assigner</code> functional role.</li>
+        <li>MUST include at least one Permission or Prohibition.</li>
+        <li>MUST include at least one Party with <code>assigner</code> functional role.</li>
     </ul>
 
 <blockquote>
@@ -233,11 +230,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
 <p>An ODRL Policy of subclass <code>Agreement</code> represents Rules that have been granted from assigner to assignee Parties. An <code>Agreement</code> is typically used to grant the terms of the Rules between the Parties.</p>
     
-    <p>The <code>Agreement</code> Policy subclass has the following:</p>
+    <p>An ODRL Policy of type <code>Agreement</code>:</p>
     <ul>
-        <li>An Agreement MUST include at least one Rule.</li>
-        <li>An Agreement MUST include at least one Party with <code>assigner</code> functional role.</li>
-        <li>An Agreement MUST include at least one Party with <code>assignee</code> functional role.</li>
+        <li>MUST include at least one Permission or Prohibition.</li>
+        <li>MUST include at least one Party with <code>assigner</code> functional role.</li>
+        <li>MUST include at least one Party with <code>assignee</code> functional role.</li>
     </ul>
 
 <blockquote>
