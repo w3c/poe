@@ -116,24 +116,35 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 <p>The ODRL Information Model includes the following classes:
     <ul>
-        <li><code>Policy</code> - expresses Rules that are allowed (via the permission property) and/or disallowed (via the prohibition property) over an Asset. The Policy class is the  parent class to the Set, Offer, and Agreement classes.</li>
+        <li><code>Policy</code> - expresses Rules that are allowed (via the permission property) or disallowed (via the prohibition property) over an Asset. The Policy class is the parent class to the Set, Offer, and Agreement subclasses.</li>
         <ul>
-        <li><code>Set</code> - a subclass of Policy that supports expressing Rules.</li>
+        <li><code>Set</code> - a subclass of Policy that supports expressing generic Rules.</li>
         <li><code>Offer</code> - a subclass of Policy that supports offerings of Rules from assigner Parties.</li>
-        <li><code>Agreement</code> - a subclass of Policy that supports granting of Rules  from assigner to assignee Parties. </li>
+        <li><code>Agreement</code> - a subclass of Policy that supports granting of Rules from assigner to assignee Parties. </li>
         </ul>
-    <li><code>Asset</code> - an identifiable resource that is related to a Rule. Examples of relation include target.</li>
-    <li><code>Party</code> - an identifiable entity who may undertake a role (via the function property)in a Rule. Examples of functions include assigner and assignee. </li>
+    <li><code>Asset</code> - an identifiable resource that is associated to a Rule via the abstract <em>relation</em> property.</li>
+    <li><code>Party</code> - an identifiable entity who may undertake a functional role in a Rule via the abstract <em>function</em> property.</li>
     <li><code>Action</code> - expresses an operation that can be applied to an Asset.</li>
-    <li><code>Rule</code> - express the Action (via the action property), the Asset (via the relation property), the Constraint (via the constraint property), and the Party (via the function property) of the Rule. The Rule class is an abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features.</li>
+    <li><code>Rule</code> - expresses the Action via the <strong>action</strong> property, the Asset via the abstract <em>relation</em> property, the Constraint via the <strong>constraint</strong> property, and the Party via the abstract <em>function</em> property of the Rule. The Rule class is an abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features.</li>
         <ul>
-    <li><code>Permission</code> - expresses the Action that MAY be performed. The Permission MAY also include the Duty (via the duty property) that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
+    <li><code>Permission</code> - expresses the Action that MAY be performed. The Permission MAY also include the Duty via the <strong>duty</strong> property that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
     <li><code>Prohibition</code> - expresses the Action that MUST NOT be performed.</li>
     <li><code>Duty</code> - expresses the Action that has been agreed to be performed as a requirement for the applicable Permission to become valid.</li>
     </ul>
     <li><code>Constraint</code> - the context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</li>
     </ul>
 
+<p>The ODRL Information Model includes two abstract properties between Rule and the Asset and Party class. These two properties (<em>relation</em> and <em>function</em>) are designed to represent the <em>conceptual</em> relation between the two classes. In serialised ODRL expressions, they MUST be realised as subtypes of their respective parent property.   The figure below shows the ODRL Properties Model with subtypes.</p>
+
+<figure>
+	<img src="01Properties.svg" alt="ODRL Properties Model" width="800"/>
+    <figcaption>ODRL Properties Model (Also available in <a href="01Properties.png">PNG format</a>)</figcaption>
+</figure>
+
+<p>The figure shows the <em>relation</em> property with subtype <strong>target</strong> to express that the Asset is the primary subject of the Rule. The <em>function</em> property has subtype <strong>assigner</strong> to express the Party issuing the Rule, and subtype <strong>assignee</strong> to express the recipient Party of the Rule. 
+</p> 
+    
+    
 <div class="note">
 <p>The ODRL Information Model provides a <em>logical view</em> of the components of the Policy model. The <em>implementable view</em> of the ODRL Information Model is provided by various encoding serialisations as normatively described in the ODRL Vocabulary &amp; Expression document [[odrl-vocab]]. The mapping of the logical Information Model components to the implementable serialisations may require some trade-offs and/or differences depending on the features supported by the serialisation language.</p>
 </div>
@@ -141,7 +152,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <p>The following sections provide further details on the ODRL Information Model. </p>
 
 <section id="policy">
-<h3>Policy</h3>
+<h3>Policy Class</h3>
 
 <p>The Policy class has the following properties:</p>
 <ul>
@@ -269,11 +280,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="relation">
 <h4>Relation</h4>
 
-<p>The <code>relation</code> property is used to link a Rule to an Asset, indicating how the Asset MUST be utilised in respect to the Rule that links to it. The <code>relation</code> property is represented by explicit values that indicate the semantics of the relationship between the Asset and the Rule.</p>
+<p>The <code>relation</code> property is used to link a Rule to an Asset, indicating how the Asset MUST be utilised in respect to the Rule that links to it. The <code>relation</code> property is represented by explicit subtypes that indicate the semantics of the relationship between the Asset and the Rule.</p>
     
-<p>The <code>relation</code> property of <code>target</code> MUST be supported. The <code>target </code> relation indicates that the Asset is the primary subject to which the Rule action directly applies.</p>
+<p>The <code>relation</code> subtype of <code>target</code> MUST be supported. The <code>target </code> relation indicates that the Asset is the primary subject to which the Rule action directly applies.</p>
     
-<p>Other <code>relation</code> properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other <code>relation</code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
         
  <blockquote>   
@@ -293,7 +304,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 </pre>
 
 <div class="note">
-    <p>In the above example, the JSON-LD representation for the <code>relation</code> property directly uses <code>target</code> as the token, as this has been mapped as a sub-property of the parent <code>relation</code> property in this serialisation.</p>
+    <p>In the above example, the JSON-LD representation for the <code>relation</code> property directly uses <code>target</code> as the token, as this has been mapped as a subtype of the parent <code>relation</code> property in this serialisation.</p>
 </div>
     
 <blockquote>	
@@ -369,15 +380,15 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 <section id="function">
 <h4>Function</h4>
     
- <p>The <code>function</code> property is used to link a Rule to a Party, indicating the function undertaken by the Party in respect to the Rule that links to it. The <code>function</code> property is represented by explicit values that indicate the semantics of the functional role between the Party and the Rule.</p>
+ <p>The <code>function</code> property is used to link a Rule to a Party, indicating the function undertaken by the Party in respect to the Rule that links to it. The <code>function</code> property is represented by explicit subtypes that indicate the semantics of the functional role between the Party and the Rule.</p>
 
-<p>The <code>function</code> property MUST support the following roles:</p>
+<p>The <code>function</code> property MUST support the following subtypes:</p>
 <ul>
 <li><code>assigner</code>: indicates the Party that is issuing the Policy. For example, the Party granting a Permission or requiring an agreed Duty to be performed.</li>
 <li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
 </ul>
  
-    <p>Other <code>function</code> properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+    <p>Other <code>function</code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
             
 <blockquote>
