@@ -592,7 +592,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
    <li>A Duty MUST only be associated with a Permission.</li> 
      <li>A Duty MAY have an Asset via the <code>target</code> relation property on which the agreed Action MUST be performed. Other types of relation properties for Asset MAY be used.</li>
   <li>It is assumed that any assigned Party has the appropriate permissions to perform the Duty Action.</li>
-    <li>>A Duty MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. If the functional roles are not specified in the Duty, then the respective functions are assumed to be the same as in the referring Permission. Other types of function properties for Party MAY be used (for example, Compensated Party or Tracking Party).</li>
+    <li>A Duty MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. If the functional roles are not specified in the Duty, then the respective functions are assumed to be the same as in the referring Permission. Other types of function properties for Party MAY be used (for example, Compensated Party or Tracking Party).</li>
 </ul>
     
     
@@ -636,34 +636,23 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     
 
 <blockquote>
-<p>Example Use Case: The assigner Party <code>http://example.com/person:77</code> needs to set a <code>Privacy</code> Policy for some data about themselves. (The Privacy Policy subclass is defined in the ODRL Vocabulary [[!vocab-odrl]].) The target Asset <code>http://example.com/personal-data:77</code> of this Policy is personal data, and the assignee <code>http://example.com/gov:health:au</code> is allowed to <code>read</code> the Asset only for the <code>purpose</code> of contacting the subject of the personal data. Additionally, the assigner Party has stipulated that the assignee must delete the Asset 30 days after when they first <code>read</code> the Asset.</p>
+<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/gov/dept:99</code> allows the assignee to distribute the Asset <code>http://example.com/data:77</code> under the condition they attribute the asset to Party <code>http://australia.gov.au/</code>.</p>
     </blockquote>
 
 
 <pre class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Privacy",
-    "uid": "http://example.com/policy:7777",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:66",
     "permission": [{
-        "target": "http://example.com/personal-data:77",
-        "assigner": "http://example.com/person:77",
-        "assignee": "http://example.com/gov:health:au",
-        "action": "read",
-        "constraint": [{
-            "leftOperand": "purpose",
-            "operator": "eq",
-            "rightOperand": "http://example.com/privacy/contact"
-        }],
- 
+        "target": "http://example.com/data:77",
+        "assigner": "http://example.com/person:88",
+        "assignee": "http://example.com/gov/dept:99",
+        "action": "distribute",
         "duty": [{
-            "action": "delete",
-            "target": "http://example.com/personal-data:77",
-            "constraint": [{
-                "leftOperand": "elapsedTime",
-                "operator": "eq",
-                "rightOperand": "P30D"
-            }]
+            "action": "attribute",
+            "attributedParty": "http://australia.gov.au/"
         }]
     }]
 }
