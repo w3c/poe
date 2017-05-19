@@ -1290,7 +1290,8 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Distribute"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to distribute the Asset."@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to supply the Asset to third-parties."@en ;
+	skos:note "It is recommended to use nextPolicy to express the allowable usages by third-parties."@en ;
 	skos:broaderTransitive :use .
 
 :ensureExclusivity
@@ -1422,7 +1423,7 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Obtain Consent"@en ;
-	skos:definition "The Assigner requires that the Assignees obtains explicit consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset."@en ;
+	skos:definition "The Assigner requires that the Assignees obtains a verifiable consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset."@en ;
 	skos:note "Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role “consentingParty” function."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1483,7 +1484,7 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Reproduce"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignee(s) to make (an) exact reproduction(s) of the Asset."@en ;
+	skos:definition "The Assigner permits/prohibits the Assignee(s) to make duplicate copies the Asset in any material form."@en ;
 	skos:broaderTransitive :use ;
     skos:scopeNote "Non-Normative"@en .
 
