@@ -6,41 +6,148 @@
 		<script src='https://www.w3.org/Tools/respec/respec-w3c-common'
 				async="async" class='remove'></script>
 		<script class="remove" src="config.js"></script>
+<!-- style from view-source:https://www.w3.org/TR/vocab-org/  --> 
+<style type="text/css">
+	  table {
+	    border-collapse:collapse;
+	  }
+	  td, th {
+	    border:1px solid black;
+	    padding:1em;
+	  }  
+	  table#namespaces td {
+	    font-family: monospace;
+	  }
+	  table.definition {
+	    width:100%;
+	  }
+	  table.definition td.prop {
+	    width:10em;
+	  }
+          pre {
+		padding: 1em;
+		border: 1px dashed #2f6fab;
+		color: black;
+		background-color: #f9f9f9;
+		line-height: 1.1em;
+	 }
+	</style>
+<style>/*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+cite .bibref {
+    font-style: normal;
+}
+
+code {
+    color:  #ff4500;
+}
+
+/* --- TOC --- */
+.toc a, .tof a {
+    text-decoration:    none;
+}
+
+a .secno, a .figno {
+    color:  #000;
+}
+
+ul.tof, ol.tof {
+    list-style: none outside none;
+}
+
+.caption {
+    margin-top: 0.5em;
+    font-style:   italic;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+</style>
 		
-<style>
-         /* use tab-like headers for syntax examples */
-         div.exampleheader {
-         font-size: 90%;
-         float: left;
-         background: #F9F9F9;
-         color: #2F6FAB;
-         border: 1px dashed #2F6FAB;
-         border-bottom: 0px;
-         padding-top: 2px;
-         }
-         div.exampleheader span.exampleheader {
-         background: #F9F9F9;
-         padding-top: 0px;
-         padding-right: 10px;
-         padding-left: 10px;
-         padding-bottom: 3px;
-         padding-top: 0px;
-         }
-         /* Also copy MediaWiki style here, so it will not look different when exported */
-         div.fssyntax pre, div.rdfxml pre, div.owlxml pre, div.turtle pre, div.manchester pre  {
-         background-color: #F9F9F9;
-         border: 1px dashed #2F6FAB;
-         color: black;
-         line-height: 1.1em;
-         padding: 1em;
-         clear: both;
-         margin-left: 0em;
-         }
-      </style>		
 	</head>
 	<body>
 		<section  id="abstract">
 			<p>This page gathers examples of use of ODRL, good practices and is intended to be a first cookbook. Examples are first given as Turtle, other serializations to come. For every Turtle excerpt that follows, the following prefix must be understood.</p>
+			 
 		</section>
 		<section id='sotd'>
 
@@ -82,12 +189,45 @@
 
 		<section id="examples">
 		<h2>Examples of use</h2> 	
+		
+		<h3>Examples 1: Sample policy</h3> 
+		
+		
+		<pre>
+&lt;http://example.org/policy/1&gt; odrl:permission [
+  odrl:target &lt;http://example.com/asset/1&gt;&#160;;
+  odrl:assignee &lt;http://example.com/party/Alice&gt;&#160;;
+  odrl:action odrl:use
+]&#160;;
+</pre>
+		
         </section>
 
 		<section id="styles">
 		<h2>Style guide</h2> 	
         </section>
-				
+		
+		<section class='appendix'>
+
+			<h2>References</h2>
+				<dl class="bibliography" resource="">
+				<dt id="bib-CCREL">[CCREL]</dt>
+				<dd>Hal Abelson; Ben Adida; Mike Linksvayer; Nathan Yergler. W3C/Creative Commons. <a href="http://www.w3.org/Submission/ccREL/" property="dc:references"><cite>ccREL: The Creative Commons Rights Expression Language</cite></a>. 1 May 2008. W3C Member Submission. URL: <a href="http://www.w3.org/Submission/ccREL/" property="dc:references">http://www.w3.org/Submission/ccREL/</a>
+				</dd>
+				<dt id="bib-FOAF">[FOAF]</dt>
+				<dd>Dan Brickley; Libby Miller. FOAF project. <a href="http://xmlns.com/foaf/spec/" property="dc:references"><cite>FOAF Vocabulary Specification 0.99 (Paddington Edition)</cite></a>. 14 January 2014. URL: <a href="http://xmlns.com/foaf/spec/" property="dc:references">http://xmlns.com/foaf/spec/</a>
+				</dd>
+				<dt id="bib-Turtle">[Turtle]</dt>
+				<dd>Eric Prud'hommeaux; Gavin Carothers. W3C. <a href="https://www.w3.org/TR/turtle/" property="dc:references"><cite>RDF 1.1 Turtle</cite></a>. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/turtle/" property="dc:references">https://www.w3.org/TR/turtle/</a>
+				</dd>
+				</dl>
+		
+			<h2>Acknowledgements</h2>
+			<p>
+				We would like to acknowledge the contributions to this document by....
+			</p>
+		</section>
+<section id='tof'/>				
 	</body>
 </html>
 	
