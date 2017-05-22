@@ -255,11 +255,11 @@
 <section id="relation">
 <h4>Relation</h4>
 
-<p>The <code>relation</code> property is used to link a Rule to an Asset, indicating how the Asset MUST be utilised in respect to the Rule that links to it. The <code>relation</code> property is represented by explicit subtypes that indicate the semantics of the relationship between the Asset and the Rule.</p>
+<p>The abstract <code><em>relation</em></code> property is used to link a Rule to an Asset, indicating how the Asset MUST be utilised in respect to the Rule that links to it. The <code><em>relation</em></code> property is represented by explicit subtypes that indicate the semantics of the relationship between the Asset and the Rule.</p>
     
-<p>The <code>relation</code> subtype of <code>target</code> MUST be supported. The <code>target </code> relation indicates that the Asset is the primary subject to which the Rule action directly applies.</p>
+<p>The <code><em>relation</em></code> subtype of <code>target</code> MUST be supported. The <code>target </code> relation indicates that the Asset is the primary subject to which the Rule action directly applies.</p>
     
-<p>Other <code>relation</code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other <code><em>relation</em></code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
         
  <blockquote>   
@@ -279,7 +279,7 @@
 </pre>
 
 <div class="note">
-    <p>In the above example, the JSON-LD representation for the <code>relation</code> property directly uses <code>target</code> as the token, as this has been mapped as a subtype of the parent <code>relation</code> property in this serialisation.</p>
+    <p>In the above example, the JSON-LD representation for the <code><em>relation</em></code> property directly uses <code>target</code> as the token, as this has been mapped as a subtype of the parent <code><em>relation</em></code> property in this serialisation.</p>
 </div>
     
 <blockquote>	
@@ -345,7 +345,7 @@
 <p>The Party class has the following properties:</p>
 <ul>
 <li>A Party MUST have a <code>uid</code> identifier of the Party</li>
-<li>A Party MUST have a <code>function</code> indicating the role undertaken by the Party.</li>
+<li>A Party MUST have a <code><em>function</em></code> indicating the role undertaken by the Party.</li>
 <li>A Party MAY have a <code>scope</code> defining how the Party shall be interpreted under different contexts.</li>
 </ul>
     
@@ -355,15 +355,15 @@
 <section id="function">
 <h4>Function</h4>
     
- <p>The <code>function</code> property is used to link a Rule to a Party, indicating the function undertaken by the Party in respect to the Rule that links to it. The <code>function</code> property is represented by explicit subtypes that indicate the semantics of the functional role between the Party and the Rule.</p>
+ <p>The abstract <code><em>function</em></code> property is used to link a Rule to a Party, indicating the function undertaken by the Party in respect to the Rule that links to it. The <code><em>function</em></code> property is represented by explicit subtypes that indicate the semantics of the functional role between the Party and the Rule.</p>
 
-<p>The <code>function</code> property MUST support the following subtypes:</p>
+<p>The <code><em>function</em></code> property MUST support the following subtypes:</p>
 <ul>
 <li><code>assigner</code>: indicates the Party that is issuing the Policy. For example, the Party granting a Permission or requiring an agreed Duty to be performed.</li>
 <li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
 </ul>
  
-    <p>Other <code>function</code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+    <p>Other <code><em>function</em></code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
             
 <blockquote>
@@ -396,7 +396,7 @@
 </pre>
     
     <div class="note">
-    <p>In the above example, the JSON-LD representation for <code>function</code> directly uses <code>assigner</code> and <code>assignee</code> as the token, as this has been mapped as sub-properties of the parent <code>function</code> property in this serialisation.</p>
+    <p>In the above example, the JSON-LD representation for <code><em>function</em></code> directly uses <code>assigner</code> and <code>assignee</code> as the token, as this has been mapped as sub-properties of the parent <code><em>function</em></code> property in this serialisation.</p>
     </div>
     
 </section>
