@@ -26,28 +26,6 @@
    </p>
 
 </section>
-<section id="community-group" class="informative">
-  
-<h2>Relationship to the W3C ODRL Community Group Reports</h2>
-
-    
-<p>The basis for the deliverables for the Permissions &amp; Obligations Expression Working Group are the reports created by the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a>. The ODRL Community Group has developed a family of specifications to support innovative expression of  asset usage for the publication, distribution and consumption of content services. The final outputs of the ODRL Community Group were the Version 2.1 specifications that were a major update for ODRL and superseded the original ODRL Version 1.1 [[odrl]] (published as a W3C NOTE)</p>
-    
-<p>The following documents are part of the ODRL Community Group report series:</p>
-<ul>
-<li>ODRL V2 Requirements [[odrl2-req]]</li>
-<li>ODRL V2.1 Core Model [[odrl21-model]]</li>
-<li>ODRL V2.1 Common Vocabulary [[odrl21-vocab]]</li>
-<li>ODRL V2.1 XML Encoding [[odrl21-xml]]</li>
-<li>ODRL V2.1 Ontology [[odrl21-onto]]</li>
-<li>ODRL V2.1 JSON Encoding [[odrl21-json]]</li>
-</ul>
-
- <p>
-The ODRL Vocabulary and Expression was derived from the combination and merger of four of the ODRL Community Group's outcomes; ODRL V2.1 Common Vocabulary, ODRL V2.1 XML Encoding, ODRL V2.1 Ontology, and ODRL V2.1 JSON Encoding.
-     Details of the differences between the W3C Working Group deliverables and the ODRL Community Group Reports are maintained in the <a href="#community">Appendix</a>.
-All new ODRL implementations are expected to use the deliverables of the W3C Permissions &amp; Obligations Expression Working Group. </p>
-</section>
         
 <section id="conformance"></section>
         
@@ -87,7 +65,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
 <tr><th>Note:</th> <td>Rule is an abstract concept.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Duty">Duty</a>, <a href="#term-Permission">Permission</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-action">action</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-constraint">constraint</a>, <a href="#term-function">function</a>, <a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-constraint">constraint</a>, <a href="#term-output">output</a></td></tr>
 </table>
 </section><section id="term-profile"><h3>Profile</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The identifier of an ODRL Profile that the Policy conforms to.</td></tr>
@@ -169,7 +147,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>Sub-properties of relation are used to define the nature of that link.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-AssetScope"><h3>Asset Scope</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Scopes for Asset Scope expressions.</td></tr>
@@ -184,7 +162,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/target">http://www.w3.org/ns/odrl/2/target</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-output"><h3>Output</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The output property specifies the Asset which is created from the output of the Action.</td></tr>
@@ -209,7 +187,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
 <tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-PartyScope"><h3>Party Scope</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Scopes for Party Scope expressions.</td></tr>
@@ -225,7 +203,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assignee">http://www.w3.org/ns/odrl/2/assignee</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-assigner"><h3>Assigner</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party is the issuer of the policy statement.</td></tr>
@@ -233,7 +211,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assigner">http://www.w3.org/ns/odrl/2/assigner</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-attributedParty"><h3>Attributed Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party to be attributed.</td></tr>
@@ -385,7 +363,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Note:</th> <td>In other words, what the assigner (supplier) has granted to the assignee (consumer).</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-duty">duty</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-relation">relation</a>, <a href="#term-output">output</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-permission"><h3>Has Permission</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates the description of an individual Permission to a Policy.</td></tr>
@@ -401,7 +379,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Prohibition">http://www.w3.org/ns/odrl/2/Prohibition</a></td></tr>
 <tr><th>Note:</th> <td>Prohibitions are issued by the supplier of the Asset – the Party with the function assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-relation">relation</a>, <a href="#term-output">output</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-prohibition"><h3>Has Prohibition</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates the description of an individual Prohibition to a Policy.</td></tr>
@@ -425,14 +403,14 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Has Action</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/action">http://www.w3.org/ns/odrl/2/action</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section></section><section id="actions"><h2>Actions for Permissions and Prohibitions</h2><section id="term-use"><h3>Use</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignee to use the Asset as agreed.</td></tr>
 <tr><th>Label:</th> <td>Use</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/use">http://www.w3.org/ns/odrl/2/use</a></td></tr>
-<tr><th>Note:</th> <td>Use is the most generic action for all non-third-party usage. More details may be defined in the applicable agreements or under applicable commercial laws. Refined types of actions can be expressed by the narrower actions.</td></tr>
-<tr><th>Narrower terms:</th> <td><a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-archive">archive</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-distribute">distribute</a>, <a href="#term-execute">execute</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-index">index</a>, <a href="#term-install">install</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-present">present</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-stream">stream</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-writeTo">writeTo</a></td></tr>
+<tr><th>Note:</th> <td>Use is the most generic action for all non-third-party usage. More details may be defined in the applicable agreements or under applicable commercial laws. Refined types of actions can be expressed by narrower actions.</td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-archive">archive</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-distribute">distribute</a>, <a href="#term-execute">execute</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-index">index</a>, <a href="#term-install">install</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-present">present</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-stream">stream</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transform">transform</a>, <a href="#term-writeTo">writeTo</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-grantUse"><h3>Grant Use</h3><table class='def propdef' >
@@ -473,7 +451,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to store the Asset (in a non-transient form).</td></tr>
 <tr><th>Label:</th> <td>Archive</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/archive">http://www.w3.org/ns/odrl/2/archive</a></td></tr>
-<tr><th>Note:</th> <td>Constraints may be used for temporal conditions.</td></tr>
+<tr><th>Note:</th> <td>Temporal constraints may be used for temporal conditions.</td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
@@ -492,6 +470,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/derive">http://www.w3.org/ns/odrl/2/derive</a></td></tr>
 <tr><th>Note:</th> <td>A new asset is created and may have significant overlaps with the original Asset. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective). To the derived Asset a next policy may be applied.</td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-translate">translate</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -512,9 +491,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-distribute"><h3>Distribute</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to distribute the Asset.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to supply the Asset to third-parties.</td></tr>
 <tr><th>Label:</th> <td>Distribute</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/distribute">http://www.w3.org/ns/odrl/2/distribute</a></td></tr>
+<tr><th>Note:</th> <td>It is recommended to use nextPolicy to express the allowable usages by third-parties.</td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
@@ -562,7 +542,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-modify"><h3>Modify</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to update existing content of the Asset. A new asset is not created by this action.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to change existing content of the Asset. A new asset is not created by this action.</td></tr>
 <tr><th>Label:</th> <td>Modify</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr>
 <tr><th>Note:</th> <td>This action will modify an asset which is typically updated from time to time without creating a new asset like a database. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective).</td></tr>
@@ -617,7 +597,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
 </section><section id="term-reproduce"><h3>Reproduce</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignee(s) to make (an) exact reproduction(s) of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignee(s) to make duplicate copies the Asset in any material form.</td></tr>
 <tr><th>Label:</th> <td>Reproduce</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
@@ -673,7 +653,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Translate</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/translate">http://www.w3.org/ns/odrl/2/translate</a></td></tr>
 <tr><th>Note:</th> <td>A new derivative Asset is created by that action.</td></tr>
-<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-derive">derive</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section></section><section id="duties"><h2>Duty</h2><section id="term-Duty"><h3>Duty</h3><table class='def propdef' >
@@ -681,7 +661,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Label:</th> <td>Duty</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Duty">http://www.w3.org/ns/odrl/2/Duty</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-relation">relation</a>, <a href="#term-output">output</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-duty"><h3>Has Duty</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The duty relating to the Permission.</td></tr>
@@ -707,17 +687,17 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-compensate"><h3>Compensate</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner requires that the Assignees compensates the Assigner (or other specified compensation Party) by some amount of value, if defined, for use of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner requires that the Assignees compensates the Assigner (or other specified compensation Party) by some amount of value, if defined, for using or selling the Asset.</td></tr>
 <tr><th>Label:</th> <td>Compensate</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr>
 <tr><th>Note:</th> <td>The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by operator, rightOperand, dataType and unit</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-delete"><h3>Delete</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner requires that the Assignees permanently removes all copies of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner requires that the Assignees permanently removes all copies of the Asset after it has been used.</td></tr>
 <tr><th>Label:</th> <td>Delete</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/delete">http://www.w3.org/ns/odrl/2/delete</a></td></tr>
-<tr><th>Note:</th> <td>Use a constraint to define under which conditions the Asset should be deleted.</td></tr>
+<tr><th>Note:</th> <td>Use a constraint to define under which conditions the Asset must be deleted.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -752,7 +732,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-obtainConsent"><h3>Obtain Consent</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner requires that the Assignees obtains explicit consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner requires that the Assignees obtains a verifiable consent from the Assigner or a consenting Party to perform the requested action in relation to the Asset.</td></tr>
 <tr><th>Label:</th> <td>Obtain Consent</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/obtainConsent">http://www.w3.org/ns/odrl/2/obtainConsent</a></td></tr>
 <tr><th>Note:</th> <td>Used as a Duty to ensure that the Assigner or a Party is authorized to approve such actions on a case-by-case basis. May link to a Party with the role “consentingParty” function.</td></tr>
@@ -771,7 +751,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The Assigner requires that the Assignees unload and delete the computer program Asset from a storage device and disable its readiness for operation.</td></tr>
 <tr><th>Label:</th> <td>Uninstall</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/uninstall">http://www.w3.org/ns/odrl/2/uninstall</a></td></tr>
-<tr><th>Note:</th> <td>The Asset is no longer accessible to the Assignees.</td></tr>
+<tr><th>Note:</th> <td>The Asset is no longer accessible to the Assignees after it has been used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -779,7 +759,6 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Definition:</th> <td>The Assigner requires that the Assignees apply a watermark as provided by the Assigner to the Asset.</td></tr>
 <tr><th>Label:</th> <td>Watermark</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/watermark">http://www.w3.org/ns/odrl/2/watermark</a></td></tr>
-<tr><th>Note:</th> <td>It is recommended to embed a link to the watermark.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
@@ -1244,9 +1223,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 <tr><th>Class:</th> <td><a href="#term-RightOperand">RightOperand</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Stratey Preference</h3><table class='def propdef' >
+</section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Strategy Preference</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>
-<tr><th>Label:</th> <td>Conflict Stratey Preference</td></tr>
+<tr><th>Label:</th> <td>Conflict Strategy Preference</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/ConflictTerm">http://www.w3.org/ns/odrl/2/ConflictTerm</a></td></tr>
 <tr><th>Note:</th> <td>Instances of ConflictTerm describe strategies for resolving conflicts.</td></tr>
 <tr><th>In range of:</th> <td><a href="#term-conflict">conflict</a></td></tr>
@@ -1313,7 +1292,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
      <p>This specification describes a number of serialization syntaxes for the ODRL Vocabulary.</p> 
 <p>Implementations of ODRL expressions MUST be serialized using the UTF-8 character encoding.</p>     
     <section id="rdfowl">
-   	<h3>RDF/OWL Encoding</h3>         
+   	<h3>RDF Encoding</h3>         
      
 <div class="note">
 <p>The current (editors draft) ODRL Ontology and can be downloaded in <a href="http://w3c.github.io/poe/vocab/ODRL22.ttl">Turtle serialisation</a>.</p>
@@ -1352,6 +1331,15 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
 </section>    </section>
           
+ <section id="json">
+   	<h2>JSON-LD Encoding</h2>         
+       <p>The JSON-LD [[json-ld]] serialisation uses the <code>@context</code> property to define the processing context. Implementations producing ODRL expressions should include a <code>@context</code> property value using the URL <code>http://www.w3.org/ns/odrl.jsonld</code>.</p>
+
+<div class="note">
+<p>The (editors draft) ODRL JSON-LD Context can be <a href="http://w3c.github.io/poe/vocab/ODRL22.jsonld">downloaded</a>.</p>
+</div>
+    </section>    
+    
     <section id="xml">
    	<h2>XML Encoding</h2>         
         <p>ODRL Policy expressions can be encoded in XML [[xml]] serialisations as defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the ODRL Vocabulary IRIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
@@ -1616,14 +1604,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
     </section>
             
-    <section id="json">
-   	<h2>JSON-LD Encoding</h2>         
-       <p>The JSON-LD [[json-ld]] serialisation uses the <code>@context</code> property to define the processing context. Implementations producing ODRL expressions should include a <code>@context</code> property value using the URL <code>http://www.w3.org/ns/odrl.jsonld</code>.</p>
-
-<div class="note">
-<p>The (editors draft) ODRL JSON-LD Context can be <a href="http://w3c.github.io/poe/vocab/ODRL22.jsonld">downloaded</a>.</p>
-</div>
-    </section>    
+   
      
  </section>
 
@@ -1653,14 +1634,36 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
             <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td><a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td><a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td><a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td></td></tr><tr id="term-inheritRelation"><td>Inherit Relation</td><td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td><td></td></tr><tr id="term-UndefinedTerm"><td>Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td><td></td></tr><tr id="term-undefined"><td>Handle Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td><td></td></tr><tr id="term-ignore"><td>Ignore Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/ignore">http://www.w3.org/ns/odrl/2/ignore</a></td><td></td></tr><tr id="term-support"><td>Support Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/support">http://www.w3.org/ns/odrl/2/support</a></td><td></td></tr></tbody></table>           
 </section>
    
-        <section class="appendix" id="ack">
+<section class="appendix" id="ack">
 <h2>Acknowledgements</h2>
  <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>. In particular the editors would like to thank Susanne Guth (Vocabulary), Jonas Öberg (JSON), and Lu Ai (JSON) for their past editorial contributions.</p>
 <p>For the current specification, the POE Working Group would like to thank contributions from Gregg Kellogg (JSON-LD Context).</p></section>
         
-<section class="appendix" id="community">
-<h2>Changes from the Community Group Reports</h2>
- <p>Significant changes in this specification from the ODRL Community Group's draft include:
+        <section class="appendix" id="community">
+<h2>Relationship to the W3C ODRL Community Group Reports</h2>
+ 
+<p>The basis for the deliverables for the Permissions &amp; Obligations Expression Working Group are the reports created by the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a>. The ODRL Community Group has developed a family of specifications to support innovative expression of  asset usage for the publication, distribution and consumption of content services. The final outputs of the ODRL Community Group were the Version 2.1 specifications that were a major update for ODRL and superseded the original ODRL Version 1.1 [[odrl]] (published as a W3C NOTE)</p>
+    
+<p>The following documents are part of the ODRL Community Group report series:</p>
+<ul>
+<li>ODRL V2 Requirements [[odrl2-req]]</li>
+<li>ODRL V2.1 Core Model [[odrl21-model]]</li>
+<li>ODRL V2.1 Common Vocabulary [[odrl21-vocab]]</li>
+<li>ODRL V2.1 XML Encoding [[odrl21-xml]]</li>
+<li>ODRL V2.1 Ontology [[odrl21-onto]]</li>
+<li>ODRL V2.1 JSON Encoding [[odrl21-json]]</li>
+</ul>
+
+ <p>
+The ODRL Vocabulary and Expression was derived from the combination and merger of four of the ODRL Community Group's outcomes; ODRL V2.1 Common Vocabulary, ODRL V2.1 XML Encoding, ODRL V2.1 Ontology, and ODRL V2.1 JSON Encoding.
+     Details of the differences between the W3C Working Group deliverables and the ODRL Community Group Reports are maintained in the <a href="#community">Appendix</a>.
+All new ODRL implementations are expected to use the deliverables of the W3C Permissions &amp; Obligations Expression Working Group. </p>
+
+</section>
+        
+<section class="appendix" id="changes">
+<h2>Changes from Previous Versions</h2>
+ <p>Changes Changes from the <a href="https://www.w3.org/TR/2016/WD-vocab-odrl-20160721/">First Public Working Draft 21 July 2016</a>:</p>
 <ul>
     <li>Clarified Permission cardinality in XML Encoding <a href="https://github.com/w3c/poe/issues/17">(Issue#17)</a></li>
 
@@ -1692,7 +1695,10 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     <li>Added Constraint on Constraint operator term. <a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></li>
     
        <li>Added Stream to the vocabulary. <a href="https://github.com/w3c/poe/issues/103">(Issue#103)</a></li>
-    
+</ul>
+
+<p>Changes Changes from the <a href="https://www.w3.org/TR/2017/WD-odrl-vocab-20170223/">Working Draft 23 February 2017</a>:</p>
+<ul>
         <li>Added additional Party roles. <a href="https://github.com/w3c/poe/issues/110">(Issue#110)</a></li>
     
        <li>Deprecated inheritRelation. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>

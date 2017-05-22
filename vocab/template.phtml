@@ -15,7 +15,6 @@
 	readfile(dirname(__FILE__) . '/parts/abstract.html');
 	readfile(dirname(__FILE__) . '/parts/sotd.html');
 	readfile(dirname(__FILE__) . '/parts/intro.html');
-    readfile(dirname(__FILE__) . '/parts/community.html');
 ?>
         
 <section id="conformance"></section>
@@ -60,12 +59,19 @@ writeGroup('inheritanceConcepts');
         ?>
      
     <section id="rdfowl">
-   	<h3>RDF/OWL Encoding</h3>         
+   	<h3>RDF Encoding</h3>         
      <?php
         readfile(dirname(__FILE__) . '/parts/rdfowl.html');
         ?>
     </section>
           
+ <section id="json">
+   	<h2>JSON-LD Encoding</h2>         
+       <?php
+        readfile(dirname(__FILE__) . '/parts/json.html');  
+          ?>
+    </section>    
+    
     <section id="xml">
    	<h2>XML Encoding</h2>         
         <?php
@@ -73,12 +79,7 @@ writeGroup('inheritanceConcepts');
           ?>
     </section>
             
-    <section id="json">
-   	<h2>JSON-LD Encoding</h2>         
-       <?php
-        readfile(dirname(__FILE__) . '/parts/json.html');  
-          ?>
-    </section>    
+   
      
  </section>
 
@@ -120,15 +121,22 @@ writeGroup('inheritanceConcepts');
            
 </section>
    
-        <section class="appendix" id="ack">
+<section class="appendix" id="ack">
 <h2>Acknowledgements</h2>
  <?php
         readfile(dirname(__FILE__) . '/parts/ack.html');  
           ?>
 </section>
         
-<section class="appendix" id="community">
-<h2>Changes from the Community Group Reports</h2>
+        <section class="appendix" id="community">
+<h2>Relationship to the W3C ODRL Community Group Reports</h2>
+ <?php
+        readfile(dirname(__FILE__) . '/parts/community.html');  
+          ?>
+</section>
+        
+<section class="appendix" id="changes">
+<h2>Changes from Previous Versions</h2>
  <?php
         readfile(dirname(__FILE__) . '/parts/changes.html');  
           ?>
