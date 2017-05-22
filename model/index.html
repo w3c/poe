@@ -754,7 +754,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 </ul>
         
     
-<p>The applicable <code>operator</code> that can be used for Compound Constraint are:</p>
+<p>The applicable <code>operator</code> that MAY be used for Compound Constraint are:</p>
     <ul>
     <li><code>or</code> -  at least one of the Atomic Constraints (in the left or right operand) MUST be satisfied</li>
     <li><code>xor</code> - only one of the Atomic Constraints (in the left or right operand) MUST be satisfied</li>
@@ -1133,13 +1133,13 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
         
 <p>The <code>conflict</code> property is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies as a result of <a href="#inhertiance">Policy Inheritance</a> and the resultant Rules are inconsistent.</p>
       
-    <p>The <code>conflict</code> property MUST take one of the following values:</p>
+    <p>The <code>conflict</code> property SHOULD take one of the following values:</p>
 <ul>
 <li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
 <li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
 </ul>
-<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used.</p>
+<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Other <code>conflict</code> property values MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p></p>
 
         
 <p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
