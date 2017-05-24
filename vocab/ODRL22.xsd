@@ -68,21 +68,27 @@
 
     <xs:element name="asset" type="o:Asset"/>
     <xs:complexType name="Asset">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:choice>
         <xs:attribute name="uid" type="xs:anyURI"/>
         <!--Required Attribute-->
         <xs:attribute name="relation" type="xs:anyURI"/>
         <!--Required Attribute-->
-        <xs:attribute name="scope" type="xs:anyURI"/>
+        <xs:attribute name="type" type="xs:anyURI"/>
         <xs:attributeGroup ref="o:idAttributes"/>
     </xs:complexType>
 
     <xs:element name="party" type="o:Party"/>
     <xs:complexType name="Party">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:choice>
         <xs:attribute name="uid" type="xs:anyURI"/>
         <!--Required Attribute-->
         <xs:attribute name="function" type="xs:anyURI"/>
         <!--Required Attribute-->
-        <xs:attribute name="scope" type="xs:anyURI"/>
+        <xs:attribute name="type" type="xs:anyURI"/>
         <xs:attributeGroup ref="o:idAttributes"/>
     </xs:complexType>
 

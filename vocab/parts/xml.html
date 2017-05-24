@@ -37,28 +37,30 @@
 <ul>
 <li>uid - an IRI</li>
 <li>relation - an IRI</li>
-<li>scope - an IRI</li>
+<li>type - an IRI</li>
 <li>id - an local identifier for this element</li>
 <li>idref - a reference to an Asset element</li>
 </ul>
 <p>Asset element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>uid (REQUIRED), relation (REQUIRED), id (OPTIONAL), or</li>
+<li>uid (REQUIRED), relation (REQUIRED), type (OPTIONAL), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
+<p>The asset element may also contain the constraint element.</p>
 <p>The Party class is a single party element to represent both the Party uid and the functional role to the Rule. The Party element contains the following attributes:</p>
 <ul>
 <li>uid - an IRI</li>
 <li>function - an IRI</li>
-<li>scope - an IRI</li>
+<li>type - an IRI</li>
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to a Party element</li>
 </ul>
 <p>Party element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>uid (REQUIRED), function (REQUIRED), scope (OPTIONAL), id (OPTIONAL), or</li>
+<li>uid (REQUIRED), function (REQUIRED), type (OPTIONAL), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
+<p>The party element may also contain the constraint element.</p>
 <p>The Permission element contains the following elements:</p>
 <ul>
 <li>asset (REQUIRED)</li>

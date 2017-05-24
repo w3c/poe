@@ -188,14 +188,6 @@
 <tr><th>Sub-classes:</th> <td><a href="#term-PartyCollection">PartyCollection</a>, <a href="#term-PartyIndividual">PartyIndividual</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
 </table>
-</section><section id="term-function"><h3>Function</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the functional roles which may be fulfilled by a party in relation to a Rule.</td></tr>
-<tr><th>Label:</th> <td>Function</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
-</table>
 </section><section id="term-PartyIndividual"><h3>Party Individual</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Party that is a single entity</td></tr>
 <tr><th>Label:</th> <td>Party Individual</td></tr>
@@ -207,6 +199,14 @@
 <tr><th>Label:</th> <td>Party Collection</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyCollection">http://www.w3.org/ns/odrl/2/PartyCollection</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</section><section id="term-function"><h3>Function</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the functional roles which may be fulfilled by a party in relation to a Rule.</td></tr>
+<tr><th>Label:</th> <td>Function</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section></section><section id="partyRoles"><h2>Party Functions</h2><section id="term-assignee"><h3>Assignee</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party is the recipient of the policy statement.</td></tr>
@@ -1340,28 +1340,30 @@
 <ul>
 <li>uid - an IRI</li>
 <li>relation - an IRI</li>
-<li>scope - an IRI</li>
+<li>type - an IRI</li>
 <li>id - an local identifier for this element</li>
 <li>idref - a reference to an Asset element</li>
 </ul>
 <p>Asset element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>uid (REQUIRED), relation (REQUIRED), id (OPTIONAL), or</li>
+<li>uid (REQUIRED), relation (REQUIRED), type (OPTIONAL), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
+<p>The asset element may also contain the constraint element.</p>
 <p>The Party class is a single party element to represent both the Party uid and the functional role to the Rule. The Party element contains the following attributes:</p>
 <ul>
 <li>uid - an IRI</li>
 <li>function - an IRI</li>
-<li>scope - an IRI</li>
+<li>type - an IRI</li>
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to a Party element</li>
 </ul>
 <p>Party element attributes MUST be used as defined by one of the sets of attributes and their cardinalities below:</p>
 <ol>
-<li>uid (REQUIRED), function (REQUIRED), scope (OPTIONAL), id (OPTIONAL), or</li>
+<li>uid (REQUIRED), function (REQUIRED), type (OPTIONAL), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
+<p>The party element may also contain the constraint element.</p>
 <p>The Permission element contains the following elements:</p>
 <ul>
 <li>asset (REQUIRED)</li>
