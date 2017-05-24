@@ -69,7 +69,7 @@
 	       <dt><dfn>Party</dfn></dt>
 	          <dd>An identifiable entity who may undertake a Role in a Policy</dd>
 	       <dt><dfn>Constraint</dfn></dt>
-	          <dd>The context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</dd>
+	          <dd>The context, such as limitations, restrictions, or interpretations, that must be applied to an Action, Party, or Asset</dd>
            <dt><dfn>ODRL Processor</dfn></dt>
 	          <dd>A system that provides services that creates, manipulates, and validates ODRL Policy expressions.</dd>
              </dl>
@@ -94,22 +94,30 @@
     
 <p>The ODRL Information Model includes the following classes:
     <ul>
-        <li><code>Policy</code> - expresses Rules that are allowed (via the permission property) or disallowed (via the prohibition property) over an Asset. The Policy class is the parent class to the Set, Offer, and Agreement subclasses.</li>
+        <li><code>Policy</code> - expresses Rules that are allowed (via the permission property) or disallowed (via the prohibition property) over an Asset. The Policy class is the parent class to the Set, Offer, and Agreement subclasses:</li>
         <ul>
         <li><code>Set</code> - a subclass of Policy that supports expressing generic Rules.</li>
         <li><code>Offer</code> - a subclass of Policy that supports offerings of Rules from assigner Parties.</li>
         <li><code>Agreement</code> - a subclass of Policy that supports granting of Rules from assigner to assignee Parties. </li>
         </ul>
-    <li><code>Asset</code> - an identifiable resource that is associated to a Rule via the abstract <em>relation</em> property.</li>
-    <li><code>Party</code> - an identifiable entity who may undertake a functional role in a Rule via the abstract <em>function</em> property.</li>
+    <li><code>Asset</code> - an identifiable resource that is associated to a Rule via the abstract <em>relation</em> property. The Asset class is the parent class to the AssetIndividual and AssetCollection subclasses:</li>
+         <ul>
+        <li><code>AssetIndividual</code> - a subclass of Asset that identifies a single resource.</li>
+        <li><code>AssetCollection</code> - a subclass of Asset that identifies a collection of resources.</li>
+        </ul>
+    <li><code>Party</code> - an identifiable entity who may undertake a functional role in a Rule via the abstract <em>function</em> property. The Party class is the parent class to the PartyIndividual and PartyCollection subclasses:</li>
+         <ul>
+        <li><code>PartyIndividual</code> - a subclass of Party that identifies a single enity.</li>
+        <li><code>PartyCollection</code> - a subclass of Party that identifies a collection of entities.</li>
+        </ul>
     <li><code>Action</code> - expresses an operation that is associated with a Rule.</li>
-    <li><code>Rule</code> - expresses the Action via the <strong>action</strong> property, the Asset via the abstract <em>relation</em> property, the Constraint via the <strong>constraint</strong> property, and the Party via the abstract <em>function</em> property of the Rule. The Rule class is an abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features.</li>
+    <li><code>Rule</code> - expresses the Action via the <strong>action</strong> property, the Asset via the abstract <em>relation</em> property, the Constraint via the <strong>constraint</strong> property, and the Party via the abstract <em>function</em> property of the Rule. The Rule class is an abstract parent class to the Permission, Prohibition, and Duty classes and represents their common features:</li>
         <ul>
     <li><code>Permission</code> - expresses the Action that MAY be performed. The Permission MAY also include the Duty via the <strong>duty</strong> property that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
     <li><code>Prohibition</code> - expresses the Action that MUST NOT be performed.</li>
     <li><code>Duty</code> - expresses the Action that has been agreed to be performed as a requirement for the applicable Permission to become valid.</li>
     </ul>
-    <li><code>Constraint</code> - the context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</li>
+    <li><code>Constraint</code> - the context, such as limitations, restrictions, or interpretations, that must be applied to an Action, Party, or Asset.</li>
     </ul>
 
 <p>The ODRL Information Model includes two abstract properties between Rule and the Asset and Party class. These two properties (<em>relation</em> and <em>function</em>) are designed to represent the <em>conceptual</em> relation between the two classes. In serialised ODRL expressions, they MUST be realised as subtypes of their respective parent property.   The figure below shows the ODRL Properties Model with subtypes.</p>
@@ -240,15 +248,23 @@
 
 <section id="asset">
 <h3>Asset</h3>
-<p>An Asset is a resource that is the subject of an ODRL Rule. The Asset can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> classes that are needed to undertake the Policy expression, such as with a Duty. An Asset is referred to by the Permission and/or Prohibition, and also by the Duty.</p>
+<p>An Asset is a resource that is the subject of a Rule. The Asset can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> classes that are needed to undertake the Policy expression, such as with a Duty. An Asset is referred to by the Permission and/or Prohibition, and also by the Duty.</p>
+    
 <p>The Asset class has the following properties:</p>
     
 <ul>
 <li>An Asset MUST have a <code>uid</code> identification of the Asset using an IRI [[!rfc3987]].</li>
-<li>An Asset MAY have a <code>scope</code> defining how the Asset shall be interpreted under different contexts.</li>
+<li>An Asset MAY have a <code>constraint</code> indicating how the Asset shall be interpreted under different contexts. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
+</ul>
+
+ <p>The Asset class has two subclasses:</p>
+    
+<ul>
+    <li><code>AssetIndividual</code> - an Asset that is a single resource.</li>
+    <li><code>AssetCollection</code> - an Asset that is a group of resources. This indicates that all the items in the group will be the subject of the Rule.</li>
 </ul>
     
-<p>By default the Asset <code>uid</code> is expressed as an IRI (which are internationalised URIs). ODRL expressions MAY also use URI Templates [[rfc6570]] to denote several Assets or Media Fragments URI [[media-frags]] to identify a specific part of an Asset.<p>
+    <p>The <code>AssetIndividual</code> subclass is the default subclass of Asset (if none is specified).</p>
     
 <p>Since ODRL Policies could deal with any kind of Asset, the ODRL Information Model does not provide additional metadata to describe Assets of particular media types. It is recommended to use  existing metadata standards, such as <code><a href="http://dublincore.org/documents/dcmi-terms/">Dublin Core Metadata Terms</a></code> that are appropriate to the Asset type or purpose.</p>
 
@@ -263,7 +279,7 @@
     
         
  <blockquote>   
-<p>Example Use Case: The assigner Party <code>http//example.com/party:0001</code> offers to display the <code>target</code> Asset <code>http://example.com/asset:3333</code>.</p>
+<p>Example Use Case: The assigner Party <code>http//example.com/party:0001</code> offers to display the <code>target</code> Asset <code>http://example.com/asset:3333</code>. In this example, the Asset is assumed to be an AssetIndividual.</p>
     </blockquote>
  <pre class="example hljs json">
  {
@@ -279,11 +295,11 @@
 </pre>
 
 <div class="note">
-    <p>In the above example, the JSON-LD representation for the <code><em>relation</em></code> property directly uses <code>target</code> as the token, as this has been mapped as a subtype of the parent <code><em>relation</em></code> property in this serialisation.</p>
+    <p>In the above example, the JSON-LD representation for the <code><em>relation</em></code> property directly uses <code>target</code> as the token, as this has been defined as a subtype of the parent <code><em>relation</em></code> property.</p>
 </div>
     
 <blockquote>	
-    <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. Another Asset relation <code>x:collection</code> is also expressed to indicate the Asset <code>http://example.com/x/database</code> that the indexing outcome should be stored in. (These semantics would be defined by the community who created the <code>x:collection</code> relation.)</p>
+    <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. The target asset is also declared as an <code>AssetCollection</code> to indicate the resource is a collection of resources. Another Asset relation <code>ex:summary</code> is also expressed to indicate the Asset <code>http://example.com/x/database</code> that the indexing ouput should be stored in. (These semantics would be defined by the community who created the <code>ex:summary</code> relation.)</p>
     </blockquote>
 
  <pre class="example hljs json">
@@ -292,62 +308,42 @@
     "@type": "Policy",
     "uid": "http://example.com/policy:1011",
     "permission": [{
-        "target": "http://example.com/archive1011",
-        "x:collection": "http://example.com/x/database",
-        "action": "index"
+        "target": {
+            "@type": "AssetCollection",
+            "uid":  "http://example.com/archive1011" },
+        "action": "index",
+        "ex:collection": "http://example.com/x/database"
     }]
 }
 </pre>
     
 </section>
 	
-<section id="asset-scope">
-<h4>Scope</h4>
-    
-    <p>The <code>scope</code> property SHOULD be used to indicate the context under which to identify the Asset. The purpose of <code>scope</code> is to provide additional contextual information about the Asset that more precisely identifies the target for the Policy.
-        The <code>scope</code> feature is useful is there is no ability to directly identify the target Asset with a <code>uid</code> identifier.
-        For example, the Asset identifier may refer to a resource that is a collection or items with many different characteristics, but the <code>scope</code> may identify one specific characteristic only. That <code>scope</code> would then identify the actual target Asset(s) for the Policy.</p>
-    
-<p>The <code>scope</code> property IRI values SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
-</section>
-
-    
-    <blockquote>
-    <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that is a collection of multimedia files. The target Asset also has a scope of <code>http://example.com/imt/jpeg</code>. That scope specifies further context on what characteristics the Asset items must hold - in this case, the target Asset(s) will be all the files identified by the taget <code>uid</code> that are of type "jpeg".</p>
-        <p>The <code>scope</code> is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the scope and profile URIs are not mere identifiers but dereference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
-        </p>
-    </blockquote>
- <pre class="example hljs json">
- {
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Offer",
-    "uid": "http://example.com/policy:4444",
-    "profile": "http://example.com/profiles/01",
-    "permission": [{
-        "target": [{
-                "uid": "http://example.com/media-catalogue",
-                "scope": "http://example.com/imt/jpeg"	
-        }],
-        "action": "use",
-        "assigner": "http://example.com/user88"
-    }]
-}</pre>
-
-	
-</section>
+    </section>
 
 
 <section id="party">
 <h3>Party</h3>
     
-<p>A Party can be any form of identifiable entity who undertakes a role in the Policy, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the function it plays in the Rule).</p>
+<p>A Party can be any form of identifiable entity who undertakes a role in a Rule, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active Role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the function it plays in the Rule).</p>
     
 <p>The Party class has the following properties:</p>
 <ul>
-<li>A Party MUST have a <code>uid</code> identifier of the Party</li>
+<li>A Party MUST have a <code>uid</code> identifier of the Party using an IRI [[!rfc3987]]</li>
 <li>A Party MUST have a <code><em>function</em></code> indicating the role undertaken by the Party.</li>
-<li>A Party MAY have a <code>scope</code> defining how the Party shall be interpreted under different contexts.</li>
+<li>A Party MAY have a <code>constraint</code> indicating how the Party shall be interpreted under different contexts. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
 </ul>
+
+    
+<p>The Party class has two subclasses:</p>
+    
+<ul>
+    <li><code>PartyIndividual</code> - a Party that is a single entity.</li>
+    <li><code>PartyCollection</code> - a Party that is a group of entities. This indicates that all the entities in the group will undertake the same functional role in the Rule.</li>
+</ul>
+    
+    <p>The <code>PartyIndividual</code> subclass is the default subclass of Party (if none is specified).</p>
+    
     
 <p>The ODRL Information Model does not provide additional metadata for the Party class. It is recommended to use existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</p>
  
@@ -365,9 +361,32 @@
  
     <p>Other <code><em>function</em></code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
-            
+
 <blockquote>
-  <p>Example Use Case: The Policy shows an Agreement with two parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the play action over the target asset. In addition, both parties are further described with properties from an external vocabulary and their types are also indicated.</p>
+<p>Example Use Case: The Policy shows an Agreement with two Parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the play action over the target asset.</p>
+</blockquote>    
+
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:8888",
+    "permission": [{
+        "target": "http://example.com/music/1999.mp3",
+        "assigner": "http://example.com/org/sony-music",
+        "assignee": "http://example.com/people/billie",
+        "action": "play"
+    }]
+}  
+</pre>
+    
+    <div class="note">
+    <p>In the above example, the JSON-LD representation for <code><em>function</em></code> directly uses <code>assigner</code> and <code>assignee</code> as the token, as this has been defined as sub-properties of the parent <code><em>function</em></code> property.</p>
+    </div>
+    
+    
+<blockquote>
+  <p>Example Use Case: The Policy shows an Agreement with two Parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the use of the target asset. In this case, the <code>assigner</code> is explicitly declared as a <code>PartyIndividual</code> as well as a <em>vcard:Organisation</em>  and some additional external properties. The <code>assignee</code> is explicitly declared as a <code>PartyCollection</code> as well as a <em>vcard:Group</em> and some additional external properties. This implies that all the entities that are identifed as <code>http://example.com/team/A</code> will each have the same granted action</p>
 </blockquote>    
 
 <pre class="example hljs json">
@@ -377,67 +396,28 @@
         { "vcard": "http://www.w3.org/2006/vcard/ns#" }
     ],
     "@type": "Agreement",
-    "uid": "http://example.com/policy:8888",
+    "uid": "http://example.com/policy:777",
     "permission": [{
-        "target": "http://example.com/music/1999.mp3",
+        "target": "http://example.com/looking-glass.ebook",
         "assigner": {
-            "@type": [ "Party", "vcard:Organization" ],
-            "uid":  "http://example.com/org/sony-music",
-            "vcard:fn": "Sony Music LCC",
+            "@type": [ "PartyIndividual", "vcard:Organization" ],
+            "uid":  "http://example.com/org/sony-books",
+            "vcard:fn": "Sony Books LCC",
             "vcard:hasEmail": "sony-contact@example.com" },
         "assignee": {
-            "@type": [ "Party", "vcard:Individual" ],
-            "uid":  "http://example.com/people/billie",
-            "vcard:fn": "Billie Zhan",
-            "vcard:hasEmail": "billie@example.com"},
-        "action": "play"
+            "@type": [ "PartyCollection", "vcard:Group" ],
+            "uid":  "http://example.com/team/A",
+            "vcard:fn": "Team A",
+            "vcard:hasEmail": "teamA@example.com"},
+        "action": "use"
     }]
 }  
 </pre>
     
-    <div class="note">
-    <p>In the above example, the JSON-LD representation for <code><em>function</em></code> directly uses <code>assigner</code> and <code>assignee</code> as the token, as this has been mapped as sub-properties of the parent <code><em>function</em></code> property in this serialisation.</p>
-    </div>
     
 </section>
     
-    
-<section id="party-scope">
-<h4>Scope</h4>
-    
-<p>The <code>scope</code> property SHOULD be used to indicate the context under which to identify the Party. The purpose of <code>scope</code> is to provide additional contextual information about the Party that more precisely identifies the extent of the Party identified. The <code>scope</code> feature is useful is there is no ability to directly identify the intended Party with a <code>uid</code> identifier.
-        For example, the Party identifier may refer to all users at a University, but the <code>scope</code> may contextualise that to only "fulltime staff members" at the University.</p>
-        
-     <p>The <code>scope</code> property MAY be one of the following:</p>
-<ul>
-<li><code>Individual</code>: indicates that a Party is a single individual. The linked Permission, Duty or Prohibition is applicable for that individual only.</li>
-<li><code>Group</code>: indicates that a Party represents a group of individual members. The linked Permission, Duty or Prohibition is applicable to each member of that group. For example, a Permission to play a movie 5 times is valid for <strong>every</strong> Party member or the Duty to pay 3 EUR has to be fulfilled by <strong>every</strong> Party member.</li>
-</ul>
-    
-<p>Other <code>scope</code> property IRI values SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
-    
-  
-    
-    <blockquote>
-<p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> are a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee is a Party <code>http://example.com/user44/friends</code>, and represents all the friends of the assigner. Since this is a collection of individuals, then the <code>Group</code> scope is declared. In addition, the <code>scope</code> of the Assignee has been also be declared as <code>http://example.com/people/age/18+</code> (which, in this case, provides additional context on what characteristics each assignee MUST hold).</p>
-    </blockquote>
-<pre class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Agreement",
-    "uid": "http://example.com/policy:4444",
-    "permission": [{
-        "target": "http://example.com/myPhotos:BdayParty",
-        "action": "display",
-        "assigner": "http://example.com/user44",
-        "assignee": [{
-                "uid": "http://example.com/user44/friends",
-                "scope": [ "Group", "http://example.com/people/age/18+"]	
-        }]
-    }]
-}</pre>
 
-</section>
 
     </section>
     
@@ -651,9 +631,9 @@
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>A Constraint can be used to define the context in which to process Actions in Rules, such as limitations, restrictions, or interpretations that are applied to the Actions. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are logically compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>.</p>
+    <p>A Constraint can be used to define the context in which to process an Action, Asset, or Party in Rules, such as limitations, restrictions, or interpretations that are applied to these classes. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are logically compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>.</p>
     
-    <p>ODRL Processors MUST check all constraints at the time of executing the relevant Action. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
+    <p>ODRL Processors MUST check all constraints at the time of processing the relevant Action, Asset, and Party. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
  
     <p>When multiple Constraints apply to the same Rule they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied.</p>
     
@@ -848,7 +828,78 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 
     
 </section>
+
+<section id="constraint-asset">
+<h3>Asset Constraint</h3>
+ 
+ <p>   
+    Atomic constraints MAY be applied to Assets to indicate the context under which to identify the Asset(s) that are applicable to the Rule. If an Asset is a <code>AssetIndividual</code> then the constraint logical expressions applies to the whole Asset as a single resource. If an Asset is a <code>AssetCollection</code> then the constraint logical expressions applies to each of the resources identified by the Asset.</p>
+        
+
+<blockquote>
+    <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia images. The target Asset also has a constraint that specifies further context on the characteristics of the target Asset items. In this case, the target Assets will be no more than 50 resources from the media catalogue, and each of those may be printed.</p>
+        <p>The <code>ex:set</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but dereference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
+        </p>
+ </blockquote>
+ <pre class="example hljs json">
+ {
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Offer",
+    "uid": "http://example.com/policy:4444",
+    "profile": "http://example.com/profiles/01",
+    "permission": [{
+        "assigner": "http://example.com/org88",
+        "target": {
+            "@type": "AssetCollection",
+            "uid":  "http://example.com/media-catalogue",
+            "constraint": [{
+                "leftOperand": "ex:set",
+                "operator": "lteq",
+                "rightOperand": "50"
+            }],
+        },
+        "action": "print"
+    }]
+}
+</pre>
     
+</section>
+    
+<section id="constraint-party">
+<h3>Party Constraint</h3>
+ 
+ <p>   
+    Atomic constraints MAY be applied to Party to indicate the context under which to identify the Parties(s) that are applicable to the Rule. If a Party is a <code>PartyIndividual</code> then the constraint logical expressions applies to the whole Party as a single entity. If a Party is a <code>PartyCollection</code> then the constraint logical expressions applies to each of the entities identified by the Party.</p>
+        
+
+    <blockquote>
+<p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> are a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
+    The assignee also has a constraint that indicates only members of the group over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
+   </p>
+    </blockquote>
+<pre class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:4444",
+    "permission": [{
+        "target": "http://example.com/myPhotos:BdayParty",
+        "assigner": "http://example.com/user44",
+        "assignee": {
+            "@type": "PartyCollection",
+            "uid":  "http://example.com/user44/friends",
+            "constraint": [{
+                "leftOperand": "foaf:age",
+                "operator": "gt",
+                "rightOperand": "17"
+            }],
+        },
+        "action": "display"
+    }]
+}
+</pre>
+    
+</section>
     
 </section>
 
@@ -1128,7 +1179,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 	
 </section>
     
-       <section id="conflict">
+<section id="conflict">
 <h4>Policy Conflict Strategy</h4>
         
 <p>The <code>conflict</code> property is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies as a result of <a href="#inhertiance">Policy Inheritance</a> and the resultant Rules are inconsistent.</p>
@@ -1191,12 +1242,10 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 
 <p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
     </section>
-    
-    
+
     
 
 </section>
-    
     
     
 
@@ -1348,6 +1397,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <li>Removed the type property and replaced with subclasses of Policy. Added Set/Offer/Agreement to the IM. Set is now default for Policy. <code><a href="https://github.com/w3c/poe/issues/154">(Issue#154)</a></code></li>
     
      <li>Removed (deprecated) the Undefined Actions section. <code><a href="https://github.com/w3c/poe/issues/139">(Issue#139)</a></code></li>
+            
+    <li>Removed Scopes and replaced with Constraints on Asset and Party. <code><a href="https://github.com/w3c/poe/issues/183">(Issue#183)</a></code></li>
     
 </ul>
 </section>
