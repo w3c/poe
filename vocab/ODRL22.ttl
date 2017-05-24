@@ -94,8 +94,9 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Asset"@en ;
     skos:member :Asset ;
-    skos:member :relation ;
-    skos:member :AssetScope .
+    skos:member :AssetIndividual ;
+    skos:member :AssetCollection ;
+    skos:member :relation .
 
 <http://www.w3.org/ns/odrl/2/#assetRelations>
     a skos:Collection ;
@@ -108,14 +109,9 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Party"@en ;
     skos:member :Party ;
-    skos:member :function ;
-    skos:member :PartyScope .
-
-<http://www.w3.org/ns/odrl/2/#partyAssetConcepts>
-    a skos:Collection ;
-    skos:prefLabel "Party and Asset"@en ;
-    skos:member :scope .
-
+    skos:member :PartyIndividual ;
+    skos:member :PartyCollection ;
+    skos:member :function .
 
 <http://www.w3.org/ns/odrl/2/#partyRoles>
     a skos:Collection ;
@@ -134,17 +130,6 @@ odrl:
     skos:member :informingParty ;
     skos:member :trackingParty ;
     skos:member :trackedParty .
-
-
-<http://www.w3.org/ns/odrl/2/#partyScopes>
-    a skos:Collection ;
-    skos:prefLabel "Party Scopes"@en ;
-    skos:member :Group ;
-    skos:member :Individual ;
-    skos:member :All ;
-    skos:member :AllConnections ;
-    skos:member :All2ndConnections ;
-    skos:member :AllGroups .
 
 <http://www.w3.org/ns/odrl/2/#actionConcepts>
     a skos:Collection ;
@@ -333,8 +318,16 @@ odrl:
     skos:member :UndefinedTerm ;
     skos:member :undefined ;
     skos:member :ignore ;
-    skos:member :support .
-
+    skos:member :support ;
+    skos:member :AssetScope ;
+    skos:member :PartyScope ;
+    skos:member :scope ;
+    skos:member :Group ;
+    skos:member :Individual ;
+    skos:member :All ;
+    skos:member :AllConnections ;
+    skos:member :All2ndConnections ;
+    skos:member :AllGroups .
 
 
 ## SKOS Concept Schemes
@@ -363,6 +356,22 @@ odrl:
 	skos:definition "An identifiable resource that is the subject of a Rule."@en ;
     skos:note "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata."@en .
 
+:AssetIndividual
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf :Asset ;
+	owl:disjointWith :AssetCollection ;
+	rdfs:label "Asset Individual"@en ;
+	skos:definition "An Asset that is a single resource"@en .
+
+:AssetCollection
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf :Asset ;
+	owl:disjointWith :AssetIndividual ;
+	rdfs:label "Asset Collection"@en ;
+	skos:definition "An Asset that is collection of individual resources"@en .
+
 ## Parties
 
 :Party
@@ -375,6 +384,23 @@ odrl:
 		owl:unionOf ( schema:Person schema:Organization foaf:Person foaf:Organization foaf:Agent vcard:Individual vcard:Organization vcard:Agent ) ;
 	];
 	skos:note "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]]."@en .
+
+
+:PartyIndividual
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf :Party ;
+	owl:disjointWith :PartyCollection ;
+	rdfs:label "Party Individual"@en ;
+	skos:definition "A Party that is a single entity"@en .
+
+:PartyCollection
+	a rdfs:Class , owl:Class ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:subClassOf :Party ;
+	owl:disjointWith :PartyIndividual ;
+	rdfs:label "Party Collection"@en ;
+	skos:definition "A Party that is a group of individual entities"@en .
 
 ## Policies
 
@@ -627,10 +653,7 @@ odrl:
 	rdfs:label "Scope"@en ;
 	skos:definition "The identifier of a scope that provides context to the extent of the entity."@en ;
 	skos:note "Used to define scopes for Assets and Parties."@en ;
-	rdfs:range [
-		a owl:Class ;
-		owl:unionOf ( :AssetScope :PartyScope ) ;
-	] .
+    owl:deprecated true .
 
 :action
 	a rdf:Property , owl:ObjectProperty ;
@@ -649,7 +672,10 @@ odrl:
 	rdfs:label "Has Constraint"@en ;
 	skos:definition "The constraint relating to the Rule."@en ;
 	skos:note "One or more constraints which affect the validity of the Rule; e.g. if the Action play is only permitted for a certain period of time."@en ;
-	rdfs:domain :Rule ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Rule :Asset :Party ) ;
+	] ;
 	rdfs:range :Constraint .
 
 :duty
@@ -1000,7 +1026,7 @@ odrl:
 	rdfs:label "Product Context"@en ;
 	skos:definition "Product or service used for exercising the Action."@en ;
 	skos:note "Example: The Asset image may only be reproduced in the XYZ Magazine."@en ;
-  skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en .
 
 :purpose
 	a :LeftOperand, owl:NamedIndividual ;
@@ -1801,7 +1827,8 @@ odrl:
 	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Asset Scope"@en ;
 	skos:definition "Scopes for Asset Scope expressions."@en ;
-	skos:note "Instances of the AssetScope class represent the terms for the scope property of Assets."@en .
+	skos:note "Instances of the AssetScope class represent the terms for the scope property of Assets."@en ;
+    owl:deprecated true .
 
 :PartyScope
 	a rdfs:Class , owl:Class ;
@@ -1809,7 +1836,8 @@ odrl:
 	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Party Scope"@en ;
 	skos:definition "Scopes for Party Scope expressions."@en ;
-	skos:note "Instances of the PartyScope class represent the terms for the scope property of Parties."@en .
+	skos:note "Instances of the PartyScope class represent the terms for the scope property of Parties."@en ;
+    owl:deprecated true .
 
 :All
 	a :PartyScope, owl:NamedIndividual ;
@@ -1817,7 +1845,8 @@ odrl:
 	rdfs:label "All"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the collective individuals within a context."@en ;
 	skos:note "For example, may be used to indicate all the users of a specific social network the party is a member of. Note that “group” scope is also assumed."@en ;
-    skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en ;
+    owl:deprecated true .
 
 :All2ndConnections
 	a :PartyScope, owl:NamedIndividual ;
@@ -1825,7 +1854,8 @@ odrl:
 	rdfs:label "All Second-level Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the second-level connections to the Party."@en ;
 	skos:note "For example, may be used to indicate all “friends of friends” of the Party. Note that “group” scope is also assumed."@en ;
-    skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en ;
+    owl:deprecated true .
 
 :AllConnections
 	a :PartyScope, owl:NamedIndividual ;
@@ -1833,7 +1863,8 @@ odrl:
 	rdfs:label "All First-Level Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the first-level connections of the Party."@en ;
 	skos:note "For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed."@en ;
-    skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en ;
+    owl:deprecated true .
 
 :AllGroups
 	a :PartyScope, owl:NamedIndividual ;
@@ -1841,20 +1872,23 @@ odrl:
 	rdfs:label "All Group Connections"@en ;
 	skos:definition "Specifies that the scope of the relationship is all of the group connections of the Party."@en ;
 	skos:note "For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed."@en ;
-    skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en ;
+    owl:deprecated true .
 
 :Group
 	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Group"@en ;
 	skos:definition "Specifies that the scope of the relationship is the defined group with multiple individual members."@en ;
-    skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en ;
+    owl:deprecated true .
 
 :Individual
 	a :PartyScope, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Individual"@en ;
-	skos:definition "Specifies that the scope of the relationship is the single Party individual."@en .
+	skos:definition "Specifies that the scope of the relationship is the single Party individual."@en ;
+    owl:deprecated true .
 
 ## Deprecated terms
 

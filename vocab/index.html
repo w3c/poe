@@ -65,7 +65,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
 <tr><th>Note:</th> <td>Rule is an abstract concept.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Duty">Duty</a>, <a href="#term-Permission">Permission</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-constraint">constraint</a>, <a href="#term-output">output</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-output">output</a></td></tr>
 </table>
 </section><section id="term-profile"><h3>Profile</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The identifier of an ODRL Profile that the Policy conforms to.</td></tr>
@@ -138,7 +138,20 @@
 <tr><th>Label:</th> <td>Asset</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a></td></tr>
 <tr><th>Note:</th> <td>The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata.</td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-AssetIndividual">AssetIndividual</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
+</table>
+</section><section id="term-AssetIndividual"><h3>Asset Individual</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>An Asset that is a single resource</td></tr>
+<tr><th>Label:</th> <td>Asset Individual</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AssetIndividual">http://www.w3.org/ns/odrl/2/AssetIndividual</a></td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+</table>
+</section><section id="term-AssetCollection"><h3>Asset Collection</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>An Asset that is collection of individual resources</td></tr>
+<tr><th>Label:</th> <td>Asset Collection</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AssetCollection">http://www.w3.org/ns/odrl/2/AssetCollection</a></td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 </table>
 </section><section id="term-relation"><h3>Relation</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relation is an abstract property which creates an explicit link between an Action and an Asset.</td></tr>
@@ -148,13 +161,6 @@
 <tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
-</table>
-</section><section id="term-AssetScope"><h3>Asset Scope</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Scopes for Asset Scope expressions.</td></tr>
-<tr><th>Label:</th> <td>Asset Scope</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AssetScope">http://www.w3.org/ns/odrl/2/AssetScope</a></td></tr>
-<tr><th>Note:</th> <td>Instances of the AssetScope class represent the terms for the scope property of Assets.</td></tr>
-<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
 </table>
 </section></section><section id="assetRelations"><h2>Asset Relations</h2><section id="term-target"><h3>Target</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The target property indicates the Asset that is the primary subject to which the Rule action directly applies.</td></tr>
@@ -179,6 +185,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
 <tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://schema.org/Organization">schema:Organization</a>, <a href="http://schema.org/Person">schema:Person</a>, <a href="http://www.w3.org/2006/vcard/ns#Agent">vcard:Agent</a>, <a href="http://www.w3.org/2006/vcard/ns#Individual">vcard:Individual</a>, <a href="http://www.w3.org/2006/vcard/ns#Organization">vcard:Organization</a>, <a href="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</a>, <a href="http://xmlns.com/foaf/0.1/Organization">foaf:Organization</a>, <a href="http://xmlns.com/foaf/0.1/Person">foaf:Person</a></td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-PartyCollection">PartyCollection</a>, <a href="#term-PartyIndividual">PartyIndividual</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
 </table>
 </section><section id="term-function"><h3>Function</h3><table class='def propdef' >
@@ -189,13 +196,17 @@
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
-</section><section id="term-PartyScope"><h3>Party Scope</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Scopes for Party Scope expressions.</td></tr>
-<tr><th>Label:</th> <td>Party Scope</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyScope">http://www.w3.org/ns/odrl/2/PartyScope</a></td></tr>
-<tr><th>Note:</th> <td>Instances of the PartyScope class represent the terms for the scope property of Parties.</td></tr>
-<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-All">All</a>, <a href="#term-All2ndConnections">All2ndConnections</a>, <a href="#term-AllConnections">AllConnections</a>, <a href="#term-AllGroups">AllGroups</a>, <a href="#term-Group">Group</a>, <a href="#term-Individual">Individual</a></td></tr>
+</section><section id="term-PartyIndividual"><h3>Party Individual</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>A Party that is a single entity</td></tr>
+<tr><th>Label:</th> <td>Party Individual</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyIndividual">http://www.w3.org/ns/odrl/2/PartyIndividual</a></td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</section><section id="term-PartyCollection"><h3>Party Collection</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>A Party that is a group of individual entities</td></tr>
+<tr><th>Label:</th> <td>Party Collection</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyCollection">http://www.w3.org/ns/odrl/2/PartyCollection</a></td></tr>
+<tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
 </table>
 </section></section><section id="partyRoles"><h2>Party Functions</h2><section id="term-assignee"><h3>Assignee</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party is the recipient of the policy statement.</td></tr>
@@ -304,58 +315,6 @@
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 <tr><th>Status:</th> <td>Non-Normative</td></tr>
 </table>
-</section></section><section id="partyScopes"><h2>Party Scopes</h2><section id="term-Group"><h3>Group</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is the defined group with multiple individual members.</td></tr>
-<tr><th>Label:</th> <td>Group</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Group">http://www.w3.org/ns/odrl/2/Group</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-Individual"><h3>Individual</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is the single Party individual.</td></tr>
-<tr><th>Label:</th> <td>Individual</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Individual">http://www.w3.org/ns/odrl/2/Individual</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-</table>
-</section><section id="term-All"><h3>All</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the collective individuals within a context.</td></tr>
-<tr><th>Label:</th> <td>All</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/All">http://www.w3.org/ns/odrl/2/All</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be used to indicate all the users of a specific social network the party is a member of. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-AllConnections"><h3>All First-Level Connections</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the first-level connections of the Party.</td></tr>
-<tr><th>Label:</th> <td>All First-Level Connections</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be used to indicate all “friends” of the Party. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-All2ndConnections"><h3>All Second-level Connections</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the second-level connections to the Party.</td></tr>
-<tr><th>Label:</th> <td>All Second-level Connections</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/All2ndConnections">http://www.w3.org/ns/odrl/2/All2ndConnections</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be used to indicate all “friends of friends” of the Party. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section><section id="term-AllGroups"><h3>All Group Connections</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Specifies that the scope of the relationship is all of the group connections of the Party.</td></tr>
-<tr><th>Label:</th> <td>All Group Connections</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td></tr>
-<tr><th>Note:</th> <td>For example, may be used to indicate all groups that the Party is a member of. Note that “group” scope is also assumed.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-PartyScope">PartyScope</a></td></tr>
-<tr><th>Status:</th> <td>Non-Normative</td></tr>
-</table>
-</section></section><section id="partyAssetConcepts"><h2>Party and Asset</h2><section id="term-scope"><h3>Scope</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The identifier of a scope that provides context to the extent of the entity.</td></tr>
-<tr><th>Label:</th> <td>Scope</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td></tr>
-<tr><th>Note:</th> <td>Used to define scopes for Assets and Parties.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-AssetScope">AssetScope</a>, <a href="#term-PartyScope">PartyScope</a></td></tr>
-</table>
 </section></section><section id="permissions"><h2>Permission</h2><section id="term-Permission"><h3>Permission</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An Action that may be performed over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Permission</td></tr>
@@ -363,7 +322,7 @@
 <tr><th>Note:</th> <td>In other words, what the assigner (supplier) has granted to the assignee (consumer).</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-duty">duty</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-constraint">constraint</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a></td></tr>
 </table>
 </section><section id="term-permission"><h3>Has Permission</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates the description of an individual Permission to a Policy.</td></tr>
@@ -379,7 +338,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Prohibition">http://www.w3.org/ns/odrl/2/Prohibition</a></td></tr>
 <tr><th>Note:</th> <td>Prohibitions are issued by the supplier of the Asset – the Party with the function assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-constraint">constraint</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a></td></tr>
 </table>
 </section><section id="term-prohibition"><h3>Has Prohibition</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates the description of an individual Prohibition to a Policy.</td></tr>
@@ -661,7 +620,7 @@
 <tr><th>Label:</th> <td>Duty</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Duty">http://www.w3.org/ns/odrl/2/Duty</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-constraint">constraint</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a></td></tr>
 </table>
 </section><section id="term-duty"><h3>Has Duty</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The duty relating to the Permission.</td></tr>
@@ -777,7 +736,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/constraint">http://www.w3.org/ns/odrl/2/constraint</a></td></tr>
 <tr><th>Note:</th> <td>One or more constraints which affect the validity of the Rule; e.g. if the Action play is only permitted for a certain period of time.</td></tr>
 <tr><th>Range:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-Operator"><h3>Operator</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Operators for constraint expressions.</td></tr>
@@ -1631,7 +1590,7 @@
 <section class="appendix" id="deprecate">
 <h2>Deprecated Terms</h2>
  
-            <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td><a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td><a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td><a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td></td></tr><tr id="term-inheritRelation"><td>Inherit Relation</td><td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td><td></td></tr><tr id="term-UndefinedTerm"><td>Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td><td></td></tr><tr id="term-undefined"><td>Handle Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td><td></td></tr><tr id="term-ignore"><td>Ignore Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/ignore">http://www.w3.org/ns/odrl/2/ignore</a></td><td></td></tr><tr id="term-support"><td>Support Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/support">http://www.w3.org/ns/odrl/2/support</a></td><td></td></tr></tbody></table>           
+            <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td><a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td><a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td><a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td></td></tr><tr id="term-inheritRelation"><td>Inherit Relation</td><td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td><td></td></tr><tr id="term-UndefinedTerm"><td>Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td><td></td></tr><tr id="term-undefined"><td>Handle Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td><td></td></tr><tr id="term-ignore"><td>Ignore Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/ignore">http://www.w3.org/ns/odrl/2/ignore</a></td><td></td></tr><tr id="term-support"><td>Support Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/support">http://www.w3.org/ns/odrl/2/support</a></td><td></td></tr><tr id="term-AssetScope"><td>Asset Scope</td><td><a href="http://www.w3.org/ns/odrl/2/AssetScope">http://www.w3.org/ns/odrl/2/AssetScope</a></td><td></td></tr><tr id="term-PartyScope"><td>Party Scope</td><td><a href="http://www.w3.org/ns/odrl/2/PartyScope">http://www.w3.org/ns/odrl/2/PartyScope</a></td><td></td></tr><tr id="term-scope"><td>Scope</td><td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td><td></td></tr><tr id="term-Group"><td>Group</td><td><a href="http://www.w3.org/ns/odrl/2/Group">http://www.w3.org/ns/odrl/2/Group</a></td><td></td></tr><tr id="term-Individual"><td>Individual</td><td><a href="http://www.w3.org/ns/odrl/2/Individual">http://www.w3.org/ns/odrl/2/Individual</a></td><td></td></tr><tr id="term-All"><td>All</td><td><a href="http://www.w3.org/ns/odrl/2/All">http://www.w3.org/ns/odrl/2/All</a></td><td></td></tr><tr id="term-AllConnections"><td>All First-Level Connections</td><td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td><td></td></tr><tr id="term-All2ndConnections"><td>All Second-level Connections</td><td><a href="http://www.w3.org/ns/odrl/2/All2ndConnections">http://www.w3.org/ns/odrl/2/All2ndConnections</a></td><td></td></tr><tr id="term-AllGroups"><td>All Group Connections</td><td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td><td></td></tr></tbody></table>           
 </section>
    
 <section class="appendix" id="ack">
@@ -1710,6 +1669,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
     <li>Removed support for Qnames and Qcodes in XML serialisation. <code><a href="https://github.com/w3c/poe/issues/151">(Issue#151)</a></code></li>
     
+     <li>Removed Scopes and replaced with Constraints on Asset and Party. <code><a href="https://github.com/w3c/poe/issues/183">(Issue#183)</a></code></li>
     
 </ul></section>
         
