@@ -43,7 +43,7 @@
 	
 <section id="conformance">
     
-    <p>The examples throughout the document are serialized as [[json-ld]]. For normative serialisations, including the JSON context, please refer to the ODRL Vocabulary and Expression [[!vocab-odrl]].</p>
+    <p>The examples throughout the document are serialized as [[json-ld]]. For normative serialisations, including the JSON context, please refer to the ODRL Vocabulary and Expression [[!odrl-vocab]].</p>
     
     </section>
 	
@@ -153,7 +153,7 @@
 <li>A Policy MAY include the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See <a href="#profile">ODRL Profiles</a> for more details.)</li>
 </ul>
 
-<p>An ODRL Policy MAY be subclasssed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses may be documented in the ODRL Common Vocabulary [[!vocab-odrl]] or in ODRL Profiles. 
+<p>An ODRL Policy MAY be subclasssed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses may be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
     
 <section id="policy-set">
 <h3>Set</h3> 
@@ -279,7 +279,7 @@
     
 <p>The <code><em>relation</em></code> subtype of <code>target</code> MUST be supported. The <code>target </code> relation indicates that the Asset is the primary subject to which the Rule action directly applies.</p>
     
-<p>Other <code><em>relation</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other <code><em>relation</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
     
         
  <blockquote>   
@@ -363,7 +363,7 @@
 <li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
 </ul>
  
-    <p>Other <code><em>function</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+    <p>Other <code><em>function</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
     
 
 <blockquote>
@@ -441,7 +441,7 @@
     <p>
      All ODRL core and common terms are defined with either <code>use</code> or <code>transfer</code> as the parent term. See <a href="#profile">ODRL Profiles</a> for more details.
     </p>
-<p>The ODRL Common Vocabulary [[!vocab-odrl]] defines a standard set of generic Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
+<p>The ODRL Common Vocabulary [[!odrl-vocab]] defines a standard set of generic Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
 
     <blockquote>
 <p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset (<code>play</code> is defined as a narrower term of <code>use</code>).</p> 
@@ -668,7 +668,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 </ul>
         
     
-<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!vocab-odrl]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
+<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!odrl-vocab]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
     
 <p>The <code>operator</code> identifies the logical operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
@@ -754,7 +754,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     <li><code>andSequence</code> - the left operand Atomic Constraint must deliver a satisfied result before the right operand Atomic Constraint is evaluated.</li>
     </ul>
 
-    <p>Other <code>operator</code> values MAY be defined in the ODRL Common Vocabulary [[!vocab-odrl]] or ODRL Profiles.</p>
+    <p>Other <code>operator</code> values MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or ODRL Profiles.</p>
     
 <p>The <code>andSequence</code> operator is an example where there are temporal conditional requirements between the two left and rigt operands. This may lead to situations where the outcome is unresolvable, such as <em>deadlock</em> if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</p>
     
@@ -1047,9 +1047,9 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
      <section id="provenace">
 <h4>Policy Provenance</h4>
          
-       <p>Provenance properties MAY be added to a Policy to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[!dcterms]] for ODRL Policies.</p>
+       <p>Provenance properties MAY be added to a Policy to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[dcterms]] for ODRL Policies.</p>
          
-         <p>The following Dublin Core Metadata Terms [[!dcterms]] SHOULD be used:</p>
+         <p>The following Dublin Core Metadata Terms [[dcterms]] SHOULD be used:</p>
             <ul>
          <li><code>dc:creator</code> - the individual, agent, or organisation that authored the Policy.</li>      <li><code>dc:description</code> - a human-readable representation or summary of the Policy.</li>
          <li><code>dc:issued</code> - the date (and time) the Policy was first issued.</li>
@@ -1202,7 +1202,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
 <li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
 </ul>
-<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Other <code>conflict</code> property values MAY be defined in the ODRL Common Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p></p>
+<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Other <code>conflict</code> property values MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p></p>
 
         
 <p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
@@ -1267,7 +1267,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     <section id="profile-motivation">
     <h3>ODRL Profile Purpose</h3>
         
-<p>The ODRL Information Model serves as a core framework and vocabulary to express Policies. The ODRL Common Vocabulary [[!vocab-odrl]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions. For some communities, this flexibility and wide-range of terms supports their requirements for policy expression. Other communities may wish to have a more focussed and specific set of terms that meets their sector's requirements more precisley. 
+<p>The ODRL Information Model serves as a core framework and vocabulary to express Policies. The ODRL Common Vocabulary [[!odrl-vocab]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions. For some communities, this flexibility and wide-range of terms supports their requirements for policy expression. Other communities may wish to have a more focussed and specific set of terms that meets their sector's requirements more precisley. 
 </p>
         
         <p>In this latter case, it is recommended that a community create and document an ODRL Profile. An ODRL Profile directly and explicitly serves their communities needs by specifying only the terms they wish to support in ODRL expressions. These terms may come from the ODRL Common Vocabulary or may be created as new terms.</p>
