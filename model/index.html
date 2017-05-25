@@ -72,6 +72,10 @@
 	          <dd>The context, such as limitations, restrictions, or interpretations, that must be applied to an Action, Party, or Asset</dd>
            <dt><dfn>ODRL Processor</dfn></dt>
 	          <dd>A system that provides services that creates, manipulates, and validates ODRL Policy expressions.</dd>
+            <dt><dfn>ODRL Common Vocabulary</dfn></dt>
+	          <dd>A set of generic terms that may be used with the ODRL core vocuabyulary to express Policies.</dd>
+             <dt><dfn>ODRL Profile</dfn></dt>
+	          <dd>A community or sector specific vocabulary that extends the ODRL core vocabulary with new terms and/or ODRL Common Vocabulary terms to express Policies</dd>
              </dl>
 	
 </section>
@@ -149,7 +153,7 @@
 <li>A Policy MAY include the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See <a href="#profile">ODRL Profiles</a> for more details.)</li>
 </ul>
 
-<p>An ODRL Policy MAY be subclasssed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses are documented in the ODRL Vocabulary [[!vocab-odrl]] or in ODRL Profiles. 
+<p>An ODRL Policy MAY be subclasssed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses may be documented in the ODRL Common Vocabulary [[!vocab-odrl]] or in ODRL Profiles. 
     
 <section id="policy-set">
 <h3>Set</h3> 
@@ -275,7 +279,7 @@
     
 <p>The <code><em>relation</em></code> subtype of <code>target</code> MUST be supported. The <code>target </code> relation indicates that the Asset is the primary subject to which the Rule action directly applies.</p>
     
-<p>Other <code><em>relation</em></code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+<p>Other <code><em>relation</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
         
  <blockquote>   
@@ -359,7 +363,7 @@
 <li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
 </ul>
  
-    <p>Other <code><em>function</em></code> subtype properties SHOULD be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
+    <p>Other <code><em>function</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p>
     
 
 <blockquote>
@@ -429,10 +433,18 @@
     
     <p>The Rule provides the specific interpretations of the Action. For example; an Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be performed on the target Asset. When related to a Duty, the Action indicates the agreed operation that is <em>obligatory</em> to be performed by a Party</p>
     
-<p>The ODRL Vocabulary [[!vocab-odrl]] defines a standard set of common Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
+    <p>The ODRL Information Model defines the following top-level Actions:</p>
+    <ul>
+    <li><code>use</code> - actions that involve general usage by parties. </li>
+        <li><code>transfer</code> - actions that involve in the transfer of ownership to third parties.</li>
+    </ul>
+    <p>
+     All ODRL core and common terms are defined with either <code>use</code> or <code>transfer</code> as the parent term. See <a href="#profile">ODRL Profiles</a> for more details.
+    </p>
+<p>The ODRL Common Vocabulary [[!vocab-odrl]] defines a standard set of generic Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
 
     <blockquote>
-<p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset.</p> 
+<p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset (<code>play</code> is defined as a narrower term of <code>use</code>).</p> 
     </blockquote>
     
 <pre class="example hljs json">
@@ -656,7 +668,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 </ul>
         
     
-<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Vocabulary [[!vocab-odrl]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
+<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!vocab-odrl]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
     
 <p>The <code>operator</code> identifies the logical operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
@@ -742,7 +754,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     <li><code>andSequence</code> - the left operand Atomic Constraint must deliver a satisfied result before the right operand Atomic Constraint is evaluated.</li>
     </ul>
 
-    <p>Other <code>operator</code> values MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] or ODRL Profiles.</p>
+    <p>Other <code>operator</code> values MAY be defined in the ODRL Common Vocabulary [[!vocab-odrl]] or ODRL Profiles.</p>
     
 <p>The <code>andSequence</code> operator is an example where there are temporal conditional requirements between the two left and rigt operands. This may lead to situations where the outcome is unresolvable, such as <em>deadlock</em> if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</p>
     
@@ -1190,7 +1202,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
 <li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
 </ul>
-<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Other <code>conflict</code> property values MAY be defined in the ODRL Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p></p>
+<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Other <code>conflict</code> property values MAY be defined in the ODRL Common Vocabulary [[!vocab-odrl]] and ODRL Profiles.</p></p>
 
         
 <p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
@@ -1253,53 +1265,76 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <h2>ODRL Profiles</h2>
 
     <section id="profile-motivation">
-    <h3>Motivation</h3>
+    <h3>ODRL Profile Purpose</h3>
         
-<p>The ODRL Information Model serves as a framework to express Policies and the ODRL vocabulary [[!vocab-odrl]] provides a broad range of common actions for Permissions, Prohibition, Duties as well as Policy Types, Constraint names, Asset relations, and Party roles. For communities that implement ODRL, the entire ODRL Information Framework and the entire Vocabulary would be too onerous when they will typically have very specific needs, as well as needs not covered by the ODRL vocabulary. </p>
-<p>In these common cases, it is strongly recommended that a community create and formally document an ODRL Profile. An ODRL Profile will directly serve the communities needs by excluding features of the ODRL Information Model that they do not require (for example, inheritance) and specifying only the terms of the ODRL Vocabulary they wish to support. In addition, the ODRL Profile may include additional vocabulary terms specific to their community.</p>
-        <p>The ODRL Profile may also include specific implementation details on how to determine the status and processing of Rules and Constraints. For example, the ODRL Profile may require the use of a third-party time service to ensure temporal constraints are meet correctly (and will document the API details etc), or document the API to access values that need to be compared to the ODRL expression values (such as what location is the asset currently being used in).</p>
+<p>The ODRL Information Model serves as a core framework and vocabulary to express Policies. The ODRL Common Vocabulary [[!vocab-odrl]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions. For some communities, this flexibility and wide-range of terms supports their requirements for policy expression. Other communities may wish to have a more focussed and specific set of terms that meets their sector's requirements more precisley. 
+</p>
+        
+        <p>In this latter case, it is recommended that a community create and document an ODRL Profile. An ODRL Profile directly and explicitly serves their communities needs by specifying only the terms they wish to support in ODRL expressions. These terms may come from the ODRL Common Vocabulary or may be created as new terms.</p>
+        
     </section>
     
     <section id="profile-requirements">
-    <h3>Requirements</h3>
+    <h3>ODRL Profile Mechanism</h3>
       
 <p>
-    The <code>profile</code> property in a <code>Policy</code>  is used to indicate the identifier (IRI) of the ODRL Profile for which the Policy expression conforms to. This property is OPTIONAL, but if the property appears, then any consuming system MUST understand the identified ODRL Profile and all the constraints in the ODRL Profile MUST apply to the Policy expression. If a consuming system does not understand the ODRL Profile, then it MAY continue processing the Policy expression, but it SHOULD NOT assume it has interpreted the Policy expression correctly. </p>
+    In an ODRL Policy, the <code>profile</code> property is used to indicate the identifier (IRI) of the ODRL Profile for which the Policy expression conforms to. This property is OPTIONAL, but if the property appears, then any ODRL consuming system that supports/implements the given profile MUST understand the identified ODRL Profile. If an ODRL consuming system does not understand the ODRL Profile, then it MAY continue processing the Policy expression, but it SHOULD NOT assume it has interpreted the Policy expression correctly.</p>
     
-    <p>If multiple ODRL Profiles are required, then it is recommended that a new identifier SHOULD be created to identify the combination of Profiles (and document the combined Profiles).</p>
+   
 <p>
-The requirements for communities developing ODRL Profiles MUST document the following: </p>
-<ul>
-<li>Any additions to the Information Model</li>
-<li>Any cardinality changes to the Information Model</li>
-<li>Any aspects of the Information Model that will have different default values or (editorial) interpretations</li>
-<li>Any aspects of the Information Model that is not being supported</li>
-<li>New Vocabulary terms</li>
-<li>Vocabulary terms not explicitly being supported</li>
-<li>Vocabulary terms with more specific interpretations</li>
-<li>The ODRL Profile identifier (IRI)</li>
-    </ul>
-  
-<p>The community SHOULD also create a machine-readable schema for their ODRL Profile following the appropriate serialisations options outlined in the ODRL Vocabulary and Expression specification [[!vocab-odrl]]. In this case, the ODRL Profile IRI MUST also be used as the serialisation namespace.</p>
+An ODRL Profile extends the ODRL Information Model classes and properties in the following ways:
+   </p>
 
-<p>It is also recommended to share the ODRL Profile with the <code><a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a></code> for feedback and comments. In addition, the W3C ODRL Community Group may host the ODRL Profile documents on their website. </p>
-    </section>
+<blockquote>
+ <p>Additional Policy Subclasses - create a subclass the ODRL Policy class:</p>
+</blockquote>
+<ul><li><code>ex:myPolicyType rdfs:subClassOf odrl:Policy ;</code></li></ul>
     
-<section id="profile-example">
-    <h3>Profile Examples</h3>
-<p>
-An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <code><a href="https://www.iptc.org">International Press and Telecommunications Council</a></code> for the communication of usage policies, primarily in association with the licensed distribution and use of news content by news gathering agencies, publishers, licensing organisations, business intermediaries and business consumers in the online news market-place. The RightsML ODRL Profile clearly documented:</p>
-    <ul>
-    <li>which features of the ODRL Information Model were supported,</li>
-    <li>the supported Policy classes,</li>
-    <li>the exact list of Actions to be supported for Permissions,</li>  
-    <li>more refined definitions of some ODRL vocabulary terms, and</li>
-    <li>additional Actions and Constraints (specific to the News industry).</li>
-</ul>
-    
-    <p>The Open Mobile Alliance (OMA) developed a comprehensive ODRL Profile for the mobile community. Although it was based on the ODRL Version 1.1 specification [[odrl]], the documentation included detailed specifications on the ODRL vocabulary to be supported, new and refined terms, a protocol to exchange ODRL Expressions (over mobile phones), and the relevant encoding schemas. The documentation is available here [[oma-profile]].</p>
-    
- </section>
+<blockquote>
+ <p>Additional Asset Relationships - create a subproperty of the abstract <em>relation</em> property:</p>
+</blockquote>
+<ul><li><code>ex:myRelation rdfs:subPropertyOf odrl:relation ;</code></li></ul>
+
+<blockquote>
+ <p>Additional Party Functional roles - create a subproperty of the abstract <em>fuction</em> property:</p>
+</blockquote>
+<ul><li><code>ex:myFunctionRole	rdfs:subPropertyOf odrl:function ;</code></li></ul>
+
+<blockquote>
+ <p>Additional Actions for Rules - create an instance of a Action and define its narrower parent Action:</p>
+</blockquote>
+<ul><li><code>ex:myAction a :Action ;</code></li>
+    <li><code>ex:myAction odrl:narrowerThan odrl:use ;</code></li></ul>
+        
+
+<blockquote>
+    <p>Additional Constraint left operards - create an instance of the LeftOperand class:</p>
+</blockquote>
+<ul><li><code>ex:myLeftOperand a odrl:LeftOperand ;</code></li></ul>
+        
+<blockquote>
+    <p>Additional Constraint right operards - create an instance of the RightOperand class:</p>
+</blockquote>
+<ul><li><code>ex:myRightOperand a odrl:RightOperand ;</code></li></ul>
+        
+<blockquote>
+    <p>Additional Constraint operators - create an instance of the Operator class:</p>
+</blockquote>
+<ul><li><code>ex:myOperator a :Operator ;</code></li></ul>
+        
+<blockquote>
+    <p>Additional Policy Conflict strategies - create an instance of the ConflictTerm class:</p>
+</blockquote>
+<ul><li><code>:myStrategy a :ConflictTerm ;</code></li></ul>
+        
+<blockquote>
+    <p>Additional Rule class - create a suclass of the Rule class and define it as disjoint with the other Rule subclasses:</p>
+</blockquote>
+    <li><code>:myRule	rdfs:subClassOf :Rule ; </code></li>
+	<li><code>owl:disjointWith :Prohibition, :Duty :Permission ; </code></li></ul>
+
+    <p>Human-readable documenation is also recommened for each new term using  <code>rdfs:label</code> for the name, <code>skos:defintion</code> for the formal defintion, and <code>skos:note</code> for additional comments on its use.</p>
+</section>
     
 </section>
  
@@ -1308,7 +1343,7 @@ An example ODRL Profile - called RightsML [[rights-ml]] was developed by the <co
 
 <h2>Privacy Considerations</h2>
   <p>
-    ODRL Policies that support the <code>Privacy</code> Policy subclass may contain links to potentially sensitive personal information such as the identity of parties and the identity of the existence of assets containing such data related to the parties. Implementations that produce or consume ODRL Privacy expressions must take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
+    The ODRL Information Model does not directly express sensitive personal information such as the the identity of the existence of assets containing such data related to parties. However, ODRL vocabularies (such as the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles) may define terms that may relate to personal information. These specifications should inform implementations that produce or consume such ODRL expressions to take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
 
 </p>
 </section>
@@ -1399,6 +1434,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <li>Removed (deprecated) the Undefined Actions section. <code><a href="https://github.com/w3c/poe/issues/139">(Issue#139)</a></code></li>
             
     <li>Removed Scopes and replaced with Constraints on Asset and Party. <code><a href="https://github.com/w3c/poe/issues/183">(Issue#183)</a></code></li>
+            
+     <li>More clearly defined the scope of ODRL Profiles (addition only) and added how to create them. <code><a href="https://github.com/w3c/poe/issues/173">(Issue#173)</a></code></li>
+            
+    <li>Added use and transfer as the top-level actions <code><a href="https://github.com/w3c/poe/issues/140">(Issue#140)</a></code></li>
+    
     
 </ul>
 </section>
