@@ -7,14 +7,12 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix dcmit: <http://purl.org/dc/dcmitype/> .
-@prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix schema: <http://schema.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 
 odrl:
-	a owl:Ontology , voaf:Vocabulary ;
+	a owl:Ontology ;
 	rdfs:label "ODRL Version 2.2"@en ;
 	owl:versionInfo "2.2" ;
 	dct:creator "Mo McRoberts", "Renato Iannella", "Michael Steidl", "Stuart Myles", "Víctor Rodríguez-Doncel" ;
@@ -23,34 +21,6 @@ odrl:
 	dct:description "The ODRL Vocabulary and Expression defines a set of concepts and terms (the vocabulary) and encoding mechanism (the expression) for permissions and obligations statements describing digital content usage based on the ODRL Information Model."@en ;
 	rdfs:comment "This is the RDF ontology for ODRL Version 2.2 (working draft)."@en ;
 	dct:license <https://www.w3.org/Consortium/Legal/2002/ipr-notice-20021231#Copyright/> .
-
-<http://www.w3.org/ns/odrl/2/ODRL22.ttl>
-	a dcmit:Text ;
-	rdfs:label "ODRL 2.2 (Turtle Ontology Definition)"@en ;
-	dct:subject odrl: ;
-	dct:isVersionOf odrl: ;
-	dct:format <http://purl.org/NET/mediatypes/text/turtle> .
-
-<http://www.w3.org/ns/odrl/2/ODRL22.rdf>
-	a dcmit:Text ;
-	rdfs:label "ODRL 2.2 (RDF/XML Ontology Definition)"@en ;
-	dct:subject odrl: ;
-	dct:isVersionOf odrl: ;
-	dct:format <http://purl.org/NET/mediatypes/application/rdf+xml> .
-
-<http://www.w3.org/ns/odrl/2/ODRL22.xsd>
-	a dcmit:Text ;
-	rdfs:label "ODRL 2.2 (XML Schema Definition)"@en ;
-	dct:subject odrl: ;
-	dct:isVersionOf odrl: ;
-	dct:format <http://purl.org/NET/mediatypes/application/xml> .
-
-<http://www.w3.org/ns/odrl/2/ODRL22.jsonld>
-	a dcmit:Text ;
-	rdfs:label "ODRL 2.2 (JSON-LD Definition)"@en ;
-	dct:subject odrl: ;
-	dct:isVersionOf odrl: ;
-	dct:format <http://purl.org/NET/mediatypes/application/ld+json> .
 
 
 ## SKOS Collections for Grouping related concepts
@@ -2005,10 +1975,8 @@ odrl:
 	dct:description rdf:type owl:AnnotationProperty .
 	dct:isVersionOf rdf:type owl:AnnotationProperty .
 	dct:format rdf:type owl:AnnotationProperty .
-	dcmit:Text a owl:Class .	
 	skos:Collection a owl:Class .	
 	skos:Concept a owl:Class .	
 	skos:ConceptScheme a owl:Class .	
-	voaf:Vocabulary a owl:Class .
 
 	

@@ -1,2 +1,13 @@
-<p>This specification describes a number of serialization syntaxes for the ODRL Vocabulary.</p> 
-<p>Implementations of ODRL expressions MUST be serialized using the UTF-8 character encoding.</p>
+ <p>Implementations of ODRL expressions must be serialized using the UTF-8 character encoding.
+     </p>
+<div class="note">
+<p>The current (editors draft) ODRL Ontology and can be downloaded in <a href="http://w3c.github.io/poe/vocab/ODRL22.ttl">Turtle serialisation</a>.</p>
+</div>
+
+<p>The JSON-LD [[json-ld]] serialisation uses the <code>@context</code> property to define the processing context. Implementations producing ODRL expressions should include a <code>@context</code> property value using the URL <code>http://www.w3.org/ns/odrl.jsonld</code>.</p>
+
+<div class="note">
+<p>The (editors draft) ODRL JSON-LD Context can be <a href="http://w3c.github.io/poe/vocab/ODRL22.jsonld">downloaded</a>.</p>
+</div>
+
+<p>This specification also includes alternative serialization syntaxes for the ODRL Vocabulary.</p> 

@@ -17,15 +17,20 @@
 	readfile(dirname(__FILE__) . '/parts/intro.html');
 ?>
         
-<section id="conformance"></section>
+<section id="conformance">
         
-<section id="vocab">
-	<h2>Vocabulary</h2>
+     <?php
+        readfile(dirname(__FILE__) . '/parts/conformance.html');  
+          ?>       
+        
+</section>
+        
+<section id="vocab-core">
+	<h2>ODRL Core Vocabulary</h2>
 
       <?php
         readfile(dirname(__FILE__) . '/parts/vocab.html');  
-          ?>
-    
+          ?>  
 <?php
 writeGroup('policyConcepts');
 writeGroup('policySubClasses');
@@ -49,28 +54,24 @@ writeGroup('inheritanceConcepts');
     
     
 </section>
+        
+ <section id="vocab-core" class="informative">
+	<h2>ODRL Common Vocabulary</h2>
+
+     <?php
+        readfile(dirname(__FILE__) . '/parts/vocab-core.html');  
+          ?>
+    
+</section>
+        
 
 <section id="encodings">
-	<h2>Vocabulary Encodings</h2>
+	<h2>Vocabulary Expression</h2>
      <?php
         readfile(dirname(__FILE__) . '/parts/encode.html');
         ?>
-     
-    <section id="rdfowl">
-   	<h3>RDF Encoding</h3>         
-     <?php
-        readfile(dirname(__FILE__) . '/parts/rdfowl.html');
-        ?>
-    </section>
-          
- <section id="json">
-   	<h2>JSON-LD Encoding</h2>         
-       <?php
-        readfile(dirname(__FILE__) . '/parts/json.html');  
-          ?>
-    </section>    
     
-    <section id="xml">
+    <section id="xml" class="informative">
    	<h2>XML Encoding</h2>         
         <?php
         readfile(dirname(__FILE__) . '/parts/xml.html');  
