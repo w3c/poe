@@ -29,7 +29,7 @@
 	<h2>ODRL Core Vocabulary</h2>
 
       <?php
-        readfile(dirname(__FILE__) . '/parts/vocab.html');  
+        readfile(dirname(__FILE__) . '/parts/vocab-core.html');  
           ?>  
 <?php
 writeGroup('policyConcepts');
@@ -43,11 +43,8 @@ writeGroup('prohibitions');
 writeGroup('actionConcepts');
 writeGroup('actions');
 writeGroup('duties');
-writeGroup('dutyActions');
 writeGroup('constraints');
-writeGroup('constraintLeftOperand');
 writeGroup('constraintOperators');
-writeGroup('constraintRightOp');
 writeGroup('conflictConcepts');
 writeGroup('inheritanceConcepts');
 ?>
@@ -55,13 +52,23 @@ writeGroup('inheritanceConcepts');
     
 </section>
         
- <section id="vocab-core" class="informative">
+ <section id="vocab-common" class="informative">
 	<h2>ODRL Common Vocabulary</h2>
 
      <?php
-        readfile(dirname(__FILE__) . '/parts/vocab-core.html');  
+        readfile(dirname(__FILE__) . '/parts/vocab-common.html');  
           ?>
-    
+    <?php
+writeGroup('policySubClassesCommon');
+writeGroup('assetRelationsCommon');
+writeGroup('partyRolesCommon');
+writeGroup('actionsCommon');
+writeGroup('dutyActionsCommon');
+writeGroup('constraintLeftOperandCommon');
+writeGroup('constraintOperatorsCommon');
+writeGroup('constraintRightOpCommon');
+?>
+     
 </section>
         
 
@@ -277,7 +284,7 @@ function writeTerm($term)
 		$html .= $term->propertyRow('Class', 'rdf:type', array('http://www.w3.org/2004/02/skos/core#Concept', 'http://www.w3.org/2002/07/owl#NamedIndividual'));
 	}
 	$html .= $term->propertyRow('Concepts', 'skos:hasTopConcept');
-    $html .= $term->propertyRow("Status", "skos:scopeNote");
+    #$html .= $term->propertyRow("Status", "skos:scopeNote");
 	#$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
 	$html .= "</table>\n";
 

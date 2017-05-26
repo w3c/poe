@@ -53,11 +53,15 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Policy Subclasses"@en ;
     skos:member :Agreement ;
-    skos:member :Assertion ;
     skos:member :Offer ;
+    skos:member :Set .
+
+<http://www.w3.org/ns/odrl/2/#policySubClassesCommon>
+    a skos:Collection ;
+    skos:prefLabel "Policy Subclasses"@en ;
+    skos:member :Assertion ;
     skos:member :Privacy ;
     skos:member :Request ;
-    skos:member :Set ;
     skos:member :Ticket .
 
 <http://www.w3.org/ns/odrl/2/#assetConcepts>
@@ -71,7 +75,11 @@ odrl:
 <http://www.w3.org/ns/odrl/2/#assetRelations>
     a skos:Collection ;
     skos:prefLabel "Asset Relations"@en ;
-    skos:member :target ;
+    skos:member :target .
+
+<http://www.w3.org/ns/odrl/2/#assetRelationsCommon>
+    a skos:Collection ;
+    skos:prefLabel "Asset Relations"@en ;
     skos:member :output .
 
 
@@ -87,7 +95,11 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Party Functions"@en ;
     skos:member :assignee ;
-    skos:member :assigner ;
+    skos:member :assigner .
+
+<http://www.w3.org/ns/odrl/2/#partyRolesCommon>
+    a skos:Collection ;
+    skos:prefLabel "Party Functions"@en ;
     skos:member :attributedParty ;
     skos:member :attributingParty ;
     skos:member :compensatedParty ;
@@ -100,6 +112,7 @@ odrl:
     skos:member :informingParty ;
     skos:member :trackingParty ;
     skos:member :trackedParty .
+
 
 <http://www.w3.org/ns/odrl/2/#actionConcepts>
     a skos:Collection ;
@@ -123,7 +136,11 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Actions for Permissions and Prohibitions"@en ;
     skos:member :use ;
-    skos:member :grantUse ;
+    skos:member :transfer .
+
+<http://www.w3.org/ns/odrl/2/#actionsCommon>
+    a skos:Collection ;
+    skos:prefLabel "Actions for Permissions and Prohibitions"@en ;
     skos:member :aggregate ;
     skos:member :annotate ;
     skos:member :anonymize ;
@@ -136,6 +153,7 @@ odrl:
     skos:member :execute ;
     skos:member :extract ;
     skos:member :give ;
+    skos:member :grantUse ;
     skos:member :index ;
     skos:member :install ;
     skos:member :modify ;
@@ -148,7 +166,6 @@ odrl:
     skos:member :sell ;
     skos:member :stream ;
     skos:member :textToSpeech ;
-    skos:member :transfer ;
     skos:member :transform ;
     skos:member :translate .
 
@@ -160,7 +177,7 @@ odrl:
     skos:member :duty ; .
 
 
-<http://www.w3.org/ns/odrl/2/#dutyActions>
+<http://www.w3.org/ns/odrl/2/#dutyActionsCommon>
     a skos:Collection ;
     skos:prefLabel "Actions for Duties"@en ;
     skos:member :acceptTracking ;
@@ -192,7 +209,7 @@ odrl:
     skos:member :dataType ;
     skos:member :status .
 
-<http://www.w3.org/ns/odrl/2/#constraintLeftOperand>
+<http://www.w3.org/ns/odrl/2/#constraintLeftOperandCommon>
     a skos:Collection ;
     skos:prefLabel "Constraint Left Operands"@en ;
     skos:member :absolutePosition ;
@@ -228,8 +245,15 @@ odrl:
     skos:member :version ;
     skos:member :virtualLocation .
 
-
 <http://www.w3.org/ns/odrl/2/#constraintOperators>
+    a skos:Collection ;
+    skos:prefLabel "Constraint Operators"@en ;
+    skos:member :or ;
+    skos:member :xor ;
+    skos:member :and ;
+    skos:member :andSequence .
+
+<http://www.w3.org/ns/odrl/2/#constraintOperatorsCommon>
     a skos:Collection ;
     skos:prefLabel "Constraint Operators"@en ;
     skos:member :eq ;
@@ -249,7 +273,7 @@ odrl:
     skos:member :and ;
     skos:member :andSequence .
 
-<http://www.w3.org/ns/odrl/2/#constraintRightOp>
+<http://www.w3.org/ns/odrl/2/#constraintRightOpCommon>
     a skos:Collection ;
     skos:prefLabel "Constraint Right Operands"@en ;
     skos:member :policyUsage .
@@ -386,24 +410,21 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
     skos:definition "Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy."@en ;
     skos:note "Instances of ConflictTerm describe strategies for resolving conflicts."@en ;
-	rdfs:label "Conflict Strategy Preference"@en ;
-    skos:scopeNote "Non-Normative"@en .
+	rdfs:label "Conflict Strategy Preference"@en .
 
 :perm
 	a :ConflictTerm, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Prefer Permissions"@en ;
     skos:definition "Permissions take preference over prohibitions."@en ;
-    skos:note "Used to determine policy conflict outcomes."@en ;
-    skos:scopeNote "Non-Normative"@en .
+    skos:note "Used to determine policy conflict outcomes."@en .
 
 :prohibit
 	a :ConflictTerm, owl:NamedIndividual;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Prefer Prohibitions"@en ;
     skos:definition "Prohibitions take preference over permissions."@en ;
-	skos:note "Used to determine policy conflict outcomes."@en ;
-    skos:scopeNote "Non-Normative"@en .
+	skos:note "Used to determine policy conflict outcomes."@en .
 
 :UndefinedTerm
 	a rdfs:Class, owl:Class ;
@@ -444,8 +465,7 @@ odrl:
 	skos:definition "The conflict-resolution strategy for a Policy."@en ;
 	skos:note "If no strategy is specified, the default is invalid."@en ;
 	rdfs:domain :Policy ;
-	rdfs:range :ConflictTerm ;
-    skos:scopeNote "Non-Normative"@en .
+	rdfs:range :ConflictTerm .
 
 :undefined
 	a rdf:Property , owl:ObjectProperty ;
@@ -487,8 +507,7 @@ odrl:
 	skos:definition "Indicates if the Policy entity can be inherited."@en ;
 	skos:note "A boolean value."@en ;
 	rdfs:domain :Policy ;
-	rdfs:range xsd:boolean ;
-    skos:scopeNote "Non-Normative"@en .
+	rdfs:range xsd:boolean .
 
 :inheritFrom
 	a rdf:Property , owl:ObjectProperty ;
@@ -497,8 +516,7 @@ odrl:
 	skos:definition "Relates a (child) policy to another (parent) policy from which terms are inherited."@en ;
 	skos:note "The child policy will inherit from the parent policy"@en ;
 	rdfs:domain :Policy ;
-	rdfs:range :Policy ;
-    skos:scopeNote "Non-Normative"@en .
+	rdfs:range :Policy .
 
 :inheritRelation
 	a rdf:Property , owl:ObjectProperty ;
@@ -699,8 +717,7 @@ odrl:
 	rdfs:label "Has Right Operand Reference"@en ;
 	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
 	skos:note "Represents an IRI that must be dereferenced to obtain the actual right operand value"@en ;
-	rdfs:domain :Constraint ;
-    skos:scopeNote "Non-Normative"@en .
+	rdfs:domain :Constraint .
 
 :leftOperand
 	a rdf:Property ;
@@ -715,8 +732,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Status"@en ;
 	skos:definition "the current value generated from the leftOperand action."@en ;
-	rdfs:domain :Constraint ;
-    skos:scopeNote "Non-Normative"@en .
+	rdfs:domain :Constraint .
 
 ## Operators
 
@@ -732,19 +748,22 @@ odrl:
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Equal to"@en ;
-	skos:definition "Indicating that a given value equals the right operand of the Constraint."@en .
+	skos:definition "Indicating that a given value equals the right operand of the Constraint."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :gt
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is greater than the right operand of the Constraint."@en ;
-	rdfs:label "Greater than"@en .
+	rdfs:label "Greater than"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :gteq
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is greater than or equal to the right operand of the Constraint."@en ;
-	rdfs:label "Greater than or equal to"@en .
+	rdfs:label "Greater than or equal to"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :hasPart
 	a :Operator, owl:NamedIndividual ;
@@ -757,7 +776,8 @@ odrl:
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is an instance of the right operand of the Constraint."@en ;
-	rdfs:label "Is a"@en .
+	rdfs:label "Is a"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :isAllOf
 	a :Operator, owl:NamedIndividual ;
@@ -791,27 +811,29 @@ odrl:
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is less than the right operand of the Constraint."@en ;
-	rdfs:label "Less than"@en .
+	rdfs:label "Less than"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :lteq
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is less than or equal to the right operand of the Constraint."@en ;
-	rdfs:label "Less than or equal to"@en .
+	rdfs:label "Less than or equal to"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :neq
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "Indicating that a given value is not equal to the right operand of the Constraint."@en ;
-	rdfs:label "Not equal to"@en .
+	rdfs:label "Not equal to"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :or
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when any of the Constraints are satisfied."@en ;
 	rdfs:label "Or"@en ;
-	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en ;
-    skos:scopeNote "Non-Normative"@en .
+	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en .
 	
 :and
 	a :Operator, owl:NamedIndividual ;
@@ -825,16 +847,14 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when only one of the Constaints is satisfied"@en ;
 	rdfs:label "Exclusive Or"@en ;
-	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en ;
-    skos:scopeNote "Non-Normative"@en .
+	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en .
 	
 :andSequence
 	a :Operator, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when the left operand Atomic Constraint  delivers a satisfied result before the right operand Atomic Constraint is evaluated. The right operand Atomic Constraint may build on the satisfaction of the left operand Atomic Constraint."@en ;
 	rdfs:label "And Sequence"@en ;
-	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en ;
-    skos:scopeNote "Non-Normative"@en .
+	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en .
 
 ## LeftOperand
 
@@ -853,7 +873,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Absolute Asset Position"@en ;
 	skos:definition "A point in space or time defined with absolute coordinates the positioning of the Asset has to comply with for excersing the Action."@en ;
-	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it."@en .
+	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :absoluteSpatialPosition
 	a :LeftOperand, owl:NamedIndividual ;
@@ -862,7 +883,7 @@ odrl:
 	rdfs:label "Absolute Spatial Asset Position"@en ;
 	skos:definition "The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cubiod in a 3D-space the Asset has to fit in after the Action."@en ;
 	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it. Note: see also the Left Operand Relative Spatial Asset Position. "@en ;
-  skos:scopeNote "Non-Normative"@en .
+   skos:scopeNote "Non-Normative"@en .
 
 :absoluteTemporalPosition
 	a :LeftOperand, owl:NamedIndividual ;
@@ -871,7 +892,7 @@ odrl:
 	rdfs:label "Absolute Temporal Asset Position"@en ;
 	skos:definition "The absolute temporal positions in a media stream the Asset has to fit in after the Action."@en ;
 	skos:note "Note: Use with Actions including the Asset in a larger media stream. The fragment part of a Media Fragment URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream."@en ;
-  skos:scopeNote "Non-Normative"@en .
+   skos:scopeNote "Non-Normative"@en .
 
 :absoluteSize
 	a :LeftOperand, owl:NamedIndividual ;
@@ -886,7 +907,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Count"@en ;
 	skos:definition "Numeric count of exercising the Action."@en ;
-	skos:note "Should be a positive integer"@en .
+	skos:note "Should be a positive integer"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :dateTime
 	a :LeftOperand, owl:NamedIndividual ;
@@ -894,7 +916,8 @@ odrl:
 	rdfs:label "Action Datetime"@en ;
 	skos:definition "The date (and optional time and timezone) to be compared to the time when the Action is exercised."@en ;
 	skos:note "Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]. The use of Timezone information is strongly recommended."@en ;
-	skos:note "The Action of the Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Action can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time."@en .
+	skos:note "The Action of the Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Action can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :delayPeriod
 	a :LeftOperand, owl:NamedIndividual ;
@@ -910,7 +933,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Delivery Channel"@en ;
 	skos:definition "The delivery channel used for exercising the Action."@en ;
-	skos:note "Example: the asset may be distributed only on mobile networks."@en .
+	skos:note "Example: the asset may be distributed only on mobile networks."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :device
 	a :LeftOperand, owl:NamedIndividual ;
@@ -934,7 +958,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Event Action"@en ;
 	skos:definition "An identified event used for exercising the Action."@en ;
-	skos:note "Events are temporal periods of time, and operators can be used to signal before, during or after the event. Example: Action may be taken during the “FIFA World Cup 2020” only."@en .
+	skos:note "Events are temporal periods of time, and operators can be used to signal before, during or after the event. Example: Action may be taken during the “FIFA World Cup 2020” only."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :fileFormat
 	a :LeftOperand, owl:NamedIndividual ;
@@ -949,14 +974,16 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Industry Context"@en ;
 	skos:definition "The defined industry sector in which the Action may be exercised."@en ;
-	skos:note "Example: publishing or financial industry."@en .
+	skos:note "Example: publishing or financial industry."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :language
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Language"@en ;
 	skos:definition "The main natural language of the Asset after exercising the Action."@en ;
-	skos:note "Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values."@en .
+	skos:note "Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values."@en ;
+    skos:scopeNote "Non-Normative"@en .
   
 :media
 	a :LeftOperand, owl:NamedIndividual ;
@@ -980,7 +1007,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Payment Amount"@en ;
 	skos:definition "The amount of a payment related to the Action of a Duty."@en ;
-	skos:note "The datatype of the right operand must be xsd:decimal. Note: Can be used for compensation duties. The data type property of the Right Operand may be used to indicate the type of the value (eg decimal) and the unit property to indicate the currency."@en .
+	skos:note "The datatype of the right operand must be xsd:decimal. Note: Can be used for compensation duties. The data type property of the Right Operand may be used to indicate the type of the value (eg decimal) and the unit property to indicate the currency."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :percentage
 	a :LeftOperand, owl:NamedIndividual ;
@@ -1003,14 +1031,16 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Purpose"@en ;
 	skos:definition "Purpose for exercising the Action."@en ;
-	skos:note "Example: Educational use."@en .
+	skos:note "Example: Educational use."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :recipient
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Recipient"@en ;
 	skos:definition "The party receiving the result of an exercised Action."@en ;
-	skos:note "Note: The Right Operand must identify one or more specific parties or category/ies of the party."@en .
+	skos:note "Note: The Right Operand must identify one or more specific parties or category/ies of the party."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :relativePosition
 	a :LeftOperand, owl:NamedIndividual ;
@@ -1163,7 +1193,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Compensate"@en ;
 	skos:definition "The Assigner requires that the Assignees compensates the Assigner (or other specified compensation Party) by some amount of value, if defined, for using or selling the Asset."@en ;
-	skos:note "The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by operator, rightOperand, dataType and unit"@en .
+	skos:note "The compensation may use different types of things with a value: (i) the thing is expressed by the value (term) of the Constraint name; (b) the value is expressed by operator, rightOperand, dataType and unit"@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :acceptTracking
 	a :Action, skos:Concept ;
@@ -1230,7 +1261,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Attribute"@en ;
 	skos:definition "The Assigner requires that the Assignees attributes the Asset to the Assigner or an attributed Party."@en ;
-	skos:note "May link to an Asset with the attribution information. May link to a Party with the  role “attributedParty” function."@en .
+	skos:note "May link to an Asset with the attribution information. May link to a Party with the  role “attributedParty” function."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :concurrentUse
 	a :Action, skos:Concept ;
@@ -1280,7 +1312,8 @@ odrl:
 	rdfs:label "Display"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to display the visual media Asset."@en ;
 	skos:note "For example, displaying an image on a screen. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used."@en ;
-	skos:broaderTransitive :present .
+	skos:broaderTransitive :present ;
+    skos:scopeNote "Non-Normative"@en .
 
 :distribute
 	a :Action, skos:Concept ;
@@ -1288,7 +1321,8 @@ odrl:
 	rdfs:label "Distribute"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to supply the Asset to third-parties."@en ;
 	skos:note "It is recommended to use nextPolicy to express the allowable usages by third-parties."@en ;
-	skos:broaderTransitive :use .
+	skos:broaderTransitive :use ;
+    skos:scopeNote "Non-Normative"@en .
 
 :ensureExclusivity
 	a :Action, skos:Concept ;
@@ -1413,7 +1447,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Next Policy"@en ;
 	skos:definition "The Assigner requires that the Assignees grants the specified Policy to a third party for their use of the Asset."@en ;
-	skos:note "Useful for downstream policies."@en .
+	skos:note "Useful for downstream policies."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :obtainConsent
 	a :Action, skos:Concept ;
@@ -1529,8 +1564,7 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Transfer"@en ;
-	skos:definition "The Assigner transfers/does not transfer the ownership in perpetuity to the Assignees."@en ;
-    skos:scopeNote "Non-Normative"@en .
+	skos:definition "The Assigner transfers/does not transfer the ownership in perpetuity to the Assignees."@en .
 
 :transform
 	a :Action, skos:Concept ;
@@ -1547,7 +1581,8 @@ odrl:
 	rdfs:label "Translate"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to translate the original natural language of an Asset into another natural language."@en ;
 	skos:note "A new derivative Asset is created by that action."@en ;
-	skos:broaderTransitive :derive .
+	skos:broaderTransitive :derive ;
+    skos:scopeNote "Non-Normative"@en .
 
 :uninstall
 	a :Action, skos:Concept ;
@@ -1615,7 +1650,8 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Attributed Party"@en ;
 	skos:definition "The Party to be attributed."@en ;
-	skos:note "Maybe specified as part of the attribute action."@en .
+	skos:note "Maybe specified as part of the attribute action."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :attributingParty
 	a rdf:Property , owl:ObjectProperty ;
@@ -1632,7 +1668,8 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Consenting Party"@en ;
 	skos:definition "The Party to obtain consent from."@en ;
-	skos:note "Maybe specified as part of the obtainConsent action."@en .
+	skos:note "Maybe specified as part of the obtainConsent action."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :consentedParty
 	a rdf:Property , owl:ObjectProperty ;
@@ -1694,7 +1731,8 @@ odrl:
 	rdfs:subPropertyOf :function ;
 	rdfs:label "Tracking Party"@en ;
 	skos:definition "The Party who is tracking usage."@en ;
-	skos:note "May be specified as part of the acceptTracking action."@en .
+	skos:note "May be specified as part of the acceptTracking action."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :trackedParty
 	a rdf:Property , owl:ObjectProperty ;
@@ -1739,7 +1777,8 @@ odrl:
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket ;
 	rdfs:label "Assertion"@en ;
 	skos:definition "A Policy that asserts a Rule over an Asset from parties."@en ;
-	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule."@en .
+	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :Offer
 	a rdfs:Class , owl:Class ;
@@ -1748,7 +1787,8 @@ odrl:
 	owl:disjointWith :Agreement, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Offer"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assigner."@en ;
-	skos:note "A Offer Policy  MUST contain a target Asset, a Party with Assigner function, and at least one of a Permission or Prohibition rule. The Offer Policy  MAY contain a Party  with Assignee function, but MUST not grant any privileges to that Party."@en .
+	skos:note "A Offer Policy  MUST contain a target Asset, a Party with Assigner function, and at least one of a Permission or Prohibition rule. The Offer Policy  MAY contain a Party  with Assignee function, but MUST not grant any privileges to that Party."@en ;
+    skos:scopeNote "Non-Normative"@en .
 
 :Privacy
 	a rdfs:Class , owl:Class ;
@@ -1758,7 +1798,7 @@ odrl:
 	rdfs:label "Privacy"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset containing personal information."@en ;
 	skos:note "A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
-   skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en .
 
 :Request
 	a rdfs:Class , owl:Class ;
