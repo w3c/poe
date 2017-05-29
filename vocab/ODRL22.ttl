@@ -594,7 +594,6 @@ odrl:
 :Constraint
 	a rdfs:Class, owl:Class ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Constraint"@en ;
 	skos:definition "The context, such as limitations, restrictions, or interpretations, that must be applied to an Action."@en ;
 	skos:note "Parent class of all Constraints."@en .
@@ -748,7 +747,6 @@ odrl:
 :Operator
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Operator"@en ;
 	skos:definition "Operators for constraint expressions."@en ;
 	skos:note "Instances of the Operator class representing boolean operators and logical relationships."@en .
@@ -870,7 +868,6 @@ odrl:
 :LeftOperand
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Left Operand"@en ;
 	skos:definition "Left operands for constraint expressions."@en ;
 	skos:note "Instances of the LeftOperand class represent the left term in a Constraint."@en .
@@ -964,7 +961,7 @@ odrl:
 :event
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Event Action"@en ;
+	rdfs:label "Event"@en ;
 	skos:definition "An identified event used for exercising the Action."@en ;
 	skos:note "Events are temporal periods of time, and operators can be used to signal before, during or after the event. Example: Action may be taken during the “FIFA World Cup 2020” only."@en ;
     skos:scopeNote "Non-Normative"@en .
@@ -973,7 +970,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "File Format"@en ;
-	skos:definition "The file format of the Asset after exercising the Action."@en ;
+	skos:definition "The file format of the transformed Asset after exercising the Action."@en ;
 	skos:note "Example: An asset may be transformed into JPEG format."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -989,7 +986,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Language"@en ;
-	skos:definition "The main natural language of the Asset after exercising the Action."@en ;
+	skos:definition "The main natural language of the transformed Asset after exercising the Action."@en ;
 	skos:note "Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values."@en ;
     skos:scopeNote "Non-Normative"@en .
   
@@ -1165,7 +1162,6 @@ odrl:
 :RightOperand
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Right Operand"@en ;
 	skos:definition "Right operands for constraint expressions."@en ;
 	skos:note "Instances of the RightOperand class represent the right term in a Constraint."@en .
@@ -1320,7 +1316,7 @@ odrl:
 	rdfs:label "Display"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to display the visual media Asset."@en ;
 	skos:note "For example, displaying an image on a screen. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used."@en ;
-	skos:broaderTransitive :present ;
+	skos:broaderTransitive :use ;
     skos:scopeNote "Non-Normative"@en .
 
 :distribute
@@ -1437,7 +1433,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Modify"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to change existing content of the Asset. A new asset is not created by this action."@en ;
-	skos:note "This action will modify an asset which is typically updated from time to time without creating a new asset like a database. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective)."@en ;
+	skos:note "This action will modify an asset which is typically updated from time to time without creating a new asset. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective)."@en ;
 	skos:broaderTransitive :use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1478,8 +1474,8 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Play"@en ;
+	skos:broaderTransitive :use ;
 	skos:definition "The Assigner permits/prohibits the Assignees to perform an audio Asset."@en ;
-	skos:broaderTransitive :present ;
     skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
     skos:scopeNote "Non-Normative"@en .
 
@@ -1487,7 +1483,7 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Present"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to perform or exhibit an Asset."@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to perform the Asset."@en ;
 	skos:broaderTransitive :use ;
    skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
     skos:scopeNote "Non-Normative"@en .
@@ -1507,7 +1503,7 @@ odrl:
 	rdfs:label "Print"@en ;
 	skos:definition "The Assigner permits/prohibits the Assignees to print an Asset onto paper or to create a hard copy."@en ;
 	skos:note "For example, creating a permanent, fixed (static), and directly perceivable representation of the Asset."@en ;
-	skos:broaderTransitive :present ;
+	skos:broaderTransitive :use ;
     skos:scopeNote "Non-Normative"@en .
 
 :read
@@ -1571,14 +1567,14 @@ odrl:
 :transfer
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Transfer"@en ;
+	rdfs:label "Transfer Ownership"@en ;
 	skos:definition "The Assigner transfers/does not transfer the ownership in perpetuity to the Assignees."@en .
 
 :transform
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Transform"@en ;
-	skos:definition "The Assigner permits/prohibits the Assignees to make a digital copy of the digital Asset in another digital format."@en ;
+	skos:definition "The Assigner permits/prohibits the Assignees to convert the Asset into a different format."@en ;
 	skos:note "Typically used to convert the Asset into a different format for consumption on/transfer to a third party system."@en ;
 	skos:broaderTransitive :use ;
     skos:scopeNote "Non-Normative"@en .
@@ -1842,7 +1838,6 @@ odrl:
 :AssetScope
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Asset Scope"@en ;
 	skos:definition "Scopes for Asset Scope expressions."@en ;
 	skos:note "Instances of the AssetScope class represent the terms for the scope property of Assets."@en ;
@@ -1851,7 +1846,6 @@ odrl:
 :PartyScope
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:subClassOf owl:Thing ;
 	rdfs:label "Party Scope"@en ;
 	skos:definition "Scopes for Party Scope expressions."@en ;
 	skos:note "Instances of the PartyScope class represent the terms for the scope property of Parties."@en ;
