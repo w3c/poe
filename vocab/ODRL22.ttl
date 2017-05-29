@@ -916,7 +916,6 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Count"@en ;
 	skos:definition "Numeric count of exercising the Action."@en ;
-	skos:note "Should be a positive integer"@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :dateTime
@@ -1016,7 +1015,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Payment Amount"@en ;
 	skos:definition "The amount of a payment related to the Action of a Duty."@en ;
-	skos:note "The datatype of the right operand must be xsd:decimal. Note: Can be used for compensation duties. The data type property of the Right Operand may be used to indicate the type of the value (eg decimal) and the unit property to indicate the currency."@en ;
+	skos:note "Right operand value MUST be an xsd:decimal. Note: Can be used for compensation duties with the unit property indicating the currency of the payment."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :percentage
@@ -1024,7 +1023,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset Percentage"@en ;
 	skos:definition "The amount of an Asset - as a percentage - used for exercising the Action."@en ;
-	skos:note "The datatype of the right operand must be xsd:decimal from 0 to 100. Example: Extract less than or equal to of 50% of the asset."@en ;
+	skos:note "Right operand value MUST be an xsd:decimal from 0 to 100. Example: Extract less than or equal to of 50% of the asset."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :product
