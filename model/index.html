@@ -147,10 +147,10 @@
 <p>The Policy class has the following properties:</p>
 <ul>
 <li>A Policy MUST include the <code>uid</code> identification of the Policy.</li>
-<li>A Policy MUST include the <code>permission</code> and/or <code>prohibition</code> Rule.</li>  
-<li>A Policy MAY include the <code>conflict</code> property indicating how to handle Policy conflicts.(See <a href="#conflict">Policy Conflict Strategy</a> for more details.)</li>
-<li>A Policy MAY include the <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies. (See <a href="#inhertiance">Policy Inheritance</a> for more details.)</li>
-<li>A Policy MAY include the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See <a href="#profile">ODRL Profiles</a> for more details.)</li>
+<li>A Policy MUST include the <code>permission</code> and/or <code>prohibition</code> Rule.  (See the <a href="#permission">Permission</a> and  <a href="#prohibition">Prohibition</a> sections for more details.)</li>  
+<li>A Policy MAY include the <code>conflict</code> property indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
+<li>A Policy MAY include the <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies. (See the <a href="#inhertiance">Policy Inheritance</a> section for more details.)</li>
+<li>A Policy MAY include the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 </ul>
 
 <p>An ODRL Policy MAY be subclasssed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses may be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
@@ -235,7 +235,7 @@
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
-    "uid": "http://example.com/policy:1011",
+    "uid": "http://example.com/policy:1012",
     "permission": [{
         "target": "http://example.com/asset:9898.movie",
         "assigner": "http://example.com/party:org:abc",
@@ -246,7 +246,30 @@
 </pre>
 
 </section>
-    
+
+    <section id="policy-has">
+<h3>Has A Policy</h3> 
+<p>The Policy class MAY also be referenced by the <code>hasPolicy</code> property. This supports ODRL Policies being the object of external metadata expressions (that describe an Asset). When <code>hasPolicy</code> has been asserted between a metadata expression and an ODRL Policy, the Asset being described/identified is then assumed to be the target Asset of the Policy.</p>
+        
+<blockquote>
+<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a movie Asset. The <code>odrl:hasPolicy</code> property has been included to link to the ODRL Policy <code>http://example.com/policy:1010</code> (this is the Set Policy described above). In this case, the Asset <code>http://example.com/asset:9999.movie</code> is now also the target Asset for the Policy <code>http://example.com/policy:1010</code>.</p>
+</blockquote>
+
+<pre class="example hljs json">
+{
+   ...
+   "dc:publisher": "ABC Pictures",
+   "dc:creator": "Allen, Woody",
+   "dc:issued": "2017",
+   "dc:subject": "Musical Comedy",
+   "dc:identifier": "http://example.com/asset:9999.movie",
+   "odrl:hasPolicy": "http://example.com/policy:1010",
+   ...
+}
+</pre>
+        
+    </section>
+        
     
 </section>
 
@@ -1438,6 +1461,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <li>More clearly defined the scope of ODRL Profiles (addition only) and added how to create them. <code><a href="https://github.com/w3c/poe/issues/173">(Issue#173)</a></code></li>
             
     <li>Added use and transfer as the top-level actions <code><a href="https://github.com/w3c/poe/issues/140">(Issue#140)</a></code></li>
+            
+    <li>Added hasPolicy property <code><a href="https://github.com/w3c/poe/issues/184">(Issue#184)</a></code></li>
     
     
 </ul>
