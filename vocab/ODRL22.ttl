@@ -666,8 +666,8 @@ odrl:
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Constraint"@en ;
-	skos:definition "The constraint relating to the Rule."@en ;
-	skos:note "One or more constraints which affect the validity of the Rule; e.g. if the Action play is only permitted for a certain period of time."@en ;
+	skos:definition "Constraints appled to a Rule."@en ;
+	skos:note "One or more Constraints may be applied to a Rule. Example: the Action play is only permitted for a certain period of time."@en ;
 	rdfs:domain [
 		a owl:Class ;
 		owl:unionOf ( :Rule :Asset :Party ) ;
@@ -692,7 +692,7 @@ odrl:
 	rdfs:domain :Constraint ;
 #	rdfs:range rdfs:Resource ;
 	rdfs:label "Unit"@en ;
-	skos:definition "The unit of measurement used for the constraint value."@en .
+	skos:definition "The unit of measurement of the value of the rightOperand or rightOperandReference of a Constraint."@en .
 
 :dataType
 	a rdf:Property ;
@@ -700,14 +700,14 @@ odrl:
 	rdfs:domain :Constraint ;
 #	rdfs:range rdfs:Resource ;
 	rdfs:label "Datatype"@en ;
-	skos:definition "The datatype used for the constraint value."@en ;
+	skos:definition "The datatype of the value of the rightOperand or rightOperandReference of a Constraint."@en ;
     skos:note "In RDF encodings, use of the rdf:datatype MAY be used."@en .
 
 :operator
 	a rdf:Property , owl:ObjectProperty ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Operator"@en ;
-	skos:definition "The logical operator function applied to a constraint and its operands."@en ;
+	skos:definition "The logical operator function applied to operands of a Constraint"@en ;
 	rdfs:domain :Constraint ;
 	rdfs:range :Operator .
 
@@ -723,8 +723,8 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand Reference"@en ;
-	skos:definition "A reference to the operand applied to an instance of a constraint."@en ;
-	skos:note "Represents an IRI that must be dereferenced to obtain the actual right operand value"@en ;
+	skos:definition "A reference to a web resource providing the value for the right operand of a Constraint."@en ;
+	skos:note "Is an IRI that must be dereferenced to obtain the actual right operand value"@en ;
 	rdfs:domain :Constraint .
 
 :leftOperand
@@ -870,7 +870,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Left Operand"@en ;
 	skos:definition "Left operands for constraint expressions."@en ;
-	skos:note "Instances of the LeftOperand class represent the left term in a Constraint."@en .
+	skos:note "Instances of the LeftOperand class are used as the leftOperand of a Constraint."@en .
 
 ## Left Operands
 
@@ -919,8 +919,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Action Datetime"@en ;
-	skos:definition "The date (and optional time and timezone) to be compared to the time when the Action is exercised."@en ;
-	skos:note "Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]. The use of Timezone information is strongly recommended."@en ;
+	skos:definition "The date (and optional time and timezone) to be compared to the time when the Action is exercised. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]."@en ;
+	skos:note "The use of Timezone information is strongly recommended."@en ;
 	skos:note "The Action of the Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Action can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -928,8 +928,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Action Delay Period"@en ;
-	skos:definition "The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator)."@en ;
-	skos:note "Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used."@en ;
+	skos:definition "The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	skos:note "Only the eq operator SHOULD be used."@en ;
 	skos:note "Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -953,8 +953,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Elapsed Time"@en ;
-	skos:definition "The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time."@en ;
-	skos:note "Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used."@en ;
+	skos:definition "The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	skos:note "Only the eq operator SHOULD be used."@en ;
 	skos:note "Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action." ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1002,8 +1002,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Metered Time"@en ;
-	skos:definition "The Action may be exercised for an accumulated amount of this time period."@en ;
-	skos:note "Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used."@en ;
+	skos:definition "The Action may be exercised for an accumulated amount of this time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	skos:note "Only the eq operator SHOULD be used."@en ;
 	skos:note "Example: <code>meteredTime eq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes. This means that the action can be expercised for 5 minutes each day over 12 days." ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1011,16 +1011,16 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Payment Amount"@en ;
-	skos:definition "The amount of a payment related to the Action of a Duty."@en ;
-	skos:note "Right operand value MUST be an xsd:decimal. Note: Can be used for compensation duties with the unit property indicating the currency of the payment."@en ;
+	skos:definition "The amount of a payment related to the Action of a Duty. Right operand value MUST be an xsd:decimal. "@en ;
+	skos:note "Note: Can be used for compensation duties with the unit property indicating the currency of the payment."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :percentage
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset Percentage"@en ;
-	skos:definition "The amount of an Asset - as a percentage - used for exercising the Action."@en ;
-	skos:note "Right operand value MUST be an xsd:decimal from 0 to 100. Example: Extract less than or equal to of 50% of the asset."@en ;
+	skos:definition "The amount of an Asset - as a percentage - used for exercising the Action. Right operand value MUST be an xsd:decimal from 0 to 100."@en ;
+	skos:note "Example: Extract less than or equal to of 50% of the asset."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :product
@@ -1028,7 +1028,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Product Context"@en ;
 	skos:definition "Product or service used for exercising the Action."@en ;
-	skos:note "Example: The Asset image may only be reproduced in the XYZ Magazine."@en ;
+	skos:note "Example: The Asset image may only be used in the XYZ Magazine."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :purpose
@@ -1093,8 +1093,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Geospatial Named Area"@en ;
-	skos:definition "A named and identified geospatial area with defined borders for exercising the Action."@en ;
-	skos:note "A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. An IRI should be used to represent this value."@en ;
+	skos:definition "A named and identified geospatial area with defined borders for exercising the Action. An IRI MUST be used to represent this value."@en ;
+	skos:note "A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. "@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :spatialCoordinates
@@ -1102,8 +1102,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :spatial;
 	rdfs:label "Geospatial Coordinates"@en ;
-	skos:definition "A set of coordinates setting the borders of a geospatial area for exercising the Action."@en ;
-	skos:note "The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum. If the latter are ommitted the default values are the altitude of earth's surface at this location and the WGS 84 datum."@en ;
+	skos:definition "A set of coordinates setting the borders of a geospatial area for exercising the Action. The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum."@en ;
+	skos:note "The default values are the altitude of earth's surface at this location and the WGS 84 datum."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :system
@@ -1127,8 +1127,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Recurring Time Interval"@en ;
-	skos:definition "The Action may be exercised within a recurring period of time after which the Action can or cannot be exercised again until the time period has elapsed."@en ;
-	skos:note "Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used."@en ;
+	skos:definition "The Action may be exercised within a recurring period of time after which the Action can or cannot be exercised again until the time period has elapsed. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	skos:note "Only the eq operator SHOULD be used."@en ;
 	skos:note "Example: <code>timeInterval eq P7D</code> indicates that the action can be exercised once every 7 day period." ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1137,7 +1137,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Unit Of Count"@en ;
 	skos:definition "The unit of measure used for counting."@en ;
-	skos:note "Typically used with Duties to indicate the unit entity to be counted."@en ;
+	skos:note "Typically used with Duties to indicate the unit entity to be counted of the Action. Example: A duty to compensate and a unitOfCount constraint of 'perUser' would indicate that the compensation by multiplied by the 'number of users'."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :version
@@ -1164,7 +1164,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Right Operand"@en ;
 	skos:definition "Right operands for constraint expressions."@en ;
-	skos:note "Instances of the RightOperand class represent the right term in a Constraint."@en .
+	skos:note "Instances of the RightOperand class are used as the rightOperand of a Constraint."@en .
 
 :policyUsage
 	a :RightOperand, owl:NamedIndividual ;

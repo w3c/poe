@@ -295,12 +295,12 @@
 <tr><th>Label:</th> <td>Use</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/use">http://www.w3.org/ns/odrl/2/use</a></td></tr>
 <tr><th>Note:</th> <td>Use is the most generic action for all non-third-party usage. More details may be defined in the applicable agreements or under applicable commercial laws. Refined types of actions can be expressed by narrower actions.</td></tr>
-<tr><th>Narrower terms:</th> <td><a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-archive">archive</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-distribute">distribute</a>, <a href="#term-execute">execute</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-index">index</a>, <a href="#term-install">install</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-present">present</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-stream">stream</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transform">transform</a>, <a href="#term-writeTo">writeTo</a></td></tr>
+<tr><th>Narrower terms:</th> <td><a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-archive">archive</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-execute">execute</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-index">index</a>, <a href="#term-install">install</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-stream">stream</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transform">transform</a>, <a href="#term-writeTo">writeTo</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
-</section><section id="term-transfer"><h3>Transfer</h3><table class='def propdef' >
+</section><section id="term-transfer"><h3>Transfer Ownership</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Assigner transfers/does not transfer the ownership in perpetuity to the Assignees.</td></tr>
-<tr><th>Label:</th> <td>Transfer</td></tr>
+<tr><th>Label:</th> <td>Transfer Ownership</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/transfer">http://www.w3.org/ns/odrl/2/transfer</a></td></tr>
 <tr><th>Narrower terms:</th> <td><a href="#term-give">give</a>, <a href="#term-sell">sell</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
@@ -325,15 +325,14 @@
 <tr><th>Label:</th> <td>Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
 <tr><th>Note:</th> <td>Parent class of all Constraints.</td></tr>
-<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-leftOperand">leftOperand</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-rightOperandReference">rightOperandReference</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-constraint"><h3>Has Constraint</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The constraint relating to the Rule.</td></tr>
+<tr><th>Definition:</th> <td>Constraints appled to a Rule.</td></tr>
 <tr><th>Label:</th> <td>Has Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/constraint">http://www.w3.org/ns/odrl/2/constraint</a></td></tr>
-<tr><th>Note:</th> <td>One or more constraints which affect the validity of the Rule; e.g. if the Action play is only permitted for a certain period of time.</td></tr>
+<tr><th>Note:</th> <td>One or more Constraints may be applied to a Rule. Example: the Action play is only permitted for a certain period of time.</td></tr>
 <tr><th>Range:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
@@ -342,12 +341,11 @@
 <tr><th>Label:</th> <td>Operator</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Operator">http://www.w3.org/ns/odrl/2/Operator</a></td></tr>
 <tr><th>Note:</th> <td>Instances of the Operator class representing boolean operators and logical relationships.</td></tr>
-<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-operator">operator</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-and">and</a>, <a href="#term-andSequence">andSequence</a>, <a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a>, <a href="#term-or">or</a>, <a href="#term-xor">xor</a></td></tr>
 </table>
 </section><section id="term-operator"><h3>Has Operator</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The logical operator function applied to a constraint and its operands.</td></tr>
+<tr><th>Definition:</th> <td>The logical operator function applied to operands of a Constraint</td></tr>
 <tr><th>Label:</th> <td>Has Operator</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/operator">http://www.w3.org/ns/odrl/2/operator</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Operator">Operator</a></td></tr>
@@ -357,8 +355,7 @@
 <tr><th>Definition:</th> <td>Right operands for constraint expressions.</td></tr>
 <tr><th>Label:</th> <td>Right Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/RightOperand">http://www.w3.org/ns/odrl/2/RightOperand</a></td></tr>
-<tr><th>Note:</th> <td>Instances of the RightOperand class represent the right term in a Constraint.</td></tr>
-<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
+<tr><th>Note:</th> <td>Instances of the RightOperand class are used as the rightOperand of a Constraint.</td></tr>
 <tr><th>Instances:</th> <td><a href="#term-policyUsage">policyUsage</a></td></tr>
 </table>
 </section><section id="term-rightOperand"><h3>Has Right Operand</h3><table class='def propdef' >
@@ -368,18 +365,17 @@
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-rightOperandReference"><h3>Has Right Operand Reference</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A reference to the operand applied to an instance of a constraint.</td></tr>
+<tr><th>Definition:</th> <td>A reference to a web resource providing the value for the right operand of a Constraint.</td></tr>
 <tr><th>Label:</th> <td>Has Right Operand Reference</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperandReference">http://www.w3.org/ns/odrl/2/rightOperandReference</a></td></tr>
-<tr><th>Note:</th> <td>Represents an IRI that must be dereferenced to obtain the actual right operand value</td></tr>
+<tr><th>Note:</th> <td>Is an IRI that must be dereferenced to obtain the actual right operand value</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-LeftOperand"><h3>Left Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Left operands for constraint expressions.</td></tr>
 <tr><th>Label:</th> <td>Left Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/LeftOperand">http://www.w3.org/ns/odrl/2/LeftOperand</a></td></tr>
-<tr><th>Note:</th> <td>Instances of the LeftOperand class represent the left term in a Constraint.</td></tr>
-<tr><th>Parent class:</th> <td><a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a></td></tr>
+<tr><th>Note:</th> <td>Instances of the LeftOperand class are used as the leftOperand of a Constraint.</td></tr>
 <tr><th>In range of:</th> <td><a href="#term-leftOperand">leftOperand</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-absoluteSpatialPosition">absoluteSpatialPosition</a>, <a href="#term-absoluteTemporalPosition">absoluteTemporalPosition</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-delayPeriod">delayPeriod</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-relativeSpatialPosition">relativeSpatialPosition</a>, <a href="#term-relativeTemporalPosition">relativeTemporalPosition</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-spatialCoordinates">spatialCoordinates</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-unitOfCount">unitOfCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
 </table>
@@ -391,13 +387,13 @@
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-unit"><h3>Unit</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The unit of measurement used for the constraint value.</td></tr>
+<tr><th>Definition:</th> <td>The unit of measurement of the value of the rightOperand or rightOperandReference of a Constraint.</td></tr>
 <tr><th>Label:</th> <td>Unit</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/unit">http://www.w3.org/ns/odrl/2/unit</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-dataType"><h3>Datatype</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The datatype used for the constraint value.</td></tr>
+<tr><th>Definition:</th> <td>The datatype of the value of the rightOperand or rightOperandReference of a Constraint.</td></tr>
 <tr><th>Label:</th> <td>Datatype</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dataType">http://www.w3.org/ns/odrl/2/dataType</a></td></tr>
 <tr><th>Note:</th> <td>In RDF encodings, use of the rdf:datatype MAY be used.</td></tr>
@@ -677,7 +673,7 @@
 <tr><th>Label:</th> <td>Display</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/display">http://www.w3.org/ns/odrl/2/display</a></td></tr>
 <tr><th>Note:</th> <td>For example, displaying an image on a screen. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.</td></tr>
-<tr><th>Broader terms:</th> <td><a href="#term-present">present</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-distribute"><h3>Distribute</h3><table class='def propdef' >
@@ -738,7 +734,7 @@
 <tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to change existing content of the Asset. A new asset is not created by this action.</td></tr>
 <tr><th>Label:</th> <td>Modify</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr>
-<tr><th>Note:</th> <td>This action will modify an asset which is typically updated from time to time without creating a new asset like a database. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective).</td></tr>
+<tr><th>Note:</th> <td>This action will modify an asset which is typically updated from time to time without creating a new asset. If the result from modifying the asset should be a new asset the actions derive or extract should be used. (Note that the notion of whether or not the change is significant enough to qualify as a new asset is subjective).</td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
@@ -755,16 +751,15 @@
 <tr><th>Label:</th> <td>Play</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/play">http://www.w3.org/ns/odrl/2/play</a></td></tr>
 <tr><th>Note:</th> <td>If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.</td></tr>
-<tr><th>Broader terms:</th> <td><a href="#term-present">present</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-present"><h3>Present</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to perform or exhibit an Asset.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to perform the Asset.</td></tr>
 <tr><th>Label:</th> <td>Present</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/present">http://www.w3.org/ns/odrl/2/present</a></td></tr>
 <tr><th>Note:</th> <td>If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.</td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Narrower terms:</th> <td><a href="#term-display">display</a>, <a href="#term-play">play</a>, <a href="#term-print">print</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-print"><h3>Print</h3><table class='def propdef' >
@@ -772,7 +767,7 @@
 <tr><th>Label:</th> <td>Print</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/print">http://www.w3.org/ns/odrl/2/print</a></td></tr>
 <tr><th>Note:</th> <td>For example, creating a permanent, fixed (static), and directly perceivable representation of the Asset.</td></tr>
-<tr><th>Broader terms:</th> <td><a href="#term-present">present</a></td></tr>
+<tr><th>Broader terms:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-read"><h3>Read</h3><table class='def propdef' >
@@ -815,7 +810,7 @@
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-transform"><h3>Transform</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to make a digital copy of the digital Asset in another digital format.</td></tr>
+<tr><th>Definition:</th> <td>The Assigner permits/prohibits the Assignees to convert the Asset into a different format.</td></tr>
 <tr><th>Label:</th> <td>Transform</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr>
 <tr><th>Note:</th> <td>Typically used to convert the Asset into a different format for consumption on/transfer to a third party system.</td></tr>
@@ -947,21 +942,20 @@
 <tr><th>Definition:</th> <td>Numeric count of exercising the Action.</td></tr>
 <tr><th>Label:</th> <td>Count</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/count">http://www.w3.org/ns/odrl/2/count</a></td></tr>
-<tr><th>Note:</th> <td>Should be a positive integer</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-dateTime"><h3>Action Datetime</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The date (and optional time and timezone) to be compared to the time when the Action is exercised.</td></tr>
+<tr><th>Definition:</th> <td>The date (and optional time and timezone) to be compared to the time when the Action is exercised. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Action Datetime</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dateTime">http://www.w3.org/ns/odrl/2/dateTime</a></td></tr>
-<tr><th>Note:</th> <td>Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]. The use of Timezone information is strongly recommended., The Action of the Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Action can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time.</td></tr>
+<tr><th>Note:</th> <td>The Action of the Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Action can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time., The use of Timezone information is strongly recommended.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-delayPeriod"><h3>Action Delay Period</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator).</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Action Delay Period</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/delayPeriod">http://www.w3.org/ns/odrl/2/delayPeriod</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action., Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action., Only the eq operator SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-deliveryChannel"><h3>Delivery Channel</h3><table class='def propdef' >
@@ -972,21 +966,21 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-elapsedTime"><h3>Elapsed Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time.</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Elapsed Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/elapsedTime">http://www.w3.org/ns/odrl/2/elapsedTime</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action., Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action., Only the eq operator SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
-</section><section id="term-event"><h3>Event Action</h3><table class='def propdef' >
+</section><section id="term-event"><h3>Event</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An identified event used for exercising the Action.</td></tr>
-<tr><th>Label:</th> <td>Event Action</td></tr>
+<tr><th>Label:</th> <td>Event</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/event">http://www.w3.org/ns/odrl/2/event</a></td></tr>
 <tr><th>Note:</th> <td>Events are temporal periods of time, and operators can be used to signal before, during or after the event. Example: Action may be taken during the “FIFA World Cup 2020” only.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-fileFormat"><h3>File Format</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The file format of the Asset after exercising the Action.</td></tr>
+<tr><th>Definition:</th> <td>The file format of the transformed Asset after exercising the Action.</td></tr>
 <tr><th>Label:</th> <td>File Format</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/fileFormat">http://www.w3.org/ns/odrl/2/fileFormat</a></td></tr>
 <tr><th>Note:</th> <td>Example: An asset may be transformed into JPEG format.</td></tr>
@@ -1000,7 +994,7 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-language"><h3>Language</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The main natural language of the Asset after exercising the Action.</td></tr>
+<tr><th>Definition:</th> <td>The main natural language of the transformed Asset after exercising the Action.</td></tr>
 <tr><th>Label:</th> <td>Language</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/language">http://www.w3.org/ns/odrl/2/language</a></td></tr>
 <tr><th>Note:</th> <td>Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values.</td></tr>
@@ -1014,31 +1008,31 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-meteredTime"><h3>Metered Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Action may be exercised for an accumulated amount of this time period.</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised for an accumulated amount of this time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Metered Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/meteredTime">http://www.w3.org/ns/odrl/2/meteredTime</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>meteredTime eq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes. This means that the action can be expercised for 5 minutes each day over 12 days., Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>meteredTime eq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes. This means that the action can be expercised for 5 minutes each day over 12 days., Only the eq operator SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-payAmount"><h3>Payment Amount</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The amount of a payment related to the Action of a Duty.</td></tr>
+<tr><th>Definition:</th> <td>The amount of a payment related to the Action of a Duty. Right operand value MUST be an xsd:decimal. </td></tr>
 <tr><th>Label:</th> <td>Payment Amount</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/payAmount">http://www.w3.org/ns/odrl/2/payAmount</a></td></tr>
-<tr><th>Note:</th> <td>The datatype of the right operand must be xsd:decimal. Note: Can be used for compensation duties. The data type property of the Right Operand may be used to indicate the type of the value (eg decimal) and the unit property to indicate the currency.</td></tr>
+<tr><th>Note:</th> <td>Note: Can be used for compensation duties with the unit property indicating the currency of the payment.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-percentage"><h3>Asset Percentage</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The amount of an Asset - as a percentage - used for exercising the Action.</td></tr>
+<tr><th>Definition:</th> <td>The amount of an Asset - as a percentage - used for exercising the Action. Right operand value MUST be an xsd:decimal from 0 to 100.</td></tr>
 <tr><th>Label:</th> <td>Asset Percentage</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/percentage">http://www.w3.org/ns/odrl/2/percentage</a></td></tr>
-<tr><th>Note:</th> <td>The datatype of the right operand must be xsd:decimal from 0 to 100. Example: Extract less than or equal to of 50% of the asset.</td></tr>
+<tr><th>Note:</th> <td>Example: Extract less than or equal to of 50% of the asset.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-product"><h3>Product Context</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Product or service used for exercising the Action.</td></tr>
 <tr><th>Label:</th> <td>Product Context</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/product">http://www.w3.org/ns/odrl/2/product</a></td></tr>
-<tr><th>Note:</th> <td>Example: The Asset image may only be reproduced in the XYZ Magazine.</td></tr>
+<tr><th>Note:</th> <td>Example: The Asset image may only be used in the XYZ Magazine.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-purpose"><h3>Purpose</h3><table class='def propdef' >
@@ -1094,18 +1088,18 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-spatial"><h3>Geospatial Named Area</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A named and identified geospatial area with defined borders for exercising the Action.</td></tr>
+<tr><th>Definition:</th> <td>A named and identified geospatial area with defined borders for exercising the Action. An IRI MUST be used to represent this value.</td></tr>
 <tr><th>Label:</th> <td>Geospatial Named Area</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/spatial">http://www.w3.org/ns/odrl/2/spatial</a></td></tr>
-<tr><th>Note:</th> <td>A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. An IRI should be used to represent this value.</td></tr>
+<tr><th>Note:</th> <td>A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. </td></tr>
 <tr><th>Narrower terms:</th> <td><a href="#term-spatialCoordinates">spatialCoordinates</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-spatialCoordinates"><h3>Geospatial Coordinates</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A set of coordinates setting the borders of a geospatial area for exercising the Action.</td></tr>
+<tr><th>Definition:</th> <td>A set of coordinates setting the borders of a geospatial area for exercising the Action. The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum.</td></tr>
 <tr><th>Label:</th> <td>Geospatial Coordinates</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/spatialCoordinates">http://www.w3.org/ns/odrl/2/spatialCoordinates</a></td></tr>
-<tr><th>Note:</th> <td>The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum. If the latter are ommitted the default values are the altitude of earth's surface at this location and the WGS 84 datum.</td></tr>
+<tr><th>Note:</th> <td>The default values are the altitude of earth's surface at this location and the WGS 84 datum.</td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-spatial">spatial</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
@@ -1117,17 +1111,17 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-timeInterval"><h3>Recurring Time Interval</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Action may be exercised within a recurring period of time after which the Action can or cannot be exercised again until the time period has elapsed.</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised within a recurring period of time after which the Action can or cannot be exercised again until the time period has elapsed. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Recurring Time Interval</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/timeInterval">http://www.w3.org/ns/odrl/2/timeInterval</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>timeInterval eq P7D</code> indicates that the action can be exercised once every 7 day period., Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]. Only the eq operator SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>timeInterval eq P7D</code> indicates that the action can be exercised once every 7 day period., Only the eq operator SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-unitOfCount"><h3>Unit Of Count</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The unit of measure used for counting.</td></tr>
 <tr><th>Label:</th> <td>Unit Of Count</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/unitOfCount">http://www.w3.org/ns/odrl/2/unitOfCount</a></td></tr>
-<tr><th>Note:</th> <td>Typically used with Duties to indicate the unit entity to be counted.</td></tr>
+<tr><th>Note:</th> <td>Typically used with Duties to indicate the unit entity to be counted of the Action. Example: A duty to compensate and a unitOfCount constraint of 'perUser' would indicate that the compensation by multiplied by the 'number of users'.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-version"><h3>Version</h3><table class='def propdef' >
