@@ -554,10 +554,10 @@
     <li>A Prohibition MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
 </ul>
 
-<p>For a Prohibition to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
+<p>For a Prohibition to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied).</p>
 
     <blockquote>
-<p>Example Use Case: The assigner of a target Asset <code>http://example.com/photoAlbum:55</code> expresses an Agreement Policy with both a Permission and a Prohibition. The assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission <code>display</code> to the assignee Party <code>http://example.com/assignee:55</code> at the same time a Prohibition to <code>archive</code> the target Asset. Additionally, in case of any conflicts between Permissions and Prohibitions, the conflict property is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
+<p>Example Use Case: The assigner of a target Asset <code>http://example.com/photoAlbum:55</code> expresses an Agreement Policy with both a Permission and a Prohibition. The assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission <code>display</code> to the assignee Party <code>http://example.com/assignee:55</code> at the same time a Prohibition to <code>archive</code> the target Asset. Additionally, in case of any conflicts in the Policy (e.g., between Permissions and Prohibitions), the <code>conflict</code> property of the <code>Policy</code> is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
     </blockquote>
     
 <pre class="example hljs json">
@@ -591,7 +591,7 @@
 <p>In addition to the Rule properties, the Duty class has the following:</p>
 <ul>
    <li>A Duty MUST only be associated with a Permission.</li> 
-     <li>A Duty MAY have an Asset via the <code>target</code> relation property on which the agreed Action MUST be performed. Other types of relation properties for Asset MAY be used.</li>
+     <li>A Duty MAY be linked to an Asset via a <code>target</code> relation property on which the agreed Action MUST be performed. This does not restrict the subproperties of <code>relation</code> that are used as properties of the Asset.</li>
   <li>It is assumed that any assigned Party has the appropriate permissions to perform the Duty Action.</li>
     <li>A Duty MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. If the functional roles are not specified in the Duty, then the respective functions are assumed to be the same as in the referring Permission. Other types of function properties for Party MAY be used (for example, Compensated Party or Tracking Party).</li>
 </ul>
@@ -599,7 +599,7 @@
     
 <p>If a Permission has several Duty entities then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
     
-<p>Even though a Duty is mandatory (ie agreed to be undertaken by the Parties), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
+<p>Even though a Duty is mandatory (i.e., agreed to be undertaken by the Parties), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
  
 <blockquote>
 <p>Example Use Case: The Party <code>http://example.com/assigner:sony</code> makes an Offer to play the music file <code>http://example.com/music/1999.mp3</code>. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of <code>policyUsage</code> must not have occurred yet (that is, the payment is made before the policy is exercised).
@@ -702,7 +702,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <p>The <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times.</p>
 
 <blockquote>
-<p>Example Use Case: In the first example below, the Party <code>http://example.com/myPix:6161</code> wants to offer the  <code>distribute</code> Permission for a specific country for the target Asset. The offer has two Duties to <code>compensate</code> the assigner and a <code>nextPolicy</code>. The potential assignee may distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the Policy target Asset. The second exmaple shows that the Policy  <code>http://example.com/policy:7171</code> stipulates  the potential assignee may only offer the <code>display</code> Permission to other parties.</p>
+<p>Example Use Case: In the first example below, the Party <code>http://example.com/myPix:6161</code> wants to offer the  <code>distribute</code> Permission for a specific country for the target Asset. The offer has two Duties to <code>compensate</code> the assigner and a <code>nextPolicy</code>. The potential assignee may distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the Policy target Asset. The second example shows that the Policy  <code>http://example.com/policy:7171</code> stipulates  the potential assignee may only offer the <code>display</code> Permission to other parties.</p>
     </blockquote>
     
 <pre class="example hljs json">
