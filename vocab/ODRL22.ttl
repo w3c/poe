@@ -373,7 +373,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Party"@en ;
-	skos:definition "An identifiable entity who may undertake a functional role in a Policy."@en ;
+	skos:definition "An entity or a collection of entities that undertake Roles in a Rule."@en ;
 	rdfs:subClassOf [
 		a owl:Class ;
 		owl:unionOf ( schema:Person schema:Organization foaf:Person foaf:Organization foaf:Agent vcard:Individual vcard:Organization vcard:Agent ) ;
@@ -403,7 +403,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Policy"@en ;
-	skos:definition "A Rule expressing what Action is allowed and/or disallowed over an Asset."@en ;
+	skos:definition "A non-empty group of Permissions and/or Prohibitions."@en ;
 	skos:note "A Policy may contain multiple Rules."@en .
 
 :hasPolicy
@@ -562,7 +562,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Prohibition, :Duty ;
 	rdfs:label "Permission"@en ;
-	skos:definition "An Action that may be performed over an Asset."@en ;
+	skos:definition "The ability to perform an Action over an Asset."@en ;
 	skos:note "In other words, what the assigner (supplier) has granted to the assignee (consumer)."@en .
 
 :Prohibition
