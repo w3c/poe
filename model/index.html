@@ -503,22 +503,22 @@
 </ul>
 <p>Explicit sub properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
-<p>For a Rule to become effective, it MUST be valid (ie all it's constraints MUST be satisfied).</p>
+<p>For a Rule to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied).</p>
 
     
 <section id="permission">
 <h3>Permission</h3>
 
 
-<p>A Permission class is a subclass of Rule that specifies the Actions that MAY be <strong>performed</strong> on an Asset. The Permission class inherits all the properties from the Rule class.</p>
+<p>A Permission class is a subclass of Rule that specifies the Actions that may be <strong>performed</strong> on an Asset. The Permission class inherits all the properties from the Rule class.</p>
 
-<p>In addition to the Rule properties, the Permission class has the following:</p>
+<p>In addition to the Rule properties, the Permission class has the following characteristics:</p>
 <ul>
-    <li>A Permission MUST have an Asset via the <code>target</code> relation property. Other types of relation properties for Asset MAY be used.</li>
+    <li>A Permission MUST be linked to an Asset via a <code>target</code> property. This does not restrict the subproperties of <code>relation</code> that are used as properties of the Asset.</li>
     <li>A Permission MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
     <li>A Permission  MAY have one or more Duties via the <code>duty</code> property. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
-<p>For a Permission to become effective, it MUST be valid (ie all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
+<p>For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
     
 <blockquote>   
 <p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play Permission for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
