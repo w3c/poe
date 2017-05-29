@@ -777,9 +777,9 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     <li><code>andSequence</code> - the left operand Atomic Constraint must deliver a satisfied result before the right operand Atomic Constraint is evaluated.</li>
     </ul>
 
-    <p>Other <code>operator</code> values MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or ODRL Profiles.</p>
+    <p>Other <code>operator</code> values are defined in the ODRL Vocabulary [[!odrl-vocab]], further values may be defined by ODRL Profiles.</p>
     
-<p>The <code>andSequence</code> operator is an example where there are temporal conditional requirements between the two left and rigt operands. This may lead to situations where the outcome is unresolvable, such as <em>deadlock</em> if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</p>
+<p>The <code>andSequence</code> operator is an example where there are temporal conditional requirements between the left and rigt operands. This may lead to situations where the outcome is unresolvable, such as <em>deadlock</em> if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</p>
     
 <p>The processing model for Compound Constraints includes:</p>
     <ol>
@@ -944,7 +944,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
              
     <p>A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
      
-    <p>At the core level, an ODRL Rule would include one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is a irreducible Rule (that is, not able to be reduced or further simplified).</p>
+    <p>At the core level, an ODRL Rule would include one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is an irreducible Rule (that is, not able to be reduced or further simplified).</p>
              
 <pre class="example hljs json">
 {
@@ -1068,9 +1068,9 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     </section>
              
      <section id="provenace">
-<h4>Policy Provenance</h4>
+<h4>Policy Metadata</h4>
          
-       <p>Provenance properties MAY be added to a Policy to support additional authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[dcterms]] for ODRL Policies.</p>
+       <p>Additional properties MAY be added to a Policy to support further authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[dcterms]] for ODRL Policies.</p>
          
          <p>The following Dublin Core Metadata Terms [[dcterms]] SHOULD be used:</p>
             <ul>
