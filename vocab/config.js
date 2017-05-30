@@ -1,37 +1,37 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    publishDate:  "2017-05-29",
+    publishDate:  "2017-05-30",
     edDraftURI: "https://w3c.github.io/poe/vocab/",
     editors: [
-     {    name:       "Renato Iannella",
+        {    name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
                     company:    "Monegraph",
                     companyURL: "http://www.monegraph.com/",
                     mailto:     "r@iannel.la"
                 },
-      {    name:       "Michael Steidl",
+        {    name:       "Michael Steidl",
                     url:        "https://uk.linkedin.com/in/michaelwsteidl",
                     company:    "Invited Expert",
                     mailto:     "mdirector@iptc.org"
                 },
-         {   name:       "Mo McRoberts",
+        {   name:       "Mo McRoberts",
                     url:        "https://uk.linkedin.com/in/nevali",
                     company:    "BBC",
                     companyURL: "http://www.bbc.co.uk",
                     mailto:     "mo.mcroberts@bbc.co.uk"
                 },
-      {  name:       "Stuart Myles",
+        {  name:       "Stuart Myles",
                     url:        "https://www.linkedin.com/in/stuart-myles-60a985",
                     company:    "Invited Expert",
                     mailto:     "SMyles@ap.org"
                 },
-           {  name:       "Víctor Rodríguez-Doncel",
+        {  name:       "Víctor Rodríguez-Doncel",
                     url:        "https://www.linkedin.com/in/victor-rodriguez-doncel-554b5213/en",
                     company:    "Universidad Politécnica de Madrid",
                    companyURL: "http://www.upm.es",
                     mailto:     "vrodriguez@fi.upm.es"
-           }
+            }
     ],
     previousMaturity:     "FPWD",
     previousPublishDate:  "2016-07-21",
@@ -46,16 +46,16 @@ var respecConfig = {
     noLegacyStyle: false,
     issueBase: "https://github.com/w3c/poe/issues/",
     otherLinks: [
-                {
-                        key: "Repository",
-                        data: [{
-                                value: "Github Repository",
-                                href: "https://github.com/w3c/poe"
-                        },
-                              {
-                                value: "Issue Tracker",
-                                href: "https://github.com/w3c/poe/milestone/2"
-                        }]
-                }
-          ]
+        {
+            key: "Repository",
+            data: [{
+                value: "Github Repository",
+                href: "https://github.com/w3c/poe"
+            },
+                   {
+                    value: "Issue Tracker",
+                    href: "https://github.com/w3c/poe/milestone/2"
+                }]
+        }
+    ]
 };

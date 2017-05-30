@@ -348,7 +348,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset"@en ;
-	skos:definition "An identifiable resource that is the subject of a Rule."@en ;
+	skos:definition "A resource or a collection of resources that are the subject of a Rule."@en ;
     skos:note "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata."@en .
 
 :AssetIndividual
@@ -553,7 +553,7 @@ odrl:
 	a rdfs:Class , owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Rule"@en ;
-	skos:definition "A Permission, Prohibition or Duty that expresses an Action that may, must not, or must be performed (respectively)."@en ;
+	skos:definition "An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties."@en ;
 	skos:note "Rule is an abstract concept."@en .
 
 :Permission
@@ -571,7 +571,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Duty, :Permission ;
 	rdfs:label "Prohibition"@en ;
-	skos:definition "An Action that must not be performed over an Asset."@en ;
+	skos:definition "The inability to perform an Action over an Asset."@en ;
 	skos:note "Prohibitions are issued by the supplier of the Asset – the Party with the function assigner."@en .
 
 :Duty
@@ -580,13 +580,13 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Prohibition, :Permission ;
 	rdfs:label "Duty"@en ;
-    skos:definition "An Action that has been agreed to be performed as a requirement for the applicable Permission to become valid."@en .
+    skos:definition "The obligation to perform an Action"@en .
 
 :Action
 	a rdfs:Class, owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf skos:Concept ;
-	skos:definition "An operation that is applicable to an Asset."@en ;
+	skos:definition "An operation on an Asset."@en ;
 	skos:note "Actions may be allowed by Permissions, disallowed by Prohibitions, or made mandatory by Duties."@en ;
 	rdfs:subClassOf schema:Action ;
 	rdfs:label "Action"@en .
@@ -595,7 +595,7 @@ odrl:
 	a rdfs:Class, owl:Class ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Constraint"@en ;
-	skos:definition "The context, such as limitations, restrictions, or interpretations, that must be applied to an Action."@en ;
+	skos:definition "A Boolean expression that refines the applicability of a Rule."@en ;
 	skos:note "Parent class of all Constraints."@en .
 
 :relation
