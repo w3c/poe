@@ -411,7 +411,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has A Policy"@en ;
 	skos:definition "Identifies an ODRL Policy from an Asset metadata expression."@en ;
-	skos:note "The Asset being described/identified is assumed to be the target Asset of the Policy."@en ;
+	skos:note "The Asset being described/identified MUST be inferred to be the target Asset of the Policy."@en ;
+    owl:inverseOf :target ;
 	rdfs:range :Policy .
 
 :ConflictTerm
@@ -1999,6 +2000,10 @@ odrl:
 	rdfs:range rdfs:Literal ;
     skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/timed-count ."@en ;
     owl:deprecated true .
+
+## Axioms
+
+  dct:license rdfs:subPropertyOf odrl:hasPolicy .
 
 ## Declaration of annotation properties to keep the ontology within OWL DL
 	skos:broader rdf:type owl:AnnotationProperty .

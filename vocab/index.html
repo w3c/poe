@@ -105,7 +105,7 @@
 
   
 <section id="policyConcepts"><h2>Policy</h2><section id="term-Policy"><h3>Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A Rule expressing what Action is allowed and/or disallowed over an Asset.</td></tr>
+<tr><th>Definition:</th> <td>A non-empty group of Permissions and/or Prohibitions.</td></tr>
 <tr><th>Label:</th> <td>Policy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
 <tr><th>Note:</th> <td>A Policy may contain multiple Rules.</td></tr>
@@ -114,7 +114,7 @@
 <tr><th>In range of:</th> <td><a href="#term-hasPolicy">hasPolicy</a>, <a href="#term-inheritFrom">inheritFrom</a></td></tr>
 </table>
 </section><section id="term-Rule"><h3>Rule</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A Permission, Prohibition or Duty that expresses an Action that may, must not, or must be performed (respectively).</td></tr>
+<tr><th>Definition:</th> <td>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</td></tr>
 <tr><th>Label:</th> <td>Rule</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
 <tr><th>Note:</th> <td>Rule is an abstract concept.</td></tr>
@@ -132,8 +132,10 @@
 <tr><th>Definition:</th> <td>Identifies an ODRL Policy from an Asset metadata expression.</td></tr>
 <tr><th>Label:</th> <td>Has A Policy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
-<tr><th>Note:</th> <td>The Asset being described/identified is assumed to be the target Asset of the Policy.</td></tr>
+<tr><th>Note:</th> <td>The Asset being described/identified MUST be inferred to be the target Asset of the Policy.</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Inverse Of:</th> <td><a href="#term-target">target</a></td></tr>
 </table>
 </section></section><section id="policySubClasses"><h2>Policy Subclasses</h2><section id="term-Agreement"><h3>Agreement</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that grants the assignee a Rule over an Asset from an assigner.</td></tr>
@@ -160,7 +162,7 @@
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section></section><section id="assetConcepts"><h2>Asset</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identifiable resource that is the subject of a Rule.</td></tr>
+<tr><th>Definition:</th> <td>A resource or a collection of resources that are the subject of a Rule.</td></tr>
 <tr><th>Label:</th> <td>Asset</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a></td></tr>
 <tr><th>Note:</th> <td>The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata.</td></tr>
@@ -197,7 +199,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section></section><section id="partyConcepts"><h2>Party</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identifiable entity who may undertake a functional role in a Policy.</td></tr>
+<tr><th>Definition:</th> <td>An entity or a collection of entities that undertake Roles in a Rule.</td></tr>
 <tr><th>Label:</th> <td>Party</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Party">http://www.w3.org/ns/odrl/2/Party</a></td></tr>
 <tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</td></tr>
@@ -242,7 +244,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section></section><section id="permissions"><h2>Permission</h2><section id="term-Permission"><h3>Permission</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An Action that may be performed over an Asset.</td></tr>
+<tr><th>Definition:</th> <td>The ability to perform an Action over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Permission</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Permission">http://www.w3.org/ns/odrl/2/Permission</a></td></tr>
 <tr><th>Note:</th> <td>In other words, what the assigner (supplier) has granted to the assignee (consumer).</td></tr>
@@ -259,7 +261,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
 </section></section><section id="prohibitions"><h2>Prohibition</h2><section id="term-Prohibition"><h3>Prohibition</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An Action that must not be performed over an Asset.</td></tr>
+<tr><th>Definition:</th> <td>The inability to perform an Action over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Prohibition</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Prohibition">http://www.w3.org/ns/odrl/2/Prohibition</a></td></tr>
 <tr><th>Note:</th> <td>Prohibitions are issued by the supplier of the Asset – the Party with the function assigner.</td></tr>
@@ -275,7 +277,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
 </section></section><section id="actionConcepts"><h2>Action</h2><section id="term-Action"><h3>Action</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An operation that is applicable to an Asset.</td></tr>
+<tr><th>Definition:</th> <td>An operation on an Asset.</td></tr>
 <tr><th>Label:</th> <td>Action</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Action">http://www.w3.org/ns/odrl/2/Action</a></td></tr>
 <tr><th>Note:</th> <td>Actions may be allowed by Permissions, disallowed by Prohibitions, or made mandatory by Duties.</td></tr>
@@ -306,7 +308,7 @@
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section></section><section id="duties"><h2>Duty</h2><section id="term-Duty"><h3>Duty</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An Action that has been agreed to be performed as a requirement for the applicable Permission to become valid.</td></tr>
+<tr><th>Definition:</th> <td>The obligation to perform an Action</td></tr>
 <tr><th>Label:</th> <td>Duty</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Duty">http://www.w3.org/ns/odrl/2/Duty</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
@@ -321,7 +323,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Permission">Permission</a></td></tr>
 </table>
 </section></section><section id="constraints"><h2>Constraint</h2><section id="term-Constraint"><h3>Constraint</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The context, such as limitations, restrictions, or interpretations, that must be applied to an Action.</td></tr>
+<tr><th>Definition:</th> <td>A Boolean expression that refines the applicability of a Rule.</td></tr>
 <tr><th>Label:</th> <td>Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
 <tr><th>Note:</th> <td>Parent class of all Constraints.</td></tr>
