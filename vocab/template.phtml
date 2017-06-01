@@ -278,6 +278,7 @@ function writeTerm($term)
 	$html .= $term->propertyRow("In range of", "^rdfs:range");
 	$html .= $term->propertyRow("Domain", "rdfs:domain");
     $html .= $term->propertyRow('Inverse Of', 'owl:inverseOf');
+    $html .= $term->propertyRow('Inverse Of', '^owl:inverseOf');
 	$html .= $term->propertyRow('Instances', '^rdf:type');
 	$html .= $term->propertyRow("See Also", "rdfs:seeAlso");
 	if($term instanceof Phpspecgen_Individual || $term instanceof Phpspecgen_Concept)

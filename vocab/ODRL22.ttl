@@ -413,6 +413,7 @@ odrl:
 	skos:definition "Identifies an ODRL Policy from an Asset metadata expression."@en ;
 	skos:note "The Asset being described/identified MUST be inferred to be the target Asset of the Policy."@en ;
     owl:inverseOf :target ;
+    rdfs:domain :Asset ;
 	rdfs:range :Policy .
 
 :ConflictTerm
@@ -702,7 +703,7 @@ odrl:
 #	rdfs:range rdfs:Resource ;
 	rdfs:label "Datatype"@en ;
 	skos:definition "The datatype of the value of the rightOperand or rightOperandReference of a Constraint."@en ;
-    skos:note "In RDF encodings, use of the rdf:datatype MAY be used."@en .
+    skos:note "In RDF encodings, use of the rdf:datatype MAY be used. In JSON-LD encoding, the use of @type MAY be used."@en .
 
 :operator
 	a rdf:Property , owl:ObjectProperty ;

@@ -135,6 +135,7 @@
 <tr><th>Note:</th> <td>The Asset being described/identified MUST be inferred to be the target Asset of the Policy.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Inverse Of:</th> <td><a href="#term-target">target</a></td></tr>
 </table>
 </section></section><section id="policySubClasses"><h2>Policy Subclasses</h2><section id="term-Agreement"><h3>Agreement</h3><table class='def propdef' >
@@ -167,6 +168,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a></td></tr>
 <tr><th>Note:</th> <td>The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-AssetIndividual">AssetIndividual</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
 </table>
 </section><section id="term-AssetIndividual"><h3>Asset Individual</h3><table class='def propdef' >
@@ -174,12 +176,14 @@
 <tr><th>Label:</th> <td>Asset Individual</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AssetIndividual">http://www.w3.org/ns/odrl/2/AssetIndividual</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
 </table>
 </section><section id="term-AssetCollection"><h3>Asset Collection</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An Asset that is collection of individual resources</td></tr>
 <tr><th>Label:</th> <td>Asset Collection</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AssetCollection">http://www.w3.org/ns/odrl/2/AssetCollection</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
 </table>
 </section><section id="term-relation"><h3>Relation</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relation is an abstract property which creates an explicit link between an Action and an Asset.</td></tr>
@@ -197,6 +201,7 @@
 <tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Inverse Of:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
 </table>
 </section></section><section id="partyConcepts"><h2>Party</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An entity or a collection of entities that undertake Roles in a Rule.</td></tr>

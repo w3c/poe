@@ -1140,7 +1140,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 </ul>
 
     <blockquote>
-<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assinger wishes to provide default permissions for all Policies). It does not include any target Asset and allows the archive and annotate Permissions and the aggregate Prohibition.</p>    
+<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assinger wishes to provide default permissions for all Policies). It does not include any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
 </blockquote>
     
     <pre class="example hljs json">
@@ -1160,7 +1160,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 }  
 </pre>
     
-<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below includes the <code>inheritFrom property</code> pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also includes the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
+<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below includes the <code>inheritFrom</code> property pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also includes the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
     
 <pre class="example hljs json">
 {
