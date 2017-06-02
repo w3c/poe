@@ -55,8 +55,7 @@
     <xs:element name="duty" type="o:Duty"/>
     <xs:complexType name="Duty">
         <xs:choice minOccurs="1" maxOccurs="unbounded">
-            <xs:element ref="o:action" minOccurs="0"/>
-            <!--Required Element-->
+            <xs:element ref="o:action" minOccurs="0"/>          <!--Required Element-->
             <xs:element ref="o:asset" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
@@ -71,10 +70,8 @@
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
-        <xs:attribute name="uid" type="xs:anyURI"/>
-        <!--Required Attribute-->
-        <xs:attribute name="relation" type="xs:anyURI"/>
-        <!--Required Attribute-->
+        <xs:attribute name="uid" type="xs:anyURI"/>   <!--Required Attribute-->
+        <xs:attribute name="relation" type="xs:anyURI"/>   <!--Required Attribute-->
         <xs:attribute name="partOf" type="xs:anyURI"/>
         <xs:attribute name="type" type="xs:anyURI"/>
         <xs:attributeGroup ref="o:idAttributes"/>
@@ -85,10 +82,8 @@
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
-        <xs:attribute name="uid" type="xs:anyURI"/>
-        <!--Required Attribute-->
-        <xs:attribute name="function" type="xs:anyURI"/>
-        <!--Required Attribute-->
+        <xs:attribute name="uid" type="xs:anyURI"/>   <!--Required Attribute-->
+        <xs:attribute name="function" type="xs:anyURI"/>  <!--Required Attribute-->
         <xs:attribute name="partOf" type="xs:anyURI"/>
         <xs:attribute name="type" type="xs:anyURI"/>
         <xs:attributeGroup ref="o:idAttributes"/>
@@ -96,21 +91,16 @@
 
     <xs:element name="action" type="o:Action"/>
     <xs:complexType name="Action">
-        <xs:attribute name="name" type="xs:anyURI"/>
-        <!--Required Attribute-->
+        <xs:attribute name="name" type="xs:anyURI"/>    <!--Required Attribute-->
         <xs:attributeGroup ref="o:idAttributes"/>
     </xs:complexType>
 
     <xs:element name="constraint" type="o:Constraint"/>
     <xs:complexType name="Constraint">
-        <xs:attribute name="name" type="xs:anyURI"/>
-        <!--leftOperand - Required Attribute-->
-        <xs:attribute name="operator" type="xs:anyURI"/>
-        <!--Required Attribute-->
-        <xs:attribute name="rightOperand" type="o:listOfValues"/>
-        <!--Required Attribute (if no rightOperandReference)-->
-        <xs:attribute name="rightOperandReference" type="xs:anyURI"/>
-        <!--Required Attribute (if no rightOperand)-->
+        <xs:attribute name="name" type="xs:anyURI"/>    <!--leftOperand - Required Attribute-->
+        <xs:attribute name="operator" type="xs:anyURI"/>  <!--Required Attribute-->
+        <xs:attribute name="rightOperand" type="o:listOfValues"/>  <!--Required Attribute (if no rightOperandReference)-->
+        <xs:attribute name="rightOperandReference" type="xs:anyURI"/>  <!--Required Attribute (if no rightOperand)-->
         <xs:attribute name="dataType" type="xs:anyURI"/>
         <xs:attribute name="unit" type="xs:anyURI"/>
         <xs:attribute name="status" type="xs:string"/>
