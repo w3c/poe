@@ -29,10 +29,14 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Policy"@en ;
     skos:member :Policy ;
-    skos:member :Rule ;
-    skos:member :profile ;
-    skos:member :hasPolicy .
+    skos:member :profile .
 
+<http://www.w3.org/ns/odrl/2/#ruleConcepts>
+    a skos:Collection ;
+    skos:prefLabel "Rule"@en ;
+    skos:member :Rule ;
+    skos:member :relation ;
+    skos:member :function .
 
 <http://www.w3.org/ns/odrl/2/#inheritanceConcepts>
     a skos:Collection ;
@@ -70,7 +74,7 @@ odrl:
     skos:prefLabel "Asset"@en ;
     skos:member :Asset ;
     skos:member :AssetCollection ;
-    skos:member :relation ;
+    skos:member :hasPolicy ;
     skos:member :partOf .
 
 <http://www.w3.org/ns/odrl/2/#assetRelations>
@@ -89,7 +93,6 @@ odrl:
     skos:prefLabel "Party"@en ;
     skos:member :Party ;
     skos:member :PartyCollection ;
-    skos:member :function ;
     skos:member :partOf .
 
 <http://www.w3.org/ns/odrl/2/#partyRoles>

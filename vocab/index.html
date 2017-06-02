@@ -113,30 +113,12 @@
 <tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-hasPolicy">hasPolicy</a>, <a href="#term-inheritFrom">inheritFrom</a></td></tr>
 </table>
-</section><section id="term-Rule"><h3>Rule</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</td></tr>
-<tr><th>Label:</th> <td>Rule</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
-<tr><th>Note:</th> <td>Rule is an abstract concept.</td></tr>
-<tr><th>Sub-classes:</th> <td><a href="#term-Duty">Duty</a>, <a href="#term-Permission">Permission</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-output">output</a></td></tr>
-</table>
 </section><section id="term-profile"><h3>Profile</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The identifier of an ODRL Profile that the Policy conforms to.</td></tr>
 <tr><th>Label:</th> <td>Profile</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/profile">http://www.w3.org/ns/odrl/2/profile</a></td></tr>
 <tr><th>Note:</th> <td>ODRL Profiles may be defined by community groups and express additional semantics.</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-</table>
-</section><section id="term-hasPolicy"><h3>Has A Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Identifies an ODRL Policy from an Asset metadata expression.</td></tr>
-<tr><th>Label:</th> <td>Has A Policy</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
-<tr><th>Note:</th> <td>The Asset being described/identified MUST be inferred to be the target Asset of the Policy.</td></tr>
-<tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-<tr><th>Inverse Of:</th> <td><a href="#term-target">target</a></td></tr>
 </table>
 </section></section><section id="policySubClasses"><h2>Policy Subclasses</h2><section id="term-Agreement"><h3>Agreement</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that grants the assignee a Rule over an Asset from an assigner.</td></tr>
@@ -162,6 +144,31 @@
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
+</section></section><section id="ruleConcepts"><h2>Rule</h2><section id="term-Rule"><h3>Rule</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</td></tr>
+<tr><th>Label:</th> <td>Rule</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
+<tr><th>Note:</th> <td>Rule is an abstract concept.</td></tr>
+<tr><th>Sub-classes:</th> <td><a href="#term-Duty">Duty</a>, <a href="#term-Permission">Permission</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-output">output</a></td></tr>
+</table>
+</section><section id="term-relation"><h3>Relation</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Relation is an abstract property which creates an explicit link between an Action and an Asset.</td></tr>
+<tr><th>Label:</th> <td>Relation</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relation">http://www.w3.org/ns/odrl/2/relation</a></td></tr>
+<tr><th>Note:</th> <td>Sub-properties of relation are used to define the nature of that link.</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+</table>
+</section><section id="term-function"><h3>Function</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the functional roles which may be fulfilled by a party in relation to a Rule.</td></tr>
+<tr><th>Label:</th> <td>Function</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+</table>
 </section></section><section id="assetConcepts"><h2>Asset</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A resource or a collection of resources that are the subject of a Rule.</td></tr>
 <tr><th>Label:</th> <td>Asset</td></tr>
@@ -178,14 +185,15 @@
 <tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
 </table>
-</section><section id="term-relation"><h3>Relation</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Relation is an abstract property which creates an explicit link between an Action and an Asset.</td></tr>
-<tr><th>Label:</th> <td>Relation</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relation">http://www.w3.org/ns/odrl/2/relation</a></td></tr>
-<tr><th>Note:</th> <td>Sub-properties of relation are used to define the nature of that link.</td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+</section><section id="term-hasPolicy"><h3>Has A Policy</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Identifies an ODRL Policy from an Asset metadata expression.</td></tr>
+<tr><th>Label:</th> <td>Has A Policy</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
+<tr><th>Note:</th> <td>The Asset being described/identified MUST be inferred to be the target Asset of the Policy.</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Inverse Of:</th> <td><a href="#term-target">target</a></td></tr>
 </table>
 </section><section id="term-partOf"><h3>Part Of</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an Asset/PartyCollection that the Asset/Party is a member of.</td></tr>
@@ -217,14 +225,6 @@
 <tr><th>Label:</th> <td>Party Collection</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyCollection">http://www.w3.org/ns/odrl/2/PartyCollection</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
-</table>
-</section><section id="term-function"><h3>Function</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the functional roles which may be fulfilled by a party in relation to a Rule.</td></tr>
-<tr><th>Label:</th> <td>Function</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-partOf"><h3>Part Of</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an Asset/PartyCollection that the Asset/Party is a member of.</td></tr>
