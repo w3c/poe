@@ -1,10 +1,27 @@
 @base <http://iptc.org/std/RightsML/> .
-@prefix : <http://iptc.org/std/RightsML/> .
+@prefix rightsML: <http://iptc.org/std/RightsML/> .
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-rightsml:
+rightsML:
 	a owl:Ontology ;
 	rdfs:label "ODRL RighstML Profile"@en .
+
+## Supported Terms from the ODRL Common Vocabulary
+
+odrl:archive .
+odrl:copy .
+odrl:distribute .
+
+## New Actions Terms
+
+:removeFromService
+	a odrl:Action, skos:Concept ;
+	rdfs:isDefinedBy rightsML: ;
+	rdfs:label "Remove from product or service"@en ;
+    odrl:narrowerThan odrl:use ;
+	skos:definition "The act of removing the specified Asset from the Assignee's product or service"@en ;
+    skos:comment "Typically expressing a Duty to be performed on request, in association with permission to perform the action addToService"@en .
+
