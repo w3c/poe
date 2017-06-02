@@ -106,14 +106,12 @@
         <li><code>Offer</code> - a subclass of Policy that supports offerings of Rules from assigner Parties.</li>
         <li><code>Agreement</code> - a subclass of Policy that supports granting of Rules from assigner to assignee Parties. </li>
         </ul>
-    <li><code>Asset</code> - A resource or a collection of resources that are the subject of a Rule (via the abstract <em>relation</em> property). The Asset class is the parent class to the AssetIndividual and AssetCollection subclasses:</li>
+    <li><code>Asset</code> - A resource or a collection of resources that are the subject of a Rule (via the abstract <em>relation</em> property). The Asset class is the parent class to:</li>
          <ul>
-        <li><code>AssetIndividual</code> - a subclass of Asset that identifies a single resource.</li>
         <li><code>AssetCollection</code> - a subclass of Asset that identifies a collection of resources.</li>
         </ul>
-    <li><code>Party</code> - An entity or a collection of entities that undertake Roles in a Rule (via the abstract <em>function</em> property). The Party class is the parent class to the PartyIndividual and PartyCollection subclasses:</li>
+        <li><code>Party</code> - An entity or a collection of entities that undertake Roles in a Rule (via the abstract <em>function</em> property). The Party class is the parent class to:</li>
          <ul>
-        <li><code>PartyIndividual</code> - a subclass of Party that identifies a single enity.</li>
         <li><code>PartyCollection</code> - a subclass of Party that identifies a collection of entities.</li>
         </ul>
     <li><code>Action</code> - An operation on an Asset.</li>
@@ -278,24 +276,24 @@
 <section id="asset">
 <h3>Asset</h3>
 <p>An Asset is a resource or a collection of resources that are the subject of a Rule. The Asset can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> classes that are needed to undertake the Policy expression, such as with a Duty. An Asset is referred to by the Permission and/or Prohibition, and also by the Duty.</p>
+ 
+<p>The Asset class has the following subclass:</p>
+    
+<ul>
+    <li><code>AssetCollection</code> - an Asset that is a group of resources. This indicates that all the items in the group will be the subject of the Rule.</li>
+</ul>
     
 <p>The Asset class has the following properties:</p>
     
 <ul>
 <li>An Asset MUST have a <code>uid</code> identification of the Asset using an IRI [[!rfc3987]].</li>
-<li>An Asset MAY have a <code>constraint</code> indicating how the Asset shall be interpreted under different contexts. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
+    <li>An Asset MAY have a <code>partOf</code> property to identify an AssetCollection that this Asset is a group of.</li>
+<li>An AssetCollection MAY have a <code>constraint</code> indicating how the Asset shall be interpreted under different contexts. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
 </ul>
 
- <p>The Asset class has two subclasses:</p>
+    <p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicity express relationships between Assets and their members in order to potentially detect any conflicts in Policies.</p>
     
-<ul>
-    <li><code>AssetIndividual</code> - an Asset that is a single resource.</li>
-    <li><code>AssetCollection</code> - an Asset that is a group of resources. This indicates that all the items in the group will be the subject of the Rule.</li>
-</ul>
-    
-    <p>The <code>AssetIndividual</code> subclass is the default subclass of Asset (if none is specified).</p>
-    
-<p>Since ODRL Policies could deal with any kind of Asset, the ODRL Information Model does not provide additional metadata to describe Assets of particular media types. It is recommended to use  existing metadata standards, such as <code><a href="http://dublincore.org/documents/dcmi-terms/">Dublin Core Metadata Terms</a></code> that are appropriate to the Asset type or purpose.</p>
+<p>Since ODRL Policies could deal with any kind of Asset, the ODRL Information Model does not provide additional metadata to describe Assets of particular media types. It is recommended to use  existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/">Dublin Core Metadata Terms</a> that are appropriate to the Asset type or purpose.</p>
 
 <section id="relation">
 <h4>Relation</h4>
@@ -308,7 +306,7 @@
     
         
  <blockquote>   
-<p>Example Use Case: The assigner Party <code>http//example.com/party:0001</code> offers to display the <code>target</code> Asset <code>http://example.com/asset:3333</code>. In this example, the Asset is assumed to be an AssetIndividual.</p>
+<p>Example Use Case: The assigner Party <code>http//example.com/party:0001</code> offers to display the <code>target</code> Asset <code>http://example.com/asset:3333</code>.</p>
     </blockquote>
  <pre class="example hljs json">
  {
@@ -355,24 +353,21 @@
 <h3>Party</h3>
     
 <p>A Party is an entity or a collection of entities that undertake functional roles in a Rule, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the function it plays in the Rule).</p>
+
+<p>The Party class has the following subclas:</p> 
+<ul>
+    <li><code>PartyCollection</code> - a Party that is a group of entities. This indicates that all the entities in the group will undertake the same functional role in the Rule.</li>
+</ul>
     
 <p>The Party class has the following properties:</p>
 <ul>
 <li>A Party MUST have a <code>uid</code> identifier of the Party using an IRI [[!rfc3987]]</li>
 <li>A Party MUST have a <code><em>function</em></code> indicating the role undertaken by the Party.</li>
-<li>A Party MAY have a <code>constraint</code> indicating how the Party shall be interpreted under different contexts. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
-</ul>
+      <li>A Party MAY have a <code>partOf</code> property to identify a PartyCollection that this Party is a member of.</li>
+<li>A PartyCollection MAY have a <code>constraint</code> indicating how the Party shall be interpreted under different contexts. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
+    </ul>
 
-    
-<p>The Party class has two subclasses:</p>
-    
-<ul>
-    <li><code>PartyIndividual</code> - a Party that is a single entity.</li>
-    <li><code>PartyCollection</code> - a Party that is a group of entities. This indicates that all the entities in the group will undertake the same functional role in the Rule.</li>
-</ul>
-    
-    <p>The <code>PartyIndividual</code> subclass is the default subclass of Party (if none is specified).</p>
-    
+<p>The <code>partOf</code> property is used to identify a PartyCollection that a Party entity is a member of. The purpose is to explicity express relationships between Parties and their members in order to potentially detect any conflicts in Policies.</p>
     
 <p>The ODRL Information Model does not provide additional metadata for the Party class. It is recommended to use existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</p>
  
@@ -415,7 +410,7 @@
     
     
 <blockquote>
-  <p>Example Use Case: The Policy shows an Agreement with two Parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the use of the target asset. In this case, the <code>assigner</code> is explicitly declared as a <code>PartyIndividual</code> as well as a <em>vcard:Organisation</em>  and some additional external properties. The <code>assignee</code> is explicitly declared as a <code>PartyCollection</code> as well as a <em>vcard:Group</em> and some additional external properties. This implies that all the entities that are identifed as <code>http://example.com/team/A</code> will each have the same granted action</p>
+  <p>Example Use Case: The Policy shows an Agreement with two Parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the use of the target asset. In this case, the <code>assigner</code> is explicitly declared as a <code>Party</code> as well as a <em>vcard:Organisation</em>  and some additional external properties. The <code>assignee</code> is explicitly declared as a <code>PartyCollection</code> as well as a <em>vcard:Group</em> and some additional external properties. This implies that all the entities that are identifed as <code>http://example.com/team/A</code> will each have the same granted action</p>
 </blockquote>    
 
 <pre class="example hljs json">
@@ -429,7 +424,7 @@
     "permission": [{
         "target": "http://example.com/looking-glass.ebook",
         "assigner": {
-            "@type": [ "PartyIndividual", "vcard:Organization" ],
+            "@type": [ "Party", "vcard:Organization" ],
             "uid":  "http://example.com/org/sony-books",
             "vcard:fn": "Sony Books LCC",
             "vcard:hasEmail": "sony-contact@example.com" },
@@ -464,7 +459,7 @@
         <li><code>transfer</code> - actions that involve in the transfer of ownership to third parties.</li>
     </ul>
     <p>
-     All ODRL core and common terms are defined with either <code>use</code> or <code>transfer</code> as the parent term. See <a href="#profile">ODRL Profiles</a> for more details.
+     Additional Action terms MUST be defined using the <code>narrowerThan</code> property with either <code>use</code> or <code>transfer</code> as the parent term. Any actions that form dependencies (eg Action X requires Action Y) MUST use the <code>implies</code> property. The <code>narrowerThan</code> property defines vertical relationships between Actions, and the <code>implies</code> property defines horizontal relationships between Actions. See <a href="#profile">ODRL Profiles</a> for more details.
     </p>
 <p>The ODRL Common Vocabulary [[!odrl-vocab]] defines a standard set of generic Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
 
@@ -870,7 +865,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <h3>Asset Constraint</h3>
  
  <p>   
-    Atomic constraints MAY be applied to Assets to indicate the context under which to identify the Asset(s) that are applicable to the Rule. If an Asset is a <code>AssetIndividual</code> then the constraint logical expressions applies to the whole Asset as a single resource. If an Asset is a <code>AssetCollection</code> then the constraint logical expressions applies to each of the resources identified by the Asset.</p>
+    Atomic constraints MAY be applied to Assets to indicate the context under which to identify the Asset(s) that are applicable to the Rule. If an Asset is an <code>AssetCollection</code> then the constraint logical expressions applies to each of the resources identified by the Asset.</p>
         
 
 <blockquote>
@@ -906,7 +901,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <h3>Party Constraint</h3>
  
  <p>   
-    Atomic constraints MAY be applied to Party to indicate the context under which to identify the Parties(s) that are applicable to the Rule. If a Party is a <code>PartyIndividual</code> then the constraint logical expressions applies to the whole Party as a single entity. If a Party is a <code>PartyCollection</code> then the constraint logical expressions applies to each of the entities identified by the Party.</p>
+    Atomic constraints MAY be applied to Party to indicate the context under which to identify the Parties(s) that are applicable to the Rule . If a Party is a <code>PartyCollection</code> then the constraint logical expressions applies to each of the entities identified by the Party.</p>
         
 
     <blockquote>
@@ -1321,7 +1316,7 @@ An ODRL Profile extends the ODRL Information Model classes and properties in the
 <ul><li><code>ex:myRelation rdfs:subPropertyOf odrl:relation ;</code></li></ul>
 
 <blockquote>
- <p>Additional Party Functional roles - create a subproperty of the abstract <em>fuction</em> property:</p>
+ <p>Additional Party Functional roles - create a subproperty of the abstract <em>function</em> property:</p>
 </blockquote>
 <ul><li><code>ex:myFunctionRole	rdfs:subPropertyOf odrl:function ;</code></li></ul>
 
@@ -1331,7 +1326,10 @@ An ODRL Profile extends the ODRL Information Model classes and properties in the
 <ul><li><code>ex:myAction a :Action ;</code></li>
     <li><code>ex:myAction odrl:narrowerThan odrl:use ;</code></li></ul>
         
-
+<p>The new Action MAY be defined as <code>narrowerThan</code> any exisiting Action. </p>
+<p>If the new Action forms a dependency with another new or exisiting Action, then define the two actions with the <code>implies</code> property:</p>
+    <ul><li><code>ex:myAction odrl:implies odrl:distribute ;</code></li></ul>    
+        
 <blockquote>
     <p>Additional Constraint left operards - create an instance of the LeftOperand class:</p>
 </blockquote>
@@ -1376,7 +1374,7 @@ An ODRL Profile extends the ODRL Information Model classes and properties in the
 <section class="appendix">
 <h3>Acknowledgements</h3>
 
-<p>The POE Working Group gratefully acknowledges the contributions of the <code><a href="http://www.w3.org/community/odrl/">ODRL Community Group</a></code> and the earlier <code><a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a></code>. In particular the editors would like to thank Susanne Guth, Daniel Paehler, and Andreas Kasten for their past editorial contributions.</p>
+<p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>. In particular the editors would like to thank Susanne Guth, Daniel Paehler, and Andreas Kasten for their past editorial contributions.</p>
 </section>
 
     
@@ -1384,7 +1382,7 @@ An ODRL Profile extends the ODRL Information Model classes and properties in the
 <h2>Relationship to the W3C ODRL Community Group Reports</h2>
 
     
-<p>The basis for the deliverables for the Permissions &amp; Obligations Expression Working Group are the reports created by the <code><a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a></code>. The ODRL Community Group has developed a family of specifications to support innovative expression of  asset usage for the publication, distribution and consumption of content services.
+<p>The basis for the deliverables for the Permissions &amp; Obligations Expression Working Group are the reports created by the <a href="https://www.w3.org/community/odrl/">W3C ODRL Community Group</a>. The ODRL Community Group has developed a family of specifications to support innovative expression of  asset usage for the publication, distribution and consumption of content services.
 The final outputs of the ODRL Community Group were the ODRL Version 2.1 specifications that were a major update for ODRL and superseded the original ODRL Version 1.1 [[odrl]] (published as a W3C NOTE).</p>
     
 <p>The following documents are part of the ODRL Community Group report series:</p>
@@ -1409,63 +1407,64 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
   <h3>Changes from Previous Versions</h3>
     <p>Changes from the <a href="https://www.w3.org/TR/2016/WD-odrl-model-20160721/">First Public Working Draft 21 July 2016</a>:</p>
 <ul>
-<li>Added abstract Rule class to the Information Model <code><a href="https://github.com/w3c/poe/issues/24">(Issue#24)</a></code></li>
-<li>Clarified Permission cardinality <code><a href="https://github.com/w3c/poe/issues/17">(Issue#17)</a></code></li>
-<li>Clarified Duty obligations <code><a href="https://github.com/w3c/poe/issues/18">(Issue#18)</a></code></li>
-<li>Clarified Duty only applicable to Permission  <code><a href="https://github.com/w3c/poe/issues/19">(Issue#19)</a></code></li>
-<li>Clarified conflict of Permissions/Prohibitions may arise also within the same policy <code><a href="https://github.com/w3c/poe/issues/20">(Issue#20)</a></code></li>
-<li>Clarified Party definition and its relation with role <code><a href="https://github.com/w3c/poe/issues/23">(Issue#23)</a></code></li>
+<li>Added abstract Rule class to the Information Model <a href="https://github.com/w3c/poe/issues/24">(Issue#24)</a></li>
+<li>Clarified Permission cardinality <a href="https://github.com/w3c/poe/issues/17">(Issue#17)</a></li>
+<li>Clarified Duty obligations <a href="https://github.com/w3c/poe/issues/18">(Issue#18)</a></li>
+<li>Clarified Duty only applicable to Permission  <a href="https://github.com/w3c/poe/issues/19">(Issue#19)</a></li>
+<li>Clarified conflict of Permissions/Prohibitions may arise also within the same policy <a href="https://github.com/w3c/poe/issues/20">(Issue#20)</a></li>
+<li>Clarified Party definition and its relation with role <a href="https://github.com/w3c/poe/issues/23">(Issue#23)</a></li>
     
-<li>Additional description on the purpose and use of ODRL Profiles.<code><a href="https://github.com/w3c/poe/issues/49">(Issue#49)</a></code></li>
+<li>Additional description on the purpose and use of ODRL Profiles.<a href="https://github.com/w3c/poe/issues/49">(Issue#49)</a></li>
  
-    <li>Modified UML model to have Inheritance as separate association class.<code><a href="https://github.com/w3c/poe/issues/51">(Issue#51)</a></code></li>
+    <li>Modified UML model to have Inheritance as separate association class.<a href="https://github.com/w3c/poe/issues/51">(Issue#51)</a></li>
 
-    <li>Added example use cases through-out the Model sections and have removed the Scenarios sections (as they are covered in the examples).<code><a href="https://github.com/w3c/poe/issues/50">(Issue#50)</a></code></li>
+    <li>Added example use cases through-out the Model sections and have removed the Scenarios sections (as they are covered in the examples).<a href="https://github.com/w3c/poe/issues/50">(Issue#50)</a></li>
 
-        <li>Updated the Scope for Parties (and new for Assets) to allow any URI to scope the characteristics of the entity. <code><a href="https://github.com/w3c/poe/issues/59">(Issue#59)</a></code></li>
+        <li>Updated the Scope for Parties (and new for Assets) to allow any URI to scope the characteristics of the entity. <a href="https://github.com/w3c/poe/issues/59">(Issue#59)</a></li>
 
-       <li>Added rightOperandReference to Constraint. <code><a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></code></li>
+       <li>Added rightOperandReference to Constraint. <a href="https://github.com/w3c/poe/issues/56">(Issue#56)</a></li>
     
-      <li>Clarified Constraint related definitions. <code><a href="https://github.com/w3c/poe/issues/81">(Issue#81)</a></code></li>
+      <li>Clarified Constraint related definitions. <a href="https://github.com/w3c/poe/issues/81">(Issue#81)</a></li>
     
-         <li>Support multiple Assets, Parties, and Actions. <code><a href="https://github.com/w3c/poe/issues/73">(Issue#73)</a></code></li>
+         <li>Support multiple Assets, Parties, and Actions. <a href="https://github.com/w3c/poe/issues/73">(Issue#73)</a></li>
     
-           <li>Support Policy-level Assets, Parties, and Actions. <code><a href="https://github.com/w3c/poe/issues/82">(Issue#82)</a></code></li>
+           <li>Support Policy-level Assets, Parties, and Actions. <a href="https://github.com/w3c/poe/issues/82">(Issue#82)</a></li>
     
-       <li>Clarified and simplified Policy Inheritance. <code><a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></code></li>
+       <li>Clarified and simplified Policy Inheritance.<a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
     
-     <li>Added Policy Provenance section. <code><a href="https://github.com/w3c/poe/issues/48">(Issue#48)</a></code></li>
+     <li>Added Policy Provenance section. <a href="https://github.com/w3c/poe/issues/48">(Issue#48)</a></li>
     
-    <li>Added Extended Relations to Constraints. <code><a href="https://github.com/w3c/poe/issues/63">(Issue#63)</a></code></li>
+    <li>Added Extended Relations to Constraints. <a href="https://github.com/w3c/poe/issues/63">(Issue#63)</a></li>
     
-    <li>Added Constraint on Constraint support. <code><a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></code></li>
+    <li>Added Constraint on Constraint support. <a href="https://github.com/w3c/poe/issues/62">(Issue#62)</a></li>
     
     </ul>
     
        <p>Changes from the <a href="https://www.w3.org/TR/2017/WD-odrl-model-20170223/">Working Draft 23 February 2017</a>:</p>
     
         <ul>
-     <li>Removed inheritRelation attribute. <code><a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></code></li>
+     <li>Removed inheritRelation attribute. <a href="https://github.com/w3c/poe/issues/22">(Issue#22)</a></li>
     
         
-     <li>Replaced URI with IRI for I18N <code><a href="https://github.com/w3c/poe/issues/133">(Issue#133)</a></code></li>
+     <li>Replaced URI with IRI for I18N <a href="https://github.com/w3c/poe/issues/133">(Issue#133)</a></li>
     
-    <li>Updated Information Model to be based on Class/Property concepts and removed UML requirements.<code><a href="https://github.com/w3c/poe/issues/128">(Issue#128)</a></code></li>
+    <li>Updated Information Model to be based on Class/Property concepts and removed UML requirements. <a href="https://github.com/w3c/poe/issues/128">(Issue#128)</a></li>
     
-    <li>Split Constraints into Atomic and Compound Constraints <code><a href="https://github.com/w3c/poe/issues/117">(Issue#117)</a></code></li>
+    <li>Split Constraints into Atomic and Compound Constraints <a href="https://github.com/w3c/poe/issues/117">(Issue#117)</a>></li>
     
-    <li>Removed the type property and replaced with subclasses of Policy. Added Set/Offer/Agreement to the IM. Set is now default for Policy. <code><a href="https://github.com/w3c/poe/issues/154">(Issue#154)</a></code></li>
+    <li>Removed the type property and replaced with subclasses of Policy. Added Set/Offer/Agreement to the IM. Set is now default for Policy. <a href="https://github.com/w3c/poe/issues/154">(Issue#154)</a></li>
     
-     <li>Removed (deprecated) the Undefined Actions section. <code><a href="https://github.com/w3c/poe/issues/139">(Issue#139)</a></code></li>
+     <li>Removed (deprecated) the Undefined Actions section. <a href="https://github.com/w3c/poe/issues/139">(Issue#139)</a></li>
             
-    <li>Removed Scopes and replaced with Constraints on Asset and Party. <code><a href="https://github.com/w3c/poe/issues/183">(Issue#183)</a></code></li>
+    <li>Removed Scopes and replaced with Constraints on Asset and Party. <a href="https://github.com/w3c/poe/issues/183">(Issue#183)</a></li>
             
-     <li>More clearly defined the scope of ODRL Profiles (addition only) and added how to create them. <code><a href="https://github.com/w3c/poe/issues/173">(Issue#173)</a></code></li>
+     <li>More clearly defined the scope of ODRL Profiles (addition only) and added how to create them. <a href="https://github.com/w3c/poe/issues/173">(Issue#173)</a></li>
             
-    <li>Added use and transfer as the top-level actions <code><a href="https://github.com/w3c/poe/issues/140">(Issue#140)</a></code></li>
+    <li>Added use and transfer as the top-level actions <a href="https://github.com/w3c/poe/issues/140">(Issue#140)</a></li>
             
-    <li>Added hasPolicy property <code><a href="https://github.com/w3c/poe/issues/184">(Issue#184)</a></code></li>
+    <li>Added hasPolicy property <a href="https://github.com/w3c/poe/issues/184">(Issue#184)</a></li>
     
+     <li>Added narrowThan and implies properties for Action. Added partOf property for Asset and Party <a href="https://github.com/w3c/poe/issues/160">(Issue#160)</a></li>
     
 </ul>
 </section>
