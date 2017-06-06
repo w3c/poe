@@ -75,7 +75,7 @@
           <dt><dfn>ODRL Evaluator</dfn></dt>
 	          <dd>A system that ... ODRL Policy expressions</dd>
             <dt><dfn>ODRL Common Vocabulary</dfn></dt>
-	          <dd>A set of generic terms that may be used with the ODRL core vocuabyulary to express Policies.</dd>
+	          <dd>A set of generic terms that may be used with the ODRL core vocabulary to express Policies.</dd>
              <dt><dfn>ODRL Profile</dfn></dt>
 	          <dd>A community or sector specific vocabulary that extends the ODRL core vocabulary with new terms and/or ODRL Common Vocabulary terms to express Policies</dd>
              </dl>
@@ -291,7 +291,7 @@
 <li>An AssetCollection MAY have a <code>constraint</code> indicating how the Asset shall be interpreted under different contexts. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
 </ul>
 
-    <p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicity express relationships between Assets and their members in order to potentially detect any conflicts in Policies.</p>
+    <p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicitly express relationships between Assets and their members in order to potentially detect any conflicts in Policies.</p>
     
 <p>Since ODRL Policies could deal with any kind of Asset, the ODRL Information Model does not provide additional metadata to describe Assets of particular media types. It is recommended to use  existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/">Dublin Core Metadata Terms</a> that are appropriate to the Asset type or purpose.</p>
 
@@ -329,7 +329,7 @@
 </div>
     
 <blockquote>	
-    <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. The target asset is also declared as an <code>AssetCollection</code> to indicate the resource is a collection of resources. Another Asset relation <code>ex:summary</code> is also expressed to indicate the Asset <code>http://example.com/x/database</code> that the indexing ouput should be stored in. (These semantics would be defined by the community who created the <code>ex:summary</code> relation.)</p>
+    <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. The target asset is also declared as an <code>AssetCollection</code> to indicate the resource is a collection of resources. Another Asset relation <code>ex:summary</code> is also expressed to indicate the Asset <code>http://example.com/x/database</code> that the indexing output should be stored in. (These semantics would be defined by the community who created the <code>ex:summary</code> relation.)</p>
     </blockquote>
 
  <pre class="example hljs json">
@@ -370,7 +370,7 @@
 <li>A PartyCollection MAY have a <code>constraint</code> indicating how the Party shall be interpreted under different contexts. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
     </ul>
 
-<p>The <code>partOf</code> property is used to identify a PartyCollection that a Party entity is a member of. The purpose is to explicity express relationships between Parties and their members in order to potentially detect any conflicts in Policies.</p>
+<p>The <code>partOf</code> property is used to identify a PartyCollection that a Party entity is a member of. The purpose is to explicitly express relationships between Parties and their members in order to potentially detect any conflicts in Policies.</p>
     
 <p>The ODRL Information Model does not provide additional metadata for the Party class. It is recommended to use existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</p>
  
@@ -378,7 +378,7 @@
 <section id="function">
 <h4>Function</h4>
 
-<p>A <code><em>function</em></code> property is used to link a Rule to a Party, indicating the function undertaken by the Party in respect to the Rule that links to it. The <code><em>function</em></code> property itself is abstract; subproperties represent explicit semantics of the functional role between the Party and the Rule.</p>
+<p>A <code><em>function</em></code> property is used to link a Rule to a Party, indicating the function undertaken by the Party in respect to the Rule that links to it. The <code><em>function</em></code> property itself is abstract; sub-properties represent explicit semantics of the functional role between the Party and the Rule.</p>
  
 <p>An ODRL validator MUST support the following sub-properties of <code><em>function</em></code>:</p>
 <ul>
@@ -413,7 +413,7 @@
     
     
 <blockquote>
-  <p>Example Use Case: The Policy shows an Agreement with two Parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the use of the target asset. In this case, the <code>assigner</code> is explicitly declared as a <code>Party</code> as well as a <em>vcard:Organisation</em>  and some additional external properties. The <code>assignee</code> is explicitly declared as a <code>PartyCollection</code> as well as a <em>vcard:Group</em> and some additional external properties. This implies that all the entities that are identifed as <code>http://example.com/team/A</code> will each have the same granted action</p>
+  <p>Example Use Case: The Policy shows an Agreement with two Parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the use of the target asset. In this case, the <code>assigner</code> is explicitly declared as a <code>Party</code> as well as a <em>vcard:Organisation</em>  and some additional external properties. The <code>assignee</code> is explicitly declared as a <code>PartyCollection</code> as well as a <em>vcard:Group</em> and some additional external properties. This implies that all the entities that are identified as <code>http://example.com/team/A</code> will each have the same granted action</p>
 </blockquote>    
 
 <pre class="example hljs json">
@@ -514,7 +514,7 @@
 
 <p>In addition to the Rule properties, the Permission class has the following characteristics:</p>
 <ul>
-    <li>A Permission MUST be linked to an Asset via a <code>target</code> property. This does not restrict the subproperties of <code>relation</code> that are used as properties of the Asset.</li>
+    <li>A Permission MUST be linked to an Asset via a <code>target</code> property. This does not restrict the sub-properties of <code>relation</code> that are used as properties of the Asset.</li>
     <li>A Permission MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
     <li>A Permission  MAY have one or more Duties via the <code>duty</code> property. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
 </ul>
@@ -591,7 +591,7 @@
 <p>In addition to the Rule properties, the Duty class has the following:</p>
 <ul>
    <li>A Duty MUST only be associated with a Permission.</li> 
-     <li>A Duty MAY be linked to an Asset via a <code>target</code> relation property on which the agreed Action MUST be performed. This does not restrict the subproperties of <code>relation</code> that are used as properties of the Asset.</li>
+     <li>A Duty MAY be linked to an Asset via a <code>target</code> relation property on which the agreed Action MUST be performed. This does not restrict the sub-properties of <code>relation</code> that are used as properties of the Asset.</li>
   <li>It is assumed that any assigned Party has the appropriate permissions to perform the Duty Action.</li>
     <li>A Duty MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. If the functional roles are not specified in the Duty, then the respective functions are assumed to be the same as in the referring Permission. Other types of function properties for Party MAY be used (for example, Compensated Party or Tracking Party).</li>
 </ul>
@@ -695,7 +695,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     
 <p>The <code>operator</code> identifies the logical operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
-<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> MAY be the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as <code>10</code> or <code>http://example.com/c100</code>) and <code>rightOperandReference</code> represents an IRI that MUST be dereferenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI. Only one of <code>rightOperand</code> and <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
+<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> MAY be the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperand</code> represents the literal value (such as <code>10</code> or <code>http://example.com/c100</code>) and <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI. Only one of <code>rightOperand</code> and <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
         
 <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU currency&#8221;.</p>
 
@@ -758,7 +758,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 <h3>Compound Constraint</h3>
  
  <p>   
-    Compound Constraints refer to two exisiting Atomic Constraints as the left and right operand. For example, Atomic Constraint #1 (<code>leftOperand</code>) must be satisfied <strong>or</strong> (<code>operator</code>) Atomic Constraint #2 (<code>rightOperand</code>) must be satisfied. The Compound Constraint operator identifiers the logical relationship between the two Atomic Constraints using operators such as <strong>and</strong> or <strong>exclusive or</strong>.</p>
+    Compound Constraints refer to two existing Atomic Constraints as the left and right operand. For example, Atomic Constraint #1 (<code>leftOperand</code>) must be satisfied <strong>or</strong> (<code>operator</code>) Atomic Constraint #2 (<code>rightOperand</code>) must be satisfied. The Compound Constraint operator identifiers the logical relationship between the two Atomic Constraints using operators such as <strong>and</strong> or <strong>exclusive or</strong>.</p>
 
       
 <p>The Compound Constraint class has the following properties:</p>
@@ -779,7 +779,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 
     <p>Other <code>operator</code> values are defined in the ODRL Vocabulary [[!odrl-vocab]], further values may be defined by ODRL Profiles.</p>
     
-<p>The <code>andSequence</code> operator is an example where there are temporal conditional requirements between the left and rigt operands. This may lead to situations where the outcome is unresolvable, such as <em>deadlock</em> if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</p>
+<p>The <code>andSequence</code> operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as <em>deadlock</em> if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</p>
     
 <p>The processing model for Compound Constraints includes:</p>
     <ol>
@@ -787,8 +787,8 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
          <li>The left and right operands MUST NOT be the same Atomic Constraint.</li>
         <li>The <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>, <code>andSequence</code>. Other values MAY be defined in ODRL Profiles exclusively for the use of Compound Constraints.</li>
        <li>If the <code>operator</code> is <code>or</code> then at least one of the Atomic Constraints (in the left or right operands) MUST be satisfied for the entire Compound Constraint to be satisfied.</li> 
-        <li>If the <code>operator</code> is <code>xor</code> then at only one of the Atmomic Constraints (in the left or right operands) MUST be satisfied for the entire Compound Constraint to be satisfied.</li>  
-        <li>If the <code>operator</code> is <code>and</code> then both of the Atmoic Constraints (in the left and right operands) MUST be satisfied for the entire Compound Constraint to be satisfied.</li>
+        <li>If the <code>operator</code> is <code>xor</code> then at only one of the Atomic Constraints (in the left or right operands) MUST be satisfied for the entire Compound Constraint to be satisfied.</li>  
+        <li>If the <code>operator</code> is <code>and</code> then both of the Atomic Constraints (in the left and right operands) MUST be satisfied for the entire Compound Constraint to be satisfied.</li>
         <li>If the <code>operator</code> is <code>andSequence</code> then the left operand Atomic Constraint MUST return a satisfied result then the right operand Atomic Constraint MUST be evaluated and be satisfied.</li>
     </ol>
 
@@ -873,7 +873,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 
 <blockquote>
     <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia images. The target Asset also has a constraint that specifies further context on the characteristics of the target Asset items. In this case, the target Assets will be no more than 50 resources from the media catalogue, and each of those may be printed.</p>
-        <p>The <code>ex:set</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but dereference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
+        <p>The <code>ex:set</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but de-reference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
         </p>
  </blockquote>
  <pre class="example hljs json">
@@ -1138,7 +1138,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
 </ul>
 
     <blockquote>
-<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assinger wishes to provide default permissions for all Policies). It does not include any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
+<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assigner wishes to provide default permissions for all Policies). It does not include any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
 </blockquote>
     
     <pre class="example hljs json">
@@ -1290,7 +1290,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     <section id="profile-motivation">
     <h3>ODRL Profile Purpose</h3>
         
-<p>The ODRL Information Model serves as a core framework and vocabulary to express Policies. The ODRL Common Vocabulary [[!odrl-vocab]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions. For some communities, this flexibility and wide-range of terms supports their requirements for policy expression. Other communities may wish to have a more focussed and specific set of terms that meets their sector's requirements more precisley. 
+<p>The ODRL Information Model serves as a core framework and vocabulary to express Policies. The ODRL Common Vocabulary [[!odrl-vocab]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions. For some communities, this flexibility and wide-range of terms supports their requirements for policy expression. Other communities may wish to have a more focussed and specific set of terms that meets their sector's requirements more precisely. 
 </p>
         
         <p>In this latter case, it is recommended that a community create and document an ODRL Profile. An ODRL Profile directly and explicitly serves their communities needs by specifying only the terms they wish to support in ODRL expressions. These terms may come from the ODRL Common Vocabulary or may be created as new terms.</p>
@@ -1305,7 +1305,7 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     
    
 <p>
-An ODRL Profile extends the ODRL Information Model classes and properties in the following ways:
+An ODRL Profile extends the ODRL Information Model classes, properties, and instances in the following ways:
    </p>
 
 <blockquote>
@@ -1314,12 +1314,12 @@ An ODRL Profile extends the ODRL Information Model classes and properties in the
 <ul><li><code>ex:myPolicyType rdfs:subClassOf odrl:Policy ;</code></li></ul>
     
 <blockquote>
- <p>Additional Asset Relationships - create a subproperty of the abstract <em>relation</em> property:</p>
+ <p>Additional Asset Relationships - create a sub-property of the abstract <em>relation</em> property:</p>
 </blockquote>
 <ul><li><code>ex:myRelation rdfs:subPropertyOf odrl:relation ;</code></li></ul>
 
 <blockquote>
- <p>Additional Party Functional roles - create a subproperty of the abstract <em>function</em> property:</p>
+ <p>Additional Party Functional roles - create a sub-property of the abstract <em>function</em> property:</p>
 </blockquote>
 <ul><li><code>ex:myFunctionRole	rdfs:subPropertyOf odrl:function ;</code></li></ul>
 
@@ -1329,17 +1329,17 @@ An ODRL Profile extends the ODRL Information Model classes and properties in the
 <ul><li><code>ex:myAction a :Action ;</code></li>
     <li><code>ex:myAction odrl:narrowerThan odrl:use ;</code></li></ul>
         
-<p>The new Action MAY be defined as <code>narrowerThan</code> any exisiting Action. </p>
-<p>If the new Action forms a dependency with another new or exisiting Action, then define the two actions with the <code>implies</code> property:</p>
+<p>The new Action MAY be defined as <code>narrowerThan</code> any existing Action. </p>
+<p>If the new Action forms a dependency with another new or existing Action, then define the two actions with the <code>implies</code> property:</p>
     <ul><li><code>ex:myAction odrl:implies odrl:distribute ;</code></li></ul>    
         
 <blockquote>
-    <p>Additional Constraint left operards - create an instance of the LeftOperand class:</p>
+    <p>Additional Constraint left operands - create an instance of the LeftOperand class:</p>
 </blockquote>
 <ul><li><code>ex:myLeftOperand a odrl:LeftOperand ;</code></li></ul>
         
 <blockquote>
-    <p>Additional Constraint right operards - create an instance of the RightOperand class:</p>
+    <p>Additional Constraint right operands - create an instance of the RightOperand class:</p>
 </blockquote>
 <ul><li><code>ex:myRightOperand a odrl:RightOperand ;</code></li></ul>
         
@@ -1354,12 +1354,13 @@ An ODRL Profile extends the ODRL Information Model classes and properties in the
 <ul><li><code>:myStrategy a :ConflictTerm ;</code></li></ul>
         
 <blockquote>
-    <p>Additional Rule class - create a suclass of the Rule class and define it as disjoint with the other Rule subclasses:</p>
+    <p>Additional Rule class - create a subclass of the Rule class and define it as disjoint with the other Rule subclasses:</p>
 </blockquote>
     <li><code>:myRule	rdfs:subClassOf :Rule ; </code></li>
 	<li><code>owl:disjointWith :Prohibition, :Duty :Permission ; </code></li></ul>
 
-    <p>Human-readable documenation is also recommened for each new term using  <code>rdfs:label</code> for the name, <code>skos:defintion</code> for the formal defintion, and <code>skos:note</code> for additional comments on its use.</p>
+    <p>All new classes, properties, and instances must also be defined as a <code>skos:Concept</code>. Appropriate <code>rdfs:domain</code> and <code>rdfs:range</code> should also be defined.</p>
+    <p>Human-readable documentation is also recommended for each new term using  <code>rdfs:label</code> for the name, <code>skos:definition</code> for the formal definition, and <code>skos:note</code> for additional comments on its use.</p>
 </section>
     
 </section>
@@ -1369,7 +1370,7 @@ An ODRL Profile extends the ODRL Information Model classes and properties in the
 
 <h2>Privacy Considerations</h2>
   <p>
-    The ODRL Information Model does not directly express sensitive personal information such as the the identity of the existence of assets containing such data related to parties. However, ODRL vocabularies (such as the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles) may define terms that may relate to personal information. These specifications should inform implementations that produce or consume such ODRL expressions to take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
+    The ODRL Information Model does not directly express sensitive personal information such as the identity of the existence of assets containing such data related to parties. However, ODRL vocabularies (such as the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles) may define terms that may relate to personal information. These specifications should inform implementations that produce or consume such ODRL expressions to take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
 
 </p>
 </section>
@@ -1467,7 +1468,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
             
     <li>Added hasPolicy property <a href="https://github.com/w3c/poe/issues/184">(Issue#184)</a></li>
     
-     <li>Added narrowThan and implies properties for Action. Added partOf property for Asset and Party <a href="https://github.com/w3c/poe/issues/160">(Issue#160)</a></li>
+     <li>Added narrowerThan and implies properties for Action. Added partOf property for Asset and Party <a href="https://github.com/w3c/poe/issues/160">(Issue#160)</a></li>
     
 </ul>
 </section>
