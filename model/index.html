@@ -299,8 +299,11 @@
 <h4>Relation</h4>
 
 <p>The abstract <code><em>relation</em></code> property is used to create an explicit link between an Action and an Asset, indicating how the Asset MUST be utilised in respect to the Rule that links to it. Two sub-properties of the <code><em>relation</em></code> property are used to define the nature of that link, namely <code><em>target</em></code> and <code><em>output</em></code>.</p>
-    
-<p>The <code><em>relation</em></code> subtype of <code>target</code> MUST be supported. The <code>target </code> relation indicates that the Asset is the primary subject to which the Rule action directly applies.</p>
+
+    <p>An ODRL validator MUST support the following sub-properties of <code><em>relation</em></code>:</p>
+<ul>
+<li><code>target</code>: indicates that the Asset is the primary subject to which the Rule action directly applies.</li>
+    </ul>
     
 <p>Other <code><em>relation</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
     
@@ -377,7 +380,7 @@
 
 <p>A <code><em>function</em></code> property is used to link a Rule to a Party, indicating the function undertaken by the Party in respect to the Rule that links to it. The <code><em>function</em></code> property itself is abstract; subproperties represent explicit semantics of the functional role between the Party and the Rule.</p>
  
-<p>The most important sub properties of <code><em>function</em></code> are:</p>
+<p>An ODRL validator MUST support the following sub-properties of <code><em>function</em></code>:</p>
 <ul>
 <li><code>assigner</code>: indicates the Party that is issuing the Policy. For example, the Party granting a Permission or requiring an agreed Duty to be performed.</li>
 <li><code>assignee</code>: indicates that the Party that is the recipient the Policy. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
