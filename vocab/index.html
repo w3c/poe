@@ -1341,6 +1341,7 @@
 <li>uid - an IRI</li>
 <li>relation - an IRI</li>
 <li>type - an IRI</li>
+<li>partOf - an IRI</li>
 <li>id - an local identifier for this element</li>
 <li>idref - a reference to an Asset element</li>
 </ul>
@@ -1355,6 +1356,7 @@
 <li>uid - an IRI</li>
 <li>function - an IRI</li>
 <li>type - an IRI</li>
+<li>partOf - an IRI</li>
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to a Party element</li>
 </ul>
@@ -1413,7 +1415,7 @@
 <ul>
 <li>name - an IRI</li>
 <li>operator - an IRI</li>
-<li>rightOperand - string, space separated list for set values</li>
+<li>rightOperand - string or IRI, space separated list for set values</li>
 <li>rightOperandReference - an IRI</li>
 <li>dataType - an IRI</li>
 <li>unit - an IRI</li>
@@ -1468,12 +1470,7 @@
 <section>   
     
 <h2>XML Linking</h2>  
-    
-    <div class="issue" data-number="82">
-    <p>The need for id/idref is now not required since the ODRL Information Model supports Policy-level Assets, Parties, and Actions. This feature maybe removed.</p>
- 
-</div>
-    
+   
 <p>To support repeating the same element content across Permissions and Prohibitions, the Asset, Party, Constraint, Action, and Duty elements support the xml id and idref attributes. Any of these element that has been identified using the id attribute can then be referred to by an element with the same name using the idref attribute. In this case, the referring element must have no other content. </p>
     <p>As shown in the below example, the Prohibition refers to elements defined in the Permission, except for the Constraint element. In this case, the assignee can play the music asset in Italy but not in France.</p>
     
@@ -1511,7 +1508,7 @@
 
 <section>
 <h2>Constraint Relations</h2>
-<p>To support Constraint Relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these contraints using its <code>#id</code>.</p>
+<p>To support Constraint Relations, constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The constraint (in the Permission, Prohibition, or Duty) can then refer to these constraints using its <code>#id</code>.</p>
  <p>ODRL XML processing systems MUST detect the use of <code>#id</code> in the name attribute and rightOperand in Constraints. If detected, the processing model for Constraint Relations (defined in [[!odrl-model]]) MUST then be followed.</p>
 <p>The below example shows two constraints defined at the Policy-level with ids <code>C1</code> and <code>C2</code>. The Constraint in the permission refers to these using the <code>#C1</code> and <code>#C2</code> values.</p>   
     
@@ -1617,14 +1614,14 @@
 
  <p>
 The ODRL Vocabulary and Expression was derived from the combination and merger of four of the ODRL Community Group's outcomes; ODRL V2.1 Common Vocabulary, ODRL V2.1 XML Encoding, ODRL V2.1 Ontology, and ODRL V2.1 JSON Encoding.
-     Details of the differences between the W3C Working Group deliverables and the ODRL Community Group Reports are maintained in the <a href="#community">Appendix</a>.
+     Details of the differences between the W3C Working Group deliverables and the ODRL Community Group Reports are maintained in the <a href="#changes">Appendix</a>.
 All new ODRL implementations are expected to use the deliverables of the W3C Permissions &amp; Obligations Expression Working Group. </p>
 
 </section>
         
 <section class="appendix" id="changes">
 <h2>Changes from Previous Versions</h2>
- <p>Changes Changes from the <a href="https://www.w3.org/TR/2016/WD-vocab-odrl-20160721/">First Public Working Draft 21 July 2016</a>:</p>
+ <p>Changes from the <a href="https://www.w3.org/TR/2016/WD-vocab-odrl-20160721/">First Public Working Draft 21 July 2016</a>:</p>
 <ul>
     <li>Clarified Permission cardinality in XML Encoding <a href="https://github.com/w3c/poe/issues/17">(Issue#17)</a></li>
 
@@ -1658,7 +1655,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
        <li>Added Stream to the vocabulary. <a href="https://github.com/w3c/poe/issues/103">(Issue#103)</a></li>
 </ul>
 
-<p>Changes Changes from the <a href="https://www.w3.org/TR/2017/WD-odrl-vocab-20170223/">Working Draft 23 February 2017</a>:</p>
+<p>Changes from the <a href="https://www.w3.org/TR/2017/WD-odrl-vocab-20170223/">Working Draft 23 February 2017</a>:</p>
 <ul>
         <li>Added additional Party roles. <a href="https://github.com/w3c/poe/issues/110">(Issue#110)</a></li>
     
