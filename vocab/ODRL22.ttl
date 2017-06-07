@@ -726,10 +726,10 @@ odrl:
 	a rdf:Property, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:domain :Constraint ;
-#	rdfs:range rdfs:Resource ;
+	rdfs:range rdfs:Datatype ;
 	rdfs:label "Datatype"@en ;
 	skos:definition "The datatype of the value of the rightOperand or rightOperandReference of a Constraint."@en ;
-    skos:note "In RDF encodings, use of the rdf:datatype MAY be used. In JSON-LD encoding, the use of @type MAY be used."@en .
+    skos:note "In RDF encodings, use of the rdf:datatype MUST be used. In JSON-LD encoding, the use of @type MUST be used."@en .
 
 :operator
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
@@ -740,10 +740,10 @@ odrl:
 	rdfs:range :Operator .
 
 :rightOperand
-	a rdf:Property, skos:Concept ;
+	a rdf:Property, owl:DataTypeProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand"@en ;
-	skos:definition "The right operand in a constraint expression."@en ;
+	skos:definition "The literal value of the right operand in a constraint expression."@en ;
 #	rdfs:range xsd:any ;
 	rdfs:domain :Constraint .
 
@@ -751,8 +751,8 @@ odrl:
 	a rdf:Property, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand Reference"@en ;
-	skos:definition "A reference to a web resource providing the value for the right operand of a Constraint."@en ;
-	skos:note "Is an IRI that must be dereferenced to obtain the actual right operand value"@en ;
+	skos:definition "A reference to a web resource providing the literal value for the right operand of a Constraint."@en ;
+	skos:note "Is an IRI that MUST be dereferenced to obtain the actual right operand value"@en ;
 	rdfs:domain :Constraint .
 
 :leftOperand
@@ -974,7 +974,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Device"@en ;
 	skos:definition "An identified computing system for exercising the Action."@en ;
-  owl:deprecated true ;
+    owl:deprecated true ;
 	owl:equivalentProperty :systemDevice .
 
 :elapsedTime
