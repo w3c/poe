@@ -462,12 +462,19 @@
         <li><code>transfer</code> - actions that involve in the transfer of ownership to third parties.</li>
     </ul>
     <p>
-     Additional Action terms MUST be defined using the <code>narrowerThan</code> property with either <code>use</code> or <code>transfer</code> as the parent term. Any actions that form dependencies (eg Action X requires Action Y) MUST use the <code>implies</code> property. The <code>narrowerThan</code> property defines vertical relationships between Actions, and the <code>implies</code> property defines horizontal relationships between Actions. See <a href="#profile">ODRL Profiles</a> for more details.
+     Additional Action terms MUST be defined using the <code>includedIn</code> property with either <code>use</code> or <code>transfer</code> as the parent term. The purpose of the <code>includedIn</code> property is to explicitly assert that an Action is a subpart (or <em>belongs to</em>) another Action and hence there is a direct implication between them in the sense that the latter encompasses the former <strong>and</strong> - depending on the semantics of the Rule - may be in conflict with other Actions. For example, if the <code>play</code> Action is defined as <code>includedIn</code> with <code>use</code> then if <code>play</code> is permitted in a Policy and <code>use</code> is prohibited in the same Policy, then because of this asserted relationship between the two, there is conflict in the Policy. (See <a href="#conclict">Policy Conflict Strategy</a> for more details.)</p>
+        
+        
+     <p>   
+        For Actions that form dependencies (eg Action X requires Action Y) then the <code>implies</code> property MUST be used to assert this relationship. The <code>implies</code> property defines a relationship between Actions in which the implied Action MUST be permissible. For example, if the <code>share</code> Action is defined as <code>implies</code> the <code>distribute</code> Action, then if <code>share</code> is permitted in a Policy and <code>distribute</code> is prohibited in the same Policy, then because of this asserted relationship between the two, there is conflict in the Policy. (See <a href="#conclict">Policy Conflict Strategy</a> for more details.)
+    
+    <p>See <a href="#profile">ODRL Profiles</a> for usage details on the <code>includedIn</code> and <code>implies</code> properties.
     </p>
+    
 <p>The ODRL Common Vocabulary [[!odrl-vocab]] defines a standard set of generic Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
 
     <blockquote>
-<p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset (<code>play</code> is defined as a narrower term of <code>use</code>).</p> 
+<p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset (<code>play</code> is defined as an <code>includedIn</code> term of <code>use</code>).</p> 
     </blockquote>
     
 <pre class="example hljs json">
@@ -496,12 +503,12 @@
 <p>The Rule class has the following properties:</p>
 <ul>
 <li>A Rule MUST have an Action via the <code>action</code> property.</li>
-<li>A Rule MAY have an Asset via a sub property of the <code><em>relation</em></code> property</li>
-<li>A Rule MAY have one or more Parties via a sub property of the <code><em>function</em></code> property</li>
+<li>A Rule MAY have an Asset via a sub-property of the <code><em>relation</em></code> property</li>
+<li>A Rule MAY have one or more Parties via a sub-property of the <code><em>function</em></code> property</li>
 <li>A Rule  MAY have one or more Constraints via the <code>constraint</code> property. The Rule becomes effective if all of the Constraints are satisfied.</li>
 <li>A Rule MAY have a <code>uid</code> identifier to enable the Rule to be identified by other Rules.</li>
 </ul>
-<p>Explicit sub properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
+<p>Explicit sub-properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
 <p>For a Rule to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied).</p>
 
@@ -1329,15 +1336,16 @@ An ODRL Profile extends the ODRL Information Model classes, properties, and inst
 <ul><li><code>ex:myFunctionRole	rdfs:subPropertyOf odrl:function ;</code></li></ul>
 
 <blockquote>
- <p>Additional Actions for Rules - create an instance of a Action and define its narrower parent Action:</p>
+ <p>Additional Actions for Rules - create an instance of a Action and define its includedIn parent Action:</p>
 </blockquote>
 <ul><li><code>ex:myAction a :Action ;</code></li>
-    <li><code>ex:myAction odrl:narrowerThan odrl:use ;</code></li></ul>
+    <li><code>ex:myAction odrl:includedIn odrl:use ;</code></li></ul>
         
-<p>The new Action MAY be defined as <code>narrowerThan</code> any existing Action. </p>
+<p>The new Action MAY be defined as <code>includedIn</code> to any existing Action. </p>
 <p>If the new Action forms a dependency with another new or existing Action, then define the two actions with the <code>implies</code> property:</p>
     <ul><li><code>ex:myAction odrl:implies odrl:distribute ;</code></li></ul>    
         
+<blockquote>
 <blockquote>
     <p>Additional Constraint left operands - create an instance of the LeftOperand class:</p>
 </blockquote>
@@ -1473,7 +1481,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
             
     <li>Added hasPolicy property <a href="https://github.com/w3c/poe/issues/184">(Issue#184)</a></li>
     
-     <li>Added narrowerThan and implies properties for Action. Added partOf property for Asset and Party <a href="https://github.com/w3c/poe/issues/160">(Issue#160)</a></li>
+     <li>Added includedIn and implies properties for Action. Added partOf property for Asset and Party <a href="https://github.com/w3c/poe/issues/160">(Issue#160)</a></li>
     
 </ul>
 </section>

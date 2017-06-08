@@ -266,8 +266,8 @@ function writeTerm($term)
 	$html .= $term->propertyRow("Sub-properties", "^rdfs:subPropertyOf");
     $html .= $term->propertyRow("Broader terms", "skos:broaderTransitive");
 	$html .= $term->propertyRow("Narrower terms", "^skos:broaderTransitive");
-    $html .= $term->propertyRow("Narrower terms", "^odrl:narrowerThan");
-    $html .= $term->propertyRow("Broader terms", "odrl:narrowerThan");
+    $html .= $term->propertyRow("Included By", "^odrl:includedIn");
+    $html .= $term->propertyRow("Included In", "odrl:includedIn");
  
 	$html .= $term->propertyRow("Properties", "^rdfs:domain");
 	if ($term instanceof Phpspecgen_Class) {
