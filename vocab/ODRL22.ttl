@@ -22,8 +22,9 @@ odrl:
 	dct:license <https://www.w3.org/Consortium/Legal/2002/ipr-notice-20021231#Copyright/> .
 
 
-## SKOS Collections for Grouping related concepts
-## These are primarily used to create the sections of the ODRL Vocabulary document
+## SKOS Collections for Grouping related concepts.
+## These SKOS Collections are primarily used to create the
+## sections of the ODRL Vocabulary document.
 
 <http://www.w3.org/ns/odrl/2/#policyConcepts>
     a skos:Collection ;
@@ -325,24 +326,6 @@ odrl:
     skos:member :All2ndConnections ;
     skos:member :AllGroups .
 
-
-## SKOS Concept Schemes
-
-:actions
-	a skos:ConceptScheme ;
-	rdfs:isDefinedBy odrl: ;
-	rdfs:label "ODRL Actions Vocabulary"@en ;
-	skos:hasTopConcept :acceptTracking, :aggregate, :annotate,
-		:anonymize, :archive,
-		:attribute, :concurrentUse, :delete,
-		:derive, :display, :distribute, :digitize, :ensureExclusivity, :execute,
-		:extract, :give, :include, :index, :inform,
-		:install, :modify, :move, :nextPolicy,
-		:obtainConsent, :play, :present, :print, :read,
-		:reproduce, :reviewPolicy, :sell,
-		:textToSpeech, :transform, :transfer, :translate, :uninstall,
-		:watermark, :use, :grantUse, :compensate .
-
 ## Assets
 
 :Asset
@@ -406,9 +389,9 @@ odrl:
 :hasPolicy
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has A Policy"@en ;
+	rdfs:label "Has Target Policy"@en ;
 	skos:definition "Identifies an ODRL Policy from an Asset metadata expression."@en ;
-	skos:note "The Asset being described/identified MUST be inferred to be the target Asset of the Rules of the Policy."@en ;
+	skos:note "The Asset being described/identified MUST be inferred to be the target Asset of all of the Rules of the Policy."@en ;
     owl:inverseOf :target ;
     rdfs:domain :Asset ;
 	rdfs:range :Policy .
