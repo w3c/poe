@@ -131,7 +131,7 @@
 <tr><th>Definition:</th> <td>A Policy that grants the assignee a Rule over an Asset from an assigner.</td></tr>
 <tr><th>Label:</th> <td>Agreement</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Agreement">http://www.w3.org/ns/odrl/2/Agreement</a></td></tr>
-<tr><th>Note:</th> <td>An Agreement Policy MUST contain a target Asset, a Party  with Assigner function, a Party with Assignee fuction, and at least one of a Permission or Prohibition rule. The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee.</td></tr>
+<tr><th>Note:</th> <td>An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee fuction (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
@@ -139,7 +139,7 @@
 <tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assigner.</td></tr>
 <tr><th>Label:</th> <td>Offer</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Offer">http://www.w3.org/ns/odrl/2/Offer</a></td></tr>
-<tr><th>Note:</th> <td>A Offer Policy  MUST contain a target Asset, a Party with Assigner function, and at least one of a Permission or Prohibition rule. The Offer Policy  MAY contain a Party  with Assignee function, but MUST not grant any privileges to that Party.</td></tr>
+<tr><th>Note:</th> <td>An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy  MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
@@ -192,11 +192,11 @@
 <tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
 </table>
-</section><section id="term-hasPolicy"><h3>Has A Policy</h3><table class='def propdef' >
+</section><section id="term-hasPolicy"><h3>Has Target Policy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an ODRL Policy from an Asset metadata expression.</td></tr>
-<tr><th>Label:</th> <td>Has A Policy</td></tr>
+<tr><th>Label:</th> <td>Has Target Policy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
-<tr><th>Note:</th> <td>The Asset being described/identified MUST be inferred to be the target Asset of the Rules of the Policy.</td></tr>
+<tr><th>Note:</th> <td>The Asset being described/identified MUST be inferred to be the target Asset of all of the Rules of the Policy.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a></td></tr>
