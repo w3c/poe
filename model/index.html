@@ -328,7 +328,7 @@
     
        <section id="policy-has">
 <h3>Has A Policy</h3> 
-<p>The Policy class MAY also be referenced by the <code>hasPolicy</code> property. This supports ODRL Policies being the object of external metadata expressions (that describe an Asset). When <code>hasPolicy</code> has been asserted between a metadata expression and an ODRL Policy, the Asset being described/identified MUST be inferred to be the target Asset of all the Rules of the Policy.</p>
+<p>The Policy class MAY also be referenced by the <code>hasPolicy</code> property. This supports ODRL Policy Rules being the object of external metadata expressions (that describe an Asset). When <code>hasPolicy</code> has been asserted between a metadata expression and an ODRL Policy, the Asset being identified MUST be inferred to be the target Asset of all the Rules of the Policy. If there are multiple Rules in the Policy, then the inferred Asset will be the target Asset to each Rule.</p>
         
 <blockquote>
 <p>Example Use Case: The below snippet shows some Dublin Core metadata describing a movie Asset. The <code>odrl:hasPolicy</code> property has been included to link to the ODRL Policy <code>http://example.com/policy:1010</code> (this is the Set Policy described above). In this case, the Asset <code>http://example.com/asset:9999.movie</code> is now also the target Asset for the Permission in Policy <code>http://example.com/policy:1010</code>. If there were additional Rules in this Policy, then the same target Asset would apply.</p>
@@ -600,8 +600,8 @@
 <ul>
    <li>A Duty MUST only be associated with a Permission.</li> 
      <li>A Duty MAY be linked to an Asset via a <code>target</code> relation property on which the agreed Action MUST be performed. This does not restrict the sub-properties of <code>relation</code> that are used as properties of the Asset.</li>
-  <li>It is assumed that any assigned Party has the appropriate permissions to perform the Duty Action.</li>
     <li>A Duty MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. If the functional roles are not specified in the Duty, then the respective functions are assumed to be the same as in the referring Permission. Other types of function properties for Party MAY be used (for example, Compensated Party or Tracking Party).</li>
+    <li>The assigned Party MUST have the permission to perform the Duty Action.</li>
 </ul>
     
     

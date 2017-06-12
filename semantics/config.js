@@ -23,5 +23,6 @@ var respecConfig = {
     noIDLIn: true,
     noLegacyStyle: false,
     noRecTrack: true,
+    lint: false,
     issueBase: "https://www.w3.org/2016/poe/track/issues/"
 };
