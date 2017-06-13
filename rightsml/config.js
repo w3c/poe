@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-rightsml",
-    publishDate: "2017-05-30",
+    publishDate: "2017-06-13",
     edDraftURI: "https://w3c.github.io/poe/rightsml/",
     editors: [ {    name:       "Michael Steidl",
                     url:        "https://uk.linkedin.com/in/michaelwsteidl",
