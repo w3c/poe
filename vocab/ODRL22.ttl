@@ -587,8 +587,8 @@ odrl:
 	a rdf:Property, owl:ObjectProperty, owl:SymmetricProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Included In"@en ;
-	skos:definition "Action is a subpart than another Action."@en ;
-	skos:note "The purpose of this property is to explicitly assert that an Action is a subpart (or belongs to) another Action and hence there is a direct implication between them in the sense that the latter encompasses the former and - depending on the semantics of the Rule - may be in conflict with other Actions"@en ;
+	skos:definition "An Action transitively asserts that another Action that encompasses its operational semantics."@en ;
+	skos:note "The purpose is to explicitly assert that the semantics of the referenced instance of an other Action encompasses (includes) the semantics of this instance of Action. The includedIn property is transitive, and as such, the Actions form ancestor relationships."@en ;
 	rdfs:domain :Action ;
 	rdfs:range :Action  .
 
@@ -596,8 +596,8 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Implies"@en ;
-	skos:definition "Action has a dependency on another Action."@en ;
-	skos:note "This property defines a relationship between Actions in which the implied Action must be permissible, otherwise a conflict may arise"@en ;
+	skos:definition "An Action asserts that another Action is not prohibited to enable its operational semantics."@en ;
+	skos:note "The property asserts that an instance of Action entails that the other instance of Action is not prohibited."@en ;
 	rdfs:domain :Action ;
 	rdfs:range :Action  .
 

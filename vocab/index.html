@@ -193,10 +193,10 @@
   <tr><th>Inherited Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
 </table>
 </section><section id="term-hasPolicy"><h3>Has Target Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Identifies an ODRL Policy from an Asset metadata expression.</td></tr>
+<tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Asset is the target Asset to all the Rules.</td></tr>
 <tr><th>Label:</th> <td>Has Target Policy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
-<tr><th>Note:</th> <td>The Asset being described/identified MUST be inferred to be the target Asset of all of the Rules of the Policy.</td></tr>
+<tr><th>Note:</th> <td>The Asset being identified MUST be inferred to be the target Asset of all of the Rules of the Policy.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a></td></tr>
@@ -241,7 +241,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
 </table>
 </section></section><section id="partyRoles"><h2>Party Functions</h2><section id="term-assignee"><h3>Assignee</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party is the recipient of the policy statement.</td></tr>
+<tr><th>Definition:</th> <td>The Party is the recipient of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Assignee</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assignee">http://www.w3.org/ns/odrl/2/assignee</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
@@ -249,7 +249,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-assigner"><h3>Assigner</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Party is the issuer of the policy statement.</td></tr>
+<tr><th>Definition:</th> <td>The Party is the issuer of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Assigner</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assigner">http://www.w3.org/ns/odrl/2/assigner</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
@@ -307,18 +307,18 @@
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-includedIn"><h3>Included In</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Action is a subpart than another Action.</td></tr>
+<tr><th>Definition:</th> <td>An Action transitively asserts that another Action that encompasses its operational semantics.</td></tr>
 <tr><th>Label:</th> <td>Included In</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/includedIn">http://www.w3.org/ns/odrl/2/includedIn</a></td></tr>
-<tr><th>Note:</th> <td>The purpose of this property is to explicitly assert that an Action is a subpart (or belongs to) another Action and hence there is a direct implication between them in the sense that the latter encompasses the former and - depending on the semantics of the Rule - may be in conflict with other Actions</td></tr>
+<tr><th>Note:</th> <td>The purpose is to explicitly assert that the semantics of the referenced instance of an other Action encompasses (includes) the semantics of this instance of Action. The includedIn property is transitive, and as such, the Actions form ancestor relationships.</td></tr>
 <tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-implies"><h3>Implies</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Action has a dependency on another Action.</td></tr>
+<tr><th>Definition:</th> <td>An Action asserts that another Action is not prohibited to enable its operational semantics.</td></tr>
 <tr><th>Label:</th> <td>Implies</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/implies">http://www.w3.org/ns/odrl/2/implies</a></td></tr>
-<tr><th>Note:</th> <td>This property defines a relationship between Actions in which the implied Action must be permissible, otherwise a conflict may arise</td></tr>
+<tr><th>Note:</th> <td>The property asserts that an instance of Action entails that the other instance of Action is not prohibited.</td></tr>
 <tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>

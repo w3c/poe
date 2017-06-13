@@ -462,12 +462,29 @@
     <li><code>use</code> - actions that involve general usage by parties. </li>
         <li><code>transfer</code> - actions that involve in the transfer of ownership to third parties.</li>
     </ul>
+    
+    <p>The Action class has the following properties:</p>
+<ul>
+<li>An Action MUST include the <code>includedIn</code> property to transitively assert another Action that encompasses its operational semantics.</li>
+<li>An Action MAY include the <code>implies</code> property to assert another Action that is not prohibited to enable its operational semantics.</li>    
+</ul>
+    
     <p>
-     Additional Action terms MUST be defined using the <code>includedIn</code> property with either <code>use</code> or <code>transfer</code> as the parent term. The purpose of the <code>includedIn</code> property is to explicitly assert that an Action is a subpart (or <em>belongs to</em>) another Action and hence there is a direct implication between them in the sense that the latter encompasses the former <strong>and</strong> - depending on the semantics of the Rule - may be in conflict with other Actions. For example, if the <code>play</code> Action is defined as <code>includedIn</code> with <code>use</code> then if <code>play</code> is permitted in a Policy and <code>use</code> is prohibited in the same Policy, then because of this asserted relationship between the two, there is conflict in the Policy. (See <a href="#conclict">Policy Conflict Strategy</a> for more details.)</p>
+     Action terms MUST be defined using the <code>includedIn</code> property with either <code>use</code> or <code>transfer</code> as the parent term. 
+      
+        
+        The purpose of the <code>includedIn</code> property is to explicitly assert that the semantics of the referenced instance of an other Action encompasses (includes) the semantics of this instance of Action. The <code>includedIn</code> property is transitive, and as such, the Actions form ancestor relationships.  </p>
+        
+       <p>The implication of the <code>includedIn</code> property is that a Permission or Prohibition of an encompassing Action is inherited by all Actions with an <code>includedIn</code> relationship.
+        
+         For example, if the <code>play</code> Action is defined as <code>includedIn</code> with <code>use</code> then if <code>play</code> is permitted in a Policy and <code>use</code> is prohibited in the same Policy - and both Actions apply to the same target Asset -  then because of this asserted relationship between the two, there is conflict in the Policy. (See <a href="#conflict">Policy Conflict Strategy</a> for more details.)</p>
         
         
-     <p>   
-        For Actions that form dependencies (eg Action X requires Action Y) then the <code>implies</code> property MUST be used to assert this relationship. The <code>implies</code> property defines a relationship between Actions in which the implied Action MUST be permissible. For example, if the <code>share</code> Action is defined as <code>implies</code> the <code>distribute</code> Action, then if <code>share</code> is permitted in a Policy and <code>distribute</code> is prohibited in the same Policy, then because of this asserted relationship between the two, there is conflict in the Policy. (See <a href="#conclict">Policy Conflict Strategy</a> for more details.)
+     <p>       
+         The <code>implies</code> property asserts that an instance of Action entails that the other instance of Action is not prohibited. The <code>implies</code> property can be used for Action instances which have no <code>includedIn</code> relationship.
+         
+         For example, if a <code>share</code> Action implies explicitly the <code>distribute</code> Action, then if <code>share</code> is permitted in a Policy and <code>distribute</code> is prohibited in the same Policy - and both Actions apply to the same target Asset - this would cause a conflict in the Policy. If an implied other action is not prohibited then this will not cause a conflict.
+         (See <a href="#conflict">Policy Conflict Strategy</a> for more details.)
     
     <p>See <a href="#profile">ODRL Profiles</a> for usage details on the <code>includedIn</code> and <code>implies</code> properties.
     </p>
