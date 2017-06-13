@@ -263,10 +263,12 @@
 <p>The Asset class has the following properties:</p>
     
 <ul>
-<li>An Asset MUST have a <code>uid</code> identification of the Asset using an IRI [[!rfc3987]].</li>
+<li>An Asset SHOULD have a <code>uid</code> identification of the Asset using an IRI [[!rfc3987]].</li>
     <li>An Asset MAY have a <code>partOf</code> property to identify an AssetCollection that this Asset is a group of.</li>
 <li>An AssetCollection MAY have a <code>constraint</code> indicating how the Asset shall be interpreted under different contexts. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
 </ul>
+    
+    <p class="note">If an Asset does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
 
     <p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicitly express relationships between Assets and their members in order to potentially detect any conflicts in Policies.</p>
     
@@ -365,12 +367,14 @@
     
 <p>The Party class has the following properties:</p>
 <ul>
-<li>A Party MUST have a <code>uid</code> identifier of the Party using an IRI [[!rfc3987]]</li>
+<li>A Party SHOULD have a <code>uid</code> identifier of the Party using an IRI [[!rfc3987]]</li>
 <li>A Party MUST have a <code><em>function</em></code> indicating the role undertaken by the Party.</li>
       <li>A Party MAY have a <code>partOf</code> property to identify a PartyCollection that this Party is a member of.</li>
 <li>A PartyCollection MAY have a <code>constraint</code> indicating how the Party shall be interpreted under different contexts. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
     </ul>
 
+    <p class="note">If a Party does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
+    
 <p>The <code>partOf</code> property is used to identify a PartyCollection that a Party entity is a member of. The purpose is to explicitly express relationships between Parties and their members in order to potentially detect any conflicts in Policies.</p>
     
 <p>The ODRL Information Model does not provide additional metadata for the Party class. It is recommended to use existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</p>
