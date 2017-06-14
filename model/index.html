@@ -621,8 +621,11 @@
 <ul>
    <li>A Duty MUST only be associated with a Permission.</li> 
      <li>A Duty MAY be linked to an Asset via a <code>target</code> relation property on which the agreed Action MUST be performed. This does not restrict the sub-properties of <code>relation</code> that are used as properties of the Asset.</li>
-    <li>A Duty MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. If the functional roles are not specified in the Duty, then the respective functions are assumed to be the same as in the referring Permission. Other types of function properties for Party MAY be used (for example, Compensated Party or Tracking Party).</li>
-    <li>The assigned Party MUST have the permission to perform the Duty Action.</li>
+	<li>The assignee(s) of the Permission are the assignee(s) of the Duty.</li>
+	<li>A Duty MAY define different assignee(s) functional roles (than defined in the Permission) that overide the assignee(s) in the Permission for the purposes of the Duty.</li>
+	<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
+	<li>A Duty MAY define other functional roles (for example, to indicate the <code>compensatedParty</code> or a different assigner).</li>
+    <li>The assignee MUST have the Permission to perform the Duty Action.</li>
 </ul>
     
     
