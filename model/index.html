@@ -329,21 +329,23 @@
 </section>
     
        <section id="policy-has">
-<h3>Has A Policy</h3> 
-<p>The Policy class MAY also be referenced by the <code>hasPolicy</code> property. This supports ODRL Policy Rules being the object of external metadata expressions (that describe an Asset). When <code>hasPolicy</code> has been asserted between a metadata expression and an ODRL Policy, the Asset being identified MUST be inferred to be the target Asset of all the Rules of the Policy. If there are multiple Rules in the Policy, then the inferred Asset will be the target Asset to each Rule.</p>
+<h3>Target Policy</h3> 
+		   
+<p>An ODRL Policy class MAY also be referenced by the <code>hasPolicy</code> property. This supports ODRL Policy Rules being the object of external metadata expressions (that identifies an Asset). When <code>hasPolicy</code> has been asserted between a metadata expression and an ODRL Policy, the Asset being identified MUST be inferred to be the <code>target</code> Asset of all the Rules of that Policy. If there are multiple Rules in the Policy, then the inferred Asset will be the target Asset to <strong>every</strong> Rule in the Policy. (Note: The <code>hasPolicy</code> property can be considered to be the inverse of the <code>target</code> property.)</p>
         
 <blockquote>
-<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a movie Asset. The <code>odrl:hasPolicy</code> property has been included to link to the ODRL Policy <code>http://example.com/policy:1010</code> (this is the Set Policy described above). In this case, the Asset <code>http://example.com/asset:9999.movie</code> is now also the target Asset for the Permission in Policy <code>http://example.com/policy:1010</code>. If there were additional Rules in this Policy, then the same target Asset would apply.</p>
+<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a movie Asset. The <code>odrl:hasPolicy</code> property has been included to link to the ODRL Policy <code>http://example.com/policy:1010</code> (this is the Set Policy described above). In this case, the Asset <code>http://example.com/asset:9999.movie</code> is now also the target Asset for the Permission in Policy <code>http://example.com/policy:1010</code>. If there were additional Rules in this Policy, then the same Asset would be the target Asset to each Rule.</p>
 </blockquote>
 
 <pre class="example hljs json">
 {
-   ...
+   "@type": "dc:MovingImage",
+   "@id": "http://example.com/asset:9999.movie",
    "dc:publisher": "ABC Pictures",
    "dc:creator": "Allen, Woody",
    "dc:issued": "2017",
    "dc:subject": "Musical Comedy",
-   "dc:identifier": "http://example.com/asset:9999.movie",
+   ...
    "odrl:hasPolicy": "http://example.com/policy:1010",
    ...
 }
@@ -445,11 +447,37 @@
     }]
 }  
 </pre>
-    
+   
     
 </section>
     
+<section id="policy-assigned">
+<h3>Assigned Policy</h3> 
+		   
+<p>An ODRL Policy class MAY also be referenced by the <code>assignerOf</code> and  <code>assigneeOf</code> properties. This supports ODRL Policy Rules being the object of external metadata expressions (that identifies a Party). When <code>assignerOf</code> has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the <code>assigner</code> functional role of all the Rules of that Policy. When <code>assigneeOf</code> has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the <code>assignee</code> functional role of all the Rules of that Policy.
+	
+	If there are multiple Rules in the Policy, then the inferred Party will undertake the functional role  to <strong>every</strong> Rule in the Policy. (Note: The <code>assignerOf</code> and <code>assigneeOf</code> properties can be considered to be the inverse of the <code>assigner</code> and <code>assignee</code> properties, respectively.)</p>
+        
+<blockquote>
+<p>Example Use Case: The below snippet shows some vCard metadata describing an individual Party. The <code>odrl:assigneeOf</code> property has been included to link to the ODRL Policy <code>http://example.com/policy:1011</code> (this is the Offer Policy described above). In this case, the Party <code>http://example.com/person/billie</code> is now also the assignee of the Permission in Policy <code>http://example.com/policy:1011</code>. If there were additional Rules in this Policy, then the same Party would the assignee for each Rule.</p>
+</blockquote>
 
+<pre class="example hljs json">
+{
+   "@type": "vcard:Individual",
+   "@id": "http://example.com/person/billie",
+   "vcard:fn": "Billie",
+   "vcard:hasEmail": "billie@example.com",
+   ...
+   "odrl:assigneeOf": "http://example.com/policy:1010",
+   ...
+}
+</pre>
+        
+    </section>
+    
+	
+	
 
     </section>
     
@@ -1507,6 +1535,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <li>Added hasPolicy property <a href="https://github.com/w3c/poe/issues/184">(Issue#184)</a></li>
     
      <li>Added includedIn and implies properties for Action. Added partOf property for Asset and Party <a href="https://github.com/w3c/poe/issues/160">(Issue#160)</a></li>
+			
+	<li>Added assignerOf/assigneeOf inverse properties <a href="https://github.com/w3c/poe/issues/190">(Issue#190)</a></li>
+    
     
 </ul>
 </section>
