@@ -26,13 +26,16 @@
 <li>prohibition</li>
 </ul>
 
-<p>The Policy element MAY contain the following policy-level elements:</p>
+<p>The Policy element MAY contain the following policy-level elements that apply to all Rules:</p>
 <ul>
 <li>asset,</li>
 <li>party, and/or</li>
 <li>action</li>
 </ul>
 
+<p>The Policy element MAY also contain the constraint element to support <a href="#xml-compound">Compound Constraints</a>.</p>
+
+	
 <p>The Asset class is a single asset element to represent both the Asset uid and how it is related to the Rule. The Asset element contains the following attributes:</p>
 <ul>
 <li>uid - an IRI</li>
@@ -203,7 +206,7 @@
     <p>Note that there is an important distinction when using this feature with the Duty element which also has the uid attribute. The uid attribute is used to refer to the same Duty from multiple Permissions. In this case the Duty has to be performed only once to gain access to all the Permissions. When using the id and idref attributes then the semantics change as in this case the Duty must be performed for each time it is referenced (potentially, many times). Note that the use of the uid and id attribute for the same Duty element is not permitted.</p>
 </section>
 
-<section>
+<section id="xml-compound">
 <h2>Compound Constraints</h2>
 <p>To support Compound Constraints, Atomic Constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The Compound Constraint (in the Rule) can then refer to these Atomic Constraints using its <code>#id</code>.</p>
  <p>ODRL XML processing systems MUST detect the use of <code>#id</code> in the name attribute and rightOperand in Compound Constraints. If detected, the processing model for Compound Constraints (defined in [[!odrl-model]]) MUST then be followed.</p>
