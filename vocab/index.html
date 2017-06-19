@@ -111,7 +111,7 @@
 <tr><th>Note:</th> <td>A Policy may contain multiple Rules.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Agreement">Agreement</a>, <a href="#term-Assertion">Assertion</a>, <a href="#term-Offer">Offer</a>, <a href="#term-Privacy">Privacy</a>, <a href="#term-Request">Request</a>, <a href="#term-Set">Set</a>, <a href="#term-Ticket">Ticket</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a></td></tr>
-<tr><th>In range of:</th> <td><a href="#term-hasPolicy">hasPolicy</a>, <a href="#term-inheritFrom">inheritFrom</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a>, <a href="#term-hasPolicy">hasPolicy</a>, <a href="#term-inheritFrom">inheritFrom</a></td></tr>
 </table>
 </section><section id="term-uid"><h3>Unique Identifier</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An unambiguous identifier</td></tr>
@@ -192,15 +192,6 @@
 <tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
 </table>
-</section><section id="term-hasPolicy"><h3>Has Target Policy</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Asset is the target Asset to all the Rules.</td></tr>
-<tr><th>Label:</th> <td>Has Target Policy</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
-<tr><th>Note:</th> <td>The Asset being identified MUST be inferred to be the target Asset of all of the Rules of the Policy.</td></tr>
-<tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-</table>
 </section><section id="term-partOf"><h3>Part Of</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an Asset/PartyCollection that the Asset/Party is a member of.</td></tr>
 <tr><th>Label:</th> <td>Part Of</td></tr>
@@ -216,6 +207,15 @@
 <tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
+</section><section id="term-hasPolicy"><h3>Has Target Policy</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Asset is the target Asset to all the Rules.</td></tr>
+<tr><th>Label:</th> <td>Has Target Policy</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
+<tr><th>Note:</th> <td>The Asset being identified MUST be inferred to be the target Asset of all of the Rules of the Policy.</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+</table>
 </section></section><section id="partyConcepts"><h2>Party</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An entity or a collection of entities that undertake Roles in a Rule.</td></tr>
 <tr><th>Label:</th> <td>Party</td></tr>
@@ -223,6 +223,7 @@
 <tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://schema.org/Organization">schema:Organization</a>, <a href="http://schema.org/Person">schema:Person</a>, <a href="http://www.w3.org/2006/vcard/ns#Agent">vcard:Agent</a>, <a href="http://www.w3.org/2006/vcard/ns#Individual">vcard:Individual</a>, <a href="http://www.w3.org/2006/vcard/ns#Organization">vcard:Organization</a>, <a href="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</a>, <a href="http://xmlns.com/foaf/0.1/Organization">foaf:Organization</a>, <a href="http://xmlns.com/foaf/0.1/Person">foaf:Person</a></td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-PartyCollection">PartyCollection</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
 </table>
 </section><section id="term-PartyCollection"><h3>Party Collection</h3><table class='def propdef' >
@@ -230,6 +231,7 @@
 <tr><th>Label:</th> <td>Party Collection</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyCollection">http://www.w3.org/ns/odrl/2/PartyCollection</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a></td></tr>
 </table>
 </section><section id="term-partOf"><h3>Part Of</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an Asset/PartyCollection that the Asset/Party is a member of.</td></tr>
@@ -253,6 +255,22 @@
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+</table>
+</section><section id="term-assigneeOf"><h3>Assignee Of</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Party undertakes the assignee functional role.</td></tr>
+<tr><th>Label:</th> <td>Assignee Of</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assigneeOf">http://www.w3.org/ns/odrl/2/assigneeOf</a></td></tr>
+<tr><th>Note:</th> <td>When assigneeOf has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the assignee functional role of all the Rules of that Policy.</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</section><section id="term-assignerOf"><h3>Assigner Of</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Party undertakes the assigner functional role.</td></tr>
+<tr><th>Label:</th> <td>Assigner Of</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assignerOf">http://www.w3.org/ns/odrl/2/assignerOf</a></td></tr>
+<tr><th>Note:</th> <td>When assignerOf has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the assigner functional role of all the Rules of that Policy.</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Party">Party</a></td></tr>
 </table>
 </section></section><section id="permissions"><h2>Permission</h2><section id="term-Permission"><h3>Permission</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The ability to perform an Action over an Asset.</td></tr>
@@ -1692,7 +1710,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
     <li>Added includedIn and implies properties for Action. Added partOf property for Asset and Party <a href="https://github.com/w3c/poe/issues/160">(Issue#160)</a></li>
     
-    
+    <li>Added assigneeOf/AssignerOf properties <a href="https://github.com/w3c/poe/issues/190">(Issue#190)</a></li> 
     
 </ul></section>
         
