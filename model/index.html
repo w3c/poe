@@ -153,7 +153,7 @@
 <li>A Policy MAY include the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 </ul>
 
-<p>An ODRL Policy MAY be subclasssed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses may be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
+<p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses may be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
     
 <section id="policy-set">
 <h3>Set</h3> 
@@ -728,7 +728,7 @@
     
     <p>A Constraint is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection. Constraints are used to express limitations, restrictions, or interpretations that are applied to these classes. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>, which are also compared. A constraint is evaluated as a kind of "black box" from an external system (e.g., any kind of reasoning engine), and the outcome of this evaluation is of the form true (if the constraint is satisfied) or false (if the constraint is not satisfied).</p>
     
-    <p>ODRL Processors MUST check all constraints at the time of processing the relevant Action, Asset, and Party. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
+    <p>ODRL Processors MUST check the satisfiability all constraints at the time of processing the relevant Action, Asset, and Party. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
  
     <p>When multiple Constraints apply to the same Rule they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied.</p>
     
