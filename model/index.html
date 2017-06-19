@@ -891,6 +891,9 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 }  
 </pre>
 
+	<p class="note">
+	When Atomic Constraints appear at the Policy-level then they MUST only be referenced by a  Constraint with an existing Rule. They MUST not to be interepreted as Constraints on all the Rules in the Policy.
+	</p>
     <blockquote>
 <p>Example Use Case: The Policy below shows a Permission to distribute photos in which the first atomic constraint (the event <code>http://example.com/football/game/2017</code>) has concluded (the operator <code>gt</code> indicating this), then the second atomic constraint (wait for 60 minutes) has passed. The operator <code>andSequence</code> requires that first the atomic constraint in the leftOperand is satisfied - the event has closed - and this triggers the Action Delay Period after which the action of the permission may be exercised. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Atomic Constraints must be satisfied, but could be processed at the same time.)  </p>
     </blockquote>
