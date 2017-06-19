@@ -726,7 +726,7 @@
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>A Constraint is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection. Constraints are used to express limitations, restrictions, or interpretations that are applied to these classes. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>, which are also compared.</p>
+    <p>A Constraint is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection. Constraints are used to express limitations, restrictions, or interpretations that are applied to these classes. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>, which are also compared. A constraint is evaluated as a kind of "black box" from an external system (e.g., any kind of reasoning engine), and the outcome of this evaluation is of the form true (if the constraint is satisfied) or false (if the constraint is not satisfied).</p>
     
     <p>ODRL Processors MUST check all constraints at the time of processing the relevant Action, Asset, and Party. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
  
