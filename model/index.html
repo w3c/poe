@@ -726,7 +726,7 @@
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>A Constraint is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection. Constraints are used to express limitations, restrictions, or interpretations that are applied to these classes. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are logically compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>, which are also logically compared.</p>
+    <p>A Constraint is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection. Constraints are used to express limitations, restrictions, or interpretations that are applied to these classes. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>, which are also compared.</p>
     
     <p>ODRL Processors MUST check all constraints at the time of processing the relevant Action, Asset, and Party. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
  
@@ -735,14 +735,14 @@
 <section id="constraint-atomic">
 <h3>Atomic Constraint</h3>
         
-<p>Atomic Constraints are logical expressions for comparing two operands by one operator. If the logical expression evaluates to <strong>true</strong> the result of the Constraint is satisfied.
-Atomic Constraints can express these contexts with logical comparisons. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
+<p>Atomic Constraints are expressions for comparing two operands by one operator. If the  expression evaluates to <strong>true</strong> the Constraint is satisfied.
+Atomic Constraints can express these contexts with comparison expressions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
 </p>
        
 <p>The Atomic Constraint class has the following properties:</p>
 <ul>
 <li>An Atomic Constraint MUST have a <code>leftOperand</code> - the left operand</li>
-<li>An Atomic Constraint MUST have an <code>operator</code>- the logical operation</li>
+<li>An Atomic Constraint MUST have an <code>operator</code>- the operator</li>
 <li>An Atomic Constraint MUST have a <code>rightOperand</code> - the right operand (only REQUIRED if no rightOperandReference appears)</li>
 <li>An Atomic Constraint MUST have a <code>rightOperandReference</code> - a reference to a right operand (only REQUIRED if no rightOperand appears)</li>
 <li>An Atomic Constraint MAY  have a <code>dataType</code> - the type of the rightOperand/Reference</li>
@@ -753,12 +753,12 @@ Atomic Constraints can express these contexts with logical comparisons. For exam
     
 <p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!odrl-vocab]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
     
-<p>The <code>operator</code> identifies the logical operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
+<p>The <code>operator</code> identifies the operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
 <p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> is the literal value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual literal value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
 
     <p><blockquote>
-The <code>rightOperand</code> represents a literal value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the logical expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the logical expression.
+The <code>rightOperand</code> represents a literal value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the  expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the  expression.
   </blockquote> </p> 
    
         
@@ -823,13 +823,13 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <h3>Compound Constraint</h3>
  
  <p>   
-    Compound Constraints refer to two existing Atomic Constraints as the left and right operand. For example, Atomic Constraint #1 (<code>leftOperand</code>) must be satisfied <strong>or</strong> (<code>operator</code>) Atomic Constraint #2 (<code>rightOperand</code>) must be satisfied. The Compound Constraint operator identifiers the logical relationship between the two Atomic Constraints using operators such as <strong>and</strong> or <strong>exclusive or</strong>.</p>
+    Compound Constraints refer to two existing Atomic Constraints as the left and right operand. For example, Atomic Constraint #1 (<code>leftOperand</code>) must be satisfied <strong>or</strong> (<code>operator</code>) Atomic Constraint #2 (<code>rightOperand</code>) must be satisfied. The Compound Constraint operator identifiers the relationship between the two Atomic Constraints using operators such as <strong>and</strong> or <strong>exclusive or</strong>.</p>
 
       
 <p>The Compound Constraint class has the following properties:</p>
 <ul>
 <li>A Compound Constraint MUST have a <code>leftOperand</code> - the left operand</li>
-<li>A Compound Constraint MUST have a <code>operator</code>- the logical relationship</li>
+<li>A Compound Constraint MUST have a <code>operator</code>- the operator</li>
 <li>A Compound Constraint MUST have a <code>rightOperand</code> - the right operand</li>
 </ul>
         
@@ -933,7 +933,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <h3>Asset Constraint</h3>
  
  <p>   
-    Atomic constraints MAY be applied to Assets to indicate the context under which to identify the Asset(s) that are applicable to the Rule. If an Asset is an <code>AssetCollection</code> then the constraint logical expressions applies to each of the resources identified by the Asset.</p>
+    Atomic constraints MAY be applied to Assets to indicate the context under which to identify the Asset(s) that are applicable to the Rule. If an Asset is an <code>AssetCollection</code> then the constraint expressions applies to each of the resources identified by the Asset.</p>
         
 
 <blockquote>
@@ -969,7 +969,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <h3>Party Constraint</h3>
  
  <p>   
-    Atomic constraints MAY be applied to Party to indicate the context under which to identify the Parties(s) that are applicable to the Rule . If a Party is a <code>PartyCollection</code> then the constraint logical expressions applies to each of the entities identified by the Party.</p>
+    Atomic constraints MAY be applied to Party to indicate the context under which to identify the Parties(s) that are applicable to the Rule . If a Party is a <code>PartyCollection</code> then the constraint expressions applies to each of the entities identified by the Party.</p>
         
 
     <blockquote>
