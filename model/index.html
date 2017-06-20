@@ -937,6 +937,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
  
  <p>   
     Atomic constraints MAY be applied to Assets to indicate the context under which to identify the Asset(s) that are applicable to the Rule. If an Asset is an <code>AssetCollection</code> then the constraint expressions applies to each of the resources identified by the Asset.</p>
+	<p>Note that the uid property is used to identify the AssetCollection as a whole resource, but the constraint applies to the characteristics of each member of collection (and not the resource as a whole).</p>
         
 
 <blockquote>
@@ -973,7 +974,8 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
  
  <p>   
     Atomic constraints MAY be applied to Party to indicate the context under which to identify the Parties(s) that are applicable to the Rule . If a Party is a <code>PartyCollection</code> then the constraint expressions applies to each of the entities identified by the Party.</p>
-        
+    
+		<p>Note that the uid property is used to identify the PartyCollection as a whole resource, but the constraint applies to the characteristics of each member of collection (and not the resource as a whole).</p>
 
     <blockquote>
 <p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> is a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
