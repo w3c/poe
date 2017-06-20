@@ -257,14 +257,14 @@
 <p>The Asset class has the following subclass:</p>
     
 <ul>
-    <li><code>AssetCollection</code> - an Asset that is a group of resources. This indicates that all the items in the group will be the subject of the Rule.</li>
+    <li><code>AssetCollection</code> - an Asset that is a collection of resources. This indicates that all the items in the collection will be the subject of the Rule.</li>
 </ul>
     
 <p>The Asset class has the following properties:</p>
     
 <ul>
 <li>An Asset SHOULD have a <code>uid</code> identification of the Asset using an IRI [[!rfc3987]].</li>
-    <li>An Asset MAY have a <code>partOf</code> property to identify an AssetCollection that this Asset is a group of.</li>
+    <li>An Asset MAY have a <code>partOf</code> property to identify an AssetCollection that this Asset is in a collection of.</li>
 <li>An AssetCollection MAY have a <code>constraint</code> indicating how the Asset shall be interpreted under different contexts. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
 </ul>
     
@@ -360,11 +360,11 @@
 <section id="party">
 <h3>Party</h3>
     
-<p>A Party is an entity or a collection of entities that undertake functional roles in a Rule, such as a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the function it plays in the Rule).</p>
+<p>A Party is an entity or a collection of entities that undertake functional roles in a Rule, such as a person, collection of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the function it plays in the Rule).</p>
 
 <p>The Party class has the following subclas:</p> 
 <ul>
-    <li><code>PartyCollection</code> - a Party that is a group of entities. This indicates that all the entities in the group will undertake the same functional role in the Rule.</li>
+    <li><code>PartyCollection</code> - a Party that is a collection of entities. This indicates that all the entities in the collection will undertake the same functional role in the Rule.</li>
 </ul>
     
 <p>The Party class has the following properties:</p>
@@ -982,7 +982,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 
     <blockquote>
 <p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> is a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
-    The assignee also has a constraint that indicates only members of the group over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
+    The assignee also has a constraint that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
    </p>
     </blockquote>
 <pre class="example hljs json">
