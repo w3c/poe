@@ -648,12 +648,15 @@
 <p>In addition to the Rule properties, the Duty class has the following:</p>
 <ul>
    <li>A Duty MUST only be associated with a Permission.</li> 
-     <li>A Duty MAY be linked to an Asset via a <code>target</code> relation property on which the agreed Action MUST be performed. This does not restrict the sub-properties of <code>relation</code> that are used as properties of the Asset.</li>
-	<li>The assignee(s) of the Permission are the assignee(s) of the Duty.</li>
-	<li>A Duty MAY define different assignee(s) functional roles (than defined in the Permission) that overide the assignee(s) in the Permission for the purposes of the Duty.</li>
+     <li>A Duty MAY be linked to an Asset via the <code>target</code> property to indicate the Asset that is the primary subject to which the Duty  directly applies. (Other <code><i>relation</i></code> sub-properties MAY be used.)</li>
+	<li>By default, the assignee(s) of the Permission are the assignee(s) of the Duty, and the assigner(s) of the Permission are the assigner(s) of the Duty.</li>
+	<ul>
+	<li>A Duty MAY also define different assignee(s)/assigner(s) functional roles (than defined in the Permission) that overide the assignee(s)/assigner(s) in the Permission for the purposes of the Duty.</li>
+		</ul>
+	
 	<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
-	<li>A Duty MAY define other functional roles (for example, to indicate the <code>compensatedParty</code> or a different assigner).</li>
-    <li>The assignee MUST have the Permission to perform the Duty Action.</li>
+	<li>A Duty MAY define other functional roles (for example, to indicate the <code>compensatedParty</code> that the assignee(s) must compensate).</li>
+    <li>The assignee MUST have the ability to perform the Duty Action.</li>
 </ul>
     
     
