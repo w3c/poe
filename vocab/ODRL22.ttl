@@ -486,10 +486,7 @@ odrl:
 	skos:definition "Relates the description of an individual Permission to a Policy."@en ;
 	skos:note "A permission can be specified either in terms of an Action alone, or an instance of Permission relating an Action and one or more other attributes."@en ;
 	rdfs:domain :Policy ;
-	rdfs:range [
-		a owl:Class ;
-		owl:unionOf ( :Permission :Action ) ;
-	] .
+	rdfs:range :Permission .
 
 :prohibition
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
@@ -498,10 +495,7 @@ odrl:
 	skos:definition "Relates the description of an individual Prohibition to a Policy."@en ;
 	skos:note "A prohibition can be specified either in terms of an Action alone, or an instance of Prohibition relating an Action and one or more other attributes."@en ;
 	rdfs:domain :Policy ;
-	rdfs:range [
-		a owl:Class ;
-		owl:unionOf ( :Prohibition  :Action ) ;
-	] .
+	rdfs:range :Prohibition.
 
 :inheritAllowed
 	a rdf:Property , owl:DatatypeProperty, skos:Concept ;
@@ -693,10 +687,7 @@ odrl:
 	skos:definition "The duty relating to the Permission."@en ;
 	skos:note "A Duty indicates requirements which must be fulfilled in order to receive the permission."@en ;
 	rdfs:domain :Permission ;
-	rdfs:range [
-		a owl:Class ;
-		owl:unionOf ( :Duty :Action ) ;
-	] .
+	rdfs:range :Duty .
 
 :unit
 	a rdf:Property ;
