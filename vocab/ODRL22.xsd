@@ -13,8 +13,8 @@
             <xs:element ref="o:asset" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:action" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="o:permission" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="o:prohibition" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="o:permission" minOccurs="0" maxOccurs="unbounded"/>  <!--Required Element (if no prohibition) -->
+            <xs:element ref="o:prohibition" minOccurs="0" maxOccurs="unbounded"/> <!--Required Element (if no permission) -->
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
@@ -30,8 +30,8 @@
     <xs:element name="permission" type="o:Permission"/>
     <xs:complexType name="Permission">
         <xs:choice minOccurs="1" maxOccurs="unbounded">
-            <xs:element ref="o:asset" maxOccurs="unbounded"/>
-            <xs:element ref="o:action" maxOccurs="unbounded"/>
+            <xs:element ref="o:asset" maxOccurs="unbounded"/> <!--Required Element -->
+            <xs:element ref="o:action" maxOccurs="unbounded"/> <!--Required Element -->
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:duty" minOccurs="0" maxOccurs="unbounded"/>
@@ -43,8 +43,8 @@
     <xs:element name="prohibition" type="o:Prohibition"/>
     <xs:complexType name="Prohibition">
         <xs:choice minOccurs="1" maxOccurs="unbounded">
-            <xs:element ref="o:asset" maxOccurs="unbounded"/>
-            <xs:element ref="o:action" maxOccurs="unbounded"/>
+            <xs:element ref="o:asset" maxOccurs="unbounded"/>  <!--Required Element -->
+            <xs:element ref="o:action" maxOccurs="unbounded"/> <!--Required Element -->
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
             <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -97,7 +97,7 @@
 
     <xs:element name="constraint" type="o:Constraint"/>
     <xs:complexType name="Constraint">
-        <xs:attribute name="name" type="xs:anyURI"/>    <!--leftOperand - Required Attribute-->
+        <xs:attribute name="name" type="o:URIorIDREF"/>    <!--leftOperand - Required Attribute-->
         <xs:attribute name="operator" type="xs:anyURI"/>  <!--Required Attribute-->
         <xs:attribute name="rightOperand" type="o:listOfValues"/>  <!--Required Attribute (if no rightOperandReference)-->
         <xs:attribute name="rightOperandReference" type="xs:anyURI"/>  <!--Required Attribute (if no rightOperand)-->
@@ -109,6 +109,10 @@
 
     <xs:simpleType name="listOfValues">
         <xs:list itemType="xs:string"/>
+    </xs:simpleType>
+    
+    <xs:simpleType name="URIorIDREF">
+        <xs:union memberTypes="xs:anyURI xs:IDREF"/>
     </xs:simpleType>
 
     <xs:simpleType name="ConflictTerm">
