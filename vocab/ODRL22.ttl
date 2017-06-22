@@ -10,6 +10,7 @@
 @prefix schema: <http://schema.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix cc: <http://creativecommons.org/ns#> .
 
 odrl:
 	a owl:Ontology ;
@@ -283,6 +284,18 @@ odrl:
     skos:prefLabel "Constraint Right Operands"@en ;
     skos:member :policyUsage .
 
+<http://www.w3.org/ns/odrl/2/#collectiveActions>
+    a skos:Collection ;
+    skos:prefLabel "Collective Actions"@en ;
+    skos:member cc:Attribution ;
+    skos:member cc:CommericalUse ;
+    skos:member cc:DerivativeWorks ;
+    skos:member cc:Distribution ;
+    skos:member cc:Notice ;
+    skos:member cc:Reproduction ;
+    skos:member cc:ShareAlike ;
+    skos:member cc:SourceCode .
+
 
 <http://www.w3.org/ns/odrl/2/#deprecatedTerms>
     a skos:Collection ;
@@ -307,11 +320,7 @@ odrl:
     skos:member :extractChar ;
     skos:member :extractPage ;
     skos:member :extractWord ;
-    skos:member :attachPolicy ;
-    skos:member :attachSource ;
-    skos:member :shareAlike ;
-    skos:member :commercialize ;
-    skos:member :share ;
+    skos:member :extractWord ;
     skos:member :timedCount ;
     skos:member :inheritRelation ;
     skos:member :UndefinedTerm ;
@@ -326,7 +335,12 @@ odrl:
     skos:member :All ;
     skos:member :AllConnections ;
     skos:member :All2ndConnections ;
-    skos:member :AllGroups .
+    skos:member :AllGroups ;
+    skos:member :attachPolicy ;
+    skos:member :attachSource ;
+    skos:member :shareAlike ;
+    skos:member :commercialize ;
+    skos:member :share .
 
 ## Assets
 
@@ -2033,6 +2047,78 @@ odrl:
 	rdfs:range rdfs:Literal ;
     skos:note "This original term and URI from the OMA specification should be used: http://www.openmobilealliance.com/oma-dd/timed-count ."@en ;
     owl:deprecated true .
+
+## Collective Vocabulary
+
+cc:Reproduction
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Reproduction"@en ;
+	skos:definition "Copying the work in various forms."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+cc:Distribution
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Distribution"@en ;
+	skos:definition "Redistributing the work."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en ;
+    owl:equivalentProperty odrl:share .
+
+cc:DerivativeWorks
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Derivative Works"@en ;
+	skos:definition "Preparing derivatives of the work."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+cc:CommericalUse
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Commercial Use"@en ;
+	skos:definition "Using the Work for commercial purposes."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en ;
+    owl:equivalentProperty odrl:commercialize .
+
+cc:Notice
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Notice"@en ;
+	skos:definition "Providing an indication of the license that governs the work."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en ;
+    owl:equivalentProperty odrl:attachPolicy .
+
+cc:Attribution
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Attribution"@en ;
+	skos:definition "Giving credit to the appropriate creator."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
+
+cc:ShareAlike
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Share A Like"@en ;
+	skos:definition "When redistributing derivative works of this work, using the same license."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en ;
+    owl:equivalentProperty odrl:shareAlike .
+
+cc:SourceCode
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Source Code"@en ;
+	skos:definition "When redistributing this work (which is expected to be software when this requirement is used), source code must be provided."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en ;
+    owl:equivalentProperty odrl:attachSource .
+
 
 ## Axioms
 
