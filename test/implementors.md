@@ -1,5 +1,5 @@
 # ODRL Implementors
 
-Org | Name | Contact
---- | --- | ---
-a | b c
+Org | Name | Contact | Comments
+--- | --- | --- | ---
+a | b | c | d
