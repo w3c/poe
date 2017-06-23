@@ -269,8 +269,6 @@
 </ul>
     
     <p class="note">If an Asset does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
-
-    <p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicitly express relationships between Assets and their members in order to potentially detect any conflicts in Policies.</p>
     
 <p>Since ODRL Policies could deal with any kind of Asset, the ODRL Information Model does not provide additional metadata to describe Assets of particular media types. It is recommended to use  existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/">Dublin Core Metadata Terms</a> that are appropriate to the Asset type or purpose.</p>
 
@@ -327,8 +325,29 @@
 </pre>
     
 </section>
-    
-       <section id="policy-has">
+	
+<section id="asset-partof">
+<h3>Part Of</h3> 	
+
+<p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicitly express membership relationships between Assets and AssetCollections.  This enables a Rule that includes a  AssetCollection to understand which individual Assets the Rule may apply to. In addition, the Asset/AssetCollection membership relationships may potentially detect conflicts in Rules.</p>
+	
+<blockquote>
+<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a document. The <code>odrl:partOf</code> property has been included to assert that the Asset <code>http://example.com/asset:111.doc</code> is a member of the <code>http://example.com/archive1011</code> AssetCollection which is used in the Policy in the example above. This means that <code>http://example.com/asset:111.doc</code> is one of the target Assets in the Policy and can my indexed.</p>
+</blockquote>
+
+<pre class="example hljs json">
+{
+   "@type": "dc:Document",
+   "@id": "http://example.com/asset:111.doc",
+   "dc:title": "Annual Report",
+   ...
+   "odrl:partOf": "http://example.com/archive1011",
+   ...
+}
+</pre>
+</section>
+	
+<section id="policy-has">
 <h3>Target Policy</h3> 
 		   
 <p>An ODRL Policy class MAY also be referenced by the <code>hasPolicy</code> property. This supports ODRL Policy Rules being the object of external metadata expressions (that identifies an Asset). When <code>hasPolicy</code> has been asserted between a metadata expression and an ODRL Policy, the Asset being identified MUST be inferred to be the <code>target</code> Asset of all the Rules of that Policy. If there are multiple Rules in the Policy, then the inferred Asset will be the target Asset to <strong>every</strong> Rule in the Policy.</p>
@@ -352,7 +371,7 @@
 </pre>
         
     </section>
-    
+   
 	
     </section>
 
@@ -377,8 +396,7 @@
 
     <p class="note">If a Party does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
     
-<p>The <code>partOf</code> property is used to identify a PartyCollection that a Party entity is a member of. The purpose is to explicitly express relationships between Parties and their members in order to potentially detect any conflicts in Policies.</p>
-    
+
 <p>The ODRL Information Model does not provide additional metadata for the Party class. It is recommended to use existing metadata standards, such as the W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</p>
  
     
@@ -450,7 +468,31 @@
    
     
 </section>
-    
+   
+	
+<section id="party-partof">
+<h3>Part Of</h3> 	
+	
+<p>The <code>partOf</code> property is used to identify a PartyCollection that a Party entity is a member of. The purpose is to explicitly express membership relationships between Parties and PartyCollections.  This enables a Rule that includes a PartyCollection to understand which individual Parties the Rule may apply to. In addition, the Party/PartyCollection membership relationships may potentially detect conflicts in Rules.</p>
+	
+<blockquote>
+<p>Example Use Case: The below snippet shows some vCard metadata describing a Party. The <code>odrl:partOf</code> property has been included to assert that the Party <code>http://example.com/person/murphy</code> is a member of the <code>http://example.com/team/A</code> PartyCollection which is used in the Policy in the example above. This means that <code>http://example.com/person/murphy</code> is an assignee and can use the target asset in the Policy. </p>
+</blockquote>
+
+<pre class="example hljs json">
+{
+   "@type": "vcard:Individual",
+   "@id": "http://example.com/person/murphy",
+   "vcard:fn": "Murphy",
+   "vcard:hasEmail": "murphy@example.com",
+   ...
+   "odrl:partOf": "http://example.com/team/A",
+   ...
+}
+</pre>
+</section>
+	
+	
 <section id="policy-assigned">
 <h3>Assigned Policy</h3> 
 		   
