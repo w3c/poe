@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus: "ED",
     shortName: "odrl-vocab",
-    publishDate:  "2017-06-19",
+    publishDate:  "2017-06-23",
     edDraftURI: "https://w3c.github.io/poe/vocab/",
     editors: [
         {    name:       "Renato Iannella",

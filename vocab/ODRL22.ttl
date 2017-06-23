@@ -106,6 +106,7 @@ odrl:
     skos:member :assigneeOf ;
     skos:member :assignerOf .
 
+
 <http://www.w3.org/ns/odrl/2/#partyRolesCommon>
     a skos:Collection ;
     skos:prefLabel "Party Functions"@en ;
@@ -294,6 +295,7 @@ odrl:
     skos:member cc:Notice ;
     skos:member cc:Reproduction ;
     skos:member cc:ShareAlike ;
+    skos:member cc:Sharing ;
     skos:member cc:SourceCode .
 
 
@@ -964,7 +966,7 @@ odrl:
 	rdfs:label "Device"@en ;
 	skos:definition "An identified computing system for exercising the Action."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :systemDevice .
+	skos:exactMatch :systemDevice .
 
 :elapsedTime
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
@@ -1129,12 +1131,12 @@ odrl:
 	rdfs:label "System"@en ;
 	skos:definition "An identified computing system for exercising the Action."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :systemDevice .
+	skos:exactMatch :systemDevice .
 
 :systemDevice
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	owl:equivalentProperty :system, :device ;
+	skos:exactMatch :system, :device ;
 	rdfs:label "System Device"@en ;
 	skos:definition "An identified computing system for exercising the Action."@en ;
 	skos:note "Example: The system device can be identified by a unique code created from the used hardware."@en ;
@@ -1260,7 +1262,7 @@ odrl:
 	rdfs:label "Append"@en ;
 	skos:definition "The act of adding to the end of an asset."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :modify .
+	skos:exactMatch :modify .
 
 :appendTo
 	a :Action, skos:Concept ;
@@ -1269,7 +1271,7 @@ odrl:
 #	skos:broaderTransitive odrl:writeTo ;
 	skos:definition "The act of appending data to the Asset without modifying the Asset in any other way."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :modify .
+	skos:exactMatch :modify .
 
 :archive
 	a :Action, skos:Concept ;
@@ -1304,7 +1306,7 @@ odrl:
 	rdfs:label "Copy"@en ;
 	skos:definition "The act of making an exact reproduction of the asset."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :reproduce .
+	skos:exactMatch :reproduce .
 
 :delete
 	a :Action, skos:Concept ;
@@ -1374,7 +1376,7 @@ odrl:
 	rdfs:label "Export"@en ;
 	skos:definition "The act of transforming the asset into a new form."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :transform .
+	skos:exactMatch :transform .
 
 
 :extract
@@ -1443,7 +1445,7 @@ odrl:
 	rdfs:label "License"@en ;
 	skos:definition "The act of granting the right to use the asset to a third-party."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :grantUse .
+	skos:exactMatch :grantUse .
 
 
 :lend
@@ -1496,7 +1498,7 @@ odrl:
 	rdfs:label "Pay"@en ;
 	skos:definition "The act of paying a financial amount to a party for use of the asset."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :compensate .
+	skos:exactMatch :compensate .
 
 :play
 	a :Action, skos:Concept ;
@@ -1640,7 +1642,7 @@ odrl:
 	rdfs:label "Write"@en ;
 	skos:definition "The act of writing to the asset."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :modify .
+	skos:exactMatch :modify .
 
 
 :writeTo
@@ -1649,7 +1651,7 @@ odrl:
 	rdfs:label "Write to"@en ;
 	skos:definition "The act of adding data to the Asset."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :modify .
+	skos:exactMatch :modify .
 
 
 ## Functions
@@ -1756,7 +1758,7 @@ odrl:
 	rdfs:label "Payee Party"@en ;
 	skos:definition "The Party is the recipient of the payment."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty :compensatedParty .
+	skos:exactMatch :compensatedParty .
 
 
 :compensatedParty
@@ -1994,7 +1996,7 @@ odrl:
 	rdfs:label "Attach policy"@en ;
 	skos:definition "The act of keeping the policy notice with the asset."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty <http://creativecommons.org/ns#Notice> .
+	skos:exactMatch cc:Notice .
 
 :attachSource
 	a :Action, skos:Concept ;
@@ -2002,7 +2004,7 @@ odrl:
 	rdfs:label "Attach source"@en ;
 	skos:definition "The act of attaching the source of the asset and its derivatives."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty <http://creativecommons.org/ns#SourceCode> .
+	skos:exactMatch cc:SourceCode .
 
 :shareAlike
 	a :Action, skos:Concept ;
@@ -2010,7 +2012,7 @@ odrl:
 	rdfs:label "Share-alike"@en ;
 	skos:definition "The act of distributing any derivative asset under the same terms as the original asset."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty <http://creativecommons.org/ns#ShareAlike> .
+	skos:exactMatch cc:ShareAlike .
 
 :commercialize
 	a :Action, skos:Concept ;
@@ -2018,7 +2020,7 @@ odrl:
 	rdfs:label "Commercialize"@en ;
 	skos:definition "The act of using the asset in a business environment."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty <http://creativecommons.org/ns#CommercialUse> .
+	skos:exactMatch cc:CommercialUse .
 
 :share
 	a :Action, skos:Concept ;
@@ -2026,7 +2028,7 @@ odrl:
 	rdfs:label "Share"@en ;
 	skos:definition "The act of the non-commercial reproduction and distribution of the asset to third-parties."@en ;
     owl:deprecated true ;
-	owl:equivalentProperty <http://creativecommons.org/ns#Distribution> .
+	skos:exactMatch cc:Sharing .
 
 
 :proximity
@@ -2054,7 +2056,7 @@ cc:Reproduction
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Reproduction"@en ;
-	skos:definition "Copying the work in various forms."@en ;
+	skos:definition "Making multiple copies."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2062,16 +2064,15 @@ cc:Distribution
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Distribution"@en ;
-	skos:definition "Redistributing the work."@en ;
+	skos:definition "Distribution, public display, and publicly performance."@en ;
 	:includedIn odrl:use ;
-    skos:scopeNote "Non-Normative"@en ;
-    owl:equivalentProperty odrl:share .
+    skos:scopeNote "Non-Normative"@en .
 
 cc:DerivativeWorks
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Derivative Works"@en ;
-	skos:definition "Preparing derivatives of the work."@en ;
+	skos:definition "Distribution of derivative works."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2079,45 +2080,49 @@ cc:CommericalUse
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Commercial Use"@en ;
-	skos:definition "Using the Work for commercial purposes."@en ;
+	skos:definition "Exercising rights for commercial purposes."@en ;
 	:includedIn odrl:use ;
-    skos:scopeNote "Non-Normative"@en ;
-    owl:equivalentProperty odrl:commercialize .
+    skos:scopeNote "Non-Normative"@en .
 
 cc:Notice
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Notice"@en ;
-	skos:definition "Providing an indication of the license that governs the work."@en ;
+	skos:definition "Copyright and license notices be kept intact."@en ;
 	:includedIn odrl:use ;
-    skos:scopeNote "Non-Normative"@en ;
-    owl:equivalentProperty odrl:attachPolicy .
+    skos:scopeNote "Non-Normative"@en .
 
 cc:Attribution
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Attribution"@en ;
-	skos:definition "Giving credit to the appropriate creator."@en ;
+	skos:definition "Credit be given to copyright holder and/or author."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
 cc:ShareAlike
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Share A Like"@en ;
-	skos:definition "When redistributing derivative works of this work, using the same license."@en ;
+	rdfs:label "Share ALike"@en ;
+	skos:definition "Derivative works be licensed under the same terms or compatible terms as the original work."@en ;
 	:includedIn odrl:use ;
-    skos:scopeNote "Non-Normative"@en ;
-    owl:equivalentProperty odrl:shareAlike .
+    skos:scopeNote "Non-Normative"@en .
+
+cc:Sharing
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Sharing"@en ;
+	skos:definition "Permits commercial derivatives, but only non-commercial distribution."@en ;
+	:includedIn odrl:use ;
+    skos:scopeNote "Non-Normative"@en .
 
 cc:SourceCode
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Source Code"@en ;
-	skos:definition "When redistributing this work (which is expected to be software when this requirement is used), source code must be provided."@en ;
+	skos:definition "Source code (the preferred form for making modifications) must be provided when exercising some rights granted by the license."@en ;
 	:includedIn odrl:use ;
-    skos:scopeNote "Non-Normative"@en ;
-    owl:equivalentProperty odrl:attachSource .
+    skos:scopeNote "Non-Normative"@en .
 
 
 ## Axioms

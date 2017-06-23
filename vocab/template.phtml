@@ -303,7 +303,7 @@ function writeTerm($term)
 		$html .= $term->propertyRow('Class', 'rdf:type', array('http://www.w3.org/2004/02/skos/core#Concept', 'http://www.w3.org/2002/07/owl#NamedIndividual'));
 	}
 	$html .= $term->propertyRow('Concepts', 'skos:hasTopConcept');
-	$html .= $term->propertyRow("Equivalent Property", "owl:equivalentProperty");
+	$html .= $term->propertyRow("Equivalent Match", "skos:exactMatch");
     #$html .= $term->propertyRow("Status", "skos:scopeNote");
 	#$html .= $term->propertyRow('Concept scheme', '^skos:hasTopConcept');
 	$html .= "</table>\n";
@@ -360,10 +360,10 @@ function writeTermAppendix($term)
 	echo '<td>' . htmlspecialchars($term->get('rdfs:label')) . '</td>';
 	echo '<td>' .$term->htmlLink(). '</td>';
     echo '<td>';
-    if(($term->get('owl:equivalentProperty')) !== null)
+    if(($term->get('skos:exactMatch')) !== null)
     {
-      echo '<a href="' . htmlspecialchars($term->get('owl:equivalentProperty')) . '"';
-      echo '>' . htmlspecialchars($term->get('owl:equivalentProperty')) . '</a>';
+      echo '<a href="' . htmlspecialchars($term->get('skos:exactMatch')) . '"';
+      echo '>' . htmlspecialchars($term->get('skos:exactMatch')) . '</a>';
     }
     echo '</td>';
     
