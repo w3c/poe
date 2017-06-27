@@ -771,11 +771,11 @@
 <section id="constraint">
 <h3>Constraint</h3>
     
-    <p>A Constraint is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection. Constraints are used to express limitations, restrictions, or interpretations that are applied to these classes. Constraints can be represented as <em>Atomic Constraints</em> - in which the left and right operands are compared - or as <em>Compound Constraints</em> in which the left and right operands are existing <em>Atomic Constraints</em>, which are also compared. A constraint is evaluated as a kind of "black box" from an external system (e.g., any kind of reasoning engine), and the outcome of this evaluation is of the form true (if the constraint is satisfied) or false (if the constraint is not satisfied).</p>
+    <p>A Constraint is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset Collection. Constraints can be represented as <strong>Atomic Constraints</strong> or as <strong>Compound Constraints</strong>. A Compound Constraint will include existing Atomic Constraints as its left and right operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
     
-    <p>ODRL Processors MUST check the satisfiability all constraints at the time of processing the relevant Action, Asset, and Party. If the constraint is satisfied then the action becomes valid for the enclosing Rule. If the constraint is not satisfied, then the action is not valid for the enclosing Rule.</p>
+    <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Action, Asset, or Party. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the (individual) Asset or Party becomes effective for the enclosing Rule.</p>
  
-    <p>When multiple Constraints apply to the same Rule they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied.</p>
+    <p>When multiple Constraints apply to the same Rule, Party/Asset Collection then they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied. Parties and Assets become effective is all of the Constraints on Party/Asset Collections are satisfied. </p>
     
 <section id="constraint-atomic">
 <h3>Atomic Constraint</h3>
@@ -787,7 +787,7 @@ Atomic Constraints can express these contexts with comparison expressions. For e
 <p>The Atomic Constraint class has the following properties:</p>
 <ul>
 <li>An Atomic Constraint MUST have a <code>leftOperand</code> - the left operand</li>
-<li>An Atomic Constraint MUST have an <code>operator</code>- the operator</li>
+<li>An Atomic Constraint MUST have an <code>operator</code>- the relational operator</li>
 <li>An Atomic Constraint MUST have a <code>rightOperand</code> - the right operand (only REQUIRED if no rightOperandReference appears)</li>
 <li>An Atomic Constraint MUST have a <code>rightOperandReference</code> - a reference to a right operand (only REQUIRED if no rightOperand appears)</li>
 <li>An Atomic Constraint MAY  have a <code>dataType</code> - the type of the rightOperand/Reference</li>
@@ -874,7 +874,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <p>The Compound Constraint class has the following properties:</p>
 <ul>
 <li>A Compound Constraint MUST have a <code>leftOperand</code> - the left operand</li>
-<li>A Compound Constraint MUST have a <code>operator</code>- the operator</li>
+<li>A Compound Constraint MUST have a <code>operator</code>- the logical operator</li>
 <li>A Compound Constraint MUST have a <code>rightOperand</code> - the right operand</li>
 </ul>
         
