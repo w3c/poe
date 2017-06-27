@@ -251,8 +251,8 @@
 </section>
 
 <section id="asset">
-<h3>Asset</h3>
-<p>An Asset is a resource or a collection of resources that are the subject of a Rule. The Asset can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> classes that are needed to undertake the Policy expression, such as with a Duty. An Asset is referred to by the Permission and/or Prohibition, and also by the Duty.</p>
+<h3>Asset Class</h3>
+<p>An Asset class is a resource or a collection of resources that are the subject of a Rule. The Asset can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other <code>Asset</code> classes that are needed to undertake the Policy expression, such as with a Duty. An Asset is referred to by the Permission and/or Prohibition, and also by the Duty.</p>
  
 <p>The Asset class has the following subclass:</p>
     
@@ -377,11 +377,11 @@
 
 
 <section id="party">
-<h3>Party</h3>
+<h3>Party Class </h3>
     
-<p>A Party is an entity or a collection of entities that undertake functional roles in a Rule, such as a person, collection of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the function it plays in the Rule).</p>
+<p>A Party Class is an entity or a collection of entities that undertake functional roles in a Rule, such as a person, collection of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. The Party performs (or does not perform) Actions or has a function in a Duty (i.e., assigns the Party to the Rule by associating it with the function it plays in the Rule).</p>
 
-<p>The Party class has the following subclas:</p> 
+<p>The Party class has the following subclass:</p> 
 <ul>
     <li><code>PartyCollection</code> - a Party that is a collection of entities. This indicates that all the entities in the collection will undertake the same functional role in the Rule.</li>
 </ul>
@@ -524,10 +524,10 @@
     </section>
     
 <section id="action">
-<h3>Action</h3>
+<h3>Action Class</h3>
 
 
-    <p>An Action indicates an operation that can be applied to an Asset. An Action is associated with the Asset via the action property in a Rule.</p>
+    <p>An Action class indicates an operation that can be applied to an Asset. An Action is associated with the Asset via the action property in a Rule.</p>
     
     <p>The Rule provides the specific interpretations of the Action. For example; an Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be performed on the target Asset. When related to a Duty, the Action indicates the agreed operation that is <em>obligatory</em> to be performed by a Party</p>
     
@@ -586,7 +586,7 @@
 </section>
 
 <section id="rule">
-<h3>Rule</h3>
+<h3>Rule Class</h3>
 
 
 <p>The Rule class is the parent of the Permission, Prohibition, and Duty classes. The Rule class represents the common characteristics of these three classes.
@@ -769,9 +769,9 @@
 </section>
 
 <section id="constraint">
-<h3>Constraint</h3>
+<h3>Constraint Class </h3>
     
-    <p>A Constraint is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset Collection. Constraints can be represented as <strong>Atomic Constraints</strong> or as <strong>Compound Constraints</strong>. A Compound Constraint will include existing Atomic Constraints as its left and right operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
+    <p>A Constraint class is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset Collection. Constraints can be represented as <strong>Atomic Constraints</strong> or as <strong>Compound Constraints</strong>. A Compound Constraint will include existing Atomic Constraints as its left and right operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
     
     <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Action, Asset, or Party. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the (individual) Asset or Party becomes effective for the enclosing Rule.</p>
  
@@ -1057,9 +1057,9 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <section id="composition">
 <h4>Policy Rule Composition</h4>
              
-    <p>A Policy MAY contain multiple Rules, and each Rule MAY contain multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also contain Assets, Parties, and Actions at the Policy level, and these entities apply to all of the enclosing Rules in the Policy.</p>
+    <p>A Policy MAY be related to multiple Rules, and each Rule MAY be related to multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also be related to Assets, Parties, and Actions at the Policy level, and these relationships apply to all of the enclosing Rules in the Policy.</p>
      
-    <p>At the core level, an ODRL Rule would include one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is an irreducible Rule (that is, not able to be reduced or further simplified).</p>
+    <p>At the core level, an ODRL Rule would be related to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is an irreducible Rule (that is, not able to be reduced or further simplified).</p>
              
 <pre class="example hljs json">
 {
@@ -1199,7 +1199,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
          
     <p>The processing model for Policies with the above provenance properties include:</p>
     <ol>
-    <li>If a Policy contains the <code>dc:isReplacedBy</code> property, then a processor MUST consider the first Policy invalid and MUST retrieve and process the identified Policy.</li>
+    <li>If a Policy has the <code>dc:isReplacedBy</code> property, then a processor MUST consider the first Policy invalid and MUST retrieve and process the identified Policy.</li>
     </ol>
 
 <blockquote>
@@ -1316,7 +1316,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     
 <p>The processing model for ODRL Policy Inheritance includes:</p>
     <ol>
-    <li>A (child) Policy with an <code>inheritFrom</code> property MUST first verify that the (parent) Policy does not contain the <code>inheritAllowed</code> property with the value <strong>false</strong>.</li>
+    <li>A (child) Policy with an <code>inheritFrom</code> property MUST first verify that the (parent) Policy does not have the <code>inheritAllowed</code> property with the value <strong>false</strong>.</li>
         <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
        <ul>
            <li>All policy-level Assets, Parties, Actions.</li>
