@@ -948,7 +948,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Action Delay Period"@en ;
 	skos:definition "The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
-	skos:note "Only the eq operator SHOULD be used."@en ;
+	skos:note "Only the eq, gt, gteq operators SHOULD be used."@en ;
 	skos:note "Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -973,7 +973,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Elapsed Time"@en ;
 	skos:definition "The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
-	skos:note "Only the eq operator SHOULD be used."@en ;
+	skos:note "Only the eq, lt, lteq operators SHOULD be used."@en ;
 	skos:note "Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action." ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -982,7 +982,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Event"@en ;
 	skos:definition "An identified event used for exercising the Action."@en ;
-	skos:note "Events are temporal periods of time, and operators can be used to signal before, during or after the event. Example: Action may be taken during the “FIFA World Cup 2020” only."@en ;
+	skos:note "Events are temporal periods of time, and operators can be used to signal before (lt), during (eq) or after (gt) the event. Example: Action may be taken during the “FIFA World Cup 2020” only."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :fileFormat
@@ -1022,8 +1022,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Metered Time"@en ;
 	skos:definition "The Action may be exercised for an accumulated amount of this time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
-	skos:note "Only the eq operator SHOULD be used."@en ;
-	skos:note "Example: <code>meteredTime eq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes. This means that the action can be expercised for 5 minutes each day over 12 days." ;
+	skos:note "Only the eq, lt, lteq operators SHOULD be used."@en ;
+	skos:note "Example: <code>meteredTime lteq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes or less. This means that the action could be expercised for 5 minutes each day over 12 days." ;
     skos:scopeNote "Non-Normative"@en .
 
 :payAmount
