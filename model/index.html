@@ -98,7 +98,7 @@
 
   
     
-<p>The ODRL Information Model includes the following classes:
+<p>The ODRL Information Model has the following classes:
     <ul>
         <li><code>Policy</code> - A non-empty group of Permissions (via the permission property) and/or Prohibitions (via the prohibition property). The Policy class is the parent class to the Set, Offer, and Agreement subclasses:</li>
         <ul>
@@ -117,14 +117,14 @@
     <li><code>Action</code> - An operation on an Asset.</li>
     <li><code>Rule</code> - An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</li>
         <ul>
-    <li><code>Permission</code> - The ability to perform an Action over an Asset. The Permission MAY also include the Duty via the <strong>duty</strong> property that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
+    <li><code>Permission</code> - The ability to perform an Action over an Asset. The Permission MAY also have the <strong>duty</strong> property that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
     <li><code>Prohibition</code> - The inability to perform an Action over an Asset.</li>
     <li><code>Duty</code> - The obligation to perform an Action. The Action has been agreed to be performed as a requirement for the applicable Permission to become valid.</li>
     </ul>
     <li><code>Constraint</code> - A Boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</li>
     </ul>
 
-<p>The ODRL Information Model includes two abstract properties between Rule and the Asset and Party class. These two properties (<em>relation</em> and <em>function</em>) are designed to represent the <em>conceptual</em> relation between the two classes. In serialised ODRL expressions, they MUST be realised as subtypes of their respective parent property.   The figure below shows the ODRL Properties Model with subtypes.</p>
+<p>The ODRL Information Model hass two abstract properties between Rule and the Asset and Party class. These two properties (<em>relation</em> and <em>function</em>) are designed to represent the <em>conceptual</em> relation between the two classes. In serialised ODRL expressions, they MUST be realised as subtypes of their respective parent property.   The figure below shows the ODRL Properties Model with subtypes.</p>
 
 <figure>
 	<img src="01Properties.svg" alt="ODRL Properties Model" width="800"/>
@@ -146,24 +146,28 @@
 
 <p>The Policy class has the following properties:</p>
 <ul>
-<li>A Policy MUST include the <code>uid</code> identification of the Policy.</li>
-<li>A Policy MUST include the <code>permission</code> and/or <code>prohibition</code> Rule.  (See the <a href="#permission">Permission</a> and  <a href="#prohibition">Prohibition</a> sections for more details.)</li>  
-<li>A Policy MAY include the <code>conflict</code> property indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
-<li>A Policy MAY include the <code>inheritAllowed</code> property indicating a Policy can be inherited by other Policies. (See the <a href="#inhertiance">Policy Inheritance</a> section for more details.)</li>
-<li>A Policy MAY include the <code>profile</code> identifier of the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
+<li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
+<li>A Policy MUST have one and MAY have many<code>permission</code> or <code>prohibition</code> properties for Rules.  (See the <a href="#permission">Permission</a> and  <a href="#prohibition">Prohibition</a> sections for more details.)</li>  
+<li>A Policy MAY have none or one <code>conflict</code> property for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
+<li>A Policy MAY have none or one <code>inheritAllowed</code> property (a boolean) indicating a Policy can be inherited by other Policies. (See the <a href="#inhertiance">Policy Inheritance</a> section for more details.)</li>
+<li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 </ul>
 
-<p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses may be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
+<p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses SHOULD be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
     
 <section id="policy-set">
-<h3>Set</h3> 
+<h3>Set Class</h3> 
 
     <p>An ODRL Policy of subclass <code>Set</code> represents any combination of Rules. The <code>Set</code> Policy subclass is also the default subclass of Policy (if none is specified).</p>
 
-    <p>An ODRL Policy of type Set MUST include at least one Rule.</p>
+     <p>An ODRL Policy of subclass <code>Set</code>:</p>
+    <ul>
+        <li>MUST have one and MAY have many relationships to a Rule.</li>
+    </ul>
+	
 
 <blockquote>
-<p>Example Use Case: The below <code>Set</code> Policy includes the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code>.</p>
+<p>Example Use Case: The below <code>Set</code> Policy shows the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code>.</p>
 </blockquote>
 
 <pre class="example hljs json">
@@ -186,18 +190,18 @@
 </section>
 
 <section id="policy-offer">
-<h3>Offer</h3> 
+<h3>Offer Class</h3> 
 
 <p>An ODRL Policy of subclass <code>Offer</code> represents Rules that are being offered from assigner Parties. An <code>Offer</code> is typically used to make available Policies to a wider audience, but does not grant any Rules.</p>
     
-    <p>An ODRL Policy of type <code>Offer</code>:</p>
+    <p>An ODRL Policy of subclass <code>Offer</code>:</p>
     <ul>
-        <li>MUST include at least one Permission or Prohibition.</li>
-        <li>MUST include at least one Party with <code>assigner</code> functional role in the same Permission or Prohibition.</li>
+        <li>MUST have one and MAY have many relationships to a Permission or Prohibition.</li>
+        <li>MUST have one and MAY have many <code>assigner</code> property functional roles in the same Permission or Prohibition.</li>
     </ul>
 
 <blockquote>
-<p>Example Use Case: The below <code>Offer</code> Policy (based on the previous example) includes offering the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code>.</p>
+<p>Example Use Case: The below <code>Offer</code> Policy (based on the previous example) shows the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code>.</p>
 </blockquote>
 
 <pre class="example hljs json">
@@ -216,19 +220,19 @@
 </section>
     
 <section id="policy-agreement">
-<h3>Agreement</h3> 
+<h3>Agreement Class</h3> 
 
 <p>An ODRL Policy of subclass <code>Agreement</code> represents Rules that have been granted from assigner to assignee Parties. An <code>Agreement</code> is typically used to grant the terms of the Rules between the Parties.</p>
     
-    <p>An ODRL Policy of type <code>Agreement</code>:</p>
+    <p>An ODRL Policy of subclass <code>Agreement</code>:</p>
     <ul>
-        <li>MUST include at least one Permission or Prohibition.</li>
-        <li>MUST include at least one Party with <code>assigner</code> functional role in the same Permission or Prohibition.</li>
-        <li>MUST include at least one Party with <code>assignee</code> functional role in the same Permission or Prohibition.</li>
+		<li>MUST have one and MAY have many relationships to a Permission or Prohibition.</li>
+        <li>MUST have one and MAY have many <code>assigner</code> property functional roles in the same Permission or Prohibition.</li>
+		 <li>MUST have one and MAY have many <code>assignee</code> property functional roles in the same Permission or Prohibition.</li>
     </ul>
 
 <blockquote>
-<p>Example Use Case: The below <code>Agreement</code> Policy (based on the previous example) includes granting the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code> for the assignee Party <code>http://example.com/party:person:billie</code>.</p>
+<p>Example Use Case: The below <code>Agreement</code> Policy (based on the previous example) shows granting the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code> for the assignee Party <code>http://example.com/party:person:billie</code>.</p>
 </blockquote>
 
 <pre class="example hljs json">
@@ -263,9 +267,12 @@
 <p>The Asset class has the following properties:</p>
     
 <ul>
-<li>An Asset SHOULD have a <code>uid</code> identification of the Asset using an IRI [[!rfc3987]].</li>
-    <li>An Asset MAY have a <code>partOf</code> property to identify an AssetCollection that this Asset is in a collection of.</li>
-<li>An AssetCollection MAY have a <code>constraint</code> indicating how the Asset shall be interpreted under different contexts. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
+<li>An Asset SHOULD have one <code>uid</code> property to identify the Asset using an IRI [[!rfc3987]].</li>
+	
+	<li>An Asset MUST have one and MAY have many <code><em>relation</em></code> sub-properties for Asset indicating the link to the Asset.</li>
+	
+    <li>An Asset MAY have none, one, or many <code>partOf</code> properties to identify (IRI [[!rfc3987]]) an AssetCollection that this Asset is in a collection of.</li>
+<li>An AssetCollection MAY have none, one, or many <code>constraint</code> properties for Constraint. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
 </ul>
     
     <p class="note">If an Asset does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
@@ -273,7 +280,7 @@
 <p>Since ODRL Policies could deal with any kind of Asset, the ODRL Information Model does not provide additional metadata to describe Assets of particular media types. It is recommended to use  existing metadata standards, such as <a href="http://dublincore.org/documents/dcmi-terms/">Dublin Core Metadata Terms</a> that are appropriate to the Asset type or purpose.</p>
 
 <section id="relation">
-<h4>Relation</h4>
+<h4>Relation Property</h4>
 
 <p>The abstract <code><em>relation</em></code> property is used to create an explicit link between an Action and an Asset, indicating how the Asset MUST be utilised in respect to the Rule that links to it. Two sub-properties of the <code><em>relation</em></code> property are used to define the nature of that link, namely <code><em>target</em></code> and <code><em>output</em></code>.</p>
 
@@ -327,12 +334,12 @@
 </section>
 	
 <section id="asset-partof">
-<h3>Part Of</h3> 	
+<h3>Part Of Property</h3> 	
 
-<p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicitly express membership relationships between Assets and AssetCollections.  This enables a Rule that includes a  AssetCollection to understand which individual Assets the Rule may apply to. In addition, the Asset/AssetCollection membership relationships may potentially detect conflicts in Rules.</p>
+<p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicitly express membership relationships between Assets and AssetCollections.  This enables a Rule that is related to an AssetCollection to understand which individual Assets the Rule may apply to. In addition, the Asset/AssetCollection membership relationships may potentially detect conflicts in Rules.</p>
 	
 <blockquote>
-<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a document. The <code>odrl:partOf</code> property has been included to assert that the Asset <code>http://example.com/asset:111.doc</code> is a member of the <code>http://example.com/archive1011</code> AssetCollection which is used in the Policy in the example above. This means that <code>http://example.com/asset:111.doc</code> is one of the target Assets in the Policy and can my indexed.</p>
+<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a document. The <code>odrl:partOf</code> property asserts that the Asset <code>http://example.com/asset:111.doc</code> is a member of the <code>http://example.com/archive1011</code> AssetCollection which is used in the Policy in the example above. This means that <code>http://example.com/asset:111.doc</code> is one of the target Assets in the Policy and can my indexed.</p>
 </blockquote>
 
 <pre class="example hljs json">
@@ -348,12 +355,12 @@
 </section>
 	
 <section id="policy-has">
-<h3>Target Policy</h3> 
+<h3>Target Policy Property</h3> 
 		   
 <p>An ODRL Policy class MAY also be referenced by the <code>hasPolicy</code> property. This supports ODRL Policy Rules being the object of external metadata expressions (that identifies an Asset). When <code>hasPolicy</code> has been asserted between a metadata expression and an ODRL Policy, the Asset being identified MUST be inferred to be the <code>target</code> Asset of all the Rules of that Policy. If there are multiple Rules in the Policy, then the inferred Asset will be the target Asset to <strong>every</strong> Rule in the Policy.</p>
         
 <blockquote>
-<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a movie Asset. The <code>odrl:hasPolicy</code> property has been included to link to the ODRL Policy <code>http://example.com/policy:1010</code> (this is the Set Policy described above). In this case, the Asset <code>http://example.com/asset:9999.movie</code> is now also the target Asset for the Permission in Policy <code>http://example.com/policy:1010</code>. If there were additional Rules in this Policy, then the same Asset would be the target Asset to each Rule.</p>
+<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a movie Asset. The <code>odrl:hasPolicy</code> property links to the ODRL Policy <code>http://example.com/policy:1010</code> (this is the Set Policy described above). In this case, the Asset <code>http://example.com/asset:9999.movie</code> is now also the target Asset for the Permission in Policy <code>http://example.com/policy:1010</code>. If there were additional Rules in this Policy, then the same Asset would be the target Asset to each Rule.</p>
 </blockquote>
 
 <pre class="example hljs json">
@@ -388,10 +395,10 @@
     
 <p>The Party class has the following properties:</p>
 <ul>
-<li>A Party SHOULD have a <code>uid</code> identifier of the Party using an IRI [[!rfc3987]]</li>
-<li>A Party MUST have a <code><em>function</em></code> indicating the role undertaken by the Party.</li>
-      <li>A Party MAY have a <code>partOf</code> property to identify a PartyCollection that this Party is a member of.</li>
-<li>A PartyCollection MAY have a <code>constraint</code> indicating how the Party shall be interpreted under different contexts. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
+<li>A Party SHOULD have one <code>uid</code> property to identify the Party using an IRI [[!rfc3987]].</li>
+<li>A Party MUST have one and MAY have many <code><em>function</em></code> sub-properties for Party indicating the role undertaken by the Party.</li>
+      <li>A Party MAY have none, one, or many <code>partOf</code> properties to identify (IRI [[!rfc3987]]) a PartyCollection that this Party is a member of.</li>
+<li>A PartyCollection MAY have none, one, or many <code>constraint</code> properties for Constraint. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
     </ul>
 
     <p class="note">If a Party does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
@@ -401,7 +408,7 @@
  
     
 <section id="function">
-<h4>Function</h4>
+<h4>Function Property</h4>
 
 <p>A <code><em>function</em></code> property is used to link a Rule to a Party, indicating the function undertaken by the Party in respect to the Rule that links to it. The <code><em>function</em></code> property itself is abstract; sub-properties represent explicit semantics of the functional role between the Party and the Rule.</p>
  
@@ -471,12 +478,12 @@
    
 	
 <section id="party-partof">
-<h3>Part Of</h3> 	
+<h3>Part Of Property</h3> 	
 	
-<p>The <code>partOf</code> property is used to identify a PartyCollection that a Party entity is a member of. The purpose is to explicitly express membership relationships between Parties and PartyCollections.  This enables a Rule that includes a PartyCollection to understand which individual Parties the Rule may apply to. In addition, the Party/PartyCollection membership relationships may potentially detect conflicts in Rules.</p>
+<p>The <code>partOf</code> property is used to identify a PartyCollection that a Party entity is a member of. The purpose is to explicitly express membership relationships between Parties and PartyCollections.  This enables a Rule that relates to a PartyCollection to understand which individual Parties the Rule may apply to. In addition, the Party/PartyCollection membership relationships may potentially detect conflicts in Rules.</p>
 	
 <blockquote>
-<p>Example Use Case: The below snippet shows some vCard metadata describing a Party. The <code>odrl:partOf</code> property has been included to assert that the Party <code>http://example.com/person/murphy</code> is a member of the <code>http://example.com/team/A</code> PartyCollection which is used in the Policy in the example above. This means that <code>http://example.com/person/murphy</code> is an assignee and can use the target asset in the Policy. </p>
+<p>Example Use Case: The below snippet shows some vCard metadata describing a Party. The <code>odrl:partOf</code> property asserts that the Party <code>http://example.com/person/murphy</code> is a member of the <code>http://example.com/team/A</code> PartyCollection which is used in the Policy in the example above. This means that <code>http://example.com/person/murphy</code> is an assignee and can use the target asset in the Policy. </p>
 </blockquote>
 
 <pre class="example hljs json">
@@ -494,14 +501,14 @@
 	
 	
 <section id="policy-assigned">
-<h3>Assigned Policy</h3> 
+<h3>Assigned Policy Properties</h3> 
 		   
 <p>An ODRL Policy class MAY also be referenced by the <code>assignerOf</code> and  <code>assigneeOf</code> properties. This supports ODRL Policy Rules being the object of external metadata expressions (that identifies a Party). When <code>assignerOf</code> has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the <code>assigner</code> functional role of all the Rules of that Policy. When <code>assigneeOf</code> has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the <code>assignee</code> functional role of all the Rules of that Policy.
 	
 	If there are multiple Rules in the Policy, then the inferred Party will undertake the functional role  to <strong>every</strong> Rule in the Policy.</p>
         
 <blockquote>
-<p>Example Use Case: The below snippet shows some vCard metadata describing an individual Party. The <code>odrl:assigneeOf</code> property has been included to link to the ODRL Policy <code>http://example.com/policy:1011</code> (this is the Offer Policy described above). In this case, the Party <code>http://example.com/person/billie</code> is now also the assignee of the Permission in Policy <code>http://example.com/policy:1011</code>. If there were additional Rules in this Policy, then the same Party would the assignee for each Rule.</p>
+<p>Example Use Case: The below snippet shows some vCard metadata describing an individual Party. The <code>odrl:assigneeOf</code> property links to the ODRL Policy <code>http://example.com/policy:1011</code> (this is the Offer Policy described above). In this case, the Party <code>http://example.com/person/billie</code> is now also the assignee of the Permission in Policy <code>http://example.com/policy:1011</code>. If there were additional Rules in this Policy, then the same Party would the assignee for each Rule.</p>
 </blockquote>
 
 <pre class="example hljs json">
@@ -539,8 +546,8 @@
     
     <p>The Action class has the following properties:</p>
 <ul>
-<li>An Action MUST include the <code>includedIn</code> property to transitively assert another Action that encompasses its operational semantics.</li>
-<li>An Action MAY include the <code>implies</code> property to assert another Action that is not prohibited to enable its operational semantics.</li>    
+<li>An Action MUST have one <code>includedIn</code> property for an Action to transitively assert this Action that encompasses its operational semantics.</li>
+<li>An Action MAY have none or one <code>implies</code> property for an Action to assert this Action is not prohibited to enable its operational semantics.</li>    
 </ul>
     
     <p>
@@ -594,30 +601,30 @@
 
 <p>The Rule class has the following properties:</p>
 <ul>
-<li>A Rule MUST have an Action via the <code>action</code> property.</li>
-<li>A Rule MAY have an Asset via a sub-property of the <code><em>relation</em></code> property</li>
-<li>A Rule MAY have one or more Parties via a sub-property of the <code><em>function</em></code> property</li>
-<li>A Rule  MAY have one or more Constraints via the <code>constraint</code> property. The Rule becomes effective if all of the Constraints are satisfied.</li>
-<li>A Rule MAY have a <code>uid</code> identifier to enable the Rule to be identified by other Rules.</li>
+<li>A Rule MUST have one <code>action</code> property for Action.</li>
+	<li>A Rule MAY have none or one <code><em>relation</em></code> sub-properties for Asset.</li>
+	<li>A Rule MAY have none, one or many <code><em>function</em></code> sub-properties for Party.</li>
+<li>A Rule MAY have none, one or many <code>constraint</code> properties for Constraint.</li>
+<li>A Rule MAY have none or one <code>uid</code> property identifier (IRI [[!rfc3987]]) to enable the Rule to be referenced by other Rules.</li>
 </ul>
 <p>Explicit sub-properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
-<p>For a Rule to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied).</p>
+<p>For a Rule to become effective, it MUST be valid (i.e., all it's Constraints MUST be satisfied).</p>
 
     
 <section id="permission">
-<h3>Permission</h3>
+<h3>Permission Class</h3>
 
 
 <p>A Permission is the <strong>ability</strong> to perform an Action over an Asset. The Permission class inherits all the properties from the Rule class parent.</p>
 
-<p>In addition to the Rule properties, the Permission class has the following characteristics:</p>
+<p>The Permission class is a sublcass of Rule and has the following additional property semantics:</p>
 <ul>
-    <li>A Permission MUST be linked to an Asset via a <code>target</code> property. This does not restrict the sub-properties of <code>relation</code> that are used as properties of the Asset.</li>
-    <li>A Permission MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
-    <li>A Permission  MAY have one or more Duties via the <code>duty</code> property. The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid.</li>
+    <li>A Permission MUST have one <code>target</code> property for Asset. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
+    <li>A Permission MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>
+    <li>A Permission MAY have none, one, or more <code>duty</code> properties for Duty.</li>
 </ul>
-<p>For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
+<p>The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid. For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
     
 <blockquote>   
 <p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play Permission for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
@@ -643,14 +650,14 @@
 </section>
 
 <section id="prohibition">
-<h3>Prohibition</h3>
+<h3>Prohibition Class</h3>
 
 <p>A Prohibition is the <strong>inability</strong> to perform an Action over an Asset. The Prohibition class inherits all the properties from the Rule class parent.</p>
     
-<p>In addition to the Rule properties, the Prohibition class has the following:</p>
+<p>The Prohibition class is a sublcass of Rule and has the following additional property semantics:</p>
 <ul>
-    <li>A Prohibition MUST have an Asset via the <code>target</code> relation property. Other types of relation properties for Asset MAY be used.</li>
-    <li>A Prohibition MAY have one or more <code>assigner</code> and/or <code>assignee</code> function roles undertaken by Party entities. Other types of function properties for Party MAY be used.</li>
+	 <li>A Prohibition MUST have one <code>target</code> property for Asset. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
+    <li>A Prohibition MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>	
 </ul>
 
 <p>For a Prohibition to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied).</p>
@@ -683,24 +690,26 @@
 </section>
 
 <section id="duty">
-<h3>Duty</h3>
+<h3>Duty Class</h3>
 
 <p>A Duty is the <strong>obligation</strong> to perform an Action. The Duty specifies agreed Actions that MUST be fulfilled in order to be granted the associated Permission. A Duty MUST only be associated with a Permission. The Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled. The Duty class inherits all the properties from the Rule class parent.</p>
 
-<p>In addition to the Rule properties, the Duty class has the following:</p>
-<ul>
-   <li>A Duty MUST only be associated with a Permission.</li> 
-     <li>A Duty MAY be linked to an Asset via the <code>target</code> property to indicate the Asset that is the primary subject to which the Duty  directly applies. (Other <code><i>relation</i></code> sub-properties MAY be used.)</li>
-	<li>By default, the assignee(s) of the Permission are the assignee(s) of the Duty, and the assigner(s) of the Permission are the assigner(s) of the Duty.</li>
-	<ul>
-	<li>A Duty MAY also define different assignee(s)/assigner(s) functional roles (than defined in the Permission) that overide the assignee(s)/assigner(s) in the Permission for the purposes of the Duty.</li>
-		</ul>
 	
-	<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
-	<li>A Duty MAY define other functional roles (for example, to indicate the <code>compensatedParty</code> that the assignee(s) must compensate).</li>
-    <li>The assignee MUST have the ability to perform the Duty Action.</li>
+	
+<p>The Duty class is a sublcass of Rule and has the following additional property semantics:</p>
+<ul>
+     <li>A Duty MAY have none or one <code>target</code> property for Asset to indicate the Asset that is the primary subject to which the Duty directly applies. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
+	  <li>A Duty MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.) If there are no <code>assigner</code> and/or <code>assignee</code> properties declared, then these functional roles will be the same as those declared in the refering Permission. </li>   
 </ul>
     
+	<p>The Duty class also has these additional requirements:</p>
+	<ul>
+	    <li>A Duty MUST only be associated with a Permission.</li> 
+	   <li>The assignee MUST have the ability to perform the Duty Action.</li>
+		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
+	</ul>
+	
+	
     
 <p>If a Permission has several Duty entities then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
     
@@ -769,9 +778,9 @@
 </section>
 
 <section id="constraint">
-<h3>Constraint Class </h3>
+<h3>Constraint Class</h3>
     
-    <p>A Constraint class is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset Collection. Constraints can be represented as <strong>Atomic Constraints</strong> or as <strong>Compound Constraints</strong>. A Compound Constraint will include existing Atomic Constraints as its left and right operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
+    <p>A Constraint class is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset Collection. Constraints can be represented as <strong>Atomic Constraints</strong> or as <strong>Compound Constraints</strong>. A Compound Constraint will refer to existing Atomic Constraints as its left and right operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
     
     <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Action, Asset, or Party. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the (individual) Asset or Party becomes effective for the enclosing Rule.</p>
  
@@ -786,17 +795,16 @@ Atomic Constraints can express these contexts with comparison expressions. For e
        
 <p>The Atomic Constraint class has the following properties:</p>
 <ul>
-<li>An Atomic Constraint MUST have a <code>leftOperand</code> - the left operand</li>
-<li>An Atomic Constraint MUST have an <code>operator</code>- the relational operator</li>
-<li>An Atomic Constraint MUST have a <code>rightOperand</code> - the right operand (only REQUIRED if no rightOperandReference appears)</li>
-<li>An Atomic Constraint MUST have a <code>rightOperandReference</code> - a reference to a right operand (only REQUIRED if no rightOperand appears)</li>
-<li>An Atomic Constraint MAY  have a <code>dataType</code> - the type of the rightOperand/Reference</li>
-<li>An Atomic Constraint MAY have a <code>unit</code> - the unit value of the rightOperand/Reference</li>
-<li>An Atomic Constraint MAY have a <code>status</code> - the current value generated from the leftOperand action</li>
+<li>An Atomic Constraint MUST have one <code>leftOperand</code> property for Left Operands.</li>
+<li>An Atomic Constraint MUST have one <code>operator</code> property for (relational) Operators.</li>
+<li>An Atomic Constraint MUST have either one <code>rightOperand</code> property for right operand literal values or one <code>rightOperandReference</code> property for an IRI [[!rfc3987]] reference to a right operand literal value.</li>
+<li>An Atomic Constraint MAY have none or one <code>dataType</code> property for the data type of the rightOperand/Reference.</li>
+<li>An Atomic Constraint MAY have none or one <code>unit</code> property for the unit value of the rightOperand/Reference.</li>
+<li>An Atomic Constraint MAY have none or one <code>status</code> property for the current value generated from the leftOperand action.</li>
 </ul>
         
     
-<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!odrl-vocab]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the constraint, and MAY include how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
+<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!odrl-vocab]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the constraint, and MAY show how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
     
 <p>The <code>operator</code> identifies the operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
@@ -868,18 +876,18 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <h3>Compound Constraint</h3>
  
  <p>   
-    Compound Constraints refer to two existing Atomic Constraints as the left and right operand. For example, Atomic Constraint #1 (<code>leftOperand</code>) must be satisfied <strong>or</strong> (<code>operator</code>) Atomic Constraint #2 (<code>rightOperand</code>) must be satisfied. The Compound Constraint operator identifiers the relationship between the two Atomic Constraints using operators such as <strong>and</strong> or <strong>exclusive or</strong>.</p>
+    Compound Constraints refer to two existing Atomic Constraints as the left and right operand. For example, Atomic Constraint #1 (<code>leftOperand</code>) must be satisfied <strong>or</strong> (<code>operator</code>) Atomic Constraint #2 (<code>rightOperand</code>) must be satisfied. The Compound Constraint operator identifiers the logical relationship between the two Atomic Constraints using operators such as <strong>and</strong> or <strong>exclusive or</strong>.</p>
 
       
 <p>The Compound Constraint class has the following properties:</p>
 <ul>
-<li>A Compound Constraint MUST have a <code>leftOperand</code> - the left operand</li>
-<li>A Compound Constraint MUST have a <code>operator</code>- the logical operator</li>
-<li>A Compound Constraint MUST have a <code>rightOperand</code> - the right operand</li>
+<li>A Compound Constraint MUST have one <code>leftOperand</code> property for Atomic Constaints.</li>
+<li>A Compound Constraint MUST have one <code>operator</code> property for (logical) Operators.</li>
+<li>A Compound Constraint MUST have one <code>rightOperand</code> property for Atomic Constraints.</li>
 </ul>
         
     
-<p>The applicable <code>operator</code> that MAY be used for Compound Constraint are:</p>
+<p>The applicable logical <code>operator</code> that MAY be used for Compound Constraint are:</p>
     <ul>
     <li><code>or</code> -  at least one of the Atomic Constraints (in the left or right operand) MUST be satisfied</li>
     <li><code>xor</code> - only one of the Atomic Constraints (in the left or right operand) MUST be satisfied</li>
@@ -1191,7 +1199,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
          
        <p>Additional properties MAY be added to a Policy to support further authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[dcterms]] for ODRL Policies.</p>
          
-         <p>The following Dublin Core Metadata Terms [[dcterms]] SHOULD be used:</p>
+         <p>The following Dublin Core Metadata Terms [[dcterms]] properties SHOULD be used:</p>
             <ul>
          <li><code>dc:creator</code> - the individual, agent, or organisation that authored the Policy.</li>      <li><code>dc:description</code> - a human-readable representation or summary of the Policy.</li>
          <li><code>dc:issued</code> - the date (and time) the Policy was first issued.</li>
@@ -1207,7 +1215,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     </ol>
 
 <blockquote>
-<p>Example Use Case: The below example contains provenance properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
+<p>Example Use Case: The below example shows provenance properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
          
 <pre class="example hljs json">
 {
@@ -1257,7 +1265,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 </ul>
 
     <blockquote>
-<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assigner wishes to provide default permissions for all Policies). It does not include any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
+<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assigner wishes to provide default permissions for all Policies). It does not refer to any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
 </blockquote>
     
     <pre class="example hljs json">
@@ -1277,7 +1285,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 }  
 </pre>
     
-<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below includes the <code>inheritFrom</code> property pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also includes the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
+<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below shows the <code>inheritFrom</code> property pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also shows the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
     
 <pre class="example hljs json">
 {
@@ -1338,7 +1346,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
         
 <p>The <code>conflict</code> property is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies as a result of <a href="#inhertiance">Policy Inheritance</a> and the resultant Rules are inconsistent.</p>
       
-    <p>The <code>conflict</code> property SHOULD take one of the following values:</p>
+    <p>The <code>conflict</code> property SHOULD take one of the following Conflict Strategy Preference values:</p>
 <ul>
 <li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
@@ -1489,7 +1497,7 @@ An ODRL Profile extends the ODRL Information Model classes, properties, and inst
 
 <h2>Privacy Considerations</h2>
   <p>
-    The ODRL Information Model does not directly express sensitive personal information such as the identity of the existence of assets containing such data related to parties. However, ODRL vocabularies (such as the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles) may define terms that may relate to personal information. These specifications should inform implementations that produce or consume such ODRL expressions to take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
+    The ODRL Information Model does not directly express sensitive personal information such as the identity of the existence of Assets containing such data related to Parties. However, ODRL vocabularies (such as the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles) may define terms that may relate to personal information. These specifications should inform implementations that produce or consume such ODRL expressions to take steps to communicate to all relevant users the manner in which the policy is being used, the identity of any other party with whom that policy is being shared, and the reason the policy is being shared with other parties.
 
 </p>
 </section>
