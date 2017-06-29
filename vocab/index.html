@@ -205,6 +205,13 @@
 <tr><th>Range:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
 </table>
+</section><section id="term-source"><h3>Source</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Reference to a Asset/PartyCollection</td></tr>
+<tr><th>Label:</th> <td>Source</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/source">http://www.w3.org/ns/odrl/2/source</a></td></tr>
+<tr><th>Note:</th> <td>Used by AssetCollection and PartyCollection when constraints are applied.</td></tr>
+<tr><th>Domain:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a></td></tr>
+</table>
 </section></section><section id="assetRelations"><h2>Asset Relations</h2><section id="term-target"><h3>Target</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The target property indicates the Asset that is the primary subject to which the Rule action directly applies.</td></tr>
 <tr><th>Label:</th> <td>Target</td></tr>
@@ -245,6 +252,13 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/partOf">http://www.w3.org/ns/odrl/2/partOf</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
+</table>
+</section><section id="term-source"><h3>Source</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Reference to a Asset/PartyCollection</td></tr>
+<tr><th>Label:</th> <td>Source</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/source">http://www.w3.org/ns/odrl/2/source</a></td></tr>
+<tr><th>Note:</th> <td>Used by AssetCollection and PartyCollection when constraints are applied.</td></tr>
+<tr><th>Domain:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a></td></tr>
 </table>
 </section></section><section id="partyRoles"><h2>Party Functions</h2><section id="term-assignee"><h3>Assignee</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party is the recipient of the Rule.</td></tr>
@@ -1025,7 +1039,7 @@
 <tr><th>Definition:</th> <td>The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Action Delay Period</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/delayPeriod">http://www.w3.org/ns/odrl/2/delayPeriod</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action., Only the eq operator SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action., Only the eq, gt, gteq operators SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-deliveryChannel"><h3>Delivery Channel</h3><table class='def propdef' >
@@ -1039,14 +1053,14 @@
 <tr><th>Definition:</th> <td>The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Elapsed Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/elapsedTime">http://www.w3.org/ns/odrl/2/elapsedTime</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action., Only the eq operator SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action., Only the eq, lt, lteq operators SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-event"><h3>Event</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An identified event used for exercising the Action.</td></tr>
 <tr><th>Label:</th> <td>Event</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/event">http://www.w3.org/ns/odrl/2/event</a></td></tr>
-<tr><th>Note:</th> <td>Events are temporal periods of time, and operators can be used to signal before, during or after the event. Example: Action may be taken during the “FIFA World Cup 2020” only.</td></tr>
+<tr><th>Note:</th> <td>Events are temporal periods of time, and operators can be used to signal before (lt), during (eq) or after (gt) the event. Example: Action may be taken during the “FIFA World Cup 2020” only.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-fileFormat"><h3>File Format</h3><table class='def propdef' >
@@ -1081,7 +1095,7 @@
 <tr><th>Definition:</th> <td>The Action may be exercised for an accumulated amount of this time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Metered Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/meteredTime">http://www.w3.org/ns/odrl/2/meteredTime</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>meteredTime eq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes. This means that the action can be expercised for 5 minutes each day over 12 days., Only the eq operator SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Example: <code>meteredTime lteq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes or less. This means that the action could be expercised for 5 minutes each day over 12 days., Only the eq, lt, lteq operators SHOULD be used.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-payAmount"><h3>Payment Amount</h3><table class='def propdef' >
@@ -1456,6 +1470,7 @@ The Policy element MAY also contain constraint elements which are Atomic Constra
 <li>relation - an IRI</li>
 <li>type - an IRI</li>
 <li>partOf - an IRI</li>
+<li>source - an IRI</li>
 <li>id - an local identifier for this element</li>
 <li>idref - a reference to an Asset element</li>
 </ul>
@@ -1471,6 +1486,7 @@ The Policy element MAY also contain constraint elements which are Atomic Constra
 <li>function - an IRI</li>
 <li>type - an IRI</li>
 <li>partOf - an IRI</li>
+<li>source - an IRI</li>
 <li>id - a local identifier for this element</li>
 <li>idref - a reference to a Party element</li>
 </ul>
@@ -1794,6 +1810,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     <li>Added assigneeOf/AssignerOf properties <a href="https://github.com/w3c/poe/issues/190">(Issue#190)</a></li> 
     
 	<li>Added CC terms to Collective Vocab <a href="https://github.com/w3c/poe/issues/158">(Issue#158)</a></li>
+	
+	<li>Added source property for Asset/PartyColection <a href="https://github.com/w3c/poe/issues/164">(Issue#164)</a></li>
+    
 	
 </ul></section>
         

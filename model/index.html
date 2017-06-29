@@ -989,12 +989,15 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <h3>Asset Constraint</h3>
  
  <p>   
-    Atomic constraints MAY be applied to Assets to indicate the context under which to identify the Asset(s) that are applicable to the Rule. If an Asset is an <code>AssetCollection</code> then the constraint expressions applies to each of the resources identified by the Asset.</p>
-	<p>Note that the uid property is used to identify the AssetCollection as a whole resource, but the constraint applies to the characteristics of each member of collection (and not the resource as a whole).</p>
-        
-
+	 Atomic Constraints MAY be applied to an <code>AssetCollection</code> to indicate the context under which to identify the individual Asset(s) that are effective to the Rule. The constraint applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
+	 
+	<p>Note that when using Atomic Constraints, the <code>uid</code> property MUST NOT be used to identify the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to refer to the <code>AssetCollection</code>. </p>
+	
+       
+	
+	
 <blockquote>
-    <p>Example Use Case: The Policy defines a target Asset <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia images. The target Asset also has a constraint that specifies further context on the characteristics of the target Asset items. In this case, the target Assets will be no more than 50 resources from the media catalogue, and each of those may be printed.</p>
+    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia images. The target  also has a constraint that specifies further context on the characteristics of the AssetCollection items. In this case, the target Assets will be no more than 50 resources from the media catalogue, and each of those may be printed.</p>
         <p>The <code>ex:set</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but de-reference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
         </p>
  </blockquote>
@@ -1008,7 +1011,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
         "assigner": "http://example.com/org88",
         "target": {
             "@type": "AssetCollection",
-            "uid":  "http://example.com/media-catalogue",
+            "source":  "http://example.com/media-catalogue",
             "constraint": [{
                 "leftOperand": "ex:set",
                 "operator": "lteq",
@@ -1025,13 +1028,15 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <section id="constraint-party">
 <h3>Party Constraint</h3>
  
- <p>   
-    Atomic constraints MAY be applied to Party to indicate the context under which to identify the Parties(s) that are applicable to the Rule . If a Party is a <code>PartyCollection</code> then the constraint expressions applies to each of the entities identified by the Party.</p>
-    
-		<p>Note that the uid property is used to identify the PartyCollection as a whole resource, but the constraint applies to the characteristics of each member of collection (and not the resource as a whole).</p>
-
+	 <p>   
+	 Atomic Constraints MAY be applied to a <code>PartyCollection</code> to indicate the context under which to identify the individual Parties that are effective to the Rule. The constraint applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
+	 
+	<p>Note that when using Atomic Constraints, the <code>uid</code> property MUST NOT be used to identify the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to refer to the <code>PartyCollection</code>. </p>
+	
+	
+	
     <blockquote>
-<p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> is a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
+<p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> is a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee source is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
     The assignee also has a constraint that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
    </p>
     </blockquote>
@@ -1045,7 +1050,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
         "assigner": "http://example.com/user44",
         "assignee": {
             "@type": "PartyCollection",
-            "uid":  "http://example.com/user44/friends",
+            "source":  "http://example.com/user44/friends",
             "constraint": [{
                 "leftOperand": "foaf:age",
                 "operator": "gt",
@@ -1598,6 +1603,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <li>Added includedIn and implies properties for Action. Added partOf property for Asset and Party <a href="https://github.com/w3c/poe/issues/160">(Issue#160)</a></li>
 			
 	<li>Added assignerOf/assigneeOf properties <a href="https://github.com/w3c/poe/issues/190">(Issue#190)</a></li>
+    
+						
+	<li>Added source property for Asset/PartyColection <a href="https://github.com/w3c/poe/issues/164">(Issue#164)</a></li>
     
     
 </ul>

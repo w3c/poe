@@ -77,7 +77,8 @@ odrl:
     skos:prefLabel "Asset"@en ;
     skos:member :Asset ;
     skos:member :AssetCollection ;
-    skos:member :partOf .
+    skos:member :partOf ;
+    skos:member :source .
 
 <http://www.w3.org/ns/odrl/2/#assetRelations>
     a skos:Collection ;
@@ -96,7 +97,8 @@ odrl:
     skos:prefLabel "Party"@en ;
     skos:member :Party ;
     skos:member :PartyCollection ;
-    skos:member :partOf .
+    skos:member :partOf ;
+    skos:member :source .
 
 <http://www.w3.org/ns/odrl/2/#partyRoles>
     a skos:Collection ;
@@ -422,6 +424,17 @@ odrl:
 	rdfs:domain [
 		a owl:Class ;
 		owl:unionOf ( :Policy :Asset :Rule :Party ) ;
+	] .
+
+:source
+	a rdf:Property, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Source"@en ;
+	skos:definition "Reference to a Asset/PartyCollection"@en ;
+	skos:note "Used by AssetCollection and PartyCollection when constraints are applied."@en ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :AssetCollection :PartyCollection ) ;
 	] .
 
 :ConflictTerm
