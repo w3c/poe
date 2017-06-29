@@ -911,8 +911,8 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     </ol>
 
    <blockquote> 
-<p>Example Use Case:The Policy below shows a Permission to play the target asset that can <strong>either</strong> be a maximum of 100 times, or unlimited play until the end of 2017 <strong>but not both</strong>. </p>  
-    </blockquote>
+<p>Example Use Case:The Policy below shows a Permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. </p>  
+   </blockquote>
            
 <pre class="example hljs json">
 {
@@ -920,9 +920,9 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     "@type": "Offer",
     "uid": "http://example.com/policy:88",
     "permission": [{
-        "target": "http://example.com/book/1999.mp3",
+        "target": "http://example.com/book/1999",
         "assigner": "http://example.com/org/paisley-park",
-        "action": "play",
+        "action": "reproduce",
         "constraint": [{
                 "leftOperand": "http://example.com/policy:88/C1",
                 "operator": "xor",
@@ -931,15 +931,15 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     }],
    "constraint": [{
        "uid": "http://example.com/policy:88/C1",
-       "leftOperand": "count",
-       "operator": "lteq",
-       "rightOperand": "100"
+       "leftOperand": "media",
+       "operator": "eq",
+       "rightOperand": "online"
    },
    {
        "uid": "http://example.com/policy:88/C2",
-       "leftOperand": "dateTime",
-       "operator": "lteq",
-       "rightOperand": "2017-12-31"
+       "leftOperand": "media",
+       "operator": "eq",
+       "rightOperand": "print"
    }]
 }  
 </pre>
