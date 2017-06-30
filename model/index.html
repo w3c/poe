@@ -153,7 +153,11 @@
 <li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 </ul>
 
-<p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses SHOULD be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
+<p>The Policy class MAY also include other direct properties to support <a href="#composition-compact">Compact Policy</a> serialisations and references to common <a href="#constraint">Constraints</a>. These are not to be considered as direct properties of the Policy but as an intermediate step, that after applying <a href="#composition">atomic processing rules</a> will create a Policy  consistent with the normative ODRL Informantion Model.
+	</p>
+	
+<p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the 
+	Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses SHOULD be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
     
 <section id="policy-set">
 <h3>Set Class</h3> 
