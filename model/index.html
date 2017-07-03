@@ -6,6 +6,16 @@
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
     <script class="remove" src="config.js"></script>
+    <style type="text/css">
+    .Rule {
+      margin-left:2em;
+      border-left:thick solid black;
+      padding-left:0.5em;
+      background-color:#ddd;
+      font-family: serif;
+    }
+    </style>
+
   </head>
 	
 <body>
@@ -174,7 +184,7 @@
 <p>Example Use Case: The below <code>Set</code> Policy shows the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code>.</p>
 </blockquote>
 
-<pre class="example hljs json">
+<pre id="eg1" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Set",
@@ -208,7 +218,7 @@
 <p>Example Use Case: The below <code>Offer</code> Policy (based on the previous example) shows the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code>.</p>
 </blockquote>
 
-<pre class="example hljs json">
+<pre id="eg2" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -239,7 +249,7 @@
 <p>Example Use Case: The below <code>Agreement</code> Policy (based on the previous example) shows granting the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code> for the assignee Party <code>http://example.com/party:person:billie</code>.</p>
 </blockquote>
 
-<pre class="example hljs json">
+<pre id="eg3" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -299,7 +309,7 @@
  <blockquote>   
 <p>Example Use Case: The assigner Party <code>http//example.com/party:0001</code> offers to display the <code>target</code> Asset <code>http://example.com/asset:3333</code>.</p>
     </blockquote>
- <pre class="example hljs json">
+ <pre id="eg4" class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -320,7 +330,7 @@
     <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. The target asset is also declared as an <code>AssetCollection</code> to indicate the resource is a collection of resources. Another Asset relation <code>ex:summary</code> is also expressed to indicate the Asset <code>http://example.com/x/database</code> that the indexing output should be stored in. (These semantics would be defined by the community who created the <code>ex:summary</code> relation.)</p>
     </blockquote>
 
- <pre class="example hljs json">
+ <pre id="eg5" class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -346,7 +356,7 @@
 <p>Example Use Case: The below snippet shows some Dublin Core metadata describing a document. The <code>odrl:partOf</code> property asserts that the Asset <code>http://example.com/asset:111.doc</code> is a member of the <code>http://example.com/archive1011</code> AssetCollection which is used in the Policy in the example above. This means that <code>http://example.com/asset:111.doc</code> is one of the target Assets in the Policy and can my indexed.</p>
 </blockquote>
 
-<pre class="example hljs json">
+<pre id="eg6" class="example hljs json">
 {
    "@type": "dc:Document",
    "@id": "http://example.com/asset:111.doc",
@@ -367,7 +377,7 @@
 <p>Example Use Case: The below snippet shows some Dublin Core metadata describing a movie Asset. The <code>odrl:hasPolicy</code> property links to the ODRL Policy <code>http://example.com/policy:1010</code> (this is the Set Policy described above). In this case, the Asset <code>http://example.com/asset:9999.movie</code> is now also the target Asset for the Permission in Policy <code>http://example.com/policy:1010</code>. If there were additional Rules in this Policy, then the same Asset would be the target Asset to each Rule.</p>
 </blockquote>
 
-<pre class="example hljs json">
+<pre id="eg7" class="example hljs json">
 {
    "@type": "dc:MovingImage",
    "@id": "http://example.com/asset:9999.movie",
@@ -429,7 +439,7 @@
 <p>Example Use Case: The Policy shows an Agreement with two Parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the play action over the target asset.</p>
 </blockquote>    
 
-<pre class="example hljs json">
+<pre id="eg8" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -452,7 +462,7 @@
   <p>Example Use Case: The Policy shows an Agreement with two Parties with the functional roles of the <code>assigner</code> and the <code>assignee</code>. The <code>assigner</code> grants the <code>assignee</code> the use of the target asset. In this case, the <code>assigner</code> is explicitly declared as a <code>Party</code> as well as a <em>vcard:Organisation</em>  and some additional external properties. The <code>assignee</code> is explicitly declared as a <code>PartyCollection</code> as well as a <em>vcard:Group</em> and some additional external properties. This implies that all the entities that are identified as <code>http://example.com/team/A</code> will each have the same granted action</p>
 </blockquote>    
 
-<pre class="example hljs json">
+<pre id="eg9" class="example hljs json">
 {
     "@context": [
         "http://www.w3.org/ns/odrl.jsonld",
@@ -490,7 +500,7 @@
 <p>Example Use Case: The below snippet shows some vCard metadata describing a Party. The <code>odrl:partOf</code> property asserts that the Party <code>http://example.com/person/murphy</code> is a member of the <code>http://example.com/team/A</code> PartyCollection which is used in the Policy in the example above. This means that <code>http://example.com/person/murphy</code> is an assignee and can use the target asset in the Policy. </p>
 </blockquote>
 
-<pre class="example hljs json">
+<pre id="eg10" class="example hljs json">
 {
    "@type": "vcard:Individual",
    "@id": "http://example.com/person/murphy",
@@ -515,7 +525,7 @@
 <p>Example Use Case: The below snippet shows some vCard metadata describing an individual Party. The <code>odrl:assigneeOf</code> property links to the ODRL Policy <code>http://example.com/policy:1011</code> (this is the Offer Policy described above). In this case, the Party <code>http://example.com/person/billie</code> is now also the assignee of the Permission in Policy <code>http://example.com/policy:1011</code>. If there were additional Rules in this Policy, then the same Party would the assignee for each Rule.</p>
 </blockquote>
 
-<pre class="example hljs json">
+<pre id="eg11" class="example hljs json">
 {
    "@type": "vcard:Individual",
    "@id": "http://example.com/person/billie",
@@ -580,7 +590,7 @@
 <p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset (<code>play</code> is defined as an <code>includedIn</code> term of <code>use</code>).</p> 
     </blockquote>
     
-<pre class="example hljs json">
+<pre id="eg12" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -633,7 +643,7 @@
 <blockquote>   
 <p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play Permission for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
     </blockquote>
- <pre class="example hljs json">
+ <pre id="eg13" class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -670,7 +680,7 @@
 <p>Example Use Case: The assigner of a target Asset <code>http://example.com/photoAlbum:55</code> expresses an Agreement Policy with both a Permission and a Prohibition. The assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission <code>display</code> to the assignee Party <code>http://example.com/assignee:55</code> at the same time a Prohibition to <code>archive</code> the target Asset. Additionally, in case of any conflicts in the Policy (e.g., between Permissions and Prohibitions), the <code>conflict</code> property of the <code>Policy</code> is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
     </blockquote>
     
-<pre class="example hljs json">
+<pre id="eg14" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -725,7 +735,7 @@
 </blockquote>
 
 
-<pre class="example hljs json">
+<pre id="eg15" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -759,7 +769,7 @@
     </blockquote>
 
 
-<pre class="example hljs json">
+<pre id="eg16" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -827,7 +837,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <p>Example Use Case: In the first example below, the Party <code>http://example.com/myPix:6161</code> wants to offer the  <code>distribute</code> Permission for a specific country for the target Asset. The offer has two Duties to <code>compensate</code> the assigner and a <code>nextPolicy</code>. The potential assignee may distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the Policy target Asset. The second example shows that the Policy  <code>http://example.com/policy:7171</code> stipulates  the potential assignee may only offer the <code>display</code> Permission to other parties.</p>
     </blockquote>
     
-<pre class="example hljs json">
+<pre id="eg17" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -862,7 +872,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 }
 </pre>
     
-<pre class="example hljs json">
+<pre id="eg18" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Set",
@@ -918,7 +928,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <p>Example Use Case:The Policy below shows a Permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. </p>  
    </blockquote>
            
-<pre class="example hljs json">
+<pre id="eg19" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -955,7 +965,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <p>Example Use Case: The Policy below shows a Permission to distribute photos in which the first atomic constraint (the event <code>http://example.com/football/game/2017</code>) has concluded (the operator <code>gt</code> indicating this), then the second atomic constraint (wait for 60 minutes) has passed. The operator <code>andSequence</code> requires that first the atomic constraint in the leftOperand is satisfied - the event has closed - and this triggers the Action Delay Period after which the action of the permission may be exercised. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Atomic Constraints must be satisfied, but could be processed at the same time.)  </p>
     </blockquote>
     
-<pre class="example hljs json">
+<pre id="eg20" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -1005,7 +1015,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
         <p>The <code>ex:set</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but de-reference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
         </p>
  </blockquote>
- <pre class="example hljs json">
+ <pre id="eg21" class="example hljs json">
  {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -1044,7 +1054,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     The assignee also has a constraint that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
    </p>
     </blockquote>
-<pre class="example hljs json">
+<pre id="eg22" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -1078,7 +1088,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
      
     <p>At the core level, an ODRL Rule would be related to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is an irreducible Rule (that is, not able to be reduced or further simplified).</p>
              
-<pre class="example hljs json">
+<pre id="eg23" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -1096,7 +1106,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 
 <p>As multiple Assets, Parties, and Actions can be expressed for each Rule, the following example shows two Assets defined for the policy:</p>
     
-<pre class="example hljs json">
+<pre id="id24" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -1115,7 +1125,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 
 <p>The above example could then be reduced to two <em>atomic</em> Rules, with the two target assets appearing individually in each:</p>
     
-<pre class="example hljs json">
+<pre id="eg25" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -1151,7 +1161,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 	
     <p>An ODRL Policy MAY also relate to multiple Assets, Parties, and Actions at the Policy level (not just within a specific Rule). This is a <em>short-cut</em> method to support more <strong>compact</strong> serialisations. This method implies that these related classes are common to all the Rules in the Policy, as shown in the below example:</p>
              
-<pre class="example hljs json">
+<pre id="eg26" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -1170,7 +1180,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 
 <p>To fully expand the Rules, the Policy-level related Assets, Parties, and Actions MUST be added to all the Rules in the Policy. As shown below, the policy-level target, assigner, and action (from the above example) are added to the two permission Rules:</p>
     
-<pre class="example hljs json">
+<pre id="eg27" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -1226,7 +1236,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <blockquote>
 <p>Example Use Case: The below example shows provenance properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
          
-<pre class="example hljs json">
+<pre id="eg28" class="example hljs json">
 {
     "@context": [
         "http://www.w3.org/ns/odrl.jsonld",
@@ -1277,7 +1287,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assigner wishes to provide default permissions for all Policies). It does not refer to any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
 </blockquote>
     
-    <pre class="example hljs json">
+    <pre id="eg29" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -1296,7 +1306,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     
 <p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below shows the <code>inheritFrom</code> property pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also shows the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
     
-<pre class="example hljs json">
+<pre id="eg30" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -1313,7 +1323,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 
 <p>After the inheritance is performed - where the (parent) Policy atomic Rules are added to the (child) Policy - the resulting Policy is shown below. As this is an Agreement Policy, the assignee also becomes part of the inherited Prohibition.</p>    
     
-    <pre class="example hljs json">
+    <pre id="eg31" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -1379,7 +1389,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 </blockquote>
 
         
-<pre class="example hljs json">
+<pre id="eg32" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -1393,7 +1403,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 }
 </pre>
 
-<pre class="example hljs json">
+<pre id="eg33" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
@@ -1417,8 +1427,30 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     
 
 </section>
-    
-    
+
+<section id="odre"><h2>ODRL Evaluator</h2>
+<div class="issue" data-number="86">This is a suggestion for how such a (normative) section might be included.</div>
+
+<p>The task of an ODRL Evaluator is to determine which Rule(s) are <em>in effect</em> for a given Asset and, if relevant, to which Party the Rule(s) apply. The method by which this is achieved is left to individual implementations but a key task is to determine whether or not constraints have been satisfied. Again, the processes by which this determination is made is not defined, however, it is expected that the result of such a determination is a binary <code>satisfied|not satisfied</code>.</p>
+<p><a href="#eg1">Example 1</a> simply states that permission is granted to play the Asset http://example.com/asset:9898.movie. The output of an ODRL Evaluator SHALL therefore simply be:</p>
+<p class="Rule">Permission to play http://example.com/asset:9898.movie</p>
+<p><a href="#eg2">Example 2</a> extends this by including the assigner and so the output of the Evaluator SHALL be:</p>
+<p class="Rule">http://example.com/party:org:abc grants Permission to play http://example.com/asset:9898.movie</p>
+<p><a href="#eg3">Example 3</a> extends this further by defining a specific Party to which the Rule applies so the output SHALL be:</p>
+<p class="Rule">http://example.com/party:org:abc grants Permission to http://example.com/party:person:billie to play http://example.com/asset:9898.movie</p>
+<p>An Evaluator MUST have a means of evaluating constraints or passing such processing to some external process and receiving a <code>satisfied|not satisfied</code> response. If an Evaluator is unable to determine whether or not a constraint has been satisfied then the response SHALL be:</p>
+<p class="Rule">Not Known</p>
+<p><a href="#eg13">Example 13</a> includes the constraint that the assignee http://example.com/org:xyz gives permission to play http://example.com/game:9090 on or after 31 December 2017. Therefore, up to and including 30 December 2017, the output of an ODRL Evaluator SHALL be:</p>
+<p class="Rule">No rules in effect</p>
+<p>Where no rules are in effect, the policy is effectively silent on what actions may or may not be performed. Continuing with Example 13, from 31 December 2017 onwards, the output SHALL be:</p>
+<p class="Rule">http://example.com/org:xyz gives permission to play http://example.com/game:9090</p>
+<p><a href="#eg14">Example 14</a> introduces the <code>conflict</code> resolution property (and does not include any constraints). The output of an ODRL Evaluator SHALL be:</p>
+<p class="Rule">http://example.com/MyPix:55 grants Permission to http://example.com/assignee:55 to display  http://example.com/photoAlbum:55. http://example.com/MyPix:55 Prohibits http://example.com/assignee:55 from Archiving http://example.com/photoAlbum:55. In the case of conflict, the Permission takes precedence.</p>
+<p class="note">And so on. Note that an id attribute has been added to all examples in the doc for cross-referencing. ReSpec doesn't do this for you (surprisingly). Local CSS class of Rule defined for this - change at will, obviously.</p>
+</section>
+
+
+
 
 <section id="profile" class="informative">
 <h2>ODRL Profiles</h2>
