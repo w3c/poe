@@ -44,7 +44,6 @@ odrl:
 <http://www.w3.org/ns/odrl/2/#inheritanceConcepts>
     a skos:Collection ;
     skos:prefLabel "Policy Inheritance"@en ;
-    skos:member :inheritAllowed ;
     skos:member :inheritFrom .
 
 <http://www.w3.org/ns/odrl/2/#conflictConcepts>
@@ -327,6 +326,7 @@ odrl:
     skos:member :extractWord ;
     skos:member :timedCount ;
     skos:member :inheritRelation ;
+    skos:member :inheritAllowed ;
     skos:member :UndefinedTerm ;
     skos:member :undefined ;
     skos:member :ignore ;
@@ -532,15 +532,16 @@ odrl:
 	rdfs:label "Inheritance Allowed"@en ;
 	skos:definition "Indicates if the Policy entity can be inherited."@en ;
 	skos:note "A boolean value."@en ;
-	rdfs:domain :Policy ;
-	rdfs:range xsd:boolean .
+#	rdfs:domain :Policy ;
+#	rdfs:range xsd:boolean .
+    owl:deprecated true .
 
 :inheritFrom
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Inherits From"@en ;
 	skos:definition "Relates a (child) policy to another (parent) policy from which terms are inherited."@en ;
-	skos:note "The child policy will inherit from the parent policy"@en ;
+	skos:note "The child policy will inherit Rules from the parent policy"@en ;
 	rdfs:domain :Policy ;
 	rdfs:range :Policy .
 

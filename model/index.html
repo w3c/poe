@@ -159,7 +159,6 @@
 <li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
 <li>A Policy MUST have one and MAY have many<code>permission</code> or <code>prohibition</code> properties for Rules.  (See the <a href="#permission">Permission</a> and  <a href="#prohibition">Prohibition</a> sections for more details.)</li>  
 <li>A Policy MAY have none or one <code>conflict</code> property for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
-<li>A Policy MAY have none or one <code>inheritAllowed</code> property (a boolean) indicating a Policy can be inherited by other Policies. (See the <a href="#inhertiance">Policy Inheritance</a> section for more details.)</li>
 <li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 </ul>
 
@@ -1259,32 +1258,24 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <section id="inhertiance">
 <h4>Policy Inheritance</h4>
 
-    <p>ODRL supports a simple inheritance mechanism in which a (child) Policy may inherit all the atomic Rules of the (parent) Policy.</p>
-    
-<p>The <code>inheritAllowed</code> property in the Policy is used to indicate if the Policy expression can be used in any inheritance relationship. If present, the value of the <code>inheritAllowed</code> property MUST take one of the following values:</p>
-<ul>
-<li><code>true</code>: the Policy expression MAY be used for inheritance</li>
-<li><code>false</code>: the Policy expression MUST NOT be used for inheritance</li>
-</ul>
-<p>If the <code>inheritAllowed</code> property is not explicitly set, its default value of <code>true</code> will be used.</p>
-    
-<p>The following property SHOULD be used in a child Policy that is inheriting from a parent Policy in which that parent Policy MUST allow inheritance (via the <code>inheritAllowed</code> property) :</p>
+    <p>ODRL supports an inheritance mechanism in which a (child) Policy may inherit all the atomic Rules of one or more (parent) Policies.</p>
+       
+<p>The following property MUST be used in a child Policy that is inheriting from a parent Policy: :</p>
 
     <ul>
-    <li><code>inheritFrom</code>: the identifier (<code>uid</code>) of the parent Policy from which this child Policy inherits from</li>
+    <li><code>inheritFrom</code>: the identifier (<code>uid</code>) of the parent Polic(ies) from which this child Policy inherits from</li>
     </ul>
 
 
-<p>The following restrictions apply when using inheritance:</p>
+<p>The following apply when using inheritance:</p>
 <ul>
-<li>Single inheritance is only supported. That is, one parent Policy to one or more child Policies. No child Policy can inherit from two or more parent Policies.</li>
 <li>Inheritance can be to any depth. (Multiple levels of children Policies.)</li>
 <li>Inheritance MUST NOT be circular.</li>
 <li>No constraint <code>status</code> information is transferred from the parent Policy to the child Policy. That is, if the parent Policy had <code>status</code> properties with values, then these values would be nulled.</li>
 </ul>
 
     <blockquote>
-<p>Example Use Case: Consider the parent Policy <code>http://example.com/policy:default</code> below that has been expressed primarily for inheritance purposes (the assigner wishes to provide default permissions for all Policies). It does not refer to any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
+<p>Example Use Case: Consider the (parent) Policy <code>http://example.com/policy:default</code> below (the assigner wishes to provide default permissions for all Policies). It does not refer to any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
 </blockquote>
     
     <pre id="eg29" class="example hljs json">
@@ -1292,7 +1283,6 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:default",
-    "inheritAllowed": "true",
     "permission": [{
         "assigner": "http://example.com/org-01",
         "action": [ "archive", "annotate" ]
@@ -1347,13 +1337,14 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
     
 <p>The processing model for ODRL Policy Inheritance includes:</p>
     <ol>
-    <li>A (child) Policy with an <code>inheritFrom</code> property MUST first verify that the (parent) Policy does not have the <code>inheritAllowed</code> property with the value <strong>false</strong>.</li>
+
         <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
        <ul>
-           <li>All policy-level Assets, Parties, Actions.</li>
-           <li>All Permission and Prohibition Rules.</li>
+           <li>All policy-level Assets, Parties, Actions from the (parent) Policy.</li>
+           <li>All Permission and Prohibition Rules from the (parent) Policy.</li>
        </ul>
             </li>
+		<li>Repeat the above for each identified (parent) Policy.</li>
       <li>The (child) Policy can then be further expanded (into <em>atomic</em> Rules) by following the processing models defined in the <a href="#composition">Policy Composition</a> section.</li>  
     </ol>
         
@@ -1643,7 +1634,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 						
 	<li>Added source property for Asset/PartyColection <a href="https://github.com/w3c/poe/issues/164">(Issue#164)</a></li>
     
-    
+    	<li>Removed inheritAllowed property and support multiple inheritance <a href="https://github.com/w3c/poe/issues/204">(Issue#204)</a></li>
+			
 </ul>
 </section>
 
