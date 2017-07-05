@@ -1158,7 +1158,30 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <section id="composition-compact">
 <h4>Compact Policy</h4>
 	
-    <p>An ODRL Policy MAY also relate to multiple Assets, Parties, and Actions at the Policy level (not just within a specific Rule). This is a <em>short-cut</em> method to support more <strong>compact</strong> serialisations. This method implies that these related classes are common to all the Rules in the Policy, as shown in the below example:</p>
+	
+<p>An ODRL Policy MAY share properties with its Rules. Such properties may be applied formally as property Rules but not semantically of the Policy. This is a <em>short-cut</em> method to support more <strong>compact</strong> serialisations.</p>
+	<p>Properties that MAY be shared include:</p>
+	<ul>
+	<li><code>action</code> property.</li>
+	<li>Any sub-properties of <code>relation</code> (such as <code>target</code>).</li>
+	<li>Any sub-properties of <code>function</code> (such as <code>assigner</code> and <code>assignee</code>).</li>
+	
+	</ul>
+
+	<p>The processing model for expanding short-cuts in a Policy is:</p>
+    <ol>
+    <li>For each Rule in the Policy:</li>
+		<ul>
+        <li>Verify any relevant shared properties (at the Policy-level).</li>
+    <li>Replicate these properties in the Rule.</li>
+		</ul>		
+    </ol>
+       
+	 <li>Further, follow the processing model to create <em>atomic</em> Rules in the Policy (defined in the previous section).</li> 
+	
+    <p>It is RECOMMENDED that compact ODRL Policies be expanded to atomic Policies when being processed for conformance or exchanged for interoperability, to reflect the normative ODRL Information Model.</p>
+	
+	<p>The example below shows such shared common properties applied to a Policy:</p>
              
 <pre id="eg26" class="example hljs json">
 {
@@ -1177,7 +1200,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 }  
 </pre>
 
-<p>To fully expand the Rules, the Policy-level related Assets, Parties, and Actions MUST be added to all the Rules in the Policy. As shown below, the policy-level target, assigner, and action (from the above example) are added to the two permission Rules:</p>
+	<p>The example below shows how these shared properties are expanded to the Permissions of the Policy following the processing rules above.</p>
     
 <pre id="eg27" class="example hljs json">
 {
@@ -1199,15 +1222,6 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 }  
 </pre>  
   
-    <p>The processing model for Policies with multiple related Assets, Parties, and Actions at the Policy-level includes:</p>
-    <ol>
-    <li>Replicate all Policy-level Assets in each and all Permission/Prohibition Rules.</li>
-   <li>Replicate all Policy-level Parties in each and all Permission/Prohibition Rules.</li>
-    <li>Replicate all Policy-level Actions in each and all Permission/Prohibition Rules.</li>
-      <li>Follow the processing model (defined above) to create <em>atomic</em> Rules in the Policy.</li>  
-    </ol>
-       
-    <p>It is RECOMMENDED that compact ODRL Policies be expanded to atomic Policies when being processed for conformance or exchanged for interoperability, to reflect the normative ODRL Information Model.</p>
 	</section>
 	
     </section>
