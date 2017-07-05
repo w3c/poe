@@ -1159,12 +1159,14 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <h4>Compact Policy</h4>
 	
 	
-<p>An ODRL Policy MAY share properties with its Rules. Such properties may be applied formally as property Rules but not semantically of the Policy. This is a <em>short-cut</em> method to support more <strong>compact</strong> serialisations.</p>
+<p>An ODRL Policy may hold properties which are shared amongst its Rules. Such properties may be applied formally as property Rules but not semantically of the Policy. This is a <em>short-cut</em> method to support more <strong>compact</strong> serialisations.</p>
+	
 	<p>Properties that MAY be shared include:</p>
 	<ul>
-	<li><code>action</code> property.</li>
-	<li>Any sub-properties of <code>relation</code> (such as <code>target</code>).</li>
-	<li>Any sub-properties of <code>function</code> (such as <code>assigner</code> and <code>assignee</code>).</li>
+	<li>The <code>action</code> property.</li>
+	<li>Any sub-properties of <code>relation</code> (such as <code>target</code>) defined in the ODRL Common Vocabulary [odrl-vocab] and ODRL Profiles.
+ </li>
+	<li>Any sub-properties of <code>function</code> (such as <code>assigner</code> and <code>assignee</code>) defined in the ODRL Common Vocabulary [odrl-vocab] and ODRL Profiles.</li>
 	
 	</ul>
 
@@ -1427,9 +1429,8 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 </pre>
 
 <p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
-    </section>
+</section>
 
-    
 
 </section>
 
@@ -1460,7 +1461,7 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <section id="profile" class="informative">
 <h2>ODRL Profiles</h2>
 
-    <section id="profile-motivation">
+<section id="profile-motivation">
     <h3>ODRL Profile Purpose</h3>
         
 <p>The ODRL Information Model serves as a core framework and vocabulary to express Policies. The ODRL Common Vocabulary [[!odrl-vocab]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions. For some communities, this flexibility and wide-range of terms supports their requirements for policy expression. Other communities may wish to have a more focussed and specific set of terms that meets their sector's requirements more precisely. 
