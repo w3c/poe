@@ -757,7 +757,8 @@ odrl:
 	a rdf:Property, owl:DataTypeProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand"@en ;
-	skos:definition "The literal value of the right operand in a constraint expression."@en ;
+	skos:definition "The value of the right operand in a constraint expression."@en ;
+    skos:note "The value can be a literal or IRI."@en ;
 #	rdfs:range xsd:any ;
 	rdfs:domain :Constraint .
 
@@ -765,8 +766,8 @@ odrl:
 	a rdf:Property, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand Reference"@en ;
-	skos:definition "A reference to a web resource providing the literal value for the right operand of a Constraint."@en ;
-	skos:note "Is an IRI that MUST be dereferenced to obtain the actual right operand value"@en ;
+	skos:definition "A reference to a web resource providing the value for the right operand of a Constraint."@en ;
+	skos:note "An IRI that MUST be dereferenced to obtain the actual right operand value"@en ;
 	rdfs:domain :Constraint .
 
 :leftOperand

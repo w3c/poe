@@ -810,7 +810,7 @@ Atomic Constraints can express these contexts with comparison expressions. For e
 <ul>
 <li>An Atomic Constraint MUST have one <code>leftOperand</code> property for Left Operands.</li>
 <li>An Atomic Constraint MUST have one <code>operator</code> property for (relational) Operators.</li>
-<li>An Atomic Constraint MUST have either one <code>rightOperand</code> property for right operand literal values or one <code>rightOperandReference</code> property for an IRI [[!rfc3987]] reference to a right operand literal value.</li>
+<li>An Atomic Constraint MUST have either one <code>rightOperand</code> property for right operand  values (literal or IRI [[!rfc3987]]) or one <code>rightOperandReference</code> property for an IRI [[!rfc3987]] reference to a right operand value.</li>
 <li>An Atomic Constraint MAY have none or one <code>dataType</code> property for the data type of the rightOperand/Reference.</li>
 <li>An Atomic Constraint MAY have none or one <code>unit</code> property for the unit value of the rightOperand/Reference.</li>
 <li>An Atomic Constraint MAY have none or one <code>status</code> property for the current value generated from the leftOperand action.</li>
@@ -821,10 +821,10 @@ Atomic Constraints can express these contexts with comparison expressions. For e
     
 <p>The <code>operator</code> identifies the operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
-<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> is the literal value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual literal value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
+<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> is the value (a literal or IRI) of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
 
     <p><blockquote>
-The <code>rightOperand</code> represents a literal value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the  expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the  expression.
+The <code>rightOperand</code> represents a value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced to obtain the value. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the  expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the expression.
   </blockquote> </p> 
    
         
