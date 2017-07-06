@@ -1159,14 +1159,14 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 <h4>Compact Policy</h4>
 	
 	
-<p>An ODRL Policy may hold properties which are shared amongst its Rules. Such properties may be applied formally as property Rules but not semantically of the Policy. This is a <em>short-cut</em> method to support more <strong>compact</strong> serialisations.</p>
+<p>An ODRL Policy MAY hold properties, declared at the Policy-level, which are shared and common to all its Rules. This is aimed only as a <em>short-cut</em> method to support more <strong>compact</strong> serialisations. These shared properties MUST NOT be interpreted as Policy-level properties (such as those defined in the <a href="#policy">Policy Class</a> section).
 	
 	<p>Properties that MAY be shared include:</p>
 	<ul>
 	<li>The <code>action</code> property.</li>
-	<li>Any sub-properties of <code>relation</code> (such as <code>target</code>) defined in the ODRL Common Vocabulary [odrl-vocab] and ODRL Profiles.
+	<li>Any sub-properties of <code>relation</code> (such as <code>target</code>).
  </li>
-	<li>Any sub-properties of <code>function</code> (such as <code>assigner</code> and <code>assignee</code>) defined in the ODRL Common Vocabulary [odrl-vocab] and ODRL Profiles.</li>
+	<li>Any sub-properties of <code>function</code> (such as <code>assigner</code>.</li>
 	
 	</ul>
 
@@ -1176,10 +1176,11 @@ The <code>rightOperand</code> represents a literal value and the <code>rightOper
 		<ul>
         <li>Verify any relevant shared properties (at the Policy-level).</li>
     <li>Replicate these properties in the Rule.</li>
-		</ul>		
+		</ul>
+		<li>Remove the shared properties declared at the Policy-level</li>
     </ol>
        
-	 <li>Further, follow the processing model to create <em>atomic</em> Rules in the Policy (defined in the previous section).</li> 
+	 <p>Further, follow the processing model to create <em>atomic</em> Rules in the Policy (defined in the previous section).</p> 
 	
     <p>It is RECOMMENDED that compact ODRL Policies be expanded to atomic Policies when being processed for conformance or exchanged for interoperability, to reflect the normative ODRL Information Model.</p>
 	
