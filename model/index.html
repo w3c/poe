@@ -705,29 +705,54 @@
 <section id="duty">
 <h3>Duty Class</h3>
 
-<p>A Duty is the <strong>obligation</strong> to perform an Action. The Duty specifies agreed Actions that MUST be fulfilled in order to be granted the associated Permission. A Duty MUST only be associated with a Permission. The Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled. The Duty class inherits all the properties from the Rule class parent.</p>
-
-	
+<p>A Duty is the <strong>obligation</strong> to perform an Action. The Duty specifies agreed Actions that MUST be fulfilled. The Duty class inherits all the properties from the Rule class parent.</p>
 	
 <p>The Duty class is a sublcass of Rule and has the following additional property semantics:</p>
 <ul>
      <li>A Duty MAY have none or one <code>target</code> property for Asset to indicate the Asset that is the primary subject to which the Duty directly applies. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
-	  <li>A Duty MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.) If there are no <code>assigner</code> and/or <code>assignee</code> properties declared, then these functional roles will be the same as those declared in the refering Permission. </li>   
+	  <li>A Duty MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>   
 </ul>
     
 	<p>The Duty class also has these additional requirements:</p>
 	<ul>
-	    <li>A Duty MUST only be associated with a Permission.</li> 
 	   <li>The assignee MUST have the ability to perform the Duty Action.</li>
 		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
 	</ul>
-	
-	
-    
-<p>If a Permission has several Duty entities then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
     
 <p>Even though a Duty is mandatory (i.e., agreed to be undertaken by the Parties), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
- 
+
+<section id="duty">
+<h3>Duty with a Permission</h3>
+
+	<p>A Duty MAY be specified as condition that requires fulfillment in order to make a Permission effective. In this case the Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
+	
+	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the refering Permission.</p>   
+	
+	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
+	
+<blockquote>
+<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/gov/dept:99</code> allows the assignee to distribute the Asset <code>http://example.com/data:77</code> under the condition they attribute the asset to Party <code>http://australia.gov.au/</code>.</p>
+    </blockquote>
+
+
+<pre id="eg16" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:66",
+    "permission": [{
+        "target": "http://example.com/data:77",
+        "assigner": "http://example.com/person:88",
+        "assignee": "http://example.com/gov/dept:99",
+        "action": "distribute",
+        "duty": [{
+            "action": "attribute",
+            "attributedParty": "http://australia.gov.au/"
+        }]
+    }]
+}
+</pre>
+	
 <blockquote>
 <p>Example Use Case: The Party <code>http://example.com/assigner:sony</code> makes an Offer to play the music file <code>http://example.com/music/1999.mp3</code>. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of <code>policyUsage</code> must not have occurred yet (that is, the payment is made before the policy is exercised).
 </p>
@@ -762,29 +787,7 @@
 }  
 </pre>
     
-
-<blockquote>
-<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/gov/dept:99</code> allows the assignee to distribute the Asset <code>http://example.com/data:77</code> under the condition they attribute the asset to Party <code>http://australia.gov.au/</code>.</p>
-    </blockquote>
-
-
-<pre id="eg16" class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Agreement",
-    "uid": "http://example.com/policy:66",
-    "permission": [{
-        "target": "http://example.com/data:77",
-        "assigner": "http://example.com/person:88",
-        "assignee": "http://example.com/gov/dept:99",
-        "action": "distribute",
-        "duty": [{
-            "action": "attribute",
-            "attributedParty": "http://australia.gov.au/"
-        }]
-    }]
-}
-</pre>
+	</section>
 	
 </section>	
 	

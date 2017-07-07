@@ -188,6 +188,7 @@ odrl:
     skos:member :reviewPolicy ;
     skos:member :sell ;
     skos:member :stream ;
+    skos:member :synchronize ;
     skos:member :textToSpeech ;
     skos:member :transform ;
     skos:member :translate ;
@@ -1608,6 +1609,14 @@ odrl:
 	skos:definition "To deliver the Asset in real-time."@en ;
 	:includedIn odrl:use ;
     skos:note "The Asset maybe utilised in real-time as it is being delivered. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
+    skos:scopeNote "Non-Normative"@en .
+
+:synchronize
+	a :Action, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Synchronize"@en ;
+	skos:definition "To use the Asset in timed relations with media (audio/visual) elements of another Asset."@en ;
+	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
 :textToSpeech
