@@ -10,7 +10,7 @@
     "vcard":   "http://www.w3.org/2006/vcard/ns#",
     "foaf":    "http://xmlns.com/foaf/0.1/",
     "schema":  "http://schema.org/",
-
+    "cc":      "http://creativecommons.org/ns#",
 
     "uid":     {"@type": "@id", "@id": "@id"},
     "type":    {"@type": "@id", "@id": "@type"},
@@ -36,7 +36,7 @@
     "Ticket":              "odrl:Ticket",
 
     "Asset":               "odrl:Asset",
-    "Asset":               "odrl:AssetCollection",
+    "AssetCollection":     "odrl:AssetCollection",
     "relation":            {"@type": "@id", "@id": "odrl:relation"},
     "hasPolicy":           {"@type": "@id", "@id": "odrl:hasPolicy"},
 
@@ -56,22 +56,21 @@
 	"assigneeOf":           {"@type": "@id", "@id": "odrl:assigneeOf"},
     "assignerOf":           {"@type": "@id", "@id": "odrl:assignerOf"},
     "attributedParty":      {"@type": "@id", "@id": "odrl:attributedParty"},
+	"attributingParty":     {"@type": "@id", "@id": "odrl:attributingParty"},
     "compensatedParty":     {"@type": "@id", "@id": "odrl:compensatedParty"},
     "compensatingParty":    {"@type": "@id", "@id": "odrl:compensatingParty"},
     "consentingParty":      {"@type": "@id", "@id": "odrl:consentingParty"},
+	"consentedParty":       {"@type": "@id", "@id": "odrl:consentedParty"},
     "informedParty":        {"@type": "@id", "@id": "odrl:informedParty"},
+	"informingParty":       {"@type": "@id", "@id": "odrl:informingParty"},
     "trackingParty":        {"@type": "@id", "@id": "odrl:trackingParty"},
-
-    "Group":                 "odrl:Group",
-    "Individual":            "odrl:Individual",
-    "All":                   "odrl:All",
-    "AllConnections":        "odrl:AllConnections",
-    "All2ndConnections":     "odrl:All2ndConnections",
-    "AllGroups":             "odrl:AllGroups",
+	"trackedParty":         {"@type": "@id", "@id": "odrl:trackedParty"},
+	"contractingParty":     {"@type": "@id", "@id": "odrl:contractingParty"},
+	"contractedParty":      {"@type": "@id", "@id": "odrl:contractedParty"},
 
     "Action":                "odrl:Action",
     "action":                {"@type": "@vocab", "@id": "odrl:action"},
-    "includedIn":          {"@type": "@id", "@id": "odrl:includedIn"},
+    "includedIn":            {"@type": "@id", "@id": "odrl:includedIn"},
     "implies":               {"@type": "@id", "@id": "odrl:implies"},
     
     "Permission":            "odrl:Permission",
@@ -127,6 +126,7 @@
     "watermark":            "odrl:watermark",
     
     "Constraint":           "odrl:Constraint",
+	"LogicalConstraint":    "odrl:LogicalConstraint",
     "constraint":           {"@type": "@id", "@id": "odrl:constraint"},
     "Operator":             "odrl:Operator",
     "operator":             {"@type": "@vocab", "@id": "odrl:operator"},
@@ -185,7 +185,7 @@
     "isAnyOf":              "odrl:isAnyOf",
     "isNoneOf":             "odrl:isNoneOf",
     "or":                   "odrl:or",
-    "xor":                  "odrl:xor",
+    "xone":                 "odrl:xone",
     "and":                  "odrl:and",
     "andSequence":          "odrl:andSequence",
 

@@ -392,19 +392,17 @@
 <tr><th>Domain:</th> <td><a href="#term-Permission">Permission</a></td></tr>
 </table>
 </section></section><section id="constraints"><h2>Constraint</h2><section id="term-Constraint"><h3>Constraint</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A Boolean expression that refines the applicability of a Rule.</td></tr>
+<tr><th>Definition:</th> <td>A boolean expression that refines the applicability of a Rule.</td></tr>
 <tr><th>Label:</th> <td>Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
-<tr><th>Note:</th> <td>Parent class of all Constraints.</td></tr>
 <tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-leftOperand">leftOperand</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-rightOperandReference">rightOperandReference</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
-<tr><th>In range of:</th> <td><a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-constraint"><h3>Has Constraint</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Constraints appled to a Rule.</td></tr>
 <tr><th>Label:</th> <td>Has Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/constraint">http://www.w3.org/ns/odrl/2/constraint</a></td></tr>
 <tr><th>Note:</th> <td>One or more Constraints may be applied to a Rule. Example: the Action play is only permitted for a certain period of time.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Constraint">Constraint</a>, <a href="#term-LogicalConstraint">LogicalConstraint</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a>, <a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-Operator"><h3>Operator</h3><table class='def propdef' >
@@ -413,7 +411,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Operator">http://www.w3.org/ns/odrl/2/Operator</a></td></tr>
 <tr><th>Note:</th> <td>Instances of the Operator class representing relational and logical operators .</td></tr>
 <tr><th>In range of:</th> <td><a href="#term-operator">operator</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-and">and</a>, <a href="#term-andSequence">andSequence</a>, <a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a>, <a href="#term-or">or</a>, <a href="#term-xor">xor</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-andSequence">andSequence</a>, <a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a></td></tr>
 </table>
 </section><section id="term-operator"><h3>Has Operator</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The operator function applied to operands of a Constraint</td></tr>
@@ -478,33 +476,119 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/status">http://www.w3.org/ns/odrl/2/status</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
-</section></section><section id="constraintOperators"><h2>Constraint Operators</h2><section id="term-or"><h3>Or</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when any of the Constraints are satisfied.</td></tr>
-<tr><th>Label:</th> <td>Or</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/or">http://www.w3.org/ns/odrl/2/or</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
+</section></section><section id="logicalConstraints"><h2>Logical Constraint</h2><section id="term-LogicalConstraint"><h3>Logical Constraint</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>A logical expression that refines the applicability of a Rule.</td></tr>
+<tr><th>Label:</th> <td>Logical Constraint</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/LogicalConstraint">http://www.w3.org/ns/odrl/2/LogicalConstraint</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-operand">operand</a></td></tr>
+</table>
+</section><section id="term-operand"><h3>Operand</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Operand is an abstract property for a logical relationship.</td></tr>
+<tr><th>Label:</th> <td>Operand</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/operand">http://www.w3.org/ns/odrl/2/operand</a></td></tr>
+<tr><th>Note:</th> <td>Sub-properties of operand are used for Logical Constraints.</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-and">and</a>, <a href="#term-or">or</a>, <a href="#term-xone">xone</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-LogicalConstraint">LogicalConstraint</a></td></tr>
+</table>
+</section></section><section id="constraintRelationalOperators"><h2>Constraint Relational Operators</h2><section id="term-eq"><h3>Equal to</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value equals the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Equal to</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/eq">http://www.w3.org/ns/odrl/2/eq</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
-</section><section id="term-xor"><h3>Exclusive Or</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when only one of the Constaints is satisfied</td></tr>
-<tr><th>Label:</th> <td>Exclusive Or</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/xor">http://www.w3.org/ns/odrl/2/xor</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
+</section><section id="term-gt"><h3>Greater than</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is greater than the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Greater than</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/gt">http://www.w3.org/ns/odrl/2/gt</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
-</section><section id="term-and"><h3>And</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when both of the Constraints are satisfied.</td></tr>
-<tr><th>Label:</th> <td>And</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/and">http://www.w3.org/ns/odrl/2/and</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
+</section><section id="term-gteq"><h3>Greater than or equal to</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is greater than or equal to the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Greater than or equal to</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/gteq">http://www.w3.org/ns/odrl/2/gteq</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-lt"><h3>Less than</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is less than the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Less than</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/lt">http://www.w3.org/ns/odrl/2/lt</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-lteq"><h3>Less than or equal to</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is less than or equal to the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Less than or equal to</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/lteq">http://www.w3.org/ns/odrl/2/lteq</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-neq"><h3>Not equal to</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is not equal to the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Not equal to</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/neq">http://www.w3.org/ns/odrl/2/neq</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-isA"><h3>Is a</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is an instance of the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Is a</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isA">http://www.w3.org/ns/odrl/2/isA</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-hasPart"><h3>Has part</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value contains the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Has part</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPart">http://www.w3.org/ns/odrl/2/hasPart</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-isPartOf"><h3>Is part of</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is contained by the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Is part of</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isPartOf">http://www.w3.org/ns/odrl/2/isPartOf</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-isAllOf"><h3>Is all of</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is all of the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Is all of</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isAllOf">http://www.w3.org/ns/odrl/2/isAllOf</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-isAnyOf"><h3>Is any of</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is any of the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Is any of</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isAnyOf">http://www.w3.org/ns/odrl/2/isAnyOf</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section><section id="term-isNoneOf"><h3>Is none of</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicating that a given value is none of the right operand of the Constraint.</td></tr>
+<tr><th>Label:</th> <td>Is none of</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isNoneOf">http://www.w3.org/ns/odrl/2/isNoneOf</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
 </section><section id="term-andSequence"><h3>And Sequence</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when the left operand Atomic Constraint  delivers a satisfied result before the right operand Atomic Constraint is evaluated. The right operand Atomic Constraint may build on the satisfaction of the left operand Atomic Constraint.</td></tr>
+<tr><th>Definition:</th> <td>The relation is satisfied when the left operand Constraint  delivers a satisfied result before the right operand Constraint is evaluated. The right operand  Constraint may build on the satisfaction of the left operand  Constraint.</td></tr>
 <tr><th>Label:</th> <td>And Sequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/andSequence">http://www.w3.org/ns/odrl/2/andSequence</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints. The andSequence operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Constraints in which  both left and right operands MUST also be Constraints. The andSequence operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+</table>
+</section></section><section id="constraintLogicalOperands"><h2>Logical Constraint Operands</h2><section id="term-or"><h3>Or</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The relation is satisfied when at least one of the Constraints is satisfied.</td></tr>
+<tr><th>Label:</th> <td>Or</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/or">http://www.w3.org/ns/odrl/2/or</a></td></tr>
+<tr><th>Note:</th> <td>This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-operand">operand</a></td></tr>
+</table>
+</section><section id="term-xone"><h3>Only One</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The relation is satisfied when only one of the Constaints is satisfied</td></tr>
+<tr><th>Label:</th> <td>Only One</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/xone">http://www.w3.org/ns/odrl/2/xone</a></td></tr>
+<tr><th>Note:</th> <td>This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-operand">operand</a></td></tr>
+</table>
+</section><section id="term-and"><h3>And</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The relation is satisfied when all of the Constraints are satisfied.</td></tr>
+<tr><th>Label:</th> <td>And</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/and">http://www.w3.org/ns/odrl/2/and</a></td></tr>
+<tr><th>Note:</th> <td>This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-operand">operand</a></td></tr>
 </table>
 </section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Strategy Preference</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>
@@ -1108,7 +1192,7 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-delayPeriod"><h3>Action Delay Period</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Atomic Constraint expressed together in a Compound Constraint (utilsing the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
+<tr><th>Definition:</th> <td>The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Constraint expressed together in a Constraint (utilsing the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Action Delay Period</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/delayPeriod">http://www.w3.org/ns/odrl/2/delayPeriod</a></td></tr>
 <tr><th>Note:</th> <td>Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action., Only the eq, gt, gteq operators SHOULD be used.</td></tr>
@@ -1295,107 +1379,7 @@
 <tr><th>Note:</th> <td>Example: an Internet domain or IP address range.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
-</section></section><section id="constraintOperatorsCommon"><h2>Constraint Operators</h2><section id="term-eq"><h3>Equal to</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value equals the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Equal to</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/eq">http://www.w3.org/ns/odrl/2/eq</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-gt"><h3>Greater than</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is greater than the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Greater than</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/gt">http://www.w3.org/ns/odrl/2/gt</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-gteq"><h3>Greater than or equal to</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is greater than or equal to the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Greater than or equal to</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/gteq">http://www.w3.org/ns/odrl/2/gteq</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-lt"><h3>Less than</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is less than the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Less than</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/lt">http://www.w3.org/ns/odrl/2/lt</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-lteq"><h3>Less than or equal to</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is less than or equal to the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Less than or equal to</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/lteq">http://www.w3.org/ns/odrl/2/lteq</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-neq"><h3>Not equal to</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is not equal to the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Not equal to</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/neq">http://www.w3.org/ns/odrl/2/neq</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-isA"><h3>Is a</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is an instance of the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Is a</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isA">http://www.w3.org/ns/odrl/2/isA</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-hasPart"><h3>Has part</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value contains the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Has part</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPart">http://www.w3.org/ns/odrl/2/hasPart</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-isPartOf"><h3>Is part of</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is contained by the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Is part of</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isPartOf">http://www.w3.org/ns/odrl/2/isPartOf</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-isAllOf"><h3>Is all of</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is all of the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Is all of</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isAllOf">http://www.w3.org/ns/odrl/2/isAllOf</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-isAnyOf"><h3>Is any of</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is any of the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Is any of</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isAnyOf">http://www.w3.org/ns/odrl/2/isAnyOf</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-isNoneOf"><h3>Is none of</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicating that a given value is none of the right operand of the Constraint.</td></tr>
-<tr><th>Label:</th> <td>Is none of</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isNoneOf">http://www.w3.org/ns/odrl/2/isNoneOf</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-or"><h3>Or</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when any of the Constraints are satisfied.</td></tr>
-<tr><th>Label:</th> <td>Or</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/or">http://www.w3.org/ns/odrl/2/or</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-xor"><h3>Exclusive Or</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when only one of the Constaints is satisfied</td></tr>
-<tr><th>Label:</th> <td>Exclusive Or</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/xor">http://www.w3.org/ns/odrl/2/xor</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-and"><h3>And</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when both of the Constraints are satisfied.</td></tr>
-<tr><th>Label:</th> <td>And</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/and">http://www.w3.org/ns/odrl/2/and</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section><section id="term-andSequence"><h3>And Sequence</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when the left operand Atomic Constraint  delivers a satisfied result before the right operand Atomic Constraint is evaluated. The right operand Atomic Constraint may build on the satisfaction of the left operand Atomic Constraint.</td></tr>
-<tr><th>Label:</th> <td>And Sequence</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/andSequence">http://www.w3.org/ns/odrl/2/andSequence</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints. The andSequence operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
-</section></section><section id="constraintRightOpCommon"><h2>Constraint Right Operands</h2><section id="term-policyUsage"><h3>Policy Usage Time</h3><table class='def propdef' >
+</section></section><section id="constraintOperatorsCommon"><h2>constraintOperatorsCommon</h2></section><section id="constraintRightOpCommon"><h2>Constraint Right Operands</h2><section id="term-policyUsage"><h3>Policy Usage Time</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Indicates the time when the policy is exercised.</td></tr>
 <tr><th>Label:</th> <td>Policy Usage Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
@@ -1469,7 +1453,7 @@
 <p>The Policy element MAY also contain the constraint element to support <a href="#xml-compound">Compound Constraints</a>.</p>
 
 <p>
-The Policy element MAY also contain constraint elements which are Atomic Constraints referenced by either an Atomic or <a href="#xml-compound">Compound Constraint</a> within a Rule. Note that these Atomic Constraints are not to be interpreted as a direct constraint of all Rules.
+The Policy element MAY also contain constraint elements which are Constraints referenced by either another constraint element or <a href="#xml-logical">Logical Constraint</a> within a Rule. Note that these Constraints are not to be interpreted as a direct constraint of all Rules.
 </p>
 
 	
@@ -1552,9 +1536,9 @@ The Policy element MAY also contain constraint elements which are Atomic Constra
 </ol>
 <p>The Constraint element contains the following attributes:</p>
 <ul>
-<li>name - an IRI</li>
+<li>name - an IRI for the leftOperand or logical operand (for Logical Constraints)</li>
 <li>operator - an IRI</li>
-<li>rightOperand - string or IRI, space separated list for set values</li>
+<li>rightOperand - string or IRI, space separated list for set values (must be a list of Constraint identifiers for a Logical Constraint)</li>
 <li>rightOperandReference - an IRI</li>
 <li>dataType - an IRI</li>
 <li>unit - an IRI</li>
@@ -1568,6 +1552,12 @@ The Policy element MAY also contain constraint elements which are Atomic Constra
 <li>name (REQUIRED), operator (REQUIRED), rightOperand and/or rightOperandReference (REQUIRED), dataType (OPTIONAL), unit (OPTIONAL), status (OPTIONAL), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
+
+<p>Logical Constraint element attributes MUST be used as defined by the sets of attributes and their cardinalities below:</p>
+<ol>
+<li>name (REQUIRED), rightOperand (REQUIRED)</li>
+</ol>
+
 <p>In some cases where Duties refer to (external) Assets, it will be necessary to package the ODRL XML expression with the representation of that (external) Asset. This XML Encoding specification does not mandate any specific packaging mechanism as communities will utilise their preferred options for data interoperability.</p>
 
 <section>
@@ -1646,10 +1636,12 @@ The Policy element MAY also contain constraint elements which are Atomic Constra
 </section>
 
 <section id="xml-compound">
-<h2>Compound Constraints</h2>
-<p>To support Compound Constraints, Atomic Constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The Compound Constraint (in the Rule) can then refer to these Atomic Constraints using its <code>#id</code>.</p>
- <p>ODRL XML processing systems MUST detect the use of <code>#id</code> in the name attribute and rightOperand in Compound Constraints. If detected, the processing model for Compound Constraints (defined in [[!odrl-model]]) MUST then be followed.</p>
-<p>The below example shows two Atomic Constraints defined at the Policy-level with ids <code>C1</code> and <code>C2</code>. The Compound Constraint in the Permission refers to these using the <code>#C1</code> and <code>#C2</code> values.</p>   
+<h2>Logical Constraints</h2>
+<p>To support Logical Constraints, Constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The Logical Constraint (in the Rule) can then refer to these Constraints using its <code>#id</code> in the leftOperand, and the logical relatinship in the name attribute.</p>
+	
+ <p>ODRL XML processing systems MUST detect the use of <code>#id</code> in the rightOperand in Logical Constraints. If detected, the processing model for Logical Constraints (defined in [[!odrl-model]]) MUST then be followed.</p>
+	
+<p>The below example shows two Constraints defined at the Policy-level with ids <code>C1</code> and <code>C2</code>. The Logical Constraint in the Permission refers to these using the <code>#C1</code> and <code>#C2</code> values in the rightOperand, and the logical relationship (xone) in the name attribute.</p>   
     
 <pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
@@ -1660,9 +1652,8 @@ The Policy element MAY also contain constraint elements which are Atomic Constra
         &lt;o:asset uid="http://example.com/music:4545" 
                  relation="http://www.w3.org/ns/odrl/2/target"/>
         &lt;o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
-        &lt;o:constraint name="#C1" 
-                      operator="http://www.w3.org/ns/odrl/2/xor" 
-                      rightOperand="#C2"/>
+        &lt;o:constraint name="http://www.w3.org/ns/odrl/2/xone"
+                      rightOperand="#C1 #C2"/>
     &lt;/o:permission> 
     &lt;o:constraint id="C1" name="http://www.w3.org/ns/odrl/2/spatial" 
                   operator="http://www.w3.org/ns/odrl/2/eq" 
@@ -1823,6 +1814,9 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 	<li>Added source property for Asset/PartyColection <a href="https://github.com/w3c/poe/issues/164">(Issue#164)</a></li>
     
 	<li>Removed inheritAllowed property and support multiple inheritance <a href="https://github.com/w3c/poe/issues/204">(Issue#204)</a></li>
+	
+	 <li>Added Logical Constraints class with typed operands<a href="https://github.com/w3c/poe/issues/206">(Issue#206)</a></li>
+	
 	
 </ul></section>
         
