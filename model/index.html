@@ -23,7 +23,7 @@
 <section id="abstract">
  
     <p>The Open Digital Rights Language (ODRL) provides a flexible and interoperable information model, vocabulary, and encoding mechanisms for describing statements about content usage. The ODRL Information Model describes the underlying concepts, entities, and relationships that form the foundational basis for the semantics of the ODRL statements. </p>
-        <p>Policies are used to explicitly state what are the permitted and prohibited actions over a certain resource. In addition, policies may be integrated with complex constraints (e.g., time constraints) which apply to such actions to impose further restrictions to the uses of the resource. </p>
+        <p>Policies are used to explicitly state what are the permitted and prohibited actions over a certain resource. In addition, policies may be integrated with constraints (e.g., time constraints) which apply to such actions to impose further restrictions to the uses of the resource. </p>
 
     </section>
     
@@ -79,7 +79,7 @@
 	       <dt><dfn>Party</dfn></dt>
 	          <dd>An entity or a collection of entities that undertake Roles in a Rule</dd>
 	       <dt><dfn>Constraint</dfn></dt>
-	          <dd>A Boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</dd>
+	          <dd>A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</dd>
            <dt><dfn>ODRL Validator</dfn></dt>
 	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model requirements.</dd>
           <dt><dfn>ODRL Evaluator</dfn></dt>
@@ -131,7 +131,7 @@
     <li><code>Prohibition</code> - The inability to perform an Action over an Asset.</li>
     <li><code>Duty</code> - The obligation to perform an Action. The Action has been agreed to be performed as a requirement for the applicable Permission to become valid.</li>
     </ul>
-    <li><code>Constraint</code> - A Boolean expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</li>
+    <li><code>Constraint/LogicalConstraint</code> - A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</li>
     </ul>
 
 <p>The ODRL Information Model hass two abstract properties between Rule and the Asset and Party class. These two properties (<em>relation</em> and <em>function</em>) are designed to represent the <em>conceptual</em> relation between the two classes. In serialised ODRL expressions, they MUST be realised as subtypes of their respective parent property.   The figure below shows the ODRL Properties Model with subtypes.</p>
@@ -617,7 +617,7 @@
 <li>A Rule MUST have one <code>action</code> property for Action.</li>
 	<li>A Rule MAY have none or one <code><em>relation</em></code> sub-properties for Asset.</li>
 	<li>A Rule MAY have none, one or many <code><em>function</em></code> sub-properties for Party.</li>
-<li>A Rule MAY have none, one or many <code>constraint</code> properties for Constraint.</li>
+<li>A Rule MAY have none, one or many <code>constraint</code> properties for Constraint/LogicalConstraint.</li>
 <li>A Rule MAY have none or one <code>uid</code> property identifier (IRI [[!rfc3987]]) to enable the Rule to be referenced by other Rules.</li>
 </ul>
 <p>Explicit sub-properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
@@ -721,7 +721,7 @@
     
 <p>Even though a Duty is mandatory (i.e., agreed to be undertaken by the Parties), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
 
-<section id="duty">
+<section id="duty-perm">
 <h3>Duty with a Permission</h3>
 
 	<p>A Duty MAY be specified as condition that requires fulfillment in order to make a Permission effective. In this case the Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
@@ -794,37 +794,36 @@
 </section>
 
 <section id="constraint">
-<h3>Constraint Class</h3>
+<h3>Constraints</h3>
     
-    <p>A Constraint class is a boolean expression that refines the applicability of a Rule, or the context of a Party or Asset Collection. Constraints can be represented as <strong>Atomic Constraints</strong> or as <strong>Compound Constraints</strong>. A Compound Constraint will refer to existing Atomic Constraints as its left and right operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
+    <p>Constraints are boolean/logical expressions that refines the applicability of a Rule, or the context of a Party or Asset Collection. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
     
     <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Action, Asset, or Party. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the (individual) Asset or Party becomes effective for the enclosing Rule.</p>
  
     <p>When multiple Constraints apply to the same Rule, Party/Asset Collection then they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied. Parties and Assets become effective is all of the Constraints on Party/Asset Collections are satisfied. </p>
     
-<section id="constraint-atomic">
-<h3>Atomic Constraint</h3>
+<section id="constraint-class">
+<h3>Constraint Class</h3>
         
-<p>Atomic Constraints are expressions for comparing two operands by one operator. If the  expression evaluates to <strong>true</strong> the Constraint is satisfied.
-Atomic Constraints can express these contexts with comparison expressions. For example, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
+<p>A Constraint class is used for expressions which compare two operands by one operator. If the  expression evaluates to <strong>true</strong> the Constraint is satisfied.
+ The Constraint class can express these contexts with comparison expressions, such as, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
 </p>
        
-<p>The Atomic Constraint class has the following properties:</p>
+<p>The Constraint class has the following properties:</p>
 <ul>
-<li>An Atomic Constraint MUST have one <code>leftOperand</code> property for Left Operands.</li>
-<li>An Atomic Constraint MUST have one <code>operator</code> property for (relational) Operators.</li>
-<li>An Atomic Constraint MUST have either one <code>rightOperand</code> property for right operand  values (literal or IRI [[!rfc3987]]) or one <code>rightOperandReference</code> property for an IRI [[!rfc3987]] reference to a right operand value.</li>
-<li>An Atomic Constraint MAY have none or one <code>dataType</code> property for the data type of the rightOperand/Reference.</li>
-<li>An Atomic Constraint MAY have none or one <code>unit</code> property for the unit value of the rightOperand/Reference.</li>
-<li>An Atomic Constraint MAY have none or one <code>status</code> property for the current value generated from the leftOperand action.</li>
-</ul>
-        
+<li>A Constraint MUST have one <code>leftOperand</code> property for Left Operands.</li>
+<li>A Constraint MUST have one <code>operator</code> property for relational Operators.</li>
+<li>A Constraint MUST have either one <code>rightOperand</code> property for right operand values (literal or IRI [[!rfc3987]]) or one <code>rightOperandReference</code> property for an IRI [[!rfc3987]] reference to a right operand value.</li>
+<li>A Constraint MAY have none or one <code>dataType</code> property for the data type of the rightOperand/Reference.</li>
+<li>A Constraint MAY have none or one <code>unit</code> property for the unit value of the rightOperand/Reference.</li>
+<li>A Constraint MAY have none or one <code>status</code> property for the current value generated from the leftOperand action.</li>
+</ul>     
     
-<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!odrl-vocab]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the constraint, and MAY show how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
+<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!odrl-vocab]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the Constraint, and MAY show how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
     
-<p>The <code>operator</code> identifies the operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
+<p>The <code>operator</code> identifies the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
-<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> is the value (a literal or IRI) of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Atomic Constraint.</p>
+<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> is the value (a literal or IRI) of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Constraint.</p>
 
     <p><blockquote>
 The <code>rightOperand</code> represents a value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced to obtain the value. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the  expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the expression.
@@ -836,7 +835,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <p>The <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times.</p>
 
 <blockquote>
-<p>Example Use Case: In the first example below, the Party <code>http://example.com/myPix:6161</code> wants to offer the  <code>distribute</code> Permission for a specific country for the target Asset. The offer has two Duties to <code>compensate</code> the assigner and a <code>nextPolicy</code>. The potential assignee may distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the Policy target Asset. The second example shows that the Policy  <code>http://example.com/policy:7171</code> stipulates  the potential assignee may only offer the <code>display</code> Permission to other parties.</p>
+<p>Example Use Case: In the first example below, the Party <code>http://example.com/myPix:6161</code> wants to offer the <code>distribute</code> Permission for a specific country for the target Asset. The offer has two Duties to <code>compensate</code> the assigner and a <code>nextPolicy</code>. The potential assignee may distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the Policy target Asset. The second example shows that the Policy  <code>http://example.com/policy:7171</code> stipulates  the potential assignee may only offer the <code>display</code> Permission to other parties.</p>
     </blockquote>
     
 <pre id="eg17" class="example hljs json">
@@ -888,42 +887,32 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </section>
     
     
-<section id="constraint-compound">
-<h3>Compound Constraint</h3>
+<section id="constraint-logical">
+<h3>Logical Constraint</h3>
  
  <p>   
-    Compound Constraints refer to two existing Atomic Constraints as the left and right operand. For example, Atomic Constraint #1 (<code>leftOperand</code>) must be satisfied <strong>or</strong> (<code>operator</code>) Atomic Constraint #2 (<code>rightOperand</code>) must be satisfied. The Compound Constraint operator identifiers the logical relationship between the two Atomic Constraints using operators such as <strong>and</strong> or <strong>exclusive or</strong>.</p>
+    A Logical Constraint class are expressions for logically comparing two or more operand values - with the operand values being a list of existing Constraints. For example,  three Constraints could be logically <strong>and</strong>-ed indicatinfg that all three must be true for the Logical Constraint to be satisfied.</p>
 
       
-<p>The Compound Constraint class has the following properties:</p>
+<p>The Logical Constraint class has the following properties:</p>
 <ul>
-<li>A Compound Constraint MUST have one <code>leftOperand</code> property for Atomic Constaints.</li>
-<li>A Compound Constraint MUST have one <code>operator</code> property for (logical) Operators.</li>
-<li>A Compound Constraint MUST have one <code>rightOperand</code> property for Atomic Constraints.</li>
-</ul>
-        
+<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship.</li>
+</ul>    
     
-<p>The applicable logical <code>operator</code> that MAY be used for Compound Constraint are:</p>
+<p>An ODRL validator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
     <ul>
-    <li><code>or</code> -  at least one of the Atomic Constraints (in the left or right operand) MUST be satisfied</li>
-    <li><code>xor</code> - only one of the Atomic Constraints (in the left or right operand) MUST be satisfied</li>
-    <li><code>and</code> - both of the Atomic Constraints (in the left and right operand) MUST be satisfied</li>
-    <li><code>andSequence</code> - the left operand Atomic Constraint must deliver a satisfied result before the right operand Atomic Constraint is evaluated.</li>
+    <li><code>or</code> -  at least one of the Constraints MUST be satisfied</li>
+    <li><code>xone</code> - only one of the  Constraints MUST be satisfied</li>
+    <li><code>and</code> - all of the Constraints MUST be satisfied</li>
     </ul>
 
-    <p>Other <code>operator</code> values are defined in the ODRL Vocabulary [[!odrl-vocab]], further values may be defined by ODRL Profiles.</p>
+ <p>Other <code><em>operand</em></code> sub-properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or defined by ODRL Profiles.</p>
     
-<p>The <code>andSequence</code> operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as <em>deadlock</em> if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</p>
-    
-<p>The processing model for Compound Constraints includes:</p>
+<p>The processing model for Logical Constraints includes:</p>
     <ol>
-       <li>The left and right operands MUST both be Atomic Constraints.</li>
-         <li>The left and right operands MUST NOT be the same Atomic Constraint.</li>
-        <li>The <code>operator</code> MUST only be of the values; <code>or</code>, <code>xor</code>, <code>and</code>, <code>andSequence</code>. Other values MAY be defined in ODRL Profiles exclusively for the use of Compound Constraints.</li>
-       <li>If the <code>operator</code> is <code>or</code> then at least one of the Atomic Constraints (in the left or right operands) MUST be satisfied for the entire Compound Constraint to be satisfied.</li> 
-        <li>If the <code>operator</code> is <code>xor</code> then at only one of the Atomic Constraints (in the left or right operands) MUST be satisfied for the entire Compound Constraint to be satisfied.</li>  
-        <li>If the <code>operator</code> is <code>and</code> then both of the Atomic Constraints (in the left and right operands) MUST be satisfied for the entire Compound Constraint to be satisfied.</li>
-        <li>If the <code>operator</code> is <code>andSequence</code> then the left operand Atomic Constraint MUST return a satisfied result then the right operand Atomic Constraint MUST be evaluated and be satisfied.</li>
+        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>. Other sub-properties of <code><em>operand</em></code> MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or by ODRL Profiles exclusively for the use of Logical Constraints.</li>
+		<li>All of the operand values MUST be unique Constraint instances.</li>
+		<li>The Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</li>
     </ol>
 
    <blockquote> 
@@ -939,20 +928,18 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "target": "http://example.com/book/1999",
         "assigner": "http://example.com/org/paisley-park",
         "action": "reproduce",
-        "constraint": [{
-                "leftOperand": "http://example.com/policy:88/C1",
-                "operator": "xor",
-                "rightOperand": "http://example.com/policy:88/C2"
-            }],
+        "constraint": {
+             "xone": ["http://example.com/p:88/C1", "http://example.com/p:88/C2"]
+            },
     }],
    "constraint": [{
-       "uid": "http://example.com/policy:88/C1",
+       "uid": "http://example.com/p:88/C1",
        "leftOperand": "media",
        "operator": "eq",
        "rightOperand": "online"
    },
    {
-       "uid": "http://example.com/policy:88/C2",
+       "uid": "http://example.com/p:88/C2",
        "leftOperand": "media",
        "operator": "eq",
        "rightOperand": "print"
@@ -961,42 +948,9 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </pre>
 
 	<p class="note">
-	When Atomic Constraints appear at the Policy-level then they MUST only be referenced by a  Constraint with an existing Rule. They MUST not to be interepreted as Constraints on all the Rules in the Policy.
+	When Constraints appear at the Policy-level then they MUST only be referenced by a Logical Constraint within an existing Rule. They MUST not to be interepreted as Constraints on all the Rules in the Policy.
 	</p>
-    <blockquote>
-<p>Example Use Case: The Policy below shows a Permission to distribute photos in which the first atomic constraint (the event <code>http://example.com/football/game/2017</code>) has concluded (the operator <code>gt</code> indicating this), then the second atomic constraint (wait for 60 minutes) has passed. The operator <code>andSequence</code> requires that first the atomic constraint in the leftOperand is satisfied - the event has closed - and this triggers the Action Delay Period after which the action of the permission may be exercised. (Note: The <code>operator</code> value of <code>andSequence</code> is not the same as  <code>and</code> as for the latter, both operand Atomic Constraints must be satisfied, but could be processed at the same time.)  </p>
-    </blockquote>
-    
-<pre id="eg20" class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Offer",
-    "uid": "http://example.com/policy:88",
-    "permission": [{
-        "target": "http://example.com/photo.jpg",
-        "assigner": "http://example.com/org/fifa",
-        "action": "distribute",
-        "constraint": [{
-                "leftOperand": "http://example.com/policy:88/C1",
-                "operator": "andSequence",
-                "rightOperand": "http://example.com/policy:88/C2"
-            }],
-    }],
-   "constraint": [{
-       "uid": "http://example.com/policy:88/C1",
-       "leftOperand": "event",
-       "operator": "gt",
-       "rightOperand": "http://example.com/football/game/2017"
-   },
-   {
-       "uid": "http://example.com/policy:88/C2",
-       "leftOperand": "delayPeriod",
-       "operator": "gteq",
-       "rightOperand": "P60M"
-   }]
-}  
-</pre>
-
+   
 
     
 </section>
@@ -1005,9 +959,9 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Asset Constraint</h3>
  
  <p>   
-	 Atomic Constraints MAY be applied to an <code>AssetCollection</code> to indicate the context under which to identify the individual Asset(s) that are effective to the Rule. The constraint applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
+	  Constraints MAY be applied to an <code>AssetCollection</code> to indicate the context under which to identify the individual Asset(s) that are effective to the Rule. The constraint applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
 	 
-	<p>Note that when using Atomic Constraints, the <code>uid</code> property MUST NOT be used to identify the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to refer to the <code>AssetCollection</code>. </p>
+	<p>Note that when using Constraints, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>AssetCollection</code>. </p>
 	
        
 	
@@ -1045,9 +999,9 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Party Constraint</h3>
  
 	 <p>   
-	 Atomic Constraints MAY be applied to a <code>PartyCollection</code> to indicate the context under which to identify the individual Parties that are effective to the Rule. The constraint applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
+	  Constraints MAY be applied to a <code>PartyCollection</code> to indicate the context under which to identify the individual Parties that are effective to the Rule. The constraint applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
 	 
-	<p>Note that when using Atomic Constraints, the <code>uid</code> property MUST NOT be used to identify the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to refer to the <code>PartyCollection</code>. </p>
+	<p>Note that when using Constraints, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>PartyCollection</code>. </p>
 	
 	
 	
@@ -1660,7 +1614,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 						
 	<li>Added source property for Asset/PartyColection <a href="https://github.com/w3c/poe/issues/164">(Issue#164)</a></li>
     
-    	<li>Removed inheritAllowed property and support multiple inheritance <a href="https://github.com/w3c/poe/issues/204">(Issue#204)</a></li>
+    <li>Removed inheritAllowed property and support multiple inheritance <a href="https://github.com/w3c/poe/issues/204">(Issue#204)</a></li>
+			
+    <li>Updated constraint Model to support Logical Constraints with typed operands <a href="https://github.com/w3c/poe/issues/206">(Issue#206)</a></li>
 			
 </ul>
 </section>
