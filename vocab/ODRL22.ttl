@@ -160,13 +160,17 @@ odrl:
     skos:member :anonymize ;
     skos:member :archive ;
     skos:member :attribute ;
+    skos:member cc:Attribution ;
+    skos:member cc:CommericalUse ;
     skos:member :compensate ;
     skos:member :concurrentUse ;
     skos:member :delete ;
     skos:member :derive ;
+    skos:member cc:DerivativeWorks ;
     skos:member :digitize ;
     skos:member :display ;
     skos:member :distribute ;
+    skos:member cc:Distribution ;
     skos:member :ensureExclusivity ;
     skos:member :execute ;
     skos:member :extract ;
@@ -179,14 +183,19 @@ odrl:
     skos:member :modify ;
     skos:member :move ;
     skos:member :nextPolicy ;
+    skos:member cc:Notice ;
     skos:member :obtainConsent ;
     skos:member :play ;
     skos:member :present ;
     skos:member :print ;
     skos:member :read ;
     skos:member :reproduce ;
+    skos:member cc:Reproduction ;
     skos:member :reviewPolicy ;
     skos:member :sell ;
+    skos:member cc:ShareAlike ;
+    skos:member cc:Sharing ;
+    skos:member cc:SourceCode ;
     skos:member :stream ;
     skos:member :synchronize ;
     skos:member :textToSpeech ;
@@ -194,7 +203,6 @@ odrl:
     skos:member :translate ;
     skos:member :uninstall ;
     skos:member :watermark .
-
 
 <http://www.w3.org/ns/odrl/2/#duties>
     a skos:Collection ;
@@ -286,19 +294,6 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Constraint Right Operands"@en ;
     skos:member :policyUsage .
-
-<http://www.w3.org/ns/odrl/2/#collectiveActions>
-    a skos:Collection ;
-    skos:prefLabel "Collective Actions"@en ;
-    skos:member cc:Attribution ;
-    skos:member cc:CommericalUse ;
-    skos:member cc:DerivativeWorks ;
-    skos:member cc:Distribution ;
-    skos:member cc:Notice ;
-    skos:member cc:Reproduction ;
-    skos:member cc:ShareAlike ;
-    skos:member cc:Sharing ;
-    skos:member cc:SourceCode .
 
 
 <http://www.w3.org/ns/odrl/2/#deprecatedTerms>
@@ -905,7 +900,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:definition "The relation is satisfied when the left operand Atomic Constraint  delivers a satisfied result before the right operand Atomic Constraint is evaluated. The right operand Atomic Constraint may build on the satisfaction of the left operand Atomic Constraint."@en ;
 	rdfs:label "And Sequence"@en ;
-	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints."@en .
+	skos:note "This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints. The andSequence operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them."@en .
 
 ## LeftOperand
 
@@ -2090,6 +2085,7 @@ cc:Reproduction
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Reproduction"@en ;
 	skos:definition "Making multiple copies."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2098,6 +2094,7 @@ cc:Distribution
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Distribution"@en ;
 	skos:definition "Distribution, public display, and publicly performance."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2106,6 +2103,7 @@ cc:DerivativeWorks
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Derivative Works"@en ;
 	skos:definition "Distribution of derivative works."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2114,6 +2112,7 @@ cc:CommericalUse
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Commercial Use"@en ;
 	skos:definition "Exercising rights for commercial purposes."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2122,6 +2121,7 @@ cc:Notice
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Notice"@en ;
 	skos:definition "Copyright and license notices be kept intact."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2130,6 +2130,7 @@ cc:Attribution
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Attribution"@en ;
 	skos:definition "Credit be given to copyright holder and/or author."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2138,6 +2139,7 @@ cc:ShareAlike
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Share ALike"@en ;
 	skos:definition "Derivative works be licensed under the same terms or compatible terms as the original work."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2146,6 +2148,7 @@ cc:Sharing
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Sharing"@en ;
 	skos:definition "Permits commercial derivatives, but only non-commercial distribution."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -2154,6 +2157,7 @@ cc:SourceCode
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Source Code"@en ;
 	skos:definition "Source code (the preferred form for making modifications) must be provided when exercising some rights granted by the license."@en ;
+    skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
     skos:scopeNote "Non-Normative"@en .
 

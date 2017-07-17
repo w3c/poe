@@ -116,7 +116,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
 <tr><th>Note:</th> <td>A Policy may contain multiple Rules.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Agreement">Agreement</a>, <a href="#term-Assertion">Assertion</a>, <a href="#term-Offer">Offer</a>, <a href="#term-Privacy">Privacy</a>, <a href="#term-Request">Request</a>, <a href="#term-Set">Set</a>, <a href="#term-Ticket">Ticket</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a>, <a href="#term-hasPolicy">hasPolicy</a>, <a href="#term-inheritFrom">inheritFrom</a></td></tr>
 </table>
 </section><section id="term-uid"><h3>Unique Identifier</h3><table class='def propdef' >
@@ -139,7 +139,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Agreement">http://www.w3.org/ns/odrl/2/Agreement</a></td></tr>
 <tr><th>Note:</th> <td>An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee fuction (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Offer"><h3>Offer</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assigner.</td></tr>
@@ -147,7 +147,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Offer">http://www.w3.org/ns/odrl/2/Offer</a></td></tr>
 <tr><th>Note:</th> <td>An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy  MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Set"><h3>Set</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset.</td></tr>
@@ -155,7 +155,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Set">http://www.w3.org/ns/odrl/2/Set</a></td></tr>
 <tr><th>Note:</th> <td>A Set Policy MUST contain a target Asset, and at least one Rule. A Set Policy is the default Policy subclass. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined).</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section></section><section id="ruleConcepts"><h2>Rule</h2><section id="term-Rule"><h3>Rule</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</td></tr>
@@ -335,7 +335,7 @@
 <tr><th>Parent class:</th> <td><a href="http://schema.org/Action">schema:Action</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-implies">implies</a>, <a href="#term-includedIn">includedIn</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-action">action</a>, <a href="#term-implies">implies</a>, <a href="#term-includedIn">includedIn</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-Attribution">Attribution</a>, <a href="#term-CommericalUse">CommericalUse</a>, <a href="#term-DerivativeWorks">DerivativeWorks</a>, <a href="#term-Distribution">Distribution</a>, <a href="#term-Notice">Notice</a>, <a href="#term-Reproduction">Reproduction</a>, <a href="#term-ShareAlike">ShareAlike</a>, <a href="#term-Sharing">Sharing</a>, <a href="#term-SourceCode">SourceCode</a>, <a href="#term-acceptTracking">acceptTracking</a>, <a href="#term-adHocShare">adHocShare</a>, <a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-append">append</a>, <a href="#term-appendTo">appendTo</a>, <a href="#term-archive">archive</a>, <a href="#term-attachPolicy">attachPolicy</a>, <a href="#term-attachSource">attachSource</a>, <a href="#term-attribute">attribute</a>, <a href="#term-commercialize">commercialize</a>, <a href="#term-compensate">compensate</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-copy">copy</a>, <a href="#term-delete">delete</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-ensureExclusivity">ensureExclusivity</a>, <a href="#term-execute">execute</a>, <a href="#term-export">export</a>, <a href="#term-extract">extract</a>, <a href="#term-extractChar">extractChar</a>, <a href="#term-extractPage">extractPage</a>, <a href="#term-extractWord">extractWord</a>, <a href="#term-give">give</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-include">include</a>, <a href="#term-index">index</a>, <a href="#term-inform">inform</a>, <a href="#term-install">install</a>, <a href="#term-lease">lease</a>, <a href="#term-lend">lend</a>, <a href="#term-license">license</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-nextPolicy">nextPolicy</a>, <a href="#term-obtainConsent">obtainConsent</a>, <a href="#term-pay">pay</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-preview">preview</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-reviewPolicy">reviewPolicy</a>, <a href="#term-secondaryUse">secondaryUse</a>, <a href="#term-sell">sell</a>, <a href="#term-share">share</a>, <a href="#term-shareAlike">shareAlike</a>, <a href="#term-stream">stream</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transfer">transfer</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-uninstall">uninstall</a>, <a href="#term-use">use</a>, <a href="#term-watermark">watermark</a>, <a href="#term-write">write</a>, <a href="#term-writeTo">writeTo</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-Attribution">Attribution</a>, <a href="#term-CommericalUse">CommericalUse</a>, <a href="#term-DerivativeWorks">DerivativeWorks</a>, <a href="#term-Distribution">Distribution</a>, <a href="#term-Notice">Notice</a>, <a href="#term-Reproduction">Reproduction</a>, <a href="#term-ShareAlike">ShareAlike</a>, <a href="#term-Sharing">Sharing</a>, <a href="#term-SourceCode">SourceCode</a>, <a href="#term-acceptTracking">acceptTracking</a>, <a href="#term-adHocShare">adHocShare</a>, <a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-append">append</a>, <a href="#term-appendTo">appendTo</a>, <a href="#term-archive">archive</a>, <a href="#term-attachPolicy">attachPolicy</a>, <a href="#term-attachSource">attachSource</a>, <a href="#term-attribute">attribute</a>, <a href="#term-commercialize">commercialize</a>, <a href="#term-compensate">compensate</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-copy">copy</a>, <a href="#term-delete">delete</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-ensureExclusivity">ensureExclusivity</a>, <a href="#term-execute">execute</a>, <a href="#term-export">export</a>, <a href="#term-extract">extract</a>, <a href="#term-extractChar">extractChar</a>, <a href="#term-extractPage">extractPage</a>, <a href="#term-extractWord">extractWord</a>, <a href="#term-give">give</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-include">include</a>, <a href="#term-index">index</a>, <a href="#term-inform">inform</a>, <a href="#term-install">install</a>, <a href="#term-lease">lease</a>, <a href="#term-lend">lend</a>, <a href="#term-license">license</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-nextPolicy">nextPolicy</a>, <a href="#term-obtainConsent">obtainConsent</a>, <a href="#term-pay">pay</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-preview">preview</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-reviewPolicy">reviewPolicy</a>, <a href="#term-secondaryUse">secondaryUse</a>, <a href="#term-sell">sell</a>, <a href="#term-share">share</a>, <a href="#term-shareAlike">shareAlike</a>, <a href="#term-stream">stream</a>, <a href="#term-synchronize">synchronize</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transfer">transfer</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-uninstall">uninstall</a>, <a href="#term-use">use</a>, <a href="#term-watermark">watermark</a>, <a href="#term-write">write</a>, <a href="#term-writeTo">writeTo</a></td></tr>
 </table>
 </section><section id="term-action"><h3>Has Action</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The operation relating to the Asset for which the Rule is being subjected.</td></tr>
@@ -365,7 +365,7 @@
 <tr><th>Label:</th> <td>Use</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/use">http://www.w3.org/ns/odrl/2/use</a></td></tr>
 <tr><th>Note:</th> <td>Use is the most generic action for all non-third-party usage. More specific types of the use action can be expressed by more targetted actions.</td></tr>
-<tr><th>Included By:</th> <td><a href="#term-Attribution">Attribution</a>, <a href="#term-CommericalUse">CommericalUse</a>, <a href="#term-DerivativeWorks">DerivativeWorks</a>, <a href="#term-Distribution">Distribution</a>, <a href="#term-Notice">Notice</a>, <a href="#term-Reproduction">Reproduction</a>, <a href="#term-ShareAlike">ShareAlike</a>, <a href="#term-Sharing">Sharing</a>, <a href="#term-SourceCode">SourceCode</a>, <a href="#term-acceptTracking">acceptTracking</a>, <a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-archive">archive</a>, <a href="#term-attribute">attribute</a>, <a href="#term-compensate">compensate</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-delete">delete</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-ensureExclusivity">ensureExclusivity</a>, <a href="#term-execute">execute</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-include">include</a>, <a href="#term-index">index</a>, <a href="#term-inform">inform</a>, <a href="#term-install">install</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-nextPolicy">nextPolicy</a>, <a href="#term-obtainConsent">obtainConsent</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-reviewPolicy">reviewPolicy</a>, <a href="#term-stream">stream</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-uninstall">uninstall</a>, <a href="#term-watermark">watermark</a></td></tr>
+<tr><th>Included By:</th> <td><a href="#term-Attribution">Attribution</a>, <a href="#term-CommericalUse">CommericalUse</a>, <a href="#term-DerivativeWorks">DerivativeWorks</a>, <a href="#term-Distribution">Distribution</a>, <a href="#term-Notice">Notice</a>, <a href="#term-Reproduction">Reproduction</a>, <a href="#term-ShareAlike">ShareAlike</a>, <a href="#term-Sharing">Sharing</a>, <a href="#term-SourceCode">SourceCode</a>, <a href="#term-acceptTracking">acceptTracking</a>, <a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-archive">archive</a>, <a href="#term-attribute">attribute</a>, <a href="#term-compensate">compensate</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-delete">delete</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-ensureExclusivity">ensureExclusivity</a>, <a href="#term-execute">execute</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-include">include</a>, <a href="#term-index">index</a>, <a href="#term-inform">inform</a>, <a href="#term-install">install</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-nextPolicy">nextPolicy</a>, <a href="#term-obtainConsent">obtainConsent</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-reviewPolicy">reviewPolicy</a>, <a href="#term-stream">stream</a>, <a href="#term-synchronize">synchronize</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-uninstall">uninstall</a>, <a href="#term-watermark">watermark</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-transfer"><h3>Transfer Ownership</h3><table class='def propdef' >
@@ -430,16 +430,17 @@
 <tr><th>Instances:</th> <td><a href="#term-policyUsage">policyUsage</a></td></tr>
 </table>
 </section><section id="term-rightOperand"><h3>Has Right Operand</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The literal value of the right operand in a constraint expression.</td></tr>
+<tr><th>Definition:</th> <td>The value of the right operand in a constraint expression.</td></tr>
 <tr><th>Label:</th> <td>Has Right Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperand">http://www.w3.org/ns/odrl/2/rightOperand</a></td></tr>
+<tr><th>Note:</th> <td>The value can be a literal or IRI.</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-rightOperandReference"><h3>Has Right Operand Reference</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A reference to a web resource providing the literal value for the right operand of a Constraint.</td></tr>
+<tr><th>Definition:</th> <td>A reference to a web resource providing the value for the right operand of a Constraint.</td></tr>
 <tr><th>Label:</th> <td>Has Right Operand Reference</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperandReference">http://www.w3.org/ns/odrl/2/rightOperandReference</a></td></tr>
-<tr><th>Note:</th> <td>Is an IRI that MUST be dereferenced to obtain the actual right operand value</td></tr>
+<tr><th>Note:</th> <td>An IRI that MUST be dereferenced to obtain the actual right operand value</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-LeftOperand"><h3>Left Operand</h3><table class='def propdef' >
@@ -502,7 +503,7 @@
 <tr><th>Definition:</th> <td>The relation is satisfied when the left operand Atomic Constraint  delivers a satisfied result before the right operand Atomic Constraint is evaluated. The right operand Atomic Constraint may build on the satisfaction of the left operand Atomic Constraint.</td></tr>
 <tr><th>Label:</th> <td>And Sequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/andSequence">http://www.w3.org/ns/odrl/2/andSequence</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints. The andSequence operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
 </section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Strategy Preference</h3><table class='def propdef' >
@@ -542,19 +543,11 @@
 <tr><th>Note:</th> <td>Used to indicate the policy is invalid for Conflict Strategy.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
 </table>
-</section></section><section id="inheritanceConcepts"><h2>Policy Inheritance</h2><section id="term-inheritAllowed"><h3>Inheritance Allowed</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicates if the Policy entity can be inherited.</td></tr>
-<tr><th>Label:</th> <td>Inheritance Allowed</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritAllowed">http://www.w3.org/ns/odrl/2/inheritAllowed</a></td></tr>
-<tr><th>Note:</th> <td>A boolean value.</td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-</table>
-</section><section id="term-inheritFrom"><h3>Inherits From</h3><table class='def propdef' >
+</section></section><section id="inheritanceConcepts"><h2>Policy Inheritance</h2><section id="term-inheritFrom"><h3>Inherits From</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates a (child) policy to another (parent) policy from which terms are inherited.</td></tr>
 <tr><th>Label:</th> <td>Inherits From</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritFrom">http://www.w3.org/ns/odrl/2/inheritFrom</a></td></tr>
-<tr><th>Note:</th> <td>The child policy will inherit from the parent policy</td></tr>
+<tr><th>Note:</th> <td>The child policy will inherit Rules from the parent policy</td></tr>
 <tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
@@ -571,7 +564,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Assertion">http://www.w3.org/ns/odrl/2/Assertion</a></td></tr>
 <tr><th>Note:</th> <td>For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Privacy"><h3>Privacy Policy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset containing personal information.</td></tr>
@@ -579,7 +572,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Privacy">http://www.w3.org/ns/odrl/2/Privacy</a></td></tr>
 <tr><th>Note:</th> <td>A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Request"><h3>Request</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assignee.</td></tr>
@@ -587,7 +580,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Request">http://www.w3.org/ns/odrl/2/Request</a></td></tr>
 <tr><th>Note:</th> <td>A Request Policy  MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section><section id="term-Ticket"><h3>Ticket</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that grants the holder a Rule over an Asset from an assigner.</td></tr>
@@ -595,7 +588,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Ticket">http://www.w3.org/ns/odrl/2/Ticket</a></td></tr>
 <tr><th>Note:</th> <td>A Ticket Policy MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritAllowed">inheritAllowed</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
+  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a></td></tr>
 </table>
 </section></section><section id="assetRelationsCommon"><h2>Asset Relations</h2><section id="term-output"><h3>Output</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The output property specifies the Asset which is created from the output of the Action.</td></tr>
@@ -733,6 +726,22 @@
 <tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
+</section><section id="term-Attribution"><h3>Attribution</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Credit be given to copyright holder and/or author.</td></tr>
+<tr><th>Label:</th> <td>Attribution</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Attribution">http://creativecommons.org/ns#Attribution</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</section><section id="term-CommericalUse"><h3>Commercial Use</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Exercising rights for commercial purposes.</td></tr>
+<tr><th>Label:</th> <td>Commercial Use</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#CommericalUse">http://creativecommons.org/ns#CommericalUse</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
 </section><section id="term-compensate"><h3>Compensate</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>To compensate by transfer of some amount of value, if defined, for using or selling the Asset.</td></tr>
 <tr><th>Label:</th> <td>Compensate</td></tr>
@@ -764,6 +773,14 @@
 <tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
+</section><section id="term-DerivativeWorks"><h3>Derivative Works</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Distribution of derivative works.</td></tr>
+<tr><th>Label:</th> <td>Derivative Works</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#DerivativeWorks">http://creativecommons.org/ns#DerivativeWorks</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
 </section><section id="term-digitize"><h3>Digitize</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>To produce a digital copy of (or otherwise digitize) the Asset from its analogue form.</td></tr>
 <tr><th>Label:</th> <td>Digitize</td></tr>
@@ -784,6 +801,14 @@
 <tr><th>Label:</th> <td>Distribute</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/distribute">http://www.w3.org/ns/odrl/2/distribute</a></td></tr>
 <tr><th>Note:</th> <td>It is recommended to use nextPolicy to express the allowable usages by third-parties.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</section><section id="term-Distribution"><h3>Distribution</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Distribution, public display, and publicly performance.</td></tr>
+<tr><th>Label:</th> <td>Distribution</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
 <tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
@@ -881,6 +906,14 @@
 <tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
+</section><section id="term-Notice"><h3>Notice</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Copyright and license notices be kept intact.</td></tr>
+<tr><th>Label:</th> <td>Notice</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
 </section><section id="term-obtainConsent"><h3>Obtain Consent</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>To obtain verifiable consent to perform the requested action in relation to the Asset.</td></tr>
 <tr><th>Label:</th> <td>Obtain Consent</td></tr>
@@ -929,6 +962,14 @@
 <tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
+</section><section id="term-Reproduction"><h3>Reproduction</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Making multiple copies.</td></tr>
+<tr><th>Label:</th> <td>Reproduction</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Reproduction">http://creativecommons.org/ns#Reproduction</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
 </section><section id="term-reviewPolicy"><h3>Review Policy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>To review the Policy applicable to the Asset.</td></tr>
 <tr><th>Label:</th> <td>Review Policy</td></tr>
@@ -944,11 +985,42 @@
 <tr><th>Included In:</th> <td><a href="#term-transfer">transfer</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
+</section><section id="term-ShareAlike"><h3>Share ALike</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Derivative works be licensed under the same terms or compatible terms as the original work.</td></tr>
+<tr><th>Label:</th> <td>Share ALike</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</section><section id="term-Sharing"><h3>Sharing</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Permits commercial derivatives, but only non-commercial distribution.</td></tr>
+<tr><th>Label:</th> <td>Sharing</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Sharing">http://creativecommons.org/ns#Sharing</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</section><section id="term-SourceCode"><h3>Source Code</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Source code (the preferred form for making modifications) must be provided when exercising some rights granted by the license.</td></tr>
+<tr><th>Label:</th> <td>Source Code</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr>
+<tr><th>Note:</th> <td>This term is defined by Creative Commons.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
 </section><section id="term-stream"><h3>Stream</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>To deliver the Asset in real-time.</td></tr>
 <tr><th>Label:</th> <td>Stream</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/stream">http://www.w3.org/ns/odrl/2/stream</a></td></tr>
 <tr><th>Note:</th> <td>The Asset maybe utilised in real-time as it is being delivered. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.</td></tr>
+<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
+<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
+</table>
+</section><section id="term-synchronize"><h3>Synchronize</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>To use the Asset in timed relations with media (audio/visual) elements of another Asset.</td></tr>
+<tr><th>Label:</th> <td>Synchronize</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/synchronize">http://www.w3.org/ns/odrl/2/synchronize</a></td></tr>
 <tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
@@ -1320,7 +1392,7 @@
 <tr><th>Definition:</th> <td>The relation is satisfied when the left operand Atomic Constraint  delivers a satisfied result before the right operand Atomic Constraint is evaluated. The right operand Atomic Constraint may build on the satisfaction of the left operand Atomic Constraint.</td></tr>
 <tr><th>Label:</th> <td>And Sequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/andSequence">http://www.w3.org/ns/odrl/2/andSequence</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints.</td></tr>
+<tr><th>Note:</th> <td>This operator MUST only be used for Compound Constraints, and both left and right operands MUST be Atomic Constraints. The andSequence operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Atomic Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
 </section></section><section id="constraintRightOpCommon"><h2>Constraint Right Operands</h2><section id="term-policyUsage"><h3>Policy Usage Time</h3><table class='def propdef' >
@@ -1333,74 +1405,12 @@
 </section></section>     
 </section>
         
-			
+<!--			
  <section id="vocab-collective" class="informative">
-	<h2>Collective Vocabulary</h2>
+<h2>Collective Vocabulary</h2>
 
-     <p>The Collective Vocabulary declares terms from existing vocabularies that MAY be used in ODRL Policies. </p>    <section id="collectiveActions"><h2>Collective Actions</h2><section id="term-Attribution"><h3>Attribution</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Credit be given to copyright holder and/or author.</td></tr>
-<tr><th>Label:</th> <td>Attribution</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Attribution">http://creativecommons.org/ns#Attribution</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section><section id="term-CommericalUse"><h3>Commercial Use</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Exercising rights for commercial purposes.</td></tr>
-<tr><th>Label:</th> <td>Commercial Use</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#CommericalUse">http://creativecommons.org/ns#CommericalUse</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section><section id="term-DerivativeWorks"><h3>Derivative Works</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Distribution of derivative works.</td></tr>
-<tr><th>Label:</th> <td>Derivative Works</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#DerivativeWorks">http://creativecommons.org/ns#DerivativeWorks</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section><section id="term-Distribution"><h3>Distribution</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Distribution, public display, and publicly performance.</td></tr>
-<tr><th>Label:</th> <td>Distribution</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Distribution">http://creativecommons.org/ns#Distribution</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section><section id="term-Notice"><h3>Notice</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Copyright and license notices be kept intact.</td></tr>
-<tr><th>Label:</th> <td>Notice</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section><section id="term-Reproduction"><h3>Reproduction</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Making multiple copies.</td></tr>
-<tr><th>Label:</th> <td>Reproduction</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Reproduction">http://creativecommons.org/ns#Reproduction</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section><section id="term-ShareAlike"><h3>Share ALike</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Derivative works be licensed under the same terms or compatible terms as the original work.</td></tr>
-<tr><th>Label:</th> <td>Share ALike</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section><section id="term-Sharing"><h3>Sharing</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Permits commercial derivatives, but only non-commercial distribution.</td></tr>
-<tr><th>Label:</th> <td>Sharing</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#Sharing">http://creativecommons.org/ns#Sharing</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section><section id="term-SourceCode"><h3>Source Code</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Source code (the preferred form for making modifications) must be provided when exercising some rights granted by the license.</td></tr>
-<tr><th>Label:</th> <td>Source Code</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr>
-<tr><th>Included In:</th> <td><a href="#term-use">use</a></td></tr>
-<tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
-</table>
-</section></section>     
+//     //    -->
+		
 </section>
 			
 			
@@ -1437,7 +1447,6 @@
 <li>uid - an IRI (REQUIRED)</li>
 <li>type -an IRI (REQUIRED)</li>
 <li>conflict - fixed enumeration (defined in XML Schema)</li>
-<li>inheritAllowed - a boolean</li>
 <li>inheritFrom - an IRI</li>
 <li>profile -an IRI </li>
 </ul>
@@ -1719,7 +1728,7 @@ The Policy element MAY also contain constraint elements which are Atomic Constra
 <section class="appendix" id="deprecate">
 <h2>Deprecated Terms</h2>
  
-            <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td><a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td></td></tr><tr id="term-inheritRelation"><td>Inherit Relation</td><td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td><td></td></tr><tr id="term-UndefinedTerm"><td>Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td><td></td></tr><tr id="term-undefined"><td>Handle Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td><td></td></tr><tr id="term-ignore"><td>Ignore Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/ignore">http://www.w3.org/ns/odrl/2/ignore</a></td><td></td></tr><tr id="term-support"><td>Support Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/support">http://www.w3.org/ns/odrl/2/support</a></td><td></td></tr><tr id="term-AssetScope"><td>Asset Scope</td><td><a href="http://www.w3.org/ns/odrl/2/AssetScope">http://www.w3.org/ns/odrl/2/AssetScope</a></td><td></td></tr><tr id="term-PartyScope"><td>Party Scope</td><td><a href="http://www.w3.org/ns/odrl/2/PartyScope">http://www.w3.org/ns/odrl/2/PartyScope</a></td><td></td></tr><tr id="term-scope"><td>Scope</td><td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td><td></td></tr><tr id="term-Group"><td>Group</td><td><a href="http://www.w3.org/ns/odrl/2/Group">http://www.w3.org/ns/odrl/2/Group</a></td><td></td></tr><tr id="term-Individual"><td>Individual</td><td><a href="http://www.w3.org/ns/odrl/2/Individual">http://www.w3.org/ns/odrl/2/Individual</a></td><td></td></tr><tr id="term-All"><td>All</td><td><a href="http://www.w3.org/ns/odrl/2/All">http://www.w3.org/ns/odrl/2/All</a></td><td></td></tr><tr id="term-AllConnections"><td>All First-Level Connections</td><td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td><td></td></tr><tr id="term-All2ndConnections"><td>All Second-level Connections</td><td><a href="http://www.w3.org/ns/odrl/2/All2ndConnections">http://www.w3.org/ns/odrl/2/All2ndConnections</a></td><td></td></tr><tr id="term-AllGroups"><td>All Group Connections</td><td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td><td></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td><a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td><a href="http://creativecommons.org/ns#Sharing">http://creativecommons.org/ns#Sharing</a></td></tr></tbody></table>           
+            <table class="def propdef" ><tbody><tr><th>Label</th><th>Identifier</th><th>Deprecated By</th></tr><tr id="term-device"><td>Device</td><td><a href="http://www.w3.org/ns/odrl/2/device">http://www.w3.org/ns/odrl/2/device</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-system"><td>System</td><td><a href="http://www.w3.org/ns/odrl/2/system">http://www.w3.org/ns/odrl/2/system</a></td><td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr><tr id="term-proximity"><td>proximity</td><td><a href="http://www.w3.org/ns/odrl/2/proximity">http://www.w3.org/ns/odrl/2/proximity</a></td><td></td></tr><tr id="term-append"><td>Append</td><td><a href="http://www.w3.org/ns/odrl/2/append">http://www.w3.org/ns/odrl/2/append</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-appendTo"><td>Append To</td><td><a href="http://www.w3.org/ns/odrl/2/appendTo">http://www.w3.org/ns/odrl/2/appendTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-copy"><td>Copy</td><td><a href="http://www.w3.org/ns/odrl/2/copy">http://www.w3.org/ns/odrl/2/copy</a></td><td><a href="http://www.w3.org/ns/odrl/2/reproduce">http://www.w3.org/ns/odrl/2/reproduce</a></td></tr><tr id="term-export"><td>Export</td><td><a href="http://www.w3.org/ns/odrl/2/export">http://www.w3.org/ns/odrl/2/export</a></td><td><a href="http://www.w3.org/ns/odrl/2/transform">http://www.w3.org/ns/odrl/2/transform</a></td></tr><tr id="term-lease"><td>Lease</td><td><a href="http://www.w3.org/ns/odrl/2/lease">http://www.w3.org/ns/odrl/2/lease</a></td><td></td></tr><tr id="term-license"><td>License</td><td><a href="http://www.w3.org/ns/odrl/2/license">http://www.w3.org/ns/odrl/2/license</a></td><td><a href="http://www.w3.org/ns/odrl/2/grantUse">http://www.w3.org/ns/odrl/2/grantUse</a></td></tr><tr id="term-lend"><td>Lend</td><td><a href="http://www.w3.org/ns/odrl/2/lend">http://www.w3.org/ns/odrl/2/lend</a></td><td></td></tr><tr id="term-pay"><td>Pay</td><td><a href="http://www.w3.org/ns/odrl/2/pay">http://www.w3.org/ns/odrl/2/pay</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensate">http://www.w3.org/ns/odrl/2/compensate</a></td></tr><tr id="term-payeeParty"><td>Payee Party</td><td><a href="http://www.w3.org/ns/odrl/2/payeeParty">http://www.w3.org/ns/odrl/2/payeeParty</a></td><td><a href="http://www.w3.org/ns/odrl/2/compensatedParty">http://www.w3.org/ns/odrl/2/compensatedParty</a></td></tr><tr id="term-preview"><td>Preview</td><td><a href="http://www.w3.org/ns/odrl/2/preview">http://www.w3.org/ns/odrl/2/preview</a></td><td></td></tr><tr id="term-secondaryUse"><td>Secondary Use</td><td><a href="http://www.w3.org/ns/odrl/2/secondaryUse">http://www.w3.org/ns/odrl/2/secondaryUse</a></td><td></td></tr><tr id="term-write"><td>Write</td><td><a href="http://www.w3.org/ns/odrl/2/write">http://www.w3.org/ns/odrl/2/write</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-writeTo"><td>Write to</td><td><a href="http://www.w3.org/ns/odrl/2/writeTo">http://www.w3.org/ns/odrl/2/writeTo</a></td><td><a href="http://www.w3.org/ns/odrl/2/modify">http://www.w3.org/ns/odrl/2/modify</a></td></tr><tr id="term-adHocShare"><td>Ad-hoc sharing</td><td><a href="http://www.w3.org/ns/odrl/2/adHocShare">http://www.w3.org/ns/odrl/2/adHocShare</a></td><td></td></tr><tr id="term-extractChar"><td>Extract character</td><td><a href="http://www.w3.org/ns/odrl/2/extractChar">http://www.w3.org/ns/odrl/2/extractChar</a></td><td></td></tr><tr id="term-extractPage"><td>Extract page</td><td><a href="http://www.w3.org/ns/odrl/2/extractPage">http://www.w3.org/ns/odrl/2/extractPage</a></td><td></td></tr><tr id="term-extractWord"><td>Extract word</td><td><a href="http://www.w3.org/ns/odrl/2/extractWord">http://www.w3.org/ns/odrl/2/extractWord</a></td><td></td></tr><tr id="term-timedCount"><td>Timed Count</td><td><a href="http://www.w3.org/ns/odrl/2/timedCount">http://www.w3.org/ns/odrl/2/timedCount</a></td><td></td></tr><tr id="term-inheritRelation"><td>Inherit Relation</td><td><a href="http://www.w3.org/ns/odrl/2/inheritRelation">http://www.w3.org/ns/odrl/2/inheritRelation</a></td><td></td></tr><tr id="term-inheritAllowed"><td>Inheritance Allowed</td><td><a href="http://www.w3.org/ns/odrl/2/inheritAllowed">http://www.w3.org/ns/odrl/2/inheritAllowed</a></td><td></td></tr><tr id="term-UndefinedTerm"><td>Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/UndefinedTerm">http://www.w3.org/ns/odrl/2/UndefinedTerm</a></td><td></td></tr><tr id="term-undefined"><td>Handle Undefined Term</td><td><a href="http://www.w3.org/ns/odrl/2/undefined">http://www.w3.org/ns/odrl/2/undefined</a></td><td></td></tr><tr id="term-ignore"><td>Ignore Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/ignore">http://www.w3.org/ns/odrl/2/ignore</a></td><td></td></tr><tr id="term-support"><td>Support Undefined Actions</td><td><a href="http://www.w3.org/ns/odrl/2/support">http://www.w3.org/ns/odrl/2/support</a></td><td></td></tr><tr id="term-AssetScope"><td>Asset Scope</td><td><a href="http://www.w3.org/ns/odrl/2/AssetScope">http://www.w3.org/ns/odrl/2/AssetScope</a></td><td></td></tr><tr id="term-PartyScope"><td>Party Scope</td><td><a href="http://www.w3.org/ns/odrl/2/PartyScope">http://www.w3.org/ns/odrl/2/PartyScope</a></td><td></td></tr><tr id="term-scope"><td>Scope</td><td><a href="http://www.w3.org/ns/odrl/2/scope">http://www.w3.org/ns/odrl/2/scope</a></td><td></td></tr><tr id="term-Group"><td>Group</td><td><a href="http://www.w3.org/ns/odrl/2/Group">http://www.w3.org/ns/odrl/2/Group</a></td><td></td></tr><tr id="term-Individual"><td>Individual</td><td><a href="http://www.w3.org/ns/odrl/2/Individual">http://www.w3.org/ns/odrl/2/Individual</a></td><td></td></tr><tr id="term-All"><td>All</td><td><a href="http://www.w3.org/ns/odrl/2/All">http://www.w3.org/ns/odrl/2/All</a></td><td></td></tr><tr id="term-AllConnections"><td>All First-Level Connections</td><td><a href="http://www.w3.org/ns/odrl/2/AllConnections">http://www.w3.org/ns/odrl/2/AllConnections</a></td><td></td></tr><tr id="term-All2ndConnections"><td>All Second-level Connections</td><td><a href="http://www.w3.org/ns/odrl/2/All2ndConnections">http://www.w3.org/ns/odrl/2/All2ndConnections</a></td><td></td></tr><tr id="term-AllGroups"><td>All Group Connections</td><td><a href="http://www.w3.org/ns/odrl/2/AllGroups">http://www.w3.org/ns/odrl/2/AllGroups</a></td><td></td></tr><tr id="term-attachPolicy"><td>Attach policy</td><td><a href="http://www.w3.org/ns/odrl/2/attachPolicy">http://www.w3.org/ns/odrl/2/attachPolicy</a></td><td><a href="http://creativecommons.org/ns#Notice">http://creativecommons.org/ns#Notice</a></td></tr><tr id="term-attachSource"><td>Attach source</td><td><a href="http://www.w3.org/ns/odrl/2/attachSource">http://www.w3.org/ns/odrl/2/attachSource</a></td><td><a href="http://creativecommons.org/ns#SourceCode">http://creativecommons.org/ns#SourceCode</a></td></tr><tr id="term-shareAlike"><td>Share-alike</td><td><a href="http://www.w3.org/ns/odrl/2/shareAlike">http://www.w3.org/ns/odrl/2/shareAlike</a></td><td><a href="http://creativecommons.org/ns#ShareAlike">http://creativecommons.org/ns#ShareAlike</a></td></tr><tr id="term-commercialize"><td>Commercialize</td><td><a href="http://www.w3.org/ns/odrl/2/commercialize">http://www.w3.org/ns/odrl/2/commercialize</a></td><td><a href="http://creativecommons.org/ns#CommercialUse">http://creativecommons.org/ns#CommercialUse</a></td></tr><tr id="term-share"><td>Share</td><td><a href="http://www.w3.org/ns/odrl/2/share">http://www.w3.org/ns/odrl/2/share</a></td><td><a href="http://creativecommons.org/ns#Sharing">http://creativecommons.org/ns#Sharing</a></td></tr></tbody></table>           
 </section>
    
 <section class="appendix" id="ack">
@@ -1809,10 +1818,11 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
     
     <li>Added assigneeOf/AssignerOf properties <a href="https://github.com/w3c/poe/issues/190">(Issue#190)</a></li> 
     
-	<li>Added CC terms to Collective Vocab <a href="https://github.com/w3c/poe/issues/158">(Issue#158)</a></li>
+	<li>Added CC terms to Common Vocab <a href="https://github.com/w3c/poe/issues/158">(Issue#158)</a></li>
 	
 	<li>Added source property for Asset/PartyColection <a href="https://github.com/w3c/poe/issues/164">(Issue#164)</a></li>
     
+	<li>Removed inheritAllowed property and support multiple inheritance <a href="https://github.com/w3c/poe/issues/204">(Issue#204)</a></li>
 	
 </ul></section>
         
