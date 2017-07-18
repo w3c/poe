@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:1111"
+                type="http://www.w3.org/ns/odrl/2/Privacy">
+    <o:permission>
+        <o:asset uid="http://example.com/billie:888:personal-data" relation="http://www.w3.org/ns/odrl/2/target"/>
+        <o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
+        <o:constraint id="C1" name="http://www.w3.org/ns/odrl/2/purpose"  operator="http://www.w3.org/ns/odrl/2/eq" 
+                   rightOperand="http://www.w3.org/2002/01/P3Pv1:contact"/>
+        <o:party uid="http://example.com/billie:888" function="http://www.w3.org/ns/odrl/2/assigner"/>
+        <o:party uid="http://example.com/gov:health:au" function="http://www.w3.org/ns/odrl/2/assignee"/>
+        <o:duty>
+            <o:action name="http://www.w3.org/ns/odrl/2/delete"/>
+            <o:asset uid="http://example.com/billie:888:personal-data" relation="http://www.w3.org/ns/odrl/2/target"/>
+            <o:constraint id="C2" name="http://www.w3.org/ns/odrl/2/dateTime" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="P30D"/>
+        </o:duty>
+    </o:permission>
+    <o:obligation>
+        <o:action name="http://www.w3.org/ns/odrl/2/compensate"/>
+        <o:constraint name="http://www.w3.org/ns/odrl/2/payAmount" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="300.00"/>
+        <o:constraint name="http://www.w3.org/ns/odrl/2/and" rightOperand="#C1 #C2"/>
+    </o:obligation>
+</o:Policy>

@@ -13,8 +13,9 @@
             <xs:element ref="o:asset" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:action" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="o:permission" minOccurs="0" maxOccurs="unbounded"/>  <!--Required Element (if no prohibition) -->
-            <xs:element ref="o:prohibition" minOccurs="0" maxOccurs="unbounded"/> <!--Required Element (if no permission) -->
+            <xs:element ref="o:permission" minOccurs="0" maxOccurs="unbounded"/>  <!--Required Element (if no prohibition/obligation) -->
+            <xs:element ref="o:prohibition" minOccurs="0" maxOccurs="unbounded"/> <!--Required Element (if no permission/obligation) -->
+            <xs:element ref="o:obligation" minOccurs="0" maxOccurs="unbounded"/> <!--Required Element (if no permission/prohibition) -->
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
@@ -50,7 +51,8 @@
         </xs:choice>
         <xs:attributeGroup ref="o:idAttributes"/>
     </xs:complexType>
-
+    
+    <xs:element name="obligation" type="o:Duty"/>
     <xs:element name="duty" type="o:Duty"/>
     <xs:complexType name="Duty">
         <xs:choice minOccurs="1" maxOccurs="unbounded">

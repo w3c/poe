@@ -208,7 +208,9 @@ odrl:
     a skos:Collection ;
     skos:prefLabel "Duty"@en ;
     skos:member :Duty ;
-    skos:member :duty ; .
+    skos:member :obligation ;
+    skos:member :duty .
+
 
 <http://www.w3.org/ns/odrl/2/#constraints>
     a skos:Collection ;
@@ -521,8 +523,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Permission"@en ;
-	skos:definition "Relates the description of an individual Permission to a Policy."@en ;
-	skos:note "A permission can be specified either in terms of an Action alone, or an instance of Permission relating an Action and one or more other attributes."@en ;
+	skos:definition "Relates an individual Permission to a Policy."@en ;
 	rdfs:domain :Policy ;
 	rdfs:range :Permission .
 
@@ -530,8 +531,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Prohibition"@en ;
-	skos:definition "Relates the description of an individual Prohibition to a Policy."@en ;
-	skos:note "A prohibition can be specified either in terms of an Action alone, or an instance of Prohibition relating an Action and one or more other attributes."@en ;
+	skos:definition "Relates an individual Prohibition to a Policy."@en ;
 	rdfs:domain :Policy ;
 	rdfs:range :Prohibition.
 
@@ -589,8 +589,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Prohibition, :Duty ;
 	rdfs:label "Permission"@en ;
-	skos:definition "The ability to perform an Action over an Asset."@en ;
-	skos:note "In other words, what the assigner (supplier) has granted to the assignee (consumer)."@en .
+	skos:definition "The ability to perform an Action over an Asset."@en .
 
 :Prohibition
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -598,8 +597,7 @@ odrl:
 	rdfs:subClassOf :Rule ;
 	owl:disjointWith :Duty, :Permission ;
 	rdfs:label "Prohibition"@en ;
-	skos:definition "The inability to perform an Action over an Asset."@en ;
-	skos:note "Prohibitions are issued by the supplier of the Asset – the Party with the function assigner."@en .
+	skos:definition "The inability to perform an Action over an Asset."@en .
 
 :Duty
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -732,10 +730,20 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Duty"@en ;
-	skos:definition "The duty relating to the Permission."@en ;
-	skos:note "A Duty indicates requirements which must be fulfilled in order to receive the permission."@en ;
+	skos:definition "Relates an individual Duty to a Permission.."@en ;
+	skos:note "A Duty is a pre-condition which must be fulfilled in order to receive the Permission."@en ;
 	rdfs:domain :Permission ;
 	rdfs:range :Duty .
+
+:obligation
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Has Obligation"@en ;
+	skos:definition "Relates an individual Duty to a Policy."@en ;
+	skos:note "The Duty is a requirement which must be fulfilled."@en ;
+	rdfs:domain :Policy ;
+	rdfs:range :Duty .
+
 
 :unit
 	a rdf:Property ;

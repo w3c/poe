@@ -22,8 +22,8 @@
 
 <section id="abstract">
  
-    <p>The Open Digital Rights Language (ODRL) provides a flexible and interoperable information model, vocabulary, and encoding mechanisms for describing statements about content usage. The ODRL Information Model describes the underlying concepts, entities, and relationships that form the foundational basis for the semantics of the ODRL statements. </p>
-        <p>Policies are used to explicitly state what are the permitted and prohibited actions over a certain resource. In addition, policies may be integrated with constraints (e.g., time constraints) which apply to such actions to impose further restrictions to the uses of the resource. </p>
+    <p>The Open Digital Rights Language (ODRL) provides a flexible and interoperable information model, vocabulary, and encoding mechanisms for describing statements about the usage of content and services. The ODRL Information Model describes the underlying concepts, entities, and relationships that form the foundational basis for the semantics of the ODRL statements. </p>
+        <p>Policies are used to explicitly state what are the permitted and prohibited actions over a certain resource, as well as the obligations required to be meet by stakeholders. In addition, policies may be integrated with constraints (e.g., time constraints) which apply to such actions to impose further restrictions to the uses of the resource. </p>
 
     </section>
     
@@ -37,15 +37,15 @@
 <section class="informative" id="intro">
 <h2>Introduction</h2>   
 
-<p>Several business scenarios require to express what are the permitted and prohibited actions over  content. These permitted/prohibited actions are usually expressed under the form of policies, i.e., entities that allow to indicate those uses and re-uses of the content which are conformant with the existing regulations or to the constraints assigned by the owner. Policies may also be enriched with additional information, i.e., who are the entities in charge of the definition of such Policy and those who are required to conform to it, what are the additional constrains to be associated with the Permissions, Prohibitions and Duties expressed by the Policy. The ability to express these concepts and relationships is important both for the producers of content, i.e., they may state in a clear way what are the permitted and the prohibited actions to prevent misuses, and for the consumers, i.e., they may know precisely how they are allowed to use and re-use the content to avoid breaking the law or the owner's constraints. This specification describes a common approach to expressing these concepts, and more.</p>
-<p>The ODRL Information Model defines the underlying semantic model for permission and obligation statements describing content usage. The information model covers the core concepts, entities and relationships that provide the foundational model for content usage statements. These machine-readable policies may be linked directly with the content they are associated to with the aim to allow consumers to easily retrieve those information.</p>
+<p>Several business scenarios require expressing what are the permitted and prohibited actions over  resources. These permitted/prohibited actions are usually expressed under the form of policies, i.e., expressions that indicate those uses and re-uses of the content which are conformant with  existing regulations or to the constraints assigned by the owner. Policies may also be enriched with additional information, i.e., who are the entities in charge of the definition of such Policy and those who are required to conform to it, what are the additional constrains to be associated with the Permissions, Prohibitions and Duties expressed by the Policy. The ability to express these concepts and relationships is important both for the producers of content, i.e., they may state in a clear way what are the permitted and the prohibited actions to prevent misuse, and for the consumers, i.e., they may know precisely what resources they are allowed to use and re-use to avoid breaking any rules, laws or the owner's constraints. This specification describes a common approach to expressing these policy concepts.</p>
+<p>The ODRL Information Model defines the underlying semantic model for permission, prohibition, and obligation statements describing content usage. The information model covers the core concepts, entities and relationships that provide the foundational model for content usage statements. These machine-readable policies may be linked directly with the content they are associated to with the aim to allow consumers to easily retrieve this information.</p>
      
 <section id="aimsModel">
 <h3>Aims of the Model</h3>
 
-<p>The primary aim of the ODRL Information Model is to provide a standard description model and format to express permission and obligation statements to be associated to content in general. These permission and obligation statements are employed to describe the terms of use and reuse of  resources. The model should cover as many Permission and Obligation use cases as possible, while keeping the policy modeling easy even when dealing with complex uses.</p>
+<p>The primary aim of the ODRL Information Model is to provide a standard description model and format to express permission, prohibition, and obligation statements to be associated to content in general. These statements are employed to describe the terms of use and reuse of resources. The model should cover as many permission, prohibition, and obligation use cases as possible, while keeping the policy modeling easy even when dealing with complex cases.</p>
 
-<p>The ODRL Information Model is a single, consistent model that can be used by all interested parties. All efforts have been made to keep the implementation costs for both content producers and consumers to a minimum. A single method of fulfilling a use case is strongly preferred over multiple methods, unless there are existing standards that need to be accommodated or there is a significant cost associated with using only a single method. While the Information Model is built using Linked Data principles, the design is intended to allow non-graph-based implementations also. </p>
+<p>The ODRL Information Model is a single, consistent model that can be used by all interested parties. A single method of fulfilling a use case is strongly preferred over multiple methods, unless there are existing standards that need to be accommodated or there is a significant cost associated with using only a single method. While the ODRL Information Model is built using Linked Data principles, the design is intended to allow non-graph-based implementations. </p>
 	
 	
 </section>
@@ -63,7 +63,7 @@
      <dl class="termlist">
                  
 	       <dt><dfn>Policy</dfn></dt>
-	          <dd>A non-empty group of Permissions and/or Prohibitions</dd>
+	          <dd>A group of one or more Rules</dd>
 	       <dt><dfn>Rule</dfn></dt>
 	          <dd>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</dd>
 	       <dt><dfn>Action</dfn></dt>
@@ -97,7 +97,7 @@
 <section id="infoModel">
 <h2>ODRL Information Model</h2>
 
-<p>The ODRL Information Model represents Policies that express Permissions, Prohibitions and Duties related to the usage of Assets. The Information Model explicitly expresses what is allowed and what is not allowed by the Policy, as well as other terms, requirements, and parties involved. The aim of the ODRL Information Model is to enable flexible Policy expressions by allowing the policy author to include as much, or as little, detail in the Policies.</p>
+<p>The ODRL Information Model represents Policies that express Permissions, Prohibitions and Duties related to the usage of Asset resources. The Information Model explicitly expresses what is allowed and what is not allowed by the Policy, as well as other terms, requirements, and parties involved. The aim of the ODRL Information Model is to enable flexible Policy expressions by allowing the policy author to include as much, or as little, detail in the Policies.</p>
 
 <p>The figure below shows the ODRL Information Model.</p>
 
@@ -110,7 +110,7 @@
     
 <p>The ODRL Information Model has the following classes:
     <ul>
-        <li><code>Policy</code> - A non-empty group of Permissions (via the permission property) and/or Prohibitions (via the prohibition property). The Policy class is the parent class to the Set, Offer, and Agreement subclasses:</li>
+        <li><code>Policy</code> - A non-empty group of Permissions (via the permission property) and/or Prohibitions (via the prohibition property) and/or Duties (via the obligation property). The Policy class is the parent class to the Set, Offer, and Agreement subclasses:</li>
         <ul>
         <li><code>Set</code> - a subclass of Policy that supports expressing generic Rules.</li>
         <li><code>Offer</code> - a subclass of Policy that supports offerings of Rules from assigner Parties.</li>
@@ -127,14 +127,14 @@
     <li><code>Action</code> - An operation on an Asset.</li>
     <li><code>Rule</code> - An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</li>
         <ul>
-    <li><code>Permission</code> - The ability to perform an Action over an Asset. The Permission MAY also have the <strong>duty</strong> property that expresses an agreed Action that MUST be performed (as a requirement to be granted the Permission).</li>
+    <li><code>Permission</code> - The ability to perform an Action over an Asset. The Permission MAY also have the <strong>duty</strong> property that expresses an agreed Action that MUST be performed (as a pre-condition to be granted the Permission).</li>
     <li><code>Prohibition</code> - The inability to perform an Action over an Asset.</li>
-    <li><code>Duty</code> - The obligation to perform an Action. The Action has been agreed to be performed as a requirement for the applicable Permission to become valid.</li>
+    <li><code>Duty</code> - The obligation to perform an Action.</li>
     </ul>
     <li><code>Constraint/LogicalConstraint</code> - A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</li>
     </ul>
 
-<p>The ODRL Information Model hass two abstract properties between Rule and the Asset and Party class. These two properties (<em>relation</em> and <em>function</em>) are designed to represent the <em>conceptual</em> relation between the two classes. In serialised ODRL expressions, they MUST be realised as subtypes of their respective parent property.   The figure below shows the ODRL Properties Model with subtypes.</p>
+<p>The ODRL Information Model has two abstract properties between Rule and the Asset and Party class. These two properties (<em>relation</em> and <em>function</em>) are designed to represent the <em>conceptual</em> relation between the two classes. In serialised ODRL expressions, they MUST be realised as subtypes of their respective parent property.   The figure below shows the ODRL Properties Model with subtypes.</p>
 
 <figure>
 	<img src="01Properties.svg" alt="ODRL Properties Model" width="800"/>
@@ -157,7 +157,7 @@
 <p>The Policy class has the following properties:</p>
 <ul>
 <li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
-<li>A Policy MUST have one and MAY have many<code>permission</code> or <code>prohibition</code> properties for Rules.  (See the <a href="#permission">Permission</a> and  <a href="#prohibition">Prohibition</a> sections for more details.)</li>  
+<li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty">Duty</a> sections for more details.)</li>  
 <li>A Policy MAY have none or one <code>conflict</code> property for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
 <li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 </ul>
@@ -295,7 +295,7 @@
 <section id="relation">
 <h4>Relation Property</h4>
 
-<p>The abstract <code><em>relation</em></code> property is used to create an explicit link between an Action and an Asset, indicating how the Asset MUST be utilised in respect to the Rule that links to it. Two sub-properties of the <code><em>relation</em></code> property are used to define the nature of that link, namely <code><em>target</em></code> and <code><em>output</em></code>.</p>
+<p>The abstract <code><em>relation</em></code> property is used to create an explicit link between an Action and an Asset, indicating how the Asset MUST be utilised in respect to the Rule that links to it.</p>
 
     <p>An ODRL validator MUST support the following sub-properties of <code><em>relation</em></code>:</p>
 <ul>
@@ -637,7 +637,7 @@
     <li>A Permission MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>
     <li>A Permission MAY have none, one, or more <code>duty</code> properties for Duty.</li>
 </ul>
-<p>The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid. For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
+<p>The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid. That is, the duty property assets a <em>pre-condition</em> between the Permission and the Duty. For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
     
 <blockquote>   
 <p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play Permission for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
@@ -721,10 +721,35 @@
     
 <p>Even though a Duty is mandatory (i.e., agreed to be undertaken by the Parties), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
 
+<blockquote>
+<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to compensate the assigner for payment of EU500.00.</p>
+    </blockquote>
+
+
+<pre id="eg16b" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:42",
+    "obligation": [{
+	"assigner": "http://example.com/org:43",
+	"assignee": "http://example.com/person:44",
+	"action": "compensate",
+	"constraint": [{
+		"action": "payAmount",
+		"operator": "eq",
+		"rightOperand": "500.00",
+		"unit": "http://dbpedia.org/resource/Euro"
+        }]
+    }]
+}
+</pre>
+	
+
 <section id="duty-perm">
 <h3>Duty with a Permission</h3>
 
-	<p>A Duty MAY be specified as condition that requires fulfillment in order to make a Permission effective. In this case the Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
+	<p>A Duty MAY be specified as a pre-condition that requires fulfillment in order to make a Permission effective using the duty property from the Permission to the Duty. In this case the Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
 	
 	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the refering Permission.</p>   
 	
@@ -774,8 +799,7 @@
                 "leftOperand": "payAmount",
                 "operator": "eq",
                 "rightOperand": "5.00",
-                "unit": 
-                  "https://www.currency-iso.org/dam/downloads/lists/list_one.xml#AUD"
+                "unit": "http://dbpedia.org/resource/AUD"
             },
             {
                 "leftOperand": "event",
@@ -860,8 +884,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
                     "operator": "eq",
                     "rightOperand": "100.00",
                     "dataType": "http://www.w3.org/2001/XMLSchema#decimal",
-                    "unit": 
-                      "https://www.currency-iso.org/dam/downloads/lists/list_one.xml#EUR"
+                    "unit": "http://dbpedia.org/resource/Euro"
                 }]
             },
             {
@@ -888,7 +911,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     
     
 <section id="constraint-logical">
-<h3>Logical Constraint</h3>
+<h3>Logical Constraint Class</h3>
  
  <p>   
     A Logical Constraint class are expressions for logically comparing two or more operand values - with the operand values being a list of existing Constraints. For example,  three Constraints could be logically <strong>and</strong>-ed indicatinfg that all three must be true for the Logical Constraint to be satisfied.</p>
@@ -1315,7 +1338,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
        <ul>
            <li>All policy-level Assets, Parties, Actions from the (parent) Policy.</li>
-           <li>All Permission and Prohibition Rules from the (parent) Policy.</li>
+           <li>All Rules from the (parent) Policy.</li>
        </ul>
             </li>
 		<li>Repeat the above for each identified (parent) Policy.</li>
@@ -1488,7 +1511,7 @@ An ODRL Profile extends the ODRL Information Model classes, properties, and inst
 <ul><li><code>ex:myOperator a :Operator ;</code></li></ul>
 
 <blockquote>
- <p>Additional Logical Constraints operands - create a sub-property of the abstract <em>operand</em> property:</p>
+ <p>Additional Logical Constraint operands - create a sub-property of the abstract <em>operand</em> property:</p>
 </blockquote>
 <ul><li><code>ex:myLogicalOp rdfs:subPropertyOf odrl:operand ;</code></li></ul>
 
@@ -1598,8 +1621,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
      <li>Replaced URI with IRI for I18N <a href="https://github.com/w3c/poe/issues/133">(Issue#133)</a></li>
     
     <li>Updated Information Model to be based on Class/Property concepts and removed UML requirements. <a href="https://github.com/w3c/poe/issues/128">(Issue#128)</a></li>
-    
-    <li>Split Constraints into Atomic and Compound Constraints <a href="https://github.com/w3c/poe/issues/117">(Issue#117)</a>></li>
+   
     
     <li>Removed the type property and replaced with subclasses of Policy. Added Set/Offer/Agreement to the IM. Set is now default for Policy. <a href="https://github.com/w3c/poe/issues/154">(Issue#154)</a></li>
     
@@ -1623,6 +1645,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <li>Removed inheritAllowed property and support multiple inheritance <a href="https://github.com/w3c/poe/issues/204">(Issue#204)</a></li>
 			
     <li>Updated constraint Model to support Logical Constraints with typed operands <a href="https://github.com/w3c/poe/issues/206">(Issue#206)</a></li>
+	
+	<li>Added support for Duty at Policy-level using new obligation property <a href="https://github.com/w3c/poe/issues/191">(Issue#191)</a></li>
 			
 </ul>
 </section>
