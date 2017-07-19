@@ -820,11 +820,11 @@
 <section id="constraint">
 <h3>Constraints</h3>
     
-    <p>Constraints are boolean/logical expressions that refines the applicability of a Rule, or the context of a Party or Asset Collection. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
+    <p>Constraints are boolean/logical expressions that refines the applicability of a Rule, or the context of a Party/Asset Collection. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
     
-    <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Action, Asset, or Party. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the (individual) Asset or Party becomes effective for the enclosing Rule.</p>
+    <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Action, or Party/Asset Collection. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the (individual) Asset or Party member(s) - a subset of the Collection - becomes effective for the enclosing Rule.</p>
  
-    <p>When multiple Constraints apply to the same Rule, Party/Asset Collection then they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied. Parties and Assets become effective is all of the Constraints on Party/Asset Collections are satisfied. </p>
+    <p>When multiple Constraints apply to the same Rule, Party/Asset Collection then they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied. Parties and Assets (members of the Collection) become effective is all of the Constraints on Party/Asset Collections are satisfied. </p>
     
 <section id="constraint-class">
 <h3>Constraint Class</h3>
@@ -990,8 +990,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	
 <blockquote>
-    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia images. The target  also has a constraint that specifies further context on the characteristics of the AssetCollection items. In this case, the target Assets will be no more than 50 resources from the media catalogue, and each of those may be printed.</p>
-        <p>The <code>ex:set</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but de-reference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
+    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a constraint that specifies further context on the characteristics of the AssetCollection members. In this case, the target subset of Assets will be thoses that have a <em>running time</em> of less than 60 minutes, and each of those may be played.</p>
+        <p>The <code>ex:runningTime</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but de-reference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
         </p>
  </blockquote>
  <pre id="eg21" class="example hljs json">
@@ -1006,12 +1006,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
             "@type": "AssetCollection",
             "source":  "http://example.com/media-catalogue",
             "constraint": [{
-                "leftOperand": "ex:set",
-                "operator": "lteq",
-                "rightOperand": "50"
+                "leftOperand": "ex:runningTime",
+                "operator": "lt",
+                "rightOperand": "60",
+                "unit": "http://qudt.org/vocab/unit/MinuteTime"
             }],
         },
-        "action": "print"
+        "action": "play"
     }]
 }
 </pre>
