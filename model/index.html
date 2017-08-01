@@ -1327,7 +1327,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     </ol>
 
 <blockquote>
-<p>Example Use Case: The below example shows metadata properties that indicate who created the Policy, a description, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
+<p>Example Use Case: The below example shows metadata properties that indicate who created the Policy, a description, when the Policy was issued, which jurisdiction (an identifier of Queensland, Australia) the Policy applies to, and an identifier of an older version of the Policy it replaces.</p>     </blockquote>
          
 <pre id="eg28" class="example hljs json">
 {
@@ -1337,11 +1337,11 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     ],
     "@type": "Policy",
     "uid": "http://example.com/policy:8888",
-    "dc:creator": "billie@example.com",
+    "dc:creator": "Billie Enterprises LLC",
     "dc:description": "This policy covers...",
-    "dc:issued": "2017-01-01:12:00",
-    "dc:coverage": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD",
-    "dc:replaces": "http://example.com/policy:8887",
+    "dc:issued": "2017-01-01T12:00",
+    "dc:coverage": { "@id": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD"},
+    "dc:replaces": { "@id": "http://example.com/policy:8887"},
     "permission": [{...}]
 }  
 </pre>
