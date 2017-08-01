@@ -313,6 +313,7 @@
 <tr><th>Label:</th> <td>Prohibition</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Prohibition">http://www.w3.org/ns/odrl/2/Prohibition</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-remedy">remedy</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a></td></tr>
 <tr><th>In range of:</th> <td><a href="#term-prohibition">prohibition</a></td></tr>
 </table>
@@ -376,8 +377,9 @@
 <tr><th>Label:</th> <td>Duty</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Duty">http://www.w3.org/ns/odrl/2/Duty</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Properties:</th> <td><a href="#term-consequence">consequence</a></td></tr>
   <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a></td></tr>
-<tr><th>In range of:</th> <td><a href="#term-duty">duty</a>, <a href="#term-obligation">obligation</a></td></tr>
+<tr><th>In range of:</th> <td><a href="#term-consequence">consequence</a>, <a href="#term-duty">duty</a>, <a href="#term-obligation">obligation</a>, <a href="#term-remedy">remedy</a></td></tr>
 </table>
 </section><section id="term-obligation"><h3>Has Obligation</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates an individual Duty to a Policy.</td></tr>
@@ -394,6 +396,22 @@
 <tr><th>Note:</th> <td>A Duty is a pre-condition which must be fulfilled in order to receive the Permission.</td></tr>
 <tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Permission">Permission</a></td></tr>
+</table>
+</section><section id="term-consequence"><h3>Has Consequence</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Relates a Duty to another Duty, the latter being a consequence of not fulfilling the former.</td></tr>
+<tr><th>Label:</th> <td>Has Consequence</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/consequence">http://www.w3.org/ns/odrl/2/consequence</a></td></tr>
+<tr><th>Note:</th> <td>The consequence property is utilised to express the repercussions of not fulfilling an agreed obligation (for a Policy) or duty (for a Permission).</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Duty">Duty</a></td></tr>
+</table>
+</section><section id="term-remedy"><h3>Has Remedy</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Relates an individual remedy Duty to a Prohibition.</td></tr>
+<tr><th>Label:</th> <td>Has Remedy</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/remedy">http://www.w3.org/ns/odrl/2/remedy</a></td></tr>
+<tr><th>Note:</th> <td>The remedy property expresses an agreed Duty that must be fulfilled in case that a Prohibition has been violated by being exercised.</td></tr>
+<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Prohibition">Prohibition</a></td></tr>
 </table>
 </section></section><section id="constraints"><h2>Constraint</h2><section id="term-Constraint"><h3>Constraint</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A boolean expression that refines the applicability of a Rule.</td></tr>
@@ -1509,6 +1527,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
 <li>action (REQUIRED)</li>
 <li>constraint</li>
 <li>party</li>
+<li>remedy</li>
 </ul>
 <p>The Duty element contains the following elements:</p>
 <ul>
@@ -1516,6 +1535,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
 <li>constraint</li>
 <li>asset</li>
 <li>party</li>
+	<li>consequence</li>
 </ul>
 <p>The Duty element contains the following attributes:</p>
 <ul>
@@ -1730,7 +1750,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
    
 <section class="appendix" id="ack">
 <h2>Acknowledgements</h2>
- <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>. In particular the editors would like to thank Susanne Guth (Vocabulary), Jonas Öberg (JSON), and Lu Ai (JSON) for their past editorial contributions.</p>
+ <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>. In particular the editors would like to thank Mo McRoberts (Ontology), Susanne Guth (Vocabulary), Jonas Öberg (JSON), and Lu Ai (JSON) for their past editorial contributions.</p>
 <p>For the current specification, the POE Working Group would like to thank contributions from Gregg Kellogg (JSON-LD Context).</p></section>
         
         <section class="appendix" id="community">
@@ -1825,6 +1845,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 	
 		<li>Added support for Duty at Policy-level using new obligation property <a href="https://github.com/w3c/poe/issues/191">(Issue#191)</a></li>
 	
+		<li>Added Consequence and Remedy properties <a href="https://github.com/w3c/poe/issues/209">(Issue#209)</a></li>
+			
 	
 </ul></section>
         

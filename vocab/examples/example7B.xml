@@ -12,6 +12,9 @@
             <o:action name="http://www.w3.org/ns/odrl/2/delete"/>
             <o:asset uid="http://example.com/billie:888:personal-data" relation="http://www.w3.org/ns/odrl/2/target"/>
             <o:constraint id="C2" name="http://www.w3.org/ns/odrl/2/dateTime" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="P30D"/>
+            <o:consequence>
+                
+            </o:consequence>
         </o:duty>
     </o:permission>
     <o:obligation>
@@ -19,4 +22,9 @@
         <o:constraint name="http://www.w3.org/ns/odrl/2/payAmount" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="300.00"/>
         <o:constraint name="http://www.w3.org/ns/odrl/2/and" rightOperand="#C1 #C2"/>
     </o:obligation>
+    <o:prohibition>
+        <o:remedy>
+            
+        </o:remedy>
+    </o:prohibition>
 </o:Policy>

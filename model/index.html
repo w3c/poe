@@ -162,7 +162,7 @@
 <li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 </ul>
 
-<p>The Policy class MAY also include other direct properties to support <a href="#composition-compact">Compact Policy</a> serialisations and references to common <a href="#constraint">Constraints</a>. These are not to be considered as direct properties of the Policy but as an intermediate step, that after applying <a href="#composition">atomic processing rules</a> will create a Policy  consistent with the normative ODRL Informantion Model.
+<p>The Policy class MAY also include other direct properties to support <a href="#composition-compact">Compact Policy</a> serialisations and references to common <a href="#constraint">Constraints</a>. These are not to be considered as direct properties of the Policy but as an intermediate step, that after applying <a href="#composition">atomic processing rules</a> will create a Policy  consistent with the normative ODRL Information Model.
 	</p>
 	
 <p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the 
@@ -631,13 +631,15 @@
 
 <p>A Permission is the <strong>ability</strong> to perform an Action over an Asset. The Permission class inherits all the properties from the Rule class parent.</p>
 
-<p>The Permission class is a sublcass of Rule and has the following additional property semantics:</p>
+<p>The Permission class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
     <li>A Permission MUST have one <code>target</code> property for Asset. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
     <li>A Permission MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>
     <li>A Permission MAY have none, one, or more <code>duty</code> properties for Duty.</li>
 </ul>
-<p>The Duty expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid. That is, the duty property assets a <em>pre-condition</em> between the Permission and the Duty. For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's Duties MUST be fulfilled.</p>
+<p>The duty property expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid. That is, the duty property asserts a <em>pre-condition</em> between the Permission and the Duty. See the <a href="#duty-perm">Duty with a Permission</a> section for more details.</p>
+	
+<p>For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's duties MUST be fulfilled.</p>
     
 <blockquote>   
 <p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play Permission for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
@@ -667,13 +669,16 @@
 
 <p>A Prohibition is the <strong>inability</strong> to perform an Action over an Asset. The Prohibition class inherits all the properties from the Rule class parent.</p>
     
-<p>The Prohibition class is a sublcass of Rule and has the following additional property semantics:</p>
+<p>The Prohibition class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
 	 <li>A Prohibition MUST have one <code>target</code> property for Asset. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
     <li>A Prohibition MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>	
+    <li>A Prohibition MAY have none, one, or more <code>remedy</code> properties for Duty.</li>
 </ul>
-
-<p>For a Prohibition to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied).</p>
+<p>The remedy property expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been violated. That is, the remedy property asserts a Duty that must be fulfilled if the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
+	
+<p>	
+	For a Prohibition to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Prohibition's remedies MUST be fulfilled (if the Prohibition was violated).</p>
 
     <blockquote>
 <p>Example Use Case: The assigner of a target Asset <code>http://example.com/photoAlbum:55</code> expresses an Agreement Policy with both a Permission and a Prohibition. The assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission <code>display</code> to the assignee Party <code>http://example.com/assignee:55</code> at the same time a Prohibition to <code>archive</code> the target Asset. Additionally, in case of any conflicts in the Policy (e.g., between Permissions and Prohibitions), the <code>conflict</code> property of the <code>Policy</code> is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
@@ -707,10 +712,11 @@
 
 <p>A Duty is the <strong>obligation</strong> to perform an Action. The Duty specifies agreed Actions that MUST be fulfilled. The Duty class inherits all the properties from the Rule class parent.</p>
 	
-<p>The Duty class is a sublcass of Rule and has the following additional property semantics:</p>
+<p>The Duty class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
      <li>A Duty MAY have none or one <code>target</code> property for Asset to indicate the Asset that is the primary subject to which the Duty directly applies. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
-	  <li>A Duty MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>   
+	  <li>A Duty MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li> 
+	  <li>A Duty MAY have none or one <code>consequence</code> properties for Duty.</li>
 </ul>
     
 	<p>The Duty class also has these additional requirements:</p>
@@ -718,11 +724,21 @@
 	   <li>The assignee MUST have the ability to perform the Duty Action.</li>
 		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
 	</ul>
-    
-<p>Even though a Duty is mandatory (i.e., agreed to be undertaken by the Parties), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
+  
+<p>The consequence property is utilised to express the repercussions of not fulfilling an agreed obligation or duty. If a Policy obligation fails to be fulfilled, then this will result in the consequence Duty <strong>also</strong> becoming effective, meaning that both Duties are now effective and MUST be fulfilled. Similarly if a Permission duty fails to be fulfilled, or the Permission has been exercised without evidence of fulfilling the duty.
+</p>
 
+<p>Note that the consequence property MUST NOT be used on a Duty that is already a consequence for a Permission duty or Policy obligation.</p>
+	
+<p>Even though a Duty is mandatory when effective (eg, agreed as a pre-condition for a Permission or activated in violation of a Prohibition), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a compensation payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
+
+<section id="duty-policy">
+<h3>Obligation property with a Policy</h3>
+
+<p>A Policy may include an obligation to fulfill a Duty. </p>
+		
 <blockquote>
-<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to compensate the assigner for payment of EU500.00.</p>
+<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to compensate the assigner for a payment of EU500.00.</p>
     </blockquote>
 
 
@@ -745,40 +761,51 @@
 }
 </pre>
 	
-
-<section id="duty-perm">
-<h3>Duty with a Permission</h3>
-
-	<p>A Duty MAY be specified as a pre-condition that requires fulfillment in order to make a Permission effective using the duty property from the Permission to the Duty. In this case the Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
+	<p>A Policy may also include a consequence of not fulfilling an obligation. Note that if there is no consequence property for an obligation Duty, then the obligation MUST be fulfilled.</p>
 	
-	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the refering Permission.</p>   
-	
-	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
-	
-<blockquote>
-<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/gov/dept:99</code> allows the assignee to distribute the Asset <code>http://example.com/data:77</code> under the condition they attribute the asset to Party <code>http://australia.gov.au/</code>.</p>
+	<blockquote>
+<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to delete the target Asset. If the obligation is not fulfilled, then a consequence is that the assigner MUST also compensate the nominated charity with a payment of EU10.00.</p>
     </blockquote>
 
 
-<pre id="eg16" class="example hljs json">
+<pre id="eg16b" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
-    "uid": "http://example.com/policy:66",
-    "permission": [{
-        "target": "http://example.com/data:77",
-        "assigner": "http://example.com/person:88",
-        "assignee": "http://example.com/gov/dept:99",
-        "action": "distribute",
-        "duty": [{
-            "action": "attribute",
-            "attributedParty": "http://australia.gov.au/"
-        }]
-    }]
+    "uid": "http://example.com/policy:42B",
+    "assigner": "http://example.com/org:43",
+    "assignee": "http://example.com/person:44",
+    "obligation": [{
+	   "action": "delete",
+	   "target": "http://example.com/document:XZY",
+	   "consequence": [{
+	      "action": "compensate",
+	      "constraint": [{
+	         "leftOperand": "payAmount",
+	         "operator": "eq",
+	         "rightOperand": "10.00",
+	         "unit": "http://dbpedia.org/resource/Euro"
+	      }],
+	      "compensatedParty": "http://wwf.org"
+	  }]
+	}]
 }
 </pre>
 	
-<blockquote>
+</section>	
+
+<section id="duty-perm">
+<h3>Duty property with a Permission</h3>
+
+	<p>A Duty MAY be specified as a pre-condition that requires fulfillment in order to make a Permission effective using the duty property from the Permission to the Duty. In this case the Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
+	
+	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the referring Permission.</p>   
+	
+	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
+
+
+	
+	<blockquote>
 <p>Example Use Case: The Party <code>http://example.com/assigner:sony</code> makes an Offer to play the music file <code>http://example.com/music/1999.mp3</code>. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of <code>policyUsage</code> must not have occurred yet (that is, the payment is made before the policy is exercised).
 </p>
 </blockquote>
@@ -810,7 +837,76 @@
     }]
 }  
 </pre>
-    
+
+<P>A duty may also include a consequence of not fulfilling that Duty. If the duty is not fulfilled, or the Permission exercised without fulfilling the Duty, then the consequence Duty MUST also be fulfilled. Note that if there is no consequence property for a Duty, then the Duty MUST be fulfilled before the Permission can be exercised.</P>
+	
+	
+<blockquote>
+<p>Example Use Case: The below Agreement between assigner <code>http://example.com/org:99</code> and assignee <code>http://example.com/person:88</code> allows the assignee to distribute the Asset <code>http://example.com/data:77</code> under the pre-condition they attribute the asset to Party <code>http://australia.gov.au/</code>. If the assignee does not fulfill the duty, or distributes the asset without fulfilling the duty, then the consequence will be that they will also be tracked by <code>http://example.com/dept:100</code>.</p>
+    </blockquote>
+
+
+<pre id="eg16" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:66",
+    "permission": [{
+        "target": "http://example.com/data:77",
+        "assigner": "http://example.com/org:99",
+        "assignee": "http://example.com/person:88",
+        "action": "distribute",
+        "duty": [{
+            "action": "attribute",
+            "attributedParty": "http://australia.gov.au/",
+            "consequence": [{
+               "action": "acceptTracking",
+               "trackingParty": "http://example.com/dept:100"
+            }]
+        }]
+    }]
+}
+</pre>
+	
+
+</section>
+	
+<section id="duty-prohib">
+<h3>Remedy property with a Prohibition</h3>
+	
+<p>The remedy property expresses an agreed Duty that MUST be fulfilled in case that a Prohibition has been violated by being exercised. If the Prohibition is exercised, then the remedy Duty MUST be fulfilled. </p>
+	
+	<p>Note that if there is no remedy property for a Prohibition, then the Prohibition MUST NOT be  exercised.</p>
+	
+	<p>A remedy MUST NOT refer to a Duty that includes a consequence Duty.</p>
+	
+	<p>Note that the ODRL Information Model supports mechanisms to address the infringement of Prohibitions with the remedy feature, and such transgressions should not be considered as negative actions by the assignee.</p>
+	
+		<blockquote>
+<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/org:99</code> prohibits the assignee to modify the Asset <code>http://example.com/data:77</code>. If the assignee does actually modify the target asset, then the remedy will be that the MUST delete the target asset <code>http://example.com/data:77</code>.</p>
+    </blockquote>
+
+
+<pre id="eg16" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:33CC",
+    "prohibition": [{
+        "target": "http://example.com/data:77",
+        "assigner": "http://example.com/person:88",
+        "assignee": "http://example.com/org:99",
+        "action": "modify",
+        "remedy": [{
+            "action": "delete",
+            "target": "http://example.com/data:77"
+        }]
+    }]
+}
+</pre>
+	
+	
+	
 	</section>
 	
 </section>	
@@ -820,7 +916,7 @@
 <section id="constraint">
 <h3>Constraints</h3>
     
-    <p>Constraints are boolean/logical expressions that refines the applicability of a Rule, or the context of a Party/Asset Collection. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determinig if the Constraint has been <em>satisfied</em> or not.</p>
+    <p>Constraints are boolean/logical expressions that refines the applicability of a Rule, or the context of a Party/Asset Collection. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determining if the Constraint has been <em>satisfied</em> or not.</p>
     
     <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Action, or Party/Asset Collection. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the (individual) Asset or Party member(s) - a subset of the Collection - becomes effective for the enclosing Rule.</p>
  
@@ -914,7 +1010,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Logical Constraint Class</h3>
  
  <p>   
-    A Logical Constraint class are expressions for logically comparing two or more operand values - with the operand values being a list of existing Constraints. For example,  three Constraints could be logically <strong>and</strong>-ed indicatinfg that all three must be true for the Logical Constraint to be satisfied.</p>
+    A Logical Constraint class are expressions for logically comparing two or more operand values - with the operand values being a list of existing Constraints. For example,  three Constraints could be logically <strong>and</strong>-ed indicating that all three must be true for the Logical Constraint to be satisfied.</p>
 
       
 <p>The Logical Constraint class has the following properties:</p>
@@ -971,7 +1067,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </pre>
 
 	<p class="note">
-	When Constraints appear at the Policy-level then they MUST only be referenced by a Logical Constraint within an existing Rule. They MUST not to be interepreted as Constraints on all the Rules in the Policy.
+	When Constraints appear at the Policy-level then they MUST only be referenced by a Logical Constraint within an existing Rule. They MUST NOT to be interpreted as Constraints on all the Rules in the Policy.
 	</p>
    
 
@@ -990,7 +1086,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	
 <blockquote>
-    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a constraint that specifies further context on the characteristics of the AssetCollection members. In this case, the target subset of Assets will be thoses that have a <em>running time</em> of less than 60 minutes, and each of those may be played.</p>
+    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a constraint that specifies further context on the characteristics of the AssetCollection members. In this case, the target subset of Assets will be those that have a <em>running time</em> of less than 60 minutes, and each of those may be played.</p>
         <p>The <code>ex:runningTime</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but de-reference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
         </p>
  </blockquote>
@@ -1210,7 +1306,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
     </section>
              
-     <section id="provenace">
+     <section id="metadata">
 <h4>Policy Metadata</h4>
          
        <p>Additional properties MAY be added to a Policy to support further authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[dcterms]] for ODRL Policies.</p>
@@ -1225,13 +1321,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         <li><code>dc:isReplacedBy</code> -  the identifier (uid) of a Policy that supersedes this Policy.</li>
          </ul>
          
-    <p>The processing model for Policies with the above provenance properties include:</p>
+    <p>The processing model for Policies with the above metadata properties include:</p>
     <ol>
     <li>If a Policy has the <code>dc:isReplacedBy</code> property, then a processor MUST consider the first Policy invalid and MUST retrieve and process the identified Policy.</li>
     </ol>
 
 <blockquote>
-<p>Example Use Case: The below example shows provenance properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
+<p>Example Use Case: The below example shows metadata properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
          
 <pre id="eg28" class="example hljs json">
 {
@@ -1368,8 +1464,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <ol>
         <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
  <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule and continue with the Policy as valid.</li>
-  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  processing MUST not continue and the entire Policy MUST be invalid.</li> 
- <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then processing MUST not continue and the entire Policy MUST be invalid.</li> 
+  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  processing MUST NOT continue and the entire Policy MUST be invalid.</li> 
+ <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then processing MUST NOT continue and the entire Policy MUST be invalid.</li> 
         </ol>
        
         
@@ -1648,6 +1744,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <li>Updated constraint Model to support Logical Constraints with typed operands <a href="https://github.com/w3c/poe/issues/206">(Issue#206)</a></li>
 	
 	<li>Added support for Duty at Policy-level using new obligation property <a href="https://github.com/w3c/poe/issues/191">(Issue#191)</a></li>
+			
+	<li>Added Consequence and Remedy properties <a href="https://github.com/w3c/poe/issues/209">(Issue#209)</a></li>
 			
 </ul>
 </section>

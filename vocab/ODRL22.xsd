@@ -47,12 +47,15 @@
             <xs:element ref="o:action" maxOccurs="unbounded"/> <!--Required Element -->
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="o:remedy" minOccurs="0" maxOccurs="unbounded"/>
             <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
         <xs:attributeGroup ref="o:idAttributes"/>
     </xs:complexType>
     
     <xs:element name="obligation" type="o:Duty"/>
+    <xs:element name="consequence" type="o:Duty"/>
+    <xs:element name="remedy" type="o:Duty"/>
     <xs:element name="duty" type="o:Duty"/>
     <xs:complexType name="Duty">
         <xs:choice minOccurs="1" maxOccurs="unbounded">
@@ -60,6 +63,7 @@
             <xs:element ref="o:asset" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="o:consequence" minOccurs="0" maxOccurs="unbounded"/>
             <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
         <xs:attribute name="uid" type="xs:anyURI "/>
