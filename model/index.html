@@ -1309,7 +1309,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
      <section id="metadata">
 <h4>Policy Metadata</h4>
          
-       <p>Additional properties MAY be added to a Policy to support further authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[dcterms]] for ODRL Policies.</p>
+       <p>Additional metadata properties MAY be added to a Policy to support further authenticity, and integrity purposes from external vocabularies. The ODRL Information Model recommends the use of Dublin Core Metadata Terms [[dcterms]] for ODRL Policies.</p>
          
          <p>The following Dublin Core Metadata Terms [[dcterms]] properties SHOULD be used:</p>
             <ul>
@@ -1327,7 +1327,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     </ol>
 
 <blockquote>
-<p>Example Use Case: The below example shows metadata properties that indicate who created the Policy, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
+<p>Example Use Case: The below example shows metadata properties that indicate who created the Policy, a description, when the Policy was issued, which jurisdiction (Queensland, Australia) the Policy applies to, and an older version of the Policy it replaces.</p>     </blockquote>
          
 <pre id="eg28" class="example hljs json">
 {
@@ -1338,14 +1338,17 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@type": "Policy",
     "uid": "http://example.com/policy:8888",
     "dc:creator": "billie@example.com",
+    "dc:description": "This policy covers...",
     "dc:issued": "2017-01-01:12:00",
     "dc:coverage": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD",
     "dc:replaces": "http://example.com/policy:8887",
     "permission": [{...}]
 }  
 </pre>
-         
-    </section>
+
+<p>Note: The string values used in the Dublin Core metadata properties are not designed for comparision of Policy metadata, as they may not be normalised.</p>
+	
+	</section>
     
     
  
