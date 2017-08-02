@@ -1572,64 +1572,68 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 An ODRL Profile extends the ODRL Information Model classes, properties, and instances in the following ways:
    </p>
 
-<blockquote>
- <p>Additional Policy Subclasses - create a subclass the ODRL Policy class:</p>
-</blockquote>
-<ul><li><code>ex:myPolicyType rdfs:subClassOf odrl:Policy ;</code></li></ul>
-    
-<blockquote>
- <p>Additional Asset Relationships - create a sub-property of the abstract <em>relation</em> property:</p>
-</blockquote>
-<ul><li><code>ex:myRelation rdfs:subPropertyOf odrl:relation ;</code></li></ul>
 
-<blockquote>
- <p>Additional Party Functional roles - create a sub-property of the abstract <em>function</em> property:</p>
-</blockquote>
-<ul><li><code>ex:myFunctionRole	rdfs:subPropertyOf odrl:function ;</code></li></ul>
+<table class="def">
+ <tbody>
+   <tr>
+     <th style="width:40%">ODRL Profile Definition</th>
+     <th>Example</th>
+   </tr>
+   <tr>
+	   <td>Additional Policy Subclasses.<br/>Create a subclass the ODRL Policy class.</td>
+     <td><code>ex:myPolicyType rdfs:subClassOf odrl:Policy ;</code></td>
+   </tr>
+   <tr>
+     <td>Additional Asset Relationships.<br/>Create a sub-property of the abstract <em>relation</em> property.</td>
+     <td><code>ex:myRelation rdfs:subPropertyOf odrl:relation ;</code></td>
+   </tr>
+   <tr>
+     <td>Additional Party Functional roles.<br/>Create a sub-property of the abstract <em>function</em> property.</td>
+     <td><code>ex:myFunctionRole rdfs:subPropertyOf odrl:function ;</code></td>
+   </tr>
+   <tr>
+     <td>Additional Actions for Rules.<br/>
+		 Create an instance of a Action and define its includedIn parent Action.<br/>
+	     The new Action MAY be defined as <code>includedIn</code> to any existing Action. <br/>
+        If the new Action forms a dependency with another new or existing Action, then define the two actions with the <code>implies</code> property
+    </td>
+     <td><code>ex:myAction a :Action ;</code><br/>
+          <code>ex:myAction odrl:includedIn odrl:use ;</code>
+		 <br/><br/><br/>
+		 <code>ex:myAction odrl:implies odrl:distribute ;</code>
+	  </td>
+   </tr>
+   <tr>
+     <td>Additional Constraint left operands. <br/>Create an instance of the LeftOperand class.</td>
+     <td><code>ex:myLeftOperand a odrl:LeftOperand ;</code></td>
+	 </tr>
+   <tr>
+     <td>Additional Constraint right operands.<br/> Create an instance of the RightOperand class.</td>
+     <td><code>ex:myRightOperand a odrl:RightOperand ;</code></td>
+   </tr>
+   <tr>
+     <td>Additional Constraint relational operators. <br/>Create an instance of the Operator class.</td>
+     <td><code>ex:myOperator a :Operator ;</code></td>
+   </tr>
+   <tr>
+     <td>Additional Logical Constraint operands.<br/>Create a sub-property of the abstract <em>operand</em> property.</td>
+     <td><code>ex:myLogicalOp rdfs:subPropertyOf odrl:operand ;</code></td>
+   </tr>
+   <tr>
+     <td>Additional Policy Conflict strategies.<br/>Create an instance of the ConflictTerm class.</td>
+     <td><code>:myStrategy a :ConflictTerm ;</code></td>
+   </tr>
+   <tr>
+     <td>Additional Rule class.<br/>Create a subclass of the Rule class and define it as disjoint with the other Rule subclasses.</td>
+     <td><code>:myRule	rdfs:subClassOf :Rule ; </code><br/>
+	    <code>owl:disjointWith :Prohibition, :Duty :Permission ; </code></td>
+   </tr>
+</tbody>
+</table>
+		 
 
-<blockquote>
- <p>Additional Actions for Rules - create an instance of a Action and define its includedIn parent Action:</p>
-</blockquote>
-<ul><li><code>ex:myAction a :Action ;</code></li>
-    <li><code>ex:myAction odrl:includedIn odrl:use ;</code></li></ul>
-        
-<p>The new Action MAY be defined as <code>includedIn</code> to any existing Action. </p>
-<p>If the new Action forms a dependency with another new or existing Action, then define the two actions with the <code>implies</code> property:</p>
-    <ul><li><code>ex:myAction odrl:implies odrl:distribute ;</code></li></ul>    
-        
-<blockquote>
-    <p>Additional Constraint left operands - create an instance of the LeftOperand class:</p>
-</blockquote>
-<ul><li><code>ex:myLeftOperand a odrl:LeftOperand ;</code></li></ul>
-        
-<blockquote>
-    <p>Additional Constraint right operands - create an instance of the RightOperand class:</p>
-</blockquote>
-<ul><li><code>ex:myRightOperand a odrl:RightOperand ;</code></li></ul>
-        
-<blockquote>
-    <p>Additional Constraint relational operators - create an instance of the Operator class:</p>
-</blockquote>
-<ul><li><code>ex:myOperator a :Operator ;</code></li></ul>
 
-<blockquote>
- <p>Additional Logical Constraint operands - create a sub-property of the abstract <em>operand</em> property:</p>
-</blockquote>
-<ul><li><code>ex:myLogicalOp rdfs:subPropertyOf odrl:operand ;</code></li></ul>
-
-        
-<blockquote>
-    <p>Additional Policy Conflict strategies - create an instance of the ConflictTerm class:</p>
-</blockquote>
-<ul><li><code>:myStrategy a :ConflictTerm ;</code></li></ul>
-        
-<blockquote>
-    <p>Additional Rule class - create a subclass of the Rule class and define it as disjoint with the other Rule subclasses:</p>
-</blockquote>
-    <li><code>:myRule	rdfs:subClassOf :Rule ; </code></li>
-	<li><code>owl:disjointWith :Prohibition, :Duty :Permission ; </code></li></ul>
-
-    <p>All new classes, properties, and instances must also be defined as a <code>skos:Concept</code>. Appropriate <code>rdfs:domain</code> and <code>rdfs:range</code> should also be defined.</p>
+    <p>All new classes (<code>rdfs:Class</code>, <code>owl:Class</code>), properties (<code>rdf:Property</code>, <code>owl:ObjectProperty</code>), and instances (<code>owl:NamedIndividual</code>) must also be defined as a <code>skos:Concept</code>. Appropriate <code>rdfs:domain</code> and <code>rdfs:range</code> should also be defined for classes.</p>
     <p>Human-readable documentation is also recommended for each new term using  <code>rdfs:label</code> for the name, <code>skos:definition</code> for the formal definition, and <code>skos:note</code> for additional comments on its use.</p>
 </section>
     
