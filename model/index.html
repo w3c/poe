@@ -12,7 +12,6 @@
       border-left:thick solid black;
       padding-left:0.5em;
       background-color:#ddd;
-      font-family: serif;
     }
     </style>
 
@@ -65,7 +64,7 @@
 	       <dt><dfn>Policy</dfn></dt>
 	          <dd>A group of one or more Rules</dd>
 	       <dt><dfn>Rule</dfn></dt>
-	          <dd>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</dd>
+	          <dd>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties. If a Rule is <strong>effective</strong> if it has satisified its Constraints and fulfilled its Duties.</dd>
 	       <dt><dfn>Action</dfn></dt>
 	          <dd>An operation on an Asset</dd>
             <dt><dfn>Permission</dfn></dt>
@@ -73,21 +72,21 @@
             <dt><dfn>Prohibition</dfn></dt>
                   <dd>The inability to perform an Action over an Asset</dd>
             <dt><dfn>Duty</dfn></dt>
-	          <dd>The obligation to perform an Action</dd>
+	          <dd>The obligation to perform an Action. If the obligation is meet, then the Duty is <strong>fulfilled</strong>.</dd>
 	       <dt><dfn>Asset</dfn></dt>
 	          <dd>A resource or a collection of resources that are the subject of a Rule</dd>
 	       <dt><dfn>Party</dfn></dt>
 	          <dd>An entity or a collection of entities that undertake Roles in a Rule</dd>
 	       <dt><dfn>Constraint</dfn></dt>
-	          <dd>A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</dd>
+	          <dd>A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection. If the expression is true or the collection context is valid, then the Constraint is <strong>satisfied</strong>.</dd>
            <dt><dfn>ODRL Validator</dfn></dt>
 	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model requirements.</dd>
-          <dt><dfn>ODRL Evaluator</dfn></dt>
+           <dt><dfn>ODRL Evaluator</dfn></dt>
 	          <dd>A system that determines whether the permissions and prohibitions of an ODRL Policy expression are in effect.</dd>
             <dt><dfn>ODRL Common Vocabulary</dfn></dt>
 	          <dd>A set of generic terms that may be used with the ODRL core vocabulary to express Policies.</dd>
              <dt><dfn>ODRL Profile</dfn></dt>
-	          <dd>A community or sector specific vocabulary that extends the ODRL core vocabulary with new terms and/or ODRL Common Vocabulary terms to express Policies</dd>
+	          <dd>A community or sector specific vocabulary that extends the ODRL Core Vocabulary with new terms and/or reuses ODRL Common Vocabulary terms to express Policies</dd>
              </dl>
 	
 </section>
@@ -622,7 +621,7 @@
 </ul>
 <p>Explicit sub-properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
-<p>For a Rule to become effective, it MUST be valid (i.e., all it's Constraints MUST be satisfied).</p>
+<p>For a Rule to become effective, it MUST be valid. Thst is, all of it's Constraints MUST be satisfied and any applicable relationship to a Duty MUST be fulfilled.</p>
 
     
 <section id="permission">
@@ -735,7 +734,7 @@
 <section id="duty-policy">
 <h3>Obligation property with a Policy</h3>
 
-<p>A Policy may include an obligation to fulfill a Duty. </p>
+<p>A Policy may include an obligation to fulfill a Duty. If the Duty rule has been fulfilled (that is, all its Constraints are satisfied), then the Duty rule is in effect. That is, the obligation has been meet.</p>
 		
 <blockquote>
 <p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to compensate the assigner for a payment of EU500.00.</p>
@@ -798,6 +797,9 @@
 <h3>Duty property with a Permission</h3>
 
 	<p>A Duty MAY be specified as a pre-condition that requires fulfillment in order to make a Permission effective using the duty property from the Permission to the Duty. In this case the Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
+	
+	<p>Since the Duty Rule is subordinate to a Permission Rule (related via the duty property) then 
+		when the Duty has been fulfilled, the Permission rule is then in effect (not the Duty rule).</p>
 	
 	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the referring Permission.</p>   
 	
@@ -876,9 +878,9 @@
 	
 <p>The remedy property expresses an agreed Duty that MUST be fulfilled in case that a Prohibition has been violated by being exercised. If the Prohibition is exercised, then the remedy Duty MUST be fulfilled. </p>
 	
-	<p>Note that if there is no remedy property for a Prohibition, then the Prohibition MUST NOT be  exercised.</p>
+	<p>Note that if there is no remedy property for a Prohibition, then the Prohibition MUST NOT be  exercised. A remedy MUST NOT refer to a Duty that includes a consequence Duty.</p>
 	
-	<p>A remedy MUST NOT refer to a Duty that includes a consequence Duty.</p>
+	<p>Since the Duty Rule is subordinate to a Prohibition Rule (related via the remedy property) then when the Duty has been fulfilled, the Prohibition rule is then in effect (not the Duty rule).</p>
 	
 	<p>Note that the ODRL Information Model supports mechanisms to address the infringement of Prohibitions with the remedy feature, and such transgressions should not be considered as negative actions by the assignee.</p>
 	
