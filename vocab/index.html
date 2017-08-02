@@ -1474,7 +1474,7 @@
 <li>action</li>
 </ul>
 
-<p>The Policy element MAY also contain the constraint element to support <a href="#xml-compound">Compound Constraints</a>.</p>
+<p>The Policy element MAY also contain Dublin Core elements to support Policy metadata.</p>
 
 <p>
 The Policy element MAY also contain constraint elements which are Constraints referenced by either another constraint element or <a href="#xml-logical">Logical Constraint</a> within a Rule. Note that these Constraints are not to be interpreted as a direct constraint of all Rules.
@@ -1588,10 +1588,13 @@ The Policy element MAY also contain constraint elements which are Constraints re
 
 <section>
 <h2>XML Example</h2>
-<p>The below example shows the XML serialisation of an ODRL Policy. In this example, the target asset and assigner and assignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country for a compensation payment of EUR5,000. </p>
+<p>The below example shows the XML serialisation of an ODRL Policy including some metadata about the Policy. In this example, the target asset and assigner and assignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country (Italy) for a compensation payment of EUR5,000. </p>
 <pre class="example  xml">
-&lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" uid="http://example.com/policy:9001"
-                type="http://www.w3.org/ns/odrl/2/Agreement">
+&lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" xmlns:dc="http://purl.org/dc/terms/" 
+          uid="http://example.com/policy:9001" 
+          type="http://www.w3.org/ns/odrl/2/Agreement">
+    &lt;dc:creator>Acme Enterprises&lt;/dc:creator>
+    &lt;dc:issued>2017-01-01T12:00&lt;/dc:issued> 
     &lt;o:asset uid="http://example.com/music:4545" 
              relation="http://www.w3.org/ns/odrl/2/target"/>
     &lt;o:party uid="http://example.com/sony"
@@ -1614,7 +1617,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
             &lt;o:constraint name="http://www.w3.org/ns/odrl/2/payAmount"
                 operator="http://www.w3.org/ns/odrl/2/eq"
                 rightOperand="5000.00" 
-                unit="http://cvx.iptc.org/iso4217a:EUR"/>
+                unit="http://dbpedia.org/resource/Euro"/>
         &lt;/o:duty>
     &lt;/o:permission>  
 &lt;/o:Policy>
