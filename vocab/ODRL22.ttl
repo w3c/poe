@@ -279,7 +279,8 @@ odrl:
     skos:prefLabel "Logical Constraint Operands"@en ;
     skos:member :or ;
     skos:member :xone ;
-    skos:member :and .
+    skos:member :and ;
+    skos:member :andSequence .
 
 <http://www.w3.org/ns/odrl/2/#constraintRelationalOperators>
     a skos:Collection ;
@@ -295,8 +296,7 @@ odrl:
     skos:member :isPartOf ;
     skos:member :isAllOf ;
     skos:member :isAnyOf ;
-    skos:member :isNoneOf ;
-    skos:member :andSequence .
+    skos:member :isNoneOf .
 
 <http://www.w3.org/ns/odrl/2/#constraintRightOpCommon>
     a skos:Collection ;
@@ -926,8 +926,8 @@ odrl:
 	a :Operator, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "And Sequence"@en ;
-	skos:definition "The relation is satisfied when the left operand Constraint  delivers a satisfied result before the right operand Constraint is evaluated. The right operand  Constraint may build on the satisfaction of the left operand  Constraint."@en ;
-	skos:note "This operator MUST only be used for Constraints in which  both left and right operands MUST also be Constraints. The andSequence operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them."@en .
+	skos:definition "The relation is satisfied when each of the Constraints are satisfied in the order specified."@en ;
+	skos:note "This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances. The order of the list MUST be preserved. The andSequence operator is an example where there may be temporal conditional requirements between the operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them."@en .
 
 :or
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;

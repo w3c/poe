@@ -1025,13 +1025,14 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     <li><code>or</code> -  at least one of the Constraints MUST be satisfied</li>
     <li><code>xone</code> - only one of the  Constraints MUST be satisfied</li>
     <li><code>and</code> - all of the Constraints MUST be satisfied</li>
+    <li><code>andSequence</code> - all of the Constraints - in sequence - MUST be satisfied</li>
     </ul>
 
  <p>Other <code><em>operand</em></code> sub-properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or defined by ODRL Profiles.</p>
     
 <p>The processing model for Logical Constraints includes:</p>
     <ol>
-        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>. Other sub-properties of <code><em>operand</em></code> MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or by ODRL Profiles exclusively for the use of Logical Constraints.</li>
+        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Other sub-properties of <code><em>operand</em></code> MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or by ODRL Profiles exclusively for the use of Logical Constraints.</li>
 		<li>All of the operand values MUST be unique Constraint instances.</li>
 		<li>The Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</li>
     </ol>
@@ -1068,6 +1069,11 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 }  
 </pre>
 
+	<p class="note">
+	When using a logical operand that needs to be evaluated in sequence, such as <code>andSequence</code>, the serialisations MUST preserve the order of the members of the list. In JSON-LD, the <code>@list</code> keyword MUST be used to represent an ordered collection.
+	</p>
+   
+	
 	<p class="note">
 	When Constraints appear at the Policy-level then they MUST only be referenced by a Logical Constraint within an existing Rule. They MUST NOT to be interpreted as Constraints on all the Rules in the Policy.
 	</p>

@@ -584,13 +584,6 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/isNoneOf">http://www.w3.org/ns/odrl/2/isNoneOf</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
-</section><section id="term-andSequence"><h3>And Sequence</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when the left operand Constraint  delivers a satisfied result before the right operand Constraint is evaluated. The right operand  Constraint may build on the satisfaction of the left operand  Constraint.</td></tr>
-<tr><th>Label:</th> <td>And Sequence</td></tr>
-  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/andSequence">http://www.w3.org/ns/odrl/2/andSequence</a></td></tr>
-<tr><th>Note:</th> <td>This operator MUST only be used for Constraints in which  both left and right operands MUST also be Constraints. The andSequence operator is an example where there are temporal conditional requirements between the left and right operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
-</table>
 </section></section><section id="constraintLogicalOperands"><h2>Logical Constraint Operands</h2><section id="term-or"><h3>Or</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The relation is satisfied when at least one of the Constraints is satisfied.</td></tr>
 <tr><th>Label:</th> <td>Or</td></tr>
@@ -611,6 +604,13 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/and">http://www.w3.org/ns/odrl/2/and</a></td></tr>
 <tr><th>Note:</th> <td>This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances.</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-operand">operand</a></td></tr>
+</table>
+</section><section id="term-andSequence"><h3>And Sequence</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>The relation is satisfied when each of the Constraints are satisfied in the order specified.</td></tr>
+<tr><th>Label:</th> <td>And Sequence</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/andSequence">http://www.w3.org/ns/odrl/2/andSequence</a></td></tr>
+<tr><th>Note:</th> <td>This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances. The order of the list MUST be preserved. The andSequence operator is an example where there may be temporal conditional requirements between the operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</td></tr>
+<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
 </section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Strategy Preference</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>
