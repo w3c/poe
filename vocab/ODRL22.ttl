@@ -366,7 +366,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset"@en ;
 	skos:definition "A resource or a collection of resources that are the subject of a Rule."@en ;
-    skos:note "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommened to use Dublin Core [[dcterms]] elements or other content metadata."@en .
+    skos:note "The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommended to use Dublin Core [[dcterms]] elements or other content metadata."@en .
 
 :AssetCollection
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -400,7 +400,7 @@ odrl:
 		a owl:Class ;
 		owl:unionOf ( schema:Person schema:Organization foaf:Person foaf:Organization foaf:Agent vcard:Individual vcard:Organization vcard:Agent ) ;
 	];
-	skos:note "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommened to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]]."@en .
+	skos:note "The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommended to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]]."@en .
 
 
 :PartyCollection
@@ -717,7 +717,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Constraint"@en ;
-	skos:definition "Constraints appled to a Rule."@en ;
+	skos:definition "Constraints applied to a Rule."@en ;
 	skos:note "One or more Constraints may be applied to a Rule. Example: the Action play is only permitted for a certain period of time."@en ;
 	rdfs:domain [
 		a owl:Class ;
@@ -970,8 +970,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Absolute Asset Position"@en ;
-	skos:definition "A point in space or time defined with absolute coordinates the positioning of the Asset has to comply with for excersing the Action."@en ;
-	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it."@en ;
+	skos:definition "A point in space or time defined with absolute coordinates the positioning of the Asset has to comply with for exercising the Action."@en ;
+	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrained to a specific position of the canvas rendering it."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :absoluteSpatialPosition
@@ -979,8 +979,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :absolutePosition;
 	rdfs:label "Absolute Spatial Asset Position"@en ;
-	skos:definition "The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cubiod in a 3D-space the Asset has to fit in after the Action."@en ;
-	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it. Note: see also the Left Operand Relative Spatial Asset Position. "@en ;
+	skos:definition "The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space the Asset has to fit in after the Action."@en ;
+	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrained to a specific position of the canvas rendering it. Note: see also the Left Operand Relative Spatial Asset Position. "@en ;
    skos:scopeNote "Non-Normative"@en .
 
 :absoluteTemporalPosition
@@ -1020,7 +1020,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Action Delay Period"@en ;
-	skos:definition "The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Constraint expressed together in a Constraint (utilsing the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	skos:definition "The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Constraint expressed together in a Constraint (utilising the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
 	skos:note "Only the eq, gt, gteq operators SHOULD be used."@en ;
 	skos:note "Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action."@en ;
     skos:scopeNote "Non-Normative"@en .
@@ -1047,7 +1047,7 @@ odrl:
 	rdfs:label "Elapsed Time"@en ;
 	skos:definition "The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
 	skos:note "Only the eq, lt, lteq operators SHOULD be used."@en ;
-	skos:note "Example: <code>elpasedTime eq P60M</code> indicates a total elpased time of 60 Minutes can be used for exercising the action." ;
+	skos:note "Example: <code>elpasedTime eq P60M</code> indicates a total elapsed time of 60 Minutes can be used for exercising the action." ;
     skos:scopeNote "Non-Normative"@en .
 
 :event
@@ -1096,7 +1096,7 @@ odrl:
 	rdfs:label "Metered Time"@en ;
 	skos:definition "The Action may be exercised for an accumulated amount of this time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
 	skos:note "Only the eq, lt, lteq operators SHOULD be used."@en ;
-	skos:note "Example: <code>meteredTime lteq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes or less. This means that the action could be expercised for 5 minutes each day over 12 days." ;
+	skos:note "Example: <code>meteredTime lteq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes or less. This means that the action could be exercised for 5 minutes each day over 12 days." ;
     skos:scopeNote "Non-Normative"@en .
 
 :payAmount
@@ -1143,8 +1143,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Relative Asset Position"@en ;
-	skos:definition "A point in space or time defined with coordinates relative to full measures the positioning of the Asset has to comply with for excersing the Action."@en ;
-	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendiering it."@en ;
+	skos:definition "A point in space or time defined with coordinates relative to full measures the positioning of the Asset has to comply with for exercising the Action."@en ;
+	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendering it."@en ;
   skos:scopeNote "Non-Normative"@en .
 
 :relativeSpatialPosition
@@ -1152,7 +1152,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :relativePosition;
 	rdfs:label "Relative Spatial Asset Position"@en ;
-	skos:definition "The relative spatial positions - expressed as percentages of full values - of four corners of a rectangle on a 2D-canvas or the eight corners of a cubiod in a 3D-space the Asset has to fit in after the Action."@en ;
+	skos:definition "The relative spatial positions - expressed as percentages of full values - of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space the Asset has to fit in after the Action."@en ;
 	skos:note "Note: See the Left Operand absoluteSpatialAssetPosition."@en ;
   skos:scopeNote "Non-Normative"@en .
 
@@ -1161,7 +1161,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :relativePosition;
 	rdfs:label "Relative Temporal Asset Position"@en ;
-	skos:definition "A point in space or time defined with coordinates relative to full measures the positioning of the Asset has to comply with for excersing the Action."@en ;
+	skos:definition "A point in space or time defined with coordinates relative to full measures the positioning of the Asset has to comply with for exercising the Action."@en ;
 	skos:note "Example: The MP3 music file must be positioned between the positions at 33% and 48% of the temporal length of a stream. Note: See the Left Operand absoluteTemporalAssetPosition. "@en ;
   skos:scopeNote "Non-Normative"@en .
 
@@ -1194,7 +1194,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :spatial;
 	rdfs:label "Geospatial Coordinates"@en ;
-	skos:definition "A set of coordinates setting the borders of a geospatial area for exercising the Action. The coordinates MUST include longitude and lattitue, they MAY include altitude and the geodatic datum."@en ;
+	skos:definition "A set of coordinates setting the borders of a geospatial area for exercising the Action. The coordinates MUST include longitude and latitude, they MAY include altitude and the geodetic datum."@en ;
 	skos:note "The default values are the altitude of earth's surface at this location and the WGS 84 datum."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1412,7 +1412,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Display"@en ;
 	skos:definition "To create a static and transient rendition of an Asset."@en ;
-	skos:note "For example, displaying an image on a screen. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used."@en ;
+	skos:note "For example, displaying an image on a screen. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommended to be used."@en ;
 	:includedIn odrl:play ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1431,7 +1431,7 @@ odrl:
 	:includedIn odrl:use ;
 	rdfs:label "Ensure Exclusivity"@en ;
 	skos:definition "To ensure that the Rule on the Asset is exclusive."@en ;
-	skos:note "If used as a Duty, the assignee should be explicity indicated as the party that is ensuring the exclusivity of the Rule."@en ;
+	skos:note "If used as a Duty, the assignee should be explicitly indicated as the party that is ensuring the exclusivity of the Rule."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :execute
@@ -1579,7 +1579,7 @@ odrl:
 	rdfs:label "Play"@en ;
 	:includedIn odrl:use ;
 	skos:definition "To create a sequential and transient rendition of an Asset."@en ;
-    skos:note "For example, to play a video or audio track. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
+    skos:note "For example, to play a video or audio track. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommended to be used.";
     skos:scopeNote "Non-Normative"@en .
 
 :present
@@ -1656,7 +1656,7 @@ odrl:
 	rdfs:label "Stream"@en ;
 	skos:definition "To deliver the Asset in real-time."@en ;
 	:includedIn odrl:use ;
-    skos:note "The Asset maybe utilised in real-time as it is being delivered. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
+    skos:note "The Asset maybe utilised in real-time as it is being delivered. If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommended to be used.";
     skos:scopeNote "Non-Normative"@en .
 
 :synchronize
@@ -1673,7 +1673,7 @@ odrl:
 	rdfs:label "Text-to-speech"@en ;
 	skos:definition "To have a text Asset read out loud."@en ;
     :includedIn odrl:use ;
-    skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommened to be used.";
+    skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommended to be used.";
     skos:scopeNote "Non-Normative"@en .
 
 :transfer
@@ -1903,7 +1903,7 @@ odrl:
 	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Agreement"@en ;
 	skos:definition "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
-	skos:note "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee fuction (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en .
+	skos:note "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en .
 
 :Assertion
 	a rdfs:Class , owl:Class, skos:Concept ;
