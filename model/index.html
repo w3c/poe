@@ -83,10 +83,12 @@
 	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model requirements.</dd>
            <dt><dfn>ODRL Evaluator</dfn></dt>
 	          <dd>A system that determines whether the permissions and prohibitions of an ODRL Policy expression are in effect.</dd>
+		    <dt><dfn>ODRL Core Vocabulary</dfn></dt>
+	          <dd>The set of terms that are represented by the ODRL Information Model.</dd>
+		     <dt><dfn>ODRL Profile</dfn></dt>
+	          <dd>A community or sector specific vocabulary that extends the ODRL Core Vocabulary with new terms to express Policies</dd>
             <dt><dfn>ODRL Common Vocabulary</dfn></dt>
-	          <dd>A set of generic terms that may be used with the ODRL core vocabulary to express Policies.</dd>
-             <dt><dfn>ODRL Profile</dfn></dt>
-	          <dd>A community or sector specific vocabulary that extends the ODRL Core Vocabulary with new terms and/or reuses ODRL Common Vocabulary terms to express Policies</dd>
+	          <dd>A set of generic terms that may be re-used by ODRL Profiles.</dd>
              </dl>
 	
 </section>
@@ -156,16 +158,23 @@
 <p>The Policy class has the following properties:</p>
 <ul>
 <li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
-<li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty">Duty</a> sections for more details.)</li>  
+<li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty">Duty</a> sections for more details.)</li>  <li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile(s) that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 <li>A Policy MAY have none or one <code>conflict</code> property for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
-<li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
-</ul>
 
+</ul>
+	<p>An ODRL Policy must either:</p>
+	<ul>
+	<li>Only use terms defined in the ODRL Core Vocabulary [[!odrl-vocab]], or</li>
+	<li>Use an ODRL Profile that declares the supported vocabulary expressed in the Policy.</li>
+	</ul>
+<p>In the former case, the profile property MUST NOT be used. In the latter case, the profile property MUST be used to indicate the IRIs of the ODRL Profile(s). 
+	See the <a href="#profile">ODRL Profiles</a> section for more details on mechanisms to define ODRL Profiles and conformance requirements. (The Examples in this document will use ODRL Profile identifiers for illustrative purposes only.) </p>
+	
 <p>The Policy class MAY also include other direct properties to support <a href="#composition-compact">Compact Policy</a> serialisations and references to common <a href="#constraint">Constraints</a>. These are not to be considered as direct properties of the Policy but as an intermediate step, that after applying <a href="#composition">atomic processing rules</a> will create a Policy  consistent with the normative ODRL Information Model.
 	</p>
 	
 <p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the 
-	Policy that MAY include additional constraints that ODRL processors MUST understand. The Policy subclasses SHOULD be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
+	Policy that MAY include additional constraints that ODRL processors MUST understand. Additional Policy subclasses MAY be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
     
 <section id="policy-set">
 <h3>Set Class</h3> 
@@ -179,7 +188,7 @@
 	
 
 <blockquote>
-<p>Example Use Case: The below <code>Set</code> Policy shows the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code>.</p>
+<p>Example Use Case: The below <code>Set</code> Policy shows the Permission to <code>use</code> the target Asset <code>http//example.com/asset:9898.movie</code>.</p>
 </blockquote>
 
 <pre id="eg1" class="example hljs json">
@@ -189,14 +198,14 @@
     "uid": "http://example.com/policy:1010",
     "permission": [{
         "target": "http://example.com/asset:9898.movie",
-        "action": "play"
+        "action": "use"
     }]
 }
 </pre>
     
     <div class="note">
-    <p>For the examples in this document, the ODRL Policy subclasses are mapped to the JSON-LD @type tokens.</p>
-        <p>The above example could have also used <code>Policy</code> instead of <code>Set</code>.</p>
+    <p>For the examples in this document, the ODRL Policy subclasses are mapped to the JSON-LD <code>@type</code> tokens. The above example could have also used <code>Policy</code> type instead of <code>Set</code> type (as they are equivalent).</p>
+	<p>The above example does not use the <code>profile</code> property as all the terms are defined by the ODRL Core Vocabulary [[!odrl-vocab]]. </p>
     </div>
     
 </section>
@@ -221,6 +230,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
     "uid": "http://example.com/policy:1011",
+    "profile": "http://example.com/odrl:profile:01",
     "permission": [{
         "target": "http://example.com/asset:9898.movie",
         "assigner": "http://example.com/party:org:abc",
@@ -229,6 +239,10 @@
 }
 </pre>
 
+<div class="note">
+	<p>The above example uses the <code>profile</code> property to indicate that the terms used are defined by the ODRL Profile identified by <code>http://example.com/odrl:profile:01</code>. See the <a href="#profile">ODRL Profiles</a> section for more details.</p>
+    </div>
+	
 </section>
     
 <section id="policy-agreement">
@@ -252,6 +266,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:1012",
+    "profile": "http://example.com/odrl:profile:01",
     "permission": [{
         "target": "http://example.com/asset:9898.movie",
         "assigner": "http://example.com/party:org:abc",
@@ -301,7 +316,7 @@
 <li><code>target</code>: indicates that the Asset is the primary subject to which the Rule action directly applies.</li>
     </ul>
     
-<p>Other <code><em>relation</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
+<p>Additional <code><em>relation</em></code> subtype properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
     
         
  <blockquote>   
@@ -312,6 +327,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
     "uid": "http://example.com/policy:3333",
+    "profile": "http://example.com/odrl:profile:02",
     "permission": [{
         "target": "http://example.com/asset:3333",
         "action": "display",
@@ -325,7 +341,7 @@
 </div>
     
 <blockquote>	
-    <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. The target asset is also declared as an <code>AssetCollection</code> to indicate the resource is a collection of resources. Another Asset relation <code>ex:summary</code> is also expressed to indicate the Asset <code>http://example.com/x/database</code> that the indexing output should be stored in. (These semantics would be defined by the community who created the <code>ex:summary</code> relation.)</p>
+    <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. The target asset is also declared as an <code>AssetCollection</code> to indicate the resource is a collection of resources. An additional Asset relation <code>summary</code> indicates the Asset <code>http://example.com/x/database</code> that the indexing output should be stored in. The ODRL Profile <code>ttp://example.com/odrl:profile:03</code> defines this new sub-property of relation.</p>
     </blockquote>
 
  <pre id="eg5" class="example hljs json">
@@ -333,12 +349,13 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:1011",
+    "profile": "http://example.com/odrl:profile:03",
     "permission": [{
         "target": {
             "@type": "AssetCollection",
             "uid":  "http://example.com/archive1011" },
         "action": "index",
-        "ex:collection": "http://example.com/x/database"
+        "summary": "http://example.com/x/database"
     }]
 }
 </pre>
@@ -430,7 +447,7 @@
 <li><code>assignee</code>: indicates that the Party that is the recipient the Rule. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
 </ul>
  
-    <p>Other <code><em>function</em></code> subtype properties SHOULD be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
+    <p>Additional <code><em>function</em></code> subtype properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
     
 
 <blockquote>
@@ -442,6 +459,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:8888",
+    "profile": "http://example.com/odrl:profile:04",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
@@ -468,6 +486,7 @@
     ],
     "@type": "Agreement",
     "uid": "http://example.com/policy:777",
+    "profile": "http://example.com/odrl:profile:05",
     "permission": [{
         "target": "http://example.com/looking-glass.ebook",
         "assigner": {
@@ -582,7 +601,7 @@
     <p>See <a href="#profile">ODRL Profiles</a> for usage details on the <code>includedIn</code> and <code>implies</code> properties.
     </p>
     
-<p>The ODRL Common Vocabulary [[!odrl-vocab]] defines a standard set of generic Actions that MAY be used and ODRL Profiles MAY also define Actions.</p>
+<p>The ODRL Common Vocabulary [[!odrl-vocab]] defines a standard set of generic Actions that MAY be used by ODRL Profiles.</p>
 
     <blockquote>
 <p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset (<code>play</code> is defined as an <code>includedIn</code> term of <code>use</code>).</p> 
@@ -593,6 +612,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
     "uid": "http://example.com/policy:1012",
+    "profile": "http://example.com/odrl:profile:06",
     "permission": [{
             "target": "http://example.com/music:1012",
             "assigner": "http://example.com/org:abc",
@@ -648,6 +668,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
     "uid": "http://example.com/policy:9090",
+    "profile": "http://example.com/odrl:profile:07",
     "permission": [{
         "target": "http://example.com/game:9090",
         "assigner": "http://example.com/org:xyz",
@@ -688,6 +709,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:5555",
+    "profile": "http://example.com/odrl:profile:08",
     "conflict": "perm",
     "permission": [{
         "target": "http://example.com/photoAlbum:55",
@@ -746,6 +768,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:42",
+    "profile": "http://example.com/odrl:profile:09",
     "obligation": [{
 	"assigner": "http://example.com/org:43",
 	"assignee": "http://example.com/person:44",
@@ -772,6 +795,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:42B",
+    "profile": "http://example.com/odrl:profile:09",
     "assigner": "http://example.com/org:43",
     "assignee": "http://example.com/person:44",
     "obligation": [{
@@ -818,6 +842,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
     "uid": "http://example.com/policy:88",
+    "profile": "http://example.com/odrl:profile:09",
     "permission": [{
         "assigner": "http://example.com/assigner:sony",
         "target": "http://example.com/music/1999.mp3",
@@ -853,6 +878,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:66",
+    "profile": "http://example.com/odrl:profile:09",
     "permission": [{
         "target": "http://example.com/data:77",
         "assigner": "http://example.com/org:99",
@@ -894,6 +920,7 @@
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:33CC",
+    "profile": "http://example.com/odrl:profile:09",
     "prohibition": [{
         "target": "http://example.com/data:77",
         "assigner": "http://example.com/person:88",
@@ -941,7 +968,7 @@
 <li>A Constraint MAY have none or one <code>status</code> property for the current value generated from the leftOperand action.</li>
 </ul>     
     
-<p>The <code>leftOperand</code> MAY be one of the Constraint Left Operands defined in the ODRL Common Vocabulary [[!odrl-vocab]] or from an ODRL Profile. The <code>leftOperand</code> MUST clearly be <strong>defined</strong> to indicate the subject of the Constraint, and MAY show how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>.</p>
+<p>The <code>leftOperand</code> MUST clearly be semantically <strong>defined</strong> to indicate the subject of the Constraint, and MAY show how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
     
 <p>The <code>operator</code> identifies the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
@@ -965,6 +992,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
     "uid": "http://example.com/policy:6161",
+    "profile": "http://example.com/odrl:profile:10",
     "permission": [{
         "target": "http://example.com/wallpaper:1234",
         "assigner": "http://example.com/myPix:6161",
@@ -999,6 +1027,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Set",
     "uid": "http://example.com/policy:7171",
+    "profile": "http://example.com/odrl:profile:10",
     "permission": [{
         "target": "http://example.com/wallpaper:1234",
         "action": "display"
@@ -1028,11 +1057,11 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     <li><code>andSequence</code> - all of the Constraints - in sequence - MUST be satisfied</li>
     </ul>
 
- <p>Other <code><em>operand</em></code> sub-properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or defined by ODRL Profiles.</p>
+ <p>Additional <code><em>operand</em></code> sub-properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or defined by ODRL Profiles.</p>
     
 <p>The processing model for Logical Constraints includes:</p>
     <ol>
-        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Other sub-properties of <code><em>operand</em></code> MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or by ODRL Profiles exclusively for the use of Logical Constraints.</li>
+        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Additional sub-properties of <code><em>operand</em></code> MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or by ODRL Profiles exclusively for the use of Logical Constraints.</li>
 		<li>All of the operand values MUST be unique Constraint instances.</li>
 		<li>The Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</li>
     </ol>
@@ -1046,6 +1075,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
     "uid": "http://example.com/policy:88",
+    "profile": "http://example.com/odrl:profile:10",
     "permission": [{
         "target": "http://example.com/book/1999",
         "assigner": "http://example.com/org/paisley-park",
@@ -1094,8 +1124,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	
 <blockquote>
-    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a constraint that specifies further context on the characteristics of the AssetCollection members. In this case, the target subset of Assets will be those that have a <em>running time</em> of less than 60 minutes, and each of those may be played.</p>
-        <p>The <code>ex:runningTime</code> leftOperand is defined in the ODRL Profile <code>http://example.com/profiles/01</code>. It is considered good practice that the  profile URIs are not mere identifiers but de-reference to human- and machine-readable documentation. See <a href="#profile">ODRL Profiles</a> for further information.
+    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a constraint that specifies further context on the characteristics of the AssetCollection members. In this case, the target subset of Assets will be those that have a <em>running time</em> of less than 60 minutes, and each of those may be played. Note that the <code>runningTime</code> leftOperand is defined in the ODRL Profile <code>http://example.com/odrl:profile:11</code> together with the <code>play</code> action.
         </p>
  </blockquote>
  <pre id="eg21" class="example hljs json">
@@ -1103,14 +1132,14 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
     "uid": "http://example.com/policy:4444",
-    "profile": "http://example.com/profiles/01",
+    "profile": "http://example.com/odrl:profile:11",
     "permission": [{
         "assigner": "http://example.com/org88",
         "target": {
             "@type": "AssetCollection",
             "source":  "http://example.com/media-catalogue",
             "constraint": [{
-                "leftOperand": "ex:runningTime",
+                "leftOperand": "runningTime",
                 "operator": "lt",
                 "rightOperand": "60",
                 "unit": "http://qudt.org/vocab/unit/MinuteTime"
@@ -1143,6 +1172,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:4444",
+    "profile": "http://example.com/odrl:profile:12",
     "permission": [{
         "target": "http://example.com/myPhotos:BdayParty",
         "assigner": "http://example.com/user44",
@@ -1177,6 +1207,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:7777",
+    "profile": "http://example.com/odrl:profile:20",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
@@ -1195,6 +1226,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:8888",
+    "profile": "http://example.com/odrl:profile:20",
     "permission": [{
         "target": [ "http://example.com/music/1999.mp3",
                     "http://example.com/music/PurpleRain.mp3"],
@@ -1214,6 +1246,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:8888",
+    "profile": "http://example.com/odrl:profile:20",
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
@@ -1276,6 +1309,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:8888",
+    "profile": "http://example.com/odrl:profile:21",
     "target": "http://example.com/music/1999.mp3",
     "assigner": "http://example.com/org/sony-music",
     "action": "play",
@@ -1295,6 +1329,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:8888",
+    "profile": "http://example.com/odrl:profile:21",
     "permission": [{
         "assignee": "http://example.com/people/billie",
         "target": "http://example.com/music/1999.mp3",
@@ -1345,11 +1380,12 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     ],
     "@type": "Policy",
     "uid": "http://example.com/policy:8888",
+    "profile": "http://example.com/odrl:profile:22",
     "dc:creator": "Billie Enterprises LLC",
     "dc:description": "This policy covers...",
     "dc:issued": "2017-01-01T12:00",
-    "dc:coverage": { "@id": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD"},
-    "dc:replaces": { "@id": "http://example.com/policy:8887"},
+    "dc:coverage": { "@id": "https://www.iso.org/obp/ui/#iso:code:3166:AU-QLD" },
+    "dc:replaces": { "@id": "http://example.com/policy:8887" },
     "permission": [{...}]
 }  
 </pre>
@@ -1388,6 +1424,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:default",
+    "profile": "http://example.com/odrl:profile:30",
     "permission": [{
         "assigner": "http://example.com/org-01",
         "action": [ "archive", "annotate" ]
@@ -1406,6 +1443,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:4444",
+    "profile": "http://example.com/odrl:profile:30",
     "inheritFrom": "http://example.com/policy:default",
     "permission": [{
         "target": "http://example.com/asset:5555",
@@ -1423,6 +1461,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
     "uid": "http://example.com/policy:4444",
+    "profile": "http://example.com/odrl:profile:30",
     "inheritFrom": "http://example.com/policy:default",
     "permission": [{
         "target": "http://example.com/asset:5555",
@@ -1467,7 +1506,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
 <li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
 </ul>
-<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Other <code>conflict</code> property values MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p></p>
+<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Additional <code>conflict</code> property values MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
 
         
 <p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
@@ -1490,6 +1529,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:0001",
+    "profile": "http://example.com/odrl:profile:40",
     "conflict": "perm",
     "permission": [{
         "target": "http://example.com/asset:1212",
@@ -1504,6 +1544,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Policy",
     "uid": "http://example.com/policy:0002",
+    "profile": "http://example.com/odrl:profile:40",
     "conflict": "perm",
     "permission": [{
         "target": "http://example.com/asset:1212",
@@ -1547,35 +1588,35 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 
 
 
-<section id="profile" class="informative">
+<section id="profile" >
 <h2>ODRL Profiles</h2>
 
 <section id="profile-motivation">
     <h3>ODRL Profile Purpose</h3>
         
-<p>The ODRL Information Model serves as a core framework and vocabulary to express Policies. The ODRL Common Vocabulary [[!odrl-vocab]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions. For some communities, this flexibility and wide-range of terms supports their requirements for policy expression. Other communities may wish to have a more focussed and specific set of terms that meets their sector's requirements more precisely. 
-</p>
+	<p>The ODRL Information Model serves as the core framework and vocabulary to express policies. The ODRL Core Vocabulary [[!odrl-vocab]] articulates this set of vocabulary terms. An ODRL policy may be expressed using the ODRL Core Vocabulary, and this represents the minimally supported policy expression.</p>
+	
+	<p>To provide additional terms (beyond the ODRL Core Vocabulary), then an ODRL Profile MUST be used. An ODRL Profile explicitly serves a communities needs by specifying the vocabulary terms they require to be supported in ODRL policy expressions. These terms may defined explicity or may be reused from the ODRL Common Vocabulary.</p>
+	
+	<p>The ODRL Common Vocabulary [[!odrl-vocab]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions.</p>
         
-        <p>In this latter case, it is recommended that a community create and document an ODRL Profile. An ODRL Profile directly and explicitly serves their communities needs by specifying only the terms they wish to support in ODRL expressions. These terms may come from the ODRL Common Vocabulary or may be created as new terms.</p>
         
     </section>
 
-	    <section id="profile-core">
-    <h3>ODRL Core Profile</h3>
-			
-			<p>
-			In circumstances that require the ODRL Core Profile to be identified, that is the Policy only conforms to the ODRL Core Vocabulary, then the following identifier MAY be used: <code>http://www.w3.org/ns/odrl/2/core</code>
-			</p>
-	</section>
-    <section id="profile-requirements">
-    <h3>ODRL Profile Mechanism</h3>
-      
-<p>
-    In an ODRL Policy, the <code>profile</code> property is used to indicate the identifier (IRI) of the ODRL Profile for which the Policy expression conforms to. This property is OPTIONAL, but if the property appears, then any ODRL consuming system that supports/implements the given profile MUST understand the identified ODRL Profile. If an ODRL consuming system does not understand the ODRL Profile, then it MAY continue processing the Policy expression, but it SHOULD NOT assume it has interpreted the Policy expression correctly.</p>
+	<section id="profile-conformance">
+    <h3>ODRL Profile Conformance</h3>
+		<p>
+    In an ODRL Policy, the <code>profile</code> property MUST be specified to indicate the identifier (IRI) of the ODRL Profile for which the Policy expression conforms to. There MAY be multiple identifiers used to indicate that an ODRL Policy conforms to multiple ODRL Profiles.</p>
+		<p>When an ODRL Profile(s) is used in an ODRL Policy, an ODRL Processing system MUST understand the semantics of the identified ODRL Profile(s). If the ODRL Processing system does not recognise the ODRL Profile identifier(s) then it MUST stop processing the policy. </p>
     
-   
+		
+	</section>
+	
+    <section id="profile-mechanism">
+    <h3>ODRL Profile Mechanism</h3>
+ 
 <p>
-An ODRL Profile extends the ODRL Information Model classes, properties, and instances in the following ways:
+To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes, properties, and instances are defined in the following way:
    </p>
 
 
@@ -1586,19 +1627,19 @@ An ODRL Profile extends the ODRL Information Model classes, properties, and inst
      <th>Example</th>
    </tr>
    <tr>
-	   <td>Additional Policy Subclasses.<br/>Create a subclass the ODRL Policy class.</td>
+	   <td>Additional Policy Subclasses:<br/>Create a subclass the ODRL Policy class.</td>
      <td><code>ex:myPolicyType rdfs:subClassOf odrl:Policy ;</code></td>
    </tr>
    <tr>
-     <td>Additional Asset Relationships.<br/>Create a sub-property of the abstract <em>relation</em> property.</td>
+     <td>Additional Asset Relationships:<br/>Create a sub-property of the abstract <em>relation</em> property.</td>
      <td><code>ex:myRelation rdfs:subPropertyOf odrl:relation ;</code></td>
    </tr>
    <tr>
-     <td>Additional Party Functional roles.<br/>Create a sub-property of the abstract <em>function</em> property.</td>
+     <td>Additional Party Functional roles:<br/>Create a sub-property of the abstract <em>function</em> property.</td>
      <td><code>ex:myFunctionRole rdfs:subPropertyOf odrl:function ;</code></td>
    </tr>
    <tr>
-     <td>Additional Actions for Rules.<br/>
+     <td>Additional Actions for Rules:<br/>
 		 Create an instance of a Action and define its includedIn parent Action.<br/>
 	     The new Action MAY be defined as <code>includedIn</code> to any existing Action. <br/>
         If the new Action forms a dependency with another new or existing Action, then define the two actions with the <code>implies</code> property
@@ -1610,27 +1651,27 @@ An ODRL Profile extends the ODRL Information Model classes, properties, and inst
 	  </td>
    </tr>
    <tr>
-     <td>Additional Constraint left operands. <br/>Create an instance of the LeftOperand class.</td>
+     <td>Additional Constraint left operands:<br/>Create an instance of the LeftOperand class.</td>
      <td><code>ex:myLeftOperand a odrl:LeftOperand ;</code></td>
 	 </tr>
    <tr>
-     <td>Additional Constraint right operands.<br/> Create an instance of the RightOperand class.</td>
+     <td>Additional Constraint right operands:<br/> Create an instance of the RightOperand class.</td>
      <td><code>ex:myRightOperand a odrl:RightOperand ;</code></td>
    </tr>
    <tr>
-     <td>Additional Constraint relational operators. <br/>Create an instance of the Operator class.</td>
+     <td>Additional Constraint relational operators:<br/>Create an instance of the Operator class.</td>
      <td><code>ex:myOperator a :Operator ;</code></td>
    </tr>
    <tr>
-     <td>Additional Logical Constraint operands.<br/>Create a sub-property of the abstract <em>operand</em> property.</td>
+     <td>Additional Logical Constraint operands:<br/>Create a sub-property of the abstract <em>operand</em> property.</td>
      <td><code>ex:myLogicalOp rdfs:subPropertyOf odrl:operand ;</code></td>
    </tr>
    <tr>
-     <td>Additional Policy Conflict strategies.<br/>Create an instance of the ConflictTerm class.</td>
+     <td>Additional Policy Conflict strategies:<br/>Create an instance of the ConflictTerm class.</td>
      <td><code>:myStrategy a :ConflictTerm ;</code></td>
    </tr>
    <tr>
-     <td>Additional Rule class.<br/>Create a subclass of the Rule class and define it as disjoint with the other Rule subclasses.</td>
+     <td>Additional Rule class:<br/>Create a subclass of the Rule class and define it as disjoint with the other Rule subclasses.</td>
      <td><code>:myRule	rdfs:subClassOf :Rule ; </code><br/>
 	    <code>owl:disjointWith :Prohibition, :Duty :Permission ; </code></td>
    </tr>
@@ -1642,7 +1683,15 @@ An ODRL Profile extends the ODRL Information Model classes, properties, and inst
     <p>All new classes (<code>rdfs:Class</code>, <code>owl:Class</code>), properties (<code>rdf:Property</code>, <code>owl:ObjectProperty</code>), and instances (<code>owl:NamedIndividual</code>) must also be defined as a <code>skos:Concept</code>. Appropriate <code>rdfs:domain</code> and <code>rdfs:range</code> should also be defined for classes.</p>
     <p>Human-readable documentation is also recommended for each new term using  <code>rdfs:label</code> for the name, <code>skos:definition</code> for the formal definition, and <code>skos:note</code> for additional comments on its use.</p>
 </section>
-    
+   
+	    <section id="profile-core">
+    <h3>ODRL Core Profile</h3>
+			
+			<p>
+			In circumstances that require the ODRL Core Profile to be identified, that is the Policy <strong>only</strong> conforms to the ODRL Core Vocabulary, then the following identifier MAY be used: <code>http://www.w3.org/ns/odrl/2/core</code>
+			</p>
+	</section>
+	
 </section>
  
     
@@ -1761,6 +1810,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 	<li>Added support for Duty at Policy-level using new obligation property <a href="https://github.com/w3c/poe/issues/191">(Issue#191)</a></li>
 			
 	<li>Added Consequence and Remedy properties <a href="https://github.com/w3c/poe/issues/209">(Issue#209)</a></li>
+			
+	<li>Added mandatory use of ODRL Profiles <a href="https://github.com/w3c/poe/issues/210">(Issue#210)</a></li>
 			
 </ul>
 </section>
