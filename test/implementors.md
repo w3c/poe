@@ -1,5 +1,7 @@
-# ODRL Implementors
+# ODRL Implementations
 
-Org | Name | Contact | Comments
---- | --- | --- | ---
-a | b | c | d
+Org | Name | Contact | Role | Comments
+--- | --- | --- | --- | ---
+a | b | c | Publisher/Consumer| d
+a | b | c | Publisher/Consumer| d
+a | b | c | Publisher/Consumer| d
