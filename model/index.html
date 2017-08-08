@@ -165,7 +165,7 @@
 	<p>An ODRL Policy must either:</p>
 	<ul>
 	<li>Only use terms defined in the ODRL Core Vocabulary [[!odrl-vocab]], or</li>
-	<li>Use an ODRL Profile that declares the supported vocabulary expressed in the Policy.</li>
+	<li>Use an ODRL Profile that declares the supported vocabulary used by expressions in the Policy.</li>
 	</ul>
 <p>In the former case, the profile property MUST NOT be used. In the latter case, the profile property MUST be used to indicate the IRIs of the ODRL Profile(s). 
 	See the <a href="#profile">ODRL Profiles</a> section for more details on mechanisms to define ODRL Profiles and conformance requirements. (The Examples in this document will use ODRL Profile identifiers for illustrative purposes only.) </p>
@@ -1601,7 +1601,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         
 	<p>The ODRL Information Model serves as the core framework and vocabulary to express policies. The ODRL Core Vocabulary [[!odrl-vocab]] articulates this set of vocabulary terms. An ODRL policy may be expressed using the ODRL Core Vocabulary, and this represents the minimally supported policy expression.</p>
 	
-	<p>To provide additional terms (beyond the ODRL Core Vocabulary), then an ODRL Profile MUST be used. An ODRL Profile explicitly serves a communities needs by specifying the vocabulary terms they require to be supported in ODRL policy expressions. These terms may be defined explicitly or may be reused from the ODRL Common Vocabulary.</p>
+	<p>To provide additional terms (beyond the ODRL Core Vocabulary), then an ODRL Profile MUST be used. An ODRL Profile explicitly serves community needs by specifying the vocabulary terms they require to be supported in ODRL policy expressions. These terms may be defined explicitly or may be adopted from the ODRL Common Vocabulary.</p>
 	
 	<p>The ODRL Common Vocabulary [[!odrl-vocab]] provides a generic range of common actions for Permissions, Prohibition, and Duties as well as Policy subclasses, Constraint left operands and operators, Asset relations, and Party functions.</p>
         
@@ -1645,7 +1645,7 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
    </tr>
    <tr>
      <td>Additional Actions for Rules:<br/>
-		 Create an instance of a Action and define its includedIn parent Action.<br/>
+		 Create an instance of an Action and define its includedIn parent Action.<br/>
 	     The new Action MAY be defined as <code>includedIn</code> to any existing Action. <br/>
         If the new Action forms a dependency with another new or existing Action, then define the two actions with the <code>implies</code> property
     </td>
@@ -1693,7 +1693,7 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
     <h3>ODRL Core Profile</h3>
 			
 			<p>
-			In circumstances that require the ODRL Core Profile to be identified, that is the Policy <strong>only</strong> conforms to the ODRL Core Vocabulary, then the following identifier MAY be used: <code>http://www.w3.org/ns/odrl/2/core</code>
+			In circumstances that require the ODRL Core Profile to be identified, that is the Policy <strong>only</strong> conforms to the ODRL Core Vocabulary, then the following identifier MAY be used for the Core Profile: <code>http://www.w3.org/ns/odrl/2/core</code>
 			</p>
 	</section>
 	
