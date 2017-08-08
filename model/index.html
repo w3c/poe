@@ -950,30 +950,30 @@
 <section id="constraint">
 <h3>Constraints</h3>
     
-    <p>Constraints are boolean/logical expressions that refines the applicability of a Rule, or the context of a Party/Asset Collection. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. The evaluation of a Constraint is treated as a <em>black box</em> from an external system with the outcome of this evaluation determining if the Constraint has been <em>satisfied</em> or not.</p>
+    <p>Constraints are boolean/logical expressions that refine the applicability of a Rule, or the context of a Party/Asset Collection. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. The evaluation of a Constraint is treated as a <em>black box</em> outside of the ODRL Processor with the outcome of this evaluation determining if the Constraint has been <em>satisfied</em> or not.</p>
     
-    <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Action, or Party/Asset Collection. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the (individual) Asset or Party member(s) - a subset of the Collection - becomes effective for the enclosing Rule.</p>
+    <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Rule, or Party/Asset Collection. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the individual Asset or Party member or multiple members - a subset of the Collection - becomes effective for the enclosing Rule.</p>
  
     <p>When multiple Constraints apply to the same Rule, Party/Asset Collection then they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied. Parties and Assets (members of the Collection) become effective is all of the Constraints on Party/Asset Collections are satisfied. </p>
     
 <section id="constraint-class">
 <h3>Constraint Class</h3>
         
-<p>A Constraint class is used for expressions which compare two operands by one operator. If the  expression evaluates to <strong>true</strong> the Constraint is satisfied.
- The Constraint class can express these contexts with comparison expressions, such as, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
+<p>A Constraint class is used for expressions which compare two operands (which are not constraints) by one relational operator. If the  expression evaluates to <strong>true</strong> the Constraint is satisfied.
+ The Constraint class formulates a comparison expressions, such as, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
 </p>
        
 <p>The Constraint class has the following properties:</p>
 <ul>
-<li>A Constraint MUST have one <code>leftOperand</code> property for Left Operands.</li>
-<li>A Constraint MUST have one <code>operator</code> property for relational Operators.</li>
-<li>A Constraint MUST have either one <code>rightOperand</code> property for right operand values (literal or IRI [[!rfc3987]]) or one <code>rightOperandReference</code> property for an IRI [[!rfc3987]] reference to a right operand value.</li>
+<li>A Constraint MUST have one <code>leftOperand</code> property for a Left Operand.</li>
+<li>A Constraint MUST have one <code>operator</code> property for a relational Operator.</li>
+<li>A Constraint MUST have either one <code>rightOperand</code> property for a right operand value (literal or IRI [[!rfc3987]]) or one <code>rightOperandReference</code> property for an IRI [[!rfc3987]] reference to a right operand value.</li>
 <li>A Constraint MAY have none or one <code>dataType</code> property for the data type of the rightOperand/Reference.</li>
 <li>A Constraint MAY have none or one <code>unit</code> property for the unit value of the rightOperand/Reference.</li>
 <li>A Constraint MAY have none or one <code>status</code> property for the current value generated from the leftOperand action.</li>
 </ul>     
     
-<p>The <code>leftOperand</code> MUST clearly be semantically <strong>defined</strong> to indicate the subject of the Constraint, and MAY show how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
+<p>The <code>leftOperand</code> MUST clearly be semantically <strong>defined</strong> to indicate the subject of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
     
 <p>The <code>operator</code> identifies the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
@@ -1046,31 +1046,34 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Logical Constraint Class</h3>
  
  <p>   
-    A Logical Constraint class are expressions for logically comparing two or more operand values - with the operand values being a list of existing Constraints. For example,  three Constraints could be logically <strong>and</strong>-ed indicating that all three must be true for the Logical Constraint to be satisfied.</p>
+     A Logical Constraint class is used for expressions which compare two or more operands which are existing Constraints by one logical operator. For example,  three Constraints could be logically <strong>and</strong>-ed indicating that all three must be true for the Logical Constraint to be satisfied.</p>
 
       
 <p>The Logical Constraint class has the following properties:</p>
 <ul>
-<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship.</li>
+<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints.</li>
 </ul>    
     
 <p>An ODRL validator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
     <ul>
     <li><code>or</code> -  at least one of the Constraints MUST be satisfied</li>
-    <li><code>xone</code> - only one of the  Constraints MUST be satisfied</li>
+    <li><code>xone</code> - only one, and not more, of the  Constraints MUST be satisfied</li>
     <li><code>and</code> - all of the Constraints MUST be satisfied</li>
     <li><code>andSequence</code> - all of the Constraints - in sequence - MUST be satisfied</li>
     </ul>
 
- <p>Additional <code><em>operand</em></code> sub-properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or defined by ODRL Profiles.</p>
+ <p>Additional <code><em>operand</em></code> sub-properties MAY be defined by ODRL Profiles.</p>
     
 <p>The processing model for Logical Constraints includes:</p>
     <ol>
-        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Additional sub-properties of <code><em>operand</em></code> MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] or by ODRL Profiles exclusively for the use of Logical Constraints.</li>
+        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Additional sub-properties of <code><em>operand</em></code> MAY be defined by ODRL Profiles exclusively for the use of Logical Constraints.</li>
 		<li>All of the operand values MUST be unique Constraint instances.</li>
-		<li>The Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</li>
+		<li>These Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</li>
     </ol>
 
+	<P>A Logical Constraint will reference existing Constraints that MAY appear at the Policy-level. These Constraints MUST NOT to be interpreted as Constraints on all the Rules in the Policy.
+	</P>
+	
    <blockquote> 
 <p>Example Use Case:The Policy below shows a Permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. </p>  
    </blockquote>
@@ -1108,12 +1111,6 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	When using a logical operand that needs to be evaluated in sequence, such as <code>andSequence</code>, the serialisations MUST preserve the order of the members of the list. In JSON-LD, the <code>@list</code> keyword MUST be used to represent an ordered collection.
 	</p>
    
-	
-	<p class="note">
-	When Constraints appear at the Policy-level then they MUST only be referenced by a Logical Constraint within an existing Rule. They MUST NOT to be interpreted as Constraints on all the Rules in the Policy.
-	</p>
-   
-
     
 </section>
 
