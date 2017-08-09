@@ -1200,7 +1200,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="composition">
 <h4>Policy Rule Composition</h4>
              
-    <p>A Policy MAY be related to multiple Rules, and each Rule MAY be related to multiple Assets, Parties, Actions, Constraints, and Duties. A Policy MAY also be related to Assets, Parties, and Actions at the Policy level, and these relationships apply to all of the enclosing Rules in the Policy.</p>
+    <p>A Policy MAY be related to multiple Rules, and each Rule MAY be related to multiple Assets, Parties, Actions, Constraints, and Duties.</p>
      
     <p>At the core level, an ODRL Rule would be related to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is an irreducible Rule (that is, not able to be reduced or further simplified).</p>
              
@@ -1268,11 +1268,11 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 }
 </pre>
     
-    <p>In order to create the <em>atomic</em> Rules in a Policy, the processing model for policies with multiple Assets, Parties, and Actions includes:</p>
+    <p>In order to create the <em>atomic</em> Rules in a Policy, the processing model for Rules with multiple Assets, Parties, and Actions includes:</p>
     <ol>
-    <li>Where there are multiple Assets (with the same relation), then create new Rules (one for each of these Assets) and include only one Asset relation, and include all other (non-Asset) properties, in each Rule</li>
-    <li>Where there are multiple Parties (with the same function), then create new Rules (one for each of these Parties) and include only one Party function, and include all other (non-Party) properties, in each Rule.</li>
-    <li>Where there are multiple Actions, then create new Rules (one for each of these Actions) and include only one Action, and include all other (non-Action) properties, in each Rule.</li>
+    <li>Where there are multiple Assets (with the same relation), then replace the existing Rule by newly created  Rules (one for each of these Assets) and include only one Asset relation, and include all other (non-Asset) properties, in each Rule</li>
+    <li>Where there are multiple Parties (with the same function), then replace the existing Rule by newly created Rules (one for each of these Parties) and include only one Party function, and include all other (non-Party) properties, in each Rule.</li>
+    <li>Where there are multiple Actions, then replace the existing Rule by newly created  Rules (one for each of these Actions) and include only one Action, and include all other (non-Action) properties, in each Rule.</li>
     </ol>
       
 <section id="composition-compact">
