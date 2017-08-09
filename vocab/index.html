@@ -416,16 +416,16 @@
 <tr><th>Domain:</th> <td><a href="#term-Prohibition">Prohibition</a></td></tr>
 </table>
 </section></section><section id="constraints"><h2>Constraint</h2><section id="term-Constraint"><h3>Constraint</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A boolean expression that refines the applicability of a Rule.</td></tr>
+<tr><th>Definition:</th> <td>A boolean expression that refines the applicability of a Rule or the context of a Party/Asset Collection.</td></tr>
 <tr><th>Label:</th> <td>Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-leftOperand">leftOperand</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-rightOperandReference">rightOperandReference</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
 </table>
 </section><section id="term-constraint"><h3>Has Constraint</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Constraints applied to a Rule.</td></tr>
+<tr><th>Definition:</th> <td>Constraints applied to a Rule, or Party/Asset Collection.</td></tr>
 <tr><th>Label:</th> <td>Has Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/constraint">http://www.w3.org/ns/odrl/2/constraint</a></td></tr>
-<tr><th>Note:</th> <td>One or more Constraints may be applied to a Rule. Example: the Action play is only permitted for a certain period of time.</td></tr>
+<tr><th>Note:</th> <td>One or more Constraints may be applied. Example: the Action play is only permitted for a certain period of time.</td></tr>
 <tr><th>Range:</th> <td><a href="#term-Constraint">Constraint</a>, <a href="#term-LogicalConstraint">LogicalConstraint</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a>, <a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
@@ -435,7 +435,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Operator">http://www.w3.org/ns/odrl/2/Operator</a></td></tr>
 <tr><th>Note:</th> <td>Instances of the Operator class representing relational and logical operators .</td></tr>
 <tr><th>In range of:</th> <td><a href="#term-operator">operator</a></td></tr>
-<tr><th>Instances:</th> <td><a href="#term-andSequence">andSequence</a>, <a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a></td></tr>
+<tr><th>Instances:</th> <td><a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a></td></tr>
 </table>
 </section><section id="term-operator"><h3>Has Operator</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The operator function applied to operands of a Constraint</td></tr>
@@ -501,7 +501,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section></section><section id="logicalConstraints"><h2>Logical Constraint</h2><section id="term-LogicalConstraint"><h3>Logical Constraint</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A logical expression that refines the applicability of a Rule.</td></tr>
+<tr><th>Definition:</th> <td>A logical expression that refines the applicability of a Rule or the context of a Party/Asset Collection.</td></tr>
 <tr><th>Label:</th> <td>Logical Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/LogicalConstraint">http://www.w3.org/ns/odrl/2/LogicalConstraint</a></td></tr>
 <tr><th>Properties:</th> <td><a href="#term-operand">operand</a></td></tr>
@@ -511,7 +511,7 @@
 <tr><th>Label:</th> <td>Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/operand">http://www.w3.org/ns/odrl/2/operand</a></td></tr>
 <tr><th>Note:</th> <td>Sub-properties of operand are used for Logical Constraints.</td></tr>
-<tr><th>Sub-properties:</th> <td><a href="#term-and">and</a>, <a href="#term-or">or</a>, <a href="#term-xone">xone</a></td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-and">and</a>, <a href="#term-andSequence">andSequence</a>, <a href="#term-or">or</a>, <a href="#term-xone">xone</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-LogicalConstraint">LogicalConstraint</a></td></tr>
 </table>
 </section></section><section id="constraintRelationalOperators"><h2>Constraint Relational Operators</h2><section id="term-eq"><h3>Equal to</h3><table class='def propdef' >
@@ -594,7 +594,7 @@
 <tr><th>Parent property:</th> <td><a href="#term-operand">operand</a></td></tr>
 </table>
 </section><section id="term-xone"><h3>Only One</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relation is satisfied when only one of the Constaints is satisfied</td></tr>
+<tr><th>Definition:</th> <td>The relation is satisfied when only one, and not more, of the Constaints is satisfied</td></tr>
 <tr><th>Label:</th> <td>Only One</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/xone">http://www.w3.org/ns/odrl/2/xone</a></td></tr>
 <tr><th>Note:</th> <td>This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances.</td></tr>
@@ -612,7 +612,7 @@
 <tr><th>Label:</th> <td>And Sequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/andSequence">http://www.w3.org/ns/odrl/2/andSequence</a></td></tr>
 <tr><th>Note:</th> <td>This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances. The order of the list MUST be preserved. The andSequence operator is an example where there may be temporal conditional requirements between the operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them.</td></tr>
-<tr><th>Class:</th> <td><a href="#term-Operator">Operator</a></td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-operand">operand</a></td></tr>
 </table>
 </section></section><section id="conflictConcepts"><h2>Policy Conflict Strategy</h2><section id="term-ConflictTerm"><h3>Conflict Strategy Preference</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy.</td></tr>

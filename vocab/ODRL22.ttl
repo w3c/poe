@@ -640,13 +640,13 @@ odrl:
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Constraint"@en ;
-	skos:definition "A boolean expression that refines the applicability of a Rule."@en .
+	skos:definition "A boolean expression that refines the applicability of a Rule or the context of a Party/Asset Collection."@en .
 
 :LogicalConstraint
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Logical Constraint"@en ;
-	skos:definition "A logical expression that refines the applicability of a Rule."@en .
+	skos:definition "A logical expression that refines the applicability of a Rule or the context of a Party/Asset Collection."@en .
 
 
 :relation
@@ -717,8 +717,8 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Constraint"@en ;
-	skos:definition "Constraints applied to a Rule."@en ;
-	skos:note "One or more Constraints may be applied to a Rule. Example: the Action play is only permitted for a certain period of time."@en ;
+	skos:definition "Constraints applied to a Rule, or Party/Asset Collection."@en ;
+	skos:note "One or more Constraints may be applied. Example: the Action play is only permitted for a certain period of time."@en ;
 	rdfs:domain [
 		a owl:Class ;
 		owl:unionOf ( :Policy :Rule :AssetCollection :PartyCollection ) ;
@@ -923,8 +923,9 @@ odrl:
     skos:scopeNote "Non-Normative"@en .
 
 :andSequence
-	a :Operator, owl:NamedIndividual, skos:Concept ;
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
+    rdfs:subPropertyOf :operand ;
 	rdfs:label "And Sequence"@en ;
 	skos:definition "The relation is satisfied when each of the Constraints are satisfied in the order specified."@en ;
 	skos:note "This property MUST only be used for Logical Constraints, and the list of operand values MUST be Constraint instances. The order of the list MUST be preserved. The andSequence operator is an example where there may be temporal conditional requirements between the operands. This may lead to situations where the outcome is unresolvable, such as deadlock if one of the Constraints is unable to be satisfied. ODRL Processing systems SHOULD plan for these scenarios and implement mechanisms to resolve them."@en .
