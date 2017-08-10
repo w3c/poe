@@ -8,6 +8,9 @@
 <p>Note that the Rule class is not represented in the XML encoding, only the child classes; Permission, Prohibition, and Duty.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policySubClasses">Policy Subclasses</a> for further details. </P>
 
+<section>
+<h3>XML Elements and Attributes</h3>
+
 <p>The Policy element contains the following attributes:</p>
 <ul>
 <li>uid - an IRI (REQUIRED)</li>
@@ -145,6 +148,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
 
 <p>In some cases where Duties refer to (external) Assets, it will be necessary to package the ODRL XML expression with the representation of that (external) Asset. This XML Encoding specification does not mandate any specific packaging mechanism as communities will utilise their preferred options for data interoperability.</p>
 
+	</section>
 <section>
 <h2>XML Example</h2>
 <p>The below example shows the XML serialisation of an ODRL Policy including some metadata about the Policy. In this example, the target asset and assigner and assignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country (Italy) for a compensation payment of EUR5,000. </p>

@@ -23,7 +23,7 @@
 
     <p>The ODRL Vocabulary and Expression specifies the set of RDF classes, predicates and named entities that are used by the ODRL Information Model [[!odrl-model]] which defines the ODRL Core Vocabulary. This  document also lists recommended terms in the ODRL Common Vocabulary that may be used to define ODRL Profiles. </p>
 	
-	<p>In addition to supported RDF serialisations, the ODRL Vocabulary and Expression provides the JSON-LD Context and profile definitions needed to use the ODRL JSON serialization in a Linked Data context, and includes an alternate XML serialisation.</p>
+	<p>In addition to supported RDF serialisations, the ODRL Vocabulary and Expression provides the JSON-LD Context and profile definitions needed to use the ODRL JSON serialisation in a Linked Data context, and includes an alternate XML serialisation.</p>
 </section>
         
 <section id="conformance">
@@ -1426,11 +1426,24 @@
 
 <section id="encodings">
 	<h2>Vocabulary Expression</h2>
-      <p>Implementations of ODRL expressions must be serialized using the UTF-8 character encoding.
+      
+<p>This specification includes serialisation syntaxes for the ODRL Vocabulary.</p>
+
+<p>Implementations of ODRL expressions must be serialised using the UTF-8 character encoding.
      </p>
+
+<section>
+<h3>RDF</h3>
+<p>ODRL Policies may be serialised in any supported RDF serialisation syntax.</p>
+	
 <div class="note">
 <p>The current (editors draft) ODRL Ontology and can be downloaded in <a href="http://w3c.github.io/poe/vocab/ODRL22.ttl">Turtle serialisation</a>.</p>
 </div>
+
+</section>
+
+<section>
+<h3>JSON-LD</h3>
 
 <p>The JSON-LD [[json-ld]] serialisation uses the <code>@context</code> property to define the processing context. Implementations producing ODRL expressions should include a <code>@context</code> property value using the URL <code>http://www.w3.org/ns/odrl.jsonld</code>.</p>
 
@@ -1438,9 +1451,11 @@
 <p>The (editors draft) ODRL JSON-LD Context can be <a href="http://w3c.github.io/poe/vocab/ODRL22.jsonld">downloaded</a>.</p>
 </div>
 
-<p>This specification also includes alternative serialization syntaxes for the ODRL Vocabulary.</p>     
+</section>
+
+     
     <section id="xml" class="informative">
-   	<h2>XML Encoding</h2>         
+   	<h2>XML</h2>         
         <p>ODRL Policy expressions can be encoded in XML [[xml]] serialisations as defined by XML Schema [[xmlschema11-1]] and XML Datatypes [[xmlschema11-2]]. All of the ODRL Vocabulary IRIs used in ODRL XML instances MUST follow those defined in the ODRL Vocabulary.</p>
 
 <div class="note">
@@ -1450,6 +1465,9 @@
 <p>Each of the classes from the ODRL Information Model [[!odrl-model]] will be represented by an XML element of the same name. Additionally, each class property will be represented as an XML attribute of the parent element. The fixed values defined in the ODRL Information Model are represented as enumerated types. Cardinalities are also represented with XML Schema occurrence rules. Attributes are optional unless explicitly noted as REQUIRED. </p>
 <p>Note that the Rule class is not represented in the XML encoding, only the child classes; Permission, Prohibition, and Duty.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policySubClasses">Policy Subclasses</a> for further details. </P>
+
+<section>
+<h3>XML Elements and Attributes</h3>
 
 <p>The Policy element contains the following attributes:</p>
 <ul>
@@ -1588,6 +1606,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
 
 <p>In some cases where Duties refer to (external) Assets, it will be necessary to package the ODRL XML expression with the representation of that (external) Asset. This XML Encoding specification does not mandate any specific packaging mechanism as communities will utilise their preferred options for data interoperability.</p>
 
+	</section>
 <section>
 <h2>XML Example</h2>
 <p>The below example shows the XML serialisation of an ODRL Policy including some metadata about the Policy. In this example, the target asset and assigner and assignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country (Italy) for a compensation payment of EUR5,000. </p>
