@@ -158,7 +158,12 @@
 <p>The Policy class has the following properties:</p>
 <ul>
 <li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
-<li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty">Duty</a> sections for more details.)</li>  <li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile(s) that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
+<li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty">Duty</a> sections for more details.)</li>
+<li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile(s) that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
+	
+<li>A Policy MAY have none or one  <code>inheritFrom</code> property to identify the parent Polic(ies) from which this child Policy inherits from. (See the <a href="#inheritance">ODRL Inheritance</a> section for more details.) </li>
+	
+	
 <li>A Policy MAY have none or one <code>conflict</code> property for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
 
 </ul>
@@ -183,7 +188,7 @@
 
      <p>An ODRL Policy of subclass <code>Set</code>:</p>
     <ul>
-        <li>MUST have one and MAY have many relationships to a Rule.</li>
+        <li>MUST have one or more permission, prohibition, or obligation properties for Rules.</li>
     </ul>
 	
 
@@ -217,9 +222,11 @@
     
     <p>An ODRL Policy of subclass <code>Offer</code>:</p>
     <ul>
-        <li>MUST have one and MAY have many relationships to a Permission or Prohibition.</li>
-        <li>MUST have one and MAY have many <code>assigner</code> property functional roles in the same Permission or Prohibition.</li>
+        <li>MUST have one or more permission, prohibition, or obligation properties for Rules.</li>
+        <li>MUST have one and MAY have many <code>assigner</code> property functional roles in the same Rules.</li>
     </ul>
+	
+	<p>Note: See the <a href="#function">Function Property</a> section for details on the functional roles.</p>
 
 <blockquote>
 <p>Example Use Case: The below <code>Offer</code> Policy (based on the previous example) shows the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code>.</p>
@@ -252,11 +259,12 @@
     
     <p>An ODRL Policy of subclass <code>Agreement</code>:</p>
     <ul>
-		<li>MUST have one and MAY have many relationships to a Permission or Prohibition.</li>
-        <li>MUST have one and MAY have many <code>assigner</code> property functional roles in the same Permission or Prohibition.</li>
-		 <li>MUST have one and MAY have many <code>assignee</code> property functional roles in the same Permission or Prohibition.</li>
+		<li>MUST have one or more permission, prohibition, or obligation properties for Rules.</li>
+        <li>MUST have one and MAY have many <code>assigner</code> property functional roles in the same Rules.</li>
+		 <li>MUST have one and MAY have many <code>assignee</code> property functional roles in the same Rules.</li>
     </ul>
-
+	<p>Note: See the <a href="#function">Function Property</a> section for details on the functional roles.</p>
+	
 <blockquote>
 <p>Example Use Case: The below <code>Agreement</code> Policy (based on the previous example) shows granting the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code> for the assignee Party <code>http://example.com/party:person:billie</code>.</p>
 </blockquote>
@@ -577,8 +585,8 @@
     
     <p>The Action class has the following properties:</p>
 <ul>
-<li>An Action MUST have one <code>includedIn</code> property for an Action to transitively assert this Action that encompasses its operational semantics.</li>
-<li>An Action MAY have none or one <code>implies</code> property for an Action to assert this Action is not prohibited to enable its operational semantics.</li>    
+<li>An Action (except for use and transfer) MUST have one <code>includedIn</code> property for an Action to transitively assert this Action that encompasses its operational semantics.</li>
+<li>An Action MAY have none, one or more <code>implies</code> properties for an Action to assert this Action is not prohibited to enable its operational semantics.</li>    
 </ul>
     
     <p>
@@ -601,7 +609,7 @@
     <p>See <a href="#profile">ODRL Profiles</a> for usage details on the <code>includedIn</code> and <code>implies</code> properties.
     </p>
     
-<p>The ODRL Common Vocabulary [[!odrl-vocab]] defines a standard set of generic Actions that MAY be used by ODRL Profiles.</p>
+<p>The ODRL Common Vocabulary [[!odrl-vocab]] defines a standard set of generic Actions that MAY be adopted by ODRL Profiles.</p>
 
     <blockquote>
 <p>Example Use Case: The Policy expresses an Offer for the target Asset <code>http://example.com/music:1012</code> with the Action to <code>play</code> the Asset (<code>play</code> is defined as an <code>includedIn</code> term of <code>use</code>).</p> 
@@ -639,6 +647,9 @@
 <li>A Rule MAY have none, one or many <code>constraint</code> properties for Constraint/LogicalConstraint.</li>
 <li>A Rule MAY have none or one <code>uid</code> property identifier (IRI [[!rfc3987]]) to enable the Rule to be referenced by other Rules.</li>
 </ul>
+	
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="">Policy Rule Composition</a> and <a href="">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
+	
 <p>Explicit sub-properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
 <p>For a Rule to become effective, it MUST be valid. Thst is, all of it's Constraints MUST be satisfied and any applicable relationship to a Duty MUST be fulfilled.</p>
@@ -656,6 +667,10 @@
     <li>A Permission MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>
     <li>A Permission MAY have none, one, or more <code>duty</code> properties for Duty.</li>
 </ul>
+		
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="">Policy Rule Composition</a> and <a href="">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
+	
+	
 <p>The duty property expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid. That is, the duty property asserts a <em>pre-condition</em> between the Permission and the Duty. See the <a href="#duty-perm">Duty with a Permission</a> section for more details.</p>
 	
 <p>For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's duties MUST be fulfilled.</p>
@@ -695,6 +710,11 @@
     <li>A Prohibition MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>	
     <li>A Prohibition MAY have none, one, or more <code>remedy</code> properties for Duty.</li>
 </ul>
+	
+		
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="">Policy Rule Composition</a> and <a href="">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
+	
+	
 <p>The remedy property expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been violated. That is, the remedy property asserts a Duty that must be fulfilled if the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
 	
 <p>	
@@ -739,6 +759,10 @@
 	  <li>A Duty MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li> 
 	  <li>A Duty MAY have none or one <code>consequence</code> properties for Duty.</li>
 </ul>
+	
+		
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="">Policy Rule Composition</a> and <a href="">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
+	
     
 	<p>The Duty class also has these additional requirements:</p>
 	<ul>
@@ -753,6 +777,8 @@
 	
 <p>Even though a Duty is mandatory when effective (eg, agreed as a pre-condition for a Permission or activated in violation of a Prohibition), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a compensation payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
 
+	</section>
+	
 <section id="duty-policy">
 <h3>Obligation property with a Policy</h3>
 
@@ -939,11 +965,8 @@
 }
 </pre>
 	
-	
-	
+
 	</section>
-	
-</section>	
 	
 </section>
 
@@ -1051,7 +1074,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
       
 <p>The Logical Constraint class has the following properties:</p>
 <ul>
-<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints.</li>
+<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing constraints to be compared.</li>
 </ul>    
     
 <p>An ODRL validator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
@@ -1283,10 +1306,10 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	<p>Properties that MAY be shared include:</p>
 	<ul>
-	<li>The <code>action</code> property.</li>
-	<li>Any sub-properties of <code>relation</code> (such as <code>target</code>).
+	<li>One or many <code>action</code> properties.</li>
+	<li>One or many sub-properties of <code>relation</code> (such as <code>target</code>).
  </li>
-	<li>Any sub-properties of <code>function</code> (such as <code>assigner</code> and <code>assignee</code>).</li>
+	<li>One or many sub-properties of <code>function</code> (such as <code>assigner</code> and <code>assignee</code>).</li>
 	
 	</ul>
 
@@ -1302,7 +1325,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
        
 	 <p>Further, follow the processing model to create <em>atomic</em> Rules in the Policy (defined in the previous section).</p> 
 	
-    <p>It is RECOMMENDED that compact ODRL Policies be expanded to atomic Policies when being processed for conformance or exchanged for interoperability, to reflect the normative ODRL Information Model.</p>
+    <p>It is RECOMMENDED that compact ODRL Policies be expanded to atomic Policies when being processed for conformance.</p>
 	
 	<p>The example below shows such shared common properties applied to a Policy:</p>
              
@@ -1358,12 +1381,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
          
          <p>The following Dublin Core Metadata Terms [[dcterms]] properties SHOULD be used:</p>
             <ul>
-         <li><code>dc:creator</code> - the individual, agent, or organisation that authored the Policy.</li>      <li><code>dc:description</code> - a human-readable representation or summary of the Policy.</li>
-         <li><code>dc:issued</code> - the date (and time) the Policy was first issued.</li>
-         <li><code>dc:modified</code> -  the date (and time) the Policy was updated.</li>
-        <li><code>dc:coverage</code> -  the jurisdiction under which the Policy is relevant.</li>
-        <li><code>dc:replaces</code> -  the identifier (uid) of a Policy that this Policy supersedes.</li>
-        <li><code>dc:isReplacedBy</code> -  the identifier (uid) of a Policy that supersedes this Policy.</li>
+         <li>none, one, or many <code>dc:creator</code> properties - the individual, agent, or organisation that authored the Policy.</li>
+		<li>none, one, or many <code>dc:description</code> properties - a human-readable representation or summary of the Policy.</li>
+         <li>none or one <code>dc:issued</code> property - the date (and time) the Policy was first issued.</li>
+         <li>none or one <code>dc:modified</code> property -  the date (and time) the Policy was updated.</li>
+        <li>none, one, or many <code>dc:coverage</code> properties -  the jurisdiction under which the Policy is relevant.</li>
+        <li>none or one <code>dc:replaces</code> property -  the identifier (uid) of a Policy that this Policy supersedes.</li>
+        <li>none or one <code>dc:isReplacedBy</code> property -  the identifier (uid) of a Policy that supersedes this Policy.</li>
          </ul>
          
     <p>The processing model for Policies with the above metadata properties include:</p>
@@ -1401,13 +1425,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="inhertiance">
 <h4>Policy Inheritance</h4>
 
-    <p>ODRL supports an inheritance mechanism in which a (child) Policy may inherit all the atomic Rules of one or more (parent) Policies.</p>
-       
-<p>The following property MUST be used in a child Policy that is inheriting from a parent Policy: :</p>
-
-    <ul>
-    <li><code>inheritFrom</code>: the identifier (<code>uid</code>) of the parent Polic(ies) from which this child Policy inherits from</li>
-    </ul>
+    <p>ODRL supports an inheritance mechanism in which a (child) Policy may inherit all the atomic Rules of one or more (parent) Policies.
+       The <code>inheritFrom</code> property MUST be used in a child Policy that is inheriting from a parent Policy and MAY include multiple identifiers of parent Policies.</p>
 
 
 <p>The following apply when using inheritance:</p>
@@ -1508,7 +1527,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
 <li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
 </ul>
-<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Additional <code>conflict</code> property values MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
+<p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Additional <code>conflict</code> property values MAY be defined by ODRL Profiles.</p>
 
         
 <p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
