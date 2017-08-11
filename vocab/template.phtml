@@ -267,6 +267,8 @@ function writeTerm($term)
 	{
 		$description = file_get_contents($path);
 	}
+	
+	$html = "";
 
 	$html .= "<table class='def propdef' >\n";
 	$html .= $term->propertyRow("Definition", "skos:definition");
@@ -286,18 +288,30 @@ function writeTerm($term)
     $html .= $term->propertyRow("Included By", "^odrl:includedIn");
     $html .= $term->propertyRow("Included In", "odrl:includedIn");
  
-	$html .= $term->propertyRow("Properties", "^rdfs:domain");
+	#$html .= $term->propertyRow("Properties", "^rdfs:domain");
+
 	if ($term instanceof Phpspecgen_Class) {
+		$properties = $term->inDomainOfProperties();
+		if (count($properties) > 0) {
+			$html .= "  <tr><th>Properties:</th> ".
+					  "<td>".join(', ', $properties)."</td></tr>\n";
+		}
 		$properties = $term->inheritedProperties();
-		if (count($properties) > 0)
-                        $html .= "  <tr><th>Inherited Properties:</th> ".
-							"<td>".join(', ', $properties)."</td></tr>\n";
+		if (count($properties) > 0) {
+			$html .= "  <tr><th>Inherited Properties:</th> ".
+					  "<td>".join(', ', $properties)."</td></tr>\n";
+		}
+		$properties = $term->inRangeOfProperties();
+		if (count($properties) > 0) {
+			$html .= "  <tr><th>In Range Of:</th> ".
+					  "<td>".join(', ', $properties)."</td></tr>\n";
+		}
 	}
-	$html .= $term->propertyRow("Range", "rdfs:range");
-	$html .= $term->propertyRow("In Range Of", "^rdfs:range");
-	#$html .= $term->propertyRow("TEST", "^rdfs:range/(owl:unionOf/rdf:rest*/rdf:first)*");
 	$html .= $term->propertyRow("Domain", "rdfs:domain");
-	#$html .= $term->propertyRow("In Domain Of", "^rdfs:domain");
+	$html .= $term->propertyRow("Range", "rdfs:range");
+	#$html .= $term->propertyRow("In Range Of", "^rdfs:range");
+	
+	
     $html .= $term->propertyRow('Inverse Of', 'owl:inverseOf');
     $html .= $term->propertyRow('Is Inverse Of', '^owl:inverseOf');
 	$html .= $term->propertyRow('Instances', '^rdf:type');
