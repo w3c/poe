@@ -159,9 +159,9 @@
 <ul>
 <li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
 <li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty">Duty</a> sections for more details.)</li>
-<li>A Policy MAY have none or one <code>profile</code> property to identify (via a IRI [[!rfc3987]]) the ODRL Profile(s) that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
+<li>A Policy MAY have none, one, or many <code>profile</code> properties to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 	
-<li>A Policy MAY have none or one  <code>inheritFrom</code> property to identify the parent Polic(ies) from which this child Policy inherits from. (See the <a href="#inheritance">ODRL Inheritance</a> section for more details.) </li>
+<li>A Policy MAY have none, one, or many <code>inheritFrom</code> properties to identify the parent Policy from which this child Policy inherits from. (See the <a href="#inheritance">ODRL Inheritance</a> section for more details.) </li>
 	
 	
 <li>A Policy MAY have none or one <code>conflict</code> property for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
@@ -188,7 +188,7 @@
 
      <p>An ODRL Policy of subclass <code>Set</code>:</p>
     <ul>
-        <li>MUST have one or more permission, prohibition, or obligation properties for Rules.</li>
+        <li>MUST have one and MAY have many permission, prohibition, or obligation properties for Rules.</li>
     </ul>
 	
 
@@ -222,8 +222,8 @@
     
     <p>An ODRL Policy of subclass <code>Offer</code>:</p>
     <ul>
-        <li>MUST have one or more permission, prohibition, or obligation properties for Rules.</li>
-        <li>MUST have one and MAY have many <code>assigner</code> property functional roles in the same Rules.</li>
+        <li>MUST have one and MAY have many permission, prohibition, or obligation properties for Rules.</li>
+        <li>MUST have one <code>assigner</code> property functional role in the same Rules.</li>
     </ul>
 	
 	<p>Note: See the <a href="#function">Function Property</a> section for details on the functional roles.</p>
@@ -259,9 +259,9 @@
     
     <p>An ODRL Policy of subclass <code>Agreement</code>:</p>
     <ul>
-		<li>MUST have one or more permission, prohibition, or obligation properties for Rules.</li>
-        <li>MUST have one and MAY have many <code>assigner</code> property functional roles in the same Rules.</li>
-		 <li>MUST have one and MAY have many <code>assignee</code> property functional roles in the same Rules.</li>
+		<li>MUST have one and MAY have many permission, prohibition, or obligation properties for Rules.</li>
+        <li>MUST have one <code>assigner</code> property functional role in the same Rules.</li>
+		 <li>MUST have one <code>assignee</code> property functional role in the same Rules.</li>
     </ul>
 	<p>Note: See the <a href="#function">Function Property</a> section for details on the functional roles.</p>
 	
@@ -648,7 +648,7 @@
 <li>A Rule MAY have none or one <code>uid</code> property identifier (IRI [[!rfc3987]]) to enable the Rule to be referenced by other Rules.</li>
 </ul>
 	
-	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="">Policy Rule Composition</a> and <a href="">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 <p>Explicit sub-properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
@@ -664,11 +664,11 @@
 <p>The Permission class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
     <li>A Permission MUST have one <code>target</code> property for Asset. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
-    <li>A Permission MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>
+    <li>A Permission MAY have none or one <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>
     <li>A Permission MAY have none, one, or more <code>duty</code> properties for Duty.</li>
 </ul>
 		
-	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="">Policy Rule Composition</a> and <a href="">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 	
 <p>The duty property expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid. That is, the duty property asserts a <em>pre-condition</em> between the Permission and the Duty. See the <a href="#duty-perm">Duty with a Permission</a> section for more details.</p>
@@ -707,12 +707,12 @@
 <p>The Prohibition class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
 	 <li>A Prohibition MUST have one <code>target</code> property for Asset. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
-    <li>A Prohibition MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>	
+    <li>A Prohibition MAY have none or one <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>	
     <li>A Prohibition MAY have none, one, or more <code>remedy</code> properties for Duty.</li>
 </ul>
 	
 		
-	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="">Policy Rule Composition</a> and <a href="">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 	
 <p>The remedy property expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been violated. That is, the remedy property asserts a Duty that must be fulfilled if the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
@@ -756,7 +756,7 @@
 <p>The Duty class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
      <li>A Duty MAY have none or one <code>target</code> property for Asset to indicate the Asset that is the primary subject to which the Duty directly applies. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
-	  <li>A Duty MAY have none, one, or more <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li> 
+	  <li>A Duty MAY have none or one <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li> 
 	  <li>A Duty MAY have none or one <code>consequence</code> properties for Duty.</li>
 </ul>
 	
@@ -1223,10 +1223,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="composition">
 <h4>Policy Rule Composition</h4>
              
-    <p>A Policy MAY be related to multiple Rules, and each Rule MAY be related to multiple Assets, Parties, Actions, Constraints, and Duties.</p>
-     
-    <p>At the core level, an ODRL Rule would be related to one Asset, one or more Parties, one Action, and potentially one Constraint and/or Duty, as shown in the example below. This example shows the <em>atomic</em> level of a Policy where it is an irreducible Rule (that is, not able to be reduced or further simplified).</p>
-             
+    <p>The ODRL Information Model provides the normative cardinalities for property relationships to Rules.  At the core level, an ODRL Rule would be related to one Asset, one or more Party functional roles, one Action (and potentially to Constraints and/or Duties)</p>
+
+	<p>The Policy Rules Composition permits each Rule to extend the cardinality requirements of the ODRL Information Model to support a Rule being related to multiple Assets, Parties, and Actions. The purpose is to combine common properties (in a single Rule) to express a more compound Policy. The Policy SHOULD then be processed into its normative <em>atomic</em> equivalent.</p>
+
+	  <blockquote>
+		<p> The example below shows the <em>atomic</em> level of a Policy where it is an irreducible Rule (that is, not able to be reduced or further simplified).</p>
+	</blockquote>    
 <pre id="eg23" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
@@ -1236,16 +1239,14 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
-        "assignee": "http://example.com/people/billie",
         "action": "play",
-        "constraint": "...",
-        "duty": "..."
     }]
 } 
 </pre>
 
-<p>As multiple Assets, Parties, and Actions can be expressed for each Rule, the following example shows two Assets defined for the policy:</p>
-    
+  <blockquote>	
+<p>The below example Policy includes two target Assets and two actions in the same permission Rule.</p>
+	</blockquote>
 <pre id="id24" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
@@ -1254,18 +1255,15 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "profile": "http://example.com/odrl:profile:20",
     "permission": [{
         "target": [ "http://example.com/music/1999.mp3",
-                    "http://example.com/music/PurpleRain.mp3"],
+                    "http://example.com/music/PurpleRain.mp3" ],
         "assigner": "http://example.com/org/sony-music",
-        "assignee": "http://example.com/people/billie",
-        "action": "play",
-        "constraint": "...",
-        "duty": "..."
+        "action": [ "play", "stream" ]
     }]
 }
 </pre>
-
-<p>The above example could then be reduced to two <em>atomic</em> Rules, with the two target assets appearing individually in each:</p>
-    
+ <blockquote>	
+<p>The above example can then be reduced to four <em>atomic</em> permission Rules. Each permission Rule will include a single target and a single action.</p>
+	</blockquote>	  
 <pre id="eg25" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
@@ -1275,18 +1273,22 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "permission": [{
         "target": "http://example.com/music/1999.mp3",
         "assigner": "http://example.com/org/sony-music",
-        "assignee": "http://example.com/people/billie",
-        "action": "play",
-        "constraint": "...",
-        "duty": "..."
+        "action": "play"
     },
     {
+        "target": "http://example.com/music/1999.mp3",
+        "assigner": "http://example.com/org/sony-music",
+        "action": "stream"
+    },
+	{
         "target": "http://example.com/music/PurpleRain.mp3",
         "assigner": "http://example.com/org/sony-music",
-        "assignee": "http://example.com/people/billie",
-        "action": "play",
-        "constraint": "...",
-        "duty": "..."
+        "action": "play"
+    },
+	{
+        "target": "http://example.com/music/PurpleRain.mp3",
+        "assigner": "http://example.com/org/sony-music",
+        "action": "stream"
     }]
 }
 </pre>

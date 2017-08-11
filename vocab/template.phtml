@@ -294,8 +294,10 @@ function writeTerm($term)
 							"<td>".join(', ', $properties)."</td></tr>\n";
 	}
 	$html .= $term->propertyRow("Range", "rdfs:range");
-	$html .= $term->propertyRow("In range of", "^rdfs:range");
+	$html .= $term->propertyRow("In Range Of", "^rdfs:range");
+	#$html .= $term->propertyRow("TEST", "^rdfs:range/(owl:unionOf/rdf:rest*/rdf:first)*");
 	$html .= $term->propertyRow("Domain", "rdfs:domain");
+	#$html .= $term->propertyRow("In Domain Of", "^rdfs:domain");
     $html .= $term->propertyRow('Inverse Of', 'owl:inverseOf');
     $html .= $term->propertyRow('Is Inverse Of', '^owl:inverseOf');
 	$html .= $term->propertyRow('Instances', '^rdf:type');
