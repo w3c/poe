@@ -68,15 +68,85 @@
         public function termType() {
             return 'Class';
         }
+		
+		        public function propertyList($property, $skip = null) {
+            $items = array();
+			if(!is_array($skip))
+			{
+				$skip = array();
+			}
+			$this->addPropertyList($items, $this->all($property), $skip);
+			ksort($items);
+            return $items;
+        }
+		
+		public function walkReverseList(&$list, $values, $skip, $lastProperty)
+		{
+			foreach($values as $value)
+			{
+				$k = strval($value);
+				if(in_array(strval($value), $skip))
+				{
+					continue;
+				}
+				if($value instanceof EasyRdf_Collection)
+				{
+					$union = $value->all('^owl:unionOf');
+					if (count($union) > 0) {
+						$this->walkReverseList($list, $union, $skip, $lastProperty);
+					} else {
+						$rest = $value->all('^rdf:rest');
+						$this->walkReverseList($list, $rest, $skip, $lastProperty);
+					}			
+					continue;
+				}
+                if ($value instanceof Phpspecgen_Term)
+				{
+					foreach($value->all('^'.$lastProperty) as $property) {
+						if ($property instanceof Phpspecgen_Term) {
+							array_push($list, $property->termLink());
+						}
+					}
+				}			
+			}
+		}
+		
+	public function inRangeOfProperties() {
+		$properties = array();
+		
+		foreach($this->all('^rdfs:range') as $property) {
+              	if ($property instanceof Phpspecgen_Term) {
+                    		array_push($properties, $property->termLink());
+                	}
+            	}
+		$skip = array();
+		$this->walkReverseList($properties, $this->all('^rdf:first'), $skip, "rdfs:range");
+			ksort($properties);
+			
+            return $properties;
+    }
+
+	public function inDomainOfProperties() {
+		$properties = array();
+		
+		foreach($this->all('^rdfs:domain') as $property) {
+              	if ($property instanceof Phpspecgen_Term) {
+                    		array_push($properties, $property->termLink());
+                	}
+            	}
+		$skip = array();
+		$this->walkReverseList($properties, $this->all('^rdf:first'), $skip, "rdfs:domain");
+			ksort($properties);
+			
+            return $properties;
+        }
 
         public function inheritedProperties() {
             $properties = array();
             foreach ($this->allParents() as $parent) {
-                foreach($parent->all('^rdfs:domain') as $property) {
-                    if ($property instanceof Phpspecgen_Term) {
-                        array_push($properties, $property->termLink());
-                    }
-                }
+				$parentProperties = $parent->inDomainOfProperties();
+				
+				array_merge($properties,$parentProperties);
             }
             return $properties;
         }
