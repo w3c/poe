@@ -35,8 +35,13 @@ if(count($argv) > 4)
 
 # Extra namespaces we use
 EasyRdf_Namespace::set('odrl', 'http://www.w3.org/ns/odrl/2/');
-EasyRdf_Namespace::set('oma', 'http://www.openmobilealliance.com/oma-dd/');
-EasyRdf_Namespace::set('onix', 'http://www.editeur.org/onix-pl/');
+EasyRdf_Namespace::set('skos', 'http://www.w3.org/2004/02/skos/core#');
+EasyRdf_Namespace::set('xsd', 'http://www.w3.org/2001/XMLSchema#');
+EasyRdf_Namespace::set('dcterms', 'http://purl.org/dc/terms/');
+EasyRdf_Namespace::set('vcard', 'http://www.w3.org/2006/vcard/ns#');
+EasyRdf_Namespace::set('foaf', 'http://xmlns.com/foaf/0.1/');
+EasyRdf_Namespace::set('schema', 'http://schema.org/');
+EasyRdf_Namespace::set('cc', 'https://creativecommons.org/ns#');
 
 $uri = $argv[2];
 $graph = new EasyRdf_Graph($uri);

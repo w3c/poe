@@ -118,8 +118,8 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Policy">http://www.w3.org/ns/odrl/2/Policy</a></td></tr>
 <tr><th>Note:</th> <td>A Policy may contain multiple Rules.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Agreement">Agreement</a>, <a href="#term-Assertion">Assertion</a>, <a href="#term-Offer">Offer</a>, <a href="#term-Privacy">Privacy</a>, <a href="#term-Request">Request</a>, <a href="#term-Set">Set</a>, <a href="#term-Ticket">Ticket</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-obligation">obligation</a>, <a href="#term-permission">permission</a>, <a href="#term-profile">profile</a>, <a href="#term-prohibition">prohibition</a></td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a>, <a href="#term-hasPolicy">hasPolicy</a>, <a href="#term-inheritFrom">inheritFrom</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a>, <a href="#term-obligation">obligation</a>, <a href="#term-uid">uid</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-hasPolicy">hasPolicy</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a></td></tr>
 </table>
 </section><section id="term-uid"><h3>Unique Identifier</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An unambiguous identifier</td></tr>
@@ -141,7 +141,6 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Agreement">http://www.w3.org/ns/odrl/2/Agreement</a></td></tr>
 <tr><th>Note:</th> <td>An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a>, <a href="#term-obligation">obligation</a></td></tr>
 </table>
 </section><section id="term-Offer"><h3>Offer</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assigner.</td></tr>
@@ -149,7 +148,6 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Offer">http://www.w3.org/ns/odrl/2/Offer</a></td></tr>
 <tr><th>Note:</th> <td>An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy  MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a>, <a href="#term-obligation">obligation</a></td></tr>
 </table>
 </section><section id="term-Set"><h3>Set</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset.</td></tr>
@@ -157,7 +155,6 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Set">http://www.w3.org/ns/odrl/2/Set</a></td></tr>
 <tr><th>Note:</th> <td>A Set Policy MUST contain a target Asset, and at least one Rule. A Set Policy is the default Policy subclass. The Set is aimed at scenarios where there is an open criteria for the semantics of the policy expressions and typically refined by other systems/profiles that process the information at a later time. No privileges are granted to any Party (if defined).</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a>, <a href="#term-obligation">obligation</a></td></tr>
 </table>
 </section></section><section id="ruleConcepts"><h2>Rule</h2><section id="term-Rule"><h3>Rule</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</td></tr>
@@ -165,7 +162,7 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
 <tr><th>Note:</th> <td>Rule is an abstract concept.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Duty">Duty</a>, <a href="#term-Permission">Permission</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-output">output</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-uid">uid</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
 </table>
 </section><section id="term-relation"><h3>Relation</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relation is an abstract property which creates an explicit link between an Action and an Asset.</td></tr>
@@ -173,16 +170,16 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relation">http://www.w3.org/ns/odrl/2/relation</a></td></tr>
 <tr><th>Note:</th> <td>Sub-properties of relation are used to define the nature of that link.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 </table>
 </section><section id="term-function"><h3>Function</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Function is an abstract property whose sub-properties define the functional roles which may be fulfilled by a party in relation to a Rule.</td></tr>
 <tr><th>Label:</th> <td>Function</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/function">http://www.w3.org/ns/odrl/2/function</a></td></tr>
 <tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 </table>
 </section></section><section id="assetConcepts"><h2>Asset</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A resource or a collection of resources that are the subject of a Rule.</td></tr>
@@ -190,22 +187,23 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Asset">http://www.w3.org/ns/odrl/2/Asset</a></td></tr>
 <tr><th>Note:</th> <td>The Asset entity can be any form of identifiable resource, such as data/information, content/media, applications, or services. Furthermore, it can be used to represent other Asset entities that are needed to undertake the Policy expression, such as with the Duty entity. To describe more details about the Asset, it is recommended to use Dublin Core [[dcterms]] elements or other content metadata.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-AssetCollection">AssetCollection</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-output">output</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a>, <a href="#term-partOf">partOf</a>, <a href="#term-uid">uid</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-relation">relation</a>, <a href="#term-output">output</a>, <a href="#term-target">target</a></td></tr>
 </table>
 </section><section id="term-AssetCollection"><h3>Asset Collection</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An Asset that is collection of individual resources</td></tr>
 <tr><th>Label:</th> <td>Asset Collection</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/AssetCollection">http://www.w3.org/ns/odrl/2/AssetCollection</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Asset">Asset</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-hasPolicy">hasPolicy</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-source">source</a>, <a href="#term-constraint">constraint</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-partOf">partOf</a></td></tr>
 </table>
 </section><section id="term-partOf"><h3>Part Of</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an Asset/PartyCollection that the Asset/Party is a member of.</td></tr>
 <tr><th>Label:</th> <td>Part Of</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/partOf">http://www.w3.org/ns/odrl/2/partOf</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a></td></tr>
 </table>
 </section><section id="term-source"><h3>Source</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Reference to a Asset/PartyCollection</td></tr>
@@ -219,8 +217,8 @@
 <tr><th>Label:</th> <td>Target</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/target">http://www.w3.org/ns/odrl/2/target</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 </table>
 </section><section id="term-hasPolicy"><h3>Has Target Policy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Asset is the target Asset to all the Rules.</td></tr>
@@ -228,8 +226,8 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
 <tr><th>Note:</th> <td>The Asset being identified MUST be inferred to be the target Asset of all of the Rules of the Policy.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
 </section></section><section id="partyConcepts"><h2>Party</h2><section id="term-Party"><h3>Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An entity or a collection of entities that undertake Roles in a Rule.</td></tr>
@@ -238,22 +236,23 @@
 <tr><th>Note:</th> <td>The Party entity could be a person, group of people, organisation, or agent. An agent is a person or thing that takes an active role or produces a specified effect. To describe more details about the Party, it is recommended to use W3C vCard Ontology [[vcard-rdf]] or FOAF Vocabulary [[foaf]].</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://schema.org/Organization">schema:Organization</a>, <a href="http://schema.org/Person">schema:Person</a>, <a href="http://www.w3.org/2006/vcard/ns#Agent">vcard:Agent</a>, <a href="http://www.w3.org/2006/vcard/ns#Individual">vcard:Individual</a>, <a href="http://www.w3.org/2006/vcard/ns#Organization">vcard:Organization</a>, <a href="http://xmlns.com/foaf/0.1/Agent">foaf:Agent</a>, <a href="http://xmlns.com/foaf/0.1/Organization">foaf:Organization</a>, <a href="http://xmlns.com/foaf/0.1/Person">foaf:Person</a></td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-PartyCollection">PartyCollection</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a></td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-function">function</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a>, <a href="#term-partOf">partOf</a>, <a href="#term-uid">uid</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-function">function</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
 </table>
 </section><section id="term-PartyCollection"><h3>Party Collection</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Party that is a group of individual entities</td></tr>
 <tr><th>Label:</th> <td>Party Collection</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/PartyCollection">http://www.w3.org/ns/odrl/2/PartyCollection</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Party">Party</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-assigneeOf">assigneeOf</a>, <a href="#term-assignerOf">assignerOf</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-source">source</a>, <a href="#term-constraint">constraint</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-partOf">partOf</a></td></tr>
 </table>
 </section><section id="term-partOf"><h3>Part Of</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an Asset/PartyCollection that the Asset/Party is a member of.</td></tr>
 <tr><th>Label:</th> <td>Part Of</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/partOf">http://www.w3.org/ns/odrl/2/partOf</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a></td></tr>
 </table>
 </section><section id="term-source"><h3>Source</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Reference to a Asset/PartyCollection</td></tr>
@@ -267,64 +266,62 @@
 <tr><th>Label:</th> <td>Assignee</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assignee">http://www.w3.org/ns/odrl/2/assignee</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 </table>
 </section><section id="term-assigner"><h3>Assigner</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party is the issuer of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Assigner</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assigner">http://www.w3.org/ns/odrl/2/assigner</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-function">function</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
 </table>
 </section><section id="term-assigneeOf"><h3>Assignee Of</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Party undertakes the assignee functional role.</td></tr>
 <tr><th>Label:</th> <td>Assignee Of</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assigneeOf">http://www.w3.org/ns/odrl/2/assigneeOf</a></td></tr>
 <tr><th>Note:</th> <td>When assigneeOf has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the assignee functional role of all the Rules of that Policy.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
 </section><section id="term-assignerOf"><h3>Assigner Of</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Party undertakes the assigner functional role.</td></tr>
 <tr><th>Label:</th> <td>Assigner Of</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/assignerOf">http://www.w3.org/ns/odrl/2/assignerOf</a></td></tr>
 <tr><th>Note:</th> <td>When assignerOf has been asserted between a metadata expression and an ODRL Policy, the Party being identified MUST be inferred to undertake the assigner functional role of all the Rules of that Policy.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Party">Party</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
 </section></section><section id="permissions"><h2>Permission</h2><section id="term-Permission"><h3>Permission</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The ability to perform an Action over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Permission</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Permission">http://www.w3.org/ns/odrl/2/Permission</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-duty">duty</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a></td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-permission">permission</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-duty">duty</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-permission">permission</a></td></tr>
 </table>
 </section><section id="term-permission"><h3>Has Permission</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates an individual Permission to a Policy.</td></tr>
 <tr><th>Label:</th> <td>Has Permission</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/permission">http://www.w3.org/ns/odrl/2/permission</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Permission">Permission</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Permission">Permission</a></td></tr>
 </table>
 </section></section><section id="prohibitions"><h2>Prohibition</h2><section id="term-Prohibition"><h3>Prohibition</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The inability to perform an Action over an Asset.</td></tr>
 <tr><th>Label:</th> <td>Prohibition</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Prohibition">http://www.w3.org/ns/odrl/2/Prohibition</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-remedy">remedy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a></td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-prohibition">prohibition</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-remedy">remedy</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-prohibition">prohibition</a></td></tr>
 </table>
 </section><section id="term-prohibition"><h3>Has Prohibition</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates an individual Prohibition to a Policy.</td></tr>
 <tr><th>Label:</th> <td>Has Prohibition</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/prohibition">http://www.w3.org/ns/odrl/2/prohibition</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Prohibition">Prohibition</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Prohibition">Prohibition</a></td></tr>
 </table>
 </section></section><section id="actionConcepts"><h2>Action</h2><section id="term-Action"><h3>Action</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An operation on an Asset.</td></tr>
@@ -332,32 +329,32 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Action">http://www.w3.org/ns/odrl/2/Action</a></td></tr>
 <tr><th>Note:</th> <td>Actions may be allowed by Permissions, disallowed by Prohibitions, or made mandatory by Duties.</td></tr>
 <tr><th>Parent class:</th> <td><a href="http://schema.org/Action">schema:Action</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-implies">implies</a>, <a href="#term-includedIn">includedIn</a></td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-action">action</a>, <a href="#term-implies">implies</a>, <a href="#term-includedIn">includedIn</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-includedIn">includedIn</a>, <a href="#term-implies">implies</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-includedIn">includedIn</a>, <a href="#term-implies">implies</a>, <a href="#term-action">action</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-Attribution">Attribution</a>, <a href="#term-CommericalUse">CommericalUse</a>, <a href="#term-DerivativeWorks">DerivativeWorks</a>, <a href="#term-Distribution">Distribution</a>, <a href="#term-Notice">Notice</a>, <a href="#term-Reproduction">Reproduction</a>, <a href="#term-ShareAlike">ShareAlike</a>, <a href="#term-Sharing">Sharing</a>, <a href="#term-SourceCode">SourceCode</a>, <a href="#term-acceptTracking">acceptTracking</a>, <a href="#term-adHocShare">adHocShare</a>, <a href="#term-aggregate">aggregate</a>, <a href="#term-annotate">annotate</a>, <a href="#term-anonymize">anonymize</a>, <a href="#term-append">append</a>, <a href="#term-appendTo">appendTo</a>, <a href="#term-archive">archive</a>, <a href="#term-attachPolicy">attachPolicy</a>, <a href="#term-attachSource">attachSource</a>, <a href="#term-attribute">attribute</a>, <a href="#term-commercialize">commercialize</a>, <a href="#term-compensate">compensate</a>, <a href="#term-concurrentUse">concurrentUse</a>, <a href="#term-copy">copy</a>, <a href="#term-delete">delete</a>, <a href="#term-derive">derive</a>, <a href="#term-digitize">digitize</a>, <a href="#term-display">display</a>, <a href="#term-distribute">distribute</a>, <a href="#term-ensureExclusivity">ensureExclusivity</a>, <a href="#term-execute">execute</a>, <a href="#term-export">export</a>, <a href="#term-extract">extract</a>, <a href="#term-extractChar">extractChar</a>, <a href="#term-extractPage">extractPage</a>, <a href="#term-extractWord">extractWord</a>, <a href="#term-give">give</a>, <a href="#term-grantUse">grantUse</a>, <a href="#term-include">include</a>, <a href="#term-index">index</a>, <a href="#term-inform">inform</a>, <a href="#term-install">install</a>, <a href="#term-lease">lease</a>, <a href="#term-lend">lend</a>, <a href="#term-license">license</a>, <a href="#term-modify">modify</a>, <a href="#term-move">move</a>, <a href="#term-nextPolicy">nextPolicy</a>, <a href="#term-obtainConsent">obtainConsent</a>, <a href="#term-pay">pay</a>, <a href="#term-play">play</a>, <a href="#term-present">present</a>, <a href="#term-preview">preview</a>, <a href="#term-print">print</a>, <a href="#term-read">read</a>, <a href="#term-reproduce">reproduce</a>, <a href="#term-reviewPolicy">reviewPolicy</a>, <a href="#term-secondaryUse">secondaryUse</a>, <a href="#term-sell">sell</a>, <a href="#term-share">share</a>, <a href="#term-shareAlike">shareAlike</a>, <a href="#term-stream">stream</a>, <a href="#term-synchronize">synchronize</a>, <a href="#term-textToSpeech">textToSpeech</a>, <a href="#term-transfer">transfer</a>, <a href="#term-transform">transform</a>, <a href="#term-translate">translate</a>, <a href="#term-uninstall">uninstall</a>, <a href="#term-use">use</a>, <a href="#term-watermark">watermark</a>, <a href="#term-write">write</a>, <a href="#term-writeTo">writeTo</a></td></tr>
 </table>
 </section><section id="term-action"><h3>Has Action</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The operation relating to the Asset for which the Rule is being subjected.</td></tr>
 <tr><th>Label:</th> <td>Has Action</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/action">http://www.w3.org/ns/odrl/2/action</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-includedIn"><h3>Included In</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An Action transitively asserts that another Action that encompasses its operational semantics.</td></tr>
 <tr><th>Label:</th> <td>Included In</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/includedIn">http://www.w3.org/ns/odrl/2/includedIn</a></td></tr>
 <tr><th>Note:</th> <td>The purpose is to explicitly assert that the semantics of the referenced instance of an other Action encompasses (includes) the semantics of this instance of Action. The includedIn property is transitive, and as such, the Actions form ancestor relationships.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section><section id="term-implies"><h3>Implies</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>An Action asserts that another Action is not prohibited to enable its operational semantics.</td></tr>
 <tr><th>Label:</th> <td>Implies</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/implies">http://www.w3.org/ns/odrl/2/implies</a></td></tr>
 <tr><th>Note:</th> <td>The property asserts that an instance of Action entails that the other instance of Action is not prohibited.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Action">Action</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section></section><section id="actions"><h2>Actions for Rules</h2><section id="term-use"><h3>Use</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>To use the Asset</td></tr>
@@ -379,70 +376,70 @@
 <tr><th>Label:</th> <td>Duty</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Duty">http://www.w3.org/ns/odrl/2/Duty</a></td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Rule">Rule</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-consequence">consequence</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-output">output</a></td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-consequence">consequence</a>, <a href="#term-duty">duty</a>, <a href="#term-obligation">obligation</a>, <a href="#term-remedy">remedy</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-consequence">consequence</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-duty">duty</a>, <a href="#term-obligation">obligation</a>, <a href="#term-consequence">consequence</a>, <a href="#term-remedy">remedy</a></td></tr>
 </table>
 </section><section id="term-obligation"><h3>Has Obligation</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates an individual Duty to a Policy.</td></tr>
 <tr><th>Label:</th> <td>Has Obligation</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/obligation">http://www.w3.org/ns/odrl/2/obligation</a></td></tr>
 <tr><th>Note:</th> <td>The Duty is a requirement which must be fulfilled.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 </table>
 </section><section id="term-duty"><h3>Has Duty</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates an individual Duty to a Permission..</td></tr>
 <tr><th>Label:</th> <td>Has Duty</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/duty">http://www.w3.org/ns/odrl/2/duty</a></td></tr>
 <tr><th>Note:</th> <td>A Duty is a pre-condition which must be fulfilled in order to receive the Permission.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Permission">Permission</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 </table>
 </section><section id="term-consequence"><h3>Has Consequence</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates a Duty to another Duty, the latter being a consequence of not fulfilling the former.</td></tr>
 <tr><th>Label:</th> <td>Has Consequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/consequence">http://www.w3.org/ns/odrl/2/consequence</a></td></tr>
 <tr><th>Note:</th> <td>The consequence property is utilised to express the repercussions of not fulfilling an agreed obligation (for a Policy) or duty (for a Permission).</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Duty">Duty</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 </table>
 </section><section id="term-remedy"><h3>Has Remedy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates an individual remedy Duty to a Prohibition.</td></tr>
 <tr><th>Label:</th> <td>Has Remedy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/remedy">http://www.w3.org/ns/odrl/2/remedy</a></td></tr>
 <tr><th>Note:</th> <td>The remedy property expresses an agreed Duty that must be fulfilled in case that a Prohibition has been violated by being exercised.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Prohibition">Prohibition</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 </table>
 </section></section><section id="constraints"><h2>Constraint</h2><section id="term-Constraint"><h3>Constraint</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A boolean expression that refines the applicability of a Rule or the context of a Party/Asset Collection.</td></tr>
 <tr><th>Label:</th> <td>Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-dataType">dataType</a>, <a href="#term-leftOperand">leftOperand</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-rightOperandReference">rightOperandReference</a>, <a href="#term-status">status</a>, <a href="#term-unit">unit</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-unit">unit</a>, <a href="#term-dataType">dataType</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-rightOperandReference">rightOperandReference</a>, <a href="#term-leftOperand">leftOperand</a>, <a href="#term-status">status</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-constraint"><h3>Has Constraint</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Constraints applied to a Rule, or Party/Asset Collection.</td></tr>
 <tr><th>Label:</th> <td>Has Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/constraint">http://www.w3.org/ns/odrl/2/constraint</a></td></tr>
 <tr><th>Note:</th> <td>One or more Constraints may be applied. Example: the Action play is only permitted for a certain period of time.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Constraint">Constraint</a>, <a href="#term-LogicalConstraint">LogicalConstraint</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-AssetCollection">AssetCollection</a>, <a href="#term-PartyCollection">PartyCollection</a>, <a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Constraint">Constraint</a>, <a href="#term-LogicalConstraint">LogicalConstraint</a></td></tr>
 </table>
 </section><section id="term-Operator"><h3>Operator</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Operators for constraint expressions.</td></tr>
 <tr><th>Label:</th> <td>Operator</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Operator">http://www.w3.org/ns/odrl/2/Operator</a></td></tr>
 <tr><th>Note:</th> <td>Instances of the Operator class representing relational and logical operators .</td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-operator">operator</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-operator">operator</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a></td></tr>
 </table>
 </section><section id="term-operator"><h3>Has Operator</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The operator function applied to operands of a Constraint</td></tr>
 <tr><th>Label:</th> <td>Has Operator</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/operator">http://www.w3.org/ns/odrl/2/operator</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Operator">Operator</a></td></tr>
 </table>
 </section><section id="term-RightOperand"><h3>Right Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Right operands for constraint expressions.</td></tr>
@@ -470,15 +467,15 @@
 <tr><th>Label:</th> <td>Left Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/LeftOperand">http://www.w3.org/ns/odrl/2/LeftOperand</a></td></tr>
 <tr><th>Note:</th> <td>Instances of the LeftOperand class are used as the leftOperand of a Constraint.</td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-leftOperand">leftOperand</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-leftOperand">leftOperand</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-absolutePosition">absolutePosition</a>, <a href="#term-absoluteSize">absoluteSize</a>, <a href="#term-absoluteSpatialPosition">absoluteSpatialPosition</a>, <a href="#term-absoluteTemporalPosition">absoluteTemporalPosition</a>, <a href="#term-count">count</a>, <a href="#term-dateTime">dateTime</a>, <a href="#term-delayPeriod">delayPeriod</a>, <a href="#term-deliveryChannel">deliveryChannel</a>, <a href="#term-device">device</a>, <a href="#term-elapsedTime">elapsedTime</a>, <a href="#term-event">event</a>, <a href="#term-fileFormat">fileFormat</a>, <a href="#term-industry">industry</a>, <a href="#term-language">language</a>, <a href="#term-media">media</a>, <a href="#term-meteredTime">meteredTime</a>, <a href="#term-payAmount">payAmount</a>, <a href="#term-percentage">percentage</a>, <a href="#term-product">product</a>, <a href="#term-purpose">purpose</a>, <a href="#term-recipient">recipient</a>, <a href="#term-relativePosition">relativePosition</a>, <a href="#term-relativeSize">relativeSize</a>, <a href="#term-relativeSpatialPosition">relativeSpatialPosition</a>, <a href="#term-relativeTemporalPosition">relativeTemporalPosition</a>, <a href="#term-resolution">resolution</a>, <a href="#term-spatial">spatial</a>, <a href="#term-spatialCoordinates">spatialCoordinates</a>, <a href="#term-system">system</a>, <a href="#term-systemDevice">systemDevice</a>, <a href="#term-timeInterval">timeInterval</a>, <a href="#term-unitOfCount">unitOfCount</a>, <a href="#term-version">version</a>, <a href="#term-virtualLocation">virtualLocation</a></td></tr>
 </table>
 </section><section id="term-leftOperand"><h3>Has Left Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The left operand in a constraint expression.</td></tr>
 <tr><th>Label:</th> <td>Has Left Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/leftOperand">http://www.w3.org/ns/odrl/2/leftOperand</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-unit"><h3>Unit</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The unit of measurement of the value of the rightOperand or rightOperandReference of a Constraint.</td></tr>
@@ -491,8 +488,8 @@
 <tr><th>Label:</th> <td>Datatype</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dataType">http://www.w3.org/ns/odrl/2/dataType</a></td></tr>
 <tr><th>Note:</th> <td>In RDF encodings, use of the rdf:datatype MUST be used. In JSON-LD encoding, the use of @type MUST be used.</td></tr>
-<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Datatype">rdfs:Datatype</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
+<tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Datatype">rdfs:Datatype</a></td></tr>
 </table>
 </section><section id="term-status"><h3>Status</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>the current value generated from the leftOperand action.</td></tr>
@@ -504,7 +501,8 @@
 <tr><th>Definition:</th> <td>A logical expression that refines the applicability of a Rule or the context of a Party/Asset Collection.</td></tr>
 <tr><th>Label:</th> <td>Logical Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/LogicalConstraint">http://www.w3.org/ns/odrl/2/LogicalConstraint</a></td></tr>
-<tr><th>Properties:</th> <td><a href="#term-operand">operand</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-operand">operand</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-constraint">constraint</a></td></tr>
 </table>
 </section><section id="term-operand"><h3>Operand</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Operand is an abstract property for a logical relationship.</td></tr>
@@ -619,7 +617,7 @@
 <tr><th>Label:</th> <td>Conflict Strategy Preference</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/ConflictTerm">http://www.w3.org/ns/odrl/2/ConflictTerm</a></td></tr>
 <tr><th>Note:</th> <td>Instances of ConflictTerm describe strategies for resolving conflicts.</td></tr>
-<tr><th>In Range Of:</th> <td><a href="#term-conflict">conflict</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-conflict">conflict</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-invalid">invalid</a>, <a href="#term-perm">perm</a>, <a href="#term-prohibit">prohibit</a></td></tr>
 </table>
 </section><section id="term-conflict"><h3>Handle Policy Conflicts</h3><table class='def propdef' >
@@ -627,8 +625,8 @@
 <tr><th>Label:</th> <td>Handle Policy Conflicts</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/conflict">http://www.w3.org/ns/odrl/2/conflict</a></td></tr>
 <tr><th>Note:</th> <td>If no strategy is specified, the default is invalid.</td></tr>
-<tr><th>Range:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-ConflictTerm">ConflictTerm</a></td></tr>
 </table>
 </section><section id="term-perm"><h3>Prefer Permissions</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Permissions take preference over prohibitions.</td></tr>
@@ -656,8 +654,8 @@
 <tr><th>Label:</th> <td>Inherits From</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/inheritFrom">http://www.w3.org/ns/odrl/2/inheritFrom</a></td></tr>
 <tr><th>Note:</th> <td>The child policy will inherit Rules from the parent policy</td></tr>
-<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Policy">Policy</a></td></tr>
 </table>
 </section></section>    
     
@@ -672,7 +670,6 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Assertion">http://www.w3.org/ns/odrl/2/Assertion</a></td></tr>
 <tr><th>Note:</th> <td>For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a>, <a href="#term-obligation">obligation</a></td></tr>
 </table>
 </section><section id="term-Privacy"><h3>Privacy Policy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that expresses a Rule over an Asset containing personal information.</td></tr>
@@ -680,7 +677,6 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Privacy">http://www.w3.org/ns/odrl/2/Privacy</a></td></tr>
 <tr><th>Note:</th> <td>A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a>, <a href="#term-obligation">obligation</a></td></tr>
 </table>
 </section><section id="term-Request"><h3>Request</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that proposes a Rule over an Asset from an assignee.</td></tr>
@@ -688,7 +684,6 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Request">http://www.w3.org/ns/odrl/2/Request</a></td></tr>
 <tr><th>Note:</th> <td>A Request Policy  MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a>, <a href="#term-obligation">obligation</a></td></tr>
 </table>
 </section><section id="term-Ticket"><h3>Ticket</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A Policy that grants the holder a Rule over an Asset from an assigner.</td></tr>
@@ -696,15 +691,14 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Ticket">http://www.w3.org/ns/odrl/2/Ticket</a></td></tr>
 <tr><th>Note:</th> <td>A Ticket Policy MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage.</td></tr>
 <tr><th>Parent class:</th> <td><a href="#term-Policy">Policy</a></td></tr>
-  <tr><th>Inherited Properties:</th> <td><a href="#term-conflict">conflict</a>, <a href="#term-permission">permission</a>, <a href="#term-prohibition">prohibition</a>, <a href="#term-inheritFrom">inheritFrom</a>, <a href="#term-profile">profile</a>, <a href="#term-obligation">obligation</a></td></tr>
 </table>
 </section></section><section id="assetRelationsCommon"><h2>Asset Relations</h2><section id="term-output"><h3>Output</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The output property specifies the Asset which is created from the output of the Action.</td></tr>
 <tr><th>Label:</th> <td>Output</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/output">http://www.w3.org/ns/odrl/2/output</a></td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-relation">relation</a></td></tr>
-<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 </table>
 </section></section><section id="partyRolesCommon"><h2>Party Functions</h2><section id="term-attributedParty"><h3>Attributed Party</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The Party to be attributed.</td></tr>
