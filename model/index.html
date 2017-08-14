@@ -158,7 +158,7 @@
 <p>The Policy class has the following properties:</p>
 <ul>
 <li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
-<li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty">Duty</a> sections for more details.)</li>
+<li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty-policy">Obligation</a> sections for more details.)</li>
 <li>A Policy MAY have none, one, or many <code>profile</code> properties to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 	
 <li>A Policy MAY have none, one, or many <code>inheritFrom</code> properties to identify the parent Policy from which this child Policy inherits from. (See the <a href="#inheritance">ODRL Inheritance</a> section for more details.) </li>
@@ -770,12 +770,12 @@
 		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
 	</ul>
   
-<p>The consequence property is utilised to express the repercussions of not fulfilling an agreed obligation or duty. If a Policy obligation fails to be fulfilled, then this will result in the consequence Duty <strong>also</strong> becoming effective, meaning that both Duties are now effective and MUST be fulfilled. Similarly if a Permission duty fails to be fulfilled, or the Permission has been exercised without evidence of fulfilling the duty.
+<p>The consequence property is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duty <strong>also</strong> becoming a new requirement, meaning that the original obligation or duty, as well as the consequence Duty MUST all be fulfilled. For example, if an obligation to provide data by a certain date is not fullfilled, the a consequence of a $100 fine is payable as well.
 </p>
 
 <p>Note that the consequence property MUST NOT be used on a Duty that is already a consequence for a Permission duty or Policy obligation.</p>
 	
-<p>Even though a Duty is mandatory when effective (eg, agreed as a pre-condition for a Permission or activated in violation of a Prohibition), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a compensation payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
+<p>Even though a Duty is mandatory (eg, agreed as a pre-condition for a Permission or activated in violation of a Prohibition), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a compensation payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
 
 	</section>
 	
