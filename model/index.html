@@ -601,7 +601,7 @@
         
         
      <p>       
-         The <code>implies</code> property asserts that an instance of Action entails that the other instance of Action is not prohibited. The <code>implies</code> property can be used for Action instances which have no <code>includedIn</code> relationship.
+         The <code>implies</code> property asserts that an instance of Action entails that the other instance of Action is not prohibited.  The <code>implies</code> property can establish such an assertion between two Action instances if they don't have an <code>includedIn</code> relationship.
          
          For example, if a <code>share</code> Action implies explicitly the <code>distribute</code> Action, then if <code>share</code> is permitted in a Policy and <code>distribute</code> is prohibited in the same Policy - and both Actions apply to the same target Asset - this would cause a conflict in the Policy. If an implied other action is not prohibited then this will not cause a conflict.
          (See <a href="#conflict">Policy Conflict Strategy</a> for more details.)
