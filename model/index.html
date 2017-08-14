@@ -853,7 +853,7 @@
 	
 	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the referring Permission.</p>   
 	
-	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be fulfilled for the Permission to be in effect. If several Permissions refer to a single Duty, then the Duty only has to be fulfilled <em>once</em> for all the Permissions to be effective.</p>
+	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be fulfilled for the Permission to be in effect. If several Permissions refer to the same Duty (via its <code>uid</code> property), then the Duty only has to be fulfilled <em>once</em> for all the Permissions to be effective.</p>
 
 
 	
@@ -894,10 +894,9 @@
 	</section>
 	
 <section id="duty-conseq">
-<h3>Consequence property with a Permission's Duty</h3>
+<h3>Consequence property with a Permission Duty</h3>
 
-<P>A duty may also include a consequence of not fulfilling that duty. A consequence is a relationship between a Duty and Permission's Duty. If the duty is not fulfilled, or the Permission exercised without fulfilling the duty, then the consequence Duty MUST also be fulfilled. Note that if there is no consequence property for a Duty, then the Duty MUST be fulfilled before the Permission can be exercised.</P>
-	
+	<P>A duty of a Permission MAY include a consequence Duty of not fulfilling that duty, or the Permission exercised without fulfilling the duty. See the <a href="#duty">Duty Class </a> section for more about the consequence property.</P>
 	
 <blockquote>
 <p>Example Use Case: The below Agreement between assigner <code>http://example.com/org:99</code> and assignee <code>http://example.com/person:88</code> allows the assignee to distribute the Asset <code>http://example.com/data:77</code> under the pre-condition they attribute the asset to Party <code>http://australia.gov.au/</code>. If the assignee does not fulfill the duty, or distributes the asset without fulfilling the duty, then the consequence will be that they will also be tracked by <code>http://example.com/dept:100</code>.</p>
@@ -933,13 +932,12 @@
 <section id="duty-prohib">
 <h3>Remedy property with a Prohibition</h3>
 	
-<p>The remedy property expresses an agreed Duty that MUST be fulfilled in case that a Prohibition has been violated by being exercised. If the Prohibition is exercised, then the remedy Duty MUST be fulfilled. </p>
+<p>The remedy property expresses an agreed Duty that MUST be fulfilled in case that a Prohibition has been violated by being exercised. If the Prohibition is exercised, then the remedy Duty MUST be fulfilled.</p>
 	
-	<p>Note that if there is no remedy property for a Prohibition, then the Prohibition MUST NOT be  exercised. A remedy MUST NOT refer to a Duty that includes a consequence Duty.</p>
+	<p>Note that if there is no remedy property declared for a Prohibition, then the Prohibition MUST NOT be  exercised. A remedy MUST NOT refer to a Duty that includes a consequence Duty.</p>
 	
 	<p>Since the Duty Rule is subordinate to a Prohibition Rule (related via the remedy property) then when the Duty has been fulfilled, the Prohibition rule is then in effect (not the Duty rule).</p>
 	
-	<p>Note that the ODRL Information Model supports mechanisms to address the infringement of Prohibitions with the remedy feature, and such transgressions should not be considered as negative actions by the assignee.</p>
 	
 		<blockquote>
 <p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/org:99</code> prohibits the assignee to modify the Asset <code>http://example.com/data:77</code>. If the assignee does actually modify the target asset, then the remedy will be that the MUST delete the target asset <code>http://example.com/data:77</code>.</p>
