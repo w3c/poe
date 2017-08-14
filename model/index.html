@@ -652,7 +652,7 @@
 	
 <p>Explicit sub-properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
-<p>For a Rule to become effective, it MUST be valid. That is, all of it's Constraints MUST be satisfied and any applicable relationship to a Duty MUST be fulfilled.</p>
+<p>For a Rule to become effective, all of it's Constraints MUST be satisfied and any applicable relationship to a Duty MUST be fulfilled.</p>
 
     
 <section id="permission">
@@ -671,9 +671,9 @@
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 	
-<p>The duty property expresses an agreed obligation that MUST be fulfilled in order for the Permission to be valid. That is, the duty property asserts a <em>pre-condition</em> between the Permission and the Duty. See the <a href="#duty-perm">Duty with a Permission</a> section for more details.</p>
+<p>The duty property expresses an agreed obligation that MUST be fulfilled in order for the Permission to be in effect. That is, the duty property asserts a <em>pre-condition</em> between the Permission and the Duty. See the <a href="#duty-perm">Duty with a Permission</a> section for more details.</p>
 	
-<p>For a Permission to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Permission's duties MUST be fulfilled.</p>
+<p>For a Permission to become effective, all it's constraints MUST be satisfied and all of the Permission's duties MUST be fulfilled.</p>
     
 <blockquote>   
 <p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play Permission for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
@@ -718,7 +718,7 @@
 <p>The remedy property expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been violated. That is, the remedy property asserts a Duty that must be fulfilled if the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
 	
 <p>	
-	For a Prohibition to become effective, it MUST be valid (i.e., all it's constraints MUST be satisfied) and all of the Prohibition's remedies MUST be fulfilled (if the Prohibition was violated).</p>
+	For a Prohibition to become effective, all it's constraints MUST be satisfied and all of the Prohibition's remedies MUST be fulfilled (if the Prohibition was violated).</p>
 
     <blockquote>
 <p>Example Use Case: The assigner of a target Asset <code>http://example.com/photoAlbum:55</code> expresses an Agreement Policy with both a Permission and a Prohibition. The assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission <code>display</code> to the assignee Party <code>http://example.com/assignee:55</code> at the same time a Prohibition to <code>archive</code> the target Asset. Additionally, in case of any conflicts in the Policy (e.g., between Permissions and Prohibitions), the <code>conflict</code> property of the <code>Policy</code> is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
@@ -846,19 +846,19 @@
 <section id="duty-perm">
 <h3>Duty property with a Permission</h3>
 
-	<p>A Duty MAY be specified as a pre-condition that requires fulfillment in order to make a Permission effective using the duty property from the Permission to the Duty. In this case the Permission is valid (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
+	<p>A Duty MAY be specified as a pre-condition that requires fulfillment in order to make a Permission effective using the duty property from the Permission to the Duty. In this case the Permission is in effect (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
 	
 	<p>Since the Duty Rule is subordinate to a Permission Rule (related via the duty property) then 
 		when the Duty has been fulfilled, the Permission rule is then in effect (not the Duty rule).</p>
 	
 	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the referring Permission.</p>   
 	
-	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be satisfied for the Permission to be valid. If several Permissions refer to a single Duty, then the Duty only has to be satisfied <em>once</em> for all the Permissions to be valid.</p>
+	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be fulfilled for the Permission to be in effect. If several Permissions refer to a single Duty, then the Duty only has to be fulfilled <em>once</em> for all the Permissions to be effective.</p>
 
 
 	
 	<blockquote>
-<p>Example Use Case: The Party <code>http://example.com/assigner:sony</code> makes an Offer to play the music file <code>http://example.com/music/1999.mp3</code>. There are two Duties that both must be satisfied for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of <code>policyUsage</code> must not have occurred yet (that is, the payment is made before the policy is exercised).
+<p>Example Use Case: The Party <code>http://example.com/assigner:sony</code> makes an Offer to play the music file <code>http://example.com/music/1999.mp3</code>. There are two Duties that both must be fulfilled for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of <code>policyUsage</code> must not have occurred yet (that is, the payment is made before the policy is exercised).
 </p>
 </blockquote>
 
