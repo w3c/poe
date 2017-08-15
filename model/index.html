@@ -159,7 +159,7 @@
 <p>The Policy class has the following properties:</p>
 <ul>
 <li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
-<li>A Policy MUST have one and MAY have many <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty-policy">Obligation</a> sections for more details.)</li>
+<li>A Policy MUST have at least one <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty-policy">Obligation</a> sections for more details.)</li>
 <li>A Policy MAY have none, one, or many <code>profile</code> properties to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 	
 <li>A Policy MAY have none, one, or many <code>inheritFrom</code> properties to identify the parent Policy from which this child Policy inherits from. (See the <a href="#inheritance">ODRL Inheritance</a> section for more details.) </li>
@@ -189,7 +189,7 @@
 
      <p>An ODRL Policy of subclass <code>Set</code>:</p>
     <ul>
-        <li>MUST have one and MAY have many permission, prohibition, or obligation properties for Rules.</li>
+        <li>MUST have at least one permission, prohibition, or obligation properties for Rules.</li>
     </ul>
 	
 
@@ -223,7 +223,7 @@
     
     <p>An ODRL Policy of subclass <code>Offer</code>:</p>
     <ul>
-        <li>MUST have one and MAY have many permission, prohibition, or obligation properties for Rules.</li>
+        <li>MUST have at least one permission, prohibition, or obligation properties for Rules.</li>
         <li>MUST have one <code>assigner</code> property functional role in the same Rules.</li>
     </ul>
 	
@@ -260,7 +260,7 @@
     
     <p>An ODRL Policy of subclass <code>Agreement</code>:</p>
     <ul>
-		<li>MUST have one and MAY have many permission, prohibition, or obligation properties for Rules.</li>
+		<li>MUST have at least one permission, prohibition, or obligation properties for Rules.</li>
         <li>MUST have one <code>assigner</code> property functional role in the same Rules.</li>
 		 <li>MUST have one <code>assignee</code> property functional role in the same Rules.</li>
     </ul>
@@ -305,7 +305,7 @@
 <ul>
 <li>An Asset SHOULD have one <code>uid</code> property to identify the Asset using an IRI [[!rfc3987]].</li>
 	
-	<li>An Asset MUST have one and MAY have many <code><em>relation</em></code> sub-properties for Asset indicating the link to the Asset.</li>
+	<li>An Asset MUST have at least one <code><em>relation</em></code> sub-properties for Asset indicating the link to the Asset.</li>
 	
     <li>An Asset MAY have none, one, or many <code>partOf</code> properties to identify (IRI [[!rfc3987]]) an AssetCollection that this Asset is in a collection of.</li>
 <li>An AssetCollection MAY have none, one, or many <code>constraint</code> properties for Constraint. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
@@ -434,7 +434,7 @@
 <p>The Party class has the following properties:</p>
 <ul>
 <li>A Party SHOULD have one <code>uid</code> property to identify the Party using an IRI [[!rfc3987]].</li>
-<li>A Party MUST have one and MAY have many <code><em>function</em></code> sub-properties for Party indicating the role undertaken by the Party.</li>
+<li>A Party MUST have at least one <code><em>function</em></code> sub-properties for Party indicating the role undertaken by the Party.</li>
       <li>A Party MAY have none, one, or many <code>partOf</code> properties to identify (IRI [[!rfc3987]]) a PartyCollection that this Party is a member of.</li>
 <li>A PartyCollection MAY have none, one, or many <code>constraint</code> properties for Constraint. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
     </ul>
@@ -762,7 +762,7 @@
 </ul>
 	
 		
-	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="">Policy Rule Composition</a> and <a href="">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
     
 	<p>The Duty class also has these additional requirements:</p>
