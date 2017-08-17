@@ -83,7 +83,7 @@
            <dt><dfn>ODRL Validator</dfn></dt>
 	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model requirements.</dd>
            <dt><dfn>ODRL Evaluator</dfn></dt>
-	          <dd>A system that determines whether the permissions and prohibitions of an ODRL Policy expression are in effect.</dd>
+	          <dd>A system that determines whether the permissions, obligations, and prohibitions of an ODRL Policy expression are in effect.</dd>
 		    <dt><dfn>ODRL Core Vocabulary</dfn></dt>
 	          <dd>The set of terms that are represented by the ODRL Information Model.</dd>
 		     <dt><dfn>ODRL Profile</dfn></dt>
@@ -160,14 +160,14 @@
 
 <p>The Policy class has the following properties:</p>
 <ul>
-<li>A Policy MUST have one <code>uid</code> property to identify (via a IRI [[!rfc3987]]) of the Policy.</li>
-<li>A Policy MUST have at least one <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> properties for Rules.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty-policy">Obligation</a> sections for more details.)</li>
-<li>A Policy MAY have none, one, or many <code>profile</code> properties to identify (via a IRI [[!rfc3987]]) the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
+<li>A Policy MUST have one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Policy.</li>
+<li>A Policy MUST have at least one <code>permission</code>, <code>prohibition</code>, or <code>obligation</code> property values of type Rule.  (See the <a href="#permission">Permission</a>,  <a href="#prohibition">Prohibition</a>, and <a href="#duty-policy">Obligation</a> sections for more details.)</li>
+<li>A Policy MAY have none, one, or many <code>profile</code> property values (of type IRI [[!rfc3987]]) to identify the ODRL Profile that this Policy conforms to. (See the <a href="#profile">ODRL Profiles</a> section for more details.)</li>
 	
-<li>A Policy MAY have none, one, or many <code>inheritFrom</code> properties to identify the parent Policy from which this child Policy inherits from. (See the <a href="#inheritance">ODRL Inheritance</a> section for more details.) </li>
+<li>A Policy MAY have none, one, or many <code>inheritFrom</code> property values (of type IRI [[!rfc3987]]) to identify the parent Policy from which this child Policy inherits from. (See the <a href="#inheritance">ODRL Inheritance</a> section for more details.) </li>
 	
 	
-<li>A Policy MAY have none or one <code>conflict</code> property for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
+<li>A Policy MAY have none or one <code>conflict</code> property values for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
 
 </ul>
 	<p>An ODRL Policy must either:</p>
@@ -191,7 +191,7 @@
 
      <p>An ODRL Policy of subclass <code>Set</code>:</p>
     <ul>
-        <li>MUST have at least one permission, prohibition, or obligation properties for Rules.</li>
+        <li>MUST have at least one permission, prohibition, or obligation property value of type Rules.</li>
     </ul>
 	
 
@@ -225,8 +225,8 @@
     
     <p>An ODRL Policy of subclass <code>Offer</code>:</p>
     <ul>
-        <li>MUST have at least one permission, prohibition, or obligation properties for Rules.</li>
-        <li>MUST have one <code>assigner</code> property functional role in the same Rules.</li>
+        <li>MUST have at least one permission, prohibition, or obligation property values  of type Rules.</li>
+        <li>MUST have one <code>assigner</code> property value (of type Party) to indicate the functional role in the same Rules.</li>
     </ul>
 	
 	<p>Note: See the <a href="#function">Function Property</a> section for details on the functional roles.</p>
@@ -262,9 +262,9 @@
     
     <p>An ODRL Policy of subclass <code>Agreement</code>:</p>
     <ul>
-		<li>MUST have at least one permission, prohibition, or obligation properties for Rules.</li>
-        <li>MUST have one <code>assigner</code> property functional role in the same Rules.</li>
-		 <li>MUST have one <code>assignee</code> property functional role in the same Rules.</li>
+		<li>MUST have at least one permission, prohibition, or obligation property values of type Rules.</li>
+		<li>MUST have one <code>assigner</code> property value (of type Party) to indicate the functional role in the same Rules.</li>
+        <li>MUST have one <code>assignee</code> property value (of type Party) to indicate the functional role in the same Rules.</li>
     </ul>
 	<p>Note: See the <a href="#function">Function Property</a> section for details on the functional roles.</p>
 	
@@ -305,12 +305,12 @@
 <p>The Asset class has the following properties:</p>
     
 <ul>
-<li>An Asset SHOULD have one <code>uid</code> property to identify the Asset using an IRI [[!rfc3987]].</li>
+<li>An Asset SHOULD have one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Asset.</li>
 	
-	<li>An Asset MUST have at least one <code><em>relation</em></code> sub-properties for Asset indicating the link to the Asset.</li>
+	<li>An Asset MUST have at least one <code><em>relation</em></code> sub-property value (of type Asset) indicating the explict link relationship to the Asset.</li>
 	
-    <li>An Asset MAY have none, one, or many <code>partOf</code> properties to identify (IRI [[!rfc3987]]) an AssetCollection that this Asset is in a collection of.</li>
-<li>An AssetCollection MAY have none, one, or many <code>constraint</code> properties for Constraint. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
+    <li>An Asset MAY have none, one, or many <code>partOf</code> property values (of type AssetCollection) to identify the AssetCollection that this Asset is in a collection of.</li>
+<li>An AssetCollection MAY have none, one, or many <code>constraint</code> property values of type Constraint. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
 </ul>
     
     <p class="note">If an Asset does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
@@ -435,10 +435,10 @@
     
 <p>The Party class has the following properties:</p>
 <ul>
-<li>A Party SHOULD have one <code>uid</code> property to identify the Party using an IRI [[!rfc3987]].</li>
-<li>A Party MUST have at least one <code><em>function</em></code> sub-properties for Party indicating the role undertaken by the Party.</li>
-      <li>A Party MAY have none, one, or many <code>partOf</code> properties to identify (IRI [[!rfc3987]]) a PartyCollection that this Party is a member of.</li>
-<li>A PartyCollection MAY have none, one, or many <code>constraint</code> properties for Constraint. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
+<li>A Party SHOULD have one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Party.</li>
+<li>A Party MUST have at least one <code><em>function</em></code> sub-property values (of type Party) indicating the functional role undertaken by the Party.</li>
+   <li>A Party MAY have none, one, or many <code>partOf</code> property values (of type PartyCollection) to identify the PartyCollection that this Party is a member of.</li>
+<li>A PartyCollection MAY have none, one, or many <code>constraint</code> property values of type Constraint. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
     </ul>
 
     <p class="note">If a Party does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
@@ -588,8 +588,8 @@
     
     <p>The Action class has the following properties:</p>
 <ul>
-<li>An Action (except for use and transfer) MUST have one <code>includedIn</code> property for an Action to transitively assert this Action that encompasses its operational semantics.</li>
-<li>An Action MAY have none, one or more <code>implies</code> properties for an Action to assert this Action is not prohibited to enable its operational semantics.</li>    
+<li>An Action (except for use and transfer) MUST have one <code>includedIn</code> property value (of type Action) to transitively assert this Action that encompasses its operational semantics.</li>
+<li>An Action MAY have none, one or more <code>implies</code> property values (of type Action) to assert this Action is not prohibited to enable its operational semantics.</li>    
 </ul>
     
     <p>
@@ -644,12 +644,12 @@
 
 <p>The Rule class has the following properties:</p>
 <ul>
-<li>A Rule MUST have one <code>action</code> property for Action.</li>
-	<li>A Rule MAY have none or one <code><em>relation</em></code> sub-properties for Asset.</li>
-	<li>A Rule MAY have none, one or many <code><em>function</em></code> sub-properties for Party.</li>
-	<li>A Rule MAY have none, one or many <code><em>failure</em></code> sub-properties for Rule.</li>
-<li>A Rule MAY have none, one or many <code>constraint</code> properties for Constraint/LogicalConstraint.</li>
-<li>A Rule MAY have none or one <code>uid</code> property identifier (IRI [[!rfc3987]]) to enable the Rule to be referenced by other Rules.</li>
+<li>A Rule MUST have one <code>action</code> property value of type Action.</li>
+	<li>A Rule MAY have none or one <code><em>relation</em></code> sub-property values of type Asset.</li>
+	<li>A Rule MAY have none, one or many <code><em>function</em></code> sub-property values of type Party.</li>
+	<li>A Rule MAY have none, one or many <code><em>failure</em></code> sub-property values of type Rule.</li>
+<li>A Rule MAY have none, one or many <code>constraint</code> property values of type Constraint/LogicalConstraint.</li>
+<li>A Rule MAY have none or one <code>uid</code> property values (of type IRI [[!rfc3987]]) to identify the Rule so it MAY be referenced by other Rules.</li>
 </ul>
 	
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
@@ -667,9 +667,9 @@
 
 <p>The Permission class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
-    <li>A Permission MUST have one <code>target</code> property for Asset. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
-    <li>A Permission MAY have none or one <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>
-    <li>A Permission MAY have none, one, or more <code>duty</code> properties for Duty.</li>
+    <li>A Permission MUST have one <code>target</code> property value of type Asset. (Other <code><i>relation</i></code> sub-properties MAY be used.)</li>
+    <li>A Permission MAY have none or one <code>assigner</code> and/or <code>assignee</code> property values (of type Party) for functional roles. (Other <code><i>function</i></code> sub-properties  MAY be used.)</li>
+    <li>A Permission MAY have none, one, or more <code>duty</code> property values of type Duty.</li>
 </ul>
 		
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
@@ -710,9 +710,9 @@
     
 <p>The Prohibition class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
-	 <li>A Prohibition MUST have one <code>target</code> property for Asset. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
-    <li>A Prohibition MAY have none or one <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li>	
-    <li>A Prohibition MAY have none, one, or more <code>remedy</code> properties for Duty.</li>
+	 <li>A Prohibition MUST have one <code>target</code> property value of type Asset. (Other <code><i>relation</i></code> sub-properties MAY be used.)</li>
+    <li>A Prohibition MAY have none or one <code>assigner</code> and/or <code>assignee</code> property values (of type Party) for functional roles. (Other <code><i>function</i></code> sub-properties MAY be used.)</li>	
+    <li>A Prohibition MAY have none, one, or more <code>remedy</code> property values of type Duty.</li>
 </ul>
 	
 		
@@ -759,9 +759,9 @@
 	
 <p>The Duty class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
-     <li>A Duty MAY have none or one <code>target</code> property for Asset to indicate the Asset that is the primary subject to which the Duty directly applies. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
-	  <li>A Duty MAY have none or one <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li> 
-	  <li>A Duty MAY have none, one or many <code>consequence</code> properties for Duty.</li>
+     <li>A Duty MAY have none or one <code>target</code> property values (of type Asset)  to indicate the Asset that is the primary subject to which the Duty directly applies. (Other <code><i>relation</i></code> sub-properties  MAY be used.)</li>
+	  <li>A Duty MAY have none or one <code>assigner</code> and/or <code>assignee</code> property values (of type Party) for functional roles. (Other <code><i>function</i></code> sub-properties MAY be used.)</li> 
+	  <li>A Duty MAY have none, one or many <code>consequence</code> property values of type Duty.</li>
 </ul>
 	
 		
@@ -984,25 +984,29 @@
 <section id="constraint-class">
 <h3>Constraint Class</h3>
         
-<p>A Constraint class is used for expressions which compare two operands (which are not constraints) by one relational operator. If the  expression evaluates to <strong>true</strong> the Constraint is satisfied.
+<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. If the  expression evaluates to <strong>true</strong> the Constraint is satisfied.
  The Constraint class formulates a comparison expressions, such as, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
 </p>
        
 <p>The Constraint class has the following properties:</p>
 <ul>
-<li>A Constraint MUST have one <code>leftOperand</code> property for a Left Operand.</li>
-<li>A Constraint MUST have one <code>operator</code> property for a relational Operator.</li>
-<li>A Constraint MUST have either one <code>rightOperand</code> property for a right operand value (literal or IRI [[!rfc3987]]) or one <code>rightOperandReference</code> property for an IRI [[!rfc3987]] reference to a right operand value.</li>
-<li>A Constraint MAY have none or one <code>dataType</code> property for the data type of the rightOperand/Reference.</li>
-<li>A Constraint MAY have none or one <code>unit</code> property for the unit value of the rightOperand/Reference.</li>
-<li>A Constraint MAY have none or one <code>status</code> property for the current value generated from the leftOperand action.</li>
+<li>A Constraint MUST have one <code>leftOperand</code> property value of type LeftOperand.</li>
+<li>A Constraint MUST have one <code>operator</code> property value of type Operator.</li>
+<li>A Constraint MUST have either:
+	<ul>
+	<li>one <code>rightOperand</code> property value of type literal, IRI [[!rfc3987]], or RightOperand; or,</li>
+	<li>one <code>rightOperandReference</code> property value (of type IRI [[!rfc3987]]) for a reference to a right operand value.</li>
+	</ul>
+<li>A Constraint MAY have none or one <code>dataType</code> property value for the data type of the rightOperand/Reference.</li>
+<li>A Constraint MAY have none or one <code>unit</code> property value for the unit value of the rightOperand/Reference.</li>
+<li>A Constraint MAY have none or one <code>status</code> property value for the current value generated from the leftOperand action.</li>
 </ul>     
     
-<p>The <code>leftOperand</code> MUST clearly be semantically <strong>defined</strong> to indicate the subject of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
+<p>The <code>leftOperand</code> property values are defined as instances of the LeftOperand class. The <code>leftOperand</code> instances MUST clearly be semantically <strong>defined</strong> to indicate the subject of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
     
-<p>The <code>operator</code> identifies the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
+<p>The <code>operator</code> property values are defined as instances of the Operator class. The <code>operator</code> instances identify the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
-<p>The <code>rightOperand</code> identifies the right operand of the logic expression. The <code>rightOperand</code> is the value (a literal or IRI) of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Constraint.</p>
+<p>The <code>rightOperand</code> property values are defined as instances of the RightOperand class, or IRIs, or Literal values. The <code>rightOperand</code> is the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Constraint.</p>
 
     <p><blockquote>
 The <code>rightOperand</code> represents a value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced to obtain the value. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the  expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the expression.
@@ -1076,7 +1080,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
       
 <p>The Logical Constraint class has the following properties:</p>
 <ul>
-<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing constraints to be compared.</li>
+<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing Constraint types.</li>
 </ul>    
     
 <p>An ODRL validator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
@@ -1385,13 +1389,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
          
          <p>The following Dublin Core Metadata Terms [[dcterms]] properties SHOULD be used:</p>
             <ul>
-         <li>none, one, or many <code>dc:creator</code> properties - the individual, agent, or organisation that authored the Policy.</li>
-		<li>none, one, or many <code>dc:description</code> properties - a human-readable representation or summary of the Policy.</li>
-         <li>none or one <code>dc:issued</code> property - the date (and time) the Policy was first issued.</li>
-         <li>none or one <code>dc:modified</code> property -  the date (and time) the Policy was updated.</li>
-        <li>none, one, or many <code>dc:coverage</code> properties -  the jurisdiction under which the Policy is relevant.</li>
-        <li>none or one <code>dc:replaces</code> property -  the identifier (uid) of a Policy that this Policy supersedes.</li>
-        <li>none or one <code>dc:isReplacedBy</code> property -  the identifier (uid) of a Policy that supersedes this Policy.</li>
+         <li>none, one, or many <code>dc:creator</code> property values - the individual, agent, or organisation that authored the Policy.</li>
+		<li>none, one, or many <code>dc:description</code> property values - a human-readable representation or summary of the Policy.</li>
+         <li>none or one <code>dc:issued</code> propert values - the date (and time) the Policy was first issued.</li>
+         <li>none or one <code>dc:modified</code> property values -  the date (and time) the Policy was updated.</li>
+        <li>none, one, or many <code>dc:coverage</code> property values -  the jurisdiction under which the Policy is relevant.</li>
+        <li>none or one <code>dc:replaces</code> property values (of type Policy) -  the identifier of a Policy that this Policy supersedes.</li>
+        <li>none or one <code>dc:isReplacedBy</code> property values (of type Policy) -  the identifier of a Policy that supersedes this Policy.</li>
          </ul>
          
     <p>The processing model for Policies with the above metadata properties include:</p>
@@ -1525,7 +1529,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         
 <p>The <code>conflict</code> property is used to establish strategies to resolve conflicts that arise from the merging of Policies or conflicts between Permissions and Prohibitions in the same Policy. Conflicts may arise when merging Policies as a result of <a href="#inheritance">Policy Inheritance</a> and the resultant Rules are inconsistent.</p>
       
-    <p>The <code>conflict</code> property SHOULD take one of the following Conflict Strategy Preference values:</p>
+    <p>The <code>conflict</code> property SHOULD take one of the following Conflict Strategy Preference values (instance of the ConflictTerm class):</p>
 <ul>
 <li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>

@@ -307,7 +307,7 @@ odrl:
 
 <http://www.w3.org/ns/odrl/2/#constraintRelationalOperators>
     a skos:Collection ;
-    skos:prefLabel "Constraint Relational Operators"@en ;
+    skos:prefLabel "Constraint Operators"@en ;
     skos:scopeNote "ODRL Core Vocabulary Terms"@en ;
     skos:member :eq ;
     skos:member :gt ;
@@ -447,7 +447,7 @@ odrl:
 :hasPolicy
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has Target Policy"@en ;
+	rdfs:label "Target Policy"@en ;
 	skos:definition "Identifies an ODRL Policy for which the identified Asset is the target Asset to all the Rules."@en ;
 	skos:note "The Asset being identified MUST be inferred to be the target Asset of all of the Rules of the Policy."@en ;
     rdfs:domain :Asset ;
@@ -765,7 +765,7 @@ odrl:
 :obligation
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Has Obligation"@en ;
+	rdfs:label "Obligation"@en ;
 	skos:definition "Relates an individual Duty to a Policy."@en ;
 	skos:note "The Duty is a requirement which must be fulfilled."@en ;
 	rdfs:domain :Policy ;
@@ -784,7 +784,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
     rdfs:subPropertyOf :failure ;
-	rdfs:label "Has Consequence"@en ;
+	rdfs:label "Consequence"@en ;
 	skos:definition "Relates a Duty to another Duty, the latter being a consequence of not fulfilling the former."@en ;
 	skos:note "The consequence property is utilised to express the repercussions of not fulfilling an agreed obligation (for a Policy) or duty (for a Permission)."@en ;
 	rdfs:domain :Duty ;
@@ -794,7 +794,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
     rdfs:subPropertyOf :failure ;
-	rdfs:label "Has Remedy"@en ;
+	rdfs:label "Remedy"@en ;
 	skos:definition "Relates an individual remedy Duty to a Prohibition."@en ;
 	skos:note "The remedy property expresses an agreed Duty that must be fulfilled in case that a Prohibition has been violated by being exercised."@en ;
 	rdfs:domain :Prohibition ;
@@ -872,7 +872,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Operator"@en ;
 	skos:definition "Operators for constraint expressions."@en ;
-	skos:note "Instances of the Operator class representing relational and logical operators ."@en .
+	skos:note "Instances of the Operator class representing relational operators ."@en .
 
 :eq
 	a :Operator, owl:NamedIndividual, skos:Concept ;
