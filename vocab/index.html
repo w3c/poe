@@ -10,7 +10,8 @@
 	<body>
 <section id="abstract">
  
-    <p>The Open Digital Rights Language (ODRL) provides a flexible and interoperable information model, vocabulary, and encoding mechanisms for describing  statements about content usage. The ODRL Vocabulary and Expression describes the terms used in such statements and how to encode them.</p>
+    <p>The Open Digital Rights Language (ODRL) is a policy expression language that provides a flexible and interoperable information model, vocabulary, and encoding mechanisms for representing statements about the usage of content and services.
+	The ODRL Vocabulary and Expression describes the terms used in ODRL policies and how to encode them.</p>
 </section>
 <section id="sotd">
 <p>
@@ -162,7 +163,8 @@
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Rule">http://www.w3.org/ns/odrl/2/Rule</a></td></tr>
 <tr><th>Note:</th> <td>Rule is an abstract concept.</td></tr>
 <tr><th>Sub-classes:</th> <td><a href="#term-Duty">Duty</a>, <a href="#term-Permission">Permission</a>, <a href="#term-Prohibition">Prohibition</a></td></tr>
-  <tr><th>Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-uid">uid</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-output">output</a>, <a href="#term-failure">failure</a>, <a href="#term-uid">uid</a>, <a href="#term-relation">relation</a>, <a href="#term-target">target</a>, <a href="#term-function">function</a>, <a href="#term-action">action</a>, <a href="#term-constraint">constraint</a>, <a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a></td></tr>
+  <tr><th>In Range Of:</th> <td><a href="#term-failure">failure</a></td></tr>
 </table>
 </section><section id="term-relation"><h3>Relation</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relation is an abstract property which creates an explicit link between an Action and an Asset.</td></tr>
@@ -180,6 +182,15 @@
 <tr><th>Sub-properties:</th> <td><a href="#term-assignee">assignee</a>, <a href="#term-assigner">assigner</a>, <a href="#term-attributedParty">attributedParty</a>, <a href="#term-attributingParty">attributingParty</a>, <a href="#term-compensatedParty">compensatedParty</a>, <a href="#term-compensatingParty">compensatingParty</a>, <a href="#term-consentedParty">consentedParty</a>, <a href="#term-consentingParty">consentingParty</a>, <a href="#term-contractedParty">contractedParty</a>, <a href="#term-contractingParty">contractingParty</a>, <a href="#term-informedParty">informedParty</a>, <a href="#term-informingParty">informingParty</a>, <a href="#term-trackedParty">trackedParty</a>, <a href="#term-trackingParty">trackingParty</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Party">Party</a></td></tr>
+</table>
+</section><section id="term-failure"><h3>Failure</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Failure is an abstract property that defines the violation (or unmet) relationship between Rules.</td></tr>
+<tr><th>Label:</th> <td>Failure</td></tr>
+  <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/failure">http://www.w3.org/ns/odrl/2/failure</a></td></tr>
+<tr><th>Note:</th> <td>The parent property to subproperties that express explicit failure contexts.</td></tr>
+<tr><th>Sub-properties:</th> <td><a href="#term-consequence">consequence</a>, <a href="#term-remedy">remedy</a></td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Range:</th> <td><a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section></section><section id="assetConcepts"><h2>Asset</h2><section id="term-Asset"><h3>Asset</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>A resource or a collection of resources that are the subject of a Rule.</td></tr>
@@ -400,6 +411,7 @@
 <tr><th>Label:</th> <td>Has Consequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/consequence">http://www.w3.org/ns/odrl/2/consequence</a></td></tr>
 <tr><th>Note:</th> <td>The consequence property is utilised to express the repercussions of not fulfilling an agreed obligation (for a Policy) or duty (for a Permission).</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-failure">failure</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 </table>
@@ -408,6 +420,7 @@
 <tr><th>Label:</th> <td>Has Remedy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/remedy">http://www.w3.org/ns/odrl/2/remedy</a></td></tr>
 <tr><th>Note:</th> <td>The remedy property expresses an agreed Duty that must be fulfilled in case that a Prohibition has been violated by being exercised.</td></tr>
+<tr><th>Parent property:</th> <td><a href="#term-failure">failure</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Prohibition">Prohibition</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 </table>
@@ -1870,7 +1883,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 	
 		<li>Added support for Duty at Policy-level using new obligation property <a href="https://github.com/w3c/poe/issues/191">(Issue#191)</a></li>
 	
-		<li>Added Consequence and Remedy properties <a href="https://github.com/w3c/poe/issues/209">(Issue#209)</a></li>
+		<li>Added Consequence, Remedy and Failure properties <a href="https://github.com/w3c/poe/issues/209">(Issue#209)</a></li>
 		
 		<li>Added mandatory use of ODRL Profiles <a href="https://github.com/w3c/poe/issues/210">(Issue#210)</a></li>
 	

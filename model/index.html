@@ -136,14 +136,16 @@
     <li><code>Constraint/LogicalConstraint</code> - A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</li>
     </ul>
 
-<p>The ODRL Information Model has two abstract properties between Rule and the Asset and Party class. These two properties (<em>relation</em> and <em>function</em>) are designed to represent the <em>conceptual</em> relation between the two classes. In serialised ODRL expressions, they MUST be realised as subtypes of their respective parent property.   The figure below shows the ODRL Properties Model with subtypes.</p>
+<p>The ODRL Information Model includes property relationships between the classes. Most are explictly named properties and some are abstract properties (specifically, <em>relation</em>, <em>function</em>, <em>operand</em>, and <em>failure</em>). The abstract properties are generic parent properties that are designed to be represented by  child properties (sub-types) with explicit semantics. </p>
+
+	<p>For example, the two properties <em>relation</em> and <em>function</em> are designed to represent the <em>conceptual</em> relation between the Rule and the Asset and Party classes. In serialised ODRL expressions, they MUST be realised as sub-types of their respective parent property.  The figure below shows the ODRL Properties Model for these two abstract properties.</p>
 
 <figure>
 	<img src="01Properties.svg" alt="ODRL Properties Model" width="800"/>
     <figcaption>ODRL Properties Model (Also available in <a href="01Properties.png">PNG format</a>)</figcaption>
 </figure>
 
-<p>The figure shows the <em>relation</em> property with subtype <strong>target</strong> to express that the Asset is the primary subject of the Rule. The <em>function</em> property has subtype <strong>assigner</strong> to express the Party issuing the Rule, and subtype <strong>assignee</strong> to express the recipient Party of the Rule. 
+<p>The figure shows the <em>relation</em> property with subtype <code>target</code> to express that the Asset is the primary subject of the Rule. The <em>function</em> property has subtype <code>assigner</code> to express the Party issuing the Rule, and subtype <code>assignee</code> to express the recipient Party of the Rule. 
 </p> 
     
     
@@ -645,13 +647,14 @@
 <li>A Rule MUST have one <code>action</code> property for Action.</li>
 	<li>A Rule MAY have none or one <code><em>relation</em></code> sub-properties for Asset.</li>
 	<li>A Rule MAY have none, one or many <code><em>function</em></code> sub-properties for Party.</li>
+	<li>A Rule MAY have none, one or many <code><em>failure</em></code> sub-properties for Rule.</li>
 <li>A Rule MAY have none, one or many <code>constraint</code> properties for Constraint/LogicalConstraint.</li>
 <li>A Rule MAY have none or one <code>uid</code> property identifier (IRI [[!rfc3987]]) to enable the Rule to be referenced by other Rules.</li>
 </ul>
 	
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
-<p>Explicit sub-properties of the abstract <code><em>relation</em></code> and <code><em>function</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
+<p>Explicit sub-properties of the abstract <code><em>relation</em></code>, <code><em>relation</em></code> and <code><em>failure</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
 <p>For a Rule to become effective, all of it's Constraints MUST be satisfied and any applicable relationship to a Duty MUST be fulfilled.</p>
 
@@ -716,7 +719,7 @@
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 	
-<p>The remedy property expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been violated. That is, the remedy property asserts a Duty that must be fulfilled if the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
+<p>The <code>remedy</code> property (a sub-property of the <code><em>failure</em></code> property) expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been violated. That is, the remedy property asserts a Duty that must be fulfilled if the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
 	
 <p>	
 	For a Prohibition to become effective, all it's constraints MUST be satisfied and all of the Prohibition's remedies MUST be fulfilled (if the Prohibition was violated).</p>
@@ -758,7 +761,7 @@
 <ul>
      <li>A Duty MAY have none or one <code>target</code> property for Asset to indicate the Asset that is the primary subject to which the Duty directly applies. (Other <code><i>relation</i></code> sub-properties for Asset MAY be used.)</li>
 	  <li>A Duty MAY have none or one <code>assigner</code> and/or <code>assignee</code> property function roles for Parties. (Other <code><i>function</i></code> sub-properties for Party MAY be used.)</li> 
-	  <li>A Duty MAY have none or one <code>consequence</code> properties for Duty.</li>
+	  <li>A Duty MAY have none, one or many <code>consequence</code> properties for Duty.</li>
 </ul>
 	
 		
@@ -771,7 +774,7 @@
 		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
 	</ul>
   
-<p>The consequence property is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duty <strong>also</strong> becoming a new requirement, meaning that the original obligation or duty, as well as the consequence Duty MUST all be fulfilled. For example, if an obligation to provide data by a certain date is not fullfilled, the a consequence of a $100 fine is payable as well.
+<p>The <code>consequence</code> property (a sub-property of the <code><em>failure</em></code> property) is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duty <strong>also</strong> becoming a new requirement, meaning that the original obligation or duty, as well as the consequence Duty MUST all be fulfilled. For example, if an obligation to provide data by a certain date is not fullfilled, the a consequence of a $100 fine is payable as well.
 </p>
 
 <p>Note that the consequence property MUST NOT be used on a Duty that is already a consequence for a Permission duty or Policy obligation.</p>
@@ -897,7 +900,7 @@
 <section id="duty-conseq">
 <h3>Consequence property with a Permission Duty</h3>
 
-	<P>A duty of a Permission MAY include a consequence Duty of not fulfilling that duty, or the Permission exercised without fulfilling the duty. See the <a href="#duty">Duty Class </a> section for more about the consequence property.</P>
+	<P>A duty of a Permission MAY include a <code>consequence</code> Duty of not fulfilling that duty, or the Permission exercised without fulfilling the duty. The <code>consequence</code> property is a sub-property of the <code><em>failure</em></code> property. See the <a href="#duty">Duty Class </a> section for more about the consequence property.</P>
 	
 <blockquote>
 <p>Example Use Case: The below Agreement between assigner <code>http://example.com/org:99</code> and assignee <code>http://example.com/person:88</code> allows the assignee to distribute the Asset <code>http://example.com/data:77</code> under the pre-condition they attribute the asset to Party <code>http://australia.gov.au/</code>. If the assignee does not fulfill the duty, or distributes the asset without fulfilling the duty, then the consequence will be that they will also be tracked by <code>http://example.com/dept:100</code>.</p>
@@ -933,7 +936,7 @@
 <section id="duty-prohib">
 <h3>Remedy property with a Prohibition</h3>
 	
-<p>The remedy property expresses an agreed Duty that MUST be fulfilled in case that a Prohibition has been violated by being exercised. If the Prohibition is exercised, then the remedy Duty MUST be fulfilled.</p>
+<p>The <code>remedy</code> property expresses an agreed Duty that MUST be fulfilled in case that a Prohibition has been violated by being exercised. If the Prohibition is exercised, then the remedy Duty MUST be fulfilled. The <code>remedy</code> property is a sub-property of the <code><em>failure</em></code> property.</p>
 	
 	<p>Note that if there is no remedy property declared for a Prohibition, then the Prohibition MUST NOT be  exercised. A remedy MUST NOT refer to a Duty that includes a consequence Duty.</p>
 	
@@ -1837,7 +1840,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 	
 	<li>Added support for Duty at Policy-level using new obligation property <a href="https://github.com/w3c/poe/issues/191">(Issue#191)</a></li>
 			
-	<li>Added Consequence and Remedy properties <a href="https://github.com/w3c/poe/issues/209">(Issue#209)</a></li>
+	<li>Added Consequence, Remedy, and Failure properties <a href="https://github.com/w3c/poe/issues/209">(Issue#209)</a></li>
 			
 	<li>Added mandatory use of ODRL Profiles <a href="https://github.com/w3c/poe/issues/210">(Issue#210)</a></li>
 			
