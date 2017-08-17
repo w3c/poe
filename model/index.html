@@ -136,7 +136,7 @@
     <li><code>Constraint/LogicalConstraint</code> - A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</li>
     </ul>
 
-<p>The ODRL Information Model includes property relationships between the classes. Most are explictly named properties and some are abstract properties (specifically, <em>relation</em>, <em>function</em>, <em>operand</em>, and <em>failure</em>). The abstract properties are generic parent properties that are designed to be represented by  child properties (sub-types) with explicit semantics. </p>
+<p>The ODRL Information Model includes property relationships between the classes. Most are explicitly named properties and some are abstract properties (specifically, <em>relation</em>, <em>function</em>, <em>operand</em>, and <em>failure</em>). The abstract properties are generic parent properties that are designed to be represented by  child properties (sub-types) with explicit semantics. </p>
 
 	<p>For example, the two properties <em>relation</em> and <em>function</em> are designed to represent the <em>conceptual</em> relation between the Rule and the Asset and Party classes. In serialised ODRL expressions, they MUST be realised as sub-types of their respective parent property.  The figure below shows the ODRL Properties Model for these two abstract properties.</p>
 
@@ -307,7 +307,7 @@
 <ul>
 <li>An Asset SHOULD have one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Asset.</li>
 	
-	<li>An Asset MUST have at least one <code><em>relation</em></code> sub-property value (of type Asset) indicating the explict link relationship to the Asset.</li>
+	<li>An Asset MUST have at least one <code><em>relation</em></code> sub-property value (of type Asset) indicating the explicit link relationship to the Asset.</li>
 	
     <li>An Asset MAY have none, one, or many <code>partOf</code> property values (of type AssetCollection) to identify the AssetCollection that this Asset is in a collection of.</li>
 <li>An AssetCollection MAY have none, one, or many <code>constraint</code> property values of type Constraint. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
@@ -816,7 +816,7 @@
 	<p>A Policy MAY also include a consequence of not fulfilling an obligation. Note that if there is no consequence property for an obligation Duty, then the obligation MUST be fulfilled.</p>
 	
 	<blockquote>
-<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to delete the target Asset. If the obligation is not fulfilled, then a consequence is that the assigner MUST now also compensate the nominated charity with a payment of EU10.00 (as well as the fulfull the obligation Duty).</p>
+<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to delete the target Asset. If the obligation is not fulfilled, then a consequence is that the assigner MUST now also compensate the nominated charity with a payment of EU10.00 (as well as the fulfill the obligation Duty).</p>
     </blockquote>
 
 
@@ -1391,7 +1391,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
             <ul>
          <li>none, one, or many <code>dc:creator</code> property values - the individual, agent, or organisation that authored the Policy.</li>
 		<li>none, one, or many <code>dc:description</code> property values - a human-readable representation or summary of the Policy.</li>
-         <li>none or one <code>dc:issued</code> propert values - the date (and time) the Policy was first issued.</li>
+         <li>none or one <code>dc:issued</code> property values - the date (and time) the Policy was first issued.</li>
          <li>none or one <code>dc:modified</code> property values -  the date (and time) the Policy was updated.</li>
         <li>none, one, or many <code>dc:coverage</code> property values -  the jurisdiction under which the Policy is relevant.</li>
         <li>none or one <code>dc:replaces</code> property values (of type Policy) -  the identifier of a Policy that this Policy supersedes.</li>

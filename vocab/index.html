@@ -187,7 +187,7 @@
 <tr><th>Definition:</th> <td>Failure is an abstract property that defines the violation (or unmet) relationship between Rules.</td></tr>
 <tr><th>Label:</th> <td>Failure</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/failure">http://www.w3.org/ns/odrl/2/failure</a></td></tr>
-<tr><th>Note:</th> <td>The parent property to subproperties that express explicit failure contexts.</td></tr>
+<tr><th>Note:</th> <td>The parent property to sub-properties that express explicit failure contexts.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="#term-consequence">consequence</a>, <a href="#term-remedy">remedy</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Rule">Rule</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Rule">Rule</a></td></tr>
@@ -231,9 +231,9 @@
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Asset">Asset</a></td></tr>
 </table>
-</section><section id="term-hasPolicy"><h3>Has Target Policy</h3><table class='def propdef' >
+</section><section id="term-hasPolicy"><h3>Target Policy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Identifies an ODRL Policy for which the identified Asset is the target Asset to all the Rules.</td></tr>
-<tr><th>Label:</th> <td>Has Target Policy</td></tr>
+<tr><th>Label:</th> <td>Target Policy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/hasPolicy">http://www.w3.org/ns/odrl/2/hasPolicy</a></td></tr>
 <tr><th>Note:</th> <td>The Asset being identified MUST be inferred to be the target Asset of all of the Rules of the Policy.</td></tr>
 <tr><th>Sub-properties:</th> <td><a href="http://purl.org/dc/terms/license">dc:license</a></td></tr>
@@ -390,9 +390,9 @@
   <tr><th>Properties:</th> <td><a href="#term-consequence">consequence</a></td></tr>
   <tr><th>In Range Of:</th> <td><a href="#term-duty">duty</a>, <a href="#term-obligation">obligation</a>, <a href="#term-consequence">consequence</a>, <a href="#term-remedy">remedy</a></td></tr>
 </table>
-</section><section id="term-obligation"><h3>Has Obligation</h3><table class='def propdef' >
+</section><section id="term-obligation"><h3>Obligation</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates an individual Duty to a Policy.</td></tr>
-<tr><th>Label:</th> <td>Has Obligation</td></tr>
+<tr><th>Label:</th> <td>Obligation</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/obligation">http://www.w3.org/ns/odrl/2/obligation</a></td></tr>
 <tr><th>Note:</th> <td>The Duty is a requirement which must be fulfilled.</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Policy">Policy</a></td></tr>
@@ -406,18 +406,18 @@
 <tr><th>Domain:</th> <td><a href="#term-Permission">Permission</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 </table>
-</section><section id="term-consequence"><h3>Has Consequence</h3><table class='def propdef' >
+</section><section id="term-consequence"><h3>Consequence</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates a Duty to another Duty, the latter being a consequence of not fulfilling the former.</td></tr>
-<tr><th>Label:</th> <td>Has Consequence</td></tr>
+<tr><th>Label:</th> <td>Consequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/consequence">http://www.w3.org/ns/odrl/2/consequence</a></td></tr>
 <tr><th>Note:</th> <td>The consequence property is utilised to express the repercussions of not fulfilling an agreed obligation (for a Policy) or duty (for a Permission).</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-failure">failure</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 </table>
-</section><section id="term-remedy"><h3>Has Remedy</h3><table class='def propdef' >
+</section><section id="term-remedy"><h3>Remedy</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Relates an individual remedy Duty to a Prohibition.</td></tr>
-<tr><th>Label:</th> <td>Has Remedy</td></tr>
+<tr><th>Label:</th> <td>Remedy</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/remedy">http://www.w3.org/ns/odrl/2/remedy</a></td></tr>
 <tr><th>Note:</th> <td>The remedy property expresses an agreed Duty that must be fulfilled in case that a Prohibition has been violated by being exercised.</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-failure">failure</a></td></tr>
@@ -443,7 +443,7 @@
 <tr><th>Definition:</th> <td>Operators for constraint expressions.</td></tr>
 <tr><th>Label:</th> <td>Operator</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Operator">http://www.w3.org/ns/odrl/2/Operator</a></td></tr>
-<tr><th>Note:</th> <td>Instances of the Operator class representing relational and logical operators .</td></tr>
+<tr><th>Note:</th> <td>Instances of the Operator class representing relational operators .</td></tr>
   <tr><th>In Range Of:</th> <td><a href="#term-operator">operator</a></td></tr>
 <tr><th>Instances:</th> <td><a href="#term-eq">eq</a>, <a href="#term-gt">gt</a>, <a href="#term-gteq">gteq</a>, <a href="#term-hasPart">hasPart</a>, <a href="#term-isA">isA</a>, <a href="#term-isAllOf">isAllOf</a>, <a href="#term-isAnyOf">isAnyOf</a>, <a href="#term-isNoneOf">isNoneOf</a>, <a href="#term-isPartOf">isPartOf</a>, <a href="#term-lt">lt</a>, <a href="#term-lteq">lteq</a>, <a href="#term-neq">neq</a></td></tr>
 </table>
@@ -525,7 +525,7 @@
 <tr><th>Sub-properties:</th> <td><a href="#term-and">and</a>, <a href="#term-andSequence">andSequence</a>, <a href="#term-or">or</a>, <a href="#term-xone">xone</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-LogicalConstraint">LogicalConstraint</a></td></tr>
 </table>
-</section></section><section id="constraintRelationalOperators"><h2>Constraint Relational Operators</h2><section id="term-eq"><h3>Equal to</h3><table class='def propdef' >
+</section></section><section id="constraintRelationalOperators"><h2>Constraint Operators</h2><section id="term-eq"><h3>Equal to</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>Indicating that a given value equals the right operand of the Constraint.</td></tr>
 <tr><th>Label:</th> <td>Equal to</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/eq">http://www.w3.org/ns/odrl/2/eq</a></td></tr>
@@ -1325,7 +1325,7 @@
 <tr><th>Definition:</th> <td>A point in space or time defined with coordinates relative to full measures the positioning of the Asset has to comply with for exercising the Action.</td></tr>
 <tr><th>Label:</th> <td>Relative Asset Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativePosition">http://www.w3.org/ns/odrl/2/relativePosition</a></td></tr>
-<tr><th>Note:</th> <td>Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrainted to a specific position of the canvas rendering it.</td></tr>
+<tr><th>Note:</th> <td>Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrained to a specific position of the canvas rendering it.</td></tr>
 <tr><th>Narrower terms:</th> <td><a href="#term-relativeSpatialPosition">relativeSpatialPosition</a>, <a href="#term-relativeTemporalPosition">relativeTemporalPosition</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
