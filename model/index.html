@@ -167,7 +167,7 @@
 <li>A Policy MAY have none, one, or many <code>inheritFrom</code> property values (of type IRI [[!rfc3987]]) to identify the parent Policy from which this child Policy inherits from. (See the <a href="#inheritance">ODRL Inheritance</a> section for more details.) </li>
 	
 	
-<li>A Policy MAY have none or one <code>conflict</code> property values for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
+<li>A Policy MAY have none or one <code>conflict</code> property values (of type ConflictTerm) for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
 
 </ul>
 	<p>An ODRL Policy must either:</p>
@@ -191,7 +191,7 @@
 
      <p>An ODRL Policy of subclass <code>Set</code>:</p>
     <ul>
-        <li>MUST have at least one permission, prohibition, or obligation property value of type Rules.</li>
+        <li>MUST have at least one permission, prohibition, or obligation property value of type Rule.</li>
     </ul>
 	
 
@@ -225,7 +225,7 @@
     
     <p>An ODRL Policy of subclass <code>Offer</code>:</p>
     <ul>
-        <li>MUST have at least one permission, prohibition, or obligation property values  of type Rules.</li>
+        <li>MUST have at least one permission, prohibition, or obligation property values  of type Rule.</li>
         <li>MUST have one <code>assigner</code> property value (of type Party) to indicate the functional role in the same Rules.</li>
     </ul>
 	
@@ -262,7 +262,7 @@
     
     <p>An ODRL Policy of subclass <code>Agreement</code>:</p>
     <ul>
-		<li>MUST have at least one permission, prohibition, or obligation property values of type Rules.</li>
+		<li>MUST have at least one permission, prohibition, or obligation property values of type Rule.</li>
 		<li>MUST have one <code>assigner</code> property value (of type Party) to indicate the functional role in the same Rules.</li>
         <li>MUST have one <code>assignee</code> property value (of type Party) to indicate the functional role in the same Rules.</li>
     </ul>
