@@ -65,7 +65,7 @@
 	       <dt><dfn>Policy</dfn></dt>
 	          <dd>A group of one or more Rules</dd>
 	       <dt><dfn>Rule</dfn></dt>
-	          <dd>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties. If a Rule is <strong>effective</strong> if it has satisfied its Constraints and fulfilled its Duties.</dd>
+	          <dd>An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</dd>
 	       <dt><dfn>Action</dfn></dt>
 	          <dd>An operation on an Asset</dd>
             <dt><dfn>Permission</dfn></dt>
@@ -73,17 +73,17 @@
             <dt><dfn>Prohibition</dfn></dt>
                   <dd>The inability to perform an Action over an Asset</dd>
             <dt><dfn>Duty</dfn></dt>
-	          <dd>The obligation to perform an Action. If the obligation is met, then the Duty is <strong>fulfilled</strong>.</dd>
+	          <dd>The obligation to perform an Action.</dd>
 	       <dt><dfn>Asset</dfn></dt>
 	          <dd>A resource or a collection of resources that are the subject of a Rule</dd>
 	       <dt><dfn>Party</dfn></dt>
 	          <dd>An entity or a collection of entities that undertake Roles in a Rule</dd>
 	       <dt><dfn>Constraint</dfn></dt>
-	          <dd>A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection. If the expression is true or the collection context is valid, then the Constraint is <strong>satisfied</strong>.</dd>
+	          <dd>A boolean/logical expression that refines an Action and Party/Asset collection or the conditions applicable to a Rule.</dd>
            <dt><dfn>ODRL Validator</dfn></dt>
 	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model requirements.</dd>
            <dt><dfn>ODRL Evaluator</dfn></dt>
-	          <dd>A system that determines whether the permissions, obligations, and prohibitions of an ODRL Policy expression are in effect.</dd>
+	          <dd>A system that determines whether the permissions, obligations, and prohibitions of an ODRL Policy expression are active or not active.</dd>
 		    <dt><dfn>ODRL Core Vocabulary</dfn></dt>
 	          <dd>The set of terms that are represented by the ODRL Information Model.</dd>
 		     <dt><dfn>ODRL Profile</dfn></dt>
@@ -133,7 +133,7 @@
     <li><code>Prohibition</code> - The inability to perform an Action over an Asset.</li>
     <li><code>Duty</code> - The obligation to perform an Action.</li>
     </ul>
-    <li><code>Constraint/LogicalConstraint</code> - A boolean/logical expression that refines the applicability of a Rule, or the context of a Party or Asset collection.</li>
+    <li><code>Constraint/LogicalConstraint</code> - A boolean/logical expression that refines an Action and Party/Asset collection or the conditions applicable to a Rule.</li>
     </ul>
 
 <p>The ODRL Information Model includes property relationships between the classes. Most are explicitly named properties and some are abstract properties (specifically, <em>relation</em>, <em>function</em>, <em>operand</em>, and <em>failure</em>). The abstract properties are generic parent properties that are designed to be represented by  child properties (sub-types) with explicit semantics. </p>
@@ -305,7 +305,7 @@
 	<li>An Asset MUST have at least one <code><em>relation</em></code> sub-property value (of type Asset) indicating the explicit link relationship to the Asset.</li>
 	
     <li>An Asset MAY have none, one, or many <code>partOf</code> property values (of type AssetCollection) to identify the AssetCollection that this Asset is in a collection of.</li>
-<li>An AssetCollection MAY have none, one, or many <code>constraint</code> property values of type Constraint. See <a href="#constraint-asset">Asset Constraints</a> for more details.</li>
+<li>An AssetCollection MAY have none, one, or many <code>refinement</code> property values of type Constraint. See <a href="#constraint-asset">Refinement property with an Asset Collection</a> for more details.</li>
 </ul>
     
     <p class="note">If an Asset does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
@@ -433,7 +433,7 @@
 <li>A Party SHOULD have one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Party.</li>
 <li>A Party MUST have at least one <code><em>function</em></code> sub-property values (of type Party) indicating the functional role undertaken by the Party.</li>
    <li>A Party MAY have none, one, or many <code>partOf</code> property values (of type PartyCollection) to identify the PartyCollection that this Party is a member of.</li>
-<li>A PartyCollection MAY have none, one, or many <code>constraint</code> property values of type Constraint. See <a href="#constraint-party">Party Constraints</a> for more details.</li>
+<li>A PartyCollection MAY have none, one, or many <code>refinement</code> property values of type Constraint. See <a href="#constraint-party">Refinement property with a Party Collection</a> for more details.</li>
     </ul>
 
     <p class="note">If a Party does not assert an identifier using the <code>uid</code> property, then the full implications must be understood, such as the impact on ODRL Validators and Evaluators of ODRL Policies.</p>
@@ -583,6 +583,8 @@
     
     <p>The Action class has the following properties:</p>
 <ul>
+	<li>An Action MAY have none, one or more <code>refinement</code> property values (of type Constraint) that refine the semantics of the Action operation. See <a href="#constraint">Constraints</a> section for more details.</li>
+	
 <li>An Action (except for use and transfer) MUST have one <code>includedIn</code> property value (of type Action) to transitively assert this Action that encompasses its operational semantics.</li>
 <li>An Action MAY have none, one or more <code>implies</code> property values (of type Action) to assert this Action is not prohibited to enable its operational semantics.</li>    
 </ul>
@@ -651,8 +653,6 @@
 	
 <p>Explicit sub-properties of the abstract <code><em>relation</em></code>, <code><em>relation</em></code> and <code><em>failure</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
-<p>For a Rule to become effective, all of it's Constraints MUST be satisfied and all relationships to a Duty MUST be fulfilled.</p>
-
     
 <section id="permission">
 <h3>Permission Class</h3>
@@ -670,12 +670,11 @@
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 	
-<p>The duty property expresses an agreed obligation that MUST be fulfilled in order for the Permission to be in effect. That is, the duty property asserts a <em>pre-condition</em> between the Permission and the Duty. See the <a href="#duty-perm">Duty with a Permission</a> section for more details.</p>
-	
-<p>For a Permission to become effective, all it's constraints MUST be satisfied and all of the Permission's duties MUST be fulfilled.</p>
+<p>The duty property expresses an agreed obligation that MUST be fulfilled. That is, the duty property asserts a <em>pre-condition</em> between the Permission and the Duty. See the <a href="#duty-perm">Duty with a Permission</a> section for more details.</p>
+
     
 <blockquote>   
-<p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play Permission for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
+<p>Example Use Case: The Policy <code>Offer</code> from assigner <code>http://example.com/org:xyz</code> expresses the play action for the target Asset <code>http//example.com/game:9090</code> and the permission is valid until the end of the year 2017.</p>
     </blockquote>
  <pre id="eg13" class="example hljs json">
  {
@@ -716,10 +715,7 @@
 	
 <p>The <code>remedy</code> property (a sub-property of the <code><em>failure</em></code> property) expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been violated. That is, the remedy property asserts a Duty that must be fulfilled if the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
 	
-<p>	
-	For a Prohibition to become effective, all it's constraints MUST be satisfied and all of the Prohibition's remedies MUST be fulfilled (if the Prohibition was violated).</p>
-
-    <blockquote>
+ <blockquote>
 <p>Example Use Case: The assigner of a target Asset <code>http://example.com/photoAlbum:55</code> expresses an Agreement Policy with both a Permission and a Prohibition. The assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission <code>display</code> to the assignee Party <code>http://example.com/assignee:55</code> at the same time a Prohibition to <code>archive</code> the target Asset. Additionally, in case of any conflicts in the Policy (e.g., between Permissions and Prohibitions), the <code>conflict</code> property of the <code>Policy</code> is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
     </blockquote>
     
@@ -773,18 +769,17 @@
 </p>
 
 <p>Note that the consequence property MUST NOT be used on a Duty that is already a consequence for a Permission duty or Policy obligation.</p>
-	
-<p>Even though a Duty is mandatory (eg, agreed as a pre-condition for a Permission or activated in violation of a Prohibition), the ODRL Information Model does not specify any specific temporal conditions on <em>WHEN</em> the Duty Action MUST be performed. Such business rules MAY be expressed through additional Constraints.  For example, a Policy may state that you can play a music file for a compensation payment of $5.00. This does not indicate when the $5.00 should be paid as different business rules may apply, such as monthly invoicing or streaming.</p>
+
 
 	</section>
 	
 <section id="duty-policy">
 <h3>Obligation property with a Policy</h3>
 
-<p>A Policy MAY include an obligation to fulfill a Duty. If the Duty rule has been fulfilled (that is, all its Constraints are satisfied), then the Duty rule is in effect. That is, the obligation has been met.</p>
+<p>A Policy MAY include an obligation to fulfill a Duty.</p>
 		
 <blockquote>
-<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to compensate the assigner for a payment of EU500.00.</p>
+<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to compensate the assigner for a payment amount of EU500.00.</p>
     </blockquote>
 
 
@@ -797,16 +792,18 @@
     "obligation": [{
 	"assigner": "http://example.com/org:43",
 	"assignee": "http://example.com/person:44",
-	"action": "compensate",
-	"constraint": [{
-		"leftOperand": "payAmount",
-		"operator": "eq",
-		"rightOperand": "500.00",
-		"unit": "http://dbpedia.org/resource/Euro"
-        }]
+	"action": [{
+            "@value": "compensate",
+            "refinement": [{
+                 "leftOperand": "payAmount",
+                 "operator": "eq",
+                 "rightOperand": "500.00",
+                 "unit": "http://dbpedia.org/resource/Euro"
+            }]
     }]
 }
 </pre>
+
 	
 	<p>A Policy MAY also include a consequence of not fulfilling an obligation. Note that if there is no consequence property for an obligation Duty, then the obligation MUST be fulfilled.</p>
 	
@@ -827,16 +824,18 @@
 	   "action": "delete",
 	   "target": "http://example.com/document:XZY",
 	   "consequence": [{
-	      "action": "compensate",
-	      "constraint": [{
-	         "leftOperand": "payAmount",
-	         "operator": "eq",
-	         "rightOperand": "10.00",
-	         "unit": "http://dbpedia.org/resource/Euro"
-	      }],
-	      "compensatedParty": "http://wwf.org"
-	  }]
-	}]
+	   	 "action": [{
+	   	     "@value": "compensate",
+	   	     "refinement": [{
+	   	        "leftOperand": "payAmount",
+	   	        "operator": "eq",
+	   	        "rightOperand": "10.00",
+	   	        "unit": "http://dbpedia.org/resource/Euro"
+	   	     }],
+	   	 }],
+	   "compensatedParty": "http://wwf.org"
+         }]
+    }]
 }
 </pre>
 	
@@ -845,19 +844,14 @@
 <section id="duty-perm">
 <h3>Duty property with a Permission</h3>
 
-	<p>A Duty MAY be specified as a pre-condition that requires fulfillment in order to make a Permission effective using the duty property from the Permission to the Duty. In this case the Permission is in effect (including the Permission's constraints all being satisfied) if and only if the Duty has been fulfilled.</p>
-	
-	<p>Since the Duty Rule is subordinate to a Permission Rule (related via the duty property) then 
-		when the Duty has been fulfilled, the Permission rule is then in effect (not the Duty rule).</p>
+	<p>A Duty MAY be specified as a pre-condition that requires fulfillment using the duty property relationship from the Permission to the Duty.</p>
 	
 	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the referring Permission.</p>   
 	
-	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be fulfilled for the Permission to be in effect. If several Permissions refer to the same Duty (via its <code>uid</code> property), then the Duty only has to be fulfilled <em>once</em> for all the Permissions to be effective.</p>
-
-
+	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be fulfilled. If several Permissions refer to the same Duty (via its <code>uid</code> property), then the Duty only has to be fulfilled <em>once</em>.</p>
 	
 	<blockquote>
-<p>Example Use Case: The Party <code>http://example.com/assigner:sony</code> makes an Offer to play the music file <code>http://example.com/music/1999.mp3</code>. There are two Duties that both must be fulfilled for the <code>compensate</code> requirement. The first is the <code>payAmount</code> of $AUD5.00 and the second is the <code>event</code> of <code>policyUsage</code> must not have occurred yet (that is, the payment is made before the policy is exercised).
+<p>Example Use Case: The Party <code>http://example.com/assigner:sony</code> makes an Offer to play the target asset <code>http://example.com/music/1999.mp3</code>. The permission includes a duty for the <code>compensate</code> action that has a refinement of  <code>payAmount</code> of $EU5.00.  The duty also has a constraint of <code>event</code> is less than <code>policyUsage</code>, meaning the duty rule must be exercised (ie the compensation) before the permission rule can be exercised.
 </p>
 </blockquote>
 
@@ -873,14 +867,16 @@
         "target": "http://example.com/music/1999.mp3",
         "action": "play",
         "duty": [{
-            "action": "compensate",
+           "action": [{
+              "@value": "compensate",
+              "refinement": [{
+                 "leftOperand": "payAmount",
+                 "operator": "eq",
+                 "rightOperand": "5.00",
+                 "unit": "http://dbpedia.org/resource/Euro"
+              }]
+            }],
             "constraint": [{
-                "leftOperand": "payAmount",
-                "operator": "eq",
-                "rightOperand": "5.00",
-                "unit": "http://dbpedia.org/resource/AUD"
-            },
-            {
                 "leftOperand": "event",
                 "operator": "lt",
                 "rightOperand": "policyUsage"
@@ -935,10 +931,8 @@
 	
 	<p>Note that if there is no remedy property declared for a Prohibition, then the Prohibition MUST NOT be  exercised. A remedy MUST NOT refer to a Duty that includes a consequence Duty.</p>
 	
-	<p>Since the Duty Rule is subordinate to a Prohibition Rule (related via the remedy property) then when the Duty has been fulfilled, the Prohibition rule is then in effect (not the Duty rule).</p>
 	
-	
-		<blockquote>
+<blockquote>
 <p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/org:99</code> prohibits the assignee to modify the Asset <code>http://example.com/data:77</code>. If the assignee does actually modify the target asset, then the remedy will be that the MUST delete the target asset <code>http://example.com/data:77</code>.</p>
     </blockquote>
 
@@ -962,25 +956,78 @@
 }
 </pre>
 	
-
-	</section>
+</section>
 	
+<section id="rule-active">
+<h3>Active Rule Processing</h3>
+
+	<P>ODRL processors are required to determine if a Rule is <strong>Active</strong> to ascertain if the intent of the Rule is being met. That is, is a Permission actually allowed, is a Prohibition being forbidden, and is a Duty being fulfilled.
+	</P>
+	
+	<p>An ODRL Validator MUST first ensure that the Policy rules meet the conformance requirements of the ODRL Information Model.</p>
+	
+	<p>An ODRL Evaluator MUST then evaluate the constraint properties of all Rules. If the constraint properties are satisfied, and the Action exercised (or not) in terms of the semantics of the Rule, then the Rule is <strong>Active</strong>. If not, then the Rule is <strong>Not Active</strong>.</p>
+
+	<p>If a Rule is related to another Rule (such as a Permission related to a Duty with the duty property), then all related Rules MUST also be <strong>Active</strong>.</p>
+	
+    
+	<blockquote>
+<p>Example Use Case: The Agreement policy below shows a Permission Rule that includes a Duty Rule. The Duty Rule is a compensation for a certain amount, and has a rule constraint that indicates the duty action must be repeated every month. An ODRL Evaluator MUST check that the compensation action has been exercised in the past month for the Duty Rule to be Active. 
+</p>
+		<p>The Permission Rule includes a constraint for the spatial area indicated by the 7353132 Getty code (ie Australia). An ODRL Evaluator MUST check that the action occurs only in this spatial area, and if the Duty Rule is Active, then the Permission Rule is also Active. </p>
+</blockquote>
+
+
+<pre id="eg15" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:888888",
+    "profile": "http://example.com/odrl:profile:888",
+    "permission": [{
+        "assigner": "http://example.com/org/88",
+        "assigner": "http://example.com/person/77",
+        "target": "http://example.com/music/888.mp3",
+        "action": "play",
+        "duty": [{
+           "action": [{
+              "@value": "compensate",
+              "refinement": [{
+                 "leftOperand": "payAmount",
+                 "operator": "eq",
+                 "rightOperand": "1.00",
+                 "unit": "http://dbpedia.org/resource/Euro"
+              }]
+            }],
+            "constraint": [{
+                "leftOperand": "timeInterval",
+                "operator": "eq",
+                "rightOperand": "P1M"
+            }],
+        }],
+        "constraint": [{
+                "leftOperand": "spatial",
+                "operator": "eq",
+                "rightOperand": "http://vocab.getty.edu/tgn/7353132"
+         }]
+    }]
+}  
+</pre>
+	
+	</section>
+		
 </section>
 
 <section id="constraint">
 <h3>Constraints</h3>
     
-    <p>Constraints are boolean/logical expressions that refine the applicability of a Rule, or the context of a Party/Asset Collection. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. The evaluation of a Constraint is treated as a <em>black box</em> outside of the ODRL Processor with the outcome of this evaluation determining if the Constraint has been <em>satisfied</em> or not.</p>
-    
-    <p>ODRL Processors MUST check if a Constraint is satisfied at the time of processing the relevant Rule, or Party/Asset Collection. For a Rule, if the Constraint is satisfied then the action becomes effective for the enclosing Rule. For a Party/Asset Collection, if the Constraint is satisfied, then the individual Asset or Party member or multiple members - a subset of the Collection - becomes effective for the enclosing Rule.</p>
- 
-    <p>When multiple Constraints apply to the same Rule, Party/Asset Collection then they are interpreted as conjunction. A Rule becomes effective if all of its Constraints are satisfied. Parties and Assets (members of the Collection) become effective is all of the Constraints on Party/Asset Collections are satisfied. </p>
+    <p>Constraints are boolean/logical expressions that can be used to refine the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. When multiple Constraints apply to the same Rule, Action, Party/Asset Collection, then they are interpreted as conjunction and all MUST be satisfied.</p>
+
     
 <section id="constraint-class">
 <h3>Constraint Class</h3>
         
-<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. If the  expression evaluates to <strong>true</strong> the Constraint is satisfied.
- The Constraint class formulates a comparison expressions, such as, the number of usages (<code>leftOperand</code>) must be smaller than (<code>operator</code>) the number 10 (<code>rightOperand</code>). 
+<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. The Constraint class formulates a comparison expression, such as, the number of usages (the <code>leftOperand</code>) must be smaller than (the <code>operator</code>) the number 10 (the <code>rightOperand</code>). 
 </p>
        
 <p>The Constraint class has the following properties:</p>
@@ -997,72 +1044,21 @@
 <li>A Constraint MAY have none or one <code>status</code> property value for the current value generated from the leftOperand action.</li>
 </ul>     
     
-<p>The <code>leftOperand</code> property values are defined as instances of the LeftOperand class. The <code>leftOperand</code> instances MUST clearly be semantically <strong>defined</strong> to indicate the subject of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. For example, the <code>count</code> constraint applies to the <code>action</code> and the <code>language</code> constraint applies to the <code>asset</code>. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
+<p>The <code>leftOperand</code> property values are defined as instances of the LeftOperand class. The <code>leftOperand</code> instances MUST clearly be  <strong>defined</strong> to indicate the semantics of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
     
 <p>The <code>operator</code> property values are defined as instances of the Operator class. The <code>operator</code> instances identify the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
 
 <p>The <code>rightOperand</code> property values are defined as instances of the RightOperand class, or IRIs, or Literal values. The <code>rightOperand</code> is the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Constraint.</p>
 
-    <p><blockquote>
+ <p>
 The <code>rightOperand</code> represents a value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced to obtain the value. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the  expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the expression.
-  </blockquote> </p> 
-   
-        
+ </p> 
+      
 <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU currency&#8221;.</p>
 
 <p>The <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times.</p>
 
-<blockquote>
-<p>Example Use Case: In the first example below, the Party <code>http://example.com/myPix:6161</code> wants to offer the <code>distribute</code> Permission for a specific country for the target Asset. The offer has two Duties to <code>compensate</code> the assigner and a <code>nextPolicy</code>. The potential assignee may distribute the target Asset <code>http://example.com/wallpaper:1234</code> according to the Policy target Asset. The second example shows that the Policy  <code>http://example.com/policy:7171</code> stipulates  the potential assignee may only offer the <code>display</code> Permission to other parties.</p>
-    </blockquote>
-    
-<pre id="eg17" class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Offer",
-    "uid": "http://example.com/policy:6161",
-    "profile": "http://example.com/odrl:profile:10",
-    "permission": [{
-        "target": "http://example.com/wallpaper:1234",
-        "assigner": "http://example.com/myPix:6161",
-        "action": "distribute",
-        "constraint": [{
-            "leftOperand": "spatial",
-            "operator": "eq",
-            "rightOperand": "https://www.iso.org/obp/ui/#iso:code:3166:IT"
-        }],
-        "duty": [
-            {
-                "action": "compensate",
-                "constraint": [{
-                    "leftOperand": "payAmount",
-                    "operator": "eq",
-                    "rightOperand": "100.00",
-                    "dataType": "http://www.w3.org/2001/XMLSchema#decimal",
-                    "unit": "http://dbpedia.org/resource/Euro"
-                }]
-            },
-            {
-                "action": "nextPolicy",
-                "target": "http://example.com/policy:7171"
-            }
-        ]
-    }]
-}
-</pre>
-    
-<pre id="eg18" class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Set",
-    "uid": "http://example.com/policy:7171",
-    "profile": "http://example.com/odrl:profile:10",
-    "permission": [{
-        "target": "http://example.com/wallpaper:1234",
-        "action": "display"
-    }]
-}
-</pre>
+
 </section>
     
     
@@ -1098,9 +1094,49 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	<P>A Logical Constraint will reference existing Constraints that MAY appear at the Policy-level. These Constraints MUST NOT to be interpreted as Constraints on all the Rules in the Policy.
 	</P>
 	
-   <blockquote> 
-<p>Example Use Case:The Policy below shows a Permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. </p>  
-   </blockquote>
+  
+
+	<p class="note">
+	When using a logical operand that needs to be evaluated in sequence, such as <code>andSequence</code>, the serialisations MUST preserve the order of the members of the list. In JSON-LD, the <code>@list</code> keyword MUST be used to represent an ordered collection.
+	</p>
+   
+    
+</section>
+
+<section id="constraint-action">
+<h3>Refinement property with an Action</h3>
+
+<p>An Action MAY include the <code>refinement</code> property to indicate a Constraint on the operation. The <code>refinement</code> property will narrow the semantics of the Action operation directly. </p>
+	
+<blockquote>
+<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>print</code>ed, and also include a refinement Constraint that narrows the printing operation to not more than 50% of the asset.</p>
+    </blockquote>
+    
+<pre id="eg17" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Offer",
+    "uid": "http://example.com/policy:6161",
+    "profile": "http://example.com/odrl:profile:10",
+    "permission": [{
+       "target": "http://example.com/document:1234",
+       "assigner": "http://example.com/org:616",
+       "action": [{
+          "@value": "print",
+          "refinement": [{
+             "leftOperand": "percentage",
+             "operator": "lteq",
+             "rightOperand": "50.0"
+          }]
+      }]
+   }]
+}
+</pre>
+	
+
+<blockquote> 
+<p>Example Use Case:The Policy below shows a permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. This is expressed as a Logical Constraint (with the <code>xone</code> operand) refering to two existing Constraints. </p>  
+</blockquote>
            
 <pre id="eg19" class="example hljs json">
 {
@@ -1111,10 +1147,12 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "permission": [{
         "target": "http://example.com/book/1999",
         "assigner": "http://example.com/org/paisley-park",
-        "action": "reproduce",
-        "constraint": {
-             "xone": ["http://example.com/p:88/C1", "http://example.com/p:88/C2"]
+        "action": [{
+           "@value": "reproduce",
+           "refinement": {
+               "xone": ["http://example.com/p:88/C1", "http://example.com/p:88/C2"]
             },
+        }],
     }],
    "constraint": [{
        "uid": "http://example.com/p:88/C1",
@@ -1130,27 +1168,55 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
    }]
 }  
 </pre>
-
-	<p class="note">
-	When using a logical operand that needs to be evaluated in sequence, such as <code>andSequence</code>, the serialisations MUST preserve the order of the members of the list. In JSON-LD, the <code>@list</code> keyword MUST be used to represent an ordered collection.
-	</p>
-   
-    
+	
+	
 </section>
+	
+<section id="constraint-rule">
+<h3>Constraint property with a Rule</h3>
 
+<p>An Rule (such as a Permission, Prohibition, or Duty) MAY include the <code>constraint</code> property to indicate a condition on the Rule. The <code>constraint</code> property will stipulate over-arching conditions for the Rule.</p>
+	
+<blockquote>
+<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>distribute</code>d, and includes a constraint of a  <code>dateTime</code> condition that the permssion must be exercised before 2018-01-01.</p>
+    </blockquote>
+    
+<pre id="eg17" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Offer",
+    "uid": "http://example.com/policy:6163",
+    "profile": "http://example.com/odrl:profile:10",
+    "permission": [{
+       "target": "http://example.com/document:1234",
+       "assigner": "http://example.com/org:616",
+       "action": "distribute",
+       "constraint": [{
+           "leftOperand": "dateTime",
+           "operator": "lt",
+           "rightOperand": "2018-01-01"
+       }]
+   }]
+}
+</pre>
+		
+	
+</section>
+	
+		
 <section id="constraint-asset">
-<h3>Asset Constraint</h3>
+<h3>Refinement property with an Asset Collection</h3>
  
  <p>   
-	  Constraints MAY be applied to an <code>AssetCollection</code> to indicate the context under which to identify the individual Asset(s) that are effective to the Rule. The constraint applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
+	  An <code>AssetCollection</code> MAY include a <code>refinement</code> property to indicate the refinement context under which to identify individual Asset(s) of the complete collection. The <code>refinement</code> property applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
 	 
-	<p>Note that when using Constraints, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>AssetCollection</code>. </p>
+	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>AssetCollection</code>. </p>
 	
        
 	
 	
 <blockquote>
-    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a constraint that specifies further context on the characteristics of the AssetCollection members. In this case, the target subset of Assets will be those that have a <em>running time</em> of less than 60 minutes, and each of those may be played. Note that the <code>runningTime</code> leftOperand is defined in the ODRL Profile <code>http://example.com/odrl:profile:11</code> together with the <code>play</code> action.
+    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a refinement that specifies the characteristics of the AssetCollection members. In this case, the target subset of Assets will be those that have a <em>running time</em> of less than 60 minutes, and each of those may be played. Note that the <code>runningTime</code> leftOperand is defined in the ODRL Profile <code>http://example.com/odrl:profile:11</code> together with the <code>play</code> action.
         </p>
  </blockquote>
  <pre id="eg21" class="example hljs json">
@@ -1164,7 +1230,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "target": {
             "@type": "AssetCollection",
             "source":  "http://example.com/media-catalogue",
-            "constraint": [{
+            "refinement": [{
                 "leftOperand": "runningTime",
                 "operator": "lt",
                 "rightOperand": "60",
@@ -1179,18 +1245,19 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </section>
     
 <section id="constraint-party">
-<h3>Party Constraint</h3>
- 
-	 <p>   
-	  Constraints MAY be applied to a <code>PartyCollection</code> to indicate the context under which to identify the individual Parties that are effective to the Rule. The constraint applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
-	 
-	<p>Note that when using Constraints, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>PartyCollection</code>. </p>
+<h3>Refinement property with a Party Collection</h3>
 	
+	<p>
+	  A <code>PartyCollection</code> MAY include a <code>refinement</code> property to indicate the refinement context under which to identify individual Party(ies)) of the complete collection. The <code>refinement</code> property applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
+	 
+	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>PartyCollection</code>. </p>
+	
+       
 	
 	
     <blockquote>
 <p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> is a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee source is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
-    The assignee also has a constraint that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
+    The assignee also has a refinement that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
    </p>
     </blockquote>
 <pre id="eg22" class="example hljs json">
@@ -1205,7 +1272,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "assignee": {
             "@type": "PartyCollection",
             "source":  "http://example.com/user44/friends",
-            "constraint": [{
+            "refinement": [{
                 "leftOperand": "foaf:age",
                 "operator": "gt",
                 "rightOperand": "17"
@@ -1842,6 +1909,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 	<li>Added Consequence, Remedy, and Failure properties <a href="https://github.com/w3c/poe/issues/209">(Issue#209)</a></li>
 			
 	<li>Added mandatory use of ODRL Profiles <a href="https://github.com/w3c/poe/issues/210">(Issue#210)</a></li>
+			
+	<li>Added Refinement property <a href="https://github.com/w3c/poe/issues/211">(Issue#211)</a></li>
 			
 </ul>
 </section>
