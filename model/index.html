@@ -637,6 +637,15 @@
     
     <p>Constraints are boolean/logical expressions that can be used to refine the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. When multiple Constraints apply to the same Rule, Action, Party/Asset Collection, then they are interpreted as conjunction and all MUST be satisfied.</p>
 
+	
+<p>The Constraint and Logical Constraint classes form semantic and conditional relationships with the Party Collection, Asset Collection, Action, and Rule classes. The property relationships are summarised in the figure below.</p>
+
+<figure>
+	<img src="01Constraint.svg" alt="ODRL Constraint Relationships" width="800"/>
+    <figcaption>ODRL Constraint Relationships (Also available in <a href="01Constraint.png">PNG format</a>)</figcaption>
+</figure>
+
+	
     
 <section id="constraint-class">
 <h3>Constraint Class</h3>
@@ -921,6 +930,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 <p>Explicit sub-properties of the abstract <code><em>relation</em></code>, <code><em>relation</em></code> and <code><em>failure</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
+
+	<p>The three classes of Rules also form important relationships with the Duty Rule. The property relationships are summarised in the figure below.</p>
+
+<figure>
+	<img src="02Rule.svg" alt="ODRL Rule Relationships" width="800"/>
+    <figcaption>ODRL Rule Relationships (Also available in <a href="02Rule.png">PNG format</a>)</figcaption>
+</figure>
 
     
 <section id="permission">
