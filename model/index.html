@@ -1656,34 +1656,6 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </section>
 
 
-	
-<section id="odre"><h2>ODRL Evaluator</h2>
-	
-<span style="text-decoration: line-through">
-	
-	
-<div class="issue" data-number="86">This is a suggestion for how such a (normative) section might be included.</div>
-
-<p>The task of an ODRL Evaluator is to determine which Rule(s) are <em>in effect</em> for a given Asset and, if relevant, to which Party the Rule(s) apply. The method by which this is achieved is left to individual implementations but a key task is to determine whether or not constraints have been satisfied. Again, the processes by which this determination is made is not defined, however, it is expected that the result of such a determination is a binary <code>satisfied|not satisfied</code>.</p>
-<p><a href="#eg1">Example 1</a> simply states that permission is granted to play the Asset http://example.com/asset:9898.movie. The output of an ODRL Evaluator SHALL therefore simply be:</p>
-<p class="Rule">Permission to play http://example.com/asset:9898.movie</p>
-<p><a href="#eg2">Example 2</a> extends this by including the assigner and so the output of the Evaluator SHALL be:</p>
-<p class="Rule">http://example.com/party:org:abc grants Permission to play http://example.com/asset:9898.movie</p>
-<p><a href="#eg3">Example 3</a> extends this further by defining a specific Party to which the Rule applies so the output SHALL be:</p>
-<p class="Rule">http://example.com/party:org:abc grants Permission to http://example.com/party:person:billie to play http://example.com/asset:9898.movie</p>
-<p>An Evaluator MUST have a means of evaluating constraints or passing such processing to some external process and receiving a <code>satisfied|not satisfied</code> response. If an Evaluator is unable to determine whether or not a constraint has been satisfied then the response SHALL be:</p>
-<p class="Rule">Not Known</p>
-<p><a href="#eg13">Example 13</a> includes the constraint that the assignee http://example.com/org:xyz gives permission to play http://example.com/game:9090 on or after 31 December 2017. Therefore, up to and including 30 December 2017, the output of an ODRL Evaluator SHALL be:</p>
-<p class="Rule">No rules in effect</p>
-<p>Where no rules are in effect, the policy is effectively silent on what actions may or may not be performed. Continuing with Example 13, from 31 December 2017 onwards, the output SHALL be:</p>
-<p class="Rule">http://example.com/org:xyz gives permission to play http://example.com/game:9090</p>
-<p><a href="#eg14">Example 14</a> introduces the <code>conflict</code> resolution property (and does not include any constraints). The output of an ODRL Evaluator SHALL be:</p>
-<p class="Rule">http://example.com/MyPix:55 grants Permission to http://example.com/assignee:55 to display  http://example.com/photoAlbum:55. http://example.com/MyPix:55 Prohibits http://example.com/assignee:55 from Archiving http://example.com/photoAlbum:55. In the case of conflict, the Permission takes precedence.</p>
-<p class="note">And so on. Note that an id attribute has been added to all examples in the doc for cross-referencing. ReSpec doesn't do this for you (surprisingly). Local CSS class of Rule defined for this - change at will, obviously.</p>
-</span>
-	
-	</section>
-
 
 <section id="profile" >
 <h2>ODRL Profiles</h2>
