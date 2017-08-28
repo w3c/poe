@@ -632,6 +632,275 @@
 	
 </section>
 
+<section id="constraint">
+<h3>Constraints</h3>
+    
+    <p>Constraints are boolean/logical expressions that can be used to refine the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. When multiple Constraints apply to the same Rule, Action, Party/Asset Collection, then they are interpreted as conjunction and all MUST be satisfied.</p>
+
+    
+<section id="constraint-class">
+<h3>Constraint Class</h3>
+        
+<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. The Constraint class formulates a comparison expression, such as, the number of usages (the <code>leftOperand</code>) must be smaller than (the <code>operator</code>) the number 10 (the <code>rightOperand</code>). 
+</p>
+       
+<p>The Constraint class has the following properties:</p>
+<ul>
+<li>A Constraint MUST have one <code>leftOperand</code> property value of type LeftOperand.</li>
+<li>A Constraint MUST have one <code>operator</code> property value of type Operator.</li>
+<li>A Constraint MUST have either:
+	<ul>
+	<li>one <code>rightOperand</code> property value of type literal, IRI [[!rfc3987]], or RightOperand; or,</li>
+	<li>one <code>rightOperandReference</code> property value (of type IRI [[!rfc3987]]) for a reference to a right operand value.</li>
+	</ul>
+<li>A Constraint MAY have none or one <code>dataType</code> property value for the data type of the rightOperand/Reference.</li>
+<li>A Constraint MAY have none or one <code>unit</code> property value for the unit value of the rightOperand/Reference.</li>
+<li>A Constraint MAY have none or one <code>status</code> property value for the current value generated from the leftOperand action.</li>
+</ul>     
+    
+<p>The <code>leftOperand</code> property values are defined as instances of the LeftOperand class. The <code>leftOperand</code> instances MUST clearly be  <strong>defined</strong> to indicate the semantics of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
+    
+<p>The <code>operator</code> property values are defined as instances of the Operator class. The <code>operator</code> instances identify the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
+
+<p>The <code>rightOperand</code> property values are defined as instances of the RightOperand class, or IRIs, or Literal values. The <code>rightOperand</code> is the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Constraint.</p>
+
+ <p>
+The <code>rightOperand</code> represents a value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced to obtain the value. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the  expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the expression.
+ </p> 
+      
+<p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU currency&#8221;.</p>
+
+<p>The <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times.</p>
+
+
+</section>
+    
+    
+<section id="constraint-logical">
+<h3>Logical Constraint Class</h3>
+ 
+ <p>   
+     A Logical Constraint class is used for expressions which compare two or more operands which are existing Constraints by one logical operator. For example,  three Constraints could be logically <strong>and</strong>-ed indicating that all three must be true for the Logical Constraint to be satisfied.</p>
+
+      
+<p>The Logical Constraint class has the following properties:</p>
+<ul>
+<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing Constraint types.</li>
+</ul>    
+    
+<p>An ODRL validator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
+    <ul>
+    <li><code>or</code> -  at least one of the Constraints MUST be satisfied</li>
+    <li><code>xone</code> - only one, and not more, of the  Constraints MUST be satisfied</li>
+    <li><code>and</code> - all of the Constraints MUST be satisfied</li>
+    <li><code>andSequence</code> - all of the Constraints - in sequence - MUST be satisfied</li>
+    </ul>
+
+ <p>Additional <code><em>operand</em></code> sub-properties MAY be defined by ODRL Profiles.</p>
+    
+<p>The processing model for Logical Constraints includes:</p>
+    <ol>
+        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Additional sub-properties of <code><em>operand</em></code> MAY be defined by ODRL Profiles exclusively for the use of Logical Constraints.</li>
+		<li>All of the operand values MUST be unique Constraint instances.</li>
+		<li>These Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</li>
+    </ol>
+
+	<P>A Logical Constraint will reference existing Constraints that MAY appear at the Policy-level. These Constraints MUST NOT to be interpreted as Constraints on all the Rules in the Policy.
+	</P>
+	
+  
+
+	<p class="note">
+	When using a logical operand that needs to be evaluated in sequence, such as <code>andSequence</code>, the serialisations MUST preserve the order of the members of the list. In JSON-LD, the <code>@list</code> keyword MUST be used to represent an ordered collection.
+	</p>
+   
+    
+</section>
+
+<section id="constraint-action">
+<h3>Refinement property with an Action</h3>
+
+<p>An Action MAY include the <code>refinement</code> property to indicate a Constraint on the operation. The <code>refinement</code> property will narrow the semantics of the Action operation directly. </p>
+	
+<blockquote>
+<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>print</code>ed, and also include a refinement Constraint that narrows the printing operation to not more than 50% of the asset.</p>
+    </blockquote>
+    
+<pre id="eg17" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Offer",
+    "uid": "http://example.com/policy:6161",
+    "profile": "http://example.com/odrl:profile:10",
+    "permission": [{
+       "target": "http://example.com/document:1234",
+       "assigner": "http://example.com/org:616",
+       "action": [{
+          "@value": "print",
+          "refinement": [{
+             "leftOperand": "percentage",
+             "operator": "lteq",
+             "rightOperand": "50.0"
+          }]
+      }]
+   }]
+}
+</pre>
+	
+
+<blockquote> 
+<p>Example Use Case:The Policy below shows a permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. This is expressed as a Logical Constraint (with the <code>xone</code> operand) refering to two existing Constraints. </p>  
+</blockquote>
+           
+<pre id="eg19" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Offer",
+    "uid": "http://example.com/policy:88",
+    "profile": "http://example.com/odrl:profile:10",
+    "permission": [{
+        "target": "http://example.com/book/1999",
+        "assigner": "http://example.com/org/paisley-park",
+        "action": [{
+           "@value": "reproduce",
+           "refinement": {
+               "xone": ["http://example.com/p:88/C1", "http://example.com/p:88/C2"]
+            },
+        }],
+    }],
+   "constraint": [{
+       "uid": "http://example.com/p:88/C1",
+       "leftOperand": "media",
+       "operator": "eq",
+       "rightOperand": "online"
+   },
+   {
+       "uid": "http://example.com/p:88/C2",
+       "leftOperand": "media",
+       "operator": "eq",
+       "rightOperand": "print"
+   }]
+}  
+</pre>
+	
+	
+</section>
+	
+<section id="constraint-rule">
+<h3>Constraint property with a Rule</h3>
+
+<p>An Rule (such as a Permission, Prohibition, or Duty) MAY include the <code>constraint</code> property to indicate a condition on the Rule. The <code>constraint</code> property will stipulate over-arching conditions for the Rule.</p>
+	
+<blockquote>
+<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>distribute</code>d, and includes a constraint of a  <code>dateTime</code> condition that the permssion must be exercised before 2018-01-01.</p>
+    </blockquote>
+    
+<pre id="eg17" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Offer",
+    "uid": "http://example.com/policy:6163",
+    "profile": "http://example.com/odrl:profile:10",
+    "permission": [{
+       "target": "http://example.com/document:1234",
+       "assigner": "http://example.com/org:616",
+       "action": "distribute",
+       "constraint": [{
+           "leftOperand": "dateTime",
+           "operator": "lt",
+           "rightOperand": "2018-01-01"
+       }]
+   }]
+}
+</pre>
+		
+	
+</section>
+	
+		
+<section id="constraint-asset">
+<h3>Refinement property with an Asset Collection</h3>
+ 
+ <p>   
+	  An <code>AssetCollection</code> MAY include a <code>refinement</code> property to indicate the refinement context under which to identify individual Asset(s) of the complete collection. The <code>refinement</code> property applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
+	 
+	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>AssetCollection</code>. </p>
+	
+       
+	
+	
+<blockquote>
+    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a refinement that specifies the characteristics of the AssetCollection members. In this case, the target subset of Assets will be those that have a <em>running time</em> of less than 60 minutes, and each of those may be played. Note that the <code>runningTime</code> leftOperand is defined in the ODRL Profile <code>http://example.com/odrl:profile:11</code> together with the <code>play</code> action.
+        </p>
+ </blockquote>
+ <pre id="eg21" class="example hljs json">
+ {
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Offer",
+    "uid": "http://example.com/policy:4444",
+    "profile": "http://example.com/odrl:profile:11",
+    "permission": [{
+        "assigner": "http://example.com/org88",
+        "target": {
+            "@type": "AssetCollection",
+            "source":  "http://example.com/media-catalogue",
+            "refinement": [{
+                "leftOperand": "runningTime",
+                "operator": "lt",
+                "rightOperand": "60",
+                "unit": "http://qudt.org/vocab/unit/MinuteTime"
+            }],
+        },
+        "action": "play"
+    }]
+}
+</pre>
+    
+</section>
+    
+<section id="constraint-party">
+<h3>Refinement property with a Party Collection</h3>
+	
+	<p>
+	  A <code>PartyCollection</code> MAY include a <code>refinement</code> property to indicate the refinement context under which to identify individual Party(ies)) of the complete collection. The <code>refinement</code> property applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
+	 
+	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>PartyCollection</code>. </p>
+	
+       
+	
+	
+    <blockquote>
+<p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> is a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee source is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
+    The assignee also has a refinement that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
+   </p>
+    </blockquote>
+<pre id="eg22" class="example hljs json">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Agreement",
+    "uid": "http://example.com/policy:4444",
+    "profile": "http://example.com/odrl:profile:12",
+    "permission": [{
+        "target": "http://example.com/myPhotos:BdayParty",
+        "assigner": "http://example.com/user44",
+        "assignee": {
+            "@type": "PartyCollection",
+            "source":  "http://example.com/user44/friends",
+            "refinement": [{
+                "leftOperand": "foaf:age",
+                "operator": "gt",
+                "rightOperand": "17"
+            }],
+        },
+        "action": "display"
+    }]
+}
+</pre>
+    
+</section>
+    
+</section>
+	
 <section id="rule">
 <h3>Rule Class</h3>
 
@@ -1018,274 +1287,7 @@
 		
 </section>
 
-<section id="constraint">
-<h3>Constraints</h3>
-    
-    <p>Constraints are boolean/logical expressions that can be used to refine the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule. Constraints can be represented as a <strong> Constraint</strong> class or <strong>Logical Constraint</strong> class. A Logical Constraint will refer to existing Constraints as its operands. When multiple Constraints apply to the same Rule, Action, Party/Asset Collection, then they are interpreted as conjunction and all MUST be satisfied.</p>
 
-    
-<section id="constraint-class">
-<h3>Constraint Class</h3>
-        
-<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. The Constraint class formulates a comparison expression, such as, the number of usages (the <code>leftOperand</code>) must be smaller than (the <code>operator</code>) the number 10 (the <code>rightOperand</code>). 
-</p>
-       
-<p>The Constraint class has the following properties:</p>
-<ul>
-<li>A Constraint MUST have one <code>leftOperand</code> property value of type LeftOperand.</li>
-<li>A Constraint MUST have one <code>operator</code> property value of type Operator.</li>
-<li>A Constraint MUST have either:
-	<ul>
-	<li>one <code>rightOperand</code> property value of type literal, IRI [[!rfc3987]], or RightOperand; or,</li>
-	<li>one <code>rightOperandReference</code> property value (of type IRI [[!rfc3987]]) for a reference to a right operand value.</li>
-	</ul>
-<li>A Constraint MAY have none or one <code>dataType</code> property value for the data type of the rightOperand/Reference.</li>
-<li>A Constraint MAY have none or one <code>unit</code> property value for the unit value of the rightOperand/Reference.</li>
-<li>A Constraint MAY have none or one <code>status</code> property value for the current value generated from the leftOperand action.</li>
-</ul>     
-    
-<p>The <code>leftOperand</code> property values are defined as instances of the LeftOperand class. The <code>leftOperand</code> instances MUST clearly be  <strong>defined</strong> to indicate the semantics of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
-    
-<p>The <code>operator</code> property values are defined as instances of the Operator class. The <code>operator</code> instances identify the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
-
-<p>The <code>rightOperand</code> property values are defined as instances of the RightOperand class, or IRIs, or Literal values. The <code>rightOperand</code> is the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Constraint.</p>
-
- <p>
-The <code>rightOperand</code> represents a value and the <code>rightOperandReference</code> represents an IRI that must be de-referenced to obtain the value. If the <code>rightOperand</code> was <code>http://example.com/c100</code> then that is interpreted as the value to be compared in the  expression. If the <code>rightOperandReference</code>  was the same value of <code>http://example.com/c100</code>, then that IRI must be de-referenced first and the data returned must be interpreted as the value to be compared in the expression.
- </p> 
-      
-<p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU currency&#8221;.</p>
-
-<p>The <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times.</p>
-
-
-</section>
-    
-    
-<section id="constraint-logical">
-<h3>Logical Constraint Class</h3>
- 
- <p>   
-     A Logical Constraint class is used for expressions which compare two or more operands which are existing Constraints by one logical operator. For example,  three Constraints could be logically <strong>and</strong>-ed indicating that all three must be true for the Logical Constraint to be satisfied.</p>
-
-      
-<p>The Logical Constraint class has the following properties:</p>
-<ul>
-<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing Constraint types.</li>
-</ul>    
-    
-<p>An ODRL validator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
-    <ul>
-    <li><code>or</code> -  at least one of the Constraints MUST be satisfied</li>
-    <li><code>xone</code> - only one, and not more, of the  Constraints MUST be satisfied</li>
-    <li><code>and</code> - all of the Constraints MUST be satisfied</li>
-    <li><code>andSequence</code> - all of the Constraints - in sequence - MUST be satisfied</li>
-    </ul>
-
- <p>Additional <code><em>operand</em></code> sub-properties MAY be defined by ODRL Profiles.</p>
-    
-<p>The processing model for Logical Constraints includes:</p>
-    <ol>
-        <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Additional sub-properties of <code><em>operand</em></code> MAY be defined by ODRL Profiles exclusively for the use of Logical Constraints.</li>
-		<li>All of the operand values MUST be unique Constraint instances.</li>
-		<li>These Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</li>
-    </ol>
-
-	<P>A Logical Constraint will reference existing Constraints that MAY appear at the Policy-level. These Constraints MUST NOT to be interpreted as Constraints on all the Rules in the Policy.
-	</P>
-	
-  
-
-	<p class="note">
-	When using a logical operand that needs to be evaluated in sequence, such as <code>andSequence</code>, the serialisations MUST preserve the order of the members of the list. In JSON-LD, the <code>@list</code> keyword MUST be used to represent an ordered collection.
-	</p>
-   
-    
-</section>
-
-<section id="constraint-action">
-<h3>Refinement property with an Action</h3>
-
-<p>An Action MAY include the <code>refinement</code> property to indicate a Constraint on the operation. The <code>refinement</code> property will narrow the semantics of the Action operation directly. </p>
-	
-<blockquote>
-<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>print</code>ed, and also include a refinement Constraint that narrows the printing operation to not more than 50% of the asset.</p>
-    </blockquote>
-    
-<pre id="eg17" class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Offer",
-    "uid": "http://example.com/policy:6161",
-    "profile": "http://example.com/odrl:profile:10",
-    "permission": [{
-       "target": "http://example.com/document:1234",
-       "assigner": "http://example.com/org:616",
-       "action": [{
-          "@value": "print",
-          "refinement": [{
-             "leftOperand": "percentage",
-             "operator": "lteq",
-             "rightOperand": "50.0"
-          }]
-      }]
-   }]
-}
-</pre>
-	
-
-<blockquote> 
-<p>Example Use Case:The Policy below shows a permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. This is expressed as a Logical Constraint (with the <code>xone</code> operand) refering to two existing Constraints. </p>  
-</blockquote>
-           
-<pre id="eg19" class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Offer",
-    "uid": "http://example.com/policy:88",
-    "profile": "http://example.com/odrl:profile:10",
-    "permission": [{
-        "target": "http://example.com/book/1999",
-        "assigner": "http://example.com/org/paisley-park",
-        "action": [{
-           "@value": "reproduce",
-           "refinement": {
-               "xone": ["http://example.com/p:88/C1", "http://example.com/p:88/C2"]
-            },
-        }],
-    }],
-   "constraint": [{
-       "uid": "http://example.com/p:88/C1",
-       "leftOperand": "media",
-       "operator": "eq",
-       "rightOperand": "online"
-   },
-   {
-       "uid": "http://example.com/p:88/C2",
-       "leftOperand": "media",
-       "operator": "eq",
-       "rightOperand": "print"
-   }]
-}  
-</pre>
-	
-	
-</section>
-	
-<section id="constraint-rule">
-<h3>Constraint property with a Rule</h3>
-
-<p>An Rule (such as a Permission, Prohibition, or Duty) MAY include the <code>constraint</code> property to indicate a condition on the Rule. The <code>constraint</code> property will stipulate over-arching conditions for the Rule.</p>
-	
-<blockquote>
-<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>distribute</code>d, and includes a constraint of a  <code>dateTime</code> condition that the permssion must be exercised before 2018-01-01.</p>
-    </blockquote>
-    
-<pre id="eg17" class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Offer",
-    "uid": "http://example.com/policy:6163",
-    "profile": "http://example.com/odrl:profile:10",
-    "permission": [{
-       "target": "http://example.com/document:1234",
-       "assigner": "http://example.com/org:616",
-       "action": "distribute",
-       "constraint": [{
-           "leftOperand": "dateTime",
-           "operator": "lt",
-           "rightOperand": "2018-01-01"
-       }]
-   }]
-}
-</pre>
-		
-	
-</section>
-	
-		
-<section id="constraint-asset">
-<h3>Refinement property with an Asset Collection</h3>
- 
- <p>   
-	  An <code>AssetCollection</code> MAY include a <code>refinement</code> property to indicate the refinement context under which to identify individual Asset(s) of the complete collection. The <code>refinement</code> property applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
-	 
-	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>AssetCollection</code>. </p>
-	
-       
-	
-	
-<blockquote>
-    <p>Example Use Case: The Policy defines a target source <code>http://example.com/media-catalogue</code> that is an AssetCollection of multimedia videos. The target also has a refinement that specifies the characteristics of the AssetCollection members. In this case, the target subset of Assets will be those that have a <em>running time</em> of less than 60 minutes, and each of those may be played. Note that the <code>runningTime</code> leftOperand is defined in the ODRL Profile <code>http://example.com/odrl:profile:11</code> together with the <code>play</code> action.
-        </p>
- </blockquote>
- <pre id="eg21" class="example hljs json">
- {
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Offer",
-    "uid": "http://example.com/policy:4444",
-    "profile": "http://example.com/odrl:profile:11",
-    "permission": [{
-        "assigner": "http://example.com/org88",
-        "target": {
-            "@type": "AssetCollection",
-            "source":  "http://example.com/media-catalogue",
-            "refinement": [{
-                "leftOperand": "runningTime",
-                "operator": "lt",
-                "rightOperand": "60",
-                "unit": "http://qudt.org/vocab/unit/MinuteTime"
-            }],
-        },
-        "action": "play"
-    }]
-}
-</pre>
-    
-</section>
-    
-<section id="constraint-party">
-<h3>Refinement property with a Party Collection</h3>
-	
-	<p>
-	  A <code>PartyCollection</code> MAY include a <code>refinement</code> property to indicate the refinement context under which to identify individual Party(ies)) of the complete collection. The <code>refinement</code> property applies to the characteristics of each member of the collection (and not the resource as a whole). </p>
-	 
-	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>PartyCollection</code>. </p>
-	
-       
-	
-	
-    <blockquote>
-<p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> is a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee source is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
-    The assignee also has a refinement that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
-   </p>
-    </blockquote>
-<pre id="eg22" class="example hljs json">
-{
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Agreement",
-    "uid": "http://example.com/policy:4444",
-    "profile": "http://example.com/odrl:profile:12",
-    "permission": [{
-        "target": "http://example.com/myPhotos:BdayParty",
-        "assigner": "http://example.com/user44",
-        "assignee": {
-            "@type": "PartyCollection",
-            "source":  "http://example.com/user44/friends",
-            "refinement": [{
-                "leftOperand": "foaf:age",
-                "operator": "gt",
-                "rightOperand": "17"
-            }],
-        },
-        "action": "display"
-    }]
-}
-</pre>
-    
-</section>
-    
-</section>
 
     	
 <section id="composition">
