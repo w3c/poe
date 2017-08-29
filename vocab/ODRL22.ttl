@@ -239,6 +239,7 @@ odrl:
     skos:scopeNote "ODRL Core Vocabulary Terms"@en ;
     skos:member :Constraint ;
     skos:member :constraint ;
+    skos:member :refinement ;
     skos:member :Operator ;
     skos:member :operator ;
 	skos:member :RightOperand ;
@@ -665,13 +666,13 @@ odrl:
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Constraint"@en ;
-	skos:definition "A boolean expression that refines the applicability of a Rule or the context of a Party/Asset Collection."@en .
+	skos:definition "A boolean expression that refines the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule."@en .
 
 :LogicalConstraint
 	a rdfs:Class, owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Logical Constraint"@en ;
-	skos:definition "A logical expression that refines the applicability of a Rule or the context of a Party/Asset Collection."@en .
+	skos:definition "A logical expression that refines the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule."@en .
 
 
 :relation
@@ -742,11 +743,26 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Constraint"@en ;
-	skos:definition "Constraints applied to a Rule, or Party/Asset Collection."@en ;
-	skos:note "One or more Constraints may be applied. Example: the Action play is only permitted for a certain period of time."@en ;
+	skos:definition "Constraints applied to a Rule"@en ;
+	skos:note "Constraints on Rules are used to determine if a rule is Active or not. Example: the Permission rule is only active during the year 2018."@en ;
 	rdfs:domain [
 		a owl:Class ;
-		owl:unionOf ( :Policy :Rule :AssetCollection :PartyCollection ) ;
+		owl:unionOf ( :Policy :Rule ) ;
+	] ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :Constraint :LogicalConstraint ) ;
+	] .
+
+:refinement
+	a rdf:Property , owl:ObjectProperty, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Refinement"@en ;
+	skos:definition "Constraints used to refine the semantics of an Action, or Party/Asset Collection"@en ;
+	skos:note "Example: the Action print is only permitted on 50% of the asset."@en ;
+	rdfs:domain [
+		a owl:Class ;
+		owl:unionOf ( :Action :AssetCollection :PartyCollection ) ;
 	] ;
 	rdfs:range [
 		a owl:Class ;
@@ -1007,8 +1023,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Absolute Asset Position"@en ;
-	skos:definition "A point in space or time defined with absolute coordinates the positioning of the Asset has to comply with for exercising the Action."@en ;
-	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrained to a specific position of the canvas rendering it."@en ;
+	skos:definition "A point in space or time defined with absolute coordinates for the positioning of the Asset."@en ;
+	skos:note "Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :absoluteSpatialPosition
@@ -1016,8 +1032,8 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :absolutePosition;
 	rdfs:label "Absolute Spatial Asset Position"@en ;
-	skos:definition "The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space the Asset has to fit in after the Action."@en ;
-	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrained to a specific position of the canvas rendering it. Note: see also the Left Operand Relative Spatial Asset Position. "@en ;
+	skos:definition "The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space for the Asset to fit."@en ;
+	skos:note "Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it. Note: see also the Left Operand Relative Spatial Asset Position. "@en ;
    skos:scopeNote "Non-Normative"@en .
 
 :absoluteTemporalPosition
@@ -1025,7 +1041,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :absolutePosition;
 	rdfs:label "Absolute Temporal Asset Position"@en ;
-	skos:definition "The absolute temporal positions in a media stream the Asset has to fit in after the Action."@en ;
+	skos:definition "The absolute temporal positions in a media stream the Asset has to fit."@en ;
 	skos:note "Note: Use with Actions including the Asset in a larger media stream. The fragment part of a Media Fragment URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream."@en ;
    skos:scopeNote "Non-Normative"@en .
 
@@ -1033,7 +1049,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Absolute Asset Size"@en ;
-	skos:definition "Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects of the Asset after the Action."@en ;
+	skos:definition "Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects of the Asset."@en ;
 	skos:note "Example: The image can be resized in width to a maximum of 1000px."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1041,23 +1057,23 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Count"@en ;
-	skos:definition "Numeric count of exercising the Action."@en ;
+	skos:definition "Numeric count."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :dateTime
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Action Datetime"@en ;
-	skos:definition "The date (and optional time and timezone) to be compared to the time when the Action is exercised. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]."@en ;
+	rdfs:label "Datetime"@en ;
+	skos:definition "The date (and optional time and timezone) to be compared. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]]."@en ;
 	skos:note "The use of Timezone information is strongly recommended."@en ;
-	skos:note "The Action of the Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Action can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time."@en ;
+	skos:note "The Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Rule can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :delayPeriod
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Action Delay Period"@en ;
-	skos:definition "The Action may be exercised after the end of this time period. The point in time triggering this period MAY be defined by another temporal Constraint expressed together in a Constraint (utilising the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	rdfs:label "Delay Period"@en ;
+	skos:definition "A time delay period. The point in time triggering this period MAY be defined by another temporal Constraint expressed together in a Constraint (utilising the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
 	skos:note "Only the eq, gt, gteq operators SHOULD be used."@en ;
 	skos:note "Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action."@en ;
     skos:scopeNote "Non-Normative"@en .
@@ -1066,7 +1082,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Delivery Channel"@en ;
-	skos:definition "The delivery channel used for exercising the Action."@en ;
+	skos:definition "The delivery channel used."@en ;
 	skos:note "Example: the asset may be distributed only on mobile networks."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1074,7 +1090,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Device"@en ;
-	skos:definition "An identified computing system for exercising the Action."@en ;
+	skos:definition "An identified computing system."@en ;
     owl:deprecated true ;
 	skos:exactMatch :systemDevice .
 
@@ -1082,24 +1098,24 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Elapsed Time"@en ;
-	skos:definition "The Action may be exercised during this time period. The start of the period is trigged by exercising the Action for the first time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	skos:definition "An elapsed time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
 	skos:note "Only the eq, lt, lteq operators SHOULD be used."@en ;
-	skos:note "Example: <code>elpasedTime eq P60M</code> indicates a total elapsed time of 60 Minutes can be used for exercising the action." ;
+	skos:note "Example: <code>elpasedTime eq P60M</code> indicates a total elapsed time of 60 Minutes." ;
     skos:scopeNote "Non-Normative"@en .
 
 :event
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Event"@en ;
-	skos:definition "An identified event used for exercising the Action."@en ;
-	skos:note "Events are temporal periods of time, and operators can be used to signal before (lt), during (eq) or after (gt) the event. Example: Action may be taken during the “FIFA World Cup 2020” only."@en ;
+	skos:definition "An identified event."@en ;
+	skos:note "Events are temporal periods of time, and operators can be used to signal before (lt), during (eq) or after (gt) the event. Example: May be taken during the “FIFA World Cup 2020” only."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :fileFormat
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "File Format"@en ;
-	skos:definition "The file format of the transformed Asset after exercising the Action."@en ;
+	skos:definition "A transformed file format."@en ;
 	skos:note "Example: An asset may be transformed into JPEG format."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1107,7 +1123,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Industry Context"@en ;
-	skos:definition "The defined industry sector in which the Action may be exercised."@en ;
+	skos:definition "A defined industry sector."@en ;
 	skos:note "Example: publishing or financial industry."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1115,7 +1131,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Language"@en ;
-	skos:definition "The main natural language of the transformed Asset after exercising the Action."@en ;
+	skos:definition "A natural language."@en ;
 	skos:note "Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values."@en ;
     skos:scopeNote "Non-Normative"@en .
   
@@ -1123,7 +1139,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Media Context"@en ;
-	skos:definition "Category of media setting the context for exercising the Action."@en ;
+	skos:definition "Category of media context."@en ;
 	skos:note "Example media types: electronic, print, advertising, marketing. Note: The used type should not be an IANA MediaType as they are focused on technical characteristics. "@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1131,16 +1147,16 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Metered Time"@en ;
-	skos:definition "The Action may be exercised for an accumulated amount of this time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	skos:definition "An accumulated amount of time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
 	skos:note "Only the eq, lt, lteq operators SHOULD be used."@en ;
-	skos:note "Example: <code>meteredTime lteq P60M</code> indicates that the action can be exercised for an accumulated period of 60 Minutes or less. This means that the action could be exercised for 5 minutes each day over 12 days." ;
+	skos:note "Example: <code>meteredTime lteq P60M</code> indicates an accumulated period of 60 Minutes or less." ;
     skos:scopeNote "Non-Normative"@en .
 
 :payAmount
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Payment Amount"@en ;
-	skos:definition "The amount of a payment related to the Action of a Duty. Right operand value MUST be an xsd:decimal. "@en ;
+	skos:definition "The amount of a financial payment. Right operand value MUST be an xsd:decimal. "@en ;
 	skos:note "Note: Can be used for compensation duties with the unit property indicating the currency of the payment."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1148,23 +1164,23 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Asset Percentage"@en ;
-	skos:definition "The amount of an Asset - as a percentage - used for exercising the Action. Right operand value MUST be an xsd:decimal from 0 to 100."@en ;
-	skos:note "Example: Extract less than or equal to of 50% of the asset."@en ;
+	skos:definition "A percentage amount. Right operand value MUST be an xsd:decimal from 0 to 100."@en ;
+	skos:note "Example: Extract less than or equal to 50%."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :product
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Product Context"@en ;
-	skos:definition "Product or service used for exercising the Action."@en ;
-	skos:note "Example: The Asset image may only be used in the XYZ Magazine."@en ;
+	skos:definition "A Product or service."@en ;
+	skos:note "Example: May only be used in the XYZ Magazine."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :purpose
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Purpose"@en ;
-	skos:definition "Purpose for exercising the Action."@en ;
+	skos:definition "A defined Purpose."@en ;
 	skos:note "Example: Educational use."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1172,7 +1188,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Recipient"@en ;
-	skos:definition "The party receiving the result of an exercised Action."@en ;
+	skos:definition "The party receiving the result/outcome."@en ;
 	skos:note "Note: The Right Operand must identify one or more specific parties or category/ies of the party."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1180,8 +1196,8 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Relative Asset Position"@en ;
-	skos:definition "A point in space or time defined with coordinates relative to full measures the positioning of the Asset has to comply with for exercising the Action."@en ;
-	skos:note "Example: May be used with a natural language contract saying the the upper left corner of a picture may be constrained to a specific position of the canvas rendering it."@en ;
+	skos:definition "A point in space or time defined with coordinates relative to full measures the positioning of the Asset."@en ;
+	skos:note "Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it."@en ;
   skos:scopeNote "Non-Normative"@en .
 
 :relativeSpatialPosition
@@ -1189,7 +1205,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :relativePosition;
 	rdfs:label "Relative Spatial Asset Position"@en ;
-	skos:definition "The relative spatial positions - expressed as percentages of full values - of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space the Asset has to fit in after the Action."@en ;
+	skos:definition "The relative spatial positions - expressed as percentages of full values - of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space of the Asset."@en ;
 	skos:note "Note: See the Left Operand absoluteSpatialAssetPosition."@en ;
   skos:scopeNote "Non-Normative"@en .
 
@@ -1198,7 +1214,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :relativePosition;
 	rdfs:label "Relative Temporal Asset Position"@en ;
-	skos:definition "A point in space or time defined with coordinates relative to full measures the positioning of the Asset has to comply with for exercising the Action."@en ;
+	skos:definition "A point in space or time defined with coordinates relative to full measures the positioning of the Asset."@en ;
 	skos:note "Example: The MP3 music file must be positioned between the positions at 33% and 48% of the temporal length of a stream. Note: See the Left Operand absoluteTemporalAssetPosition. "@en ;
   skos:scopeNote "Non-Normative"@en .
 
@@ -1206,7 +1222,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Relative Asset Size"@en ;
-	skos:definition "Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects - expressed as percentages of full values - of the Asset after the Action."@en ;
+	skos:definition "Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects - expressed as percentages of full values - of the Asset."@en ;
 	skos:note "Example: The image can be resized in width to a maximum of 200%. Note: See the Left Operand absoluteSize. "@en ;
   skos:scopeNote "Non-Normative"@en .
 
@@ -1214,7 +1230,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Rendition Resolution"@en ;
-	skos:definition "Resolution of the rendition of the Asset after exercising the Action."@en ;
+	skos:definition "Resolution of the rendition of the Asset."@en ;
 	skos:note "Example: the image may be printed at 1200dpi."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1222,7 +1238,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Geospatial Named Area"@en ;
-	skos:definition "A named and identified geospatial area with defined borders for exercising the Action. An IRI MUST be used to represent this value."@en ;
+	skos:definition "A named and identified geospatial area with defined borders. An IRI MUST be used to represent this value."@en ;
 	skos:note "A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. "@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1231,7 +1247,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:broaderTransitive :spatial;
 	rdfs:label "Geospatial Coordinates"@en ;
-	skos:definition "A set of coordinates setting the borders of a geospatial area for exercising the Action. The coordinates MUST include longitude and latitude, they MAY include altitude and the geodetic datum."@en ;
+	skos:definition "A set of coordinates setting the borders of a geospatial area. The coordinates MUST include longitude and latitude, they MAY include altitude and the geodetic datum."@en ;
 	skos:note "The default values are the altitude of earth's surface at this location and the WGS 84 datum."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1239,7 +1255,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "System"@en ;
-	skos:definition "An identified computing system for exercising the Action."@en ;
+	skos:definition "An identified computing system."@en ;
     owl:deprecated true ;
 	skos:exactMatch :systemDevice .
 
@@ -1248,17 +1264,17 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	skos:exactMatch :system, :device ;
 	rdfs:label "System Device"@en ;
-	skos:definition "An identified computing system for exercising the Action."@en ;
+	skos:definition "An identified computing system."@en ;
 	skos:note "Example: The system device can be identified by a unique code created from the used hardware."@en ;
-  skos:scopeNote "Non-Normative"@en .
+    skos:scopeNote "Non-Normative"@en .
 
 :timeInterval
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Recurring Time Interval"@en ;
-	skos:definition "The Action may be exercised within a recurring period of time after which the Action can or cannot be exercised again until the time period has elapsed. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
+	skos:definition "A recurring period of time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]]."@en ;
 	skos:note "Only the eq operator SHOULD be used."@en ;
-	skos:note "Example: <code>timeInterval eq P7D</code> indicates that the action can be exercised once every 7 day period." ;
+	skos:note "Example: <code>timeInterval eq P7D</code> indicates a recurring 7 day period." ;
     skos:scopeNote "Non-Normative"@en .
 
 :unitOfCount
@@ -1273,7 +1289,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Version"@en ;
-	skos:definition "The range of versions of the Asset which can or cannot be used for exercising the Action."@en ;
+	skos:definition "The range of versions of the Asset."@en ;
 	skos:note "Example: Single Paperback or Multiple Issues or version 2.0 or higher."@en ;
     skos:scopeNote "Non-Normative"@en .
 
@@ -1281,7 +1297,7 @@ odrl:
 	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Virtual IT Communication Location"@en ;
-	skos:definition "An identified location of the IT communication space where the Action can or cannot be exercised."@en ;
+	skos:definition "An identified location of the IT communication space."@en ;
 	skos:note "Example: an Internet domain or IP address range."@en ;
   skos:scopeNote "Non-Normative"@en .
 

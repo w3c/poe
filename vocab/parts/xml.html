@@ -58,7 +58,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
 <li>uid (REQUIRED), relation (REQUIRED), type (OPTIONAL), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
-<p>The asset element may also contain the constraint element.</p>
+<p>The asset element may also contain the refinement element for asset collections.</p>
 <p>The Party class is a single party element to represent both the Party uid and the functional role to the Rule. The Party element contains the following attributes:</p>
 <ul>
 <li>uid - an IRI</li>
@@ -74,7 +74,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
 <li>uid (REQUIRED), function (REQUIRED), type (OPTIONAL), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
-<p>The party element may also contain the constraint element.</p>
+<p>The party element may also contain the refinement element for party collections.</p>
 <p>The Permission element contains the following elements:</p>
 <ul>
 <li>asset (REQUIRED)</li>
@@ -122,6 +122,8 @@ The Policy element MAY also contain constraint elements which are Constraints re
 <li>name (REQUIRED), id (OPTIONAL), or</li>
 <li>idref (REQUIRED)</li>
 </ol>
+	<p>The action element may also contain the refinement element.</p>
+	
 <p>The Constraint element contains the following attributes:</p>
 <ul>
 <li>name - an IRI for the leftOperand or logical operand (for Logical Constraints)</li>
@@ -177,11 +179,12 @@ The Policy element MAY also contain constraint elements which are Constraints re
                       operator="http://www.w3.org/ns/odrl/2/eq" 
                       rightOperand="http://vocab.getty.edu/tgn/1000080"/>
         &lt;o:duty>
-            &lt;o:action name="http://www.w3.org/ns/odrl/2/compensate"/>
-            &lt;o:constraint name="http://www.w3.org/ns/odrl/2/payAmount"
-                operator="http://www.w3.org/ns/odrl/2/eq"
-                rightOperand="5000.00" 
-                unit="http://dbpedia.org/resource/Euro"/>
+            &lt;o:action name="http://www.w3.org/ns/odrl/2/compensate">
+               &lt;o:refinement name="http://www.w3.org/ns/odrl/2/payAmount"
+                   operator="http://www.w3.org/ns/odrl/2/eq"
+                   rightOperand="5000.00" 
+                   unit="http://dbpedia.org/resource/Euro"/>
+            &lt;/o:action>
         &lt;/o:duty>
     &lt;/o:permission>  
 &lt;/o:Policy>
@@ -263,29 +266,4 @@ The Policy element MAY also contain constraint elements which are Constraints re
 
 </section>
 
-<section>
-<h2>Inline Assets</h2>
-  <p>In some scenarios, the Asset of an ODRL Policy maybe also be XML or HTML markup. In these specific cases, it makes sense to enable the ODRL Policy to be articulated as part of the Asset and to support abbreviated expressions. All default values should be assumed. The preferred method of linking is to utilise the XML ID attribute. The source Asset markup may be identified with an ID attribute and the ODRL Asset element can then refer to this ID as the UID (as an IRI hash fragment). An example is shown below.</p>  
-<div id="inline-xml">
-<pre class="example  xml">
-&lt;rnews:Article xml:id="item8HEX">
-    &lt;rnews:title>Allies are Split&lt;rnews:title>
-    &lt;rnews:description>Rebel fighters take control...&lt;rnews:description>
-    ...
-    &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/"
-              type="http://www.w3.org/ns/odrl/2/Set"
-              uid="http://example.com/policy:ABAABA"
-              profile="http://example.com/odrl:profile:10X">
-      &lt;o:permission>
-        &lt;o:asset uid="#item8HEX"/>
-        &lt;o:action name="http://w3.org/ns/odrl/2/distribute"/>
-        &lt;o:constraint name="http://www.w3.org/ns/odrl/2/dateTime" 
-             operator="http://www.w3.org/ns/odrl/2/gteq" rightOperand="2011-11-11"/>
-      &lt;/o:permission>
-    &lt;/o:policy>
-    ...
-&lt;/rnews:Article>
-</pre>
-</div>
-</section>
 

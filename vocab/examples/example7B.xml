@@ -7,6 +7,10 @@
         <o:action name="http://www.w3.org/ns/odrl/2/distribute"/>
         <o:constraint id="C1" name="http://www.w3.org/ns/odrl/2/purpose"  operator="http://www.w3.org/ns/odrl/2/eq" 
                    rightOperand="http://www.w3.org/2002/01/P3Pv1:contact"/>
+        <o:action name="http://www.w3.org/ns/odrl/2/print">
+             <o:refinement id="C22" name="http://www.w3.org/ns/odrl/2/percent"  operator="http://www.w3.org/ns/odrl/2/eq" 
+            rightOperand="50.0"/>
+        </o:action>
         <o:party uid="http://example.com/billie:888" function="http://www.w3.org/ns/odrl/2/assigner"/>
         <o:party uid="http://example.com/gov:health:au" function="http://www.w3.org/ns/odrl/2/assignee"/>
         <o:duty>
