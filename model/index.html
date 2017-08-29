@@ -83,7 +83,7 @@
            <dt><dfn>ODRL Validator</dfn></dt>
 	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model requirements.</dd>
            <dt><dfn>ODRL Evaluator</dfn></dt>
-	          <dd>A system that determines whether the permissions, obligations, and prohibitions of an ODRL Policy expression are active or not active.</dd>
+	          <dd>A system that determines whether the Rules of an ODRL Policy expression have meet their intended action performance.</dd>
 		    <dt><dfn>ODRL Core Vocabulary</dfn></dt>
 	          <dd>The set of terms that are represented by the ODRL Information Model.</dd>
 		     <dt><dfn>ODRL Profile</dfn></dt>
@@ -650,7 +650,7 @@
 <section id="constraint-class">
 <h3>Constraint Class</h3>
         
-<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. The Constraint class formulates a comparison expression, such as, the number of usages (the <code>leftOperand</code>) must be smaller than (the <code>operator</code>) the number 10 (the <code>rightOperand</code>). 
+<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. If the comparison returns a match the Constraint is satisfied, otherwise it is not satisfied. The Constraint class formulates a comparison expression, such as, the number of usages (the <code>leftOperand</code>) must be smaller than (the <code>operator</code>) the number 10 (the <code>rightOperand</code>). 
 </p>
        
 <p>The Constraint class has the following properties:</p>
@@ -1244,22 +1244,31 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </section>
 	
 <section id="rule-active">
-<h3>Active Rule Processing</h3>
+<h3>Rule Active State Processing</h3>
 
-	<P>ODRL processors are required to determine if a Rule is <strong>Active</strong> to ascertain if the intent of the Rule is being met. That is, is a Permission actually allowed, is a Prohibition being forbidden, and is a Duty being fulfilled.
+	<P>ODRL processors are required to determine if a Rule has met their intended action performance. That is; is the action of a Permission rule allowed, is the action of a Prohibition rule being complied, and has the action of a Duty rule been fulfilled.
 	</P>
 	
-	<p>An ODRL Validator MUST first ensure that the Policy rules meet the conformance requirements of the ODRL Information Model.</p>
+	<p>An ODRL Validator MUST first ensure that the Policy rules meet the conformance requirements of the ODRL Information Model. For example, this includes property cardinality and relationship checking.</p>
 	
-	<p>An ODRL Evaluator MUST then evaluate the constraint properties of all Rules. If the constraint properties are satisfied, and the Action exercised (or not) in terms of the semantics of the Rule, then the Rule is <strong>Active</strong>. If not, then the Rule is <strong>Not Active</strong>.</p>
-
-	<p>If a Rule is related to another Rule (such as a Permission related to a Duty with the duty property), then all related Rules MUST also be <strong>Active</strong>.</p>
+	<p>An ODRL Evaluator MUST then evaluate if the constraint properties of a Rule are satisfied to determine if the Rule is <strong>Active</strong>.  If a Rule has no constraint properties, then it is always <strong>Active</strong>. A <strong>Non-Active</strong> Rule means that no further processing is required at this time and no outcomes can be determined from the Rule.</p>
+	
+	<p>Once a Rule has been determined to be <strong>Active</strong>, then the ODRL Evaluator MUST:</p>
+	<ul>
+	  <li>Allow the action of a Permission rule. This includes evaluating, and confirming, the fulfilled state of the duty properties of the Permission.</li>
+	  <li>Disallow the action of a Prohibition rule. This includes determining if the Prohibition has been violated (by the action being exercised) and if remedy Duties have been fulfilled.</li>
+	  <li>Confirm fulfilment of the action of a Duty rule. This includes determining if the Duty has not been fulfilled and the required consequence Duties have also been fulfilled.</li>
+	</ul>
 	
     
 	<blockquote>
-<p>Example Use Case: The Agreement policy below shows a Permission Rule that includes a Duty Rule. The Duty Rule is a compensation for a certain amount, and has a rule constraint that indicates the duty action must be repeated every month. An ODRL Evaluator MUST check that the compensation action has been exercised in the past month for the Duty Rule to be Active. 
+<p>Example Use Case: The Agreement policy below shows a Permission rule that includes a required Duty rule. </p>
+
+<p>The Permission rule includes a constraint for the spatial area indicated by the 7353132 Getty code (ie Australia). An ODRL Evaluator MUST check that the rule occurs only in this spatial area. If true, then the rule is Active. This now means the action to play the target asset is allowed, if the Duty rule has been fulfilled. </p>
+		
+<p>The Duty rule is a compensation for a certain amount, and has a temporal rule constraint. An ODRL Evaluator MUST check that the rule has been exercised in the past month.  If true, then the rule is Active. This now means the compensation action (including the refinement) must be confirmed to determine the duty is fulfilled. 
 </p>
-		<p>The Permission Rule includes a constraint for the spatial area indicated by the 7353132 Getty code (ie Australia). An ODRL Evaluator MUST check that the action occurs only in this spatial area, and if the Duty Rule is Active, then the Permission Rule is also Active. </p>
+		
 </blockquote>
 
 
