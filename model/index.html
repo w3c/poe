@@ -81,7 +81,7 @@
 	       <dt><dfn>Constraint</dfn></dt>
 	          <dd>A boolean/logical expression that refines an Action and Party/Asset collection or the conditions applicable to a Rule.</dd>
            <dt><dfn>ODRL Validator</dfn></dt>
-	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model requirements.</dd>
+	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model validation requirements.</dd>
            <dt><dfn>ODRL Evaluator</dfn></dt>
 	          <dd>A system that determines whether the Rules of an ODRL Policy expression have meet their intended action performance.</dd>
 		    <dt><dfn>ODRL Core Vocabulary</dfn></dt>
@@ -173,7 +173,7 @@
 <p>In the former case, the profile property MUST NOT be used. In the latter case, the profile property MUST be used to indicate the IRIs of the ODRL Profile(s). 
 	See the <a href="#profile">ODRL Profiles</a> section for more details on mechanisms to define ODRL Profiles and conformance requirements. (The Examples in this document will use ODRL Profile identifiers for illustrative purposes only.) </p>
 	
-<p>The Policy class MAY also include other direct properties to support <a href="#composition-compact">Compact Policy</a> serialisations and references to common <a href="#constraint">Constraints</a>. These are not to be considered as direct properties of the Policy but as an intermediate step, that after applying <a href="#composition">atomic processing rules</a> will create a Policy  consistent with the normative ODRL Information Model.
+<p>The Policy class MAY also include other direct properties to support <a href="#composition-compact">Compact Policy</a> serialisations and references to common <a href="#constraint">Constraints</a>. These are not to be considered as direct properties of the Policy but as an intermediate step, that after applying <a href="#composition">atomic processing requirements</a> will create a Policy  consistent with the normative ODRL Information Model.
 	</p>
 	
 <p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the 
@@ -707,7 +707,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 
  <p>Additional <code><em>operand</em></code> sub-properties MAY be defined by ODRL Profiles.</p>
     
-<p>The processing model for Logical Constraints includes:</p>
+<p>The ODRL validation requirements for Logical Constraints includes:</p>
     <ol>
         <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Additional sub-properties of <code><em>operand</em></code> MAY be defined by ODRL Profiles exclusively for the use of Logical Constraints.</li>
 		<li>All of the operand values MUST be unique Constraint instances.</li>
@@ -1246,18 +1246,21 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="rule-active">
 <h3>Rule Active State Processing</h3>
 
-	<P>ODRL processors are required to determine if a Rule has met their intended action performance. That is; is the action of a Permission rule allowed, is the action of a Prohibition rule being complied, and has the action of a Duty rule been fulfilled.
-	</P>
+
+	<p>An ODRL Validator MUST ensure that the serialised policy expressions meet the conformance requirements of the ODRL Information Model. For example, this includes property cardinality and relationships, and conforming to validation requirements. If the policy contains ill-formed serialised expressions, then the result of the validation process is undefined. An ODRL Validator SHOULD produce a failure in this case.</p>
 	
-	<p>An ODRL Validator MUST first ensure that the Policy rules meet the conformance requirements of the ODRL Information Model. For example, this includes property cardinality and relationship checking.</p>
-	
-	<p>An ODRL Evaluator MUST then evaluate if the constraint properties of a Rule are satisfied to determine if the Rule is <strong>Active</strong>.  If a Rule has no constraint properties, then it is always <strong>Active</strong>. A <strong>Non-Active</strong> Rule means that no further processing is required at this time and no outcomes can be determined from the Rule.</p>
+	<p>An ODRL Evaluator MUST evaluate if all constraint properties of a Rule are satisfied to determine the Rule is <strong>Active</strong>, if at least one of the constraints is not satisfied, then to determine the Rule is <strong>Non-Active</strong>. If a Rule has no constraint properties, then it is always <strong>Active</strong>.
+		
+	A <strong>Non-Active</strong> Rule means that no further processing SHOULD be executed at this time and no outcomes can be determined from the Rule.</p>
 	
 	<p>Once a Rule has been determined to be <strong>Active</strong>, then the ODRL Evaluator MUST:</p>
 	<ul>
-	  <li>Allow the action of a Permission rule. This includes evaluating, and confirming, the fulfilled state of the duty properties of the Permission.</li>
-	  <li>Disallow the action of a Prohibition rule. This includes determining if the Prohibition has been violated (by the action being exercised) and if remedy Duties have been fulfilled.</li>
-	  <li>Confirm fulfilment of the action of a Duty rule. This includes determining if the Duty has not been fulfilled and the required consequence Duties have also been fulfilled.</li>
+	  <li>Evaluate the fulfilled state of all duty properties of the Permission. If confirmed, then the Permission rule is <strong>Active</strong> and the action of the rule is allowed, otherwise the rule is <strong>Not-Active</strong>.</li>
+		
+	<li>Check if exercising the disallowed action of a Prohibition sets it to <strong>Violated</strong>, else it is <strong>Not-Violated</strong>. In the <strong>Violated</strong> state, fulfilling all remedies of the Prohibition sets the state of the Prohibition back to <strong>Not-Violated</strong>. Not fulfilling any remedy keeps the state at <strong>Violated</strong>.</li>
+	
+		<li>Confirm that a Duty is <strong>Fulfilled</strong> by checking if the action of the Duty has been exercised. If the action has not been exercised, the fulfilment of all consequences of a Duty sets the Duty to <strong>Fulfilled</strong>; if one or more consequences is not fulfilled then the Duty is <strong>Not-Fulfilled</strong>.</li>
+		
 	</ul>
 	
     
@@ -1388,7 +1391,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 }
 </pre>
     
-    <p>In order to create the <em>atomic</em> Rules in a Policy, the processing model for Rules with multiple Assets, Parties, and Actions includes:</p>
+    <p>In order to create the <em>atomic</em> Rules in a Policy, the ODRL validation requirements for Rules with multiple Assets, Parties, and Actions includes:</p>
     <ol>
     <li>Where there are multiple Assets (with the same relation), then replace the existing Rule by newly created  Rules (one for each of these Assets) and include only one Asset relation, and include all other (non-Asset) properties, in each Rule</li>
     <li>Where there are multiple Parties (with the same function), then replace the existing Rule by newly created Rules (one for each of these Parties) and include only one Party function, and include all other (non-Party) properties, in each Rule.</li>
@@ -1410,7 +1413,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	</ul>
 
-	<p>The processing model for expanding short-cuts in a Policy is:</p>
+	<p>The ODRL validation requirements for expanding short-cuts in a Policy is:</p>
     <ol>
     <li>For each Rule in the Policy:</li>
 		<ul>
@@ -1420,7 +1423,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 		<li>Remove the shared properties declared at the Policy-level</li>
     </ol>
        
-	 <p>Further, follow the processing model to create <em>atomic</em> Rules in the Policy (defined in the previous section).</p> 
+	 <p>Further, follow the ODRL validation requirements to create <em>atomic</em> Rules in the Policy (defined in the previous section).</p> 
 	
     <p>It is RECOMMENDED that compact ODRL Policies be expanded to atomic Policies when being processed for conformance.</p>
 	
@@ -1444,7 +1447,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 }  
 </pre>
 
-	<p>The example below shows how these shared properties are expanded to the Permissions of the Policy following the processing rules above.</p>
+	<p>The example below shows how these shared properties are expanded to the Permissions of the Policy following the ODRL validation requirements above.</p>
     
 <pre id="eg27" class="example hljs json">
 {
@@ -1487,7 +1490,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         <li>none or one <code>dc:isReplacedBy</code> property values (of type Policy) -  the identifier of a Policy that supersedes this Policy.</li>
          </ul>
          
-    <p>The processing model for Policies with the above metadata properties include:</p>
+    <p>The ODRL validation requirements for Policies with the above metadata properties include:</p>
     <ol>
     <li>If a Policy has the <code>dc:isReplacedBy</code> property, then a processor MUST consider the first Policy invalid and MUST retrieve and process the identified Policy.</li>
     </ol>
@@ -1597,7 +1600,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     
    
     
-<p>The processing model for ODRL Policy Inheritance includes:</p>
+<p>The ODRL validation requirements for ODRL Policy Inheritance includes:</p>
     <ol>
 
         <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
@@ -1607,7 +1610,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
        </ul>
             </li>
 		<li>Repeat the above for each identified (parent) Policy.</li>
-      <li>The (child) Policy can then be further expanded (into <em>atomic</em> Rules) by following the processing models defined in the <a href="#composition">Policy Composition</a> section.</li>  
+      <li>The (child) Policy can then be further expanded (into <em>atomic</em> Rules) by following the ODRL validation requirements defined in the <a href="#composition">Policy Composition</a> section.</li>  
     </ol>
         
 	
@@ -1627,7 +1630,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Additional <code>conflict</code> property values MAY be defined by ODRL Profiles.</p>
 
         
-<p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these processing rules:</p>
+<p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these ODRL validation requirements:</p>
    
 <ol>
         <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
