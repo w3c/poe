@@ -662,7 +662,7 @@
 	</ul>
 <li>A Constraint MAY have none or one <code>dataType</code> property value for the data type of the rightOperand/Reference.</li>
 <li>A Constraint MAY have none or one <code>unit</code> property value for the unit value of the rightOperand/Reference.</li>
-<li>A Constraint MAY have none or one <code>status</code> property value for the current value generated from the leftOperand action.</li>
+<li>A Constraint MAY have none or one <code>status</code> property value for a value generated from the leftOperand action or for a value related to the leftOperand set as the reference for the comparison.</li>
 </ul>     
     
 <p>The <code>leftOperand</code> property values are defined as instances of the LeftOperand class. The <code>leftOperand</code> instances MUST clearly be  <strong>defined</strong> to indicate the semantics of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
@@ -677,7 +677,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
       
 <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU currency&#8221;.</p>
 
-<p>The <code>status</code> provides the current value generated from the <code>leftOperand</code> action. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times.</p>
+<p>The <code>status</code> provides a value generated from the <code>leftOperand</code> action that MUST be used in the comparision expression. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times and the comparision must compare the current action to the status value.</p>
 
 
 </section>
