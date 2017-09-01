@@ -846,8 +846,11 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand"@en ;
 	skos:definition "The value of the right operand in a constraint expression."@en ;
-    skos:note "The value can be a literal or IRI."@en ;
-#	rdfs:range xsd:any ;
+    skos:note ""@en ;
+	rdfs:range [
+		a owl:Class ;
+		owl:unionOf ( :RightOperand rdfs:Literal xsd:anyURI ) ;
+	] ;
 	rdfs:domain :Constraint .
 
 :rightOperandReference
