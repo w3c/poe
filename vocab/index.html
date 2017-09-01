@@ -1712,7 +1712,7 @@ The Policy element MAY also contain constraint elements which are Constraints re
 	
  <p>ODRL XML processing systems MUST detect the use of <code>#id</code> in the rightOperand in Logical Constraints. If detected, the processing model for Logical Constraints (defined in [[!odrl-model]]) MUST then be followed.</p>
 	
-<p>The below example shows two Constraints defined at the Policy-level with ids <code>C1</code> and <code>C2</code>. The Logical Constraint in the Permission refers to these using the <code>#C1</code> and <code>#C2</code> values in the rightOperand, and the logical relationship (xone) in the name attribute.</p>   
+<p>The below example shows two Constraints defined with ids <code>C1</code> and <code>C2</code>. The Logical Constraint in the Permission refers to these using the <code>#C1</code> and <code>#C2</code> values in the rightOperand, and the logical relationship (xone) in the name attribute.</p>   
     
 <pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/"
@@ -1728,13 +1728,15 @@ The Policy element MAY also contain constraint elements which are Constraints re
         &lt;o:constraint name="http://www.w3.org/ns/odrl/2/xone"
                       rightOperand="#C1 #C2"/>
     &lt;/o:permission> 
-    &lt;o:constraint id="C1" name="http://www.w3.org/ns/odrl/2/spatial" 
+&lt;/o:Policy>
+...
+&lt;o:constraint id="C1" name="http://www.w3.org/ns/odrl/2/spatial" 
                   operator="http://www.w3.org/ns/odrl/2/eq" 
                   rightOperand="http://vocab.getty.edu/tgn/1000080"/>
-    &lt;o:constraint id="C2" name="http://www.w3.org/ns/odrl/2/spatial" 
+				  
+&lt;o:constraint id="C2" name="http://www.w3.org/ns/odrl/2/spatial" 
                   operator="http://www.w3.org/ns/odrl/2/eq" 
                  rightOperand="http://vocab.getty.edu/tgn/1000090"/>
-&lt;/o:Policy>
 </pre>
 
 </section>

@@ -172,9 +172,7 @@
 	</ul>
 <p>In the former case, the profile property MUST NOT be used. In the latter case, the profile property MUST be used to indicate the IRIs of the ODRL Profile(s). 
 	See the <a href="#profile">ODRL Profiles</a> section for more details on mechanisms to define ODRL Profiles and conformance requirements. (The Examples in this document will use ODRL Profile identifiers for illustrative purposes only.) </p>
-	
-<p>The Policy class MAY also include other direct properties to support <a href="#composition-compact">Compact Policy</a> serialisations and references to common <a href="#constraint">Constraints</a>. These are not to be considered as direct properties of the Policy but as an intermediate step, that after applying <a href="#composition">atomic processing requirements</a> will create a Policy  consistent with the normative ODRL Information Model.
-	</p>
+
 	
 <p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the 
 	Policy that MAY include additional constraints that ODRL processors MUST understand. Additional Policy subclasses MAY be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
@@ -758,7 +756,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 
 <blockquote> 
-<p>Example Use Case:The Policy below shows a permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. This is expressed as a Logical Constraint (with the <code>xone</code> operand) refering to two existing Constraints. </p>  
+<p>Example Use Case:The Policy below shows a permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. This is expressed as a Logical Constraint (with the <code>xone</code> operand) refering to two existing Constraints declared elsewhere. </p>  
 </blockquote>
            
 <pre id="eg19" class="example hljs json">
@@ -774,22 +772,30 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
            "@value": "reproduce",
            "refinement": {
                "xone": ["http://example.com/p:88/C1", "http://example.com/p:88/C2"]
-            },
-        }],
-    }],
-   "constraint": [{
-       "uid": "http://example.com/p:88/C1",
-       "leftOperand": "media",
-       "operator": "eq",
-       "rightOperand": "online"
-   },
-   {
-       "uid": "http://example.com/p:88/C2",
-       "leftOperand": "media",
-       "operator": "eq",
-       "rightOperand": "print"
-   }]
-}  
+            }
+        }]
+    }]
+}
+</pre>
+<pre id="eg19" class="example hljs json">
+{
+   "@context": "http://www.w3.org/ns/odrl.jsonld",
+   "@type": "Constraint",
+   "uid": "http://example.com/p:88/C1",
+   "leftOperand": "media",
+   "operator": "eq",
+   "rightOperand": "online"
+}
+</pre>
+<pre id="eg19" class="example hljs json">
+{
+   "@context": "http://www.w3.org/ns/odrl.jsonld",
+   "@type": "Constraint",
+   "uid": "http://example.com/p:88/C2",
+   "leftOperand": "media",
+   "operator": "eq",
+   "rightOperand": "print"
+}
 </pre>
 	
 	
