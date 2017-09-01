@@ -171,5 +171,5 @@ The Working Group maintains a separate page for ongoing or pledged implementatio
 
 Thanks
 
-Rob Sanderson and Tim Cole, Working Group Chairs
-Ivan Herman and Doug Schepers, W3C Team Contacts
+Renato Iannella and Benedict Whittam Smith, Working Group Chairs
+Ivan Herman, W3C Team Contact
