@@ -293,8 +293,6 @@
 <ul>
 <li>An Asset SHOULD have one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Asset.</li>
 	
-	<li>An Asset MUST have at least one <code><em>relation</em></code> sub-property value (of type Asset) indicating the explicit link relationship to the Asset.</li>
-	
     <li>An Asset MAY have none, one, or many <code>partOf</code> property values (of type AssetCollection) to identify the AssetCollection that this Asset is in a collection of.</li>
 <li>An AssetCollection MAY have none, one, or many <code>refinement</code> property values of type Constraint. See <a href="#constraint-asset">Refinement property with an Asset Collection</a> for more details.</li>
 </ul>
@@ -422,7 +420,7 @@
 <p>The Party class has the following properties:</p>
 <ul>
 <li>A Party SHOULD have one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Party.</li>
-<li>A Party MUST have at least one <code><em>function</em></code> sub-property values (of type Party) indicating the functional role undertaken by the Party.</li>
+	
    <li>A Party MAY have none, one, or many <code>partOf</code> property values (of type PartyCollection) to identify the PartyCollection that this Party is a member of.</li>
 <li>A PartyCollection MAY have none, one, or many <code>refinement</code> property values of type Constraint. See <a href="#constraint-party">Refinement property with a Party Collection</a> for more details.</li>
     </ul>
