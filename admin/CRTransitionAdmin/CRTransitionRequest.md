@@ -5,7 +5,7 @@
 
 Philippe, Ralph,
 
-The  Permissions & Obligations Expression Working Group requests transition to CR status for four specifications on ODRL. The publication is planned for the 2017-@@-@@; the documents are follows:
+The  Permissions & Obligations Expression Working Group requests transition to CR status for two specifications on ODRL. The publication is planned for the 2017-@@-@@; the documents are follows:
 
  * ODRL Information Model
  * ODRL Vocabulary & Expression
@@ -29,7 +29,7 @@ The Open Digital Rights Language (ODRL) is a policy expression language that pro
 Policies are used to represent permitted and prohibited actions over a certain asset, as well as the obligations required to be meet by stakeholders. In addition, policies may be limited by constraints (e.g., temporal or spatial constraints) and duties (e.g. payments) may be imposed on permissions. 
 
 Status:
-	https://w3c.github.io/poe/model/
+	http://w3c.github.io/poe/model/#sotd
 
 ODRL Vocabulary & Expression
 ----------------------------
@@ -44,7 +44,7 @@ Abstract:
 The Open Digital Rights Language (ODRL) is a policy expression language that provides a flexible and interoperable information model, vocabulary, and encoding mechanisms for representing statements about the usage of content and services. The ODRL Vocabulary and Expression describes the terms used in ODRL policies and how to encode them.
 
 Status:
-	http://w3c.github.io/poe/vocab/#h-sotd
+	http://w3c.github.io/poe/vocab/#sotd
 
 
 (2)  Record of the decision to request the transition
@@ -64,9 +64,9 @@ The separate sections of each document record the noteworthy changes:
 (4) Evidence that the document satisfies group's requirements
 ===============================================================
 
-The main input to this Working Group was the ODRL Family of documents, developed by the ODRL Community Group:
+The main input to this Working Group was the ODRL family of documents, developed by the ODRL Community Group:
 
-	http://www.openannotation.org/spec/core/
+	https://www.w3.org/community/odrl/
 
 which is widely deployed (and most implementations are now converting to the output of this Working Group). An additional requirement document was published by the working group:
 
@@ -98,7 +98,7 @@ These are fulfilled as follows:
 
 1. Recommendation #1 (information model) is fullfilled by the ODRL Information Model Document.
 2. Recommendations #2 (vocabulary), #3 (XML) partially, and #4 (RDF/OWL, turtle, JSON-LD) are jointly covered by the ODRL Vocabulary & Expression Document. That document defines all the terms, classes, properties, etc, in terms of RDF, with a formal RDF/OWL ontology defined in the https://www.w3.org/ns/odrl/2/ namespace. The RDF/XML, Turtle, and JSON-LD serializations is not defined by this Working Group, they are just applications of the relevant W3C Recommendations. Note that all the examples in the documents are in JSON-LD
-3. A direct mapping to XML (i.e., non RDF/XML) is _not_ fulfilled as a Recommendation due to a lack of necessary interest, but the Working Group plans to publish a Working Group Note.
+3. A direct mapping to XML (i.e., non RDF/XML) is _not_ fulfilled as a Recommendation due to a lack of necessary interest, but is included - non-normativley - as an appendix in the ODRL Vocabulary & Expression Document.
 4. A direct mapping JSON (i.e., non JSON-LD) is _not_ fulfilled, the Working Group decided that, with the presense of JSON-LD, there is no need to have a separate JSON mapping that would look almost exactly the same.
 
 (5) Dependencies
