@@ -1250,24 +1250,35 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </section>
 	
 <section id="rule-active">
-<h3>Rule Active State Processing</h3>
+<h3>Rule Processing</h3>
 
 
-	<p>An ODRL Validator MUST ensure that the serialised policy expressions meet the conformance requirements of the ODRL Information Model. For example, this includes property cardinality and relationships, and conforming to validation requirements. If the policy contains ill-formed serialised expressions, then the result of the validation process is undefined. An ODRL Validator SHOULD produce a failure in this case.</p>
+	<p>An ODRL Evaluator MUST evaluate if a Rule is in the <strong>Active</strong> state and if other requirements have been met to determine the outcome of the Rule</p>
 	
-	<p>An ODRL Evaluator MUST evaluate if all constraint properties of a Rule are satisfied to determine the Rule is <strong>Active</strong>, if at least one of the constraints is not satisfied, then to determine the Rule is <strong>Non-Active</strong>. If a Rule has no constraint properties, then it is always <strong>Active</strong>.
-		
-	A <strong>Non-Active</strong> Rule means that no further processing SHOULD be executed at this time and no outcomes can be determined from the Rule.</p>
+	<p>If a Rule has no constraint properties, then it is set to <strong>Active</strong>. If all constraint properties of a Rule are satisfied the Rule is set to <strong>Active</strong>, if at least one of the constraint properties is not satisfied, then the Rule is set to <strong>Non-Active</strong>.</p>
 	
-	<p>Once a Rule has been determined to be <strong>Active</strong>, then the ODRL Evaluator MUST:</p>
-	<ul>
-	  <li>Evaluate the fulfilled state of all duty properties of the Permission. If confirmed, then the Permission rule is <strong>Active</strong> and the action of the rule is allowed, otherwise the rule is <strong>Not-Active</strong>.</li>
-		
-	<li>Check if exercising the disallowed action of a Prohibition sets it to <strong>Violated</strong>, else it is <strong>Not-Violated</strong>. In the <strong>Violated</strong> state, fulfilling all remedies of the Prohibition sets the state of the Prohibition back to <strong>Not-Violated</strong>. Not fulfilling any remedy keeps the state at <strong>Violated</strong>.</li>
+	<p>To set the outcome state <strong>Exerciseable</strong> of a Permission, any existing duty property MUST be Fulfilled and the Permission MUST be <strong>Active</strong>. If at least one duty property is <strong>Not-Fulfilled</strong> the outcome state is set to <strong>Not-Exerciseable</strong>.</p>
 	
-		<li>Confirm that a Duty is <strong>Fulfilled</strong> by checking if the action of the Duty has been exercised. If the action has not been exercised, the fulfilment of all consequences of a Duty sets the Duty to <strong>Fulfilled</strong>; if one or more consequences is not fulfilled then the Duty is <strong>Not-Fulfilled</strong>.</li>
-		
+	<p>If the Permission is <strong>Non-Active</strong>, regardless of the states of duty properties, the Permission SHOULD NOT be included in further evaluations.</p>
+	
+<p>For a Prohibition the Evaluator must check if its action was exercised:</p>
+<ul>
+	<li>If it has not been exercised and if the Prohibition is Active, the outcome state is set to <strong>Not-Violated</strong>.</li>
+<li>If the action has been exercised and no remedy properties exist and the Prohibition is Active, its state is set to <strong>Violated</strong>.</li>
+<li>If the action has been exercised and if remedy properties exist and if at least one of them is Not-Fulfilled and if the Prohibition is Active, its state is set to <strong>Violated</strong>.</li>
+<li>If the action has been exercised and if remedy properties exist and if all are Fulfilled and if the Prohibition is Active, its state is set to <strong>Not-Violated</strong>.</li>
+<li>If a Prohibition is Non-Active, regardless of the evaluation of its action and of any remedies, the Prohibition SHOULD NOT be included in further evaluations.</li>
 	</ul>
+	
+	
+<p>For a Duty the Evaluator must check if its action was exercised:</p>
+<ul>
+<li>If it has been exercised and if the Duty is Active, the outcome state is set to <strong>Fulfilled</strong>.</li>
+<li>If the action has not been exercised and no consequence properties exists and if the Duty is Active, its state is set to <strong>Not-Fulfilled</strong>.</li>
+<li>If the action has not been exercised and consequence properties exist and if all are Fulfilled and if the Duty is Active, its state is set to <strong>Fulfilled</strong>.</li>
+<li>If the action has not been exercised and consequence properties exist and if at least one of them is Not-Fulfilled and if the Duty is Active, its state is set to <strong>Not-Fulfilled</strong>.</li>
+<li>If a Duty is Non-Active, regardless of the evaluation of its action and any consequences the Duty SHOULD NOT be included in further evaluations.</li>
+</ul>
 	
     
 	<blockquote>
@@ -1636,13 +1647,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Additional <code>conflict</code> property values MAY be defined by ODRL Profiles.</p>
 
         
-<p>If an ODRL processor does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL processor MUST follow these ODRL validation requirements:</p>
+<p>If an ODRL Validator does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL Validator MUST follow these ODRL validation requirements:</p>
    
 <ol>
         <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
  <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule and continue with the Policy as valid.</li>
-  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  processing MUST NOT continue and the entire Policy MUST be invalid.</li> 
- <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then processing MUST NOT continue and the entire Policy MUST be invalid.</li> 
+  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  validation MUST NOT continue and the entire Policy MUST be invalid.</li> 
+ <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then validation MUST NOT continue and the entire Policy MUST be invalid.</li> 
         </ol>
        
         
