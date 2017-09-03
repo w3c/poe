@@ -81,7 +81,7 @@
 	       <dt><dfn>Constraint</dfn></dt>
 	          <dd>A boolean/logical expression that refines an Action and Party/Asset collection or the conditions applicable to a Rule.</dd>
            <dt><dfn>ODRL Validator</dfn></dt>
-	          <dd>A system that checks the conformance of ODRL Policy expressions with respect to the ODRL Information Model validation requirements.</dd>
+	          <dd>A system that checks the conformance of ODRL Policy expressions, including the cardinality of properties and if they are related to types of values as defined by the ODRL Information Model, and the Information Model's validation requirements.</dd>
            <dt><dfn>ODRL Evaluator</dfn></dt>
 	          <dd>A system that determines whether the Rules of an ODRL Policy expression have meet their intended action performance.</dd>
 		    <dt><dfn>ODRL Core Vocabulary</dfn></dt>
@@ -1509,7 +1509,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
          
     <p>The ODRL validation requirements for Policies with the above metadata properties include:</p>
     <ol>
-    <li>If a Policy has the <code>dc:isReplacedBy</code> property, then a processor MUST consider the first Policy invalid and MUST retrieve and process the identified Policy.</li>
+    <li>If a Policy has the <code>dc:isReplacedBy</code> property, then a processor MUST consider the first Policy void and MUST retrieve and process the identified Policy.</li>
     </ol>
 
 <blockquote>
@@ -1642,18 +1642,18 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <ul>
 <li><code>perm</code>: the Permissions MUST override the Prohibitions</li>
 <li><code>prohibit</code>: the Prohibitions MUST override the Permissions</li>
-<li><code>invalid</code>: the entire Policy MUST be invalid if any conflict is detected</li>
+<li><code>invalid</code>: the entire Policy MUST be void if any conflict is detected</li>
 </ul>
 <p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Additional <code>conflict</code> property values MAY be defined by ODRL Profiles.</p>
 
         
-<p>If an ODRL Validator does not detect any conflicts in the Rules, then the ODRL Policy is valid, otherwise the ODRL Validator MUST follow these ODRL validation requirements:</p>
+<p>If an ODRL Validator detect any conflicts in the Rules then it MUST follow these ODRL validation requirements:</p>
    
 <ol>
-        <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule and continue with the Policy as valid.</li>
- <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule and continue with the Policy as valid.</li>
-  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  validation MUST NOT continue and the entire Policy MUST be invalid.</li> 
- <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then validation MUST NOT continue and the entire Policy MUST be invalid.</li> 
+        <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule.</li>
+ <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule.</li>
+  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  validation MUST NOT continue and the entire Policy MUST be void.</li> 
+ <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then validation MUST NOT continue and the entire Policy MUST be void.</li> 
         </ol>
        
         
@@ -1696,7 +1696,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 }
 </pre>
 
-<p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an invalid Policy.</p>
+<p>In the above use case, if the second Policy had the conflict value of <code>prohibit</code>, then the outcome would be a direct contradiction, and the result will be an void Policy.</p>
 </section>
 
 
