@@ -1249,7 +1249,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 </section>
 	
-<section id="rule-active">
+<section id="rule-process">
 <h3>Rule Processing</h3>
 
 
@@ -1620,14 +1620,15 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <p>The ODRL validation requirements for ODRL Policy Inheritance includes:</p>
     <ol>
 
-        <li>The (child) Policy MUST access the (parent) Policy and replicate the following in the (child) Policy:
+        <li>The child Policy MUST access the parent Policy and replicate the following in the updated child Policy:
        <ul>
-           <li>All policy-level Assets, Parties, Actions from the (parent) Policy.</li>
-           <li>All Rules from the (parent) Policy.</li>
+           <li>All policy-level Assets, Parties, Actions from the parent Policy.</li>
+           <li>All Rules from the parent Policy.</li>
        </ul>
             </li>
-		<li>Repeat the above for each identified (parent) Policy.</li>
-      <li>The (child) Policy can then be further expanded (into <em>atomic</em> Rules) by following the ODRL validation requirements defined in the <a href="#composition">Policy Composition</a> section.</li>  
+		<li>Repeat the above for each identified parent Policy.</li>
+      <li>The final updated child Policy MAY then be further expanded (into <em>atomic</em> Rules) by following the ODRL validation requirements defined in the <a href="#composition">Policy Composition</a> section.</li>  
+		<li>The final child Policy MAY then be evaluated as per the requirements outlined in <a href="#rule-process">Rule Processing</a>.</li>
     </ol>
         
 	
@@ -1646,7 +1647,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </ul>
 <p>If the <code>conflict</code> property is not explicitly set, the default of <code>invalid</code> will be used. <p>Additional <code>conflict</code> property values MAY be defined by ODRL Profiles.</p>
 
-        
+
+
 <p>If an ODRL Validator detect any conflicts in the Rules then it MUST follow these ODRL validation requirements:</p>
    
 <ol>
@@ -1654,8 +1656,10 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
  <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule.</li>
   <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then  validation MUST NOT continue and the entire Policy MUST be void.</li> 
  <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then validation MUST NOT continue and the entire Policy MUST be void.</li> 
-        </ol>
-       
+
+ </ol>
+  
+<p>Prior to validating for conflicts, the Policy MAY first be evaluated (see <a href="#rule-process">Rule Processing</a> to ascertain if the Policy contains Active Rules.</p>
         
 <blockquote>
 <p>Example Use Case: Two Policies are associated to the same target Asset <code>http://example.com/asset:1212</code>. The first Policy <code>http://example.com/policy:0001</code> allows to <code>use</code> the Asset. The second Policy <code>http://example.com/policy:0002</code> allows for the display of the Asset, but it prohibits <code>print</code>. Both policies explicitly state how to deal with conflicts through the <code>conflict</code> property being set to <code>perm</code>. Hence the Permissions will always override any Prohibitions. In this use case, since the <code>print</code> Action is a specialisation of the <code>use</code> Action, there could be a conflict. However, the <code>perm</code> conflict strategy means that the <code>use</code> Permission will override the <code>print</code> Prohibition.</p>
