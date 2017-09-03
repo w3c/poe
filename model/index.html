@@ -1554,7 +1554,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 </ul>
 
     <blockquote>
-<p>Example Use Case: Consider the (parent) Policy <code>http://example.com/policy:default</code> below (the assigner wishes to provide default permissions for all Policies). It does not refer to any target Asset and allows the archive and annotate Permissions and disallows the aggregate Prohibition.</p>    
+<p>Example Use Case: Consider the (parent) Policy <code>http://example.com/policy:default</code> below. It includes a (policy-level) assigner and an Obligation to review the target asset policy document.</p>    
 </blockquote>
     
     <pre id="eg29" class="example hljs json">
@@ -1563,18 +1563,15 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "@type": "Policy",
     "uid": "http://example.com/policy:default",
     "profile": "http://example.com/odrl:profile:30",
-    "permission": [{
-        "assigner": "http://example.com/org-01",
-        "action": [ "archive", "annotate" ]
-    }],
-    "prohibition": [{
-        "assigner": "http://example.com/org-01",
-        "action": "aggregate"
+    "assigner": "http://example.com/org-01",
+    "obligation": [{
+        "target": "http://example.com/asset:terms-and-conditions",
+        "action": "reviewPolicy"
     }]
 }  
 </pre>
     
-<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below shows the <code>inheritFrom</code> property pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy also shows the Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
+<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below shows the <code>inheritFrom</code> property pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy shows the target Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
     
 <pre id="eg30" class="example hljs json">
 {
@@ -1583,16 +1580,16 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "uid": "http://example.com/policy:4444",
     "profile": "http://example.com/odrl:profile:30",
     "inheritFrom": "http://example.com/policy:default",
+    "assignee": "http://example.com/user:0001",
     "permission": [{
         "target": "http://example.com/asset:5555",
-        "action": [ "display", "print" ],
-        "assignee": "http://example.com/user:0001"
+        "action": [ "display", "print" ]
     }]
 }  
 </pre>
     
 
-<p>After the inheritance is performed - where the (parent) Policy atomic Rules are added to the (child) Policy - the resulting Policy is shown below. As this is an Agreement Policy, the assignee also becomes part of the inherited Prohibition.</p>    
+<p>After the inheritance is performed - where the parent Policy Rules and Policy-level properties are added to the child Policy - and the Rules are made <em>atomic</em> - the resulting Policy is shown below. The original child Permission rule now includes the (policy-level) assigner from the parent Policy. The parent Obligation rule now appears in the updated child policy with the original child (policy-level) assignee.</p>    
     
     <pre id="eg31" class="example hljs json">
 {
@@ -1603,12 +1600,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "inheritFrom": "http://example.com/policy:default",
     "permission": [{
         "target": "http://example.com/asset:5555",
-        "action": [ "archive", "annotate", "display", "print" ],
+        "action": [ "display", "print" ],
         "assigner": "http://example.com/org-01",
         "assignee": "http://example.com/user:0001"
     }],
-    "prohibition": [{
-        "action": "aggregate",
+    "obligation": [{
+        "target": "http://example.com/asset:terms-and-conditions",
+        "action": "reviewPolicy",
         "assigner": "http://example.com/org-01",
         "assignee": "http://example.com/user:0001"
     }]
@@ -1623,6 +1621,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         <li>The child Policy MUST access the parent Policy and replicate the following in the updated child Policy:
        <ul>
            <li>All policy-level Assets, Parties, Actions from the parent Policy.</li>
+		   <li>All profile identifiers.</li>
+		   <li>Any conflict properties</li>
            <li>All Rules from the parent Policy.</li>
        </ul>
             </li>
