@@ -109,7 +109,12 @@ There are no problematic dependencies in these documents (other candidate recomm
 (6) Evidence that the document has received wide review and that issues have  been formally addressed
 =====================================================================================================
 
-The group has received and recorded a number of issues; additionally, when the Group issued a Working Drafts on the 23 February 2017, it also explicitly asked for a wide review (declaring that version as some sort of a virtual LC). All the comments coming up to this transition have been addressed and resolved satisfactorily:
+The group has received and recorded a number of issues; additionally, when the Group issued a Working Drafts on the 23 February 2017, it also explicitly asked for a wide review (declaring that version as some sort of a virtual LC). 
+
+The list of groups/orgs/individuals the "wide review" was sent to:
+    https://www.w3.org/2016/poe/wiki/Deliverables
+	 
+All the comments coming up to this transition have been addressed and resolved satisfactorily:
 
 All issues (removing admin, postponed, testing, etc. issues):
 
