@@ -165,6 +165,13 @@
 <li>A Policy MAY have none or one <code>conflict</code> property values (of type ConflictTerm) for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
 
 </ul>
+	
+<p>
+	An ODRL Policy MAY also declare properties which are shared and common to all its Rules. Specifically; <code>action</code> properties, sub-properties of <code>relation</code> (such as <code>target</code>), and sub-properties of <code>function</code> (such as <code>assigner</code> and <code>assignee</code>).
+	See section <a href="#composition-compact">Compact Policy</a> for validation requirements on these shared properties.
+</p>
+	
+	
 	<p>An ODRL Policy must either:</p>
 	<ul>
 	<li>Only use terms defined in the ODRL Core Vocabulary [[!odrl-vocab]], or</li>
