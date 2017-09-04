@@ -1571,7 +1571,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 }  
 </pre>
     
-<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below shows the <code>inheritFrom</code> property pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy shows the target Asset, the actions (to display and print the Asset) and the assignee Party for the Agreement.</p>    
+<p>The child <code>Agreement</code>Policy <code>http://example.com/policy:4444</code> below shows the <code>inheritFrom</code> property pointing to the parent Policy <code>http://example.com/policy:default</code> (above). The child Policy shows the target Asset, the actions (to display the Asset) and the assignee Party for the Agreement.</p>    
     
 <pre id="eg30" class="example hljs json">
 {
@@ -1583,7 +1583,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "assignee": "http://example.com/user:0001",
     "permission": [{
         "target": "http://example.com/asset:5555",
-        "action": [ "display", "print" ]
+        "action":  "display"
     }]
 }  
 </pre>
@@ -1600,7 +1600,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     "inheritFrom": "http://example.com/policy:default",
     "permission": [{
         "target": "http://example.com/asset:5555",
-        "action": [ "display", "print" ],
+        "action": "display",
         "assigner": "http://example.com/org-01",
         "assignee": "http://example.com/user:0001"
     }],
