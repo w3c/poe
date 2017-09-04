@@ -1,7 +1,10 @@
 var respecConfig = {
-        specStatus: "ED",
-        shortName:  "odrl-model",
-        publishDate:          "2017-09-04",
+        // specStatus:              "CR",
+        specStatus:              "ED",
+        shortName:               "odrl-model",
+        // publishDate:             "2017-09-28",
+        crEnd:                   "2017-10-31",
+        implementationReportURI: "https://w3c.github.io/poe/test/implementors",
         editors: [
             {   name:       "Renato Iannella",
                     url:        "https://au.linkedin.com/in/riannella",
@@ -16,16 +19,16 @@ var respecConfig = {
                     mailto:     "serena.villata@inria.fr"
                 }
         ],
-        lint:                 true,
-        previousMaturity:     "FPWD",
-        previousPublishDate:  "2016-07-21",
-        previousURI:          "https://www.w3.org/TR/2016/WD-odrl-model-20160721/",
-        edDraftURI:           "https://w3c.github.io/poe/model/",
-        wg:                   "Permissions & Obligations Expression Working Group",
-        wgURI:                "https://www.w3.org/2016/poe/",
-        wgPublicList:         "public-poe-comments",
-        wgPatentURI:          "https://www.w3.org/2004/01/pp-impl/87755/status",
-        issueBase:            "https://github.com/w3c/poe/issues/",
+        lint:                    true,
+        previousMaturity:        "WD",
+        previousPublishDate:     "2017-02-23",
+        previousURI:             "https://www.w3.org/TR/2017/WD-odrl-model-20170223/",
+        edDraftURI:              "https://w3c.github.io/poe/model/",
+        wg:                      "Permissions & Obligations Expression Working Group",
+        wgURI:                   "https://www.w3.org/2016/poe/",
+        wgPublicList:            "public-poe-comments",
+        wgPatentURI:             "https://www.w3.org/2004/01/pp-impl/87755/status",
+        issueBase:               "https://github.com/w3c/poe/issues/",
         localBiblio: {
             "oma-profile": {
                 title: "OMA Digital Rights Management V2.2",
