@@ -1257,28 +1257,42 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	<p>If a Rule has no constraint properties, then it is set to <strong>Active</strong>. If all constraint properties of a Rule are satisfied the Rule is set to <strong>Active</strong>, if at least one of the constraint properties is not satisfied, then the Rule is set to <strong>Non-Active</strong>.</p>
 	
-	<p>To set the outcome state <strong>Exerciseable</strong> of a Permission, any existing duty property MUST be Fulfilled and the Permission MUST be <strong>Active</strong>. If at least one duty property is <strong>Not-Fulfilled</strong> the outcome state is set to <strong>Not-Exerciseable</strong>.</p>
+<p><strong><em>Permission Processing</em></strong></p>
 	
-	<p>If the Permission is <strong>Non-Active</strong>, regardless of the states of duty properties, the Permission SHOULD NOT be included in further evaluations.</p>
-	
-<p>For a Prohibition the Evaluator must check if its action was exercised:</p>
-<ul>
-	<li>If it has not been exercised and if the Prohibition is Active, the outcome state is set to <strong>Not-Violated</strong>.</li>
-<li>If the action has been exercised and no remedy properties exist and the Prohibition is Active, its state is set to <strong>Violated</strong>.</li>
-<li>If the action has been exercised and if remedy properties exist and if at least one of them is Not-Fulfilled and if the Prohibition is Active, its state is set to <strong>Violated</strong>.</li>
-<li>If the action has been exercised and if remedy properties exist and if all are Fulfilled and if the Prohibition is Active, its state is set to <strong>Not-Violated</strong>.</li>
-<li>If a Prohibition is Non-Active, regardless of the evaluation of its action and of any remedies, the Prohibition SHOULD NOT be included in further evaluations.</li>
+	<p>If a Permission is <strong>Active</strong>, the ODRL Evaluator MUST check:</p> 
+	<ul>
+	<li>If any existing duty properties are Fulfilled, the outcome state is set to <strong>Exerciseable</strong>.</li>
+
+	<li>If at least one duty property is Not-Fulfilled, the outcome state is set to <strong>Not-Exerciseable</strong>.</li>
 	</ul>
 	
+	<p>If a Permission is <strong>Non-Active</strong>, regardless of the states of duty properties, the Permission SHOULD NOT be included in further evaluations.</p>
 	
-<p>For a Duty the Evaluator must check if its action was exercised:</p>
+<p><strong><em>Prohibition Processing</em></strong></p>
+	
+<p>If a Prohibition is <strong>Active</strong>, the ODRL Evaluator MUST check if its action was exercised:</p>
 <ul>
-<li>If it has been exercised and if the Duty is Active, the outcome state is set to <strong>Fulfilled</strong>.</li>
-<li>If the action has not been exercised and no consequence properties exists and if the Duty is Active, its state is set to <strong>Not-Fulfilled</strong>.</li>
-<li>If the action has not been exercised and consequence properties exist and if all are Fulfilled and if the Duty is Active, its state is set to <strong>Fulfilled</strong>.</li>
-<li>If the action has not been exercised and consequence properties exist and if at least one of them is Not-Fulfilled and if the Duty is Active, its state is set to <strong>Not-Fulfilled</strong>.</li>
-<li>If a Duty is Non-Active, regardless of the evaluation of its action and any consequences the Duty SHOULD NOT be included in further evaluations.</li>
+	<li>If it has not been exercised, the outcome state is set to <strong>Not-Violated</strong>.</li>
+<li>If the action has been exercised and no remedy properties exist, the outcome state is set to <strong>Violated</strong>.</li>
+<li>If the action has been exercised and if remedy properties exist and if at least one of them is Not-Fulfilled, the outcome state is set to <strong>Violated</strong>.</li>
+<li>If the action has been exercised and if remedy properties exist and if all are Fulfilled, the outcome state is set to <strong>Not-Violated</strong>.</li>
 </ul>
+	
+<p>If a Prohibition is <strong>Non-Active</strong>, regardless of the evaluation of its action and of any remedies, the Prohibition SHOULD NOT be included in further evaluations.</p>
+
+	
+<p><strong><em>Duty Processing</em></strong></p>
+	
+<p>If a Duty is <strong>Active</strong>, the ODRL Evaluator MUST check if its action was exercised:</p>
+<ul>
+<li>If it has been exercised, the outcome state is set to <strong>Fulfilled</strong>.</li>
+<li>If the action has not been exercised and no consequence properties exists, the outcome state is set to <strong>Not-Fulfilled</strong>.</li>
+<li>If the action has not been exercised and consequence properties exist and if all are Fulfilled, the outcome state is set to <strong>Fulfilled</strong>.</li>
+<li>If the action has not been exercised and consequence properties exist and if at least one of them is Not-Fulfilled, the outcome state is set to <strong>Not-Fulfilled</strong>.</li>
+	</ul>
+	
+<p>If a Duty is <strong>Non-Active</strong>, regardless of the evaluation of its action and any consequences, the Duty SHOULD NOT be included in further evaluations.</p>
+
 	
     
 	<blockquote>
