@@ -1250,55 +1250,38 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="rule-process">
 <h3>Rule Processing</h3>
 
-
-	<p>An ODRL Evaluator MUST evaluate if a Rule is in the <strong>Active</strong> state and if other requirements have been met to determine the outcome of the Rule</p>
+	<P>An ODRL Evaluator determines whether the Rules of an ODRL Policy expression have met their intended action outcomes. There are six states that an ODRL Evaluator can produce when processing Rules:</P>
 	
-	<p>If a Rule has no constraint properties, then it is set to <strong>Active</strong>. If all constraint properties of a Rule are satisfied the Rule is set to <strong>Active</strong>, if at least one of the constraint properties is not satisfied, then the Rule is set to <strong>Non-Active</strong>.</p>
-	
-<p><strong><em>Permission Processing</em></strong></p>
-	
-	<p>If a Permission is <strong>Active</strong>, the ODRL Evaluator MUST check:</p> 
 	<ul>
-	<li>If any existing duty properties are Fulfilled, the outcome state is set to <strong>Exerciseable</strong>.</li>
-
-	<li>If at least one duty property is Not-Fulfilled, the outcome state is set to <strong>Not-Exerciseable</strong>.</li>
+	<li>Satisfied or Not-Satisfied (for Constraints)- an ODRL Evaluator MUST generate a Satisfied outcome if:
+		<ul>
+		<li>A Rule has a constraint(s) and all of the constraint(s) have been met, and/or,</li>
+		<li>An Action has a refinement and the action - plus the refinement - has been exercised successfully</li>
+		</ul>
+		otherwise, the outcome will be Not-Satisfied.</li>
+	<li>Fullfilled or Not-Fulfilled (for Duties) - an ODRL Evaluator MUST generate a Fulfilled outcome if:
+	   <ul>
+		<li>A Duty has all Satisfied constraints and Satisfied action (including any refinements), or</li>
+		</ul>
+		otherwise, the outcome will be Not-Fulfiled.
+		</li>
+	<li>Active or Not-Active (for Rules) - - an ODRL Evaluator MUST generate an Active outcome if:
+	   <ul>
+		<li>A Rule has no constraints and/or duties, or</li>
+		<li>A Rule has Fulfilled duties and consequences, or</li>
+		<li>A Rule has Not-Fulfilled remedies, </li>
+	   </ul>
+		otherwise, the outcome will be Not-Active,
+		</li>
 	</ul>
-	
-	<p>If a Permission is <strong>Non-Active</strong>, regardless of the states of duty properties, the Permission SHOULD NOT be included in further evaluations.</p>
-	
-<p><strong><em>Prohibition Processing</em></strong></p>
-	
-<p>If a Prohibition is <strong>Active</strong>, the ODRL Evaluator MUST check if its action was exercised:</p>
-<ul>
-	<li>If it has not been exercised, the outcome state is set to <strong>Not-Violated</strong>.</li>
-<li>If the action has been exercised and no remedy properties exist, the outcome state is set to <strong>Violated</strong>.</li>
-<li>If the action has been exercised and if remedy properties exist and if at least one of them is Not-Fulfilled, the outcome state is set to <strong>Violated</strong>.</li>
-<li>If the action has been exercised and if remedy properties exist and if all are Fulfilled, the outcome state is set to <strong>Not-Violated</strong>.</li>
-</ul>
-	
-<p>If a Prohibition is <strong>Non-Active</strong>, regardless of the evaluation of its action and of any remedies, the Prohibition SHOULD NOT be included in further evaluations.</p>
 
-	
-<p><strong><em>Duty Processing</em></strong></p>
-	
-<p>If a Duty is <strong>Active</strong>, the ODRL Evaluator MUST check if its action was exercised:</p>
-<ul>
-<li>If it has been exercised, the outcome state is set to <strong>Fulfilled</strong>.</li>
-<li>If the action has not been exercised and no consequence properties exists, the outcome state is set to <strong>Not-Fulfilled</strong>.</li>
-<li>If the action has not been exercised and consequence properties exist and if all are Fulfilled, the outcome state is set to <strong>Fulfilled</strong>.</li>
-<li>If the action has not been exercised and consequence properties exist and if at least one of them is Not-Fulfilled, the outcome state is set to <strong>Not-Fulfilled</strong>.</li>
-	</ul>
-	
-<p>If a Duty is <strong>Non-Active</strong>, regardless of the evaluation of its action and any consequences, the Duty SHOULD NOT be included in further evaluations.</p>
-
-	
     
-	<blockquote>
+<blockquote>
 <p>Example Use Case: The Agreement policy below shows a Permission rule that includes a required Duty rule. </p>
 
-<p>The Permission rule includes a constraint for the spatial area indicated by the 7353132 Getty code (ie Australia). An ODRL Evaluator MUST check that the rule occurs only in this spatial area. If true, then the rule is Active. This now means the action to play the target asset is allowed, if the Duty rule has been fulfilled. </p>
+<p>The Permission rule includes a constraint for the spatial area indicated by the 7353132 Getty code (ie Australia). An ODRL Evaluator must check that the rule occurs only in this spatial area. If true, then the rule is Active. This now means the action to play the target asset is allowed, if (and only if) the Duty rule has been fulfilled. </p>
 		
-<p>The Duty rule is a compensation for a certain amount, and has a temporal rule constraint. An ODRL Evaluator MUST check that the rule has been exercised in the past month.  If true, then the rule is Active. This now means the compensation action (including the refinement) must be confirmed to determine the duty is fulfilled. 
+<p>The Duty rule is a compensation for a certain amount, and has a temporal rule constraint. An ODRL Evaluator must check that the rule has been exercised in the past month.  If true, then the rule is Active. This now means the compensation action (including the refinement) must be satisfied to determine the duty is fulfilled. 
 </p>
 		
 </blockquote>
