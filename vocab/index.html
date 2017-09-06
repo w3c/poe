@@ -1483,8 +1483,8 @@
 <p>Note that the Rule class is not represented in the XML encoding, only the child classes; Permission, Prohibition, and Duty.</p>
 <P>Note that the Policy Type MAY infer additional constraints and requirements on the cardinalities of XML elements. See the definition of the <a href="#policySubClasses">Policy Subclasses</a> for further details. </P>
 
-<section>
-<h3>XML Elements and Attributes</h3>
+
+<p><strong>XML Elements and Attributes</strong></p>
 
 <p>The Policy element contains the following attributes:</p>
 <ul>
@@ -1625,9 +1625,9 @@ The Policy element MAY also contain constraint elements which are Constraints re
 
 <p>In some cases where Duties refer to (external) Assets, it will be necessary to package the ODRL XML expression with the representation of that (external) Asset. This XML Encoding specification does not mandate any specific packaging mechanism as communities will utilise their preferred options for data interoperability.</p>
 
-	</section>
-<section>
-<h2>XML Example</h2>
+
+<p><strong>XML Example</strong></p>
+
 <p>The below example shows the XML serialisation of an ODRL Policy including some metadata about the Policy. In this example, the target asset and assigner and assignee parties are defined at the policy-level, and hence, are applied to both permission rules. The first permission allows the assignee to play the target asset as long as they accept they will be tracked. The second permission allows the assignee to distribute the target asset to the identified country (Italy) for a compensation payment of EUR5,000. </p>
 <pre class="example  xml">
 &lt;o:Policy xmlns:o="http://www.w3.org/ns/odrl/2/" xmlns:dc="http://purl.org/dc/terms/" 
@@ -1664,13 +1664,9 @@ The Policy element MAY also contain constraint elements which are Constraints re
     &lt;/o:permission>  
 &lt;/o:Policy>
 </pre>
-    
-</section>
+  
+<p><strong>XML Linking</strong></p>
 
-<section>   
-    
-<h2>XML Linking</h2>  
-   
 <p>To support repeating the same element content across Permissions and Prohibitions, the Asset, Party, Constraint, Action, and Duty elements support the xml id and idref attributes. Any of these element that has been identified using the id attribute can then be referred to by an element with the same name using the idref attribute. In this case, the referring element must have no other content. </p>
     <p>As shown in the below example, the Prohibition refers to elements defined in the Permission, except for the Constraint element. In this case, the assignee can play the music asset in Italy but not in France.</p>
     
@@ -1706,10 +1702,10 @@ The Policy element MAY also contain constraint elements which are Constraints re
     
 </div>
     <p>Note that there is an important distinction when using this feature with the Duty element which also has the uid attribute. The uid attribute is used to refer to the same Duty from multiple Permissions. In this case the Duty has to be performed only once to gain access to all the Permissions. When using the id and idref attributes then the semantics change as in this case the Duty must be performed for each time it is referenced (potentially, many times). Note that the use of the uid and id attribute for the same Duty element is not permitted.</p>
-</section>
 
-<section id="xml-logical">
-<h2>Logical Constraints</h2>
+
+<p id="xml-logical"><strong>Logical Constraints</strong></p>
+
 <p>To support Logical Constraints, Constraint objects can be expressed at the Policy level and locally identified with the <code>id</code> attribute. The Logical Constraint (in the Rule) can then refer to these Constraints using its <code>#id</code> in the leftOperand, and the logical relationship in the name attribute.</p>
 	
  <p>ODRL XML processing systems MUST detect the use of <code>#id</code> in the rightOperand in Logical Constraints. If detected, the processing model for Logical Constraints (defined in [[!odrl-model]]) MUST then be followed.</p>
@@ -1741,7 +1737,6 @@ The Policy element MAY also contain constraint elements which are Constraints re
                  rightOperand="http://vocab.getty.edu/tgn/1000090"/>
 </pre>
 
-</section>
 
 
     </section>
@@ -1781,6 +1776,52 @@ The Policy element MAY also contain constraint elements which are Constraints re
  <p>The POE Working Group gratefully acknowledges the contributions of the <a href="http://www.w3.org/community/odrl/">ODRL Community Group</a> and the earlier <a href="https://www.w3.org/2012/09/odrl/archive/odrl.net/index.html">ODRL Initiative</a>. In particular the editors would like to thank Mo McRoberts (Ontology), Susanne Guth (Vocabulary), Jonas Öberg (JSON), and Lu Ai (JSON) for their past editorial contributions.</p>
 <p>For the current specification, the POE Working Group would like to thank contributions from Gregg Kellogg (JSON-LD Context).</p></section>
         
+<section id="cr-exit" class="appendix">
+<h3>Candidate Recommendation Exit Criteria</h3>
+ <p>For this specification to be advanced to Proposed Recommendation, there must be at least two independent implementations of each feature described below. Each feature may be implemented by a different set of products, and there is no requirement that any single product implement every feature.</p>
+
+    <b>Features</b>
+
+    <p>
+      For the purposes of evaluating exit criteria, the following are considered as features:
+    </p>
+
+    <ul>
+	<li>A Set/Offer/Agreement Policy type with required properties</li>
+	<li>A Policy that utilises an ODRL Profile</li>
+	<li>A Policy with an Asset Collection, includig parts</li>
+	<li>A Policy with a Party Collection, including parts</li>
+	<li>A Policy with a Rule including a constraint property</li>
+	<li>A Policy with a Permission including a duty property</li>
+	<li>A Policy with a Permission including a duty and a consequence property</li>
+	<li>A Policy with a Prohibition</li>
+	<li>A Policy with a Prohibition including a remedy property</li>
+	<li>A Policy with an Obligation</li>
+	<li>A Policy with a refinement property on an Action, Asset and Party Collection</li>
+	<li>A Policy with a Logical Constraint</li>
+	<li>A Compact Policy that requires translation into an Atomic Policy</li>
+	<li>A Policy containing metadata</li>
+	<li>A Policy that includes Policy inheritance</li>
+		<li>A Policy that includes a Conflict Strategy</li>
+      
+    </ul>
+
+<p>
+In addition, the ODRL Vocabulary will be considered valid when the following conditions have been demonstrated:</p>
+<ul>
+	<li>The ontology documents can be parsed without errors by RDF Schema validators</li>
+<li>The ontology is internally consistent with respect to domains, ranges, inverses, and any other ontology features specified</li>
+<li>The JSON-LD context document can be parsed without errors by JSON-LD validators</li>
+<li>The JSON-LD context document can be used to convert JSON-LD serialized Annotations into RDF triples</li>
+</ul>
+
+    <p>
+      Software that does not alter its behavior in the presence or lack of a given feature is not deemed to implement that feature for the purposes of exiting the Candidate recommendation phase.
+    </p>
+	
+	</section>
+	
+	
         <section class="appendix" id="community">
 <h2>Relationship to the W3C ODRL Community Group Reports</h2>
  
