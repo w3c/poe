@@ -743,7 +743,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
        "target": "http://example.com/document:1234",
        "assigner": "http://example.com/org:616",
        "action": [{
-          "@value": "print",
+          "rdf:value": { "@id": "odrl:print" },
           "refinement": [{
              "leftOperand": "percentage",
              "operator": "lteq",
@@ -753,7 +753,10 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
    }]
 }
 </pre>
-	
+
+<p class="note">
+	When using the <code>refinement</code> property with an Action, the  <code>rdf:value</code> property is used to represent the instance of the Action which MUST use the <code>odrl</code> namespace identifier, and assert it is an <code>@id</code> key.
+	</p>
 
 <blockquote> 
 <p>Example Use Case:The Policy below shows a permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. This is expressed as a Logical Constraint (with the <code>xone</code> operand) refering to two existing Constraints declared elsewhere. </p>  
@@ -769,7 +772,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "target": "http://example.com/book/1999",
         "assigner": "http://example.com/org/paisley-park",
         "action": [{
-           "@value": "reproduce",
+           "rdf:value": { "@id": "odrl:reproduce" },
            "refinement": {
                "xone": ["http://example.com/p:88/C1", "http://example.com/p:88/C2"]
             }
@@ -1082,7 +1085,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	"assigner": "http://example.com/org:43",
 	"assignee": "http://example.com/person:44",
 	"action": [{
-            "@value": "compensate",
+            "rdf:value": { "@id": "odrl:compensate" },
             "refinement": [{
                  "leftOperand": "payAmount",
                  "operator": "eq",
@@ -1114,7 +1117,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	   "target": "http://example.com/document:XZY",
 	   "consequence": [{
 	   	 "action": [{
-	   	     "@value": "compensate",
+	   	     "rdf:value": { "@id": "odrl:compensate" },
 	   	     "refinement": [{
 	   	        "leftOperand": "payAmount",
 	   	        "operator": "eq",
@@ -1157,7 +1160,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "action": "play",
         "duty": [{
            "action": [{
-              "@value": "compensate",
+              "rdf:value": { "@id": "odrl:compensate" },
               "refinement": [{
                  "leftOperand": "payAmount",
                  "operator": "eq",
@@ -1300,7 +1303,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "action": "play",
         "duty": [{
            "action": [{
-              "@value": "compensate",
+              "rdf:value": { "@id": "odrl:compensate" },
               "refinement": [{
                  "leftOperand": "payAmount",
                  "operator": "eq",
