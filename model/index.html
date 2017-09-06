@@ -1419,7 +1419,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 <p>An ODRL Policy MAY hold properties, declared at the Policy-level, which are shared and common to all its Rules. This is aimed only as a <em>short-cut</em> method to support more <strong>compact</strong> serialisations. These shared properties MUST NOT be interpreted as Policy-level properties (such as those defined in the <a href="#policy">Policy Class</a> section).
 	
-	<p>Properties that MAY be shared include:</p>
+	<p>Properties that MAY be shared (as shown in the figure below) include:</p>
 	<ul>
 	<li>One or many <code>action</code> properties.</li>
 	<li>One or many sub-properties of <code>relation</code> (such as <code>target</code>).
@@ -1427,6 +1427,12 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	<li>One or many sub-properties of <code>function</code> (such as <code>assigner</code> and <code>assignee</code>).</li>
 	
 	</ul>
+	
+	<figure>
+	<img src="03Shared.png" alt="ODRL Shared Properties" width="800"/>
+    <figcaption>ODRL Shared Properties (Also available in <a href="03Shared.svg">SVG format</a>)</figcaption>
+</figure>
+	
 
 	<p>The ODRL validation requirements for expanding short-cuts in a Policy is:</p>
     <ol>
