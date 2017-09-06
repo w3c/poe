@@ -285,6 +285,7 @@ function writeTerm($term)
 	$html .= $term->propertyRow("Comment", "rdfs:comment");
     $html .= $term->propertyRow("Note", "skos:note");
 	$html .= $term->propertyRow("Parent class", "rdfs:subClassOf");
+	$html .= $term->propertyRow("Disjoint classes", "owl:disjointWith");
 	$html .= $term->propertyRow("Parent property", "rdfs:subPropertyOf");
 	$html .= $term->propertyRow("Equivalent to", "owl:sameAs");
 	$html .= $term->propertyRow("Deprecated by", "ont:deprecatedBy");
@@ -324,6 +325,7 @@ function writeTerm($term)
     $html .= $term->propertyRow('Is Inverse Of', '^owl:inverseOf');
 	$html .= $term->propertyRow('Instances', '^rdf:type');
 	$html .= $term->propertyRow("See Also", "rdfs:seeAlso");
+
 
 	if($term instanceof Phpspecgen_Individual || $term instanceof Phpspecgen_Concept)
 	{
