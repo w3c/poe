@@ -695,7 +695,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing Constraint types.</li>
 </ul>    
     
-<p>An ODRL validator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
+<p>An ODRL evaluator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
     <ul>
     <li><code>or</code> -  at least one of the Constraints MUST be satisfied</li>
     <li><code>xone</code> - only one, and not more, of the  Constraints MUST be satisfied</li>
@@ -709,13 +709,12 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     <ol>
         <li>The <code><em>operand</em></code> MUST only be of the sub-properties; <code>or</code>, <code>xone</code>, <code>and</code>, <code>andSequence</code>. Additional sub-properties of <code><em>operand</em></code> MAY be defined by ODRL Profiles exclusively for the use of Logical Constraints.</li>
 		<li>All of the operand values MUST be unique Constraint instances.</li>
-		<li>These Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</li>
+		
     </ol>
 
-	<P>A Logical Constraint will reference existing Constraints that MAY appear at the Policy-level. These Constraints MUST NOT to be interpreted as Constraints on all the Rules in the Policy.
-	</P>
-	
-  
+	<p>The Constraint instances MUST be evaluated and the outcomes used to determine if the logical relationship is satisfied (based on the semantics of the <code><em>operand</em></code> sub-property).</p>
+
+ 
 
 	<p class="note">
 	When using a logical operand that needs to be evaluated in sequence, such as <code>andSequence</code>, the serialisations MUST preserve the order of the members of the list. In JSON-LD, the <code>@list</code> keyword MUST be used to represent an ordered collection.
