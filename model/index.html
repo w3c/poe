@@ -129,9 +129,9 @@
     <li><code>Action</code> - An operation on an Asset.</li>
     <li><code>Rule</code> - An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</li>
         <ul>
-    <li><code>Permission</code> - The ability to perform an Action over an Asset. The Permission MAY also have the <strong>duty</strong> property that expresses an agreed Action that MUST be performed (as a pre-condition to be granted the Permission).</li>
-    <li><code>Prohibition</code> - The inability to perform an Action over an Asset.</li>
-    <li><code>Duty</code> - The obligation to perform an Action.</li>
+    <li><code>Permission</code> - The ability to exercise an Action over an Asset. The Permission MAY also have the <strong>duty</strong> property that expresses an agreed Action that MUST be exercised (as a pre-condition to be granted the Permission).</li>
+    <li><code>Prohibition</code> - The inability to exercise an Action over an Asset.</li>
+    <li><code>Duty</code> - The obligation to exercise an Action.</li>
     </ul>
     <li><code>Constraint/LogicalConstraint</code> - A boolean/logical expression that refines an Action and Party/Asset collection or the conditions applicable to a Rule.</li>
     </ul>
@@ -445,8 +445,8 @@
  
 <p>An ODRL validator MUST support the following sub-properties of <code><em>function</em></code>:</p>
 <ul>
-<li><code>assigner</code>: indicates the Party that is issuing the Rule. For example, the Party granting a Permission or requiring an agreed Duty to be performed.</li>
-<li><code>assignee</code>: indicates that the Party that is the recipient the Rule. For example, the Party being granted a Permission or required to perform an agreed Duty.</li>
+<li><code>assigner</code>: indicates the Party that is issuing the Rule. For example, the Party granting a Permission or requiring an agreed Duty to be fulfilled.</li>
+<li><code>assignee</code>: indicates that the Party that is the recipient the Rule. For example, the Party being granted a Permission or required to fulfil an agreed Duty.</li>
 </ul>
  
     <p>Additional <code><em>function</em></code> subtype properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
@@ -567,9 +567,9 @@
 <h3>Action Class</h3>
 
 
-    <p>An Action class indicates an operation that can be applied to an Asset. An Action is associated with the Asset via the action property in a Rule.</p>
+    <p>An Action class indicates an operation that can be exercised on an Asset. An Action is associated with the Asset via the action property in a Rule.</p>
     
-    <p>The Rule provides the specific interpretations of the Action. For example; an Action is <em>permitted</em> to be performed on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be performed on the target Asset. When related to a Duty, the Action indicates the agreed operation that is <em>obligatory</em> to be performed by a Party</p>
+    <p>The Rule provides the specific interpretations of the Action. For example; an Action is <em>permitted</em> to be exercised on the target Asset when related to a Permission. When related to a Prohibition, the Action indicates the operation that is <em>prohibited</em> to be exercised on the target Asset. When related to a Duty, the Action indicates the agreed operation that is <em>obligatory</em> to be fulfilled by a Party</p>
     
     <p>The ODRL Information Model defines the following top-level Actions:</p>
     <ul>
@@ -1052,7 +1052,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     
 	<p>The Duty class also has these additional requirements:</p>
 	<ul>
-	   <li>The assignee MUST have the ability to perform the Duty Action.</li>
+	   <li>The assignee MUST have the ability to exercise the Duty Action.</li>
 		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
 	</ul>
   
