@@ -158,9 +158,8 @@ No patent disclosures for these documents at the moment:
 
 The working group intends to  issue a call for implementations to demonstrate the validity of the specifications. The CR Exit Criteria are documented at
 
-   https://github.com/w3c/poe/blob/gh-pages/test/cr-exit.md
-
-   @@@@It would be better to have these as part of the document!!!@@@@
+   https://w3c.github.io/poe/model/#cr-exit
+   https://w3c.github.io/poe/vocab/#cr-exit
 
 A description of the test suite and how implementers shoud run them is here:
 
@@ -170,9 +169,9 @@ The test suite (which will evolve during the CR period) is here:
 
     @@@@@
 
-The Working Group maintains a separate page for ongoing or pledged implementations:
+The Working Group maintains a separate page for implementations:
 
-	@@@@@@
+	https://github.com/w3c/poe/blob/gh-pages/test/implementors.md
 
 Thanks
 
