@@ -69,11 +69,11 @@
 	       <dt><dfn>Action</dfn></dt>
 	          <dd>An operation on an Asset</dd>
             <dt><dfn>Permission</dfn></dt>
-                  <dd>The ability to perform an Action over an Asset</dd>
+                  <dd>The ability to exercise an Action over an Asset</dd>
             <dt><dfn>Prohibition</dfn></dt>
-                  <dd>The inability to perform an Action over an Asset</dd>
+                  <dd>The inability to exercise an Action over an Asset</dd>
             <dt><dfn>Duty</dfn></dt>
-	          <dd>The obligation to perform an Action.</dd>
+	          <dd>The obligation to exercise an agreed Action.</dd>
 	       <dt><dfn>Asset</dfn></dt>
 	          <dd>A resource or a collection of resources that are the subject of a Rule</dd>
 	       <dt><dfn>Party</dfn></dt>
@@ -949,7 +949,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Permission Class</h3>
 
 
-<p>A Permission is the <strong>ability</strong> to perform an Action over an Asset. The Permission class inherits all the properties from the Rule class parent.</p>
+<p>A Permission <strong>allows</strong> an Action to be <strong>exercised</strong> on an Asset. The Permission class inherits all the properties from the Rule class parent.</p>
 
 <p>The Permission class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
@@ -991,7 +991,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="prohibition">
 <h3>Prohibition Class</h3>
 
-<p>A Prohibition is the <strong>inability</strong> to perform an Action over an Asset. The Prohibition class inherits all the properties from the Rule class parent.</p>
+<p>>A Prohibition <strong>disallows</strong> an Action to be <strong>exercised</strong> on an Asset and defines optional remedies if it has been exercised. The Prohibition class inherits all the properties from the Rule class parent.</p>
     
 <p>The Prohibition class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
@@ -1036,8 +1036,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 
 <section id="duty">
 <h3>Duty Class</h3>
-
-<p>A Duty is the <strong>obligation</strong> to perform an Action. The Duty specifies agreed Actions that MUST be fulfilled. The Duty class inherits all the properties from the Rule class parent.</p>
+	
+<p>A Duty is the <strong>obligation</strong> to <strong>excercise</strong> an Action and <strong>fulfill</strong> the agreed action. The Duty class inherits all the properties from the Rule class parent.</p>
 	
 <p>The Duty class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
@@ -1252,30 +1252,39 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="rule-process">
 <h3>Rule Processing</h3>
 
-	<P>An ODRL Evaluator determines whether the Rules of an ODRL Policy expression have met their intended action outcomes. There are six states that an ODRL Evaluator can produce when processing Rules:</P>
-	
+<p>An ODRL Evaluator MUST be able to support the following functional requirements:</p>
 	<ul>
-	<li>Satisfied or Not-Satisfied (for Constraints)- an ODRL Evaluator MUST generate a Satisfied outcome if:
-		<ul>
-		<li>A Rule has a constraint(s) and all of the constraint(s) have been met, and/or,</li>
-		<li>An Action has a refinement and the action - plus the refinement - has been exercised successfully</li>
-		</ul>
-		otherwise, the outcome will be Not-Satisfied.</li>
-	<li>Fullfilled or Not-Fulfilled (for Duties) - an ODRL Evaluator MUST generate a Fulfilled outcome if:
-	   <ul>
-		<li>A Duty has all Satisfied constraints and Satisfied action (including any refinements), or</li>
-		</ul>
-		otherwise, the outcome will be Not-Fulfiled.
-		</li>
-	<li>Active or Not-Active (for Rules) - - an ODRL Evaluator MUST generate an Active outcome if:
-	   <ul>
-		<li>A Rule has no constraints and/or duties, or</li>
-		<li>A Rule has Fulfilled duties and consequences, or</li>
-		<li>A Rule has Not-Fulfilled remedies, </li>
-	   </ul>
-		otherwise, the outcome will be Not-Active,
-		</li>
-	</ul>
+<li>Determine if an Action has been <strong>exercised</strong></li>
+<li>Determine if constraints of a Rule have been <strong>satisfied</strong></li>
+<li>Determine if refinements of an Action have been <strong>satisfied</strong></li>
+<li>Determine if duties of a Permission Rule have been <strong>fulfilled</strong> </li>
+<li>Determine if consequences of a duty of a Permission Rule have been <strong>fulfilled</strong> </li>
+<li>Determine if the action of Permission Rule is allowed to be <strong>exercised</strong></li>
+<li>Determine if the action of a Prohibition Rule has been <strong>exercised</strong></li>
+<li>Determine if remedies of a Prohibition Rule have been <strong>fulfilled</strong></li>
+<li>Determine if an obligation is <strong>fulfilled</strong></li>
+<li>Determine if consequences of an obligation have been <strong>fulfilled</strong> </li>
+</ul>
+	
+<p>Conversely, an ODRL Evaluator MUST also support the opposite determination of the above functional requirements. That is, constraints/refinements have <strong>not</strong> been <strong>satisfied</strong>, duties have <strong>not</strong> been <strong>fulfilled</strong>, actions have <strong>not</strong> been <strong>exercised</strong>.</p>
+
+<p>These ODRL Evaluator functions enable the processing of complete ODRL Rules to ascertain their current outcome, within a specific context. The context includes the target assets of the Rule, and the functional party roles, such as the assignee of duties. The ODRL Evaluator must ensure the context is included in the evaluation of rules for consistent outcomes. </p>
+
+<p>An ODRL Evaluator MUST support the following operational processing of Rules:</p>
+<ul>
+<li>The evaluation of the state of Constraints (used with the constraint or refinement properties) as <strong>satisfied</strong>, relies on the semantics of the left operands defined by ODRL Profiles. Evaluation of Action refinements may be bound to the exercising of the action. The processing rules for <a href="#constraint-logical">Logical Constraints</a> MUST also be considered.</li>
+
+<li>The general evaluation of Duty, Permission, Prohibition and Obligation Rules requires that all of the constraints of the Rule and/or action refinements are <strong>satisfied</strong> to be considered for continued evaluation of this Rule.</li>
+
+<li>The evaluation of the state of Duties (used with the, duty, remedy, and consequence properties) as <strong>fulfilled</strong> requires that all of the constraints and/or action refinements are <strong>satisfied</strong>, and the action must be <strong>exercised</strong>. If the action of a Duty is <strong>not</strong> to be <strong>exercised</strong>, it is required that the consequences of this Duty are <strong>fulfilled</strong>.</li>
+
+<li>The evaluation of the state of a Permission to allow an action to be <strong>exercised</strong>  requires that all of the constraints and/or action refinements are <strong>satisfied</strong>, all of its duties must be <strong>fulfilled</strong>, and that the allowed action satisfies any refinements, when actually <strong>exercised</strong>.</li>
+
+<li>The evaluation of the state of a Prohibition to <strong>not</strong> allow an action to be <strong>exercised</strong>  requires that all of the constraints are <strong>satisfied</strong>, and that the action is <strong>not</strong> <strong>exercised</strong>. If the action has been <strong>exercised</strong> (and satisfies any refinements) then the remedies are required to be <strong>fulfilled</strong>.</li>
+	
+<li>The evaluation of the state of an Obligation requiring to exercise an action to be <strong>exercised</strong> requires that all of the constraints and/or action refinements are <strong>satisfied</strong>, and the action must be <strong>exercised</strong>. If the action of a Obligation is <strong>not</strong> to be <strong>exercised</strong>, it is required that the consequences of this Obligation are also <strong>fulfilled</strong>.</li>
+
+</ul>
 
     
 <blockquote>
