@@ -224,6 +224,9 @@
     </ul>
 	
 	<p>Note: See the <a href="#function">Function Property</a> section for details on the functional roles.</p>
+	
+ 
+	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 
 <blockquote>
 <p>Example Use Case: The below <code>Offer</code> Policy (based on the previous example) shows the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code>.</p>
@@ -260,6 +263,8 @@
         <li>MUST have one <code>assignee</code> property value (of type Party) to indicate the functional role in the same Rules.</li>
     </ul>
 	<p>Note: See the <a href="#function">Function Property</a> section for details on the functional roles.</p>
+	
+		<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 <blockquote>
 <p>Example Use Case: The below <code>Agreement</code> Policy (based on the previous example) shows granting the Permission to <code>play</code> the target Asset <code>http//example.com/asset:9898.movie</code> from the assigner Party <code>http://example.com/party:org:abc</code> for the assignee Party <code>http://example.com/party:person:billie</code>.</p>
@@ -991,7 +996,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="prohibition">
 <h3>Prohibition Class</h3>
 
-<p>>A Prohibition <strong>disallows</strong> an Action to be <strong>exercised</strong> on an Asset and defines optional remedies if it has been exercised. The Prohibition class inherits all the properties from the Rule class parent.</p>
+<p>A Prohibition <strong>disallows</strong> an Action to be <strong>exercised</strong> on an Asset and defines optional remedies if it has been exercised. The Prohibition class inherits all the properties from the Rule class parent.</p>
     
 <p>The Prohibition class is a subclass of Rule and has the following additional property semantics:</p>
 <ul>
