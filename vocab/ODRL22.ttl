@@ -773,7 +773,7 @@ odrl:
 	a rdf:Property , owl:ObjectProperty, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Duty"@en ;
-	skos:definition "Relates an individual Duty to a Permission.."@en ;
+	skos:definition "Relates an individual Duty to a Permission."@en ;
 	skos:note "A Duty is a pre-condition which must be fulfilled in order to receive the Permission."@en ;
 	rdfs:domain :Permission ;
 	rdfs:range :Duty .
@@ -820,7 +820,6 @@ odrl:
 	a rdf:Property ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:domain :Constraint ;
-#	rdfs:range rdfs:Resource ;
 	rdfs:label "Unit"@en ;
 	skos:definition "The unit of measurement of the value of the rightOperand or rightOperandReference of a Constraint."@en .
 
@@ -891,7 +890,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Operator"@en ;
 	skos:definition "Operator for constraint expression."@en ;
-	skos:note "Instances of the Operator class representing relational operators ."@en .
+	skos:note "Instances of the Operator class representing relational operators."@en .
 
 :eq
 	a :Operator, owl:NamedIndividual, skos:Concept ;
@@ -1192,7 +1191,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Recipient"@en ;
 	skos:definition "The party receiving the result/outcome."@en ;
-	skos:note "Note: The Right Operand must identify one or more specific parties or category/ies of the party."@en ;
+	skos:note "Note: The Right Operand must identify one or more specific Parties or category/ies of the Party."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :relativePosition
@@ -1355,7 +1354,7 @@ odrl:
 	:includedIn odrl:use ;
 	rdfs:label "Accept Tracking"@en ;
 	skos:definition "To accept that the use of the Asset may be tracked."@en ;
-	skos:note "The collected information may be tracked by the Assigner, or may link to a Party with the role “trackingParty” function."@en ;
+	skos:note "The collected information may be tracked by the Assigner, or may link to a Party with the role 'trackingParty' function."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 
@@ -1382,7 +1381,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Anonymize"@en ;
 	skos:definition "To anonymize all or parts of the Asset."@en ;
-	skos:note "For example, to remove identifying particulars for statistical or for other comparable purposes, or to use the asset without stating the author/source."@en ;
+	skos:note "For example, to remove identifying particulars for statistical or for other comparable purposes, or to use the Asset without stating the author/source."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :append
@@ -1549,7 +1548,7 @@ odrl:
 	:includedIn odrl:use ;
 	rdfs:label "Inform"@en ;
 	skos:definition "To inform that an action has been performed on or in relation to the Asset."@en ;
-	skos:note "May link to a Party with the role “informedParty” function."@en ;
+	skos:note "May link to a Party with the role 'informedParty' function."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :install
@@ -1729,7 +1728,7 @@ odrl:
 	rdfs:label "Text-to-speech"@en ;
 	skos:definition "To have a text Asset read out loud."@en ;
     :includedIn odrl:use ;
-    skos:note "If the action is to be performed to a wider audience than just the Assignees, then the Recipient constraint is recommended to be used.";
+    skos:note "If the action is to be performed to a wider audience than just the Assignees, then the recipient constraint is recommended to be used.";
     skos:scopeNote "Non-Normative"@en .
 
 :transfer
@@ -1777,7 +1776,7 @@ odrl:
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Write"@en ;
-	skos:definition "The act of writing to the asset."@en ;
+	skos:definition "The act of writing to the Asset."@en ;
     owl:deprecated true ;
 	skos:exactMatch :modify .
 
@@ -1978,7 +1977,7 @@ odrl:
 	owl:disjointWith :Agreement, :Privacy, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Offer"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assigner."@en ;
-	skos:note "An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy  MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party."@en .
+	skos:note "An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party."@en .
 
 :Privacy
 	a rdfs:Class , owl:Class, skos:Concept ;
@@ -1987,7 +1986,7 @@ odrl:
 	owl:disjointWith :Agreement, :Offer, :Request, :Set, :Ticket, :Assertion ;
 	rdfs:label "Privacy Policy"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset containing personal information."@en ;
-	skos:note "A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe  obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
+	skos:note "A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
     skos:scopeNote "Non-Normative"@en .
 
 :Request
@@ -2245,7 +2244,7 @@ cc:Attribution
 cc:ShareAlike
 	a :Action, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
-	rdfs:label "Share ALike"@en ;
+	rdfs:label "Share Alike"@en ;
 	skos:definition "Derivative works be licensed under the same terms or compatible terms as the original work."@en ;
     skos:note "This term is defined by Creative Commons."@en ;
 	:includedIn odrl:use ;
