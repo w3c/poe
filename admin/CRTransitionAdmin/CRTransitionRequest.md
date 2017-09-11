@@ -5,7 +5,7 @@
 
 Philippe, Ralph,
 
-The  Permissions & Obligations Expression Working Group requests transition to CR status for two specifications on ODRL. The publication is planned for the 2017-@@-@@; the documents are follows:
+The  Permissions & Obligations Expression Working Group requests transition to CR status for two specifications on ODRL. The publication is planned for the 2017-09-22; the documents are follows:
 
  * ODRL Information Model
  * ODRL Vocabulary & Expression
@@ -20,7 +20,7 @@ ODRL Information Model
 - Version ready to be published
 	https://w3c.github.io/poe/model/
 - Final /TR URI when it gets published
-	https://www.w3.org/TR/2017/CR-odrl-model-2017@@@@/
+	https://www.w3.org/TR/2017/CR-odrl-model-20170922/
 
 Abstract:
 
@@ -37,7 +37,7 @@ ODRL Vocabulary & Expression
 - Version ready to be published
 	http://w3c.github.io/poe/vocab/
 - Final /TR URI when it gets published
-	http://www.w3.org/TR/2017/CR-odrl-vocab-2017@@@@/
+	http://www.w3.org/TR/2017/CR-odrl-vocab-20170922/
 
 Abstract:
 
@@ -50,7 +50,7 @@ Status:
 (2)  Record of the decision to request the transition
 =====================================================
 
-	https://www.w3.org/2017/@@/@@-poe-minutes.html#@@@@
+	https://www.w3.org/2017/09/14-poe-minutes.html
 
 (3) Record of Changes
 =====================
