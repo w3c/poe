@@ -1229,7 +1229,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	
 <blockquote>
-<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/org:99</code> prohibits the assignee to modify the Asset <code>http://example.com/data:77</code>. If the assignee does actually modify the target asset, then the remedy will be that the MUST delete the target asset <code>http://example.com/data:77</code>.</p>
+<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/org:99</code> prohibits the assignee to index the Asset <code>http://example.com/data:77</code>. If the assignee does actually index the target asset, then the remedy will be that the MUST anonymize the target asset <code>http://example.com/data:77</code>.</p>
     </blockquote>
 
 
@@ -1243,9 +1243,9 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "target": "http://example.com/data:77",
         "assigner": "http://example.com/person:88",
         "assignee": "http://example.com/org:99",
-        "action": "modify",
+        "action": "index",
         "remedy": [{
-            "action": "delete",
+            "action": "anonymize",
             "target": "http://example.com/data:77"
         }]
     }]
