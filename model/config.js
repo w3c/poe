@@ -2,8 +2,8 @@ var respecConfig = {
         // specStatus:              "CR",
         specStatus:              "ED",
         shortName:               "odrl-model",
-        // publishDate:             "2017-09-28",
-        crEnd:                   "2017-10-31",
+        // publishDate:             "2017-09-26",
+        crEnd:                   "2017-11-14",
         implementationReportURI: "https://w3c.github.io/poe/test/implementors",
         editors: [
             {   name:       "Renato Iannella",

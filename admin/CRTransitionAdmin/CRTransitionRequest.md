@@ -5,7 +5,7 @@
 
 Philippe, Ralph,
 
-The  Permissions & Obligations Expression Working Group requests transition to CR status for two specifications on ODRL. The publication is planned for the 2017-09-22; the documents are follows:
+The  Permissions & Obligations Expression Working Group requests transition to CR status for two specifications on ODRL. The publication is planned for the 2017-09-26; the documents are follows:
 
  * ODRL Information Model
  * ODRL Vocabulary & Expression
@@ -20,7 +20,7 @@ ODRL Information Model
 - Version ready to be published
 	https://w3c.github.io/poe/model/
 - Final /TR URI when it gets published
-	https://www.w3.org/TR/2017/CR-odrl-model-20170922/
+	https://www.w3.org/TR/2017/CR-odrl-model-20170926/
 
 Abstract:
 
@@ -37,7 +37,7 @@ ODRL Vocabulary & Expression
 - Version ready to be published
 	http://w3c.github.io/poe/vocab/
 - Final /TR URI when it gets published
-	http://www.w3.org/TR/2017/CR-odrl-vocab-20170922/
+	http://www.w3.org/TR/2017/CR-odrl-vocab-20170926/
 
 Abstract:
 
@@ -163,11 +163,11 @@ The working group intends to  issue a call for implementations to demonstrate th
 
 A description of the test suite and how implementers shoud run them is here:
 
-    @@@@@
+    https://github.com/w3c/poe/blob/gh-pages/test/test-regime.md
 
 The test suite (which will evolve during the CR period) is here:
 
-    @@@@@
+    https://github.com/w3c/poe/blob/gh-pages/test/test-suite.md
 
 The Working Group maintains a separate page for implementations:
 
