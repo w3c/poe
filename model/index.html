@@ -673,7 +673,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
       
 <p>The <code>dataType</code> indicates the type of the <code>rightOperand/Reference</code>, such as <code>xsd:decimal</code> or <code>xsd:datetime</code> and the <code>unit</code> indicates the unit value of the <code>rightOperand/Reference</code>, such as &#8220;EU currency&#8221;.</p>
 
-<p>The <code>status</code> provides a value generated from the <code>leftOperand</code> action that MUST be used in the comparision expression. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times and the comparision must compare the current action to the status value.</p>
+<p>The <code>status</code> provides a value generated from the <code>leftOperand</code> action that MUST be used in the comparison expression. For example, a <code>count</code> constraint could have a <code>rightOperand</code> value of 10, and the <code>status</code> of 5. This means that the action has already been exercised 5 times and the comparison must compare the current action to the status value.</p>
 
 
 </section>
@@ -728,7 +728,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 		</p>
 	
 <blockquote>
-<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>distribute</code>d, and includes a constraint of a  <code>dateTime</code> condition that the permssion must be exercised before 2018-01-01.</p>
+<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>distribute</code>d, and includes a constraint of a  <code>dateTime</code> condition that the permission must be exercised before 2018-01-01.</p>
     </blockquote>
     
 <pre id="eg17" class="example hljs json">
@@ -758,9 +758,9 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 
 <p>An Action MAY include the <code>refinement</code> property to indicate a Constraint/Logical Constraint that narrows the semantics of the Action operation directly.
 	
-	
 	To meet this condition of narrower semantics for the Action, all of the Constraints/Logical Constraints referenced by the <code>refinement</code> property MUST be <strong>satisfied</strong>. </p>
-	
+
+	<p>Note: a refinement property MUST not narrow the semantics of the Action to a null operation.</p>
 <blockquote>
 <p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>print</code>ed, and also include a refinement Constraint that narrows the printing operation to not more than 50% of the asset.</p>
     </blockquote>
@@ -791,7 +791,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	</p>
 
 <blockquote> 
-<p>Example Use Case:The Policy below shows a permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. This is expressed as a Logical Constraint (with the <code>xone</code> operand) refering to two existing Constraints declared elsewhere. </p>  
+<p>Example Use Case:The Policy below shows a permission to reproduce the target asset <strong>either</strong> via online media or print media <strong>but not both</strong>. This is expressed as a Logical Constraint (with the <code>xone</code> operand) referring to two existing Constraints declared elsewhere. </p>  
 </blockquote>
            
 <pre id="eg19" class="example hljs json">
@@ -845,6 +845,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 		To meet this condition of identifying individual Asset(s) of the complete <code>AssetCollection</code>, all of the Constraints/Logical Constraints referenced by the <code>refinement</code> property MUST be <strong>satisfied</strong>. </p>
 	
+	<p>Note: a refinement property MUST not narrow the identified indivudal Asset(s) to a null set.</p>
 	 
 	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>AssetCollection</code>. </p>
 	
@@ -887,8 +888,10 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	  A <code>PartyCollection</code> MAY include a <code>refinement</code> property to indicate the refinement context under which to identify individual Party(ies) of the complete collection. The <code>refinement</code> property applies to the characteristics of each member of the collection (and not the resource as a whole). 
 	
 		To meet this condition of identifying individual Party(ies) of the complete <code>PartyCollection</code>, all of the Constraints/Logical Constraints referenced by the <code>refinement</code> property MUST be <strong>satisfied</strong>. </p>
-	</p>
+	
 	 
+	<p>Note: a refinement property MUST not narrow the identified indivudal Party(ies) to a null set.</p>
+	
 	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>PartyCollection</code>. </p>
 	
        
@@ -959,7 +962,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Permission Class</h3>
 
 
-<p>A Permission <strong>allows</strong> an Action to be <strong>exercised</strong> on an Asset if all Constraints/Logical Constraints are <strong>satisfied</strong> and if all Duties are <strong>fulfilled</strong>.</p>
+<p>A Permission <strong>allows</strong> an action to be <strong>exercised</strong> on an Asset if all constraints are <strong>satisfied</strong> and if all duties are <strong>fulfilled</strong>.</p>
 
 <p>The Permission class is a subclass of, and inherits all the properties from, the Rule class - and has the following additional property semantics:</p>
 <ul>
@@ -1001,7 +1004,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="prohibition">
 <h3>Prohibition Class</h3>
 
-<p>A Prohibition <strong>disallows</strong> an Action to be <strong>exercised</strong> on an Asset if all Constraints/Logical Constraints are <strong>satisfied</strong>. If the Prohibition has been <strong>infringed</strong> by the Action being exercised, then all of the remedy Duties must be <strong>fulfilled</strong>. 
+<p>A Prohibition <strong>disallows</strong> an action to be <strong>exercised</strong> on an Asset if all constraints are <strong>satisfied</strong>. If the Prohibition has been <strong>infringed</strong> by the action being exercised, then all of the remedies must be <strong>fulfilled</strong>. 
 </p>
     
 	<p>The Prohibition class is a subclass of, and inherits all the properties from, the Rule class - and has the following additional property semantics:</p>
@@ -1015,7 +1018,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
 	
-<p>The <code>remedy</code> property (a sub-property of the <code><em>failure</em></code> property) expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been <strong>infringed</strong>. That is, the remedy property asserts a Duty that must be fulfilled if the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
+<p>The <code>remedy</code> property (a sub-property of the <code><em>failure</em></code> property) expresses an agreed obligation that MUST be fulfilled in the case that the Prohibition has been <strong>infringed</strong>. That is, the remedy property asserts a Duty that must be fulfilled if the action of the Prohibition is exercised.  See the <a href="#duty-prohib">Remedy with a Prohibition</a> section for more details.</p>
 	
  <blockquote>
 <p>Example Use Case: The assigner of a target Asset <code>http://example.com/photoAlbum:55</code> expresses an Agreement Policy with both a Permission and a Prohibition. The assigner Party <code>http://example.com/MyPix:55</code> assigns the Permission <code>display</code> to the assignee Party <code>http://example.com/assignee:55</code> at the same time a Prohibition to <code>archive</code> the target Asset. Additionally, in case of any conflicts in the Policy (e.g., between Permissions and Prohibitions), the <code>conflict</code> property of the <code>Policy</code> is set to <code>perm</code> indicating that the Permissions will take precedence.</p>
@@ -1048,14 +1051,15 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="duty">
 <h3>Duty Class</h3>
 	
-<p>A Duty is the <strong>obligation</strong> to <strong>excercise</strong> an agreed Action. A Duty is <strong>fulfilled</strong> if all Constraints/Logical Constraints are <strong>satisfied</strong> and if its action has been <strong>excercised</strong>.</p>
+<p>A Duty is the <strong>obligation</strong> to <strong>exercise</strong> an  action. A Duty is <strong>fulfilled</strong> if all constraints are <strong>satisfied</strong> and if its action has been <strong>exercised</strong>. If its action has not been exercised, then all <code>consequence</code>s must be fulfilled to fulfil the Duty. (Note: only Duties referenced by duty or obligation properties may use consequence properties.)
+	</p>
 	
 	
 <p>The Duty class is a subclass of, and inherits all the properties from, the Rule class - and has the following additional property semantics:</p>
 <ul>
      <li>A Duty MAY have none or one <code>target</code> property values (of type Asset)  to indicate the Asset that is the primary subject to which the Duty directly applies. (Other <code><i>relation</i></code> sub-properties  MAY be used.)</li>
 	  <li>A Duty MAY have none or one <code>assigner</code> and/or <code>assignee</code> property values (of type Party) for functional roles. (Other <code><i>function</i></code> sub-properties MAY be used.)</li> 
-	  <li>A Duty MAY have none, one or many <code>consequence</code> property values of type Duty only when the Duty is related to a Rule with the duty or obligation properties.</li>
+	  <li>A Duty MAY have none, one or many <code>consequence</code> property values of type Duty only when the Duty is referenced by a Rule with the duty or obligation properties.</li>
 </ul>
 	
 		
@@ -1068,7 +1072,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
 	</ul>
   
-<p>The <code>consequence</code> property (a sub-property of the <code><em>failure</em></code> property) is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duty <em>also</em> becoming a new requirement, meaning that the original obligation or duty, as well as the consequence Duty MUST all be <strong>fulfilled</strong>. For example, if an obligation to provide data by a certain date is not fullfilled, the a consequence of a $100 fine is payable as well.
+<p>The <code>consequence</code> property (a sub-property of the <code><em>failure</em></code> property) is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duty <em>also</em> becoming a new requirement, meaning that the original obligation or duty, as well as the consequence Duty MUST all be <strong>fulfilled</strong>. For example, if an obligation to provide data by a certain date is not fulfilled, the a consequence of a $100 fine is payable as well.
 </p>
 
 <p>Note that the consequence property MUST NOT be used on a Duty that is already a consequence for a Permission duty or Policy obligation.</p>
@@ -1079,7 +1083,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="duty-policy">
 <h3>Obligation property with a Policy</h3>
 
-<p>A Policy MAY include an obligation to fulfill a Duty. The obligation Duty is <strong>fulfilled</strong> if all Constraints/Logical Constraints are <strong>satisfied</strong> and if its action has been <strong>excercised</strong>. </p>
+<p>A Policy MAY include an obligation to fulfill a Duty. The obligation is <strong>fulfilled</strong> if all constraints are <strong>satisfied</strong> and if its action has been <strong>exercised</strong>. </p>
 		
 <blockquote>
 <p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to compensate the assigner for a payment amount of EU500.00.</p>
@@ -1195,11 +1199,11 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="duty-conseq">
 <h3>Consequence property with a Permission/Obligation Duty</h3>
 
-	<P>A duty of a Permission, and obligation of a Policy, MAY include a <code>consequence</code> Duty of not fulfilling that duty, or the Permission exercised without fulfilling the duty. 
+	<p>A duty of a Permission, and obligation of a Policy, MAY include a <code>consequence</code> Duty of not fulfilling that duty or obligation. 
 		
-		The consequence Duty MUST also be <strong>fulfilled</strong> in either of these cases. 
+		In this case, all consequence Duties MUST also be <strong>fulfilled</strong> to set the final state of the Permission/Obligation Duty to <strong>fulfilled</strong>.</p> 
 		
-		The <code>consequence</code> property is a sub-property of the <code><em>failure</em></code> property. See the <a href="#duty">Duty Class </a> section for more about the consequence property.</P>
+		<p>The <code>consequence</code> property is a sub-property of the <code><em>failure</em></code> property. See the <a href="#duty">Duty Class </a> section for more about the consequence property.</p>
 	
 <blockquote>
 <p>Example Use Case: The below Agreement between assigner <code>http://example.com/org:99</code> and assignee <code>http://example.com/person:88</code> allows the assignee to distribute the Asset <code>http://example.com/data:77</code> under the pre-condition they attribute the asset to Party <code>http://australia.gov.au/</code>. If the assignee does not fulfill the duty, or distributes the asset without fulfilling the duty, then the consequence will be that they will also be tracked by <code>http://example.com/dept:100</code>.</p>
@@ -1784,7 +1788,7 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
     <ul>
 	<li>A Set/Offer/Agreement Policy type with required properties</li>
 	<li>A Policy that utilises an ODRL Profile</li>
-	<li>A Policy with an Asset Collection, includig parts</li>
+	<li>A Policy with an Asset Collection, including parts</li>
 	<li>A Policy with a Party Collection, including parts</li>
 	<li>A Policy with a Rule including a constraint property</li>
 	<li>A Policy with a Permission including a duty property</li>
