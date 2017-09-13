@@ -765,7 +765,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	To meet this condition of narrower semantics for the Action, all of the Constraints/Logical Constraints referenced by the <code>refinement</code> property MUST be <strong>satisfied</strong>. </p>
 
-	<p>Note: a refinement property MUST not narrow the semantics of the Action to a null operation.</p>
+	<p>Note: The outcome of applying refinements to an Action SHOULD NOT result in a null operation.</p>
+	
 <blockquote>
 <p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>print</code>ed, and also include a refinement Constraint that narrows the printing operation to not more than 50% of the asset.</p>
     </blockquote>
@@ -850,8 +851,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 		To meet this condition of identifying individual Asset(s) of the complete <code>AssetCollection</code>, all of the Constraints/Logical Constraints referenced by the <code>refinement</code> property MUST be <strong>satisfied</strong>. </p>
 	
-	<p>Note: If the outcome of applying refinements to an <code>AssetCollection</code> result in a null set, then the full implications must be understood.</p>
-	
+	<p>Note: The outcome of applying refinements to an AssetCollection SHOULD NOT result in a null set.</p>
 	 
 	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <em>identify</em> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <em>reference</em> the <code>AssetCollection</code>. </p>
 	
@@ -896,7 +896,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 		To meet this condition of identifying individual Party(ies) of the complete <code>PartyCollection</code>, all of the Constraints/Logical Constraints referenced by the <code>refinement</code> property MUST be <strong>satisfied</strong>. </p>
 	
 	 
-	<p>Note: If the outcome of applying refinements to a <code>PartyCollection</code> result in a null set, then the full implications must be understood.</p>
+	<p>Note: The outcome of applying refinements to a PartyCollection SHOULD NOT result in a null set.</p>
 	
 	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <em>identify</em> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <em>reference</em> the <code>PartyCollection</code>. </p>
 	
