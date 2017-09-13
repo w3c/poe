@@ -651,7 +651,12 @@
 <li>A Constraint MUST have one <code>operator</code> property value of type Operator.</li>
 <li>A Constraint MUST have either:
 	<ul>
-	<li>one <code>rightOperand</code> property value of type literal, IRI [[!rfc3987]], or RightOperand; or,</li>
+	<li>one <code>rightOperand</code> property value of type:
+		<ul>
+		  <li>literal, or IRI [[!rfc3987]], or RightOperand; or</li>
+		  <li>for set-based operators; list of literals, or list of IRIs [[!rfc3987]], or list of RightOperands;</li>
+		</ul>
+	</li>
 	<li>one <code>rightOperandReference</code> property value (of type IRI [[!rfc3987]]) for a reference to a right operand value.</li>
 	</ul>
 <li>A Constraint MAY have none or one <code>dataType</code> property value for the data type of the rightOperand/Reference.</li>
@@ -688,7 +693,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
       
 <p>The Logical Constraint class has the following properties:</p>
 <ul>
-<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing Constraint types.</li>
+<li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing Constraint instances.</li>
 </ul>    
     
 <p>An ODRL evaluator MUST support the following sub-properties of <code><em>operand</em></code>:</p>
