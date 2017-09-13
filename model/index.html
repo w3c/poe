@@ -642,7 +642,7 @@
 <section id="constraint-class">
 <h3>Constraint Class</h3>
         
-<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. If the comparison returns a match the Constraint is satisfied, otherwise it is not satisfied. The Constraint class formulates a comparison expression, such as, the number of usages (the <code>leftOperand</code>) must be smaller than (the <code>operator</code>) the number 10 (the <code>rightOperand</code>). 
+<p>A Constraint class is used for expressions which compare two operands (which are not Constraints) by one relational operator. If the comparison returns a match the Constraint is <strong>satisfied</strong>, otherwise it is <strong>not satisfied</strong>. The Constraint class formulates a comparison expression, such as, the number of usages (the <code>leftOperand</code>) must be smaller than (the <code>operator</code>) the number 10 (the <code>rightOperand</code>). 
 </p>
        
 <p>The Constraint class has the following properties:</p>
@@ -683,7 +683,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Logical Constraint Class</h3>
  
  <p>   
-     A Logical Constraint class is used for expressions which compare two or more operands which are existing Constraints by one logical operator. If the comparison returns a logical match, then the Logical Constraint is satisfied, otherwise it is not satisfied. For example,  three Constraints could be logically <strong>and</strong>-ed indicating that all three must be true for the Logical Constraint to be satisfied.</p>
+     A Logical Constraint class is used for expressions which compare two or more operands which are existing Constraints by one logical operator. If the comparison returns a logical match, then the Logical Constraint is <strong>satisfied</strong>, otherwise it is <strong>not satisfied</strong>. For example,  three Constraints could be logically <strong>and</strong>-ed indicating that all three must be true for the Logical Constraint to be satisfied.</p>
 
       
 <p>The Logical Constraint class has the following properties:</p>
@@ -845,9 +845,10 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 		To meet this condition of identifying individual Asset(s) of the complete <code>AssetCollection</code>, all of the Constraints/Logical Constraints referenced by the <code>refinement</code> property MUST be <strong>satisfied</strong>. </p>
 	
-	<p>Note: a refinement property MUST not narrow the identified indivudal Asset(s) to a null set.</p>
+	<p>Note: If the outcome of applying refinements to an <code>AssetCollection</code> result in a null set, then the full implications must be understood, such as the impact on ODRL Validators of ODRL Policies.</p>
+	
 	 
-	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>AssetCollection</code>. </p>
+	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <em>identify</em> the <code>AssetCollection</code>. Instead, the <code>source</code> property MUST be used to <em>reference</em> the <code>AssetCollection</code>. </p>
 	
        
 	
@@ -890,9 +891,9 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 		To meet this condition of identifying individual Party(ies) of the complete <code>PartyCollection</code>, all of the Constraints/Logical Constraints referenced by the <code>refinement</code> property MUST be <strong>satisfied</strong>. </p>
 	
 	 
-	<p>Note: a refinement property MUST not narrow the identified indivudal Party(ies) to a null set.</p>
+	<p>Note: If the outcome of applying refinements to a <code>PartyCollection</code> result in a null set, then the full implications must be understood, such as the impact on ODRL Validators of ODRL Policies.</p>
 	
-	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <strong>identify</strong> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <strong>reference</strong> the <code>PartyCollection</code>. </p>
+	<p>Note that when using the <code>refinement</code> property, the <code>uid</code> property MUST NOT be used to <em>identify</em> the <code>PartyCollection</code>. Instead, the <code>source</code> property MUST be used to <em>reference</em> the <code>PartyCollection</code>. </p>
 	
        
 	
@@ -1004,7 +1005,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="prohibition">
 <h3>Prohibition Class</h3>
 
-<p>A Prohibition <strong>disallows</strong> an action to be <strong>exercised</strong> on an Asset if all constraints are <strong>satisfied</strong>. If the Prohibition has been <strong>infringed</strong> by the action being exercised, then all of the remedies must be <strong>fulfilled</strong>. 
+<p>A Prohibition <strong>disallows</strong> an action to be <strong>exercised</strong> on an Asset if all constraints are <strong>satisfied</strong>. If the Prohibition has been <strong>infringed</strong> by the action being exercised, then all of the remedies MUST be <strong>fulfilled</strong> to set the state of the Prohibition to <strong>not infringed</strong>.
 </p>
     
 	<p>The Prohibition class is a subclass of, and inherits all the properties from, the Rule class - and has the following additional property semantics:</p>
