@@ -840,7 +840,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand"@en ;
 	skos:definition "The value of the right operand in a constraint expression."@en ;
-    skos:note ""@en ;
+    skos:note "When used with set-based operators, a list of values may be used."@en ;
 	rdfs:range [
 		a owl:Class ;
 		owl:unionOf ( :RightOperand rdfs:Literal xsd:anyURI ) ;
@@ -852,7 +852,7 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Has Right Operand Reference"@en ;
 	skos:definition "A reference to a web resource providing the value for the right operand of a Constraint."@en ;
-	skos:note "An IRI that MUST be dereferenced to obtain the actual right operand value"@en ;
+	skos:note "An IRI that MUST be dereferenced to obtain the actual right operand value. When used with set-based operators, a list of IRIs may be used"@en ;
 	rdfs:domain :Constraint .
 
 :leftOperand
