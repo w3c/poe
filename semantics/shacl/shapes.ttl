@@ -1,0 +1,232 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+odrl:InheritanceShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Policy ;
+    sh:property [
+        sh:path [ sh:oneOrMorePath [ sh:inversePath odrl:inheritFrom ]] ;
+        sh:disjoint odrl:inheritFrom
+    ] .
+
+odrl:PolicyShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Policy ;
+	sh:property [
+        sh:path odrl:conflict ;
+        sh:class odrl:ConflictTerm ;
+        sh:maxCount 1 ;
+    ] .
+
+odrl:ProhibitionShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Prohibition ;
+    sh:not [
+        a sh:NodeShape ;
+        sh:class odrl:Permission ;
+    ] ;
+    sh:not [
+        a sh:NodeShape ;
+        sh:class odrl:Duty ;
+    ] .
+
+odrl:DatatypeShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf odrl:datatype ;
+    sh:class rdfs:datatype .
+
+odrl:RightOperandReferenceShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf odrl:rightOperandReference ;
+    sh:nodeKind sh:IRI .
+
+odrl:LogicConstraintShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf odrl:and ;         
+    sh:targetObjectsOf odrl:or ;          
+    sh:targetObjectsOf odrl:xone ;       
+    sh:property [
+        sh:path ( [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+        sh:class odrl:Constraint ;
+    ] .
+
+odrl:OperatorShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Constraint ;              
+    sh:property [
+        sh:path odrl:operator ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+odrl:LeftOperandShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Constraint ;              
+    sh:property [
+        sh:path odrl:leftOperand ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class odrl:LeftOperand ;
+    ] .
+
+odrl:RightOperandShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Constraint ;  
+    sh:xone ( odrl:rightOperandSingleShape odrl:rightOperandRefShape ) .
+ 
+odrl:rightOperandSingleShape
+    a sh:NodeShape ;          
+    sh:property [
+        sh:path odrl:rightOperand ;
+        sh:minCount 1 ;
+    ] .
+ 
+odrl:rightOperandRefShape 
+    a sh:NodeShape ;          
+    sh:property [
+        sh:path odrl:rightOperandReference ;
+        sh:minCount 1 ;
+    ] .
+
+odrl:PartyCollectionShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:PartyCollection ;
+    sh:xone ( odrl:WithRefinementShape odrl:WithoutRefinementShape ) .
+ 
+odrl:WithRefinementShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:source ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path odrl:refinement ;
+        sh:minCount 1 ;
+    ] .	
+ 
+odrl:WithoutRefinementShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:source ;
+        sh:maxCount 0 ;
+    ] ;
+    sh:property [
+        sh:path odrl:refinement ;
+        sh:maxCount 0 ;
+    ] .
+
+odrl:AssetCollectionShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:AssetCollection ;
+	sh:xone ( odrl:WithRefinementShape odrl:WithoutRefinementShape ) .
+ 
+odrl:WithRefinementShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:source ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path odrl:refinement ;
+        sh:minCount 1 ;
+    ] .	
+ 
+odrl:WithoutRefinementShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:source ;
+        sh:maxCount 0 ;
+    ] ;
+    sh:property [
+        sh:path odrl:refinement ;
+        sh:maxCount 0 ;
+    ] .
+
+odrl:RemedyShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf odrl:remedy ;                  
+    sh:property [
+        sh:path odrl:consequence ;
+        sh:maxCount 0 ;
+    ] .
+
+odrl:PolicyShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Policy ;
+    sh:property [
+        sh:path [ 
+            sh:alternativePath ( odrl:permission odrl:prohibition ) 
+        ] ;
+        sh:node odrl:targetCardShape ;
+    ] .
+ 
+odrl:targetCardShape 
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:target ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+odrl:AgreementShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Agreement ;
+    sh:property [
+        sh:path [ 
+            sh:alternativePath ( odrl:permission odrl:prohibition odrl:obligation ) 
+        ] ;
+        sh:node odrl:assignerMinShape ;
+        sh:node odrl:assigneeMinShape ;
+    ] .
+ 
+odrl:assignerMinShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:assigner ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+ 
+odrl:assigneeMinShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:assignee ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+odrl:OfferShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Offer ;
+    sh:property [
+        sh:path [ 
+            sh:alternativePath ( odrl:permission odrl:prohibition odrl:obligation ) 
+        ] ;
+        sh:node odrl:assignerMinShape ;
+    ] .
+ 
+odrl:assignerMinShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:assigner ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+odrl:PolicyShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Policy ;
+    sh:nodeKind sh:IRI .
+
+odrl:PolicyShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Policy ;
+    sh:property [
+        sh:path [ 
+            sh:alternativePath ( odrl:permission odrl:prohibition odrl:obligation ) 
+        ] ;
+        sh:minCount 1 ;
+    ] .

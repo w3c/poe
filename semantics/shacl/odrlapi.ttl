@@ -1,0 +1,265 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+#https://github.com/simonstey/ODRL-SHACL-Shapes/wiki
+
+odrl:PolicyShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Policy ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Policies must have an identificative URI";
+    sh:property [
+        sh:path [ 
+            sh:alternativePath ( odrl:permission odrl:prohibition odrl:obligation) 
+        ] ;
+        sh:message "Policies must have at least one permission, obligation or prohibition.";
+        sh:minCount 1 ;
+    ] .
+
+odrl:Offer rdfs:subClassOf odrl:Policy .
+
+
+odrl:OfferShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Offer ;
+    sh:message "Offers must have an assigner, either directly or on its rules";
+    sh:or (odrl:exactAssignerShape odrl:exactPermissionAssignerShape odrl:exactProhibitionAssignerShape odrl:exactObligationAssignerShape) .
+
+odrl:AgreementShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Agreement ;
+    sh:message "Agreement must have an assigner and an assignee, either directly or on its rules";
+    sh:or (odrl:exactAssignerShape odrl:exactPermissionAssignerShape odrl:exactProhibitionAssignerShape odrl:exactObligationAssignerShape) ;
+    sh:or (odrl:exactAssigneeShape odrl:exactPermissionAssigneeShape odrl:exactProhibitionAssigneeShape odrl:exactObligationAssigneeShape) .
+
+odrl:exactAssignerShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:assigner ;
+        sh:minCount 1 ;
+        sh:maxCount 1 
+    ] .
+
+odrl:exactPermissionAssignerShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:permission ; 
+        sh:node odrl:exactAssignerShape ;
+    ] .
+
+odrl:exactProhibitionAssignerShape
+    sh:property [
+        sh:path odrl:prohibition ;
+        sh:node odrl:exactAssignerShape ;
+    ] .
+
+odrl:exactObligationAssignerShape
+    sh:property [
+        sh:path odrl:obligation ;
+        sh:node odrl:exactAssignerShape ;
+    ] .
+
+
+odrl:exactAssignerShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:assigner ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+odrl:exactPermissionAssigneeShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:permission ; 
+        sh:node odrl:exactAssigneeShape ;
+    ] .
+
+odrl:exactProhibitionAssigneeShape
+    sh:property [
+        sh:path odrl:prohibition ;
+        sh:node odrl:exactAssigneeShape ;
+    ] .
+
+odrl:exactObligationAssigneeShape
+    sh:property [
+        sh:path odrl:obligation ;
+        sh:node odrl:exactAssigneeShape ;
+    ] .
+
+
+
+
+
+
+odrl:Agreement rdfs:subClassOf odrl:Policy .
+
+odrl:AgreementShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Agreement ;
+    sh:message "Agreements must have an assigner and an assignee";
+    sh:or ( odrl:topAssigneeMinShape odrl:nestedAssigneeMinShape ) ;
+    sh:or ( odrl:topAssignerMinShape odrl:nestedAssignerMinShape ) .
+
+odrl:topAssignerMinShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:assigner ;
+        sh:minCount 1 ;
+    ] .
+
+odrl:nestedAssignerMinShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:permission ;
+        sh:node odrl:topAssignerMinShape ;
+    ] ;
+    sh:property [
+        sh:path odrl:prohibition ;
+        sh:node odrl:topAssignerMinShape ;
+    ] .
+
+odrl:topAssigneeMinShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:assignee ;
+        sh:minCount 1 ;
+    ] .
+
+odrl:nestedAssigneeMinShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:permission ;
+        sh:node odrl:topAssigneeMinShape ;
+    ] ;
+    sh:property [
+        sh:path odrl:prohibition ;
+        sh:node odrl:topAssigneeMinShape ;
+    ] .
+
+#v
+#tricky because the maxcount is not verified in fact given the OWA
+odrl:PermissionTargetShape 
+    a sh:NodeShape ;
+    sh:targetClass odrl:Permission ;
+    sh:property [
+        sh:message "Permissions can have at most one assigner";
+        sh:path odrl:assigner ;
+        sh:maxCount 1 ;
+    ],[
+        sh:message "Permissions can have at most one assignee";
+        sh:path odrl:assignee ;
+        sh:maxCount 1 ;
+    ] .
+
+
+#v
+odrl:ActionActionShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf odrl:action ;
+    sh:severity sh:Warning ;
+    sh:message "Please consider using Actions with a URI";
+    sh:nodeKind sh:IRI .
+
+odrl:AssetTargetShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf odrl:target ;
+    sh:severity sh:Warning ;
+    sh:message "Please consider using Assets with a URI";
+    sh:nodeKind sh:IRI .
+
+odrl:AssetShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Asset ;
+    sh:nodeKind sh:IRI .
+
+
+odrl:Permission rdfs:subClassOf odrl:Rule .
+odrl:Prohibition rdfs:subClassOf odrl:Rule .
+
+odrl:RuleShape
+    a sh:NodeShape ;
+    sh:message "Rules must have at least one action";
+    sh:targetClass odrl:Rule ;
+    sh:or ( odrl:topRuleMinActionShape odrl:nestedRuleMinActionShape ) .
+
+odrl:topRuleMinActionShape 
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:action ;
+        sh:minCount 1 ;
+    ] .
+
+odrl:nestedRuleMinActionShape 
+    a sh:NodeShape ;
+    sh:property [
+        sh:path [ sh:inversePath odrl:permission ];
+        sh:node odrl:topRuleMinActionShape ;
+    ] ;
+    sh:property [
+        sh:path [ sh:inversePath odrl:obligation ];
+        sh:node odrl:topRuleMinActionShape ;
+    ] ;
+    sh:property [
+        sh:path [ sh:inversePath odrl:prohibition ];
+        sh:node odrl:topRuleMinActionShape ;
+    ] .
+
+
+
+
+odrl:Permission rdfs:subClassOf odrl:Rule .
+
+odrl:PermissionShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Permission ;
+    sh:message "Permissions must have at least one target";
+    sh:or ( odrl:topPermMinTargetShape odrl:nestedPermMinTargetShape ) .
+
+odrl:topPermMinTargetShape 
+    a sh:NodeShape ;
+    sh:property [
+        sh:path odrl:target ;
+        sh:minCount 1 ;
+    ] .
+
+odrl:nestedPermMinTargetShape 
+    a sh:NodeShape ;
+    sh:property [
+        sh:path [ sh:inversePath odrl:permission ];
+        sh:node odrl:topPermMinTargetShape ;
+    ] .
+
+#PLEASE NOTE THAT THIS CONSTRAINT IS NOT FIRED IF THE IS NOT TYPED AS CONSTRAINT EXPLICITLY
+
+odrl:ConstraintShape
+    a sh:NodeShape ;
+    sh:targetClass odrl:Constraint ;
+    sh:message "Constraints must have exactly one leftoperand, operator and rightoperand (or rightoperandreference) and rightoperandrefrence must be a uri" ;
+    sh:property [
+        sh:path odrl:leftOperand;
+        sh:message "Constraints must have exactly one leftoperand." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 
+    ] , [
+        sh:path odrl:operator;
+        sh:message "Constraints must have exactly one operator." ;
+        sh:minCount 1 ;
+        sh:maxCount 1 
+    ] ;
+    sh:xone (
+    [sh:property [
+        sh:path odrl:rightOperand;
+        sh:minCount 1 ;
+        sh:maxCount 1 
+
+    ]] [sh:property [
+        sh:path odrl:rightOperandReference;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;        
+        sh:nodeKind sh:IRI
+
+    ]]
+    ) .
+
