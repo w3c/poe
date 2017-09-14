@@ -1,8 +1,7 @@
 var respecConfig = {
-    // specStatus:              "CR",
-    specStatus:                 "ED",
+    specStatus:                 "CR",
     shortName:                  "odrl-vocab",
-    // publishDate:  "2017-09-26",
+    publishDate:                "2017-09-26",
     edDraftURI:                 "https://w3c.github.io/poe/vocab/",
     crEnd:                      "2017-11-14",
     implementationReportURI:    "https://w3c.github.io/poe/test/implementors",

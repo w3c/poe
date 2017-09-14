@@ -96,10 +96,10 @@ Identified the following list of recommendation track deliverables in the charte
 
 These are fulfilled as follows:
 
-1. Recommendation #1 (information model) is fullfilled by the ODRL Information Model Document.
+1. Recommendation #1 (information model) is fulfilled by the ODRL Information Model Document.
 2. Recommendations #2 (vocabulary), #3 (XML) partially, and #4 (RDF/OWL, turtle, JSON-LD) are jointly covered by the ODRL Vocabulary & Expression Document. That document defines all the terms, classes, properties, etc, in terms of RDF, with a formal RDF/OWL ontology defined in the https://www.w3.org/ns/odrl/2/ namespace. The RDF/XML, Turtle, and JSON-LD serializations is not defined by this Working Group, they are just applications of the relevant W3C Recommendations. Note that all the examples in the documents are in JSON-LD
 3. A direct mapping to XML (i.e., non RDF/XML) is _not_ fulfilled as a Recommendation due to a lack of necessary interest, but is included - non-normativley - as an appendix in the ODRL Vocabulary & Expression Document.
-4. A direct mapping JSON (i.e., non JSON-LD) is _not_ fulfilled, the Working Group decided that, with the presense of JSON-LD, there is no need to have a separate JSON mapping that would look almost exactly the same.
+4. A direct mapping JSON (i.e., non JSON-LD) is _not_ fulfilled, the Working Group decided that, with the presence of JSON-LD, there is no need to have a separate JSON mapping that would look almost exactly the same.
 
 (5) Dependencies
 ================
@@ -107,7 +107,7 @@ These are fulfilled as follows:
 There are no problematic dependencies in these documents (other candidate recommendations, rescinded recommendations, etc.)
 
 (6) Evidence that the document has received wide review and that issues have  been formally addressed
-=====================================================================================================
+=================================================================================================
 
 The group has received and recorded a number of issues; additionally, when the Group issued a Working Drafts on the 23 February 2017, it also explicitly asked for a wide review (declaring that version as some sort of a virtual LC). 
 
@@ -127,6 +127,8 @@ A significant amount of those came from outside the Working Group:
 All open issues currently:
 
 	https://github.com/w3c/poe/issues
+	
+(These are all related to NOTES, not the REC-track documents.)
 
 The WG explicitly asked review from Internationalization, Accessibility, Privacy, and Security. It has received, and handled comments from I18N:
 
@@ -161,13 +163,9 @@ The working group intends to  issue a call for implementations to demonstrate th
    https://w3c.github.io/poe/model/#cr-exit
    https://w3c.github.io/poe/vocab/#cr-exit
 
-A description of the test suite and how implementers shoud run them is here:
+A description of the test suite (which will evolve during the CR period) and how implementors should run them is here:
 
     https://github.com/w3c/poe/blob/gh-pages/test/test-regime.md
-
-The test suite (which will evolve during the CR period) is here:
-
-    https://github.com/w3c/poe/blob/gh-pages/test/test-suite.md
 
 The Working Group maintains a separate page for implementations:
 
