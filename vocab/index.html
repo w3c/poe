@@ -488,7 +488,7 @@
 <tr><th>Definition:</th> <td>The value of the right operand in a constraint expression.</td></tr>
 <tr><th>Label:</th> <td>Has Right Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperand">http://www.w3.org/ns/odrl/2/rightOperand</a></td></tr>
-<tr><th>Note:</th> <td></td></tr>
+<tr><th>Note:</th> <td>When used with set-based operators, a list of values may be used.</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 <tr><th>Range:</th> <td><a href="http://www.w3.org/2000/01/rdf-schema#Literal">rdfs:Literal</a>, <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a>, <a href="#term-RightOperand">RightOperand</a></td></tr>
 </table>
@@ -496,7 +496,7 @@
 <tr><th>Definition:</th> <td>A reference to a web resource providing the value for the right operand of a Constraint.</td></tr>
 <tr><th>Label:</th> <td>Has Right Operand Reference</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/rightOperandReference">http://www.w3.org/ns/odrl/2/rightOperandReference</a></td></tr>
-<tr><th>Note:</th> <td>An IRI that MUST be dereferenced to obtain the actual right operand value</td></tr>
+<tr><th>Note:</th> <td>An IRI that MUST be dereferenced to obtain the actual right operand value. When used with set-based operators, a list of IRIs may be used</td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-LeftOperand"><h3>Left Operand</h3><table class='def propdef' >
@@ -1467,6 +1467,7 @@
 <p>The current (editors draft) ODRL Ontology and can be downloaded in <a href="http://w3c.github.io/poe/vocab/ODRL22.ttl">Turtle serialisation</a>.</p>
 </div>
 
+<p>When a list of values is required, then the <code>rdf:List</code> predicate SHOULD be used.</p>
 </section>
 
 <section>
