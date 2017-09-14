@@ -50,7 +50,7 @@ Status:
 (2)  Record of the decision to request the transition
 =====================================================
 
-	https://www.w3.org/2017/09/14-poe-minutes.html
+	https://www.w3.org/2017/09/14-poe-minutes.html#resolution01
 
 (3) Record of Changes
 =====================
