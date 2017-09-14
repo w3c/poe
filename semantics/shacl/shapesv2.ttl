@@ -9,24 +9,29 @@ odrl:datatypeRangeShape
     sh:targetObjectsOf odrl:datatype ;
     sh:class rdfs:Datatype .
 
+
 odrl:partyRangeShape
     a sh:NodeShape ;
     sh:targetObjectsOf odrl:assignee, odrl:assigner ;
+    sh:deactivated true ; # use only rdfs:domain/range?
     sh:class odrl:Party .
 	
 odrl:actionRangeShape
     a sh:NodeShape ;
     sh:targetObjectsOf odrl:action, odrl:includedIn, odrl:implies ;
+    sh:deactivated true ; # use only rdfs:domain/range?
     sh:class odrl:Action .
 	
-odrl:targetRangeShape
+#odrl:targetRangeShape
     a sh:NodeShape ;
     sh:targetObjectsOf odrl:target ;
+    sh:deactivated true ; # use only rdfs:domain/range?
     sh:class odrl:Asset .
 
 odrl:dutyRangeShape
     a sh:NodeShape ;
     sh:targetObjectsOf odrl:remedy, odrl:duty, odrl:consequence, odrl:obligation ;
+    sh:deactivated true ; # use only rdfs:domain/range?
     sh:class odrl:Duty .	
 
 odrl:rightOperandReferenceRangeShape
@@ -48,13 +53,13 @@ odrl:RemedyShape
 odrl:PolicyShape
     a sh:NodeShape ;
     sh:targetClass odrl:Policy ;
-	sh:nodeKind sh:IRI ;
-	sh:property [
+    sh:nodeKind sh:IRI ;
+    sh:property [
         sh:path odrl:conflict ;
         sh:class odrl:ConflictTerm ;
         sh:maxCount 1 ;
     ] ;
-	sh:property [
+    sh:property [
         sh:path odrl:profile ;
         sh:nodeKind sh:IRI ;
     ] ;
@@ -64,13 +69,13 @@ odrl:PolicyShape
         ] ;
         sh:node odrl:targetCardShape ;
     ] ;
-	sh:property [
+    sh:property [
         sh:path [ 
             sh:alternativePath ( odrl:permission odrl:prohibition odrl:obligation ) 
         ] ;
         sh:minCount 1 ;
     ] ;
-	sh:property [
+    sh:property [
         sh:path [ sh:oneOrMorePath [ sh:inversePath odrl:inheritFrom ]] ;
         sh:disjoint odrl:inheritFrom
     ] .
@@ -238,7 +243,7 @@ odrl:WithoutRefinementShape
 odrl:AssetCollectionShape
     a sh:NodeShape ;
     sh:targetClass odrl:AssetCollection ;
-	sh:xone ( odrl:WithRefinementShape odrl:WithoutRefinementShape ) .
+    sh:xone ( odrl:WithRefinementShape odrl:WithoutRefinementShape ) .
  
 
 # Action
