@@ -50,7 +50,7 @@ var respecConfig = {
             },
                    {
                     value: "Issue Tracker",
-                    href: "https://github.com/w3c/poe/milestone/2"
+                    href: "https://github.com/w3c/poe/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aopen%20label%3AVocab"
                 }]
         }
     ]
