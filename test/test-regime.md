@@ -2,7 +2,7 @@
 
 ODRL Specifications
     
-      ODRL Information:  Model https://w3c.github.io/poe/model/
+      ODRL Information Model: [https://w3c.github.io/poe/model/](https://w3c.github.io/poe/model/)
       ODRL Vocabulary and Expression: https://w3c.github.io/poe/vocab/#encodings
 
       CR Exit Criteria:
