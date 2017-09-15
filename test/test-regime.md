@@ -2,7 +2,7 @@
 
 ODRL Specifications
     
-      ODRL Information Model: [https://w3c.github.io/poe/model/](https://w3c.github.io/poe/model/)
+      ODRL Information Model: https://w3c.github.io/poe/model/
       ODRL Vocabulary and Expression: https://w3c.github.io/poe/vocab/#encodings
 
       CR Exit Criteria:
@@ -26,3 +26,6 @@ SHACL Shapes:
 The Working Group maintains a separate page for implementation reports:
 
 	https://github.com/w3c/poe/blob/gh-pages/test/implementors.md
+	
+
+https://github.com/w3c/poe/blob/gh-pages/test/implementors.md
