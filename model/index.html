@@ -34,7 +34,7 @@
 <section id="aimsModel">
 <h3>Aims of the Model</h3>
 
-<p>The primary aim of the ODRL Information Model is to provide a standard description model and format to express permission, prohibition, and obligation statements to be associated to content in general. These statements are employed to describe the terms of use and reuse of resources. The model should cover as many permission, prohibition, and obligation use cases as possible, while keeping the policy modeling easy even when dealing with complex cases.</p>
+<p>The primary aim of the ODRL Information Model is to provide a standard description model and format to express permission, prohibition, and obligation statements to be associated to content in general. These statements are employed to describe the terms of use and reuse of resources. The model should cover as many permission, prohibition, and obligation use cases as possible, while keeping the policy modelling easy even when dealing with complex cases.</p>
 
 <p>The ODRL Information Model is a single, consistent model that can be used by all interested parties. A single method of fulfilling a use case is strongly preferred over multiple methods, unless there are existing standards that need to be accommodated or there is a significant cost associated with using only a single method. While the ODRL Information Model is built using Linked Data principles, the design is intended to allow non-graph-based implementations. </p>
 	
@@ -103,27 +103,31 @@
     
 <p>The ODRL Information Model has the following classes:
     <ul>
-        <li><code>Policy</code> - A non-empty group of Permissions (via the permission property) and/or Prohibitions (via the prohibition property) and/or Duties (via the obligation property). The Policy class is the parent class to the Set, Offer, and Agreement subclasses:</li>
+        <li><code>Policy</code> - A non-empty group of Permissions (via the permission property) and/or Prohibitions (via the prohibition property) and/or Duties (via the obligation property). The Policy class is the parent class to the Set, Offer, and Agreement subclasses:
+           <ul>
+            <li><code>Set</code> - a subclass of Policy that supports expressing generic Rules.</li>
+            <li><code>Offer</code> - a subclass of Policy that supports offerings of Rules from assigner Parties.</li>
+            <li><code>Agreement</code> - a subclass of Policy that supports granting of Rules from assigner to assignee Parties. </li>
+           </ul>
+        </li>
+    <li><code>Asset</code> - A resource or a collection of resources that are the subject of a Rule (via the abstract <em>relation</em> property). The Asset class is the parent class to:
+         <ul>
+             <li><code>AssetCollection</code> - a subclass of Asset that identifies a collection of resources.</li>
+        </ul>
+    </li>
+    <li><code>Party</code> - An entity or a collection of entities that undertake Roles in a Rule (via the abstract <em>function</em> property). The Party class is the parent class to:
         <ul>
-        <li><code>Set</code> - a subclass of Policy that supports expressing generic Rules.</li>
-        <li><code>Offer</code> - a subclass of Policy that supports offerings of Rules from assigner Parties.</li>
-        <li><code>Agreement</code> - a subclass of Policy that supports granting of Rules from assigner to assignee Parties. </li>
-        </ul>
-    <li><code>Asset</code> - A resource or a collection of resources that are the subject of a Rule (via the abstract <em>relation</em> property). The Asset class is the parent class to:</li>
-         <ul>
-        <li><code>AssetCollection</code> - a subclass of Asset that identifies a collection of resources.</li>
-        </ul>
-        <li><code>Party</code> - An entity or a collection of entities that undertake Roles in a Rule (via the abstract <em>function</em> property). The Party class is the parent class to:</li>
-         <ul>
         <li><code>PartyCollection</code> - a subclass of Party that identifies a collection of entities.</li>
         </ul>
+    </li>
     <li><code>Action</code> - An operation on an Asset.</li>
-    <li><code>Rule</code> - An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.</li>
-        <ul>
-    <li><code>Permission</code> - The ability to exercise an Action over an Asset. The Permission MAY also have the <strong>duty</strong> property that expresses an agreed Action that MUST be exercised (as a pre-condition to be granted the Permission).</li>
-    <li><code>Prohibition</code> - The inability to exercise an Action over an Asset.</li>
-    <li><code>Duty</code> - The obligation to exercise an Action.</li>
-    </ul>
+    <li><code>Rule</code> - An abstract concept that represents the common characteristics of Permissions, Prohibitions, and Duties.
+      <ul>
+        <li><code>Permission</code> - The ability to exercise an Action over an Asset. The Permission MAY also have the <strong>duty</strong> property that expresses an agreed Action that MUST be exercised (as a pre-condition to be granted the Permission).</li>
+        <li><code>Prohibition</code> - The inability to exercise an Action over an Asset.</li>
+        <li><code>Duty</code> - The obligation to exercise an Action.</li>
+      </ul>
+      </li>
     <li><code>Constraint/LogicalConstraint</code> - A boolean/logical expression that refines an Action and Party/Asset collection or the conditions applicable to a Rule.</li>
     </ul>
 
@@ -697,7 +701,7 @@
     
 <p>The <code>leftOperand</code> property values are defined as instances of the LeftOperand class. The <code>leftOperand</code> instances MUST clearly be  <strong>defined</strong> to indicate the semantics of the Constraint, and MAY declare how the value for comparison has to be retrieved or generated. The ODRL Common Vocabulary [[!odrl-vocab]] defines <code>leftOperand</code>'s that MAY be used by ODRL Profiles.</p>
     
-<p>The <code>operator</code> property values are defined as instances of the Operator class. The <code>operator</code> instances identify the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221 between the left and right operands.</p>
+<p>The <code>operator</code> property values are defined as instances of the Operator class. The <code>operator</code> instances identify the relational operation such as &#8220;greater than&#8221; or &#8220;equal to&#8221; between the left and right operands.</p>
 
 <p>The <code>rightOperand</code> property values are defined as instances of the RightOperand class, or IRIs, or Literal values. The <code>rightOperand</code> is the value of the Constraint that is to be compared to the <code>leftOperand</code>. The <code>rightOperandReference</code> represents an IRI that MUST be de-referenced first to obtain the actual value of the <code>rightOperand</code>. A <code>rightOperandReference</code> is used in cases where the value of the <code>rightOperand</code> MUST be obtained from dereferencing an IRI first.  Only one of <code>rightOperand</code> or <code>rightOperandReference</code> MUST appear in the Constraint.</p>
 
@@ -765,7 +769,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>distribute</code>d, and includes a constraint of a  <code>dateTime</code> condition that the permission must be exercised before 2018-01-01.</p>
     </blockquote>
     
-<pre id="eg17" class="example hljs json">
+<pre id="eg1799" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -800,7 +804,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>print</code>ed, and also include a refinement Constraint that narrows the printing operation to not more than 50% of the asset.</p>
     </blockquote>
     
-<pre id="eg17" class="example hljs json">
+<pre id="eg179" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Offer",
@@ -1127,7 +1131,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     </blockquote>
 
 
-<pre id="eg16b" class="example hljs json">
+<pre id="eg16bc" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -1156,7 +1160,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     </blockquote>
 
 
-<pre id="eg16b" class="example hljs json">
+<pre id="eg169b" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -1247,7 +1251,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     </blockquote>
 
 
-<pre id="eg16" class="example hljs json">
+<pre id="eg16712" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -1286,7 +1290,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     </blockquote>
 
 
-<pre id="eg16" class="example hljs json">
+<pre id="eg1969" class="example hljs json">
 {
     "@context": "http://www.w3.org/ns/odrl.jsonld",
     "@type": "Agreement",
@@ -1415,12 +1419,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 
 	<p>The ODRL validation requirements for expanding short-cuts in a Policy is:</p>
     <ol>
-    <li>For each Rule in the Policy:</li>
+    <li>For each Rule in the Policy:
 		<ul>
-        <li>Verify any relevant shared properties (at the Policy-level).</li>
-    <li>Replicate these properties in the Rule.</li>
+           <li>Verify any relevant shared properties (at the Policy-level).</li>
+           <li>Replicate these properties in the Rule.</li>
 		</ul>
-		<li>Remove the shared properties declared at the Policy-level</li>
+    </li>
+	<li>Remove the shared properties declared at the Policy-level</li>
     </ol>
        
 	 <p>Further, follow the ODRL validation requirements to create <em>atomic</em> Rules in the Policy (defined in the previous section).</p> 
