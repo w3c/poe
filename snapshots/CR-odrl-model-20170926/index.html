@@ -166,6 +166,7 @@
     <title>ODRL Information Model</title>
 
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
     <style id="respec-mainstyle">
@@ -1682,24 +1683,24 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 <div class="example">
                     <div class="example-title marker"><span>Example 16</span></div>
                     <pre id="eg21" class="hljs json" aria-busy="false" aria-live="polite">{
-   <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
-   <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Offer"</span>,
-   <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
-   <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:11"</span>,
-   <span class="hljs-attr">"permission"</span>: [{
-       <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/org88"</span>,
-       <span class="hljs-attr">"target"</span>: {
-           <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"AssetCollection"</span>,
-           <span class="hljs-attr">"source"</span>:  <span class="hljs-string">"http://example.com/media-catalogue"</span>,
-           <span class="hljs-attr">"refinement"</span>: [{
-               <span class="hljs-attr">"leftOperand"</span>: <span class="hljs-string">"runningTime"</span>,
-               <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"lt"</span>,
-               <span class="hljs-attr">"rightOperand"</span>: <span class="hljs-string">"60"</span>,
-               <span class="hljs-attr">"unit"</span>: <span class="hljs-string">"http://qudt.org/vocab/unit/MinuteTime"</span>
-           }],
-       },
-       <span class="hljs-attr">"action"</span>: <span class="hljs-string">"play"</span>
-   }]
+  <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
+  <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Offer"</span>,
+  <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
+  <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:11"</span>,
+  <span class="hljs-attr">"permission"</span>: [{
+    <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/org88"</span>,
+    <span class="hljs-attr">"target"</span>: {
+      <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"AssetCollection"</span>,
+      <span class="hljs-attr">"source"</span>:  <span class="hljs-string">"http://example.com/media-catalogue"</span>,
+      <span class="hljs-attr">"refinement"</span>: [{
+        <span class="hljs-attr">"leftOperand"</span>: <span class="hljs-string">"runningTime"</span>,
+        <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"lt"</span>,
+        <span class="hljs-attr">"rightOperand"</span>: <span class="hljs-string">"60"</span>,
+        <span class="hljs-attr">"unit"</span>: <span class="hljs-string">"http://qudt.org/vocab/unit/MinuteTime"</span>
+      }]
+    },
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"play"</span>
+  }]
 }</pre>
                 </div>
 
@@ -1729,24 +1730,24 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 <div class="example">
                     <div class="example-title marker"><span>Example 17</span></div>
                     <pre id="eg22" class="hljs json" aria-busy="false" aria-live="polite">{
-    <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
-    <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Agreement"</span>,
-    <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
-    <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:12"</span>,
-    <span class="hljs-attr">"permission"</span>: [{
-        <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/myPhotos:BdayParty"</span>,
-        <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/user44"</span>,
-        <span class="hljs-attr">"assignee"</span>: {
-            <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"PartyCollection"</span>,
-            <span class="hljs-attr">"source"</span>:  <span class="hljs-string">"http://example.com/user44/friends"</span>,
-            <span class="hljs-attr">"refinement"</span>: [{
-                <span class="hljs-attr">"leftOperand"</span>: <span class="hljs-string">"foaf:age"</span>,
-                <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"gt"</span>,
-                <span class="hljs-attr">"rightOperand"</span>: <span class="hljs-string">"17"</span>
-            }],
-        },
-        <span class="hljs-attr">"action"</span>: <span class="hljs-string">"display"</span>
-    }]
+  <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
+  <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Agreement"</span>,
+  <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:4444"</span>,
+  <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:12"</span>,
+  <span class="hljs-attr">"permission"</span>: [{
+    <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/myPhotos:BdayParty"</span>,
+    <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/user44"</span>,
+    <span class="hljs-attr">"assignee"</span>: {
+      <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"PartyCollection"</span>,
+      <span class="hljs-attr">"source"</span>:  <span class="hljs-string">"http://example.com/user44/friends"</span>,
+      <span class="hljs-attr">"refinement"</span>: [{
+        <span class="hljs-attr">"leftOperand"</span>: <span class="hljs-string">"foaf:age"</span>,
+        <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"gt"</span>,
+        <span class="hljs-attr">"rightOperand"</span>: <span class="hljs-string">"17"</span>
+      }]
+    },
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"display"</span>
+  }]
 }</pre>
                 </div>
 
@@ -1938,21 +1939,25 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 <div class="example">
                     <div class="example-title marker"><span>Example 20</span></div>
                     <pre id="eg16bc" class="hljs json" aria-busy="false" aria-live="polite">{
-    <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
-    <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Agreement"</span>,
-    <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:42"</span>,
-    <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:09"</span>,
-    <span class="hljs-attr">"obligation"</span>: [{
-	<span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/org:43"</span>,
-	<span class="hljs-attr">"assignee"</span>: <span class="hljs-string">"http://example.com/person:44"</span>,
-	<span class="hljs-attr">"action"</span>: [{
-            <span class="hljs-attr">"rdf:value"</span>: { <span class="hljs-attr">"@id"</span>: <span class="hljs-string">"odrl:compensate"</span> },
-            <span class="hljs-attr">"refinement"</span>: [{
-                 <span class="hljs-attr">"leftOperand"</span>: <span class="hljs-string">"payAmount"</span>,
-                 <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"eq"</span>,
-                 <span class="hljs-attr">"rightOperand"</span>: <span class="hljs-string">"500.00"</span>,
-                 <span class="hljs-attr">"unit"</span>: <span class="hljs-string">"http://dbpedia.org/resource/Euro"</span>
+  <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
+  <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Agreement"</span>,
+  <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:42"</span>,
+  <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:09"</span>,
+  <span class="hljs-attr">"obligation"</span>: [{
+      <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/org:43"</span>,
+      <span class="hljs-attr">"assignee"</span>: <span class="hljs-string">"http://example.com/person:44"</span>,
+      <span class="hljs-attr">"action"</span>: [{
+          <span class="hljs-attr">"rdf:value"</span>: {
+            <span class="hljs-attr">"@id"</span>: <span class="hljs-string">"odrl:compensate"</span>
+          },
+          <span class="hljs-attr">"refinement"</span>: [
+            {
+              <span class="hljs-attr">"leftOperand"</span>: <span class="hljs-string">"payAmount"</span>,
+              <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"eq"</span>,
+              <span class="hljs-attr">"rightOperand"</span>: <span class="hljs-string">"500.00"</span>,
+              <span class="hljs-attr">"unit"</span>: <span class="hljs-string">"http://dbpedia.org/resource/Euro"</span>
             }]
+        }]
     }]
 }</pre>
                 </div>
@@ -2145,15 +2150,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <div class="example">
                 <div class="example-title marker"><span>Example 25</span></div>
                 <pre id="eg23" class="hljs json" aria-busy="false" aria-live="polite">{
-    <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
-    <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Policy"</span>,
-    <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
-    <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:20"</span>,
-    <span class="hljs-attr">"permission"</span>: [{
-        <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/music/1999.mp3"</span>,
-        <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/org/sony-music"</span>,
-        <span class="hljs-attr">"action"</span>: <span class="hljs-string">"play"</span>,
-    }]
+  <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
+  <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Policy"</span>,
+  <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:7777"</span>,
+  <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:20"</span>,
+  <span class="hljs-attr">"permission"</span>: [{
+    <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/music/1999.mp3"</span>,
+    <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/org/sony-music"</span>,
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"play"</span>
+  }]
 } </pre>
             </div>
 
