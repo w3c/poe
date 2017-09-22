@@ -899,25 +899,25 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         </p>
  </blockquote>
  <pre id="eg21" class="example hljs json">
- {
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Offer",
-    "uid": "http://example.com/policy:4444",
-    "profile": "http://example.com/odrl:profile:11",
-    "permission": [{
-        "assigner": "http://example.com/org88",
-        "target": {
-            "@type": "AssetCollection",
-            "source":  "http://example.com/media-catalogue",
-            "refinement": [{
-                "leftOperand": "runningTime",
-                "operator": "lt",
-                "rightOperand": "60",
-                "unit": "http://qudt.org/vocab/unit/MinuteTime"
-            }],
-        },
-        "action": "play"
-    }]
+{
+  "@context": "http://www.w3.org/ns/odrl.jsonld",
+  "@type": "Offer",
+  "uid": "http://example.com/policy:4444",
+  "profile": "http://example.com/odrl:profile:11",
+  "permission": [{
+    "assigner": "http://example.com/org88",
+    "target": {
+      "@type": "AssetCollection",
+      "source":  "http://example.com/media-catalogue",
+      "refinement": [{
+        "leftOperand": "runningTime",
+        "operator": "lt",
+        "rightOperand": "60",
+        "unit": "http://qudt.org/vocab/unit/MinuteTime"
+      }]
+    },
+    "action": "play"
+  }]
 }
 </pre>
     
@@ -946,24 +946,24 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     </blockquote>
 <pre id="eg22" class="example hljs json">
 {
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Agreement",
-    "uid": "http://example.com/policy:4444",
-    "profile": "http://example.com/odrl:profile:12",
-    "permission": [{
-        "target": "http://example.com/myPhotos:BdayParty",
-        "assigner": "http://example.com/user44",
-        "assignee": {
-            "@type": "PartyCollection",
-            "source":  "http://example.com/user44/friends",
-            "refinement": [{
-                "leftOperand": "foaf:age",
-                "operator": "gt",
-                "rightOperand": "17"
-            }],
-        },
-        "action": "display"
-    }]
+  "@context": "http://www.w3.org/ns/odrl.jsonld",
+  "@type": "Agreement",
+  "uid": "http://example.com/policy:4444",
+  "profile": "http://example.com/odrl:profile:12",
+  "permission": [{
+    "target": "http://example.com/myPhotos:BdayParty",
+    "assigner": "http://example.com/user44",
+    "assignee": {
+      "@type": "PartyCollection",
+      "source":  "http://example.com/user44/friends",
+      "refinement": [{
+        "leftOperand": "foaf:age",
+        "operator": "gt",
+        "rightOperand": "17"
+      }]
+    },
+    "action": "display"
+  }]
 }
 </pre>
     
@@ -1134,21 +1134,25 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 
 <pre id="eg16bc" class="example hljs json">
 {
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Agreement",
-    "uid": "http://example.com/policy:42",
-    "profile": "http://example.com/odrl:profile:09",
-    "obligation": [{
-	"assigner": "http://example.com/org:43",
-	"assignee": "http://example.com/person:44",
-	"action": [{
-            "rdf:value": { "@id": "odrl:compensate" },
-            "refinement": [{
-                 "leftOperand": "payAmount",
-                 "operator": "eq",
-                 "rightOperand": "500.00",
-                 "unit": "http://dbpedia.org/resource/Euro"
+  "@context": "http://www.w3.org/ns/odrl.jsonld",
+  "@type": "Agreement",
+  "uid": "http://example.com/policy:42",
+  "profile": "http://example.com/odrl:profile:09",
+  "obligation": [{
+      "assigner": "http://example.com/org:43",
+      "assignee": "http://example.com/person:44",
+      "action": [{
+          "rdf:value": {
+            "@id": "odrl:compensate"
+          },
+          "refinement": [
+            {
+              "leftOperand": "payAmount",
+              "operator": "eq",
+              "rightOperand": "500.00",
+              "unit": "http://dbpedia.org/resource/Euro"
             }]
+        }]
     }]
 }
 </pre>
@@ -1328,16 +1332,17 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 		<p> The example below shows the <em>atomic</em> level of a Policy where it is an irreducible Rule (that is, not able to be reduced or further simplified).</p>
 	</blockquote>    
 <pre id="eg23" class="example hljs json">
+
 {
-    "@context": "http://www.w3.org/ns/odrl.jsonld",
-    "@type": "Policy",
-    "uid": "http://example.com/policy:7777",
-    "profile": "http://example.com/odrl:profile:20",
-    "permission": [{
-        "target": "http://example.com/music/1999.mp3",
-        "assigner": "http://example.com/org/sony-music",
-        "action": "play",
-    }]
+  "@context": "http://www.w3.org/ns/odrl.jsonld",
+  "@type": "Policy",
+  "uid": "http://example.com/policy:7777",
+  "profile": "http://example.com/odrl:profile:20",
+  "permission": [{
+    "target": "http://example.com/music/1999.mp3",
+    "assigner": "http://example.com/org/sony-music",
+    "action": "play"
+  }]
 } 
 </pre>
 
