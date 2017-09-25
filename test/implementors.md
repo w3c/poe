@@ -10,5 +10,5 @@ OEG-UPM | Universidad Politécnica de Madrid | Víctor Rodríguez Doncel | Used 
 
 A description of the test suite and how implementors should run them is here:
 
-    https://github.com/w3c/poe/blob/gh-pages/test/test-regime.md
+https://github.com/w3c/poe/blob/gh-pages/test/test-regime.md
 	
