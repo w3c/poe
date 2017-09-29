@@ -26,7 +26,7 @@
 
 | ID | ODRL Feature |
 | ---- | ---- |
-| CR-VE-01 | The ontology documents can be parsed without errors by RDF Schema validators |
-| CR-VE-02 | The ontology is internally consistent with respect to domains, ranges, inverses, and any other ontology features specified |
-| CR-VE-03 | The JSON-LD context document can be parsed without errors by JSON-LD validators |
-| CR-VE-04 | The JSON-LD context document can be used to convert JSON-LD serialized Policies into RDF triples |
+| CR-VE-17 | The ontology documents can be parsed without errors by RDF Schema validators |
+| CR-VE-18 | The ontology is internally consistent with respect to domains, ranges, inverses, and any other ontology features specified |
+| CR-VE-19 | The JSON-LD context document can be parsed without errors by JSON-LD validators |
+| CR-VE-20 | The JSON-LD context document can be used to convert JSON-LD serialized Policies into RDF triples |
