@@ -6,11 +6,7 @@ ODRL Information Model: https://w3c.github.io/poe/model/
 
 ODRL Vocabulary and Expression: https://w3c.github.io/poe/vocab/#encodings
 
-#### CR Exit Criteria:
-https://w3c.github.io/poe/model/#cr-exit
-
-https://w3c.github.io/poe/vocab/#cr-exit
-
+#### [CR Exit Criteria](https://github.com/w3c/poe/blob/gh-pages/test/cr-exit.md)
 
 ### ODRL Validation:
 
