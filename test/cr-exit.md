@@ -2,8 +2,8 @@
 
 ## [ODRL Information Model CR Exit Criteria](https://www.w3.org/TR/2017/CR-odrl-model-20170926/#cr-exit)
 
-| ID | ODRL Feature | Test Cases
-| ---- | ---- |
+| ID | ODRL Feature | Test Cases |
+| ---- | ---- | ----  |
 | CR-IM-01 | A Set/Offer/Agreement Policy type with required properties | E12-1 N1 N2 V1 V2 V3 V4 V6 V6 V7 V22  |
 | CR-IM-02 | A Policy that utilises an ODRL Profile | V12 V13 V14 V15|
 | CR-IM-03 | A Policy with an Asset Collection, including parts | |
@@ -25,7 +25,7 @@
 ## [ODRL Vocabulary & Expression CR Exit Criteria](https://www.w3.org/TR/2017/CR-odrl-vocab-20170926/#cr-exit)
 #### The POE WG will test these criteria with common RDF/JSON-LD tools and services 
 | ID | ODRL Feature |
-| ---- | ---- |
+| ------ | ------ |
 | CR-VE-17 | The ontology documents can be parsed without errors by RDF Schema validators |
 | CR-VE-18 | The ontology is internally consistent with respect to domains, ranges, inverses, and any other ontology features specified |
 | CR-VE-19 | The JSON-LD context document can be parsed without errors by JSON-LD validators |
