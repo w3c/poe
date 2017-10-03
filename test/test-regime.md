@@ -8,7 +8,7 @@ ODRL Vocabulary and Expression: [https://w3c.github.io/poe/vocab/#encodings](htt
 
 ## CR Exit Criteria
 
-[https://github.com/w3c/poe/blob/gh-pages/test/cr-exit.md](https://github.com/w3c/poe/blob/gh-pages/test/cr-exit.md)
+[https://w3c.github.io/poe/test/cr-exit](https://w3c.github.io/poe/test/cr-exit)
 
 ### ODRL Validation:
 
