@@ -4,7 +4,7 @@
 
 | ID | ODRL Feature | Test Cases |
 | ---- | ---- | ----  |
-| CR-IM-01 | A Set/Offer/Agreement Policy type with required properties | E12-1 N1 N2 V1 V2 V3 V4 V6 V6 V7 V22  |
+| CR-IM-01 | A Set/Offer/Agreement Policy type with required properties | E12-1 N1 N2 V1 V2 V3 V4 V5 V6 V7 V22  |
 | CR-IM-02 | A Policy that utilises an ODRL Profile | V12 V13 V14 V15|
 | CR-IM-03 | A Policy with an Asset Collection, including parts | |
 | CR-IM-04 | A Policy with a Party Collection, including parts |
@@ -15,7 +15,7 @@
 | CR-IM-09 | A Policy with a Prohibition including a remedy property |E24-1/2/3 V8 |
 | CR-IM-10 | A Policy with an Obligation | E20-1/2 E21-1/2/3/4/5 |
 | CR-IM-11 | A Policy with a refinement property on an Action, Asset and Party Collection | E14-1/2  E16-1/2 E17-1/2 V9 V10|
-| CR-IM-12 | A Policy with a Logical Constraint | E15-1/2/3/4/5 V19|
+| CR-IM-12 | A Policy with a Logical Constraint | E15-1/2/3/4 V19|
 | CR-IM-13 | A Compact Policy that requires translation into an Atomic Policy | N4 N5|
 | CR-IM-14 | A Policy containing metadata | |
 | CR-IM-15 | A Policy that includes Policy inheritance | N3 V24|
