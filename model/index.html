@@ -1091,7 +1091,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <section id="duty">
 <h3>Duty Class</h3>
 	
-<p>A Duty is the <strong>obligation</strong> to <strong>exercise</strong> an  action, with all refinements <strong>satisfied</strong>. A Duty is <strong>fulfilled</strong> if all constraints are <strong>satisfied</strong> and if its action, with all refinements <strong>satisfied</strong>, has been <strong>exercised</strong>. If its action has not been exercised, then all <code>consequence</code>s must also be fulfilled to fulfil the Duty. That is, the consequence is an <em>additional</em> Duty that must also be fulfilled. (Note: only Duties referenced by duty or obligation properties may use consequence properties.)
+<p>A Duty is the <strong>obligation</strong> to <strong>exercise</strong> an  action, with all refinements <strong>satisfied</strong>. A Duty is <strong>fulfilled</strong> if all constraints are <strong>satisfied</strong> and if its action, with all refinements <strong>satisfied</strong>, has been <strong>exercised</strong>. If its action has not been exercised, then all <code>consequence</code>s must also be fulfilled to <strong>fulfil</strong> the Duty. That is, consequences are <em>additional</em> Duties that must also be fulfilled. (Note: only Duties referenced by duty or obligation properties may use consequence properties.)
 	</p>
 	
 	
@@ -1112,13 +1112,13 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
 	</ul>
   
-<p>The <code>consequence</code> property (a sub-property of the <code><em>failure</em></code> property) is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duty <em>also</em> becoming a new requirement, meaning that the original obligation or duty, as well as the consequence Duty MUST all be <strong>fulfilled</strong>.
+<p>The <code>consequence</code> property (a sub-property of the <code><em>failure</em></code> property) is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duties <em>also</em> becoming new requirements, meaning that the original obligation or duty, as well as the consequence Duties MUST all be <strong>fulfilled</strong>.
 </p>
 
 <div class="note">
-	<p>In some cases, to fulfil the original duty that triggered a consequence, some constraints on the original duty MAY be required to be relaxed if they are no longer able to be satisfied. </p>
-	<p>For example, if an obligation to provide data by a fixed date is not fulfilled, the a consequence of a $100 fine is payable as well. If the date has passed, then the original duty is <em>technically</em> not able to be fulfilled (as the date constraint cannot be satisfied). 
-		<p>In such cases, ODRL implementations SHOULD provide mechanisms to allow the original duty to be satisfiable.</p>
+	<p>In some cases, to fulfil the original duty/obligation that triggered a consequence, some constraints and/or refinements on the original duty/obligation MAY be required to be relaxed if they are no longer able to be satisfied.</p>
+	<p>For example, if an obligation to provide data by a fixed date is not fulfilled, then a consequence of a $100 fine is payable as well. If the date has passed, then the original duty is <em>technically</em> not able to be fulfilled (as the date constraint cannot be satisfied). 
+		<p>In such cases, ODRL implementations SHOULD provide mechanisms to allow the original duty/obligation to be satisfiable post triggering a consequence.</p>
 </div>
 
 
@@ -1972,7 +1972,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 			
 </ul>
 
-    <p>Changes from the <a href="https://www.w3.org/TR/2017/CR-odrl-vocab-20170926//">Candidate Recommendation 26 September 2017</a>:</p>
+    <p>Changes from the <a href="https://www.w3.org/TR/2017/CR-odrl-model-20170926//">Candidate Recommendation 26 September 2017</a>:</p>
     <ul>
     	<li>Added explanation on satisfying duties that have triggered a consequence <a href="https://github.com/w3c/poe/issues/267">(Issue#267)</a> <a href="https://github.com/w3c/poe/issues/275">(Issue#275)</a> </li>
 

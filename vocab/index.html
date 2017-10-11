@@ -3,8 +3,6 @@
 	<head>
         <title>ODRL Vocabulary &amp; Expression</title>
 		<meta content="text/html; charset=utf-8" http-equiv="content-type" />
-		<meta content="width=device-width,initial-scale=1" name="viewport" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common" defer></script>
 		<script class="remove" src="config.js"></script>
 	</head>
@@ -411,7 +409,7 @@
 <tr><th>Definition:</th> <td>Relates a Duty to another Duty, the latter being a consequence of not fulfilling the former.</td></tr>
 <tr><th>Label:</th> <td>Consequence</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/consequence">http://www.w3.org/ns/odrl/2/consequence</a></td></tr>
-<tr><th>Note:</th> <td>The consequence property is utilised to express the repercussions of not fulfilling an agreed obligation (for a Policy) or duty (for a Permission).</td></tr>
+<tr><th>Note:</th> <td>The consequence property is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duty also becoming a new requirement, meaning that the original obligation or duty, as well as the consequence Duty must all be fulfilled</td></tr>
 <tr><th>Parent property:</th> <td><a href="#term-failure">failure</a></td></tr>
 <tr><th>Domain:</th> <td><a href="#term-Duty">Duty</a></td></tr>
 <tr><th>Range:</th> <td><a href="#term-Duty">Duty</a></td></tr>
@@ -1923,10 +1921,15 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 		<li>Added mandatory use of ODRL Profiles <a href="https://github.com/w3c/poe/issues/210">(Issue#210)</a></li>
 	
 	<li>Added Refinement property <a href="https://github.com/w3c/poe/issues/211">(Issue#211)</a></li>
-			
-	
-	
-</ul></section>
+
+
+</ul>
+
+ <p>Changes from the <a href="https://www.w3.org/TR/2017/CR-odrl-vocab-20170926//">Candidate Recommendation 26 September 2017</a>:</p>
+    <ul>
+      <li>Updated note of consequence property <a href="https://github.com/w3c/poe/issues/267">(Issue#267)</a> <a href="https://github.com/w3c/poe/issues/275">(Issue#275)</a> </li>
+
+    </ul></section>
         
 
 	</body>
