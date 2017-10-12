@@ -17,7 +17,7 @@
 | CR-IM-11 | A Policy with a refinement property on an Action, Asset and Party Collection | E14-1/2  E16-1/2 E17-1/2 V9 V10|
 | CR-IM-12 | A Policy with a Logical Constraint | E15-1/2/3/4 V19|
 | CR-IM-13 | A Compact Policy that requires translation into an Atomic Policy | N4 N5|
-| CR-IM-14 | A Policy containing metadata | V25 |
+| CR-IM-14 | A Policy containing metadata | N10 |
 | CR-IM-15 | A Policy that includes Policy inheritance | N3 V24|
 | CR-IM-16 | A Policy that includes a Conflict Strategy | V11 V23|
 
