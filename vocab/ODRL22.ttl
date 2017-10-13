@@ -456,10 +456,10 @@ odrl:
 	rdfs:isDefinedBy odrl: ;
 	rdfs:label "Unique Identifier"@en ;
 	skos:definition "An unambiguous identifier"@en ;
-	skos:note "Used by the Policy, Rule, Asset, and Party Classes."@en ;
+	skos:note "Used by the Policy, Rule, Asset, Party, Constraint, and Logical Constraint Classes."@en ;
 	rdfs:domain [
 		a owl:Class ;
-		owl:unionOf ( :Policy :Asset :Rule :Party ) ;
+		owl:unionOf ( :Policy :Asset :Rule :Party :Constraint :LogicalConstraint ) ;
 	] .
 
 :source

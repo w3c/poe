@@ -125,8 +125,8 @@
 <tr><th>Definition:</th> <td>An unambiguous identifier</td></tr>
 <tr><th>Label:</th> <td>Unique Identifier</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/uid">http://www.w3.org/ns/odrl/2/uid</a></td></tr>
-<tr><th>Note:</th> <td>Used by the Policy, Rule, Asset, and Party Classes.</td></tr>
-<tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Party">Party</a>, <a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
+<tr><th>Note:</th> <td>Used by the Policy, Rule, Asset, Party, Constraint, and Logical Constraint Classes.</td></tr>
+<tr><th>Domain:</th> <td><a href="#term-Asset">Asset</a>, <a href="#term-Constraint">Constraint</a>, <a href="#term-LogicalConstraint">LogicalConstraint</a>, <a href="#term-Party">Party</a>, <a href="#term-Policy">Policy</a>, <a href="#term-Rule">Rule</a></td></tr>
 </table>
 </section><section id="term-profile"><h3>Profile</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The identifier(s) of an ODRL Profile that the Policy conforms to.</td></tr>
@@ -427,7 +427,7 @@
 <tr><th>Definition:</th> <td>A boolean expression that refines the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule.</td></tr>
 <tr><th>Label:</th> <td>Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/Constraint">http://www.w3.org/ns/odrl/2/Constraint</a></td></tr>
-  <tr><th>Properties:</th> <td><a href="#term-unit">unit</a>, <a href="#term-dataType">dataType</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-rightOperandReference">rightOperandReference</a>, <a href="#term-leftOperand">leftOperand</a>, <a href="#term-status">status</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-unit">unit</a>, <a href="#term-dataType">dataType</a>, <a href="#term-operator">operator</a>, <a href="#term-rightOperand">rightOperand</a>, <a href="#term-rightOperandReference">rightOperandReference</a>, <a href="#term-leftOperand">leftOperand</a>, <a href="#term-status">status</a>, <a href="#term-uid">uid</a></td></tr>
   <tr><th>In Range Of:</th> <td><a href="#term-constraint">constraint</a>, <a href="#term-refinement">refinement</a></td></tr>
 </table>
 </section><section id="term-constraint"><h3>Has Constraint</h3><table class='def propdef' >
@@ -523,7 +523,7 @@
 <tr><th>Definition:</th> <td>A logical expression that refines the semantics of an Action and Party/Asset Collection or declare the conditions applicable to a Rule.</td></tr>
 <tr><th>Label:</th> <td>Logical Constraint</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/LogicalConstraint">http://www.w3.org/ns/odrl/2/LogicalConstraint</a></td></tr>
-  <tr><th>Properties:</th> <td><a href="#term-operand">operand</a></td></tr>
+  <tr><th>Properties:</th> <td><a href="#term-operand">operand</a>, <a href="#term-uid">uid</a></td></tr>
   <tr><th>In Range Of:</th> <td><a href="#term-constraint">constraint</a>, <a href="#term-refinement">refinement</a></td></tr>
 </table>
 </section><section id="term-operand"><h3>Operand</h3><table class='def propdef' >
@@ -1928,7 +1928,7 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
  <p>Changes from the <a href="https://www.w3.org/TR/2017/CR-odrl-vocab-20170926//">Candidate Recommendation 26 September 2017</a>:</p>
     <ul>
       <li>Updated note of consequence property <a href="https://github.com/w3c/poe/issues/267">(Issue#267)</a> <a href="https://github.com/w3c/poe/issues/275">(Issue#275)</a> </li>
-
+ <li>Updated domain of uid property with Constraint/Logical Constraint classes  <a href="https://github.com/w3c/poe/issues/278"> (Issue#278)</a></li>
     </ul></section>
         
 

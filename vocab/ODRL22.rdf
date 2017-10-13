@@ -2466,7 +2466,17 @@
                     <rdf:rest>
                       <rdf:Description>
                         <rdf:first rdf:resource="http://www.w3.org/ns/odrl/2/Party"/>
-                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <rdf:rest>
+                          <rdf:Description>
+                            <rdf:first rdf:resource="http://www.w3.org/ns/odrl/2/Constraint"/>
+                            <rdf:rest>
+                              <rdf:Description>
+                                <rdf:first rdf:resource="http://www.w3.org/ns/odrl/2/LogicalConstraint"/>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                              </rdf:Description>
+                            </rdf:rest>
+                          </rdf:Description>
+                        </rdf:rest>
                       </rdf:Description>
                     </rdf:rest>
                   </rdf:Description>
@@ -2480,7 +2490,7 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Unique Identifier</rdfs:label>
     <skos:definition xml:lang="en">An unambiguous identifier</skos:definition>
-    <skos:note xml:lang="en">Used by the Policy, Rule, Asset, and Party Classes.</skos:note>
+    <skos:note xml:lang="en">Used by the Policy, Rule, Asset, Party, Constraint, and Logical Constraint Classes.</skos:note>
   </rdf:Property>
   <rdf:Property rdf:about="http://www.w3.org/ns/odrl/2/undefined">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>

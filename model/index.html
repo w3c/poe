@@ -674,6 +674,7 @@
        
 <p>The Constraint class has the following properties:</p>
 <ul>
+<li>A Constraint MAY have none or one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Constraint.</li>
 <li>A Constraint MUST have one <code>leftOperand</code> property value of type LeftOperand.</li>
 <li>A Constraint MUST have one <code>operator</code> property value of type Operator.</li>
 <li>A Constraint MUST have either:
@@ -725,6 +726,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
       
 <p>The Logical Constraint class has the following properties:</p>
 <ul>
+	<li>A Logical Constraint MAY have none or one <code>uid</code> property value (of type IRI [[!rfc3987]]) to identify the Logical Constraint.</li>
 <li>A Logical Constraint MUST have one <code><em>operand</em></code> sub-property indicating the logical relationship of the compared existing constraints; its value is a list of the existing Constraint instances.</li>
 </ul>    
     
@@ -1975,7 +1977,7 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <p>Changes from the <a href="https://www.w3.org/TR/2017/CR-odrl-model-20170926//">Candidate Recommendation 26 September 2017</a>:</p>
     <ul>
     	<li>Added explanation on satisfying duties that have triggered a consequence <a href="https://github.com/w3c/poe/issues/267">(Issue#267)</a> <a href="https://github.com/w3c/poe/issues/275">(Issue#275)</a> </li>
-
+  	 <li>Added missing uid property for Constraint/Logical Constraint  <a href="https://github.com/w3c/poe/issues/278"> (Issue#278)</a></li>
     </ul>
 
 </section>
