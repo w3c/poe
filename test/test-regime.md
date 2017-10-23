@@ -25,6 +25,6 @@ ODRL Vocabulary and Expression: [https://w3c.github.io/poe/vocab/#encodings](htt
 
 ### Implementors
 
-The Working Group maintains a separate page for implementation reports:
+Implementors of ODRL are invited to provide Implementation Results based on the [CR Exit Criteria ](https://w3c.github.io/poe/test/cr-exit) by filling in the ODRL Google sheet for collecting results [https://goo.gl/iXnonW](https://goo.gl/iXnonW)
 
-(will follow soon)
+The collected Implementation Results are published on this page: [https://w3c.github.io/poe/test/implementors](https://w3c.github.io/poe/test/implementors)
