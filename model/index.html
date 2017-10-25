@@ -1110,8 +1110,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
     
 	<p>The Duty class also has these additional requirements:</p>
 	<ul>
-	   <li>The assignee MUST have the ability to exercise the Duty Action.</li>
-		<li>The assignee(s) of the Duty MUST satisfy the Duty.</li>
+	   <li>The Party obligated to perform the duty MUST have the ability to exercise the Duty Action.</li>
+		<li>The Party obligated to perform the duty MUST satisfy the Duty.</li>
 	</ul>
   
 <p>The <code>consequence</code> property (a sub-property of the <code><em>failure</em></code> property) is utilised to express the repercussions of not fulfilling an agreed Policy obligation or duty for a Permission. If either of these fails to be fulfilled, then this will result in the consequence Duties <em>also</em> becoming new requirements, meaning that the original obligation or duty, as well as the consequence Duties MUST all be <strong>fulfilled</strong>.
@@ -1208,7 +1208,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	<p>If a Permission has several Duties then all of the Duties MUST be agreed to be <strong>fulfilled</strong>. If several Permissions refer to the same Duty (via its <code>uid</code> property), then the Duty only has to be fulfilled <em>once</em>.</p>
 	
-	  <p>If there are no <code>assigner</code> and/or <code>assignee</code> properties declared in the Duty, then these functional roles will be the same as those declared in the referring Permission.</p>   
+	  <p>If there are no <code><em>function</em></code> sub-properties declared in the Duty, then these functional roles will be the same as those declared in the referring Permission.</p>   
 	
 	
 	<blockquote>
@@ -1978,6 +1978,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
     <ul>
     	<li>Added explanation on satisfying duties that have triggered a consequence <a href="https://github.com/w3c/poe/issues/267">(Issue#267)</a> <a href="https://github.com/w3c/poe/issues/275">(Issue#275)</a> </li>
   	 <li>Added missing uid property for Constraint/Logical Constraint  <a href="https://github.com/w3c/poe/issues/278"> (Issue#278)</a></li>
+
+  	 <li>Clarified the assignee party for Duties  <a href="https://github.com/w3c/poe/issues/268"> (Issue#269)</a></li>
+
     </ul>
 
 </section>
