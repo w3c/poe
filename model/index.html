@@ -1746,52 +1746,52 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
    </tr>
    <tr>
 	   <td>Additional Policy Subclasses:<br/>Create a subclass the ODRL Policy class.</td>
-     <td><code>ex:myPolicyType rdfs:subClassOf odrl:Policy ;</code></td>
+     <td><code>ex:myPolicyType rdfs:subClassOf odrl:Policy .</code></td>
    </tr>
    <tr>
-     <td>Additional Asset Relationships:<br/>Create a sub-property of the abstract <em>relation</em> property.</td>
-     <td><code>ex:myRelation rdfs:subPropertyOf odrl:relation ;</code></td>
+     <td>Additional Asset Relationships:<br/>Create a sub-property of the abstract relation property.</td>
+     <td><code>ex:myRelation rdfs:subPropertyOf odrl:relation .</code></td>
    </tr>
    <tr>
-     <td>Additional Party Functional roles:<br/>Create a sub-property of the abstract <em>function</em> property.</td>
-     <td><code>ex:myFunctionRole rdfs:subPropertyOf odrl:function ;</code></td>
+     <td>Additional Party Functional roles:<br/>Create a sub-property of the abstract function property.</td>
+     <td><code>ex:myFunctionRole rdfs:subPropertyOf odrl:function .</code></td>
    </tr>
    <tr>
      <td>Additional Actions for Rules:<br/>
 		 Create an instance of an Action and define its includedIn parent Action.<br/>
-	     The new Action MAY be defined as <code>includedIn</code> to any existing Action. <br/>
-        If the new Action forms a dependency with another new or existing Action, then define the two actions with the <code>implies</code> property
+	     The new Action MAY be defined as includedIn to any existing Action. <br/>
+        If the new Action forms a dependency with another new or existing Action, then define the two actions with the implies property
     </td>
-     <td><code>ex:myAction a :Action ;</code><br/>
-          <code>ex:myAction odrl:includedIn odrl:use ;</code>
+     <td><code>ex:myAction a odrl:Action .</code><br/>
+          <code>ex:myAction odrl:includedIn odrl:use .</code>
 		 <br/><br/><br/>
-		 <code>ex:myAction odrl:implies odrl:distribute ;</code>
+		 <code>ex:myAction odrl:implies odrl:distribute .</code>
 	  </td>
    </tr>
    <tr>
      <td>Additional Constraint left operands:<br/>Create an instance of the LeftOperand class.</td>
-     <td><code>ex:myLeftOperand a odrl:LeftOperand ;</code></td>
+     <td><code>ex:myLeftOperand a odrl:LeftOperand .</code></td>
 	 </tr>
    <tr>
      <td>Additional Constraint right operands:<br/> Create an instance of the RightOperand class.</td>
-     <td><code>ex:myRightOperand a odrl:RightOperand ;</code></td>
+     <td><code>ex:myRightOperand a odrl:RightOperand .</code></td>
    </tr>
    <tr>
      <td>Additional Constraint relational operators:<br/>Create an instance of the Operator class.</td>
-     <td><code>ex:myOperator a :Operator ;</code></td>
+     <td><code>ex:myOperator a odrl:Operator .</code></td>
    </tr>
    <tr>
-     <td>Additional Logical Constraint operands:<br/>Create a sub-property of the abstract <em>operand</em> property.</td>
-     <td><code>ex:myLogicalOp rdfs:subPropertyOf odrl:operand ;</code></td>
+     <td>Additional Logical Constraint operands:<br/>Create a sub-property of the abstract operand property.</td>
+     <td><code>ex:myLogicalOp rdfs:subPropertyOf odrl:operand .</code></td>
    </tr>
    <tr>
      <td>Additional Policy Conflict strategies:<br/>Create an instance of the ConflictTerm class.</td>
-     <td><code>:myStrategy a :ConflictTerm ;</code></td>
+     <td><code>ex:myStrategy a odrl:ConflictTerm .</code></td>
    </tr>
    <tr>
      <td>Additional Rule class:<br/>Create a subclass of the Rule class and define it as disjoint with the other Rule subclasses.</td>
-     <td><code>:myRule	rdfs:subClassOf :Rule ; </code><br/>
-	    <code>owl:disjointWith :Prohibition, :Duty :Permission ; </code></td>
+     <td><code>ex:myRule	rdfs:subClassOf odrl:Rule ;</code><br/>
+	    <code>owl:disjointWith odrl:Prohibition, odrl:Duty, odrl:Permission . </code></td>
    </tr>
 </tbody>
 </table>
