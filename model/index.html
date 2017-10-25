@@ -1654,8 +1654,8 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <ol>
         <li>If a Policy has the <code>conflict</code> property of <code>perm</code> then any conflicting Permission Rule MUST override the Prohibition Rule.</li>
  <li>If a Policy has the <code>conflict</code> property of <code>prohibit</code> then any conflicting Prohibition Rule MUST override the Permission Rule.</li>
-  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then   the entire Policy MUST be void.</li> 
- <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) then the entire Policy MUST be void.</li> 
+  <li>If a Policy has the <code>conflict</code> property of <code>invalid</code> then any conflicting Rules MUST void  the entire Policy.</li> 
+ <li>If a Policy has multiple <code>conflict</code> property values (for example, after a Policy merge or inheritance) and there are conflicting Rules then the entire Policy MUST be void.</li> 
 
  </ol>
         
@@ -1980,6 +1980,8 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
   	 <li>Added missing uid property for Constraint/Logical Constraint  <a href="https://github.com/w3c/poe/issues/278"> (Issue#278)</a></li>
 
   	 <li>Clarified the assignee party for Duties  <a href="https://github.com/w3c/poe/issues/268"> (Issue#269)</a></li>
+
+ <li>Clarified the processing rules for conflicting Rules  <a href="https://github.com/w3c/poe/issues/270"> (Issue#270)</a></li>
 
     </ul>
 
