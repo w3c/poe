@@ -1745,8 +1745,10 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
      <th>Example</th>
    </tr>
    <tr>
-	   <td>Additional Policy Subclasses:<br/>Create a subclass the ODRL Policy class.</td>
-     <td><code>ex:myPolicyType rdfs:subClassOf odrl:Policy .</code></td>
+	   <td>Additional Policy Subclasses:<br/>Create a subclass the ODRL Policy class and define it as disjoint with all other Policy subclasses.</td>
+     <td><code>ex:myPolicyType rdfs:subClassOf odrl:Policy .</code><br/>
+     <code>owl:disjointWith :Agreement :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion .</code>
+     </td>
    </tr>
    <tr>
      <td>Additional Asset Relationships:<br/>Create a sub-property of the abstract relation property.</td>
@@ -1760,7 +1762,7 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
      <td>Additional Actions for Rules:<br/>
 		 Create an instance of an Action and define its includedIn parent Action.<br/>
 	     The new Action MAY be defined as includedIn to any existing Action. <br/>
-        If the new Action forms a dependency with another new or existing Action, then define the two actions with the implies property
+        If the new Action forms a dependency with another new or existing Action, then define the two actions with the implies property.
     </td>
      <td><code>ex:myAction a odrl:Action .</code><br/>
           <code>ex:myAction odrl:includedIn odrl:use .</code>
@@ -1789,7 +1791,7 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
      <td><code>ex:myStrategy a odrl:ConflictTerm .</code></td>
    </tr>
    <tr>
-     <td>Additional Rule class:<br/>Create a subclass of the Rule class and define it as disjoint with the other Rule subclasses.</td>
+     <td>Additional Rule class:<br/>Create a subclass of the Rule class and define it as disjoint with all other Rule subclasses.</td>
      <td><code>ex:myRule	rdfs:subClassOf odrl:Rule ;</code><br/>
 	    <code>owl:disjointWith odrl:Prohibition, odrl:Duty, odrl:Permission . </code></td>
    </tr>
@@ -1982,6 +1984,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
   	 <li>Clarified the assignee party for Duties  <a href="https://github.com/w3c/poe/issues/268"> (Issue#269)</a></li>
 
  <li>Clarified the processing rules for conflicting Rules  <a href="https://github.com/w3c/poe/issues/270"> (Issue#270)</a></li>
+
+  <li>Adding disjoint class rules for Policy subclasses <a href="https://github.com/w3c/poe/issues/271"> (Issue#271)</a></li>
+
 
     </ul>
 
