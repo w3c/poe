@@ -22,8 +22,8 @@
         <xs:attribute name="uid" type="xs:anyURI" use="required"/>
         <xs:attribute name="type" type="xs:anyURI" use="required"/>
         <xs:attribute name="conflict" type="o:ConflictTerm"/>
-        <xs:attribute name="inheritFrom" type="xs:anyURI"/>
-        <xs:attribute name="profile" type="xs:anyURI"/> <!--Required Attribute (when using ODRL Profile) -->
+        <xs:attribute name="inheritFrom" type="o:listOfURIs"/>
+        <xs:attribute name="profile" type="o:listOfURIs"/> <!--Required Attribute (when using ODRL Profile) -->
         <xs:anyAttribute namespace="##other" processContents="lax"/>
     </xs:complexType>
 
@@ -63,7 +63,7 @@
             <xs:element ref="o:asset" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:constraint" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="o:party" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="o:consequence" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="o:consequence" minOccurs="0" maxOccurs="unbounded"/> <!-- Must not appear if the Duty is a consequence -->
             <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
         <xs:attribute name="uid" type="xs:anyURI "/>
@@ -77,7 +77,7 @@
         </xs:choice>
         <xs:attribute name="uid" type="xs:anyURI"/>   <!--Required Attribute-->
         <xs:attribute name="relation" type="xs:anyURI"/>   <!--Required Attribute-->
-        <xs:attribute name="partOf" type="xs:anyURI"/>
+        <xs:attribute name="partOf" type="o:listOfURIs"/>
         <xs:attribute name="source" type="xs:anyURI"/>
         <xs:attribute name="type" type="xs:anyURI"/>
         <xs:attributeGroup ref="o:idAttributes"/>
@@ -110,7 +110,7 @@
         <xs:attribute name="name" type="o:URIorIDREF"/>    <!--leftOperand - Required Attribute-->
         <xs:attribute name="operator" type="xs:anyURI"/>  <!--Required Attribute-->
         <xs:attribute name="rightOperand" type="o:listOfValues"/>  <!--Required Attribute (if no rightOperandReference)-->
-        <xs:attribute name="rightOperandReference" type="xs:anyURI"/>  <!--Required Attribute (if no rightOperand)-->
+        <xs:attribute name="rightOperandReference" type="o:listOfURIs"/>  <!--Required Attribute (if no rightOperand)-->
         <xs:attribute name="dataType" type="xs:anyURI"/>
         <xs:attribute name="unit" type="xs:anyURI"/>
         <xs:attribute name="status" type="xs:string"/>
@@ -119,6 +119,10 @@
 
     <xs:simpleType name="listOfValues">
         <xs:list itemType="xs:string"/>
+    </xs:simpleType>
+    
+    <xs:simpleType name="listOfURIs">
+        <xs:list itemType="xs:anyURI"/>
     </xs:simpleType>
     
     <xs:simpleType name="URIorIDREF">
