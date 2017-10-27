@@ -171,7 +171,7 @@
 	<li>Only use terms defined in the ODRL Core Vocabulary [[!odrl-vocab]], or</li>
 	<li>Use an ODRL Profile that declares the supported vocabulary used by expressions in the Policy.</li>
 	</ul>
-<p>In the former case, the profile property MUST NOT be used. In the latter case, the profile property MUST be used to indicate the IRIs of the ODRL Profile(s). 
+<p>In the latter case, the profile property MUST be used to indicate the IRIs of the ODRL Profile(s). 
 	See the <a href="#profile">ODRL Profiles</a> section for more details on mechanisms to define ODRL Profiles and conformance requirements. (The Examples in this document will use ODRL Profile identifiers for illustrative purposes only.) </p>
 
 	
@@ -1724,7 +1724,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	<section id="profile-conformance">
     <h3>ODRL Profile Conformance</h3>
 		<p>
-    In an ODRL Policy, the <code>profile</code> property MUST be specified to indicate the identifier (IRI) of the ODRL Profile for which the Policy expression conforms to. There MAY be multiple identifiers used to indicate that an ODRL Policy conforms to multiple ODRL Profiles.</p>
+    If an ODRL Policy conforms to an ODRL Profile, then the <code>profile</code> property MUST be specified to indicate the identifier (IRI) of the ODRL Profile. There MAY be multiple identifiers used to indicate that an ODRL Policy conforms to multiple ODRL Profiles.</p>
 		<p>When an ODRL Profile(s) is used in an ODRL Policy, an ODRL Processing system MUST understand the semantics of the identified ODRL Profile(s). If the ODRL Processing system does not recognise the ODRL Profile identifier(s) then it MUST stop processing the policy. </p>
     
 		
@@ -1985,9 +1985,9 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
  <li>Clarified the processing rules for conflicting Rules  <a href="https://github.com/w3c/poe/issues/270"> (Issue#270)</a></li>
 
-  <li>Adding disjoint class rules for Policy subclasses <a href="https://github.com/w3c/poe/issues/271"> (Issue#271)</a></li>
+  <li>Added disjoint class rules for Policy subclasses <a href="https://github.com/w3c/poe/issues/271"> (Issue#271)</a></li>
 
-
+ <li>Clarified use of ODRL Core Profile URI <a href="https://github.com/w3c/poe/issues/272"> (Issue#272)</a></li>
     </ul>
 
 </section>
