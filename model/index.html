@@ -783,7 +783,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
        "constraint": [{
            "leftOperand": "dateTime",
            "operator": "lt",
-           "rightOperand": "2018-01-01"
+           "rightOperand":  { "@value": "2018-01-01", "@type": "xsd:date" }
        }]
    }]
 }
@@ -819,7 +819,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
           "refinement": [{
              "leftOperand": "percentage",
              "operator": "lteq",
-             "rightOperand": "50.0"
+             "rightOperand": { "@value": "50.0", "@type": "xsd:decimal" }
           }]
       }]
    }]
@@ -856,7 +856,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
    "uid": "http://example.com/p:88/C1",
    "leftOperand": "media",
    "operator": "eq",
-   "rightOperand": "online"
+   "rightOperand": { "@value": "online", "@type": "xsd:string" }
 }
  
 {
@@ -865,7 +865,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
    "uid": "http://example.com/p:88/C2",
    "leftOperand": "media",
    "operator": "eq",
-   "rightOperand": "print"
+   "rightOperand": { "@value": "print", "@type": "xsd:string" }
 }
 </pre>
 	
@@ -912,7 +912,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
       "refinement": [{
         "leftOperand": "runningTime",
         "operator": "lt",
-        "rightOperand": "60",
+        "rightOperand": { "@value": "60", "@type": "xsd:integer" },
         "unit": "http://qudt.org/vocab/unit/MinuteTime"
       }]
     },
@@ -959,7 +959,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
       "refinement": [{
         "leftOperand": "foaf:age",
         "operator": "gt",
-        "rightOperand": "17"
+        "rightOperand": { "@value": "17", "@type": "xsd:integer" }
       }]
     },
     "action": "display"
@@ -1035,7 +1035,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "constraint": [{
             "leftOperand": "dateTime",
             "operator": "lteq",
-            "rightOperand": "2017-12-31"
+            "rightOperand": { "@value": "2017-12-31", "@type": "xsd:date" }
         }]
     }]
 }
@@ -1156,7 +1156,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
             {
               "leftOperand": "payAmount",
               "operator": "eq",
-              "rightOperand": "500.00",
+              "rightOperand": { "@value": "500.00", "@type": "xsd:decimal" },
               "unit": "http://dbpedia.org/resource/Euro"
             }]
         }]
@@ -1189,7 +1189,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	   	     "refinement": [{
 	   	        "leftOperand": "payAmount",
 	   	        "operator": "eq",
-	   	        "rightOperand": "10.00",
+	   	        "rightOperand": { "@value": "10.00", "@type": "xsd:decimal" },
 	   	        "unit": "http://dbpedia.org/resource/Euro"
 	   	     }],
 	   	 }],
@@ -1233,14 +1233,14 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
               "refinement": [{
                  "leftOperand": "payAmount",
                  "operator": "eq",
-                 "rightOperand": "5.00",
+                 "rightOperand": { "@value": "5.00", "@type": "xsd:decimal" },
                  "unit": "http://dbpedia.org/resource/Euro"
               }]
             }],
             "constraint": [{
                 "leftOperand": "event",
                 "operator": "lt",
-                "rightOperand": "policyUsage"
+                "rightOperand": { "@id": "odrl:policyUsage" }
             }]
         }]
     }]
