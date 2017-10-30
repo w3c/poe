@@ -1941,7 +1941,7 @@ odrl:
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion ;
+	owl:disjointWith :Offer, :Privacy, :Request, :Ticket, :Assertion ;
 	rdfs:label "Agreement"@en ;
 	skos:definition "A Policy that grants the assignee a Rule over an Asset from an assigner."@en ;
 	skos:note "An Agreement Policy MUST contain at least one Permission or Prohibition rule, a Party with Assigner function, and a Party with Assignee function (in the same Permission or Prohibition). The Agreement Policy will grant the terms of the Policy from the Assigner to the Assignee."@en .
@@ -1950,7 +1950,7 @@ odrl:
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Offer, :Privacy, :Request, :Set, :Ticket ;
+	owl:disjointWith :Offer, :Privacy, :Request, :Ticket ;
 	rdfs:label "Assertion"@en ;
 	skos:definition "A Policy that asserts a Rule over an Asset from parties."@en ;
 	skos:note "For example, a party (an assignee or assigner) can claim what terms they have over an Asset. An Assertion Policy does not grant such permissions/prohibitions but only asserts the parties claims. An Assetion Policy  MUST contain a target Asset, a Party with any functional role, and at least one of a Permission or Prohibition rule."@en ;
@@ -1960,7 +1960,7 @@ odrl:
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Privacy, :Request, :Set, :Ticket, :Assertion ;
+	owl:disjointWith :Agreement, :Privacy, :Request, :Ticket, :Assertion ;
 	rdfs:label "Offer"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assigner."@en ;
 	skos:note "An Offer Policy MUST contain at least one Permission or Prohibition rule and a Party with Assigner function (in the same Permission or Prohibition). The Offer Policy MAY contain a Party with Assignee function, but MUST not grant any privileges to that Party."@en .
@@ -1969,7 +1969,7 @@ odrl:
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Offer, :Request, :Set, :Ticket, :Assertion ;
+	owl:disjointWith :Agreement, :Offer, :Request, :Ticket, :Assertion ;
 	rdfs:label "Privacy Policy"@en ;
 	skos:definition "A Policy that expresses a Rule over an Asset containing personal information."@en ;
 	skos:note "A Privacy Policy  MUST contain a target Asset, a Party with Assigner  is, a Party with Assignee function, and at least one of a Permission or Prohibition rule that MUST include a Duty. The target Asset SHOULD contain or relate to personal information about the Assignee. The Duty MUST describe obligations on the Assigner about managing the Asset. The Assignee is being granted the terms of the Privacy policy from the Assigner."@en ;
@@ -1979,7 +1979,7 @@ odrl:
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Offer, :Privacy, :Set, :Ticket, :Assertion ;
+	owl:disjointWith :Agreement, :Offer, :Privacy, :Ticket, :Assertion ;
 	rdfs:label "Request"@en ;
 	skos:definition "A Policy that proposes a Rule over an Asset from an assignee."@en ;
 	skos:note "A Request Policy  MUST contain a target Asset, a Party with Assignee function, and at least one of a Permission or Prohibition rule. The Request MAY also contain the Party with Assigner function if this is known. No privileges are granted to any Party."@en ;
@@ -1998,7 +1998,7 @@ odrl:
 	a rdfs:Class , owl:Class, skos:Concept ;
 	rdfs:isDefinedBy odrl: ;
 	rdfs:subClassOf :Policy ;
-	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Set, :Assertion ;
+	owl:disjointWith :Agreement, :Offer, :Privacy, :Request, :Assertion ;
 	rdfs:label "Ticket"@en ;
 	skos:definition "A Policy that grants the holder a Rule over an Asset from an assigner."@en ;
 	skos:note "A Ticket Policy MUST contain a target Asset and at least one of a Permission or Prohibition rule.  The Ticket MAY contain the Party with Assigner function and MUST NOT contain an Assignee. The Ticket Policy will grant the terms of the Policy to the holder of that Ticket. The holder of the Ticket MAY remain unknown or MAY have to be identified at some later stage."@en ;

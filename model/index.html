@@ -158,6 +158,7 @@
 	
 <li>A Policy MAY have none or one <code>conflict</code> property values (of type ConflictTerm) for Conflict Strategy Preferences indicating how to handle Policy conflicts.(See the <a href="#conflict">Policy Conflict Strategy</a> section for more details.)</li>
 
+
 </ul>
 	
 <p>
@@ -176,7 +177,7 @@
 
 	
 <p>An ODRL Policy MAY be subclassed to more precisely describe the <em>context</em> of use of the 
-	Policy that MAY include additional constraints that ODRL processors MUST understand. Additional Policy subclasses MAY be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. 
+	Policy that MAY include additional constraints that ODRL processors MUST understand. Additional Policy subclasses MAY be documented in the ODRL Common Vocabulary [[!odrl-vocab]] or in ODRL Profiles. A Policy class MUST be disjoint will all Policy subclasses (except for Set).
     
 <section id="policy-set">
 <h3>Set Class</h3> 
@@ -975,7 +976,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Rule Class</h3>
 
 
-<p>The Rule class is the parent of the Permission, Prohibition, and Duty classes. The Rule class represents the common characteristics of these three classes.
+<p>The Rule class is the parent of the Permission, Prohibition, and Duty classes. The Rule class represents the common characteristics of these three classes. A Rule class MUST be disjoint will all other Rule subclasses.
 </p>
 
 <p>The Rule class has the following properties:</p>
@@ -1745,9 +1746,9 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
      <th>Example</th>
    </tr>
    <tr>
-	   <td>Additional Policy Subclasses:<br/>Create a subclass the ODRL Policy class and define it as disjoint with all other Policy subclasses.</td>
+	   <td>Additional Policy Subclasses:<br/>Create a subclass the ODRL Policy class and define it as disjoint with all other Policy subclasses (except Set).</td>
      <td><code>ex:myPolicyType rdfs:subClassOf odrl:Policy .</code><br/>
-     <code>owl:disjointWith :Agreement :Offer, :Privacy, :Request, :Set, :Ticket, :Assertion .</code>
+     <code>owl:disjointWith :Agreement :Offer, :Privacy, :Request, :Ticket, :Assertion .</code>
      </td>
    </tr>
    <tr>
@@ -1989,6 +1990,11 @@ The ODRL Information Model was derived from the ODRL V2.1 Core Model Community G
 
  <li>Clarified use of ODRL Core Profile URI <a href="https://github.com/w3c/poe/issues/272"> (Issue#272)</a></li>
     </ul>
+
+     <li>Clarified disjoint Policies and Rules. <a href="https://github.com/w3c/poe/issues/280"> (Issue#280)</a></li>
+    </ul>
+
+
 
 </section>
 
