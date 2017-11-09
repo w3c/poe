@@ -28,6 +28,7 @@ var respecConfig = {
         wgPublicList:            "public-poe-comments",
         wgPatentURI:             "https://www.w3.org/2004/01/pp-impl/87755/status",
         issueBase:               "https://github.com/w3c/poe/issues/",
+        errata:                  "https://www.w3.org/2016/poe/errata/",
         localBiblio: {
             "oma-profile": {
                 title: "OMA Digital Rights Management V2.2",

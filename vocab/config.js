@@ -40,7 +40,8 @@ var respecConfig = {
     noIDLIn:                    true,
     lint:                       true,
     noLegacyStyle:              false,
-    issueBase: "https://github.com/w3c/poe/issues/",
+    issueBase:                  "https://github.com/w3c/poe/issues/",
+    errata:                     "https://www.w3.org/2016/poe/errata/",
     otherLinks: [
         {
             key: "Repository",
