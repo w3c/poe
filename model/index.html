@@ -803,7 +803,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	<p>Note: The outcome of applying refinements to an Action SHOULD NOT result in a null operation.</p>
 	
 <blockquote>
-<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>print</code>ed, and also include a refinement Constraint that narrows the printing operation to not more than 50% of the asset.</p>
+<p>Example Use Case: In the Policy Offer example below, the permission allows the target asset to be <code>print</code>ed, and also include a refinement Constraint of less than or equal to 1200 dpi resolution. The refinement is a more narrower semantic of printing, in this case, printing at a specific maximum resolution level.</p>
     </blockquote>
     
 <pre id="eg179" class="example hljs json">
@@ -816,11 +816,12 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
        "target": "http://example.com/document:1234",
        "assigner": "http://example.com/org:616",
        "action": [{
-          "rdf:value": { "@id": "odrl:print" },
+          "rdf:value": { "@id": "odrl:resolution" },
           "refinement": [{
-             "leftOperand": "percentage",
+             "leftOperand": "resolution",
              "operator": "lteq",
-             "rightOperand": { "@value": "50.0", "@type": "xsd:decimal" }
+             "rightOperand": { "@value": "1200", "@type": "xsd:integer" },
+             "unit": "http://dbpedia.org/resource/Dots_per_inch"
           }]
       }]
    }]
