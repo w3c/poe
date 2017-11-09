@@ -844,8 +844,12 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "action": [{
            "rdf:value": { "@id": "odrl:reproduce" },
            "refinement": {
-               "xone": [ { "@id": "http://example.com/p:88/C1" },
-                         { "@id": "http://example.com/p:88/C2" } ]
+               "xone": { 
+	           "@list": [ 
+		       { "@id": "http://example.com/p:88/C1" },
+                       { "@id": "http://example.com/p:88/C2" } 
+		   ]
+	       }
             }
         }]
     }]
@@ -1192,7 +1196,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	   	        "operator": "eq",
 	   	        "rightOperand": { "@value": "10.00", "@type": "xsd:decimal" },
 	   	        "unit": "http://dbpedia.org/resource/Euro"
-	   	     }],
+	   	     }]
 	   	 }],
 	   "compensatedParty": "http://wwf.org"
          }]
