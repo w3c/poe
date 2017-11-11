@@ -947,7 +947,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
     <blockquote>
 <p>Example Use Case: The target Asset <code>http://example.com/myPhotos:BdayParty</code> is a set of photos posted to a social network site by the assigner of the photos <code>http://example.com/user44</code>. The assignee source is a PartyCollection <code>http://example.com/user44/friends</code> and represents all the friends of the assigner. 
-    The assignee also has a refinement that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>display</code> permission.
+    The assignee also has a refinement that indicates only members of the collection over the <code>foaf:age</code> of 18 will be assigned the <code>ex:view</code> permission (defined by the Profile).
    </p>
     </blockquote>
 <pre id="eg22" class="example hljs json">
@@ -968,7 +968,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
         "rightOperand": { "@value": "17", "@type": "xsd:integer" }
       }]
     },
-    "action": "display"
+    "action": { "@id": "ex:view" }
   }]
 }
 </pre>
