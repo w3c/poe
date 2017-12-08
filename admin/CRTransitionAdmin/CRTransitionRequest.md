@@ -2,7 +2,7 @@
 * Transition requirements: https://www.w3.org/Guide/transitions?profile=CR&cr=new
 * Mail to be sent to: ralph@w3.org, plh@w3.org, cc to timbl@w3.org, w3t-comm@w3.org, chairs@w3.org, team-poe-chairs@w3.org
 
-Request sent on Sept 14: ttps://lists.w3.org/Archives/Member/chairs/2017JulSep/0150.html
+Request sent on Sept 14: https://lists.w3.org/Archives/Member/chairs/2017JulSep/0150.html
 
 
 ---

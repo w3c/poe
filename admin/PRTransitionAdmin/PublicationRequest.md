@@ -1,0 +1,47 @@
+To be sent to the webmaster, comm team, coralie, xueyuan, WG chairs the DD is available.
+
+----
+
+
+(Coralie, Xueyuan, this is for information only; I will send you the HPN and AC mail drafts at the time of the publication)
+
+Denis,
+
+This is an official publication request for the publication of two ODRL Documents as Candidate Recommendations. The publication date is the 04 of January, 2018. The transition request for CR has been issued in:
+- https://lists.w3.org/Archives/Member/chairs/@@@@
+
+the Director's approval is in:
+- @@@@
+
+
+The documents are as follows
+----------------------------
+
+ODRL Information Model:
+- https://www.w3.org/TR/2018/PR-odrl-model-20180104/
+
+ODRL Vocabulary & Expression:
+- http://www.w3.org/TR/2018/PR-odrl-vocab-20180104/
+
+Abstract and Status Sections
+----------------------------
+
+See the previous URL-s
+
+There are already snapshots on github:
+
+- https://w3c.github.io/poe/snapshots/PR-odrl-model-20180104/
+- https://w3c.github.io/poe/snapshots/PR-odrl-vocab-20180104/
+
+I plan to install those document in the course of @@@. 
+
+The link checker has a few of problems with the ODRL Vocabulary & Expression. These are due to the fact that these URL-s refer to namespaces that do not have an HTML representations. I have checked the reported broken fragments, and they are all fine. The three URL-s are:
+
+- http://www.w3.org/2000/01/rdf-schema
+- http://www.w3.org/2001/XMLSchema
+- http://www.w3.org/2006/vcard/ns
+
+
+Thanks!
+
+Ivan
