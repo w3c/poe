@@ -5,7 +5,7 @@
 
 The [ODRL Ontology](http://w3c.github.io/poe/vocab/ODRL22.ttl) passes validation by the following applications:
 * [Protege](https://protege.stanford.edu/)  Version 5.2.0 (MacOSX)
-* [RDF Raptor Library][http://librdf.org/raptor/) (also used to generate the specification from the OWL ontology)
+* [RDF Raptor Library](http://librdf.org/raptor/) (also used to generate the specification from the OWL ontology)
 
 ## CR-VE-18: The ontology is internally consistent with respect to domains, ranges, inverses, and any other ontology features specified 						
 
