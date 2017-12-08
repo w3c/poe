@@ -485,7 +485,7 @@
 <tr><th>Domain:</th> <td><a href="#term-Constraint">Constraint</a></td></tr>
 </table>
 </section><section id="term-LeftOperand"><h3>Left Operand</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Left operand for constraint expression.</td></tr>
+<tr><th>Definition:</th> <td>Left operand for a constraint expression.</td></tr>
 <tr><th>Label:</th> <td>Left Operand</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/LeftOperand">http://www.w3.org/ns/odrl/2/LeftOperand</a></td></tr>
 <tr><th>Note:</th> <td>Instances of the LeftOperand class are used as the leftOperand of a Constraint.</td></tr>
@@ -1185,7 +1185,7 @@
 <tr><th>Class:</th> <td><a href="#term-Action">Action</a></td></tr>
 </table>
 </section></section><section id="constraintLeftOperandCommon"><h2>Constraint Left Operands</h2><section id="term-absolutePosition"><h3>Absolute Asset Position</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A point in space or time defined with absolute coordinates for the positioning of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>A point in space or time defined with absolute coordinates for the positioning of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Absolute Asset Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/absolutePosition">http://www.w3.org/ns/odrl/2/absolutePosition</a></td></tr>
 <tr><th>Note:</th> <td>Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it.</td></tr>
@@ -1193,7 +1193,7 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-absoluteSpatialPosition"><h3>Absolute Spatial Asset Position</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space for the Asset to fit.</td></tr>
+<tr><th>Definition:</th> <td>The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space for the target Asset to fit.</td></tr>
 <tr><th>Label:</th> <td>Absolute Spatial Asset Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/absoluteSpatialPosition">http://www.w3.org/ns/odrl/2/absoluteSpatialPosition</a></td></tr>
 <tr><th>Note:</th> <td>Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it. Note: see also the Left Operand Relative Spatial Asset Position. </td></tr>
@@ -1201,133 +1201,133 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-absoluteTemporalPosition"><h3>Absolute Temporal Asset Position</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The absolute temporal positions in a media stream the Asset has to fit.</td></tr>
+<tr><th>Definition:</th> <td>The absolute temporal positions in a media stream the target Asset has to fit.</td></tr>
 <tr><th>Label:</th> <td>Absolute Temporal Asset Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/absoluteTemporalPosition">http://www.w3.org/ns/odrl/2/absoluteTemporalPosition</a></td></tr>
-<tr><th>Note:</th> <td>Note: Use with Actions including the Asset in a larger media stream. The fragment part of a Media Fragment URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream.</td></tr>
+<tr><th>Note:</th> <td>Use with Actions including the target Asset in a larger media stream. The fragment part of a Media Fragment URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. <br />Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream.</td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-absolutePosition">absolutePosition</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-absoluteSize"><h3>Absolute Asset Size</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Absolute Asset Size</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/absoluteSize">http://www.w3.org/ns/odrl/2/absoluteSize</a></td></tr>
 <tr><th>Note:</th> <td>Example: The image can be resized in width to a maximum of 1000px.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-count"><h3>Count</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Numeric count.</td></tr>
+<tr><th>Definition:</th> <td>Numeric count of executions of the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Count</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/count">http://www.w3.org/ns/odrl/2/count</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-dateTime"><h3>Datetime</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The date (and optional time and timezone) to be compared. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]].</td></tr>
+<tr><th>Definition:</th> <td>The date (and optional time and timezone) of exercising the action of the Rule. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Datetime</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/dateTime">http://www.w3.org/ns/odrl/2/dateTime</a></td></tr>
-<tr><th>Note:</th> <td>The Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Rule can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time., The use of Timezone information is strongly recommended.</td></tr>
+<tr><th>Note:</th> <td>The use of Timezone information is strongly recommended. The Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. <br />Example: <code>dateTime gteq 2017-12-31T06:00Z</code> means the Rule can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-delayPeriod"><h3>Delay Period</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A time delay period. The point in time triggering this period MAY be defined by another temporal Constraint expressed together in a Constraint (utilising the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
+<tr><th>Definition:</th> <td>A time delay period prior to exercising the action of the Rule. The point in time triggering this period MAY be defined by another temporal Constraint combined by a Logical Constraint (utilising the odrl:andSequence operand). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Delay Period</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/delayPeriod">http://www.w3.org/ns/odrl/2/delayPeriod</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action., Only the eq, gt, gteq operators SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Only the eq, gt, gteq operators SHOULD be used. <br />Example: <code>delayPeriod eq P60M</code> indicates a delay of 60 Minutes before exercising the action.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-deliveryChannel"><h3>Delivery Channel</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The delivery channel used.</td></tr>
+<tr><th>Definition:</th> <td>The delivery channel used for exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Delivery Channel</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/deliveryChannel">http://www.w3.org/ns/odrl/2/deliveryChannel</a></td></tr>
 <tr><th>Note:</th> <td>Example: the asset may be distributed only on mobile networks.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-elapsedTime"><h3>Elapsed Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An elapsed time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
+<tr><th>Definition:</th> <td>A continuous elapsed time period which may be used for exercising of the action of the Rule. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Elapsed Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/elapsedTime">http://www.w3.org/ns/odrl/2/elapsedTime</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>elpasedTime eq P60M</code> indicates a total elapsed time of 60 Minutes., Only the eq, lt, lteq operators SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Only the eq, lt, lteq operators SHOULD be used. See also Metered Time. <br />Example: <code>elpasedTime eq P60M</code> indicates a total elapsed time of 60 Minutes.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-event"><h3>Event</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identified event.</td></tr>
+<tr><th>Definition:</th> <td>An identified event setting a context for exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Event</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/event">http://www.w3.org/ns/odrl/2/event</a></td></tr>
-<tr><th>Note:</th> <td>Events are temporal periods of time, and operators can be used to signal before (lt), during (eq) or after (gt) the event. Example: May be taken during the “FIFA World Cup 2020” only.</td></tr>
+<tr><th>Note:</th> <td>Events are temporal periods of time, and operators can be used to signal before (lt), during (eq) or after (gt) the event. <br />Example: May be taken during the “FIFA World Cup 2020” only.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-fileFormat"><h3>File Format</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A transformed file format.</td></tr>
+<tr><th>Definition:</th> <td>A transformed file format of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>File Format</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/fileFormat">http://www.w3.org/ns/odrl/2/fileFormat</a></td></tr>
 <tr><th>Note:</th> <td>Example: An asset may be transformed into JPEG format.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-industry"><h3>Industry Context</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A defined industry sector.</td></tr>
+<tr><th>Definition:</th> <td>A defined industry sector setting a context for exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Industry Context</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/industry">http://www.w3.org/ns/odrl/2/industry</a></td></tr>
 <tr><th>Note:</th> <td>Example: publishing or financial industry.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-language"><h3>Language</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A natural language.</td></tr>
+<tr><th>Definition:</th> <td>A natural language used by the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Language</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/language">http://www.w3.org/ns/odrl/2/language</a></td></tr>
 <tr><th>Note:</th> <td>Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-media"><h3>Media Context</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Category of media context.</td></tr>
+<tr><th>Definition:</th> <td>Category of a media asset setting a context for exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Media Context</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/media">http://www.w3.org/ns/odrl/2/media</a></td></tr>
 <tr><th>Note:</th> <td>Example media types: electronic, print, advertising, marketing. Note: The used type should not be an IANA MediaType as they are focused on technical characteristics. </td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-meteredTime"><h3>Metered Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An accumulated amount of time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
+<tr><th>Definition:</th> <td>An accumulated amount of one to many metered time periods which were used for exercising the action of the Rule. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Metered Time</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/meteredTime">http://www.w3.org/ns/odrl/2/meteredTime</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>meteredTime lteq P60M</code> indicates an accumulated period of 60 Minutes or less., Only the eq, lt, lteq operators SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Only the eq, lt, lteq operators SHOULD be used. See also Elapsed Time. <br />Example: <code>meteredTime lteq P60M</code> indicates an accumulated period of 60 Minutes or less.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-payAmount"><h3>Payment Amount</h3><table class='def propdef' >
 <tr><th>Definition:</th> <td>The amount of a financial payment. Right operand value MUST be an xsd:decimal. </td></tr>
 <tr><th>Label:</th> <td>Payment Amount</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/payAmount">http://www.w3.org/ns/odrl/2/payAmount</a></td></tr>
-<tr><th>Note:</th> <td>Note: Can be used for compensation duties with the unit property indicating the currency of the payment.</td></tr>
+<tr><th>Note:</th> <td>Can be used for compensation duties with the unit property indicating the currency of the payment.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-percentage"><h3>Asset Percentage</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A percentage amount. Right operand value MUST be an xsd:decimal from 0 to 100.</td></tr>
+<tr><th>Definition:</th> <td>A percentage amount of the target Asset relevant for exercising the action of the Rule. Right operand value MUST be an xsd:decimal from 0 to 100.</td></tr>
 <tr><th>Label:</th> <td>Asset Percentage</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/percentage">http://www.w3.org/ns/odrl/2/percentage</a></td></tr>
 <tr><th>Note:</th> <td>Example: Extract less than or equal to 50%.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-product"><h3>Product Context</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A Product or service.</td></tr>
+<tr><th>Definition:</th> <td>Category of product or service setting a context for exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Product Context</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/product">http://www.w3.org/ns/odrl/2/product</a></td></tr>
 <tr><th>Note:</th> <td>Example: May only be used in the XYZ Magazine.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-purpose"><h3>Purpose</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A defined Purpose.</td></tr>
+<tr><th>Definition:</th> <td>A defined purpose for exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Purpose</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/purpose">http://www.w3.org/ns/odrl/2/purpose</a></td></tr>
 <tr><th>Note:</th> <td>Example: Educational use.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-recipient"><h3>Recipient</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The party receiving the result/outcome.</td></tr>
+<tr><th>Definition:</th> <td>The party receiving the result/outcome of exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Recipient</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/recipient">http://www.w3.org/ns/odrl/2/recipient</a></td></tr>
-<tr><th>Note:</th> <td>Note: The Right Operand must identify one or more specific Parties or category/ies of the Party.</td></tr>
+<tr><th>Note:</th> <td>The Right Operand must identify one or more specific Parties or category/ies of the Party.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-relativePosition"><h3>Relative Asset Position</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A point in space or time defined with coordinates relative to full measures the positioning of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>A point in space or time defined with coordinates relative to full measures the positioning of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Relative Asset Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativePosition">http://www.w3.org/ns/odrl/2/relativePosition</a></td></tr>
 <tr><th>Note:</th> <td>Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it.</td></tr>
@@ -1335,45 +1335,45 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-relativeSpatialPosition"><h3>Relative Spatial Asset Position</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The relative spatial positions - expressed as percentages of full values - of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>The relative spatial positions - expressed as percentages of full values - of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Relative Spatial Asset Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativeSpatialPosition">http://www.w3.org/ns/odrl/2/relativeSpatialPosition</a></td></tr>
-<tr><th>Note:</th> <td>Note: See the Left Operand absoluteSpatialAssetPosition.</td></tr>
+<tr><th>Note:</th> <td>See also Absolute Spatial Asset Position.</td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-relativePosition">relativePosition</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-relativeTemporalPosition"><h3>Relative Temporal Asset Position</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A point in space or time defined with coordinates relative to full measures the positioning of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>A point in space or time defined with coordinates relative to full measures the positioning of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Relative Temporal Asset Position</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativeTemporalPosition">http://www.w3.org/ns/odrl/2/relativeTemporalPosition</a></td></tr>
-<tr><th>Note:</th> <td>Example: The MP3 music file must be positioned between the positions at 33% and 48% of the temporal length of a stream. Note: See the Left Operand absoluteTemporalAssetPosition. </td></tr>
+<tr><th>Note:</th> <td>See also Absolute Temporal Asset Position. <br />Example: The MP3 music file must be positioned between the positions at 33% and 48% of the temporal length of a stream. </td></tr>
 <tr><th>Broader terms:</th> <td><a href="#term-relativePosition">relativePosition</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-relativeSize"><h3>Relative Asset Size</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects - expressed as percentages of full values - of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects - expressed as percentages of full values - of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Relative Asset Size</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/relativeSize">http://www.w3.org/ns/odrl/2/relativeSize</a></td></tr>
 <tr><th>Note:</th> <td>Example: The image can be resized in width to a maximum of 200%. Note: See the Left Operand absoluteSize. </td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-resolution"><h3>Rendition Resolution</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Resolution of the rendition of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>Resolution of the rendition of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Rendition Resolution</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/resolution">http://www.w3.org/ns/odrl/2/resolution</a></td></tr>
 <tr><th>Note:</th> <td>Example: the image may be printed at 1200dpi.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-spatial"><h3>Geospatial Named Area</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A named and identified geospatial area with defined borders. An IRI MUST be used to represent this value.</td></tr>
+<tr><th>Definition:</th> <td>A named and identified geospatial area with defined borders which is used for exercising the action of the Rule. An IRI MUST be used to represent this value.</td></tr>
 <tr><th>Label:</th> <td>Geospatial Named Area</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/spatial">http://www.w3.org/ns/odrl/2/spatial</a></td></tr>
-<tr><th>Note:</th> <td>A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. </td></tr>
+<tr><th>Note:</th> <td>A code value for the area and source of the code must be presented in the Right Operand. <br />Example: the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. </td></tr>
 <tr><th>Narrower terms:</th> <td><a href="#term-spatialCoordinates">spatialCoordinates</a></td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-spatialCoordinates"><h3>Geospatial Coordinates</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A set of coordinates setting the borders of a geospatial area. The coordinates MUST include longitude and latitude, they MAY include altitude and the geodetic datum.</td></tr>
+<tr><th>Definition:</th> <td>A set of coordinates setting the borders of a geospatial area used for exercising the action of the Rule. The coordinates MUST include longitude and latitude, they MAY include altitude and the geodetic datum.</td></tr>
 <tr><th>Label:</th> <td>Geospatial Coordinates</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/spatialCoordinates">http://www.w3.org/ns/odrl/2/spatialCoordinates</a></td></tr>
 <tr><th>Note:</th> <td>The default values are the altitude of earth's surface at this location and the WGS 84 datum.</td></tr>
@@ -1381,7 +1381,7 @@
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-systemDevice"><h3>System Device</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identified computing system.</td></tr>
+<tr><th>Definition:</th> <td>An identified computing system or computing device used for exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>System Device</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/systemDevice">http://www.w3.org/ns/odrl/2/systemDevice</a></td></tr>
 <tr><th>Note:</th> <td>Example: The system device can be identified by a unique code created from the used hardware.</td></tr>
@@ -1389,38 +1389,38 @@
 <tr><th>Equivalent Match:</th> <td><a href="#term-device">device</a>, <a href="#term-system">system</a></td></tr>
 </table>
 </section><section id="term-timeInterval"><h3>Recurring Time Interval</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>A recurring period of time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
+<tr><th>Definition:</th> <td>A recurring period of time before the next execution of the action of the Rule. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</td></tr>
 <tr><th>Label:</th> <td>Recurring Time Interval</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/timeInterval">http://www.w3.org/ns/odrl/2/timeInterval</a></td></tr>
-<tr><th>Note:</th> <td>Example: <code>timeInterval eq P7D</code> indicates a recurring 7 day period., Only the eq operator SHOULD be used.</td></tr>
+<tr><th>Note:</th> <td>Only the eq operator SHOULD be used. <br />Example: <code>timeInterval eq P7D</code> indicates a recurring 7 day period.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-unitOfCount"><h3>Unit Of Count</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The unit of measure used for counting.</td></tr>
+<tr><th>Definition:</th> <td>The unit of measure used for counting the executions of the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Unit Of Count</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/unitOfCount">http://www.w3.org/ns/odrl/2/unitOfCount</a></td></tr>
-<tr><th>Note:</th> <td>Typically used with Duties to indicate the unit entity to be counted of the Action. Example: A duty to compensate and a unitOfCount constraint of 'perUser' would indicate that the compensation by multiplied by the 'number of users'.</td></tr>
+<tr><th>Note:</th> <td>Note: Typically used with Duties to indicate the unit entity to be counted of the Action. <br />Example: A duty to compensate and a unitOfCount constraint of 'perUser' would indicate that the compensation by multiplied by the 'number of users'.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-version"><h3>Version</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>The range of versions of the Asset.</td></tr>
+<tr><th>Definition:</th> <td>The version of the target Asset.</td></tr>
 <tr><th>Label:</th> <td>Version</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/version">http://www.w3.org/ns/odrl/2/version</a></td></tr>
 <tr><th>Note:</th> <td>Example: Single Paperback or Multiple Issues or version 2.0 or higher.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
 </section><section id="term-virtualLocation"><h3>Virtual IT Communication Location</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>An identified location of the IT communication space.</td></tr>
+<tr><th>Definition:</th> <td>An identified location of the IT communication space which is relevant for exercising the action of the Rule.</td></tr>
 <tr><th>Label:</th> <td>Virtual IT Communication Location</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/virtualLocation">http://www.w3.org/ns/odrl/2/virtualLocation</a></td></tr>
 <tr><th>Note:</th> <td>Example: an Internet domain or IP address range.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-LeftOperand">LeftOperand</a></td></tr>
 </table>
-</section></section><section id="constraintRightOpCommon"><h2>Constraint Right Operands</h2><section id="term-policyUsage"><h3>Policy Usage Time</h3><table class='def propdef' >
-<tr><th>Definition:</th> <td>Indicates the time when the policy rule is exercised.</td></tr>
-<tr><th>Label:</th> <td>Policy Usage Time</td></tr>
+</section></section><section id="constraintRightOpCommon"><h2>Constraint Right Operands</h2><section id="term-policyUsage"><h3>Policy Rule Usage</h3><table class='def propdef' >
+<tr><th>Definition:</th> <td>Indicates the actual datetime the action of the Rule was exercised.</td></tr>
+<tr><th>Label:</th> <td>Policy Rule Usage</td></tr>
   <tr><th>Identifier:</th> <td><a href="http://www.w3.org/ns/odrl/2/policyUsage">http://www.w3.org/ns/odrl/2/policyUsage</a></td></tr>
-<tr><th>Note:</th> <td>This can be used to express constraints related to the time the rule is exercised. For example,  <code>event lt policyUsage</code> expresses a constraint on the Action to occur before the rule is exercised. Other operators may be used to indicate during (eg) or after (gt, gte) rule usage.</td></tr>
+<tr><th>Note:</th> <td>This can be used to express constraints with a LeftOperand relative to the time the rule is exercised. Operators indicate before (lt, lteq), during (eq) or after (gt, gteq) the usage of the rule. <br />Example: <code>event lt policyUsage</code> expresses that the identified event must have happened before the action of the rule is exercised.</td></tr>
 <tr><th>Class:</th> <td><a href="#term-RightOperand">RightOperand</a></td></tr>
 </table>
 </section></section>     
@@ -1933,6 +1933,8 @@ All new ODRL implementations are expected to use the deliverables of the W3C Per
 
  
     <li>Added version "2.2" to the document title to make it clear the provenance of the specification. <a href="https://github.com/w3c/poe/issues/283"> (Issue#283)</a></li>
+
+ <li>Clarified definitions of some LeftOperand terms. <a href="https://github.com/w3c/poe/issues/284"> (Issue#284)</a></li>
 
 
     </ul></section>

@@ -586,7 +586,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Left Operand</rdfs:label>
-    <skos:definition xml:lang="en">Left operand for constraint expression.</skos:definition>
+    <skos:definition xml:lang="en">Left operand for a constraint expression.</skos:definition>
     <skos:note xml:lang="en">Instances of the LeftOperand class are used as the leftOperand of a Constraint.</skos:note>
   </rdfs:Class>
   <rdfs:Class rdf:about="http://www.w3.org/ns/odrl/2/LogicalConstraint">
@@ -806,7 +806,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Absolute Asset Position</rdfs:label>
-    <skos:definition xml:lang="en">A point in space or time defined with absolute coordinates for the positioning of the Asset.</skos:definition>
+    <skos:definition xml:lang="en">A point in space or time defined with absolute coordinates for the positioning of the target Asset.</skos:definition>
     <skos:note xml:lang="en">Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -815,7 +815,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Absolute Asset Size</rdfs:label>
-    <skos:definition xml:lang="en">Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects of the Asset.</skos:definition>
+    <skos:definition xml:lang="en">Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects of the target Asset.</skos:definition>
     <skos:note xml:lang="en">Example: The image can be resized in width to a maximum of 1000px.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -825,7 +825,7 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Absolute Spatial Asset Position</rdfs:label>
     <skos:broaderTransitive rdf:resource="http://www.w3.org/ns/odrl/2/absolutePosition"/>
-    <skos:definition xml:lang="en">The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space for the Asset to fit.</skos:definition>
+    <skos:definition xml:lang="en">The absolute spatial positions of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space for the target Asset to fit.</skos:definition>
     <skos:note xml:lang="en">Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it. Note: see also the Left Operand Relative Spatial Asset Position. </skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -835,8 +835,8 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Absolute Temporal Asset Position</rdfs:label>
     <skos:broaderTransitive rdf:resource="http://www.w3.org/ns/odrl/2/absolutePosition"/>
-    <skos:definition xml:lang="en">The absolute temporal positions in a media stream the Asset has to fit.</skos:definition>
-    <skos:note xml:lang="en">Note: Use with Actions including the Asset in a larger media stream. The fragment part of a Media Fragment URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream.</skos:note>
+    <skos:definition xml:lang="en">The absolute temporal positions in a media stream the target Asset has to fit.</skos:definition>
+    <skos:note xml:lang="en">Use with Actions including the target Asset in a larger media stream. The fragment part of a Media Fragment URI (https://www.w3.org/TR/media-frags/) may be used for the right operand. See the Left Operand realativeTemporalPosition. &lt;br /&gt;Example: The MP3 music file must be positioned between second 192 and 250 of the temporal length of a stream.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <Action rdf:about="http://www.w3.org/ns/odrl/2/acceptTracking">
@@ -1222,7 +1222,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Count</rdfs:label>
-    <skos:definition xml:lang="en">Numeric count.</skos:definition>
+    <skos:definition xml:lang="en">Numeric count of executions of the action of the Rule.</skos:definition>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <rdf:Property rdf:about="http://www.w3.org/ns/odrl/2/dataType">
@@ -1239,9 +1239,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Datetime</rdfs:label>
-    <skos:definition xml:lang="en">The date (and optional time and timezone) to be compared. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]].</skos:definition>
-    <skos:note xml:lang="en">The Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. Example: &lt;code&gt;dateTime gteq 2017-12-31T06:00Z&lt;/code&gt; means the Rule can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time.</skos:note>
-    <skos:note xml:lang="en">The use of Timezone information is strongly recommended.</skos:note>
+    <skos:definition xml:lang="en">The date (and optional time and timezone) of exercising the action of the Rule. Right operand value MUST be an xsd:date or xsd:dateTime as defined by [[xmlschema11-2]].</skos:definition>
+    <skos:note xml:lang="en">The use of Timezone information is strongly recommended. The Rule may be exercised before (with operator lt/lteq) or after (with operator gt/gteq) the date(time) defined by the Right operand. &lt;br /&gt;Example: &lt;code&gt;dateTime gteq 2017-12-31T06:00Z&lt;/code&gt; means the Rule can only be exercised after (and including) 6:00AM on the 31st Decemeber 2017 UTC time.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <LeftOperand rdf:about="http://www.w3.org/ns/odrl/2/delayPeriod">
@@ -1249,9 +1248,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Delay Period</rdfs:label>
-    <skos:definition xml:lang="en">A time delay period. The point in time triggering this period MAY be defined by another temporal Constraint expressed together in a Constraint (utilising the odrl:andSequence operator). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</skos:definition>
-    <skos:note xml:lang="en">Example: &lt;code&gt;delayPeriod eq P60M&lt;/code&gt; indicates a delay of 60 Minutes before exercising the action.</skos:note>
-    <skos:note xml:lang="en">Only the eq, gt, gteq operators SHOULD be used.</skos:note>
+    <skos:definition xml:lang="en">A time delay period prior to exercising the action of the Rule. The point in time triggering this period MAY be defined by another temporal Constraint combined by a Logical Constraint (utilising the odrl:andSequence operand). Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</skos:definition>
+    <skos:note xml:lang="en">Only the eq, gt, gteq operators SHOULD be used. &lt;br /&gt;Example: &lt;code&gt;delayPeriod eq P60M&lt;/code&gt; indicates a delay of 60 Minutes before exercising the action.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <Action rdf:about="http://www.w3.org/ns/odrl/2/delete">
@@ -1268,7 +1266,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Delivery Channel</rdfs:label>
-    <skos:definition xml:lang="en">The delivery channel used.</skos:definition>
+    <skos:definition xml:lang="en">The delivery channel used for exercising the action of the Rule.</skos:definition>
     <skos:note xml:lang="en">Example: the asset may be distributed only on mobile networks.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -1287,8 +1285,9 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Device</rdfs:label>
     <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
-    <skos:definition xml:lang="en">An identified computing system.</skos:definition>
+    <skos:definition xml:lang="en">An identified device used for exercising the action of the Rule.</skos:definition>
     <skos:exactMatch rdf:resource="http://www.w3.org/ns/odrl/2/systemDevice"/>
+    <skos:note>See System Device.</skos:note>
   </LeftOperand>
   <Action rdf:about="http://www.w3.org/ns/odrl/2/digitize">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
@@ -1331,9 +1330,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Elapsed Time</rdfs:label>
-    <skos:definition xml:lang="en">An elapsed time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</skos:definition>
-    <skos:note>Example: &lt;code&gt;elpasedTime eq P60M&lt;/code&gt; indicates a total elapsed time of 60 Minutes.</skos:note>
-    <skos:note xml:lang="en">Only the eq, lt, lteq operators SHOULD be used.</skos:note>
+    <skos:definition xml:lang="en">A continuous elapsed time period which may be used for exercising of the action of the Rule. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</skos:definition>
+    <skos:note>Only the eq, lt, lteq operators SHOULD be used. See also Metered Time. &lt;br /&gt;Example: &lt;code&gt;elpasedTime eq P60M&lt;/code&gt; indicates a total elapsed time of 60 Minutes.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <Action rdf:about="http://www.w3.org/ns/odrl/2/ensureExclusivity">
@@ -1357,8 +1355,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Event</rdfs:label>
-    <skos:definition xml:lang="en">An identified event.</skos:definition>
-    <skos:note xml:lang="en">Events are temporal periods of time, and operators can be used to signal before (lt), during (eq) or after (gt) the event. Example: May be taken during the “FIFA World Cup 2020” only.</skos:note>
+    <skos:definition xml:lang="en">An identified event setting a context for exercising the action of the Rule.</skos:definition>
+    <skos:note xml:lang="en">Events are temporal periods of time, and operators can be used to signal before (lt), during (eq) or after (gt) the event. &lt;br /&gt;Example: May be taken during the “FIFA World Cup 2020” only.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <Action rdf:about="http://www.w3.org/ns/odrl/2/execute">
@@ -1426,7 +1424,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">File Format</rdfs:label>
-    <skos:definition xml:lang="en">A transformed file format.</skos:definition>
+    <skos:definition xml:lang="en">A transformed file format of the target Asset.</skos:definition>
     <skos:note xml:lang="en">Example: An asset may be transformed into JPEG format.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -1554,7 +1552,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Industry Context</rdfs:label>
-    <skos:definition xml:lang="en">A defined industry sector.</skos:definition>
+    <skos:definition xml:lang="en">A defined industry sector setting a context for exercising the action of the Rule.</skos:definition>
     <skos:note xml:lang="en">Example: publishing or financial industry.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -1672,7 +1670,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Language</rdfs:label>
-    <skos:definition xml:lang="en">A natural language.</skos:definition>
+    <skos:definition xml:lang="en">A natural language used by the target Asset.</skos:definition>
     <skos:note xml:lang="en">Example: the asset can only be translated into Greek. Must use [[bcp47]] codes for language values.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -1725,7 +1723,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Media Context</rdfs:label>
-    <skos:definition xml:lang="en">Category of media context.</skos:definition>
+    <skos:definition xml:lang="en">Category of a media asset setting a context for exercising the action of the Rule.</skos:definition>
     <skos:note xml:lang="en">Example media types: electronic, print, advertising, marketing. Note: The used type should not be an IANA MediaType as they are focused on technical characteristics. </skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -1734,9 +1732,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Metered Time</rdfs:label>
-    <skos:definition xml:lang="en">An accumulated amount of time period. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</skos:definition>
-    <skos:note>Example: &lt;code&gt;meteredTime lteq P60M&lt;/code&gt; indicates an accumulated period of 60 Minutes or less.</skos:note>
-    <skos:note xml:lang="en">Only the eq, lt, lteq operators SHOULD be used.</skos:note>
+    <skos:definition xml:lang="en">An accumulated amount of one to many metered time periods which were used for exercising the action of the Rule. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</skos:definition>
+    <skos:note>Only the eq, lt, lteq operators SHOULD be used. See also Elapsed Time. &lt;br /&gt;Example: &lt;code&gt;meteredTime lteq P60M&lt;/code&gt; indicates an accumulated period of 60 Minutes or less.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <Action rdf:about="http://www.w3.org/ns/odrl/2/modify">
@@ -1881,7 +1878,7 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Payment Amount</rdfs:label>
     <skos:definition xml:lang="en">The amount of a financial payment. Right operand value MUST be an xsd:decimal. </skos:definition>
-    <skos:note xml:lang="en">Note: Can be used for compensation duties with the unit property indicating the currency of the payment.</skos:note>
+    <skos:note xml:lang="en">Can be used for compensation duties with the unit property indicating the currency of the payment.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <rdf:Property rdf:about="http://www.w3.org/ns/odrl/2/payeeParty">
@@ -1899,7 +1896,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Asset Percentage</rdfs:label>
-    <skos:definition xml:lang="en">A percentage amount. Right operand value MUST be an xsd:decimal from 0 to 100.</skos:definition>
+    <skos:definition xml:lang="en">A percentage amount of the target Asset relevant for exercising the action of the Rule. Right operand value MUST be an xsd:decimal from 0 to 100.</skos:definition>
     <skos:note xml:lang="en">Example: Extract less than or equal to 50%.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -1933,9 +1930,9 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
-    <rdfs:label xml:lang="en">Policy Usage Time</rdfs:label>
-    <skos:definition xml:lang="en">Indicates the time when the policy rule is exercised.</skos:definition>
-    <skos:note xml:lang="en">This can be used to express constraints related to the time the rule is exercised. For example,  &lt;code&gt;event lt policyUsage&lt;/code&gt; expresses a constraint on the Action to occur before the rule is exercised. Other operators may be used to indicate during (eg) or after (gt, gte) rule usage.</skos:note>
+    <rdfs:label xml:lang="en">Policy Rule Usage</rdfs:label>
+    <skos:definition xml:lang="en">Indicates the actual datetime the action of the Rule was exercised.</skos:definition>
+    <skos:note xml:lang="en">This can be used to express constraints with a LeftOperand relative to the time the rule is exercised. Operators indicate before (lt, lteq), during (eq) or after (gt, gteq) the usage of the rule. &lt;br /&gt;Example: &lt;code&gt;event lt policyUsage&lt;/code&gt; expresses that the identified event must have happened before the action of the rule is exercised.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </RightOperand>
   <Action rdf:about="http://www.w3.org/ns/odrl/2/present">
@@ -1969,7 +1966,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Product Context</rdfs:label>
-    <skos:definition xml:lang="en">A Product or service.</skos:definition>
+    <skos:definition xml:lang="en">Category of product or service setting a context for exercising the action of the Rule.</skos:definition>
     <skos:note xml:lang="en">Example: May only be used in the XYZ Magazine.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -2012,7 +2009,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Purpose</rdfs:label>
-    <skos:definition xml:lang="en">A defined Purpose.</skos:definition>
+    <skos:definition xml:lang="en">A defined purpose for exercising the action of the Rule.</skos:definition>
     <skos:note xml:lang="en">Example: Educational use.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -2030,8 +2027,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Recipient</rdfs:label>
-    <skos:definition xml:lang="en">The party receiving the result/outcome.</skos:definition>
-    <skos:note xml:lang="en">Note: The Right Operand must identify one or more specific Parties or category/ies of the Party.</skos:note>
+    <skos:definition xml:lang="en">The party receiving the result/outcome of exercising the action of the Rule.</skos:definition>
+    <skos:note xml:lang="en">The Right Operand must identify one or more specific Parties or category/ies of the Party.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <rdf:Property rdf:about="http://www.w3.org/ns/odrl/2/refinement">
@@ -2106,7 +2103,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Relative Asset Position</rdfs:label>
-    <skos:definition xml:lang="en">A point in space or time defined with coordinates relative to full measures the positioning of the Asset.</skos:definition>
+    <skos:definition xml:lang="en">A point in space or time defined with coordinates relative to full measures the positioning of the target Asset.</skos:definition>
     <skos:note xml:lang="en">Example: The upper left corner of a picture may be constrained to a specific position of the canvas rendering it.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -2115,7 +2112,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Relative Asset Size</rdfs:label>
-    <skos:definition xml:lang="en">Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects - expressed as percentages of full values - of the Asset.</skos:definition>
+    <skos:definition xml:lang="en">Measure(s) of one or two axes for 2D-objects or measure(s) of one to tree axes for 3D-objects - expressed as percentages of full values - of the target Asset.</skos:definition>
     <skos:note xml:lang="en">Example: The image can be resized in width to a maximum of 200%. Note: See the Left Operand absoluteSize. </skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -2125,8 +2122,8 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Relative Spatial Asset Position</rdfs:label>
     <skos:broaderTransitive rdf:resource="http://www.w3.org/ns/odrl/2/relativePosition"/>
-    <skos:definition xml:lang="en">The relative spatial positions - expressed as percentages of full values - of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space of the Asset.</skos:definition>
-    <skos:note xml:lang="en">Note: See the Left Operand absoluteSpatialAssetPosition.</skos:note>
+    <skos:definition xml:lang="en">The relative spatial positions - expressed as percentages of full values - of four corners of a rectangle on a 2D-canvas or the eight corners of a cuboid in a 3D-space of the target Asset.</skos:definition>
+    <skos:note xml:lang="en">See also Absolute Spatial Asset Position.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <LeftOperand rdf:about="http://www.w3.org/ns/odrl/2/relativeTemporalPosition">
@@ -2135,8 +2132,8 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Relative Temporal Asset Position</rdfs:label>
     <skos:broaderTransitive rdf:resource="http://www.w3.org/ns/odrl/2/relativePosition"/>
-    <skos:definition xml:lang="en">A point in space or time defined with coordinates relative to full measures the positioning of the Asset.</skos:definition>
-    <skos:note xml:lang="en">Example: The MP3 music file must be positioned between the positions at 33% and 48% of the temporal length of a stream. Note: See the Left Operand absoluteTemporalAssetPosition. </skos:note>
+    <skos:definition xml:lang="en">A point in space or time defined with coordinates relative to full measures the positioning of the target Asset.</skos:definition>
+    <skos:note xml:lang="en">See also Absolute Temporal Asset Position. &lt;br /&gt;Example: The MP3 music file must be positioned between the positions at 33% and 48% of the temporal length of a stream. </skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <rdf:Property rdf:about="http://www.w3.org/ns/odrl/2/remedy">
@@ -2163,7 +2160,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Rendition Resolution</rdfs:label>
-    <skos:definition xml:lang="en">Resolution of the rendition of the Asset.</skos:definition>
+    <skos:definition xml:lang="en">Resolution of the rendition of the target Asset.</skos:definition>
     <skos:note xml:lang="en">Example: the image may be printed at 1200dpi.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -2280,8 +2277,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Geospatial Named Area</rdfs:label>
-    <skos:definition xml:lang="en">A named and identified geospatial area with defined borders. An IRI MUST be used to represent this value.</skos:definition>
-    <skos:note xml:lang="en">A code value for the area and source of the code must be presented in the Right Operand. For example, the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. </skos:note>
+    <skos:definition xml:lang="en">A named and identified geospatial area with defined borders which is used for exercising the action of the Rule. An IRI MUST be used to represent this value.</skos:definition>
+    <skos:note xml:lang="en">A code value for the area and source of the code must be presented in the Right Operand. &lt;br /&gt;Example: the [[iso3166]] Country Codes or the Getty Thesaurus of Geographic Names. </skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <LeftOperand rdf:about="http://www.w3.org/ns/odrl/2/spatialCoordinates">
@@ -2290,7 +2287,7 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Geospatial Coordinates</rdfs:label>
     <skos:broaderTransitive rdf:resource="http://www.w3.org/ns/odrl/2/spatial"/>
-    <skos:definition xml:lang="en">A set of coordinates setting the borders of a geospatial area. The coordinates MUST include longitude and latitude, they MAY include altitude and the geodetic datum.</skos:definition>
+    <skos:definition xml:lang="en">A set of coordinates setting the borders of a geospatial area used for exercising the action of the Rule. The coordinates MUST include longitude and latitude, they MAY include altitude and the geodetic datum.</skos:definition>
     <skos:note xml:lang="en">The default values are the altitude of earth's surface at this location and the WGS 84 datum.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -2333,15 +2330,16 @@
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">System</rdfs:label>
     <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
-    <skos:definition xml:lang="en">An identified computing system.</skos:definition>
+    <skos:definition xml:lang="en">An identified computing system used for exercising the action of the Rule.</skos:definition>
     <skos:exactMatch rdf:resource="http://www.w3.org/ns/odrl/2/systemDevice"/>
+    <skos:note>See System Device</skos:note>
   </LeftOperand>
   <LeftOperand rdf:about="http://www.w3.org/ns/odrl/2/systemDevice">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">System Device</rdfs:label>
-    <skos:definition xml:lang="en">An identified computing system.</skos:definition>
+    <skos:definition xml:lang="en">An identified computing system or computing device used for exercising the action of the Rule.</skos:definition>
     <skos:exactMatch rdf:resource="http://www.w3.org/ns/odrl/2/device"/>
     <skos:exactMatch rdf:resource="http://www.w3.org/ns/odrl/2/system"/>
     <skos:note xml:lang="en">Example: The system device can be identified by a unique code created from the used hardware.</skos:note>
@@ -2385,9 +2383,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Recurring Time Interval</rdfs:label>
-    <skos:definition xml:lang="en">A recurring period of time. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</skos:definition>
-    <skos:note>Example: &lt;code&gt;timeInterval eq P7D&lt;/code&gt; indicates a recurring 7 day period.</skos:note>
-    <skos:note xml:lang="en">Only the eq operator SHOULD be used.</skos:note>
+    <skos:definition xml:lang="en">A recurring period of time before the next execution of the action of the Rule. Right operand value MUST be an xsd:duration as defined by [[xmlschema11-2]].</skos:definition>
+    <skos:note>Only the eq operator SHOULD be used. &lt;br /&gt;Example: &lt;code&gt;timeInterval eq P7D&lt;/code&gt; indicates a recurring 7 day period.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <rdf:Property rdf:about="http://www.w3.org/ns/odrl/2/timedCount">
@@ -2516,8 +2513,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Unit Of Count</rdfs:label>
-    <skos:definition xml:lang="en">The unit of measure used for counting.</skos:definition>
-    <skos:note xml:lang="en">Typically used with Duties to indicate the unit entity to be counted of the Action. Example: A duty to compensate and a unitOfCount constraint of 'perUser' would indicate that the compensation by multiplied by the 'number of users'.</skos:note>
+    <skos:definition xml:lang="en">The unit of measure used for counting the executions of the action of the Rule.</skos:definition>
+    <skos:note xml:lang="en">Note: Typically used with Duties to indicate the unit entity to be counted of the Action. &lt;br /&gt;Example: A duty to compensate and a unitOfCount constraint of 'perUser' would indicate that the compensation by multiplied by the 'number of users'.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
   <Action rdf:about="http://www.w3.org/ns/odrl/2/use">
@@ -2532,7 +2529,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Version</rdfs:label>
-    <skos:definition xml:lang="en">The range of versions of the Asset.</skos:definition>
+    <skos:definition xml:lang="en">The version of the target Asset.</skos:definition>
     <skos:note xml:lang="en">Example: Single Paperback or Multiple Issues or version 2.0 or higher.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
@@ -2541,7 +2538,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/odrl/2/"/>
     <rdfs:label xml:lang="en">Virtual IT Communication Location</rdfs:label>
-    <skos:definition xml:lang="en">An identified location of the IT communication space.</skos:definition>
+    <skos:definition xml:lang="en">An identified location of the IT communication space which is relevant for exercising the action of the Rule.</skos:definition>
     <skos:note xml:lang="en">Example: an Internet domain or IP address range.</skos:note>
     <skos:scopeNote xml:lang="en">Non-Normative</skos:scopeNote>
   </LeftOperand>
