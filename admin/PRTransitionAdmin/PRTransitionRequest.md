@@ -9,8 +9,8 @@ Ralph,
 
 The  Permissions & Obligations Expression Working Group requests transition to PR status for two specifications on ODRL. The publication is planned for the 2018-01-04; the documents are follows:
 
-- ODRL Information Model
-- ODRL Vocabulary & Expression
+- ODRL Information Model 2.2
+- ODRL Vocabulary & Expression 2.2
 
 Also, due to the fact that the charter of the Working Group runs on on the 31st of December, 2017, the Working Group requests a small charter extension until the 28th of February, 2018, to properly accompany the PR transition and publish the two Recommendations. We would appreciate if this could be put on the agenda of W3M.
 
@@ -18,8 +18,8 @@ Also, due to the fact that the charter of the Working Group runs on on the 31st 
 (1) Document title, URIs, Abstract and Status
 =============================================
 
-ODRL Information Model
-----------------------
+ODRL Information Model 2.2
+--------------------------
 
 - Version ready to be published:
     - https://w3c.github.io/poe/model/
@@ -35,8 +35,8 @@ Policies are used to represent permitted and prohibited actions over a certain a
 Status:
 - http://w3c.github.io/poe/model/#sotd
 
-ODRL Vocabulary & Expression
-----------------------------
+ODRL Vocabulary & Expression 2.2
+--------------------------------
 
 - Version ready to be published
     - http://w3c.github.io/poe/vocab/
@@ -121,6 +121,7 @@ The tests are grouped along the features explicitly listed in the exit criteria:
 
 The implementation results are listed in:
 - https://w3c.github.io/poe/test/implementors
+- https://w3c.github.io/poe/test/vocab-results
 
 By the Polytechnic University of Madrid, IPTC, and Thomson-Reuters. The resulting test result fulfill the exit criteria (at least two, independent implementations for each feature). 
 

@@ -17,10 +17,10 @@ the Director's approval is in:
 The documents are as follows
 ----------------------------
 
-ODRL Information Model:
+ODRL Information Model 2.2:
 - https://www.w3.org/TR/2018/PR-odrl-model-20180104/
 
-ODRL Vocabulary & Expression:
+ODRL Vocabulary & Expression 2.2:
 - http://www.w3.org/TR/2018/PR-odrl-vocab-20180104/
 
 Abstract and Status Sections
