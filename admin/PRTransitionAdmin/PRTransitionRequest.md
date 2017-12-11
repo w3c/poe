@@ -124,7 +124,7 @@ The implementation results are listed in:
 
 By the Polytechnic University of Madrid, IPTC, and Thomson-Reuters. The resulting test result fulfill the exit criteria (at least two, independent implementations for each feature). 
 
-Additional, albeit partial, implementations are worked on at the Technical University of Vienna and INRIA, but they could not make it for the PR transition deadline.
+Additional, albeit partial, implementations are worked on at the Technical University of Vienna, but they could not make it for the PR transition deadline.
 
 Renato Iannella and Benedict Whittam Smith, Working Group Chairs  
 Ivan Herman, W3C Team Contact
