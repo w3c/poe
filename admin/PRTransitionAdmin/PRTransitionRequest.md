@@ -61,7 +61,7 @@ January 4, 2018. The group proposes the 4th of February as the end of the review
 ======================================================
 
 Decision to request the transition was made on 11th of December:
-- http://www.w3.org/2017/12/11-poe-minutes.html
+- https://www.w3.org/2017/12/11-poe-minutes.html#resolution1
 
 
 (4) Evidence That Documentation Satisfies Group's Requirements
