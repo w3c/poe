@@ -22,7 +22,7 @@ ODRL Information Model 2.2
 --------------------------
 
 - Version ready to be published:
-    - https://w3c.github.io/poe/model/
+    - https://w3c.github.io/poe/model/snapshots/PR-odrl-vocab-20180104/Overview.html
 - Final /TR URI when it gets published
     - https://www.w3.org/TR/2018/PR-odrl-model-20180104/
 
@@ -39,7 +39,7 @@ ODRL Vocabulary & Expression 2.2
 --------------------------------
 
 - Version ready to be published
-    - http://w3c.github.io/poe/vocab/
+    - https://w3c.github.io/poe/snapshots/PR-odrl-vocab-20180104/Overview.html
 - Final /TR URI when it gets published
     - http://www.w3.org/TR/2018/PR-odrl-vocab-20180104/
 

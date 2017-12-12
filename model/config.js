@@ -3,6 +3,7 @@ var respecConfig = {
         shortName:               "odrl-model",
         //publishDate:             "2017-09-26",
         crEnd:                   "2017-11-14",
+        prEnd:                   "2018-02-04",
         implementationReportURI: "https://w3c.github.io/poe/test/implementors",
         editors: [
             {   name:       "Renato Iannella",
@@ -19,8 +20,8 @@ var respecConfig = {
                 }
         ],
         lint:                    true,
-        previousMaturity:        "WD",
-        previousPublishDate:     "2017-02-23",
+        previousMaturity:        "CR",
+        previousPublishDate:     "2017-09-26",
         previousURI:             "https://www.w3.org/TR/2017/WD-odrl-model-20170223/",
         edDraftURI:              "https://w3c.github.io/poe/model/",
         wg:                      "Permissions & Obligations Expression Working Group",
