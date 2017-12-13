@@ -1,7 +1,7 @@
 var respecConfig = {
     specStatus:                 "ED",
     shortName:                  "odrl-vocab",
-    //publishDate:                "2017-09-26",
+    //publishDate:                "2018-01-04",
     edDraftURI:                 "https://w3c.github.io/poe/vocab/",
     crEnd:                      "2017-11-14",
     prEnd:                      "2018-02-04",
@@ -30,7 +30,7 @@ var respecConfig = {
                     mailto:     "vrodriguez@fi.upm.es"
             }
     ],
-    previousMaturity:           "WD",
+    previousMaturity:           "CR",
     previousPublishDate:        "2017-09-26",
     previousURI:                "https://www.w3.org/TR/2017/WD-vocab-odrl-20170223/",
     wg:                         "Permissions &amp; Obligations Expression Working Group",
