@@ -2,17 +2,17 @@
 * Transition requirements: https://www.w3.org/Guide/transitions?profile=CR&cr=new
 * Mail to be sent to: ralph@w3.org, cc to plh@w3.org, timbl@w3.org, w3t-comm@w3.org, chairs@w3.org, team-poe-chairs@w3.org
 
-[Sent on 2017-12-@@]
+[Sent on 2017-12-13]
 
 
-Ralph,
+Dear Ralph,
 
-The  Permissions & Obligations Expression Working Group requests transition to PR status for two specifications on ODRL. The publication is planned for the 2018-01-04; the documents are follows:
+The  Permissions & Obligations Expression Working Group requests transition to PR status for two specifications on ODRL. The publication is planned for 2018-01-04; the documents are follows:
 
 - ODRL Information Model 2.2
 - ODRL Vocabulary & Expression 2.2
 
-Also, due to the fact that the charter of the Working Group runs on on the 31st of December, 2017, the Working Group requests a small charter extension until the 28th of February, 2018, to properly accompany the PR transition and publish the two Recommendations. We would appreciate if this could be put on the agenda of W3M.
+Also, due to the fact that the charter of the Working Group ends on the 31st of December, 2017, the Working Group requests a short charter extension until the 28th of February, 2018, to properly accompany the PR transition and publish the two Recommendations. We would appreciate if this could be put on the agenda of W3M.
 
 
 (1) Document title, URIs, Abstract and Status
@@ -22,7 +22,7 @@ ODRL Information Model 2.2
 --------------------------
 
 - Version ready to be published:
-    - https://w3c.github.io/poe/model/snapshots/PR-odrl-vocab-20180104/Overview.html
+    - https://w3c.github.io/poe/snapshots/PR-odrl-model-20180104/index.html
 - Final /TR URI when it gets published
     - https://www.w3.org/TR/2018/PR-odrl-model-20180104/
 
@@ -39,7 +39,7 @@ ODRL Vocabulary & Expression 2.2
 --------------------------------
 
 - Version ready to be published
-    - https://w3c.github.io/poe/snapshots/PR-odrl-vocab-20180104/Overview.html
+    - https://w3c.github.io/poe/snapshots/PR-odrl-vocab-20180104/index.html
 - Final /TR URI when it gets published
     - http://www.w3.org/TR/2018/PR-odrl-vocab-20180104/
 
@@ -124,8 +124,6 @@ The implementation results are listed in:
 - https://w3c.github.io/poe/test/vocab-results
 
 By the Polytechnic University of Madrid, IPTC, and Thomson-Reuters. The resulting test result fulfill the exit criteria (at least two, independent implementations for each feature). 
-
-Additional, albeit partial, implementations are worked on at the Technical University of Vienna, but they could not make it for the PR transition deadline.
 
 Renato Iannella and Benedict Whittam Smith, Working Group Chairs  
 Ivan Herman, W3C Team Contact

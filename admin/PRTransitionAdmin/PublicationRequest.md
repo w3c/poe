@@ -7,8 +7,8 @@ To be sent to the webmaster, comm team, coralie, xueyuan, WG chairs the DD is av
 
 Denis,
 
-This is an official publication request for the publication of two ODRL Documents as Candidate Recommendations. The publication date is the 04 of January, 2018. The transition request for CR has been issued in:
-- https://lists.w3.org/Archives/Member/chairs/@@@@
+This is an official publication request for the publication of two ODRL Documents as Proposed Recommendations. The publication date is the 04 of January, 2018. The transition request for PR has been issued in:
+- https://lists.w3.org/Archives/Member/chairs/2017OctDec/0190.html
 
 the Director's approval is in:
 - @@@@
@@ -33,7 +33,7 @@ There are already snapshots on github:
 - https://w3c.github.io/poe/snapshots/PR-odrl-model-20180104/
 - https://w3c.github.io/poe/snapshots/PR-odrl-vocab-20180104/
 
-I plan to install those document in the course of @@@. 
+I plan to install those document before the the publication date, possibly before January. 
 
 The link checker has a few of problems with the ODRL Vocabulary & Expression. These are due to the fact that these URL-s refer to namespaces that do not have an HTML representations. I have checked the reported broken fragments, and they are all fine. The three URL-s are:
 

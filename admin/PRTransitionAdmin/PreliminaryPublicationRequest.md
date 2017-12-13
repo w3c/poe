@@ -11,8 +11,8 @@ ODRL Vocabulary & Expression
 
 The two document snapshots are already available
 
-- https://w3c.github.io/poe/snapshots/PR-odrl-model-20180104/
-- https://w3c.github.io/poe/snapshots/PR-odrl-vocab-20180104/
+- https://w3c.github.io/poe/snapshots/PR-odrl-model-20180104/index.html
+- https://w3c.github.io/poe/snapshots/PR-odrl-vocab-20180104/index.html
 
 And I will put them on the /TR/2018/ as soon as we have the Director's decision.
 
@@ -28,4 +28,4 @@ Thank you!
 
 Ivan
 
-[1] https://lists.w3.org/Archives/Member/chairs/2017@@@@@@@
+[1] https://lists.w3.org/Archives/Member/chairs/2017OctDec/0190.html
