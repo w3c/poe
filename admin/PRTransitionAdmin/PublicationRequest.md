@@ -28,12 +28,7 @@ Abstract and Status Sections
 
 See the previous URL-s
 
-There are already snapshots on github:
-
-- https://w3c.github.io/poe/snapshots/PR-odrl-model-20180104/
-- https://w3c.github.io/poe/snapshots/PR-odrl-vocab-20180104/
-
-I plan to install those document before the the publication date, possibly before January. 
+The documents have already been installed on the URL-s above.
 
 The link checker has a few of problems with the ODRL Vocabulary & Expression. These are due to the fact that these URL-s refer to namespaces that do not have an HTML representations. I have checked the reported broken fragments, and they are all fine. The three URL-s are:
 
