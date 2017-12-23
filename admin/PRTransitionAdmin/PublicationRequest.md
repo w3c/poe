@@ -1,4 +1,4 @@
-To be sent to the webmaster, comm team, coralie, xueyuan, WG chairs the DD is available.
+Sent on the 23 December, see https://lists.w3.org/Archives/Team/team-poe-chairs/2017Dec/0003.html
 
 ----
 
@@ -11,7 +11,7 @@ This is an official publication request for the publication of two ODRL Document
 - https://lists.w3.org/Archives/Member/chairs/2017OctDec/0190.html
 
 the Director's approval is in:
-- @@@@
+- https://lists.w3.org/Archives/Member/chairs/2017OctDec/0209.html
 
 
 The documents are as follows
