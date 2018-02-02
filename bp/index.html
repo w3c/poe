@@ -33,30 +33,82 @@
 				<p>
 					Within this document, the following namespace prefix bindings are used:
 				</p>
-				<table class="term-table">
-					<tr>
-						<th>Prefix</th>
-						<th>Namespace</th>
-					</tr>
-					<tr>
-						<td><code>rdf:</code></td>
-						<td><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></td>
-					</tr>
-					<tr>
-						<td><code>rdfs:</code></td>
-						<td><code>http://www.w3.org/2000/01/rdf-schema#</code></td>
-					</tr>
-					<tr>
-						<td><code>xsd:</code></td>
-						<td><code>http://www.w3.org/2001/XMLSchema#</code></td>
-					</tr>
-					<tr>
-						<td><code>ex:</code></td>
-						<td><code>http://example.com/ns#</code></td>
-					</tr>
-				</table>		
-		
-        </section>
+    <table class="def">
+        <tbody>
+          <tr>
+            <th>Prefix</th>
+            <th>Namespace</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>odrl</td>
+            <td>http://www.w3.org/ns/odrl/2/</td>
+            <td>ODRL Vocabulary</td>
+          </tr>
+          <tr>
+            <td>rdf</td>
+            <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
+            <td>[[!rdf11-concepts]]</td>
+          </tr>
+          <tr>
+            <td>rdfs</td>
+            <td>http://www.w3.org/2000/01/rdf-schema#</td>
+            <td>[[!rdf-schema]]</td>
+          </tr>
+             <tr>
+            <td>owl</td>
+            <td>http://www.w3.org/2002/07/owl#</td>
+            <td>[[!owl2-overview]]</td>
+          </tr>
+        <tr>
+            <td>xsd</td>
+            <td>http://www.w3.org/2001/XMLSchema#</td>
+            <td>[[!xmlschema11-2]]</td>
+          </tr>
+              <tr>
+            <td>skos</td>
+            <td>http://www.w3.org/2004/02/skos/core#</td>
+            <td>[[!skos-reference]]</td>
+          </tr>
+          <tr>
+            <td>dcterms</td>
+            <td>http://purl.org/dc/terms/</td>
+            <td>[[dcterms]]</td>
+          </tr>
+            <tr>
+            <td>vcard</td>
+            <td>http://www.w3.org/2006/vcard/ns#</td>
+            <td>[[vcard-rdf]]</td>
+          </tr>
+          <tr>
+            <td>foaf</td>
+            <td>http://xmlns.com/foaf/0.1/</td>
+            <td>[[foaf]]</td>
+          </tr>
+         
+          <tr>
+            <td>schema</td>
+            <td>http://schema.org/</td>
+            <td><a href="http://schema.org/">schema.org</a></td>
+          </tr>
+			
+			 <tr>
+            <td>cc</td>
+            <td>https://creativecommons.org/ns#</td>
+            <td><a href="https://creativecommons.org/ns#">creativecommons.org</a></td>
+          </tr>
+    
+			 <tr>
+            <td>ex</td>
+            <td>http://example.com/ns#</td>
+            <td></td>
+          </tr>
+         
+        </tbody>
+      </table>
+
+    </section>   				
+
 		
 		
 		<!--<form id="langOptions" action="#">View as: <label><input name="presLang" value="turtle" checked="checked" type="radio">Turtle (press 't')</label>
@@ -68,22 +120,86 @@
 		<section id="examples">
 		<h2>Examples of use</h2> 	
 		
-		<h3>Examples 1: Sample policy</h3> 
+		ODRL is a structured language to express rhat something is permitted, forbidden or obliged, possibly limited by some constraints. ODRL is of particular interest for representing computer policies, licenses and any document where deontic modalities need to have a digital form. ODRL was specified considering <a href="http://w3c.github.io/poe/ucr/">27 use cases</a>, nonetheless a few examples of use follow.
 		
-		<pre>
-&lt;http://example.org/policy/1&gt; odrl:permission [
-  odrl:target &lt;http://example.com/asset/1&gt;&#160;;
-  odrl:assignee &lt;http://example.com/party/Alice&gt;&#160;;
-  odrl:action odrl:use
-]&#160;;
-rdfs:label <span class="hljs-string">This is a sample policy</span>
-		</pre>
+		<h3>Example 1: Representation of common licenses</h3> 
+		The use of common licenses has become popular among those publishing software, data, photographs and other resources online. These text licenses describe under which conditions the resource can be used. Examples of licenses are the GNU General Public License, the Creative Commons CC-BY 4.0 license, or the UK Open Government License. 
 		
+		The key information in these text documents (waived rights, constraints, prohibitions and obligations) can be represented in a structured language (they have been actually represented in RDF, for example see <a href="https://www.w3.org/2012/pyRdfa/extract?uri=http%3A%2F%2Fwww.nationalarchives.gov.uk%2Fdoc%2Fopen-government-licence%2Fversion%2F3%2F&format=turtle&rdfagraph=output&vocab_expansion=false&rdfa_lite=false&embedded_rdf=true&space_preserve=true&vocab_cache=true&vocab_cache_report=false&vocab_cache_refresh=false">the latter</a>). ODRL can also be used to describe the core information in the licenses. Having the licensing information in a digital form enables:
+		<ul>
+		<li><em>Search-by-license</em>. If resources are published along with an ODRL license, applications can be developed that perform a search-by-license, where one of the fields in a search form is the type of license of the resource, or the presence of a specific right or obligation (e.g. <em>give me photos of Rome that I can publish in commercial applications</em> ).</li>
+		<li><em>License compatibility</em>. Some works are created as a derivation of two existing works. The licenses of the reused works can limit the license of the composite work, and even certain licenses are incompatible cannot be used in resources bundled together. The digital expression of rights favours smart applications to reason on license compatibility.</li>
+		<li><em>Reducing the impact of license proliferation</em>. Even if the number of licenses has not stopped growing, having an ODRL version of non-famous licenses would enable their renderization using visual elements to make the license understandable in a glimpse.</li>
+		</ul>
+		
+		<!-- 
+		
+http://data.open.ac.uk/licence-picker/?controller=picker&action=index
+http://rdflicense.appspot.com/
+https://tldrlegal.com/
+http://licentia.inria.fr/
+http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-published_v1_0.xlsx		
+		-->
+		
+		<h3>Example 2: Representation of access policies to digital resources</h3> 
+		Computer policies govern the access to digital resources. Whereas ODRL provides no mechanism whatsoever to implement any access control logic, ODRL policies can describe how an external access control system should behave. Advantages of having an ODRL representation of access policies:
+		<ul>
+		<li><em>Neutrality</em>. ODRL is completely neutral about the technology used (if any) to grant access to a certain resource.</li>
+		<li><em>Extendability</em>. New allowed actions and new constraints can be created. They can be arranged in a hierarchical form.</li>
+		</li>
+		<h3>Example 3: Representation of rights in rules</h3>
+		Even if ODRL is not capable of accessing the subtleties of legislation, the actions that are forbidden in a certain sorts of noms can be represented in ODRL and act as a summary. 	See <a href="http://w3c.github.io/poe/ucr/#POE.UC.04">UC4</a>. Advantages of an ODRL representation:
+		<ul>
+		<li><em>Summarization</em>. Key actions that are prohibited or permitted are captured in an ODRL policy hance favoring summarization.</li>
+		<li><em>Compliance checking</em>. Business processes can be determined as compliant or non-compliant.</li>
+		</li>
         </section>
 
 		<section id="styles">
 		<h2>Style guide</h2> 	
+		We can resume here the examples in the <a href="https://www.w3.org/2016/poe/wiki/Best_Practices">wiki</a>.
+		
+		
+<div class="example"><div class="example-title marker"><span>Example 1</span></div><pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">{
+    <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
+    <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Offer"</span>,
+    <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
+    <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:01"</span>,
+    <span class="hljs-attr">"permission"</span>: [{
+        <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898.movie"</span>,
+        <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/party:org:abc"</span>,
+        <span class="hljs-attr">"action"</span>: <span class="hljs-string">"play"</span>
+    }]
+}</pre></div>		
+		
         </section>
+
+		<section id="implementation">
+		<h2>Implementation guidance</h2> 	
+		Two operations are defined over ODRL expressions: validation and evaluation. This section provides some guidance on how to implement the validation and the evaluation. See the <a href="https://www.w3.org/2016/poe/wiki/Validation">validation</a> article in the wiki.
+        </section>
+
+		<section id="data">
+		<h2>Sample ODRL policies</h2> 	
+			This section provides some sample ODRL policies. The policies in <a href="http://odrlapi.appspot.com/">this file</a> has been used to evaluate some test cases.
+			
+
+<div class="example"><div class="example-title marker"><span>Example 1</span></div><pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">{
+    <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
+    <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Offer"</span>,
+    <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
+    <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:01"</span>,
+    <span class="hljs-attr">"permission"</span>: [{
+        <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898.movie"</span>,
+        <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/party:org:abc"</span>,
+        <span class="hljs-attr">"action"</span>: <span class="hljs-string">"play"</span>
+    }]
+}</pre></div>		
+
+			
+        </section>
+		
+		
 		
 		<section class='appendix'>
 
@@ -102,7 +218,7 @@ rdfs:label <span class="hljs-string">This is a sample policy</span>
 		
 			<h2>Acknowledgements</h2>
 			<p>
-				We would like to acknowledge the contributions to this document by....
+				We would like to acknowledge the contributions to this document by the participants of the W3C POE WG and the W3C ODRL Community Group.
 			</p>
 		</section>
 <section id='tof'/>				
