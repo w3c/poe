@@ -160,7 +160,7 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 		<h2>Sample policies</h2> 
 <!--		We can resume here the examples in the <a href="https://www.w3.org/2016/poe/wiki/Best_Practices">wiki</a>. -->
 
-		<h3>1. A first policy in ODRL (JSON-LD)</h3>
+		<h3>1. A first ODRL policy (JSON-LD)</h3>
 		The following ODRL policiy might be read as "Movie 9898 can be used".
 		<div class="example"><div class="example-title marker"><span>Example 1</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
@@ -186,8 +186,11 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 		</ul>
 		
 		
-		<h3>2. A first policy in ODRL (RDF Turtle)</h3>		
-		JSON-LD is only one of the possible serializations of ODRL a policy. The following example shows the same policy as in Example 1 but in RDF Turtle. Example 1 and Example 2 have the same meaning.
+		<h3>2. A first ODRL policy (RDF Turtle)</h3>		
+		JSON-LD is only one of the possible serializations of ODRL a policy. The following example shows the same policy as in Example 1 but in RDF Turtle. 
+		An ODRL policy is an instance of the class <a href="https://www.w3.org/TR/vocab-odrl/#term-Policy">odrl:Policy</a>. The <code>odrl:Policy</code> is defined in the ODRL Ontology
+		
+		Example 1 and Example 2 have the same meaning.
 		<div class="example"><div class="example-title marker"><span>Example 2</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
 @prefix odrl: &lt;http://www.w3.org/ns/odrl/2/&gt;
@@ -212,39 +215,23 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 	</pre></div>
 	Alternative forms for the same policy are also possible. For example, one might want to attribute a certain policy to a certain asset. 
 	As specified in the <a href="https://www.w3.org/TR/odrl-model/#policy-has">ODRL Information Model</a>, the following code would be equivalent.
+	The RDF triple in line 02 of Example 3b may be stored in a content repository, whereas lines 03 through 06 may be stored in a license repository.
 	<div class="example"><div class="example-title marker"><span>Example 3b</span></div>
 	<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
-@prefix dct: &lt;http://purl.org/dc/terms/&gt; 
-&lt;http://example.com/asset:9898.movie&gt; odrl:hasPolicy &lt;http://example.com/policy:1010&gt; .
-&lt;http://example.com/policy:1010&gt; odrl:permission [
-  odrl:target &lt;http://example.com/asset:9898.movie&gt; ;
-  odrl:action odrl:use
-] ;
+01 @prefix dct: &lt;http://purl.org/dc/terms/&gt; 
+02 &lt;http://example.com/asset:9898.movie&gt; odrl:hasPolicy &lt;http://example.com/policy:1010&gt; .
+03 &lt;http://example.com/policy:1010&gt; odrl:permission [
+04   odrl:target &lt;http://example.com/asset:9898.movie&gt; ;
+05   odrl:action odrl:use
+06 ] ;
 	</pre></div>
 	
-https://www.w3.org/TR/odrl-model/#composition-compact
-	<div class="example"><div class="example-title marker"><span>Example 4b</span></div>
-	<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
-@prefix dct: &lt;http://purl.org/dc/terms/&gt; 
-&lt;http://example.com/asset:9898.movie&gt; odrl:hasPolicy &lt;http://example.com/policy:1010&gt; .
-&lt;http://example.com/policy:1010&gt; odrl:permission [
-  odrl:target &lt;http://example.com/asset:9898.movie&gt; ;
-  odrl:action odrl:use
-] ;
-	</pre></div>
 
-	
-	
-	
-	
-
-	
-	
-		
-<h3>4. A first example in XML</h3>		
+<h3>4. A first ODRL policy (XML)</h3>		
 tbd
-<h3>5. How to grant Alice the permission to use an asset</h3>		
-	The following ODRL policiy might be read as "Alice can use Asset 1".
+
+<h3>5. An ODRL policy with two rules</h3>		
+	The following ODRL policiy might be read as "Alice can use Asset 1, but Bob can't".
 	
 	<div class="example"><div class="example-title marker"><span>Example 5 (Turtle)</span></div>
 	<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
@@ -252,7 +239,14 @@ tbd
   odrl:target &lt;http://example.com/asset/1&gt; ;
   odrl:assignee &lt;http://example.com/party/Alice&gt; ;
   odrl:action odrl:use
-] 	</pre></div>
+ ];
+ odrl:prohibition [
+   odrl:target &lt;http://example.com/asset/1&gt; ;
+   odrl:assignee &lt;http://example.com/party/Bob&gt; ;
+   odrl:action odrl:use
+ ].
+
+ 	</pre></div>
 
 	<div class="example"><div class="example-title marker"><span>Example 5 (JSON-LD)</span></div>
 	<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
@@ -264,10 +258,56 @@ tbd
 		"target": "http://example.com/asset/1",
 		"assignee": "http://example.com/party/Alice",
 		"action": "use"
+	}],
+	"prohibition": [{
+		"target": "http://example.com/asset/1",
+		"assignee": "http://example.com/party/Bob",
+		"action": "use"
 	}]
 }		
-        </section>
+</pre></div>
+ODRL policies with more than one rule can be simplified (<a href="https://www.w3.org/TR/odrl-model/#composition-compact
+">Section 2.7.1</a> in the Information Model). Elements common to every rule can be expressed at root lovel. Policies making use of this feature are called <b>compact policies</b>, an example of them follows.
+	
+	<div class="example"><div class="example-title marker"><span>Example 5b (Turtle)</span></div>
+	<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+&lt;http://example.org/policy/5&gt; 
+  odrl:target &lt;http://example.com/asset/1&gt; ;
+  odrl:action odrl:use ;
+  odrl:permission [
+    odrl:assignee &lt;http://example.com/party/Alice&gt; ;
+  ];
+  odrl:prohibition [
+   odrl:assignee &lt;http://example.com/party/Bob&gt; ;
+  ].
+ 	</pre></div>
 
+	<div class="example"><div class="example-title marker"><span>Example 5b (JSON-LD)</span></div>
+	<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+{
+	"@context": "http://www.w3.org/ns/odrl.jsonld",
+	"@type": "Set",
+	"uid": "http://example.org/policy/5",
+	"action": "use",
+	"target": "http://example.com/asset/1",
+	"permission": [{
+		"assignee": "http://example.com/party/Alice",
+	}],
+	"prohibition": [{
+		"assignee": "http://example.com/party/Bob",
+	}]
+}	
+	</pre></div>
+
+
+
+
+
+
+
+
+
+        </section>
 		<section id="implementation">
 		<h2>Implementation guidance</h2> 	
 		Two operations are defined over ODRL expressions: validation and evaluation. This section provides some guidance on how to implement the validation and the evaluation. See the <a href="https://www.w3.org/2016/poe/wiki/Validation">validation</a> article in the wiki.
