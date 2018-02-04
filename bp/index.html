@@ -299,36 +299,67 @@ ODRL policies with more than one rule can be simplified (<a href="https://www.w3
 }	
 	</pre></div>
 
-
-
-
-
-
-
-
-
         </section>
-		<section id="implementation">
+<!--		<section id="implementation">
 		<h2>Implementation guidance</h2> 	
 		Two operations are defined over ODRL expressions: validation and evaluation. This section provides some guidance on how to implement the validation and the evaluation. See the <a href="https://www.w3.org/2016/poe/wiki/Validation">validation</a> article in the wiki.
-        </section>
+        </section> -->
 
 		<section id="data">
 		<h2>Sample ODRL policies</h2> 	
-			This section provides some sample ODRL policies. The policies in <a href="http://odrlapi.appspot.com/">this file</a> has been used to evaluate some test cases.
+			This section provides some sample ODRL policies. 
+			
+			<p>The policies in <a href="http://odrlapi.appspot.com/">this file</a> has been used to evaluate some test cases.</p>
+			
+			<p>ODRL policies can represent the key content in instance licenses. As an example, the representation of the W3C Software and Document Notice and License follows. Please do note that the W3C Consortium does not endorse nor recommend this representation, which is only an effort of the editors of this document to illustrate how ODRL policies could represent textual licenses.</p>
 			
 
-<div class="example"><div class="example-title marker"><span>Example 1</span></div><pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">{
-    <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"http://www.w3.org/ns/odrl.jsonld"</span>,
-    <span class="hljs-attr">"@type"</span>: <span class="hljs-string">"Offer"</span>,
-    <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"http://example.com/policy:1011"</span>,
-    <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"http://example.com/odrl:profile:01"</span>,
-    <span class="hljs-attr">"permission"</span>: [{
-        <span class="hljs-attr">"target"</span>: <span class="hljs-string">"http://example.com/asset:9898.movie"</span>,
-        <span class="hljs-attr">"assigner"</span>: <span class="hljs-string">"http://example.com/party:org:abc"</span>,
-        <span class="hljs-attr">"action"</span>: <span class="hljs-string">"play"</span>
-    }]
-}</pre></div>		
+<div class="example"><div class="example-title marker"><span>Example 1</span></div><pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+@prefix cc:      &lt;http://creativecommons.org/ns#&gt; .
+@prefix dct:     &lt;http://purl.org/dc/terms/&gt; .
+@prefix rdf:     &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs:    &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix odrl:    &lt;http://www.w3.org/ns/odrl/2/&gt; .
+
+&lt;http://purl.org/NET/rdflicense/W3C1.0&gt;
+      a       odrl:Policy ;
+      rdfs:label &quot;W3C Software Notice and License&quot; ;
+      dct:source &lt;https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document&gt; ;
+      dct:hasVersion &quot;1.0&quot; ;
+      dct:language &lt;http://www.lexvo.org/page/iso639-3/eng&gt; ;
+      dct:publisher &quot;W3C&quot; ;
+      odrl:permission
+      [ 
+         odrl:action odrl:distribute , odrl:modify , odrl:reproduce
+	     odrl:duty
+		 [   
+		    odrl:action cc:Notice , cc:ShareAlike
+		 ] ;
+	  ] ;
+      cc:legalcode &quot;&quot;&quot;
+License
+By obtaining and/or copying this work, you (the licensee) agree that you have read, understood, and will comply with the following terms and conditions.
+
+Permission to copy, modify, and distribute this work, with or without modification, for any purpose and without fee or royalty is hereby granted, provided that you include the following on ALL copies of the work or portions thereof, including modifications:
+
+The full text of this NOTICE in a location viewable to users of the redistributed or derivative work.
+Any pre-existing intellectual property disclaimers, notices, or terms and conditions. If none exist, the W3C Software and Document Short Notice should be included.
+Notice of any changes or modifications, through a copyright statement on the new code or document such as &quot;This software or document includes material copied from or derived from [title and URI of the W3C document]. Copyright &copy; [YEAR] W3C&reg; (MIT, ERCIM, Keio, Beihang).&quot;
+Disclaimers
+THIS WORK IS PROVIDED &quot;AS IS,&quot; AND COPYRIGHT HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR DOCUMENT WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+
+COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR DOCUMENT.
+
+The name and trademarks of copyright holders may NOT be used in advertising or publicity pertaining to the work without specific, written prior permission. Title to copyright in this work will at all times remain with copyright holders.
+
+Notes
+This version: http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+
+Previous version: http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
+
+This version makes clear that the license is applicable to both software and text, by changing the name and substituting &quot;work&quot; for instances of &quot;software and its documentation.&quot; It moves &quot;notice of changes or modifications to the files&quot; to the copyright notice, to make clear that the license is compatible with other liberal licenses.
+&quot;&quot;&quot;@en .
+</pre></div>		
 
 			
         </section>
