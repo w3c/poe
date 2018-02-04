@@ -470,7 +470,7 @@
 <p>An ODRL validator MUST support the following sub-properties of <code><em>function</em></code>:</p>
 <ul>
 <li><code>assigner</code>: indicates the Party that is issuing the Rule. For example, the Party granting a Permission or requiring an agreed Duty to be fulfilled.</li>
-<li><code>assignee</code>: indicates that the Party that is the recipient the Rule. For example, the Party being granted a Permission or required to fulfil an agreed Duty.</li>
+<li><code>assignee</code>: indicates that the Party that is the recipient the of Rule. For example, the Party being granted a Permission or required to fulfil an agreed Duty.</li>
 </ul>
  
     <p>Additional <code><em>function</em></code> subtype properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
@@ -565,7 +565,7 @@
 	If there are multiple Rules in the Policy, then the inferred Party will undertake the functional role  to <strong>every</strong> Rule in the Policy.</p>
         
 <blockquote>
-<p>Example Use Case: The below snippet shows some vCard metadata describing an individual Party. The <code>odrl:assigneeOf</code> property links to the ODRL Policy <code>http://example.com/policy:1011</code> (this is the Offer Policy described above). In this case, the Party <code>http://example.com/person/billie</code> is now also the assignee of the Permission in Policy <code>http://example.com/policy:1011</code>. If there were additional Rules in this Policy, then the same Party would the assignee for each Rule.</p>
+<p>Example Use Case: The below snippet shows some vCard metadata describing an individual Party. The <code>odrl:assigneeOf</code> property links to the ODRL Policy <code>http://example.com/policy:1011</code> (this is the Offer Policy described above). In this case, the Party <code>http://example.com/person/billie</code> is now also the assignee of the Permission in Policy <code>http://example.com/policy:1011</code>. If there were additional Rules in this Policy, then the same Party would be the assignee for each Rule.</p>
 </blockquote>
 
 <pre id="eg11" class="example hljs json">
@@ -981,7 +981,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 <h3>Rule Class</h3>
 
 
-<p>The Rule class is the parent of the Permission, Prohibition, and Duty classes. The Rule class represents the common characteristics of these three classes. A Rule class MUST be disjoint will all other Rule subclasses.
+<p>The Rule class is the parent of the Permission, Prohibition, and Duty classes. The Rule class represents the common characteristics of these three classes. A Rule class MUST be disjoint with all other Rule subclasses.
 </p>
 
 <p>The Rule class has the following properties:</p>
@@ -1304,7 +1304,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	
 <blockquote>
-<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/org:99</code> prohibits the assignee to index the Asset <code>http://example.com/data:77</code>. If the assignee does actually index the target asset, then the remedy will be that the MUST anonymize the target asset <code>http://example.com/data:77</code>.</p>
+<p>Example Use Case: The below Agreement between assigner <code>http://example.com/person:88</code> and assignee <code>http://example.com/org:99</code> prohibits the assignee to index the Asset <code>http://example.com/data:77</code>. If the assignee does actually index the target asset, then the remedy will be that they MUST anonymize the target asset <code>http://example.com/data:77</code>.</p>
     </blockquote>
 
 
@@ -1751,7 +1751,7 @@ To create an ODRL Profile, direct extensions to the ODRL Core Vocabulary classes
      <th>Example</th>
    </tr>
    <tr>
-	   <td>Additional Policy Subclasses:<br/>Create a subclass the ODRL Policy class and define it as disjoint with all other Policy subclasses (except Set).</td>
+	   <td>Additional Policy Subclasses:<br/>Create a subclass of the ODRL Policy class and define it as disjoint with all other Policy subclasses (except Set).</td>
      <td><code>ex:myPolicyType rdfs:subClassOf odrl:Policy .</code><br/>
      <code>owl:disjointWith :Agreement :Offer, :Privacy, :Request, :Ticket, :Assertion .</code>
      </td>
