@@ -10,8 +10,7 @@ The Call for review for the POE Recommendations have ended on the 4th of Februar
 
 https://www.w3.org/2002/09/wbs/33280/odrl-pr/results
 
-The Permissions & Obligations Expression Working Group requests the green light to publish the Recommendatations that were reviewed. Here are the details:
-W3M.
+The Permissions & Obligations Expression Working Group requests the green light to publish the Recommendations that were reviewed. Here are the details:
 
 
 (1) Document title, URIs, Abstract and Status
@@ -63,11 +62,7 @@ The review has resulted in some minor editorial remarks:
 
 https://github.com/w3c/poe/issues?utf8=✓&q=is%3Aissue+label%3A%22PR+Review%22+
 
-Beyond simple typos, these comment:
-
-- proposes to use https in all the examples rather than http (issue #290)
-- revealed a minor error in the accompanying OWL ontology (issue #289)
-- proposed to add a disclaimer to an earlier document at the time of publication (#224)
+None of these comments were significants (mostly typos); some, actually, did not refer to the recommendations themselves (e.g., issues #239 and #224).
 
 
 (4) Disposition of Comments
@@ -77,9 +72,7 @@ See
 
 https://www.w3.org/2002/09/wbs/33280/odrl-pr/results
 
-19 votes have been cast. 7 members (namely Apple, Macmillan, Adobe, Mozilla, HM Government, Accessible Media Inc., Airbnb) abstained. 15 members (namely Institut Telecom, VitalSource, Thomson Reuters, UPC, BISG, INRIA, UPM, ANU, Wiley, Foundation CTIC, WU, The Copyright Hub Foundation, BBC, the European Broadcasting Union, PONS GmbH) voted to publish the document as is.
-
-(Note that Macmillan and Pons are TPI members, ie, their code do not really count...)
+22 votes have been cast. 7 members abstained. 15 members voted to publish the document as is.
 
 
 (5) Objections
@@ -91,7 +84,7 @@ There were no formal objections.
 (6) Patent disclosures
 ======================
 
-No patent disclosures for these documents at the moment:
+No patent disclosures for these documents:
 - https://www.w3.org/2004/01/pp-impl/87755/exclude
 
 
@@ -102,16 +95,16 @@ Errata for the document will be recorded on Github:
 
 https://www.w3.org/2016/poe/errata/
 
-and managed (ie, approve or disapprove, propose changes) by the ODRL Community Group:
+and managed (i.e., approve or disapprove, propose changes) by the ODRL Community Group:
 
 https://www.w3.org/community/odrl/
 
 (8) Miscellaneous
 =================
 
-- The group plans to publish a Working Group Note on ODRL best practices alongside the Recommendations (hence the slight delay in publishing)
-- The group will prepare an ODRL, ie, machine readable version, of the W3C Software and Document license, which will be linked to the final documents via a <link> tag in the header... (using the "license" relationship)
+- The group plans to publish a Working Group Note on ODRL Best Practices. Although a first draft already exists (https://w3c.github.io/poe/bp/), the group is not sure when it will be in a publishable state, so the decision is to publish that document a few weeks after the publication of the Recommendations.
 
+- The group will prepare an ODRL, i.e., machine readable version of the W3C Software and Document license. That will be linked from the BP document using a <link> tag in the header, and will provide an example on how that can be used in other W3C documents.
 
 
 
