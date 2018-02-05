@@ -23,6 +23,18 @@ ODRL Information Model 2.2:
 ODRL Vocabulary & Expression 2.2:
 - http://www.w3.org/TR/2018/PR-odrl-vocab-20180215/
 
+
+Additional TR modification
+--------------------------
+
+As an additional action, there is an old document (a W3C Note):
+
+https://www.w3.org/TR/odrl/
+http://www.w3.org/TR/2002/NOTE-odrl-20020919/
+
+That needs a remark on the top that notifies the reader about the availability of the new Recommendations. I have a new version on my disc, I only need your greed light to update the document. 
+
+
 Abstract and Status Sections
 ----------------------------
 
