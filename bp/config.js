@@ -5,8 +5,6 @@ var respecConfig = {
     edDraftURI: "https://w3c.github.io/poe/bp/",
     editors: [	{   name:       "Benedict Whittam Smith",
          	company:    "Thomson Reuters"},
-         	{   name:       "Paul Jessop",
-         	company:    "Recording Industry Association of America"},
          	 {  name:       "Víctor Rodríguez-Doncel",
                     url:        "https://www.linkedin.com/in/victor-rodriguez-doncel-554b5213/en",
                     company:    "Universidad Politécnica de Madrid",
