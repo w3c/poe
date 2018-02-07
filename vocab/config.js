@@ -1,7 +1,7 @@
 var respecConfig = {
-    specStatus:                 "ED",
+    specStatus:                 "REC",
     shortName:                  "odrl-vocab",
-    //publishDate:                "2018-01-04",
+    publishDate:                "2018-02-15",
     edDraftURI:                 "https://w3c.github.io/poe/vocab/",
     crEnd:                      "2017-11-14",
     prEnd:                      "2018-02-04",
@@ -30,9 +30,9 @@ var respecConfig = {
                     mailto:     "vrodriguez@fi.upm.es"
             }
     ],
-    previousMaturity:           "CR",
-    previousPublishDate:        "2017-09-26",
-    previousURI:                "https://www.w3.org/TR/2017/WD-vocab-odrl-20170223/",
+    previousMaturity:           "PR",
+    previousPublishDate:        "2018-01-04",
+    previousURI:                "ttps://www.w3.org/TR/2018/PR-odrl-vocab-20180104/",
     wg:                         "Permissions &amp; Obligations Expression Working Group",
     wgURI:                      "https://www.w3.org/2016/poe/",
     wgPublicList:               "public-poe-comments",
@@ -52,7 +52,7 @@ var respecConfig = {
             },
                    {
                     value: "Issue Tracker",
-                    href: "https://github.com/w3c/poe/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aopen%20label%3AVocab"
+                    href: "https://github.com/w3c/poe/issues"
                 }]
         }
     ]

@@ -1,9 +1,9 @@
 var respecConfig = {
-        specStatus:              "ED",
+        specStatus:              "REC",
         shortName:               "odrl-model",
-        //publishDate:             "2017-09-26",
-        crEnd:                   "2017-11-14",
-        prEnd:                   "2018-02-04",
+        publishDate:             "2018-02-15",
+        //crEnd:                   "2017-11-14",
+        //prEnd:                   "2018-02-04",
         implementationReportURI: "https://w3c.github.io/poe/test/implementors",
         editors: [
             {   name:       "Renato Iannella",
@@ -20,9 +20,9 @@ var respecConfig = {
                 }
         ],
         lint:                    true,
-        previousMaturity:        "CR",
-        previousPublishDate:     "2017-09-26",
-        previousURI:             "https://www.w3.org/TR/2017/WD-odrl-model-20170223/",
+        previousMaturity:        "PR",
+        previousPublishDate:     "2018-01-04",
+        previousURI:             "https://www.w3.org/TR/2018/PR-odrl-model-20180104/",
         edDraftURI:              "https://w3c.github.io/poe/model/",
         wg:                      "Permissions & Obligations Expression Working Group",
         wgURI:                   "https://www.w3.org/2016/poe/",
@@ -48,7 +48,7 @@ var respecConfig = {
                 },
                     {
                         value: "Issue Tracker",
-                        href: "https://github.com/w3c/poe/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aopen%20label%3AModel"
+                        href: "https://github.com/w3c/poe/issues"
                     } ]
             }
         ]
