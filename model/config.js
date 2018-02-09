@@ -1,7 +1,7 @@
 var respecConfig = {
-        specStatus:              "REC",
+        specStatus:              "ED",
         shortName:               "odrl-model",
-        publishDate:             "2018-02-15",
+        //publishDate:             "2018-02-15",
         //crEnd:                   "2017-11-14",
         //prEnd:                   "2018-02-04",
         implementationReportURI: "https://w3c.github.io/poe/test/implementors",
@@ -20,9 +20,9 @@ var respecConfig = {
                 }
         ],
         lint:                    true,
-        previousMaturity:        "PR",
-        previousPublishDate:     "2018-01-04",
-        previousURI:             "https://www.w3.org/TR/2018/PR-odrl-model-20180104/",
+        previousMaturity:        "REC",
+        previousPublishDate:     "2018-02-15",
+        previousURI:             "https://www.w3.org/TR/2018/PR-odrl-model-20180215/",
         edDraftURI:              "https://w3c.github.io/poe/model/",
         wg:                      "Permissions & Obligations Expression Working Group",
         wgURI:                   "https://www.w3.org/2016/poe/",

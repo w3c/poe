@@ -1,7 +1,7 @@
 var respecConfig = {
-    specStatus:                 "REC",
+    specStatus:                 "ED",
     shortName:                  "odrl-vocab",
-    publishDate:                "2018-02-15",
+    //publishDate:                "2018-02-15",
     edDraftURI:                 "https://w3c.github.io/poe/vocab/",
     crEnd:                      "2017-11-14",
     prEnd:                      "2018-02-04",
@@ -30,9 +30,9 @@ var respecConfig = {
                     mailto:     "vrodriguez@fi.upm.es"
             }
     ],
-    previousMaturity:           "PR",
-    previousPublishDate:        "2018-01-04",
-    previousURI:                "ttps://www.w3.org/TR/2018/PR-odrl-vocab-20180104/",
+    previousMaturity:           "REC",
+    previousPublishDate:        "2018-02-15",
+    previousURI:                "ttps://www.w3.org/TR/2018/PR-odrl-vocab-20180215/",
     wg:                         "Permissions &amp; Obligations Expression Working Group",
     wgURI:                      "https://www.w3.org/2016/poe/",
     wgPublicList:               "public-poe-comments",
