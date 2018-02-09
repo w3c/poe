@@ -7,8 +7,8 @@ Sent on the @@@
 
 Denis,
 
-This is an official publication request for the publication of two ODRL Documents as Recommendations. The publication date is the 15 of January, 2018. The transition request for PR has been issued in:
-- @@@@
+This is an official publication request for the publication of two ODRL Documents as Recommendations. The publication date is the 15 of January, 2018. The transition request for Rec has been issued in:
+- https://lists.w3.org/Archives/Member/chairs/2018JanMar/0049.html
 
 the Director's approval is in:
 - @@@@
@@ -22,17 +22,6 @@ ODRL Information Model 2.2:
 
 ODRL Vocabulary & Expression 2.2:
 - http://www.w3.org/TR/2018/PR-odrl-vocab-20180215/
-
-
-Additional TR modification
---------------------------
-
-As an additional action, there is an old document (a W3C Note):
-
-https://www.w3.org/TR/odrl/
-http://www.w3.org/TR/2002/NOTE-odrl-20020919/
-
-That needs a remark on the top that notifies the reader about the availability of the new Recommendations. I have a new version on my disc, I only need your greed light to update the document. 
 
 
 Abstract and Status Sections
