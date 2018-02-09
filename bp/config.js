@@ -25,16 +25,12 @@ var respecConfig = {
     issueBase: "https://www.w3.org/2016/poe/track/issues/",
     otherLinks: [
         {
-            key: "Repository",
+            key: "Issue list",
             data: [ {
                 value: "Github Repository",
-                href: "https://github.com/w3c/poe"
-            },
-                {
-                    value: "Issue Tracker",
-                    href: "https://github.com/w3c/poe/issues?q=is%3Aopen+is%3Aissue+label%3A%22Best+Practices%22"
-                } ]
+                href: "https://github.com/w3c/poe/issues?q=is%3Aopen+is%3Aissue+label%3A%22Best+Practices%22"
+            }
+            ]
         }
     ]
-
 };

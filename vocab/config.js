@@ -45,15 +45,13 @@ var respecConfig = {
     errata:                     "https://www.w3.org/2016/poe/errata/",
     otherLinks: [
         {
-            key: "Repository",
-            data: [{
+            key: "Issue list",
+            data: [ {
                 value: "Github Repository",
-                href: "https://github.com/w3c/poe"
-            },
-                   {
-                    value: "Issue Tracker",
-                    href: "https://github.com/w3c/poe/issues"
-                }]
+                href: "https://github.com/w3c/poe/issues"
+            }
+            ]
         }
     ]
+
 };
