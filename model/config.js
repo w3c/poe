@@ -41,15 +41,12 @@ var respecConfig = {
         },
         otherLinks: [
             {
-                key: "Repository",
+                key: "Issue list",
                 data: [ {
                     value: "Github Repository",
-                    href: "https://github.com/w3c/poe"
-                },
-                    {
-                        value: "Issue Tracker",
-                        href: "https://github.com/w3c/poe/issues"
-                    } ]
+                    href: "ttps://github.com/w3c/poe/issues"
+                }
+                ]
             }
         ]
     };

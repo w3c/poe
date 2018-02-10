@@ -1,4 +1,4 @@
-Sent on the @@@
+Sent on the 10th of February'18 to webmaster and comm, https://lists.w3.org/Archives/Team/webreq/2018Feb/0025.html
 
 ----
 
@@ -11,7 +11,7 @@ This is an official publication request for the publication of two ODRL Document
 - https://lists.w3.org/Archives/Member/chairs/2018JanMar/0049.html
 
 the Director's approval is in:
-- @@@@
+- https://lists.w3.org/Archives/Team/w3t-comm/2018Feb/0108.html
 
 
 The documents are as follows
@@ -21,7 +21,7 @@ ODRL Information Model 2.2:
 - https://www.w3.org/TR/2018/REC-odrl-model-20180215/
 
 ODRL Vocabulary & Expression 2.2:
-- http://www.w3.org/TR/2018/PR-odrl-vocab-20180215/
+- https://www.w3.org/TR/2018/REC-odrl-vocab-20180215/
 
 
 Abstract and Status Sections
