@@ -37,6 +37,32 @@
 	p.contributor {
   font-size:smaller;
 }
+	   div.exampleheader {
+         font-size: 90%;
+         float: left;
+         background: #F9F9F9;
+         color: #2F6FAB;
+         border: 1px dashed #2F6FAB;
+         border-bottom: 0px;
+         padding-top: 2px;
+         }
+         div.exampleheader span.exampleheader {
+         background: #F9F9F9;
+         padding-top: 0px;
+         padding-right: 10px;
+         padding-left: 10px;
+         padding-bottom: 3px;
+         padding-top: 0px;
+         }
+         div.fssyntax pre, div.rdfxml pre, div.owlxml pre, div.turtle pre, div.manchester pre  {
+         background-color: #F9F9F9;
+         border: 1px dashed #2F6FAB;
+         color: black;
+         line-height: 1.1em;
+         padding: 1em;
+         clear: both;
+         margin-left: 0em;
+         }
 
   </style>
 	</head>
@@ -593,13 +619,25 @@ Rather than attempt to make assertions about what an end user can or cannot do w
 			     %%%%%%%%%%%% POE.UC.27 %%%%%%%%%%%%
 			     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 			<section id="POE.UC.27">
-				<h2><dfn>POE.UC.27</dfn>: Europeana/DPLA In Copyright - Educational Use Only </h2>
+								<h2><dfn>POE.UC.27</dfn>: RightsStatements.org - Vocabulary of purpose </h2>
 
-					<p class="contributor">Antoine Isaac, Riccardo Albertoni</p>
-
-
-							<p> Data providers who are also the rights holders of the digital objects in question may want to allow reuse of their digital objects for educational purpose only.
+					<p class="contributor">Antoine Isaac, Mark Matienzo</p>
+							<p> Data providers who are also the rights holders of the digital objects in question may want to allow reuse of their digital objects for educational purpose only. Hence, a mechanism allowing for extending existing or adding new purposes/actions should be provided.
 							</p>
+							<div class="turtle">
+							 <div class="exampleheader"><span class="exampleheader"><strong>Educational Use Only</strong></span></div>
+               <pre class="hljs">
+&lt;http:&#x2F;&#x2F;rightstatements.org&#x2F;rs&#x2F;ic-edu&gt; a dcterms:RightsStatement, odrl:Policy ;
+    skos:prefLabel "In Copyright - Educational Use Only"@en ;
+    odrl:permission [
+       odrl:action odrl:use ;
+       odrl:constraint [
+             odrl:leftOperand odrl:purpose ;
+             odrl:operator odrl:eq ;
+             odrl:purpose &lt;http://rightstatements.org/purpose/education&gt;
+       ]
+    ].</pre>
+</div>
 						<strong>Related Requirements: </strong>
 						<span data-ref-anchor="">POE.UC.27</span>
 
