@@ -132,7 +132,6 @@
 		</ul>
 		
 		<!-- 
-		
 http://data.open.ac.uk/licence-picker/?controller=picker&action=index
 http://rdflicense.appspot.com/
 https://tldrlegal.com/
@@ -159,7 +158,7 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 <!--		We can resume here the examples in the <a href="https://www.w3.org/2016/poe/wiki/Best_Practices">wiki</a>. -->
 
 		<h3>1. A first ODRL policy (JSON-LD)</h3>
-		The following ODRL policiy might be read as "Movie 9898 can be used".
+		The following ODRL policy might be read as "Movie 9898 can be used".
 		<div class="example"><div class="example-title marker"><span>Example 1</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
 00  {
@@ -224,10 +223,6 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 06 ] ;
 	</pre></div>
 	
-
-<h3>4. A first ODRL policy (XML)</h3>		
-tbd
-
 <h3>5. An ODRL policy with two rules</h3>		
 	The following ODRL policiy might be read as "Alice can use Asset 1, but Bob can't".
 	
@@ -243,7 +238,6 @@ tbd
    odrl:assignee &lt;http://example.com/party/Bob&gt; ;
    odrl:action odrl:use
  ].
-
  	</pre></div>
 
 	<div class="example"><div class="example-title marker"><span>Example 5 (JSON-LD)</span></div>
@@ -296,6 +290,26 @@ ODRL policies with more than one rule can be simplified (<a href="https://www.w3
 	}]
 }	
 	</pre></div>
+	
+	
+<h4>6. A</h4>		
+	Permitting (or prohibiting) some general actions entail permitting (or prohibitting) other actions. In the example below, permitting 'display' is redundant as having permitted 'play' also implies permitting 'display'.  
+	
+	<div class="example"><div class="example-title marker"><span>Example 6 (JSON-LD)</span></div>
+	<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+{
+	"@context": "http://www.w3.org/ns/odrl.jsonld",
+	"@type": "Set",
+	"uid": "http://example.org/policy/5",
+	"permission": [{
+		"assignee": "http://example.com/party/Alice",
+		"action": [ "play", <strike>"display"</strike> ],
+		"target": "http://example.com/asset/1"
+	}]
+}	
+	</pre></div>	
+	
+	
 
         </section>
 <!--		<section id="implementation">
