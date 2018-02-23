@@ -293,7 +293,7 @@ ODRL policies with more than one rule can be simplified (<a href="https://www.w3
 	
 	
 <h4>6. Actions included in another actions</h4>		
-	Permitting (or prohibiting) some general actions entail permitting (or prohibitting) other actions. In the example below, permitting 'display' is redundant as having permitted 'play' also implies permitting 'display'.  
+	Permitting (or prohibiting) some general actions entail permitting (or prohibitting) other specific actions. In the example below, permitting <code>display</code> is redundant because having permitted <code>play</code> also implies permitting <code>display</code>.  
 	
 	<div class="example"><div class="example-title marker"><span>Example 6 (JSON-LD)</span></div>
 	<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
@@ -308,12 +308,12 @@ ODRL policies with more than one rule can be simplified (<a href="https://www.w3
 	}]
 }	
 	</pre></div>	
-	However, actions are in the Core Vocabulary are hardly dependent from each other.
-	<center><img src="includedin.png" /></center>
+	However, actions in the ODRL Core Vocabulary are hardly dependent from each other.
+	<center><img src="includedin.png" width=600px /></center>
+	<span class="fig-title">Actions in the ODRL Core Vocabulary</span>
 	
 <h4>7. Actions implied by another actions</h4>		
-	Some actions in the profiles may declare that some other action is necessary for their execution
-	The Core Vocabulary does not make use of it. 
+	Also, one action in the profiles may declare that some other actions are necessary for their execution (using <code>:implies</code>), hence if the former is permitted the latter cannot be prohibited. However the actions in the ODRL Core Vocabulary do not make use of it. 
         </section>
 		
 <!--		<section id="implementation">
