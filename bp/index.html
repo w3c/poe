@@ -292,7 +292,7 @@ ODRL policies with more than one rule can be simplified (<a href="https://www.w3
 	</pre></div>
 	
 	
-<h4>6. A</h4>		
+<h4>6. Actions included in another actions</h4>		
 	Permitting (or prohibiting) some general actions entail permitting (or prohibitting) other actions. In the example below, permitting 'display' is redundant as having permitted 'play' also implies permitting 'display'.  
 	
 	<div class="example"><div class="example-title marker"><span>Example 6 (JSON-LD)</span></div>
@@ -308,10 +308,14 @@ ODRL policies with more than one rule can be simplified (<a href="https://www.w3
 	}]
 }	
 	</pre></div>	
+	However, actions are in the Core Vocabulary are hardly dependent from each other.
+	<center><img src="includedin.png" /></center>
 	
-	
-
+<h4>7. Actions implied by another actions</h4>		
+	Some actions in the profiles may declare that some other action is necessary for their execution
+	The Core Vocabulary does not make use of it. 
         </section>
+		
 <!--		<section id="implementation">
 		<h2>Implementation guidance</h2> 	
 		Two operations are defined over ODRL expressions: validation and evaluation. This section provides some guidance on how to implement the validation and the evaluation. See the <a href="https://www.w3.org/2016/poe/wiki/Validation">validation</a> article in the wiki.
