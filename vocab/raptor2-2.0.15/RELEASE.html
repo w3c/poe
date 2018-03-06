@@ -1,0 +1,4656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Raptor RDF Syntax Library - Release Notes</title>
+</head>
+<body>
+
+<h1 style="text-align:center">Raptor RDF Syntax Library - Release Notes</h1>
+
+
+<h2 id="rel2_0_15"><a name="rel2_0_15">Raptor2 2.0.15 changes</a></h2>
+
+
+<p>This release mainly made general bug fixes as well as several
+fixes to the Turtle / N-Triples family of parsers and serializers. It
+added utility functions for re-entrant sorting of objects and
+sequences and a few other useful methods.<br />
+</p>
+
+
+<p>Issues Fixed:</p>
+<ul>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=574">0000574</a>: Language tags with underscore</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=575">0000575</a>: Wrong API or wrong API documentation</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=576">0000576</a>: Wrong assert for a counted string being nul terminated</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=577">0000577</a>: iri parsing does not conform to REC-n-quads-20140225</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=579">0000579</a>: raptor_world_generate_bnodeid accepts world not parser</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=581">0000581</a>: My patch for parser and serializers count</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=584">0000584</a>: raptor fails to parse trig files with dos line endings</li>
+</ul>
+
+
+<h3>Parser changes</h3>
+
+<p>Fixed <code>raptor_grddl_filter_triples()</code> check for three
+URIs which has been broken since 2007 but just did more work.  Found
+via gcc5 warning.</p>
+
+<p>The TRiG parser now accepts \r newlines between the graph name and
+the following '{'.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=584">Issue #0000584</a>
+</p>
+
+<p>Turtle, TRiG, N-Triples and N-Quads parsers now check escapes
+correctly for URI strings. \t \b \n \r \f are forbidden.  Check that
+raw ' ' or \u0020, \u003C or \u003E are also not accepted.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=577">Issue #0000577</a>
+</p>
+
+<p>N-Triples / N-Quads parsers nwo accept '_' as an alias for '-' in
+lang strings. '_' is not legal.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=574">Issue #0000574</a>
+</p>
+
+<p>Updated RDFa parser (librdfa) to support full URLs for
+<code>typeof</code> from upstream. Re-checked several tests which
+have been passing for some time but the expected output was not a
+correct conversion from the testsuite sparql.</p>
+
+<h3>Serializer changes</h3>
+
+<p>Turtle serializer now writes <code>()</code> instead of
+<code>rdf:nil</code> via 
+<a href="https://github.com/dajobe/raptor/pull/16">Pull Request #16</a>
+from Richard H. McCullough. Thanks!
+</p>
+
+<h3>I/O-stream class changes</h3>
+
+<p><code>raptor_iostream_decimal_write()</code> and
+<code>raptor_iostream_hexadecimal_write</code> now return non-0 if
+they do not succeed in writing successfully.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=575">Issue #0000575</a>
+</p>
+
+<h3>Term class changes</h3>
+
+<p><code>raptor_new_term_from_blank()</code> now also accepts "" as
+the same as a NULL blank node ID argument.</p>
+
+<h3>URI class changes</h3>
+
+<p>Fixed <code>raptor_uri_counted_filename_to_uri_string()</code> to
+use the passed in len, not look for end NUL char and count lengths.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=576">Issue #0000576</a>.
+</p>
+
+<p><code>raptor_new_uri_from_counted_string()</code> no longer
+assumes a NUL terminated string. Remove a debug assert and use
+<code>fwrite()</code> to emit the counted URI string to the debug
+file handler.</p>
+
+<p>Fixed <code>raptor_uri_normalize_path()</code> to check the size of
+output buffer is big enough.</p>
+
+<h3>Writer class changes</h3>
+<p>Fixed <code>raptor_turtle_writer_quoted_counted_string()</code> to
+use the passed in length, drop the <code>strlen()</code> call and use
+the length internally.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=576">Issue #0000576</a>.
+</p>
+
+<h3>World class changes</h3>
+
+<p>Added <code>raptor_world_get_parsers_count()</code>
+and <code>raptor_world_get_serializers_count()</code>
+with patch from Victor Porton. Thanks!
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=581">Issue #0000581</a>.</p>
+
+<h3>Other Changes</h3>
+
+<p>Made raptor work with Travis CI again; have to download and
+install Bison 3.</p>
+
+<p>Added <code>raptor_sort_r()</code> and
+<code>raptor_sequence_sort_r()</code> re-entrant sort utility methods
+based on the public domain <a
+href="https://github.com/noporpoise/sort_r">sort_r</a> code by Isaac
+Turner.
+</p>
+
+<p>Ensure <code>raptor_locator_format()</code> always adds a NUL to
+terminate the output string.</p>
+
+<p>Fix a -99 &lt;= var &lt;= 99 timezone interval check.  Thanks to
+Richard Trieu for the report.</p>
+
+<p>Improve configure warning check using AC_LANG_WERROR</p>
+
+<p>Use C99 <code>__FUNCTION__</code> replacing <code>__func__</code>
+from C90.</p>
+
+<p>Improve build-time flex and bison output to be more silent.</p>
+
+<p>Added Intel C compiler (icc) support from Sebastian Freundt
+(hroptatyr on GitHub) - Thanks.</p>
+
+
+<h2 id="rel2_0_14"><a name="rel2_0_14">Raptor2 2.0.14 changes</a></h2>
+
+<p>Many code quality fixes from clang and coverity primarily in error
+path cleanups (out of memory cases) and dead code.</p>
+
+<h3>Parser changes</h3>
+
+<p>Turtle 1.1 parser: fixes about triple quoting alignment with
+SPARQL from the www-rdf-comments list post REC
+<a href="http://lists.w3.org/Archives/Public/public-rdf-comments/2014Feb/0018.html">report of problem</a>
+and
+<a href="http://lists.w3.org/Archives/Public/public-rdf-comments/2014Feb/0021.html">expected answer</a>.
+</p>
+
+<h3>Other changes</h3>
+
+<p>Fixed RDFa 1.0 and RDFa 1.1 test suites to properly report
+failures.</p>
+
+<p>Updated the fix-flex and fix-bison scripts to remove dead
+code that clang and coverity complain about.</p>
+
+
+<h2 id="rel2_0_13"><a name="rel2_0_13">Raptor2 2.0.13 changes</a></h2>
+
+<p>Issues Fixed:</p>
+<ul>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=562">0000562</a>: N-Quads parsing of URIs with ' fails</li>
+</ul>
+
+<h3>Parser changes</h3>
+
+<p>The N-Triples / N-Quads parser was updated to allow ' in URIs.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=562">Issue #0000562</a>.
+</p>
+
+<h3>Configuration changes</h3>
+
+<p>Use the discovery of the <code>xml2-config(1)</code> /
+<code>curl-config(1)</code> programs as test for presence of the
+libraries. This fixes the issue where that after configuring, curl
+was present but was not used for WWW fetching.  This is seen when
+the output of <code>curl-config --cflags</code> is empty / whitespace.
+</p>
+
+<p>Updated to use the <code>AC_CHECK_PROGS</code> macro to find jing
+since <code>AC_CHECK_PROG</code> doesn't default to setting it as
+found when present!
+</p>
+
+<h3>Internal changes</h3>
+
+<p>The Turtle and parsedate parsers and the turtle lexer were updated
+to use and require Bison 3.0.0.
+</p>
+
+<p>The JSON and turtle writers were updated to save several expensive
+<code>strlen()</code> calls.</p>
+
+
+<h2 id="rel2_0_12"><a name="rel2_0_12">Raptor2 2.0.12 changes</a></h2>
+
+<h3>Parser changes</h3>
+
+<p>The N-Triples / N-Quads parser was updated to pass all the two test
+suites for the updated specifications:
+</p>
+<ul>
+<li><a href="http://www.w3.org/TR/2013/CR-n-triples-20131105/">RDF 1.1 N-Triples - A line-based syntax for an RDF graph</a>, W3C Candidate Recommendation, 05 November 2013 (aka N-Triples 2013)</li>
+<li><a href="http://www.w3.org/TR/2013/CR-n-quads-20131105/">RDF 1.1 N-Quads - A line-based syntax for an RDF datasets</a>, W3C Candidate Recommendation, 05 November 2013</li>
+</ul>
+<p>The main fixes were:</p>
+<ul>
+<li>allow <code>\b</code> and <code>\f</code> escapes (from Turtle, SPARQL)</li>
+<li>fix the allowed blank node identifier characters</li>
+<li>require all URIs to be absolute</li>
+<li>handle a single short document with no end of line</li>
+<li>support NULs inside literals</li>
+<li>handle unescaped newlines inside literals</li>
+</ul>
+
+<h3>Term class changes</h3>
+
+<p>Added <code>raptor_new_term_from_counted_string()</code> to
+create a term from a Turtle or N-Triples string syntax.  This is
+the opposite of <code>raptor_term_to_turtle_counted_string()</code>
+and <code>raptor_term_to_turtle_string()</code> and also reads the
+strings created by <code>raptor_term_to_counted_string()</code> and
+<code>raptor_term_to_string()</code>.
+</p>
+
+
+<h2 id="rel2_0_11"><a name="rel2_0_11">Raptor2 2.0.11 changes</a></h2>
+
+<p>Issues Fixed:</p>
+<ul>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=556">0000556</a>: Problem with relative URI in rdf:about, rdf:resource etc.</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=554">0000554</a>: RDF/XML serializer does not canonicalize attribute order in XMLLiterals</li>
+</ul>
+
+<h3>Parser changes</h3>
+
+<p>N-Triples parser was updated to support all of
+<a href="http://www.w3.org/TR/2013/CR-n-triples-20131105/">RDF 1.1
+N-Triples - A line-based syntax for an RDF graph</a> (aka N-Triples 2013)
+It now supports <code># comments</code> after the end of
+lines, checks for illegal unicode escapes, checks for bad URIs and
+checks language tags.
+Also removed support for legacy N-Triples
+<code>"foo"-LANGTOKEN</code>.
+Many internal changes were also made.
+</p>
+
+<p>RDF/XML parser fixed the XML Canonicalization so that it writes
+the XML attributes in sorted order.
+Fixes
+<a href="http://bugs.librdf.org/mantis/view.php?id=554">Issue #0000554</a>.
+</p>
+
+<h3>URI class changes</h3>
+<p>Added <code>raptor_uri_uri_string_is_absolute()</code> to
+check if a URI is absolute.</p>
+
+<h3>QName class changes</h3>
+
+<p>Added <code>raptor_qname_format_as_xml()</code> to turn a qname
+into an XML declaration.
+</p>
+
+<h3>Configuration and build changes</h3>
+
+<p>Restructured code to build an internal librdfa convenience library
+(never installed) so that newer automake will stop moaning about
+subdir-objects.
+</p>
+
+<p><code>configure</code> now checks for clang to correctly find
+supported warnings.</p>
+
+<p>Various portability and build fixes (Daniel Richard G)</p>
+
+<p>Build fixes: <code>make check</code> will now work if jing is not
+installed (for feed XML generation validation).
+</p>
+
+<h3>Other changes</h3>
+
+<p>Fixed a few issues found with LLVM 3.4 (SVN) run with address
+sanitizing.</p>
+
+
+<h2 id="rel2_0_10"><a name="rel2_0_10">Raptor2 2.0.10 changes</a></h2>
+
+<p>Issues Fixed:</p>
+<ul>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=532">0000532</a>: configure.ac: required file `src/raptor_config.h.in' not found</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=535">0000535</a>: configure accepts bogus values for --with-xml2-config</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=545">0000545</a>: Reopen issue 503</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=548">0000548</a>: xml:lang inside rdf:parseType=&quot;Literal&quot; are removed in parsed output</li>
+</ul>
+
+<h3>Parser changes</h3>
+
+<p>Turtle parser was updated to handle
+<a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle Terse RDF Triple Language</a> W3C Candidate Recommendation 19 February 2013
+(Turtle 2013)
+The main changes were to align with SPARQL-style blank node names,
+prefixes and local names.
+</p>
+
+<p>N-Triples parser was updated to handle 
+<a href="http://www.w3.org/TR/2013/NOTE-n-triples-20130409/">N-Triples - A line-based syntax for an RDF graph</a> W3C Working Group Note 09 April 2013 (N-Triples 2013)
+The main changes were to allow \b \f, UTF-8 in strings and
+URIs and the SPARQL-style blank node names.</p>
+
+<p>RDF/XML parser updated to understand the new RDF 1.1 datatypes:
+rdf:HTML and rdf:langString</p>
+
+
+<h3>Serializer changes</h3>
+
+<p>Updated N-Triples and Turtle serializers (via writers) for 2013
+versions based on SPARQL 1.1 definitions.  These new formats
+have incompatible changes.
+</p>
+
+<p>Added functions for writing escaped Turtle / N-Triples terms:</p>
+<pre>
+int raptor_string_escaped_write(const unsigned char *string,
+  size_t len, const char delim, unsigned int flags, raptor_iostream *iostr);
+
+int raptor_term_escaped_write(const raptor_term *term, unsigned int flags,
+  raptor_iostream* iostr);
+
+int raptor_uri_escaped_write(raptor_uri* uri, raptor_uri* base_uri,
+  unsigned int flags, raptor_iostream *iostr);
+</pre>
+<p>These uses the new new <code>raptor_escaped_write_bitflags</code>
+enum bitflag values for the <code>flags</code> argument.</p>
+
+<p>Deprecated <code>raptor_string_python_write()</code> for
+<code>raptor_string_escaped_write()</code> with flags.</p>
+
+
+<h3>Configuration and build changes</h3>
+
+<p><code>configure</code> now recommends flex 2.5.36</p>
+
+<p><code>configure</code> was updated to switch configuring libxml
+and libcurl to use the <code>PKG_PROG_PKG_CONFIG</code> and
+<code>PKG_CHECK_MODULES</code> macros.  The preference remains to
+prefer looking for the xml2-config and curl-config programs before
+trying pkg-config unless <code>--with-curl-config=no</code>
+<code>--with-xml2-config=no</code> are used.
+</p>
+
+<p><code>configure</code> now dies if xml2-config or xslt-config
+point at non executable files. 	Patch from Michael Stahl - thanks.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=535">Issue #0000534</a>
+</p>
+
+<p><code>configure</code> now adds curl or libxml pkg-config requires
+only if they were found via pkg-config; this prevents unnecessary
+dependency on pkg-config files if they are not needed.</p>
+
+<p>Updated autogen.sh and code to handle variations of header
+macro.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=532">Issue #0000532</a>
+</p>
+
+
+
+<h2 id="rel2_0_9"><a name="rel2_0_9">Raptor2 2.0.9 changes</a></h2>
+
+<p>Issues Fixed:</p>
+<ul>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=499">0000499</a>: Turtle parser fails to correctly parse valid syntax</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=508">0000508</a>: Raptor objects to possibly valid Turtle syntax</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=520">0000520</a>: compilation failure</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=521">0000521</a>: Python RDF 1.0.14.1 segfault when one tries to parse xhtml+rdf using the RDFa parser</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=526">0000526</a>: Document how to find gtkdocize in INSTALL.html</li>
+</ul>
+
+
+<h3>Parser Changes</h3>
+
+<p>RDFa parser:
+Handle non-namespaced elements without crash in RDFa.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=521">Issue #0000521</a>
+</p>
+
+<p>Turtle Parser: Added full support for
+<a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle Terse RDF Triple Language</a> W3C Candidate Recommendation 19 February 2013
+</p>
+
+<p>This includes accepting new keywords from SPARQL
+(<code>BASE</code> and <code>PREFIX</code>), triples forms and
+details of the characters allowed in URIs, Literals, Prefix Names,
+Local Names and Blank Node identifiers.  Some existing documents that
+used <code>\</code>-escapes in URIs to encode characters not allowed
+in URIs, are now forbidden.  For example ASCII 32 (0x20) - space,
+which should be written as <code>%20</code>.
+</p>
+
+
+<h3>Serializer changes</h3>
+
+<p>Turtle Serializer: Added full support for
+<a href="http://www.w3.org/TR/2013/CR-turtle-20130219/">Turtle Terse RDF Triple Language</a> W3C Candidate Recommendation 19 February 2013
+which particular effects the encoding of URIs in the serializer.
+</p>
+
+
+<h3>Configuration and build changes</h3>
+
+<p>Added CMake build framework for building Raptor on Microsoft
+Windows.  Removed the old <code>win32/</code> area and
+<code>win32_raptor_config.h</code> references.  Contributed by Daniel
+Richard G. for Teragram Inc.
+</p>
+
+<p>Ensure that a small system BUFSIZ does not affect parser guessing
+Patch from Daniel Richard G for Teragram Inc.</p>
+
+<p>Added a compile-time check for
+<code>raptor_world_guess_parser_name()</code> to ensure that
+<code>RAPTOR_READ_BUFFER_SIZE</code> is at least as large as
+<code>FIRSTN</code>, because otherwise the guesser sees fewer than
+<code>FIRSTN</code> bytes from the document. Patch from Daniel
+Richard G for Teragram Inc.
+</p>
+
+<p>Update <code>configure</code> to allow xml2-config and curl-config
+to work for libxml and libcurl.  It now report on the source of xml, curl
+libraries in the configuration status.</p>
+
+<p><code>autogen.sh</code> updates to abort the run if a configuring
+program fails, Generate NEWS with old timestamp if missing so
+automake can run.</p>
+
+<p>Handle the libxml2 <code>ret->checked</code> field not being
+present in older libxml2 versions.  The entities checked field was
+added 2006-10-10 in <a href="http://git.gnome.org/browse/libxml2/commit/?id=a37a6ad91a61d168ecc4b29263def3363fff4da6and">libxml2 GIT commit a37a6ad91a61d168ecc4b29263def3363fff4da6and</a>
+released in libxml2 2.6.27 on 2006-10-25.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=520">Issue #0000520</a>
+</p>
+
+
+<h3>Other changes</h3>
+
+<p><code>raptor_www_set_ssl_verify_options()</code> now supports the
+Curl 7.28.1 removal of <code>CURLOPT_SSL_VERIFYHOST</code> with a
+value of 2. Now <code>verify_host</code> non-0 means to verify CN, 0
+means to not verify.</p>
+
+<p>Remove <code>-m MODE</code> from the <code>rapper(1)</code> help
+message which was removed in commit
+f94fa561db05b21132b14a2b72f05b77e666c252 on Wed Apr 28 21:31:54 2010
+-0700 as part of the Raptor V2 work.
+</p>
+
+
+<h2 id="rel2_0_8"><a name="rel2_0_8">Raptor2 2.0.8 changes</a></h2>
+
+<p>Issues Fixed:</p>
+<ul>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=381">0000381</a>: Raptor incorrectly serializes turtle lists when list nodes are URIs.</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=487">0000487</a>: Does raptor_world_guess_parser_name [librdf_parser_guess_name2] ever return NULL?</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=505">0000505</a>: Parsing certain escaped unicode strings in Turtle cases an error</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=507">0000507</a>: Turtle parse error causes fatal error</li>
+</ul>
+
+<h3>Parser class changes</h3>
+
+<p>Guessing a parser with
+<code>raptor_world_guess_parser_name()</code> now returns NULL failure
+when the guess is very poor, rather just return the first bad result.
+Fixes
+<a href="http://bugs.librdf.org/mantis/view.php?id=487">Issue #0000487</a>
+which was reported in <a href="http://librdf.org/">Redland librdf</a> but
+is implemented here.
+</p>
+
+<p>Guess parser: now returns error file and line location information
+from the guessed parser.</p>
+
+<p>RDFa parser: Updated <a href="https://github.com/rdfa/librdfa">librdfa</a>
+to the latest GIT supporting 
+<a href="http://www.w3.org/TR/2012/REC-rdfa-core-20120607/">RDFa 1.1</a>
+with 30 tests still not passing - mostly issues in the core librdfa.
+Made several resilience and crash fixes.  Updated the RDFa 1.0 test
+suite to latest tests and made fixes.  The RDFa parser now accepts
+aliases 'rdfa10', 'rdfa11' and the default 'rdfa' is RDFa 1.1
+</p>
+
+<p>RSS tag soup parser: Use <code>time()</code> when
+<code>gettimeofday()</code> is not available.  Fix several reference
+leaks.
+</p>
+
+<p>RDF/XML parser: The range of RDF/XML entity recognizing heuristic was
+broadened to allow recognition of documents produced by Stanford's
+Protege software (and possibly others).  Fixed some parser memory
+leaks / double frees.
+</p>
+
+<p>Turtle parser: Do not report multiple errors for Turtle string decoding
+problems.  When a Turtle qname cannot be found, a fatal error is no
+longer generated but a regular error message giving information on
+the qname that failed (usually due to unknown prefix).
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=507">Issue #0000507</a>
+</p>
+
+
+<h3>SAX2 API changes</h3>
+
+<p><code>raptor_sax2_inscope_xml_language()</code> will now return ""
+for explicit no language (<code>xml:lang=""</code>) as well as NULL
+for undefined language (no <code>xml:lang</code> present).
+</p>
+
+
+<h3>Serializer class changes</h3>
+
+<p>Turtle: Do not emit a Turtle <code>(...)</code> collection if the
+list item is a URI.  This fixes
+<a href="http://bugs.librdf.org/mantis/view.php?id=381">Issue #0000381</a>.
+</p>
+
+
+<h3>Term class changes</h3>
+
+<p>Added <code>raptor_term_to_turtle_counted_string()</code> counted
+string form of <code>raptor_term_to_turtle_string</code>.
+</p>
+
+
+<h3>Unicode class changes</h3>
+
+<p><code>raptor_unicode_utf8_string_put_char()</code> and
+<code>raptor_unicode_utf8_string_get_char()</code>
+now allow reading / writing U+D800 to U+DFFF (UTF-16 surrogates).
+rather than returning failure.  BOMs remain forbidden - definitely not UTF-8.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=505">Issue #0000505</a>
+</p>
+
+
+<h3>URI class changes</h3>
+
+<p>Fixed URI resolving with reference (relative) URIs that are bare
+queries like '?y' with no path.  Now matches the specification
+RFC3986 section 5.4.1 Normal Examples.
+</p>
+
+<p>Added <code>raptor_new_uri_relative_to_base_counted()</code>
+to construct URI relative to current base.
+</p>
+
+<p>Added <code>raptor_uri_to_turtle_counted_string()</code> counted
+string form of <code>raptor_uri_to_turtle_string</code>.
+</p>
+
+
+<h3>WWW class changes</h3>
+
+<p>The Curl WWW implementation now interprets
+<code>Content-Location</code>code> header as absolute or relative URI.
+</p>
+
+
+<h3>Configuration and build changes</h3>
+
+<p>All configure --with-foo options now handle --without-foo (and
+--with-foo=no) to disable attempting to find the value in the PATH.
+This can be used with --with-xml2-config, --with-xslt-config,
+--with-curl-config, --with-icu-config and --with-libwww-config where
+the value 'no' or --without-foo can be used to disable it and prevent
+automatic searches for the config script in the PATH.
+</p>
+
+<p>The <code>-DRAPTOR_DEBUG</code> and <code>-DMAINTAINER_MODE</code>
+flags are now written to the config header instead of added to
+CPPFLAGS.
+</p>
+
+<p>The <code>-g</code> flag is no longer added to CFLAGS or CPPFLAGS
+with <code>--enable-debug</code>.</p>
+
+<p>The existing <code>--disable-release</code> (default) now
+correctly removes -O options in flag variables for the maintainer.
+</p>
+
+<p><code>autogen.sh</code> now looks for the environment variable
+<code>NOCONFIGURE</code> to prevent it running configure at the end
+of the auto generation run.
+</p>
+
+<p>The <code>configure</code> vsnprintf() check was made more
+comprehensive.
+</p>
+
+
+<h3>Other changes</h3>
+
+<p>Multiple portability improvements to vsnprintf code and macros.
+Also fixed uninitialized variable problems in non-c99 variant of
+raptor_vsnprintf2(). Thanks to John Emmas for reporting.
+</p>
+
+<p>Multiple portability fixes for building out of the source tree.
+Out of source tree 'make check' and 'make dist' should both work.
+Thanks to Daniel Richard G. for the patches.
+</p>
+
+<p>Multiple portability fixes for building on old Solaris versions.
+Thanks to Daniel Richard G. for the patches.
+</p>
+
+<p>Multiple portability fixes for building on Windows including
+strcasecmp(), windows headers, configuration fixes, parsedate code,
+URI test builds, vsnprintf building.  Thanks to Daniel Richard G.
+for the patches.
+</p>
+
+<p>Updated the example <code>rdfguess</code> to accept a file called
+or no arguments to read from stdin.</p>
+
+
+<h2 id="rel2_0_7"><a name="rel2_0_7">Raptor2 2.0.7 changes</a></h2>
+
+<p>CVE-2012-0037 fixed</p>
+
+<p>Issues Fixed:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=448">0000448</a>: Turtle parser does not return error status from turtle_parse_chunk()</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=469">0000469</a>: Allow rapper to bypass server SSL certs checks in libcurl</li>
+</ul>
+
+<p>Removed Expat support since expat has not had a release in years
+and libxml2 works well.  This allows some code simplification.
+Updated <code>configure</code> so that if Raptor is configured with
+no parser that requires an XML parser, libxml2 will not be required.
+</p>
+
+<p>Removed internal Unicode NFC checking code used for checking
+RDF/XML literals conformance which was expensive to check and a large
+of compiled-in static dataset that was rather out of date.  Replaced
+with optional compiled use of <a href="http://www.icu-project.org/">ICU</a>.
+If ICU is not explicitly configured, no literal checking is done.</p>
+
+<h3>Options changes</h3>
+
+<p>Added new options:</p>
+<dl>
+  <dt><code>RAPTOR_OPTION_NO_FILE</code><br/></dt>
+  <dd>Deny file requests during parsing.  Enabled by default.</dd>
+
+  <dt><code>RAPTOR_OPTION_LOAD_EXTERNAL_ENTITIES</code><br/></dt>
+  <dd>Allow loading of XML external entity loading. Disabled by
+  default.</dd>
+
+  <dt><code>RAPTOR_OPTION_WWW_SSL_VERIFY_PEER</code><br/></dt>
+  <dd>Controls verifying an SSL peer during parsing / WWW.  Takes an
+  integer value: non-0 to verify peer SSL certificate (default
+  1).</dd>
+
+  <dt><code>RAPTOR_OPTION_WWW_SSL_VERIFY_HOST</code><br/></dt>
+  <dd>Controls verifying an SSL host during parsing / WWW.  Takes an
+  integer value: 0 none, 1 CN match, 2 host match (default). Other
+  values are ignored.</dd>
+</dl>
+
+
+<h3>Parser class changes</h3>
+
+<p>The RDF/XML, RSS Tag Soup and RDFa parsers now pass on network,
+file and entity loading parser options to the internal SAX2 to enable
+enforcing of network, file and entity loading policy.</p>
+
+<p>RDF/JSON parser handles an API change between YAJL V1 and V2.
+</p>
+
+<p>Turtle parser now returns parser errors to
+<code>raptor_parse_chunk()</code>.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=488">Issue #0000488</a>
+</p>
+
+
+<h3>SAX2 class changes</h3>
+
+<p>Added <code>raptor_sax2_set_uri_filter()</code> to set a URI
+filter for any SAX2 calls that do internal lookups of URIs.
+</p>
+
+<p>Control file and network loading inside SAX2.  Option
+<code>RAPTOR_OPTION_LOAD_EXTERNAL_ENTITIES</code> now enforces
+loading external XML entities and is by default enabled.  If enabled,
+<code>RAPTOR_OPTION_NO_FILE</code> and
+<code>RAPTOR_OPTION_NO_NET</code> are also checked.  All URIs loaded
+are also passed through any URI filter, if set by
+<code>raptor_sax2_set_uri_filter()</code>.
+</p>
+
+<h3>URI class changes</h3>
+
+<p>Added new URI constructor
+<code>raptor_new_uri_from_uri_or_file_string()</code>
+to build a URI from a URI string or a filename string, normalizing
+the result to a <code>file:</code> URI.
+</p>
+
+<p>Added
+<code>raptor_uri_uri_string_to_counted_filename_fragment()</code> to
+turn a URI string to a filename and URI fragment along with string
+output string counts.
+</p>
+
+<p>Added utility methods for checking if a file: URI or filename is a
+file that exists:
+<code>raptor_uri_file_exists()</code> and
+<code>raptor_uri_filename_exists()</code>
+</p>
+
+
+<h3>WWW class changes</h3>
+
+<p>Added <code>raptor_www_set_ssl_verify_options()</code> to set SSL
+verify options.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=469">Issue# 0000469</a>.
+</p>
+
+<p>The <code>raptor_www_fetch()</code> call now returns the status
+from any URI filter that returns a non-0 response.
+</p>
+
+
+<h3>Build changes</h3>
+
+<p>Added <code>--with-icu-config=</code><em>PATH</em> option
+to enable use of ICU for NFC checking.</p>
+
+<p>Requires automake 1.11.2+ for <code>-Wextra-portability</code></p>
+
+<p><code>configure</code> uses <code>AM_PROG_AR</code> to make
+automake <code>-Wextra-portability</code> happy.
+</p>
+
+
+<h2 id="rel2_0_6"><a name="rel2_0_6">Raptor2 2.0.6 changes</a></h2>
+
+<p>Fixed expat support which was broken in 2.0.5</p>
+
+<p>Handle libCurl SSL options before 7.16.4 (that's 2007) since old
+libcurl is still around on Enterprise (that means old) linux systems.
+</p>
+
+<h3>Sequence Changes</h3>
+
+<p>Added utility functions to swap elements, reverse the sequence and
+generate permuations:</p>
+<pre>
+    int raptor_sequence_swap(raptor_sequence* seq,
+      int i, int j);
+
+    int raptor_sequence_reverse(raptor_sequence* seq,
+      int start_index, int length);
+
+    int raptor_sequence_next_permutation(raptor_sequence *seq,
+      raptor_data_compare_handler compare);
+</pre>
+
+
+<h2 id="rel2_0_5"><a name="rel2_0_5">Raptor2 2.0.5 changes</a></h2>
+
+<p>Issues Fixed:</p>
+<ul>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=465">0000465</a>: c99 snprintf usage</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=476">0000476</a>: Add Format URIs to raptor_syntax_descriptions</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=479">0000479</a>: raptor 2.0.4 : -i nquads fails to treat the context term as optional  bugs.librdf.org</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=481">0000481</a>: Invalid unicode characters cause raptor to emit infinite output while converting n-quads to n-triples</li>
+</ul>
+
+
+<h3>Parser class changes</h3>
+
+<p>Updated all parser URIs to use the
+<a href="http://www.w3.org/ns/formats/">W3C Format URIs</a>
+as the primary URIs.  Existing URIs become aliases. (Nicholas J Humfrey)
+</p>
+
+<p>GRDDL parser: Correctly set the base_uri when resolving the
+sheet URI.</p>
+
+<p>N-Quads parser: Make context optional. (Lauri Aalto)
+Fixes
+<a href="http://bugs.librdf.org/mantis/view.php?id=479">Issue #0000479</a>.
+<br />
+When guessing formats, make N-Quads always beat N-Triples since
+since now all ntriples parse fine with the nquads parser. (Lauri Aalto)
+</p>
+
+<p>RDFA parser: fix when building with 64-bit systems to prevent
+value truncation.</p>
+
+<p>Turtle parser: now uses the official <em>text/turtle</em> mime
+type in the syntax recognizing code.
+</p>
+
+
+<h3>Serializer class changes</h3>
+
+<p>Updated all serializer URIs to use the
+<a href="http://www.w3.org/ns/formats/">W3C Format URIs</a>
+as the primary URIs.  Existing URIs become aliases. (Nicholas J Humfrey)
+</p>
+
+<p>Turtle serializer now uses the official <em>text/turtle</em> mime
+type in the syntax recognizing code.
+
+Do not generate infinite output when the input Unicode UTF-8 encoding
+is bad.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=481">Issue #000481</a>.
+</p>
+
+<h3>Unicode class changes</h3>
+
+<p>Added new utility functions for calculating number of Unicode
+characters in a UTF-8
+string <code>raptor_unicode_utf8_strlen()</code> and getting a subset
+of a UTF-8 string <code>raptor_unicode_utf8_substr()</code>:
+</p>
+<pre>
+    int raptor_unicode_utf8_strlen(const unsigned char *string,
+        size_t length);
+
+    size_t raptor_unicode_utf8_substr(
+        unsigned char* dest, size_t* dest_length_p,
+        const unsigned char* src, size_t src_length,
+        int startingLoc, int length);
+</pre>
+
+
+<h3>URI class changes</h3>
+
+<p><code>raptor_uri_string_to_relative_uri_string()</code> now
+compares URI paths not files. (Joe Presbrey)
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=472">Issue #0000472</a>
+</p>
+
+
+<h3>Build changes</h3>
+
+<p>The library no longer needs <code>trunc()</code>,
+<code>lround()</code>, <code>round()</code> or anything else from
+libm.  Removed the checks for these functions from
+<code>configure</code>.
+</p>
+
+<p><code>configure</code> no longer enables debug messages by default
+for <code>--enable-maintainer-mode</code> but now requires the
+<code>--enable-debug</code> option to be given.
+</p>
+
+<h3>Other changes</h3>
+
+<p>Records GIT version in the version string when building from GIT
+sources with <code>--enable-maintainer-mode</code>.  This makes it
+clearer when an non-released version is being used.
+</p>
+
+<p>Added internal <code>raptor_format_integer()</code> which enabled
+the removal of all internal use of <code>snprintf()</code>.
+</p>
+
+<p>Added <code>raptor_vsnprintf2()</code> deprecating
+<code>raptor_vsnprintf()</code> which does not actually have the
+vsnprintf() calling contention.  Added <code>raptor_snprintf()</code>
+with snprintf() calling convention.  Added
+<code>raptor_vasprintf()</code> with vasprintf() (GNU) calling
+convention.
+</p>
+<pre>
+    int raptor_vsnprintf2(char *buffer, size_t size, 
+			  const char *format, va_list arguments);
+    int raptor_snprintf(char *buffer, size_t size, const char *format, ...);
+
+    int raptor_vasprintf(char **ret, const char *format, va_list arguments);
+</pre>
+
+<p><code>raptor_locator_format()</code> now picks a large enough
+buffer size if <code>snprintf()</code> is likely not portable, when
+HAVE_C99_VSNPRINTF is not defined.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=465">Issue #0000465</a>
+</p>
+
+<p>Internal code style changes for how allocation is done and casting
+with new macros.</p>
+<blockquote>
+  <p>RAPTOR_GOOD_CAST: code checks or logic ensures cast will not
+  truncate</p>
+
+  <p>RAPTOR_BAD_CAST: value may be truncated; may require API
+  change/break.  Might be unrealistic e.g. a >4G error message,
+  qname prefix.</p>
+
+  <p>Some good uses:</p>
+  <ul>
+    <li>narrowing a known, checked unicode char to a U16</li>
+  </ul>
+
+  <p>Some 'bad' uses:</p>
+  <ul>
+    <li>only handing error messages, literal language, qname prefixes of
+        a max len constrained by int</li>
+    <li>passing in data to libxml constrained by int max len</li>
+    <li>locator column field constrained to int size</li>
+  </ul>
+
+  <p>Some bad uses:</p>
+  <ul>
+    <li>iostream read_bytes and write-bytes methods return int but could
+        easily return a lot more in the size_t range (compare to fread).
+        API change needed.</li>
+    <li>locator byte field constrained to int size.  should be size_t</li>
+    <li>raptor_nfc_check returns int offset into a buffer that could
+        be larger</li>
+    <li>raptor_ntriples_parser_context changed line_length and offset
+        to size_t</li>
+    <li>raptor_turtle_parser changed buffer_length to size_t</li>
+  </ul>
+</blockquote>
+
+<p>Updated code to use <code>size_t</code> for sizes such as those
+from <code>strlen()</code> and <code>ptrdiff_t</code> for pointer
+differences so that on 64-bit architectures, values are not
+potentially truncated to size of int.
+</p>
+
+
+<h2 id="rel2_0_4"><a name="rel2_0_4">Raptor2 2.0.4 changes</a></h2>
+
+<p>Issues Fixed:</p>
+<ul>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=308">0000308</a>: undefined reference to round and trunc while cross compiling for mipsel</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=449">0000449</a>: ntriples serializer and parser inconsistent w.r.t. _ in name tokens</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=451">0000451</a>: Incorrect qname definition in TRiG parser</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=455">0000455</a>: Incorrect AVL tree operations. [ with fix ]</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=456">0000456</a>: raptor-2.0.3 fails to build against yajl-2.0.2 API</li>
+<li><a href="http://bugs.librdf.org/mantis/view.php?id=457">0000457</a>: raptor-2.0.3 fails to build with curl-7.21.7</li>
+</ul>
+
+<h3>Parser class changes</h3>
+
+<p>The <code>raptor_option</code> enumeration gains values for
+setting SSL client side certificates:
+<code>RAPTOR_OPTION_WWW_CERT_FILENAME</code> for the certificate
+filename, <code>RAPTOR_OPTION_WWW_CERT_TYPE</code> for the
+certificate type and <code>RAPTOR_OPTION_WWW_CERT_PASSPHRASE</code>
+for the certificate passphrase.
+</p>
+
+<p><code>raptor_parser_parse_uri_with_connection()</code> (which is
+called by <code>raptor_parse_uri()</code>) now uses
+<code>raptor_www_set_ssl_cert_options()</code> to turn the parser
+options above into settings on the WWW object.
+</p>
+
+<p>RDF/JSON parser: Gains support for building with
+<a href="http://lloyd.github.com/yajl/">YAJL</a> V2.  Note that YAJL
+V1 and V2 both install the same library name 'libyajl' even though
+they have different ABI and APIs.</p>
+
+<p>TRiG parser: Fixed to support the legal <em>uri</em> <code>:
+{</code> ... <code>}</code> syntax naming a graph where the
+'<code>:</code>' is optional.
+</p>
+
+<p>Turtle parser: Modified to not include the internal
+<code>input()</code> function in the lexer which is never needed.
+</p>
+
+<h3>Serializer class changes</h3>
+
+<p>N-Triples and Turtle serializers: Now
+use <code>raptor_bnodeid_ntriples_write()</code> to always write
+legal blank node IDs.
+</p>
+
+<h3>WWW class changes</h3>
+
+<p>Added support for <code>raptor_www</code> to handle setting SSL
+client certificate options during WWW retrieval.
+</p>
+
+<p>Added <code>raptor_www_set_ssl_cert_options()</code> method to set
+the SSL client certificates on a WWW object.
+</p>
+
+<h3>Other changes</h3>
+
+<p>Make Raptor build against Curl 7.21.7 which removed a header file
+that was made an empty file in the libcurl source code on April 26
+2004 around version 7.12.0 which is now the minimum version Raptor
+supports..
+</p>
+
+<p>Fixed an AVL Tree issue during deletion that messes up some pointers.
+Patch from 'v-for-vandal'.  Thanks.
+</p>
+
+<p>Added a utility function
+<code>raptor_bnodeid_ntriples_write()</code> to write a N-Triples
+blank node ID in legal form, replacing any letters not in the allowed
+set.</p>
+
+<p>Expanded GCC warnings and corrected a few internal uses
+of <code>int</code> when <code>size_t</code> was meant.  Others
+remain.
+</p>
+
+<p>Reduced stack use of <code>raptor_www_file_handle_fetch()</code>
+and <code>raptor_parser_parse_iostream()</code> by moving I/O buffer
+to the www or parser objects respectively.
+</p>
+
+
+<h2 id="rel2_0_3"><a name="rel2_0_3">Raptor2 2.0.3 changes</a></h2>
+
+<p>The main change is to add the new main header file
+<code>raptor2.h</code>.  The new header has been added to allow
+applications to be sure they have got the raptor V2 header
+(with <code>#include &lt;raptor2.h&gt;</code> and not the raptor V1
+header file (<code>#include &lt;raptor.h&gt;</code>).
+The <code>raptor.h</code> header will NOT be removed until the next
+major raptor release (V3).
+</p>
+
+
+<h3>Turtle / TRiG parser changes</h3>
+
+<p>Alter the parser to not use a large token stack when parsing TRiG
+graphs, enabling the parser to handle much larger files.  The parser
+still gathers all input into a single memory segment so the maximum
+amount of input is probably memory size/3.
+</p>
+
+<p>TRiG parser now allows a QName for the graph name.
+</p>
+
+<p>Attempted to make the parser handle streaming lexing and parsing
+but only partially successful; bison could be made to stream parse
+but flex could not be made to stream lex.  This meant it could not
+be convinced to return a "need more input" response at the end of a
+chunk of data and continue lexing later.
+</p>
+
+<p>Fix value ownership fix graph name.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=437">Issue #0000437</a>
+</p>
+
+<h3>Other Changes</h3>
+
+<p>Raptor was ran through the
+LLVM <a href="http://clang-analyzer.llvm.org/">clang</a> static code
+analyzer and several issues fixed, mostly in unused variables and in
+unlikely error recovery conditions.  Some actual potential crash bugs
+were found:</p>
+<ol>
+  <li>The workaround for
+    ancient <a href="http://xmlsoft.org/">libxml2</a> error handling
+    in <code>raptor_libxml_xmlStructuredError_handler_parsing()</code>
+    was broken for some time, so that probably means nobody uses old
+    libxml2.</li>
+  <li><a href="http://github.com/msporny/librdfa/">librdfa</a> URI
+    resolving in <code>rdfa_resolve_uri()</code> used unallocated
+    memory in some relative URI cases.</li>
+</ol>
+
+<p>Bison 2.4 is required to build Raptor from GIT source with
+no pregenerated files.
+</p>
+
+
+<h2 id="rel2_0_2"><a name="rel2_0_2">Raptor2 2.0.2 changes</a></h2>
+
+<p>Fixed a too strict version checking bug in <code>raptor_new_world()</code>
+</p>
+
+
+<h2 id="rel2_0_1"><a name="rel2_0_1">Raptor 2.0.1 Changes</a></h2>
+
+<p><b>DO NOT USE</b>.  Use 2.0.2 which fixes a too strict version
+checking bug in <code>raptor_new_world()</code>
+</p>
+
+<h3>Parser class changes</h3>
+
+<p>The internal librdfa parser that uses Raptor internals now exports
+symbols prefixed with raptor_librdfa so that Raptor can be linked
+with the standard librdfa in applications without symbol clashes.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=416">Issue #0000416</a>
+</p>
+
+<h3>Serializer class changes</h3>
+
+<p>The N-Quads serializer was fixed to output the graph name in the
+fourth column, instead of repeating the object.
+</p>
+
+<h3>Internal changes</h3>
+
+<p>Replaced all internal fatal errors that went to
+an <code>abort()</code> with regular logged error.
+</p>
+
+
+<h2 id="rel2_0_0"><a name="rel2_0_0">Raptor 2.0.0 Changes</a></h2>
+
+<p>Raptor V2 final release.  See the release notes for 1.9.0 and
+1.9.1 for the major changes in Raptor V2.</p>
+
+<h3>API changes since 1.9.1 beta</h3>
+
+<p>Added <code>raptor_syntax_description_validate()</code> to public
+API to validate and compute counts for syntax descriptions.
+Primarily this is for use by Rasqal.
+</p>
+
+<p>The <code>raptor_syntax_description</code> now has an array of URI
+strings instead of a single one, to allow URI aliasing.  This is
+primarily for use by Rasqal.</p>
+
+<p>Fixed guessing by URI in
+<code>raptor_world_guess_parser_name()</code> which was not
+working.</p>
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=405">0000405</a>: RDFa parser does not handle base href with single quoted value</li>
+</ul>
+
+
+<h2 id="rel1_9_1"><a name="rel1_9_1">Raptor 1.9.1 Changes</a></h2>
+
+<p>1.9.1 is the second beta release of Raptor 2 and intended to be
+the last release before 2.0.0.
+</p>
+
+<h3>Raptor V1 to V2 upgrading changes</h3>
+
+<p>Improved the <code>upgrade-script.pl</code> raptor V1 to V2
+upgrade script to handle changes to enums and macros as well as
+handle statement field renaming.  Updated the generated documentation
+to also include enum and macro changes.
+</p>
+
+<p>Added defensive code in each constructor to check the passed-in
+raptor world object is a valid Raptor V2 world rather than V1.  It
+generates a warning once per run of the program.
+</p>
+
+<p>The <code>raptor_new_world()</code> function is now a macro that
+calls an internal function <code>raptor_check_world_internal()</code>
+with a version macro argument to detect when Raptor V2 is invoked with
+an inconsistent header and library.
+</p>
+
+
+<h3>AVLTree class changes</h3>
+
+<p>Free the iterator at the end of debug method
+<code>raptor_avltree_print()</code>.
+</p>
+
+
+<h3>I/O Stream class changes</h3>
+
+<p>Fix major copying too much error in the internal
+<code>raptor_read_string_iostream_read_bytes()</code> memcpy that
+could cause crashes - the function always copied the maximum amount
+the user requested in the read method even if the string was
+smaller.</p>
+
+
+<h3>Parser class changes</h3>
+<p>JSON parser: Made relative URIs option work.
+</p>
+
+<p>N-Quads parser: Added.  The serializer already existed.</p>
+
+<p>librdfa parser: Updated to latest librdfa GIT 
+1a1a08c790b7649a7f6c12fb9e40c0d3dbe70481</p>
+
+
+<h3>Serializer class changes</h3>
+
+<p>Fix <code>raptor_serializer_start_to_iostream()</code> to prevent
+crash when this method is used more than once on the same
+serializer.</p>
+
+<p>RSS/Atom serializer: Fix crashes with feeds containing entries
+with blank node items.
+</p>
+
+
+<h3>Stringbuffer class changes</h3>
+
+<p>Added utility methods
+<code>raptor_stringbuffer_append_uri_escaped_counted_string()</code>
+and <code>raptor_stringbuffer_append_hexadecimal()</code>.
+</p>
+
+
+<h3>Term class changes</h3>
+
+<p>Deleted <code>raptor_term_as_counted_string()</code> and
+<code>raptor_term_as_string()</code>.  Since 1.9.0 was an unstable
+API, this is allowed.
+</p>
+
+<p>Added <code>raptor_term_to_counted_string()</code> replacing
+deleted <code>raptor_term_as_counted_string()</code>.</p>
+
+<p>Added <code>raptor_term_to_string()</code> replacing
+deleted <code>raptor_term_as_string()</code>.</p>
+
+
+
+<h3>URI class changes</h3>
+
+<p>Added convenience methods for constructing URI terms from strings:
+<code>raptor_new_term_from_counted_uri_string()</code> and 
+<code>raptor_new_term_from_uri_string()</code>.
+</p>
+
+<p>Use string lengths in equals and comparisons for faster checking.
+Use <code>memcmp()</code> instead of <code>strncmp()</code> when
+lengths are known and the same.
+</p>
+
+
+<h3>WWW class changes</h3>
+
+<p>The CURL WWW module now looks for and uses the HTTP response
+<code>Content-Location:</code> header to get the base URI for content
+retrievals.  This allows these base URIs to be used in parsing
+content retrived from URIs.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=402">Issue #0000402</a>
+</p>
+
+
+<h2 id="rel1_9_0"><a name="rel1_9_0">Raptor 1.9.0 Changes</a></h2>
+
+<p>1.9.0 is the first beta release of Raptor 2.  There may be changes
+and additional releases before version 2.0.0 with the final stable API.
+</p>
+
+<p>This is a major update and cleanup to the Raptor API and ABI with
+additions, removals and changes. There are also major restructurings
+of the internal code and cleanups.  There are also some new features
+in the form of additional APIs, new serializers and parsers.
+</p>
+
+<p>The details of the additions, removals and changes of functions,
+structures, typedefs and enums are listed in the
+<a href="http://librdf.org/raptor/api/">Raptor 2 API reference manual</a>
+section on
+<a href="http://librdf.org/raptor/api/raptor-changes.html">Changes between raptor 1.4.21 and 1.9.0</a>.
+The <a href="UPGRADING.html">upgrading document</a>
+explains how to upgrade existing code that uses the V1 APIs to use
+the new APIs.
+</p>
+
+<p>The major changes in this release are:</p>
+<ul>
+<li>Removed all deprecated functions and typedefs.</li>
+<li>Renamed all functions to the standard <code>raptor_</code><em>class</em><code>_</code><em>method</em> form.</li>
+<li>All constructors take a <code>raptor_world</code> argument.</li>
+<li>URIs are interned and there is no longer a swappable implementation.</li>
+<li>Statement is now an array of 3-4 RDF Terms to support triples and quads.</li>
+<li>World object owns logging, blank node ID generation and describing syntaxes.</li>
+<li>Features are now called options and have typed values.</li>
+<li>GRDDL parser now saves and restores shared libxslt state.</li>
+<li>Added serializers for HTML 'html' and N-Quads 'nquads'.</li>
+<li>Added parser 'json' for JSON-Resource centric and JSON-Triples.</li>
+<li>Switched to GIT version control <a href="http://github.com/dajobe/raptor">hosted by GitHub</a>.</li>
+<li>Added memory-based AVL-Tree to the public API.</li>
+</ul>
+
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=357">0000357</a>: raptor_term_as_string does not return N-Triples escaped string, although API says so</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=361">0000361</a>: HTML Table serializer</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=369">0000369</a>: Unescaped quotes in long literals (Turtle/N3) cause parser failure if at the end of the literal</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=370">0000370</a>: Odd behaviour regarding the parsing of Trig files</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=373">0000373</a>: Remove deprecated GTK symbols</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=379">0000379</a>: raptor libxslt security policy conflicts with apps that also use libxslt and set security policy</li>
+</ul>
+
+
+<!-- updated to 2010-08-15 ChangeLog changes -->
+
+<h3>General changes</h3>
+
+<p>Renamed the library name and package tarball name to a new
+separate names (libraptor2, raptor2-X.tar.gz) so they can be
+distinguished and installed into the same system as raptor 1 without
+file clashes.  Note: This does not apply to the
+<code>rapper(1)</code> utility and it's manual page which are in both
+packages.  Packagers should stop packaging the <code>rapper(1)</code>
+binary and the rapper manual page from raptor 1, in preference to the
+raptor 2 version.
+</p>
+
+<p>Nicholas J Humfrey is a new committer.
+</p>
+
+<p>A utility script <code>docs/upgrade-script.pl</code> is
+automatically generated from the changes data to aid migrating from
+Raptor 1 to Raptor 2 APIs.  If it is not a simple rename, the script
+annotates the change as a comment near the code.
+</p>
+
+<p>Raptor's Statement, Term and URI classes can fully replace
+librdf's <code>librdf_statement</code>, <code>librdf_node</code> and
+<code>librdf_uri</code> classes.  This has been tested with GIT
+versions when both Rasqal and librdf are configured with
+<code>--with-raptor2</code>.  When raptor 2 is stable, Rasqal and
+librdf will default to use these..
+</p>
+
+
+<h3>Documentation changes</h3>
+
+<p>The API reference manual now includes an automatically generated
+reference section on the
+<a href="http://librdf.org/raptor/api/raptor-formats.html">functions and types that were added, removed and changed between raptor 1 and raptor 2 APIs</a>.
+
+It also includes an automatically generated section on the
+<a href="http://librdf.org/raptor/api/raptor-formats.html">parser and serializers with their names, mime types and Q values.</a>
+</p>
+
+<p>The tutorial examples were updated to the Raptor 2 APIs.
+</p>
+
+<p>NOTE: At this time, the descriptive parts of the tutorial have NOT
+been updated to use the Raptor 2 API.
+</p>
+
+
+<h3>World class changes</h3>
+
+<p>A log handler function for receiving warnings and errors (fatal or
+other) are now all sent to a single log handler of type
+<code>raptor_log_handler</code> registered to the world class with
+<code>raptor_world_set_log_handler()</code>, rather than handlers set
+for each parser, sax2, serializer or www instance.  Several
+constructors lose error handler and error data parameters
+consequently.
+</p>
+
+<p>The enumerating approach for listing the known parsers and
+serializers and writing into variables passed in, was replaced with
+methods that return pointers to static
+<code>raptor_syntax_description</code> objects to allow more
+parameters to be returned.  This allowed the removal of multiple
+older calls that kept having to gain new return arguments.
+The description also returns a list of (mime type, qname) pairs
+using a new typedef <code>raptor_type_q</code>.  It includes a set
+of bitflags for some simple information such as
+<code>RAPTOR_SYNTAX_NEED_BASE_URI</code> to describe when
+a syntax requires a base URI passed in, otherwise is not needed
+or optional.
+</p>
+
+<p><code>raptor_world_set_libxml_flags()</code> is replaced with
+<code>raptor_world_set_flag()</code> which are simple flags that
+require no initialisation of the world since they are used before it
+is opened.  This means that it cannot use the Options module for
+world flags.  New flag
+<code>RAPTOR_WORLD_FLAGS_URI_INTERNING</code> allows disabling of
+the URI interning using an AVL-Tree which can use up memory.
+</p>
+
+<p><code>raptor_world_set_libxslt_security_preferences()</code> and
+<code>raptor_world_set_log_handler()</code> gains an int return value
+to report failure if world is already opened.
+</p>
+
+<p>Moved the generation of blank node IDs from the parsers (many
+objects) to the world class (1 object).  Cannot think of good reasons
+why the blank node ID generation policy needs to be different
+per-parser. Enumeration <code>raptor_genid_type</code> was deleted
+since only the blank node type was ever used.
+</p>
+
+
+<h3>AVL Tree changes</h3>
+
+<p>The internal memory-based AVL Tree implementation is exposed as a
+public API.
+</p>
+
+
+<h3>Features changes</h3>
+
+<p>Replaced with <code>raptor_options</code></p>
+
+
+<h3>Identifier class changes</h3>
+
+<p>Replaced with Term class.
+</p>
+
+<p><code>raptor_identifier_type</code> enum was removed and replaced
+with enum <code>raptor_term_type</code> and a smaller set of 3
+possible term types.  The enum values match the int values used
+in <code>librdf_node_type</code>.
+</p>
+
+
+<h3>I/O Stream class changes</h3>
+
+<p>Constructors all gain a world argument.
+</p>
+
+<p>Some methods now return an int error status such as
+<code>raptor_iostream_write_end()</code>
+</p>
+
+<p>Many classes iostream writing methods and methods of the iostream
+class itself were changed to follow the standard
+<code>raptor_</code><em>CLASS</em><code>_write</code> naming
+convention and to put the iostream argument at the end.
+</p>
+ 
+<p>Deprecated typedef <code>raptor_iostream_handler</code> was removed</p>
+
+<p>Deprecated functions were removed:
+<code>raptor_new_iostream_from_handler()</code>,
+<code>raptor_iostream_get_bytes_written_count()</code> and
+<code>raptor_iostream_write_string_turtle()</code>
+</p>
+
+
+<h3>Locator changes</h3>
+
+<p>Renamed some methods to follow the
+<code>raptor_locator_</code><em>method</em> standard.
+</p>
+
+
+<h3>Namespaces and namespace stack classes changes</h3>
+
+<p>Constructors all gain a world argument and lose error handler,
+error data arguments.
+</p>
+
+
+<h3>Options</h3>
+
+<p>A new name for what were called features in Raptor 1 and this was
+expanded to allow use of values types string, integer and boolean.
+Options can be set on multiple classes such as parser, serializer but
+are centrally described using the new
+<code>raptor_option_description</code> structure.
+</p>
+
+<p>The option get / set operations were reduced from multiple methods
+per class for getting / setting an int, int / string to just one get
+and one set, with optional parameters.  It can also handle adding new
+types later, which will be passed in as strings and converted
+internally.
+</p>
+
+<p>The options code
+introduces a new enum <code>raptor_domain</code> which essentially is
+for describing a class such as parser.  
+For example options listed
+for domain <code>RAPTOR_DOMAIN_PARSER</code> will be usable with the
+parser option get and set methods
+<code>raptor_parser_get_option(parser, ...)</code> and
+<code>raptor_parser_set_option(parser, ...)</code>.
+</p>
+
+
+<h3>Parser class changes</h3>
+
+<p><code>raptor_parser_set_strict()</code> was removed and replaced
+with a new parser option <code>RAPTOR_OPTION_STRICT</code>.
+</p>
+
+<p>Parser object methods to return information about the parser class
+were removed since they can be done instead via fields of the static
+object returned from
+<code>raptor_world_get_parser_description()</code>.  Deleted
+functions include <code>raptor_parser_get_label()</code>,
+<code>raptor_parser_get_mime_type()</code>, and
+<code>raptor_parser_get_need_base_uri()</code>.
+</p>
+
+<p>Parsing may generate start graph and end graph events for syntaxes
+that return graph names such as TRiG.  These are returned by the handler
+of typedef <code>raptor_graph_mark_handler</code>
+set by new function <code>raptor_parser_set_graph_mark_handler()</code>
+which returns a start or end event of type enum
+<code>raptor_graph_mark_flags</code>.
+</p>
+
+<p><code>raptor_parser_get_accept_header()</code> fixed length of
+static string to ensure NUL is copied.
+</p>
+
+<p>Many functions were renamed to match the
+<code>raptor_parser_</code><em>method</em> naming standard.  Some of
+these get a long longer, but are at least consistent.  For example
+<code>raptor_parse_uri()</code> becomes
+<code>raptor_parser_parse_uri()</code>.
+</p>
+
+<p>Deprecated typedef <code>raptor_ntriples_parser</code> was removed.
+</p>
+
+<p>Deprecated functions were removed:
+<code>raptor_ntriples_term_as_string()</code>, and
+<code>raptor_ntriples_string_as_utf8_string()</code>
+</p>
+
+<p>The librdfa parser was updated with the latest updates to the RDFa
+syntax (first, rel/rev, whitespace, xml:lang) and fixes issues with
+non-terminated strings.
+</p>
+
+
+<p>The GRDDL parser now saves and restores the libxslt global state
+(handlers, security preferences) so that it does not affect other
+applications in the same memory space.  Part of this can be
+overridden with
+<code>raptor_world_set_libxslt_security_preferences()</code> which
+allows user code to disable raptor touching the security preferences
+entirely.
+Fixes
+<a href="http://bugs.librdf.org/mantis/view.php?id=379">Issue #0000379</a>
+</p>
+
+
+<p>The RDF/XML parser never generated special names for bag IDs
+(bagidNNN), so all support for that has been removed.
+</p>
+
+<p>The RDF/XML parser uses the new reference-counted URIs and raptor
+terms to prevent a lot of malloc/free for temporary uses.
+</p>
+
+<p>Removed RDF/XML parser feature
+<code>RAPTOR_FEATURE_ASSUME_IS_RDF</code> since it did nothing since
+at least 2003, maybe earlier.
+</p>
+
+<p>Added a JSON parser (name 'json') that can read both the
+resource-centric and triples JSON RDF formats.  Requires the YAJL
+JSON parser library.  Contributed by Nicholas J Humfrey.
+</p>
+
+<p>Moved the generation of blank node IDs from the parsers (many
+objects) to the world class (1 object).  Cannot think of good reasons
+why the blank node ID generation policy needs to be different
+per-parser.
+</p>
+
+
+<h3>QName class changes</h3>
+
+<p>Constructors all gain a world argument and lose error handler,
+error data arguments.
+</p>
+
+
+<h3>Sequence changes</h3>
+
+<p>Use new generic <code>raptor_data_free_handler</code>,
+<code>raptor_data_print_handler</code>,
+<code>raptor_data_context_free_handler</code>,
+<code>raptor_data_context_print_handler</code>
+data-focused handlers which are shared with the AVL Tree.
+</p>
+
+
+<h3>Serializer class changes</h3>
+
+<p>Added <code>raptor_serializer_flush()</code> for user code to
+indicate to a serializer to flush state since the application knows a
+block has been ended, or it needs to save memory.  No serializer
+currently implements this, but it is expected the abbreviated
+serializers that use a lot of state - Turtle, RDF/XML-Abbrev - would
+benefit from this.
+</p>
+
+<p>Added an HTML Table serializer with name 'table' contributed by
+Nicholas J Humfrey.
+</p>
+
+<p>Removed the obsolete 'simple' serializer from the source code.
+N-Triples is an appropriate simple (and well-defined) replacement
+syntax.
+</p>
+
+
+<h3>Statement class changes</h3>
+
+<p>This was made a more regular class that can be created, copied and
+freed using reference counting.   The structure changed to be an
+array of 4 raptor terms rather than a complex union focused on
+the allowed RDF Statements.  This change allows representing
+non-RDF triples as well as triples with named graphs (also known as
+quads).
+</p>
+
+<p><code>raptor_statement_part_as_counted_string()</code> turns into
+a method of the new Term class, as a "statement part" is now
+represented as a Term.
+</p>
+
+
+<h3>Term class changes</h3>
+
+<p>This new class with an open structure replaces
+<code>raptor_identifier</code> and was created to represent an RDF
+Term: literal, URI or blank node and is reference counted and
+dynamic.  It is a union of fields for three types.
+</p>
+
+<p>This class can fully replace librdf's librdf_node when both Rasqal
+and librdf are built with <code>--with-raptor2</code>.  The
+semantics of comparison (ordering) and equality are the same.
+</p>
+
+
+<h3>Unicode changes</h3>
+
+<p>Several utility functions were renamed to match their
+functionality more accurately and be associated with the Unicode
+module set of functions.  For example <code>raptor_utf8_check()</code>
+was renamed to <code>raptor_unicode_check_utf8_string()</code>
+</p>
+
+
+<h3>URI class changes</h3>
+
+<p>The whole concept of URI handlers was removed, there is no longer
+a way to replace the implementation of the URI class.  The
+implementation built in now interns URIs string so that a single URIs
+for a string is only ever in memory once, but reference counted.  This
+is what Redland librdf has done for many years, and librdf can fully
+use this.
+</p>
+
+<p>Deprecated functions were removed:
+<code>raptor_uri_is_file_uri()</code>.
+</p>
+
+<p>The <code>raptor_uri_resolve_uri_reference()</code> now returns the
+length of the URI written into the buffer.
+</p>
+
+
+<h3>WWW class changes</h3>
+
+<p>Rename several of the functions to the standard constructor,
+destructor and method naming format.
+</p>
+
+
+<h3>XML Writer class changes</h3>
+
+<p>Constructors all gain a world argument and lose error handler,
+error data arguments.
+</p>
+
+
+<h3>Configuration changes</h3>
+
+<p>Added configure argument <code>--with-yajl=DIR</code> (or 'no') to
+set the prefix where YAJL libraries and headers are installed.
+</p>
+
+<p>Raptor headers are now installed in a sub-directory of
+<em>PREFIX</em><code>/include</code>.
+</p>
+
+<p><code>raptor-config</code> was removed. Building against raptor 2
+should be done only using <code>pkg-config</code> with either
+<code>--cflags</code> or <code>--libs</code> arguments like this:</p>
+<pre>
+  cc -o prog prog.c `pkg-config raptor2 --cflags`  `pkg-config raptor2 --libs`
+</pre>
+
+
+<h3>Internal changes</h3>
+
+<p>Code style: lots of changes mostly adding lots more whitespace
+such as to show control change (if, while) or early function exit
+(return).
+</p>
+
+<p>All <code>strcpy()</code> with known lengths and
+<code>strncpy()</code> were replaced with <code>memcpy()</code> which
+is quicker and compilers optimize better.
+</p>
+
+<p>Code style: 
+use <code>TYPE* var_name = RAPTOR_CALLOC(TYPE, 1, sizeof(*var_name))</code>
+rather than repeat the type name which can be error-prone.
+</p>
+
+<p>Code style: put whitespace round assignment and operators i.e.
+use <code>c = a + b</code> rather than <code>c=a+b</code>.
+</p>
+
+<p>Code style: removed some <code>strdup()</code>s.
+</p>
+
+<p>Code style: try to remove un-necessary <code>strlen()</code> by
+tending to pass around a string with it's length, a counted string.
+This meant adding a few new constructors such as for the URI and Term
+classes.
+</p>
+
+<p>Code style: methods called with a NULL object return failure
+and destructors called with a NULL object return silently rather than
+the former mix of crashing or <code>abort()</code>ing.
+</p>
+
+<p>Code style: copy constructor is now called
+<code>raptor_</code><em>class</em><code>_copy()</code> rather than
+<code>raptor_new_</code><em>class</em><code>_from_</code><em>class</em><code>()</code>
+for brevity.
+</p> 
+
+<p>Code style: print methods return an int return status indicating
+success.
+</p>
+
+
+<h3>rapper Utility changes</h3>
+
+<p>Print out the option types next to the description in the <code>-f
+help</code> usage message.
+</p>
+
+<p>Removed unused <code>-a</code> flag from code.
+</p>
+
+<p>Did NOT rename <code>-f</code> option to match the renaming of
+features to options in the API.  Not needed.
+</p>
+
+<p>Removed long deprecated <code>-n</code> flag which was shortcut for
+selecting the N-Triples parser and can be done with <code>-i ntriples</code>
+</p>
+
+<p>Removed <code>-s/--scan</code> flag since it is an option of a
+single parser (RDF/XML) which can be done with <code>-f/--feature
+scanForRDF</code>.
+</p>
+
+
+<h3>Other changes</h3>
+
+<p>Removed support for building raptor with dmalloc debugging
+(removing <code>--with-dmalloc</code> configure argument). Valgrind
+wins.
+</p>
+
+<p>The example 'grapper' GNOME GUI utility for raptor was updated
+to the latest GTK APIs (2.5.0+ but still quite old) so that it
+builds with all the GTK 'disable deprecated' flags set.  The
+UI is not quite correct though - the preferences menu is broken.
+</p>
+
+<p>Switched to GIT version control, hosted by GitHub.  The latest
+raptor 1 code is available on branch 'raptor1' as well as from the
+release tags for specific versions.
+</p>
+
+
+
+<!-- *************** 1.4.X Series ******************************** -->
+
+
+<h2 id="rel1_4_21"><a name="rel1_4_21">Raptor 1.4.21 Changes</a></h2>
+
+<p>This is a bug fix only release with no new features.  New
+development has moved to raptor 2 where a planned ABI and API break
+is underway.
+</p>
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=318">0000318</a>: Cannot end a Turtle literal with \\ inside triple-quotes</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=319">0000319</a>: ntriples parser does not register that it accepts ntriples mime type - text/plain</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=326">0000326</a>: Turtle parser allows '.' in qnames which is not-to-spec</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=331">0000331</a>: Turtle long literals with raw newlines do not count line numbers correctly</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=332">0000332</a>: RDFXML parser finds duplicates and misbehaves (when it shouldn't)</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=337">0000337</a>: raptor/turtle outputs invalid qnames which cause syntax errors on parsing</li>
+</ul>
+
+<h3>Parser changes</h3>
+
+<p>N-Triples parser: Declare acceptance of text/plain mime type with
+q=0.1
+</p>
+
+<p>RDFA parser (via librdfa): Updated to fix some buffer management
+problems when it was passed large blocks (4096 bytes or more), a few
+memory leaks and some other minor bugs.
+</p>
+
+<p>RDF/XML parser: Properly reset the ID-checking set at the start of
+each parse.
+</p>
+
+<p>Turtle parser: Allow \\ at the end of triple-quoted literals.
+Forbid '.'s in prefixes and qnames (follow specification).
+Properly count newlines inside the literals for error reporting.
+</p>
+
+<h3>Serializer changes</h3>
+
+<p>Turtle serializer: Forbid '.'s in prefixes and qnames (follow
+specification).
+</p>
+
+<h3>Other Changes</h3>
+
+<p>Updated <code>configure</code> and the build system to use silent
+rules for the maintainer (by default), or when
+<code>--enable-silent-rules</code> is passed to
+<code>configure</code>.  This feature requires building with automake
+1.11 which requires autoconf 2.62 or newer when building from GIT.
+</p>
+
+<p><code>autogen.sh</code> script was updated to enforce the
+autotools versions above.
+</p>
+
+
+
+<h2 id="rel1_4_20"><a name="rel1_4_20">Raptor 1.4.20 Changes</a></h2>
+
+<p>This is a bug fix only release with no new features.  New
+development has moved to raptor 2 where a planned ABI and API break
+will happen.  There may be preview releases of raptor 2 with 1.9.x
+numbering.
+</p>
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=306">0000306</a>: rapper doesn't handle datatype=""and xml:lang="" properly with RDFa</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=307">0000307</a>: configure fails at vnsprintf test when cross compiling</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=310">0000310</a>:  Raptor does not like single character namespaces with RDFa</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=312">0000312</a>: Ununitialized pointer in example rdfserialize.c causes crash</li>
+</ul>
+
+<h3>Parser Changes</h3>
+
+<p>
+GRDDL parser: Fix XML parser context resource leak if
+<code>raptor_grddl_fetch_uri()</code> fails.  Save and restore error
+handlers properly to prevent crashes when an error is reported during
+parsing.
+</p>
+
+<p>
+RDFA parser (via librdfa): Update to latest librdfa GIT sources with head
+a438ce68a40e04b399ec2b2c613d0c867d9315c7 <br />
+now moved to 
+<a href="http://github.com/msporny/librdfa">http://github.com/msporny/librdfa</a>
+to fix handling single character namespaces
+(<a href="http://bugs.librdf.org/mantis/view.php?id=310">Issue #0000310</a>),
+empty datatype attribute and empty xml:lang attributes
+(<a href="http://bugs.librdf.org/mantis/view.php?id=306">Issue #0000306</a>)
+</p>
+
+<p>Added three unapproved RDFa tests 0172, 0173 and 0174 to cover the
+fixes above.
+</p>
+
+<h3>Serializer Changes</h3>
+
+<p>
+Turtle serializer:
+Applied scalability patch from Chris Cannam.
+This switches the serializer to use a <code>raptor_avltree</code>
+instead of a <code>raptor_sequence</code> for the subject and blanks
+used with <code>raptor_abbrev_node_lookup()</code>.  This fixes a
+performance problem in the serializing and moves lookups from O(N) to
+O(log N) - from list to balanced tree.
+</p>
+
+<h3>Other Changes</h3>
+
+<p>If cross compiling, check for <code>vsnprintf()</code> C99 compatible at
+runtime by setting define <code>CHECK_VSNPRINTF_RUNTIME</code> during
+configuration.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=307">Issue #0000307</a>
+</p>
+
+<p>Use <code>calloc()</code> for allocating a <code>raptor_statement</code> in
+rdfserializer.c example code to properly initialise state.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=312">Issue #0000312</a>
+</p>
+
+<p>Use <code>AC_SYS_LARGEFILE</code> to get large file IO checks which
+allows 32-bit systems to read multi-gigabyte files.
+</p>
+
+<p><code>autogen.sh</code> script fix for if test when uname is not in
+standard OSX dir.
+</p>
+
+
+
+<h2 id="rel1_4_19"><a name="rel1_4_19">Raptor 1.4.19 Changes</a></h2>
+
+<blockquote>
+<p><strong>WARNING: FUTURE ABI and API CHANGES.</strong> The next
+release of raptor 1.4.x will include bug fixes only and no new
+features.  New development will move to raptor 2 where a planned ABI
+and API break will happen.  There may be preview releases of raptor 2
+with 1.9.x numbering.</p>
+</blockquote>
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=259">0000259</a>: Fix NFC check for legal combiner sequence</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=262">0000262</a>: Error when <code>raptor_new_uri()</code> fails in Turtle parser</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=263">0000263</a>: Invalid turtle output syntax on empty integer/double/decimal literals </li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=266">0000266</a>: Default/atom namespace in atom serializer output</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=269">0000269</a>: strstr is called in <code>raptor_parse_chunk()</code> on a buffer string, where it should be called on a null-terminating string.</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=270">0000270</a>: RSS serializer fixes for g++</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=276">0000276</a>: Fix <code>raptor_sequence_set_at()</code> when setting beyond end</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=277">0000277</a>: broken collection abbreviation in turtle serialization</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=287">0000287</a>: Fix <code>raptor_sax2_parse_chunk()</code> calling <code>raptor_log_error_to_handlers()</code> with expat</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=288">0000288</a>: raptor_get_feature function does not return feature value</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=289">0000289</a>: Fix RDFa parser problem when there is a subject and predicate specified on an element, but no child nodes for the object literal</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=290">0000290</a>: Fix performance problems when turtle parsing with lots of namespaces</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=293">0000293</a>: Fix RDF/XML Parser problem with legacy ordinal predicates</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=296">0000296</a>: Avoid calling <code>xsltSetDefaultSecurityPrefs()</code></li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=299">0000299</a>: Avoid calling <code>xmlSetStructuredErrorFunc()</code> and <code>xmlSetGenericErrorFunc()</code></li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=303">0000303</a>: rdfa parser does not parse content as RDFa which librdfa+expat alone handles</li>
+</ul>
+
+
+<h3>Parser Changes</h3>
+
+<p><code>raptor_get_feature()</code> now returns the integer value rather than
+just 1 or 0.<br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=288">Issue #0000288</a>
+</p>
+
+<p>Guess parser: return name of guessed parser not 'guess'.
+</p>
+
+<p>N-Triples parser:
+Produce error messages when raptor_new_uri() fails. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=262">Issue #0000262</a>
+</p>
+
+<p>RDFa parser:
+Fix problem when there is a subject and predicate specified on an
+element, but no child nodes for the object literal using
+latest librdfa GIT source with head
+2ddcb3f9e010d0b3d9ee546e807539be5da1b14a <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=289">Issue #0000289</a>
+</p>
+
+<p>RSS tag soup parser:
+Huge internal changes:<br />
+Recording more atom core structures in triples (such as author, contributor -
+person) rather than only channels and items<br />
+Introduced a new 'blocks' concept to record single element structured
+items such as atom category, link and rss enclosure<br />
+Added itunes namespace and container.<br />
+</p>
+
+<p>RDF/XML Parser:
+Adjust predicate_type when removing ordinal identifier type from predicate. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=293">Issue #0000293</a>
+</p>
+
+
+<h3>Serializer Changes</h3>
+
+<p>Atom 1.0 serializer:
+Now tested and takes more care to try to generate valid Atom 1.0
+</p>
+
+<p>Turtle serializer:
+Validate XSD integer, decimal and double literal
+output. Emit special short forms only if the whole literal value is
+consumed by <code>strtol()</code> (for integers) or
+<code>strtod()</code> (for decimals and doubles). Otherwise produce a
+warning and emit literal in the normal
+<code>"value"^^&lt;datatype_uri&gt;</code> format. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=263">Issue #0000263</a><br />
+Fix broken collection abbreviation<br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=277">Issue #0000277</a><br />
+</p>
+
+<p>RSS serializer:
+Fixes for g++ <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=270 ">Issue #0000270</a>
+<br />
+Added a new serializer feature
+<code>RAPTOR_FEATURE_PREFIX_ELEMENTS</code> (short name
+prefixElements) for atom and rss 1.0 serializers to decide whether
+core elements in the default namespace are declared with the prefix
+or without a prefix.<br />
+Removed generation of deprecated predicate ordinals of type
+<code>RAPTOR_IDENTIFIER_TYPE_ORDINAL</code> and replace with resource type URIs
+</p>
+
+
+<h3>XML Support Changes</h3>
+
+<p>Removed generic calls to <code>xmlSetStructuredErrorFunc()</code>
+and <code>xmlSetGenericErrorFunc()</code> which can be a problem when
+libxml is shared with other code in memory.  They may be called
+optionally but will do a save/restore of the existing functions.
+This protection is enabled by the new API call
+<code>raptor_set_libxml_flags()</code> to set the flags from values
+in enum <code>raptor_libxml_flags</code>. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=299">Issue #0000299</a>
+</p>
+
+<p>Use context-specific libslt security configuration to avoid
+calling generic call <code>xsltSetDefaultSecurityPrefs()</code> which
+can be a problem when libxslt is shared with other code in memory.
+Allow the user to set the policy for raptor globally with new API
+function <code>raptor_set_libxslt_security_preferences()</code>. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=296">Issue #0000296</a>
+</p>
+
+<p>Make libxml SAX2 structured errors register parser-specific
+handler function <code>raptor_libxml_xmlStructuredErrorFunc()</code>
+instead of libxml global structured error handler.  The libxml flag
+method above can still enable registerding the global error handlers.
+</p>
+
+<p>In <code>raptor_sax2_parse_chunk()</code> fixed calls to
+<code>raptor_log_error_to_handlers()</code> when built with expat. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=287">Issue #0000287</a>
+</p>
+
+
+<h3>Other Changes</h3>
+
+<p>Win32 portability fixes from Lou Sakey:</p>
+<ul>
+  <li>Handle absence of <code>gettimeofday()</code></li>
+  <li>Call <code>xmlCleanupParser()</code> libxml call last to avoid an access
+violation on windows.</li>
+  <li>Windows <code>vsnprintf()</code> portability patch</li>
+  <li><code>raptor_sequence_set_at()</code> fixed to maintain the design
+contract: provide "size" consecutive items in "sequence" starting from
+"start" even when setting items more than +1 offset beyond the end of
+sequence. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=276">Issue #0000276</a>
+  </li>
+</ul>
+
+<p><code>rapper(1)</code> utility changes: if counting, do not use a
+serializer at all.
+</p>
+
+
+<h3>Internal Changes</h3>
+
+<p>More internal changes to be more resiliant after allocation failure
+(Lauri Aalto)
+</p>
+
+<p>Reorganised tests in source tree to pull out specific directories
+for RDF/XML, Turtle, etc.
+</p>
+
+<p>Use a DJ Bernstein hash to replace a linked list for storing a
+stack of namespaces.  This makes turtle parsing with lots of
+namespaces (100s) much faster.  Based on the initial patch in the bug. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=290">Issue #0000290</a>
+</p>
+
+<p>Use new internal <code>raptor_memstr()</code> function to compare
+a string against a buffer that may not be NUL terminated. <br />
+<a href="http://bugs.librdf.org/mantis/view.php?id=269">Issue #0000269</a>
+</p>
+
+<p><code>raptor_error_handlers</code>: API structure gains world
+field. BINARY COMPATIBILITY BREAK: sizeof(raptor_error_handlers)
+changed. Source compatibility not broken.
+</p>
+
+<p><code>raptor_identifier</code>: API structure gains world
+field. BINARY COMPATIBILITY BREAK: sizeof(raptor_identifier)
+changed. Source compatibility not broken.
+</p>
+
+<p>More fixes for compiling with C++
+</p>
+
+<p>Move some more static data as constant to enable more efficient
+compilation - moves to data segment of object binary.</p>
+
+<p>Use memmove for overlapping copy, not memcpy when doing relative
+URI resolving.
+</p>
+
+
+<h3>Raptor V2 Preparation Changes</h3>
+
+<p>Lots of internal changes were made by Lauri Aalto preparing for
+Raptor V2 to fully attach all static data and config to a new
+<code>raptor_world</code> object.  A new static instance of this
+class is now used internally behind the existing V1 API and will be
+required to be constructed by the library user for the V2 API with a
+new constructor/destructor.</p>
+
+<p><b>NOTE:</b> The method names here are illustrative of the final
+V2 names but are not confirmed - <strong>These functions are not
+supported in the 1.4.x series</strong>.  Some methods will still be
+altered for fields and (<code>raptor_world</code>) parameters.  All constructors
+should have it as a parameter.  All methods will not have them (so
+for example, all the URI methods named _v2 will lose the world
+parameter and just have the URI parameter - but that is also because
+the URI handler/context part will go into raptor_world in V2)</p>
+
+<p>To use the <strong>unsupported and experimental</strong> V2
+functions, define <code>-DRAPTOR_V2_EXPERIMENTAL=1</code> when
+building with raptor.
+</p>
+
+<p>Added <code>raptor_world</code> typedef.</p>
+
+<p>Added raptor world class constructor
+<code>raptor_world* raptor_new_world(void)</code> and initializer:
+<code>int raptor_world_open(raptor_world* world)</code>
+</p>
+
+<p>Added world class destructor:
+<code>void raptor_free_world(raptor_world* world)</code>
+</p>
+
+<p>Added new V2 methods:</p>
+<pre>
+  void raptor_world_set_libxslt_security_preferences(raptor_world *world,
+    void *security_preferences)
+
+  void raptor_world_set_libxml_flags(raptor_world *world,  int flags)
+
+  void raptor_error_handlers_init_v2(raptor_world* world,
+    raptor_error_handlers* error_handlers);
+</pre>
+
+
+<p>Added V2 methods that are versions of existing methods, named with
+_v2 suffix:</p>
+<pre>
+  int raptor_parsers_enumerate_v2(raptor_world* world,
+    const unsigned int counter, const char **name, const char **label)
+
+  int raptor_syntax_name_check_v2(raptor_world* world, const char *name);
+
+  void raptor_print_locator_v2(raptor_world* world, FILE *stream,
+    raptor_locator* locator);
+
+  const char *raptor_locator_uri_v2(raptor_world* world,
+    raptor_locator *locator);
+
+  int raptor_features_enumerate_v2(raptor_world* world,
+    const raptor_feature feature, const char **name,
+    raptor_uri **uri, const char **label);
+
+  int raptor_serializers_enumerate_v2(raptor_world* world,
+    const unsigned int counter, const char **name, const char **label,
+    const char **mime_type, const unsigned char **uri_string);
+
+  int raptor_serializer_syntax_name_check_v2(raptor_world* world,
+    const char *name);
+
+  int raptor_serializer_features_enumerate_v2(raptor_world* world,
+    const raptor_feature feature, const char **name,  raptor_uri **uri,
+    const char **label);
+</pre>
+
+<p>Added world pointer to raptor_identifier object</p>
+
+<p>Added V2 identifier class constructor:</p>
+<pre>
+  raptor_identifier* raptor_new_identifier_v2(raptor_world* world,
+    raptor_identifier_type type, raptor_uri *uri,
+    raptor_uri_source uri_source, const unsigned char *id,
+    const unsigned char *literal, raptor_uri *literal_datatype,
+    const unsigned char *literal_language);
+</pre>
+
+<p>Added V2 parser class method:</p>
+<pre>
+  raptor_parser* raptor_new_parser_for_content_v2(raptor_world* world,
+    raptor_uri *uri, const char *mime_type, const unsigned char *buffer,
+    size_t len, const unsigned char *identifier)
+  raptor_world* raptor_parser_get_world(raptor_parser* rdf_parser);
+</pre>
+
+<p>Added V2 serializer class constructor and method:</p>
+<pre>
+  raptor_serializer* raptor_new_serializer_v2(raptor_world* world,
+    const char *name)
+  raptor_world* raptor_serializer_get_world(raptor_serializer* rdf_serializer)
+</pre>
+
+<p>Added V2 statement class <code>raptor_statement_v2</code> typdef
+for future replacing of <code>raptor_statement</code></p>
+
+<p>Added V2 statement class methods:</p>
+<pre>
+  void raptor_print_statement_v2(const raptor_statement_v2 * statement,
+    FILE *stream);
+
+  unsigned char* raptor_statement_part_as_counted_string_v2(raptor_world* world,
+    const void *term, raptor_identifier_type type,
+    raptor_uri* literal_datatype, const unsigned char *literal_language,
+    size_t* len_p);
+
+  unsigned char* raptor_statement_part_as_string_v2(raptor_world* world,
+    const void *term, raptor_identifier_type type,
+    raptor_uri* literal_datatype, const unsigned char *literal_language);  
+
+  int raptor_statement_compare_v2(const raptor_statement_v2 *s1,
+    const raptor_statement_v2 *s2);
+</pre>
+
+<p>Added V2 uri class methods:</p>
+<pre>
+  unsigned char* raptor_uri_as_counted_string(raptor_uri *uri, size_t* len_p);
+
+  raptor_uri* raptor_new_uri_v2(raptor_world* world,
+    const unsigned char *uri_string);
+
+  raptor_uri* raptor_new_uri_from_uri_local_name_v2(raptor_world* world,
+    raptor_uri *uri, const unsigned char *local_name);
+
+  raptor_uri* raptor_new_uri_relative_to_base_v2(raptor_world* world,
+    raptor_uri *base_uri, const unsigned char *uri_string);
+
+  raptor_uri* raptor_new_uri_from_id_v2(raptor_world* world,
+    raptor_uri *base_uri, const unsigned char *id);
+
+  raptor_uri* raptor_new_uri_for_rdf_concept_v2(raptor_world* world,
+    const char *name);
+
+  void raptor_free_uri_v2(raptor_world* world, raptor_uri *uri);
+
+  int raptor_uri_equals_v2(raptor_world* world, raptor_uri* uri1,
+    raptor_uri* uri2);
+
+  int raptor_uri_compare_v2(raptor_world* world, raptor_uri* uri1,
+    raptor_uri* uri2);
+
+  raptor_uri* raptor_uri_copy_v2(raptor_world* world, raptor_uri *uri);
+
+  unsigned char* raptor_uri_as_string_v2(raptor_world* world, raptor_uri *uri);
+
+  unsigned char* raptor_uri_as_counted_string_v2(raptor_world* world,
+    raptor_uri *uri, size_t* len_p);
+
+  raptor_uri* raptor_new_uri_for_xmlbase_v2(raptor_world* world,
+    raptor_uri* old_uri);
+
+  raptor_uri* raptor_new_uri_for_retrieval(raptor_uri* old_uri);
+
+  raptor_uri* raptor_new_uri_for_retrieval_v2(raptor_world* world,
+    raptor_uri* old_uri);
+
+  raptor_uri* raptor_new_uri_for_xmlbase_v2(raptor_world* world,
+    raptor_uri* old_uri);
+
+  raptor_uri* raptor_new_uri_for_retrieval_v2(raptor_world* world,
+    raptor_uri* old_uri);
+
+  unsigned char* raptor_uri_to_relative_counted_uri_string_v2(raptor_world* world,
+    raptor_uri *base_uri, raptor_uri *reference_uri, size_t *length_p);
+
+  unsigned char* raptor_uri_to_relative_uri_string_v2(raptor_world* world,
+    raptor_uri *base_uri,  raptor_uri *reference_uri);
+
+  void raptor_uri_print_v2(raptor_world* world,
+    const raptor_uri* uri, FILE *stream);
+
+  unsigned char* raptor_uri_to_counted_string_v2(raptor_world* world,
+    raptor_uri *uri, size_t *len_p);
+
+  void raptor_uri_set_handler_v2(raptor_world* world,
+    const raptor_uri_handler *handler, void *context);
+
+  void raptor_uri_get_handler_v2(raptor_world* world,
+    const raptor_uri_handler **handler, void **context);
+</pre>
+
+<p>Added V2 www class methods:</p>
+<pre>
+  raptor_www *raptor_www_new_with_connection_v2(raptor_world* world,
+    void* connection);
+</pre>
+
+<p>Added V2 qname class methods:</p>
+<pre>
+  raptor_qname* raptor_new_qname_from_namespace_local_name_v2(raptor_world* world,
+    raptor_namespace *ns, const unsigned char *local_name,
+    const unsigned char *value);
+</pre>
+
+<p>Added V2 namespace class methods:</p>
+<pre>
+  raptor_namespace_stack* raptor_new_namespaces_v2(raptor_world* world,
+    raptor_simple_message_handler error_handler, void *error_data, int defaults);
+
+  int raptor_namespaces_init_v2(raptor_world* world,
+    raptor_namespace_stack *nstack,
+    raptor_simple_message_handler error_handler, void *error_data,
+    int defaults);
+</pre>
+
+<p>Added V2 sequence class typedefs and methods:</p>
+<pre>
+  typedef void (raptor_sequence_free_handler_v2(void* context, void* object));
+
+  typedef void (raptor_sequence_print_handler_v2(void *context, void *object,
+    FILE *fh));
+
+  raptor_sequence* raptor_new_sequence_v2(raptor_sequence_free_handler_v2* free_handler,
+    raptor_sequence_print_handler_v2* print_handler, void* handler_context);
+
+  void raptor_sequence_set_print_handler_v2(raptor_sequence *seq,
+    raptor_sequence_print_handler_v2 *print_handler);
+</pre>
+
+<p>Added V2 iostream class methods:</p>
+<pre>
+  int raptor_iostream_write_uri_v2(raptor_world* world,
+    raptor_iostream *iostr,  raptor_uri *uri);
+
+  void raptor_iostream_write_statement_ntriples_v2(raptor_world* world,
+    raptor_iostream* iostr, const raptor_statement *statement);
+</pre>
+
+<p>Added V2 xml writer class methods:</p>
+<pre>
+  raptor_xml_writer* raptor_new_xml_writer_v2(raptor_world* world,
+    raptor_namespace_stack *nstack, raptor_iostream* iostr,
+    raptor_simple_message_handler error_handler, void *error_data,
+    int canonicalize);
+
+  int raptor_xml_writer_features_enumerate_v2(raptor_world* world,
+    const raptor_feature feature, const char **name, raptor_uri **uri,
+    const char **label);
+</pre>
+
+
+<h2 id="rel1_4_18"><a name="rel1_4_18">Raptor 1.4.18 Changes</a></h2>
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=186">0000186</a>: Add RDFa support to Raptor</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=255">0000255</a>: rss-tag-soup serializer does not generate namespaces so re-serializing in rdf/xml looks wierd for atom</li>
+</ul>
+
+
+<h3>Parser Changes</h3>
+
+<p>A new 
+<a href="http://www.w3.org/TR/2008/CR-rdfa-syntax-20080620/">RDFa</a>
+parser was added (name <code>rdfa</code>) using
+<a href="http://rdfa.digitalbazaar.com/librdfa/">librdfa</a> to
+implement it.  librdfa is linked as part of Raptor and
+written by Manu Sporny of Digital Bazaar, licensed with the
+same license as Raptor.</p>
+
+<p>The RDFa
+<a href="http://www.w3.org/2006/07/SWD/RDFa/testsuite/xhtml1-testcases/">test suite</a>
+was added to the test and (via librdfa) Raptor passes all but 4 tests
+which fail due to different output xmlns attribute ordering (which
+does not matter to XML parsers).</p>
+
+
+<h3>Serializer Changes</h3>
+
+<p>Added new function
+<code>raptor_serialize_start_to_iostream()</code> to have the new
+semantics of not owning and destroying the passed-in iostream.  This
+allows the caller to serialize to an existing iostream and then
+to continue to write to it.  <code>raptor_serialize_start()</code>
+owns and then closes the iostream that is passed in.
+</p>
+
+<p>A new Atom Syndication Format 1.0 (<a href="http://www.ietf.org/rfc/rfc4287.txt">RFC 4287</a>) serializer was added (name <code>atom</code>)
+using the RSS 1.0 RDF triple model with mapping to atom terms
+and consideration of atom output format conditions.
+</p>
+
+<p>RSS 1.0 serializer</p>
+<ul>
+<li>Allow setting output namespaces for the serializer</li>
+<li>Allow writing extra RDF triples as RDF/XML attached to RSS items.</li>
+<li>Recognize predicates with XML Literal and emit as
+<code>parseType="Literal"</code> or when <code>content:encoded</code>,
+as a CDATA block, by RSS 1.0 convention.</li>
+<li>Removed code assumptions about triples appearing in a certain order.</li>
+<li>Free namespaces and stack in correct order</li>
+</ul>
+
+<p>Turtle serializer now respects the <code>writeBaseURI</code>
+feature to control generating the <code>@base</code> directive.
+</p>
+
+<p>Abbreviated serializers (RDF/XML Abbrev and Turtle) now remove
+duplicate triples.
+</p>
+
+<p>Added feature <code>RAPTOR_FEATURE_RSS_TRIPLES</code> to add RDF
+triples to RSS 1.0 or Atom serializer output with values 'rdfxml' or
+'atom-triples'.  Atom triples writes <code>at:map</code> sections for
+the <code>atom:entry</code> elements and at:feedmap and
+<code>at:entrymap</code> sections to the <code>atom:feed</code>
+elements.  <code>at:contentType</code> is used to provide a
+<code>type</code> attribute value for an <code>atom:content</code>
+that has a URI value.
+</p>
+
+<p>Added <code>RAPTOR_FEATURE_ATOM_ENTRY_URI</code> for the Atom
+serializer to set the URI of an atom entry.  If the URI matches the
+URI of an entry item in the RDF mode of the channel, then an Atom
+Entry document is generated rather than an Atom Feed document.
+</p>
+
+
+<h3>QName Class Changes</h3>
+
+<p>Added <code>raptor_qname_to_counted_name()</code> to get
+a formatted qname for a name.
+</p>
+
+<p><code>raptor_new_qname_from_namespace_local_name()</code> will
+accept a NULL namespace to construct a namespace-less qname.
+</p>
+
+<h3>Sequence Class Changes</h3>
+
+<p><code>raptor_sequence_set_at()</code> now handles
+setting an item at an index in the sequence beyond capacity+1
+to automatically extend.
+</p>
+
+<p>Added <code>raptor_sequence_delete_at()</code> to delete an item
+at a position in a sequence and return it.
+</p>
+
+<h3>URI Class Changes</h3>
+
+<p><code>raptor_uri_to_relative_counted_uri_string()</code> now
+has support for a base URI with scheme and authority but no path,
+so the result can be a relative URI starting with '/'.
+</p>
+
+<h3>XML Writer Class Changes</h3>
+
+<p>XML Writer allows adding newlines via
+<code>raptor_xml_writer_newline()</code> which
+requires use of <code>raptor_xml_writer_flush()</code> to indicate
+when XML writer output is finished.
+</p>
+
+<p>Added <code>raptor_xml_writer_get_depth()</code> to get the current
+XML writer element stack depth.
+</p>
+
+<h3>Other Changes</h3>
+
+<p>Many more resiliance checks were added.
+</p>
+
+<p>Removed all calls to abort() in code on fatal errors.  This
+requires using setjmp and longjmp inside parsers built with
+flex and bison.
+</p>
+
+<p>The Turtle writer may optionally generate @base depending on
+flags.  (This is used by Turtle serializer to handle the writeBaseURI
+feature)
+</p>
+
+<p>Tidied error messages for <code>rapper(1)</code> when parsing stdin.
+</p>
+
+<p>raptor_init() and raptor_finish() use a reference count to ensure
+initialising and terminating happen at most once each.
+</p>
+
+
+
+
+<h2 id="rel1_4_17"><a name="rel1_4_17">Raptor 1.4.17 Changes</a></h2>
+
+<p>The main changes to this release are:</p>
+
+<p>Added two new JSON serializers: resource-centric 'json' 
+(Talis <a href="http://n2.talis.com/wiki/RDF_JSON_Specification">RDF/JSON</a>)
+and triple-centric 'json-triples'.
+</p>
+
+<p>Made I/O Stream class <code>raptor_iostream</code> support
+reading as well as writing with new constructors and
+new methods.</p>
+
+<p>Added a new public SAX2 API class <code>raptor_sax2</code>
+exposing the existing internal API which has been around since the
+first release of Raptor 8 years ago and runs on top of either expat
+or libxml2.</p>
+
+<p>Added new public error handlers structure
+<code>raptor_error_handlers</code> containing a set of
+(function, data pointers) pairs called <code>raptor_handler_closure</code>
+for each error log level.
+Added <code>raptor_log_level</code> enum for the error log level.
+Added an initialization function for the structure,
+<code>raptor_error_handlers_init()</code>. 
+</p>
+
+<p>Several other API changes, fixes and improvements were made.</p>
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=252">0000252</a>: Allow controlling of cache headers in Raptor</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=245">0000245</a>: Extra classes added to an OWL object</li>
+</ul>
+
+
+<h3>I/O Stream class changes</h3>
+
+<p>Made I/O Stream class <code>raptor_iostream</code> support
+reading data in addition to writing. (Dave B):</p>
+<ul>
+<li>Deprecated <code>raptor_iostream_handler</code> structure for new
+<code>raptor_iostream_handler2</code> structure which contains the
+new factory functions for reading.</li>
+<li>Added new read I/O stream factory handler typedefs
+<code>raptor_iostream_read_bytes_func</code> and
+<code>raptor_iostream_read_eof_func</code>.
+</li>
+<li>Added new <code>raptor_new_iostream_from_handler2()</code> I/O
+stream constructor to allow building of read and write iostreams
+deprecating <code>raptor_new_iostream_from_handler()</code>.
+</li>
+<li>Added new <code>raptor_iostream_tell()</code> deprecating
+<code>raptor_iostream_get_bytes_written_count</code>.
+</li>
+<li>Added new read I/O Stream constructors:
+<code>raptor_new_iostream_from_sink</code>(),
+<code>raptor_new_iostream_from_filename()</code>
+<code>raptor_new_iostream_from_file_handle()</code> and
+<code>raptor_new_iostream_from_string()</code>
+</li>
+<li>Added new read I/O Stream methods
+<code>raptor_iostream_read_bytes()</code> and
+and <code>raptor_iostream_read_eof()</code>.
+</li>
+</ul>
+
+<p>Added new write I/O Stream method
+<code>raptor_iostream_write_string_python()</code> to write an
+encoded string to an I/O stream using python / JSON / Turtle /
+N-Triples / SPARQL escaping rules.  (Dave B)
+</p>
+
+
+<h3>Serializer Class Changes</h3>
+<p>Added two new JSON serializers (Dave B):</p>
+<ol>
+<li>Resource-centric serializer named <code>json</code> based on
+<a href="http://n2.talis.com/wiki/RDF_JSON_Specification">Talis RDF/JSON Specification</a></li>
+<li>Triple-centric serializer named <code>json-triples</code> based on the SPARQL results in JSON format.</li>
+</ol>
+
+<p>Added new serializer features for the JSON serializers (DaveB):</p>
+<ul>
+<li><code>RAPTOR_FEATURE_JSON_CALLBACK</code> (name 'jsonCallback') to
+set the top-level callback function name wrapper above the outer object.</li>
+<li><code>RAPTOR_FEATURE_JSON_EXTRA_DATA</code> (name 'jsonExtraData') to
+add extra top-level JSON object data.</li>
+</ul>
+
+<p>Example of using the resource-centric serializer while defining a
+callback:</p>
+<pre>
+$ rapper -q -o json -f jsonCallback=foo http://librdf.org/raptor/raptor.rdf
+foo(
+{
+  "http://librdf.org/raptor/#raptor" : {
+    "http://usefulinc.com/ns/doap#description" : [ {
+...
+</pre>
+
+
+<h3>Statement Class Changes</h3>
+
+<p>Added <code>raptor_statement_compare()</code> to provide an
+ordering between <code>raptor_statement</code> objects. (Dave B)
+</p>
+
+
+<h3>Parser Class Changes</h3>
+
+<p>Added new parser features to control HTTP headers in
+web requests (Dave B, based on a patch in the bug):<br />
+Also never <code>Pragma:</code> header with libcurl ever.<br />
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=252">Issue #0000252</a>
+</p>
+<ul>
+<li><code>RAPTOR_FEATURE_WWW_HTTP_CACHE_CONTROL</code> to control
+sending <code>Cache-Control</code> (default: none)</li>
+<li><code>RAPTOR_FEATURE_WWW_HTTP_USER_AGENT</code> to control
+sending <code>User-Agent</code> (default: none)</li>
+</ul>
+
+<p>Turtle parser:</p>
+<ul>
+<li>Added tests to forbid <code>'</code> and
+<code>'''</code>-quoted strings and to forbid <code>()</code> in
+triple predicate position following the updated Turtle spec. (Dave B)</li>
+<li>Write ';' statement terminators with a leading
+space for consistency with '.' terminator. (Dave R)</li>
+<li>Remove canonicalisation of integer and double
+to match Turtle latest spec. (Dave B)</li>
+</ul>
+
+
+<h3>QName Class Changes</h3>
+
+<p>Added new methods  <code>raptor_qname_get_local_name()</code>,
+<code>raptor_qname_get_value()</code> and
+<code>raptor_qname_get_counted_value()</code>. (Dave B)
+</p>
+
+
+<h3>SAX2 Class Changes</h3>
+
+<p>Added new public SAX2 API class <code>raptor_sax2</code> exposind
+th existing internal one which has been around since the first
+release of Raptor 8 years ago and runs on top of either expat or
+libxml2. (Dave B)</p>
+
+<ul>
+<li>Constructor: <code>raptor_new_sax2()</code></li>
+<li>Destructor: <code>raptor_free_sax2()</code></li>
+<li>XML handler methods:
+ <code>raptor_sax2_set_start_element_handler()</code>,
+ <code>raptor_sax2_set_end_element_handler()</code>,
+ <code>raptor_sax2_set_characters_handler()</code>,
+ <code>raptor_sax2_set_cdata_handler()</code>,
+ <code>raptor_sax2_set_comment_handler()</code>,
+ <code>raptor_sax2_set_unparsed_entity_decl_handler()</code> and
+ <code>raptor_sax2_set_external_entity_ref_handler()</code>.
+</li>
+<li>XML handler factory typedefs:
+ <code>raptor_sax2_start_element_handler</code>,
+ <code>raptor_sax2_end_element_handler</code>,
+ <code>raptor_sax2_characters_handler</code>,
+ <code>raptor_sax2_cdata_handler</code>,
+ <code>raptor_sax2_comment_handler</code>,
+ <code>raptor_sax2_unparsed_entity_decl_handler</code> and
+ <code>raptor_sax2_external_entity_ref_handler</code>.
+</li>
+<li>Set XML Namespace handler method:
+<code>raptor_sax2_set_namespace_handler()</code>
+</li>
+<li>Parsing methods:
+ <code>raptor_sax2_parse_start()</code> and
+ <code>raptor_sax2_parse_chunk()</code>
+</li>
+<li>Other methods:
+ <code>raptor_sax2_inscope_xml_language()</code> and
+ <code>raptor_sax2_inscope_base_uri()</code> 
+</li>
+</ul>
+
+
+<h3>Serializer Class Changes</h3>
+
+<p>Abbreviated serializers (RDF/XML-Abbrev and Turtle):</p>
+<ul>
+<li>Switched from using a sequence to using an AVL Tree with a cursor
+to more efficiently (faster) group/sort triples by subject.  This
+changes the previous syntax output order but has no semantic
+difference.  (Dave B)
+</li>
+<li>Use the AVL Tree to remove duplicate triples. (Dave B)<br />
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=245">Issue #0000245</a>
+</li>
+</ul>
+
+<p>Turtle serializer:</p>
+<ul>
+<li>Feature <code>RAPTOR_FEATURE_WRITE_BASE_URI</code>
+added to control writing <code>@base</code> directive to Turtle. (Dave R)</li>
+<li>Remove canonicalisation of integer and double
+to match Turtle latest spec. (Dave B)</li>
+</ul>
+
+
+<h3>URI Class Changes</h3>
+
+<p>Update URI resolving for RFC3986 changes (Dave B)
+</p>
+
+
+<h3>WWW Class Changes</h3>
+
+<p>Added new method <code>raptor_www_set_http_cache_control()</code>
+to set the HTTP <code>Cache-Control:</code> header in requests.
+(Dave B, based on a patch in the bug) <br />
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=252">Issue #0000252</a>
+</p>
+
+
+<h3>XML Class Changes</h3>
+
+<p>Added new method <code>raptor_xml_element_get_language()</code> 
+to get the language associated with an element. (Dave B)
+</p>
+
+
+<h3>Portability and Resilience Changes</h3>
+
+<p>Pass on error failures in parser and serializer factory
+construction. (Lauri)
+</p>
+
+<p>Abbreviated serializers (RDF/XML-abbrev and Turtle): low memory
+and allocation failure fixes. (Lauri)
+</p>
+
+<p>Altered API function signatures of
+<code>raptor_uri_set_handler()</code>,
+<code>raptor_uri_get_handler()</code>,
+<code>raptor_new_namespaces(),</code>
+<code>raptor_namespaces_init()</code> and
+<code>raptor_new_xml_writer()</code> to add appropriate
+<code>const</code>s. (Lauri)
+</p>
+
+<p>Portability fixes for RAPTOR_API and other macros. (Lauri)
+</p>
+
+<p>Removal of many sets of writable static data in N-Triples parser, URI
+class, Unicode NFC code, libxml support, Turtle writer and XML
+writer. (Lauri)
+</p>
+
+<p>Portability fixes for <code>round()</code> and
+<code>trunc()</code> that are not always available in libc but might
+be in libm. (Dave B)
+</p>
+
+<p>Turtle/N3 parsers and serializers, RDF/XML_Abbrev serializer: many
+low memory fixes and better out of memory errors. (Lauri)
+</p>
+
+
+<h3>Other Changes</h3>
+
+<p>Rewrote internal error log functions to use new error handlers
+structures and simplify the calls. (Dave B)
+</p>
+
+<p>Expanded internal <code>raptor_avltree</code> datatype support to
+add a cursor, allowing it to be used for creating large ordered
+sequences that need to be walked. (Dave B)
+</p>
+
+<p>Updated <code>rdfdiff</code> utility to handle duplicate triples
+in inputs. (Dave B)
+</p>
+
+<p><code>raptor_sequence_shift()</code> and
+<code>raptor_sequence_unshift()</code> are now as efficient as the
+sequence push and pop operations: O(1). (Lauri)
+</p>
+
+<p><code>autogen.sh</code> was updated.
+</p>
+
+<p><code>rapper</code> utility can now accept multiple
+<code>-f</code> / <code>--feature</code> options; previously
+only one parser and one serializer feature was possible.
+</p>
+
+
+<h2 id="rel1_4_16"><a name="rel1_4_16">Raptor 1.4.16 Changes</a></h2>
+
+<p>The main changes to this release are:</p>
+
+<p>Provide 100% support for the
+<a href="http://www.w3.org/TR/2007/REC-grddl-20070911/">GRDDL W3C Recommendation of 2007-09-11</a>.
+</p>
+
+<p>The
+<a href="http://www.dajobe.org/2004/01/turtle/">Turtle</a>
+parser and serializer were updated to support
+<code>@base</code> for specifying a base URI, following
+Turtle of 2007-09-11.
+</p>
+
+<p>The Turtle and RDF/XML serializers had performance improvements
+for large graphs.
+</p>
+
+<p>Added a TRiG Parser based on Turtle with named graph support.</p>
+
+<p>Several other API changes, fixes and improvements were made.</p>
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000188">0000188</a>: Wrong RAPTOR_API definition for mingw</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000192">0000192</a>: raptor_uri_filename_to_uri_string() - getcwd() loop error</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000194">0000194</a>: parser and serializer don't recognize the same mime types</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000195">0000195</a>: Compile error in raptor_serialize.c debug code</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000207">0000207</a>: RDF file can be parsed, but not then serialised.</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000210">0000210</a>: RAPTOR_FEATURE_WRITER_XML_DECLARATION broken in Ruby</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000214">0000214</a>: Empty rdf:about, plus base-uri, produces incorrect turtle output</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000216">0000216</a>: flickrdf segfaults at raptor_serialize_end!</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000217">0000217</a>: flickrdf segfaults at raptor_serialize_end!</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000232">0000232</a>: libraptor does not correctly free up libxml error handler, causing crashes in subsequent calls to libxml error handlers</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000237">0000237</a>: raptor_sequence robustness: item ownership on insert error</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000238">0000238</a>: GRDDL parser in SVN overwrites blank nodes when merging graphs</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000239">0000239</a>: GRDDL parser in SVN returns 60 less triples with http://www.w3.org/</li>
+</ul>
+
+
+<h3>Namespaces Class Changes</h3>
+
+<p><code>raptor_namespaces_init()</code> now returns an integer
+status.
+</p>
+
+<h3>Parser Class Changes</h3>
+
+<p>
+Added <code>raptor_graph_handler</code> typedef and
+<code>raptor_set_graph_handler()</code> to return named graph
+identifiers during parsing, initially for the TRiG parser.
+</p>
+
+<p>These were added the GRDDL parser:</p>
+<ul>
+  <li><code>RAPTOR_FEATURE_MICROFORMATS</code> (microformats) to enable
+    hCard and hCal microformats</li>
+  <li><code>RAPTOR_FEATURE_HTML_TAG_SOUP</code> (htmlTagSoup) to use
+    the HTML tag soup parser if the XML parsing fails</li>
+  <li><code>RAPTOR_FEATURE_HTML_LINK</code> (htmlLink) to enable html
+    &lt;link&gt;</li>
+  <li><code>RAPTOR_FEATURE_WWW_TIMEOUT</code> (wwwTimeout) for setting
+    URI retrieval timeouts during processing</li>
+</ul>
+
+
+<h3>XML Element Class Changes</h3>
+
+<p>Added
+<code>raptor_new_xml_element_from_namespace_local_name()</code>
+constructor to make an XML element from a local name relative
+to a <code>raptor_namespace</code>.
+</p>
+
+<h3>Unicode Class Changes</h3>
+
+<p>Defined a new <code>raptor_unichar</code> typedef for a Unicode
+codepoint defined as <code>unsigned long</code> which was the
+previous type used.  Altered the Unicode function to take it as a
+parameter.  <code>raptor_unicode_char_to_utf8()</code>,
+<code>raptor_utf8_to_unicode_char()</code>,
+<code>raptor_unicode_is_xml11_namestartchar()</code>,
+<code>raptor_unicode_is_xml10_namestartchar()</code>,
+<code>raptor_unicode_is_xml11_namechar()</code> and
+<code>raptor_unicode_is_xml10_namechar()</code>.
+</p>
+
+<h3>URI Class Changes</h3>
+
+<p>Added <code>raptor_uri_compare()</code> and
+<code>raptor_uri_compare_func</code> function pointer for
+implementing it in the <code>raptor_uri_handler</code>.  The handler
+now has a version field <code>initialised</code> to trigger the new
+factory method for uri compare when the version is 2 or more.
+</p>
+
+<h3>WWW Class Changes</h3>
+<p>
+Added <code>raptor_www_set_connection_timeout()</code>
+to set the WWW retrieval connection timeout in seconds.
+</p>
+
+<p>
+Added <code>raptor_www_final_uri_handler</code> typedef and
+<code>raptor_www_set_final_uri_handler()</code> to return
+the final URI seen <em>during</em> WWW retrieval such as after
+redirects.
+</p>
+
+<p>
+Added <code>raptor_www_get_final_uri()</code> to return the final URI
+<em>after</em> a WWW retrieval which might include redirects.
+</p>
+
+
+<h3>Parser Changes</h3>
+
+<p>The GRDDL parser/processor was substantially updated and now
+supports 100% of the
+<a href="http://www.w3.org/TR/2007/REC-grddl-20070911/">Gleaning Resource Descriptions from Dialects of Languages (GRDDL)</a>
+syntax, W3C Recommendation of 2007-09-11:
+</p>
+<ul>
+  <li>Transforming XML with XSLT 1.0</li>
+  <li>Processing XML namespaces.</li>
+  <li>Transforming XHTML with XSLT 1.0</li>
+  <li>Processing HTML profiles.</li>
+  <li>Handling of base URIs and URI redirects.</li>
+  <li>XInclude processing.</li>
+  <li>Parsing as RDF/XML when it is recognised after a transform.</li>
+</ul>
+
+<p>it also:</p>
+<ul>
+  <li>Handles hCard and hCal microformats when feature
+    <code>RAPTOR_FEATURE_MICROFORMATS</code> is enabled (default
+    enabled).</li>
+  <li>Handles &lt;link type="application/rdf+xml" href="URI" /&gt; to
+    RDF/XML content when feature <code>RAPTOR_FEATURE_HTML_LINK</code> is
+    enabled (default enabled).</li>
+  <li>Attempts parsing with libxml's HTML parser if XML parsing fails,
+    when feature <code>RAPTOR_FEATURE_HTML_TAG_SOUP</code> is enabled
+    (default enabled).</li>
+  <li>Discards errors during recursive processing such as 404s,
+    failure to parse, failure of XSLT processing.</li>
+  <li>Uses XSLT security - denies reading, writing to files,
+    directories or writing to network.</li>
+  <li>Accepts the <code>RAPTOR_FEATURE_NO_NET</code> feature to prevent
+    all networking.</li>
+  <li>Allows fine-grained URI filtering with
+    <code>raptor_parser_set_uri_filter()</code>.</li>
+</ul>
+
+<p>RDF/XML parser recognising was updated to just the start of the
+document for guessing if it should handle content and to try
+to avoid html URLs.
+</p>
+
+<p>RSS Tag soup parser recognising was updated to accept with the
+string 'feed' in the identifier.
+</p>
+
+<p>TRiG Parser was added based on the Turtle parser, adding named
+graphs.  It returns name graph URis via a callback set with new API
+call <code>raptor_set_graph_handler()</code>
+</p>
+
+<p>Turtle parser added <code>@base</code> support, fixed turtle
+escapes to URIs.  Recognising was updated to look for
+<code>@prefix</code> early in the document.
+</p>
+
+<h3>Serializer Changes</h3>
+
+<p>Turtle serialiser changes:</p>
+<ul>
+<li>Generate <code>@base</code> when an output base URI is given.</li>
+<li>Properly format Turtle XSD doubles using new snprintf code.</li>
+<li>Fix unwanted blank line at end of Turtle list abbreviation.</li>
+<li>Use AVL Tree rather than sequence for significant performance
+improvement for large serialisations.</li>
+</ul>
+
+<p>RDF/XML serialiser was changed to emit a legal empty RDF/XML
+document when no triples are serialised and to skip emitting
+statements with bad predicate uris rather than returning an error.
+</p>
+
+<p>RDF/XML Abbrev serialiser was changed to use an AVL tree rather
+than sequence for significant performance improvement for large
+serialisations.
+</p>
+
+<h3><code>rapper</code> Utility Changes</h3>
+
+<p>Added an <code>--show-graphs</code> option to print named graph
+URIs as seen (such as with TRiG).
+</p>
+
+<p>Added <code>-I</code> / <code>--input-uri</code> and
+<code>-O</code> / <code>--output-uri</code> options to set the
+input / parsing and output / serializing base URIs
+separately. Defaults remain the same - the serializer base URI
+defaults to the input base URI, however it was set.
+</p>
+
+
+<h3>Portability Changes</h3>
+
+<p>Fixes for when building from Subversion on cygwin (EOL issues,
+Makefiles).</p>
+
+<p>Remove unused semicolons for prevention of compiler warnings.</p>
+
+<p>Fix some uninitialized variables that some compilers complain about.</p>
+
+<p>Allow <code>RAPTOR_ASSERT_DIE</code> to be externally defined.</p>
+
+<p>Allow <code>RAPTOR_WWW_BUFFER_SIZE</code> to be externally defined.</p>
+
+
+<h3>Other Changes</h3>
+
+<p><code>autogen.sh</code> was updated to handle program versions
+better using an inline perl helper.
+</p>
+
+<p>Start to add resiliance to memory allocation failures
+and errors inside the library.
+</p>
+
+<p>Added AVL Tree code to make much faster key:value lookups.  This
+is used for RDF/XML parser XML ID checks and in the 'abbrev'
+serializers - Turtle and RDF/XML-Abbrev for looking up nodes.
+</p>
+
+<p>Better libxml error messages are now returned, mentioning
+some of the names and values that caused the error.
+</p>
+
+
+
+<h2 id="rel1_4_15"><a name="rel1_4_15">Raptor 1.4.15 Changes</a></h2>
+
+<h3>General Changes</h3>
+
+<p>GRDDL parser now passes the (unapproved) test suite for the
+<a href="http://www.w3.org/TR/2007/WD-grddl-20070302/">GRDDL W3C Working Draft 2 March 2007</a>
+except for two tests that have been reported as having errors.
+</p>
+
+<p>When using libcurl as the WWW retrieval library, errors in
+resolving a URI such as not found (404) are now reported as proper
+errors and cause parsing to fail rather than just return no triples.
+</p>
+
+<p>Some improvments where made to guessing for a parser to match some
+content.  Firstly, any mime type with Q &lt;10 is added to the score,
+don't lose the influence of the mime type entirely.  The consequence of
+this is that Turtle can pretend to be a partial N3 parser. Secondly,
+the XHTML mime type is now correctly recognised by the GRDDL parser
+rather than the RSS Tag Soup parser.</p>
+
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000174">#0000174</a>: Serializing to rdfxml* with a base_uri doesn't set the <code>xml:base</code> attribute, but does truncate <code>rdf:about</code> and <code>rdf:resource</code> values</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000177">#0000177</a>: Some URI references mis-resolved</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000178">#0000178</a>: No errors from accessing 404 URIs</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000180">#0000180</a>: messages garble output to stdout</li>
+</ul>
+
+
+<h3>Parser and Serializer Changes</h3>
+
+<p>Added better error reporting for XML errors using the
+libxml structured error reporing api.  From
+</p>
+<pre>
+$ rapper -i grddl http://librdf.org/LICENSE.txt
+rapper: Parsing URI http://librdf.org/LICENSE.txt
+rapper: Error - URI http://librdf.org/LICENSE.txt - XML error - http://librdf.org/LICENSE.txt:2: 
+rapper: Error - URI http://librdf.org/LICENSE.txt - XML error - parser 
+rapper: Error - URI http://librdf.org/LICENSE.txt - XML error - error : 
+rapper: Error - URI http://librdf.org/LICENSE.txt - XML error - Document is empty
+rapper: Error - URI http://librdf.org/LICENSE.txt - XML error -                   Redland RDF Application Framework - License
+rapper: Error - URI http://librdf.org/LICENSE.txt - XML error -                   ^
+rapper: Failed to parse URI http://librdf.org/LICENSE.txt grddl content
+rapper: Parsing returned 0 triples
+</pre>
+<p>To this:</p>
+<pre>
+$ rapper -i grddl http://librdf.org/LICENSE.txt
+rapper: Parsing URI http://librdf.org/LICENSE.txt
+rapper: Error - URI http://librdf.org/LICENSE.txt:1 - XML parser error: Document is empty
+rapper: Error - URI http://librdf.org/LICENSE.txt:1 - XInclude processing failed for GRDDL document
+rapper: Failed to parse URI http://librdf.org/LICENSE.txt grddl content
+rapper: Parsing returned 0 triples
+</pre>
+
+
+<p>GRDDL parser updated to support the
+<a href="http://www.w3.org/TR/2007/WD-grddl-20070302/">GRDDL W3C Working Draft 2 March 2007</a>:
+</p>
+<ul>
+<li>Namespace and profile URI handling now works.</li>
+<li>Run XML Include processing</li>
+<li>Throw away XML validation errors</li>
+<li>When a namespace URI is seen that was RDF/XML Mime type, run
+the RDF/XML parser on the content.</li>
+<li>Look for substrings inside rel attributes when looking for profiles.</li>
+<li>Return a warning and do not fail if XSLT sheet is not found</li>
+<li>Use libxml structured errors for better reporting</li>
+<li>Removed old hard-coded xslt scripts</li>
+</ul>
+
+<p>Turtle parser was changed to accept the N3 mime
+type <code>text/rdf+n3</code> at low Q(quality)
+so it might work for N3 that is the RDF subset - quite common.
+</p>
+
+<p>Changed the RSS Tag Soup parser and RSS 1.0 serializer to stop
+sharing use of the declared namespaces so that when using both at the
+same time, there is no double-free of the same objects.
+</p>
+
+<p>Correct the content: namespace URI in the RSS parser and
+serializers.
+</p>
+
+
+<h3>Other Changes</h3>
+
+<p><code>rapper</code> gains a <code>-t/--trace</code> option to show
+URIs traversed.  Handy for GRDDL.
+</p>
+
+<p><code>raptor_uri_resolve_uri_reference()</code> no longer goes
+past the end of buffer when the relative URI is <code>,/</code>
+</p>
+
+
+<p>Added an internal API for capturing parsed data as it is seen.
+Use by GRDDL parser but with no public API.
+</p>
+
+<p>Added an internal API for structured error reporting.  Updates
+made throughout the library but with no public API.
+</p>
+
+<p>Internal API <code>raptor_new_sax2()</code> signature changed to
+just have an <code>error_handlers</code> pointer argument rather than
+multiple function / user_data pairs.
+</p>
+
+
+
+
+<h2 id="rel1_4_14"><a name="rel1_4_14">Raptor 1.4.14 Changes</a></h2>
+
+<h3>General Changes</h3>
+
+<p>Added a 
+<a href="http://www.dajobe.org/2004/01/turtle/">Turtle Terse RDF Triple Language</a> serialiser by <a href="http://codeson.net/">Dave Robillard</a> based on the existing RDF/XML-Abbrev
+serialiser.
+</p>
+
+<p>Added a GraphViz
+<a href="http://www.graphviz.org/doc/info/lang.html">DOT format</a> serialiser
+by Evan Nemerson.
+</p>
+
+<p>The GRDDL parser now does namespace and profile URI recursion and
+has other improvements and fixes.
+</p>
+
+<p>Fixed Issues:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=32">#0000032</a>: GRDDL indirection feature request</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=141">#0000141</a>: Crash when GRDDL parser is used with a used-generated blank node ID prefix.</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=143">#0000143</a>: Crash when GRDDL parser fails to retrieve URI.</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=148">#0000148</a>: A public function to generate a blank ID would be nice though.</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=155">#0000155</a>: entity processing in literal property elements (with libxml)</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=157">#0000157</a>: Crash when RDF/XML Abbrev serializer sees a <code>rdf:type</code> predicate with a literal object.</li>
+</ul>
+
+<h3>Configuration Changes</h3>
+
+<p><code>raptor-config</code> gains a <code>--private-libs</code>
+for the internal libraries used in building raptor, with the public
+ones only emitted with <code>--libs</code>.
+</p>
+
+<p><code>raptor.pc</code> now uses <code>Libs.private</code> for
+internal dynamically linked libraries.
+</p>
+
+<p>The libxml minimum version is now 2.6.8 since 2.6.7 crashes on
+PPC64 Linux.  2.6.8 was released March 2004 so this should be no
+burden.</p>
+
+<p>Do not use <code>PATH_MAX</code> so raptor can build on Hurd.
+</p>
+
+<h3>Parser Changes</h3>
+
+<p>RDF/XML parser now looks for the RDF/XML root element and
+namespace declaration in the initial bytes of content when guessing.
+This allows content that is in other mime types such as
+<code>application/xml</code> to be more likely guessed as RDF/XML.
+</p>
+
+<p>When guessing a parser to use, if an an exact match is found for
+the mime type (q=10), then that parser is used.
+</p>
+
+<p>The GRDDL parser has several changes:</p>
+<ul>
+  <li>Recurses through the root element's namespace URI and the profile
+    URIs.  It excludes several common namespace URIs from processing
+    (XHTML, RDF/XML, XML Schema) and does not traverse the GRDDL profile
+    URI itself.
+  </li>
+  <li>Tries to guess which of the RDF/XML or Turtle parser is wanted
+    from an XSLT result.  Guessing is performed because not all the XSLT
+    sheets used in the demonstrations set the mime type to match Turtle's
+    unregistered type, or because the return no mime type, or return an
+    XML one, when it was expected RDF/XML would be received.
+  </li>
+  <li>Watches the processed URIs and never visits the same URI more
+    than once in a session.
+  </li>
+  <li>Passes on general XSLT errors to raptor rather than letting the
+    default (printing to stderr) work.
+  </li>
+  <li>Declares XSLT 'base' and 'Base' parameters to allow some XSLT
+    sheets to work - pragmatism.
+  </li>
+</ul>
+
+<h3>Serializer Changes</h3>
+
+<p>Added a new
+<a href="http://www.dajobe.org/2004/01/turtle/">Turtle Terse RDF Triple Language</a>
+serializer and two new internal APIs based on the existing RDF/XML-Abbrev
+serialiser, written by <a href="http://codeson.net/">Dave Robillard</a>:
+</p>
+<ul>
+  <li><code>turtle_writer</code> for serializing triples to Turtle This
+    may be moved to the public API in a future release.</li>
+  <li><code>raptor_abbrev</code> for the common 'abbreviated
+    serializer' core that is shared between the RDF/XML-Abbrev and Turtle
+    serializer.</li>
+</ul>
+
+<p>Added a new GraphViz
+<a href="http://www.graphviz.org/doc/info/lang.html">DOT format</a> serialiser
+writen by Evan Nemerson.
+</p>
+
+<p>Note that testing the turtle serializing (<code>make test</code>)
+requires the <code>rdfdiff -u</code> and a few of the tests take some
+time to run.</p>
+
+
+<h3>Other Changes</h3>
+
+<p>Added <code>raptor_home_url_string</code>
+and <code>raptor_license_string</code> exported strings.
+</p>
+
+<p>Added <code>raptor_parser_generate_id()</code> as a public function
+to generate an identifier for a parser.
+</p>
+
+<p><code>rdfdiff</code> gains the -u/--base-uri option to specify the
+from file base URI so that if the from file is a local file or
+relative URI, it can be given an absolute base.</p>
+
+<p>Failures to retrieve content from a URI using
+the <code>raptor_www</code> class implementations now return a
+failure as well as setting the HTTP status code to 403 or 404 as
+appropriate.  Previously success may have been returned with no
+bytes.</p>
+
+
+<h2 id="rel1_4_13"><a name="rel1_4_13">Raptor 1.4.13 Changes</a></h2>
+
+<h3>General Changes</h3>
+
+<p>Prevent losing memory for a <code>raptor_xml_writer</code> when a
+serializer is reused several times.</p>
+
+<p>Fixed issues reported on the <a href="http://bugs.librdf.org/">Redland Issue Tracker</a>:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=134">Issue #0000134</a>: Check for equal scheme and authority during construction of relative URIs from two absolute URIs.</li>
+</ul>
+
+
+<h3>Configuration Changes</h3>
+
+<p>In maintainer mode, add all the supported compiler <code>-W</code>
+warning flags to the CFLAGS.
+</p>
+
+<p>Allow <code>LEX</code> to be set to things that aren't exactly
+'flex'.</p>
+
+<h3>Documentation Changes</h3>
+
+<p>Added single triple serializing example to the tutorial to
+demonstrate serializing without parsing and building
+a <code>raptor_statement</code>.</p>
+
+<h3>Other Changes</h3>
+
+
+<p>Declare several raptor functions with GCC printf-formatting
+attributes when using a new enough GCC.</p>
+
+<p>RDF/XML parser now creates literals with
+<code>raptor_stringbuffer</code> so that it does a lot less copying
+when constructing longer literals.
+</p>
+
+<p>Added single <code>raptor_statement</code> serializing example
+to demonstrate serializing alone without parsing.</p>
+
+
+
+<h2 id="rel1_4_12"><a name="rel1_4_12">Raptor 1.4.12 Changes</a></h2>
+
+<p>Restored the order of serialized syntaxes back to the same as in
+Raptor 1.4.10 which Redland was relying on - asking to serialize to
+mime type 'application/rdf+xml' without specifying a parser name in
+Redland with Raptor 1.4.11 wrote it in XMP instead of RDF/XML as
+it used to.  This happened more often with language bindings.
+That problem will be fixed in a future release of Redland but for now,
+this stops wierd things like that happening.
+</p>
+
+
+<h2 id="rel1_4_11"><a name="rel1_4_11">Raptor 1.4.11 Changes</a></h2>
+
+<h3>General Changes</h3>
+
+<p>Added <code>raptor_get_feature_count()</code> to return
+the count of features, in preference to using the
+macro value <code>RAPTOR_FEATURE_LAST</code>.
+</p>
+
+<p>Added <code>raptor_www_set_uri_filter()</code> method of the
+WWW class (<code>raptor_www</code>) objects to have an
+optional URI filter function that checks if the URL given is
+allowed to be retrieved, or denied entirely.
+</p>
+
+<p>Fixed issues reported on the <a href="http://bugs.librdf.org/">Redland Issue Tracker</a>:</p>
+<ul>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000112">#0000112</a>: raptor_namespaces_qname_from_uri not public API?</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000110">#0000110</a>: strcasecmp problem under windows (raptor_rss.c does not compile)</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000091">#0000091</a>: guess parser should guess the syntax each time it is run, not be fixed</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000089">#0000089</a>: Add a NONET feature to prevent network fetches</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000041">#0000041</a>: Allow multiple transformation URLs in data-view:transformation property</li>
+  <li><a href="http://bugs.librdf.org/mantis/view.php?id=0000014">#0000014</a>: bNode content written twice in rdfxml-abbrev output mode</li>
+</ul>
+
+
+<h3>Documentation Changes</h3>
+
+<p>The
+<a href="http://librdf.org/raptor/api/">Raptor Reference Manual</a>
+now includes descriptions of all the parsers and serializers and the
+tutorial has a new section describing how to filter URIs and deny
+network requests.</p>
+
+
+<h3>Parser Changes</h3>
+
+<p>Added functionality to prevent network requests either via setting
+a new feature <code>RAPTOR_FEATURE_NO_NET</code> that denies network
+requests during a parser operation or with a URI filter function
+<code>raptor_parser_set_uri_filter()</code>.  This function uses
+<code>raptor_www_set_uri_filter()</code> internally.
+</p>
+
+<p>Added <code>raptor_get_need_base_uri()</code> to tell if a parser
+requires a base URI argument. Presently the <em>N-Triples</em> parser
+is the only parser that does not require a base URI.
+<code>raptor_start_parse()</code> will now throw an error if no base
+URI is given and it is needed.
+</p>
+
+<p>The <em>GRDDL parser</em> was changed to
+handle a list of URIs in the profile so it now
+can support <code>dataview:transformation</code> in XML taking a list
+of transformations as defined in
+<a href="http://www.w3.org/2004/01/rdxh/spec#grddl-xhtml">The GRDDL profile for XHTML</a> part of the GRDDL specification.
+It now also recognises
+<a href="http://research.talis.com/2005/erdf/wiki/Main/RdfInHtml">Embedded RDF</a> and
+<a href="http://microformats.org/wiki/hcalendar">HCalendar</a>
+using well known XPaths and transforms them to RDF triples using well
+known XSLT sheet URIs.
+</p>
+
+<p>The <em>Guess parser</em> now resets after each parse and does a
+fresh guess on the syntax based on the incoming information.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=91">Issue #0000091</a>
+</p>
+
+
+<p>The <em>Turtle parser </em> (and experimental N3 parser) were
+changed to now require base URIs as they always should have.  The
+error messages when reporting problems with grammar tokens now return
+better responses.  Added better memory cleanup during parser error
+recovery.
+</p>
+
+
+<h3>Serializer Changes</h3>
+
+<p>The <em>RSS 1.0 Serializer</em> now works again.</p>
+
+<p>Updated the <em>RDF/XML Abbreviated</em> serializer to do proper
+reference counting on the blank/resource nodes used as subjects and
+objects to prevent dual-triple generation.  Fixes the reported
+<a href="http://bugs.librdf.org/mantis/view.php?id=14">Issue #0000014</a>
+</p>
+
+
+<h3>Other Changes</h3>
+
+<p>The internal SAX2 API can also prevent network fetches with the
+feature <code>RAPTOR_FEATURE_NO_NET</code>.</p>
+
+<p>Fixed a SAX2 problem that caused parsers that use it to leak
+memory for 1 URI, affected RDF/XML and RSS Tag Soup.
+</p>
+
+<p><code>rapper</code> help and verbose message formats were tidied.</p>
+
+
+
+<h2 id="rel1_4_10"><a name="rel1_4_10">Raptor 1.4.10 Changes</a></h2>
+
+<h3>General Changes</h3>
+
+<p>No parser will now generate a triple with an identifier type
+<code>RAPTOR_IDENTIFIER_TYPE_ORDINAL</code>.  Only identifier type
+resource, anonymous (blank node) and literal will be generated.
+All serializers will convert any
+<code>RAPTOR_IDENTIFIER_TYPE_ORDINAL</code> type on input to type
+resource.
+</p>
+
+
+<h3>Configuration Changes</h3>
+
+<p>No longer adds LDFLAGS to pkgconfig file <code>raptor.pc</code>
+and <code>raptor-config</code> fixing
+<a href="http://bugs.librdf.org/mantis/view.php?id=97">Issue #0000097</a>.
+</p>
+
+
+<h3>Parser Changes</h3>
+
+<p>All parsers no longer generate a triple with an identifier type
+<code>RAPTOR_IDENTIFIER_TYPE_ORDINAL</code>, as deprecated in 1.4.8.
+The replacement type generated is <code>RAPTOR_IDENTIFIER_TYPE_RESOURCE</code>.
+</p>
+
+
+<p>The RSS Tag Soup (<code>rss-tag-soup</code>) parser now makes the
+triples appear before parser destruction. This caused odd symptoms
+like parsing in python returning no triples and the parser then
+crashing during object destruction.
+</p>
+
+<p>The RDF/XML (<code>rdfxml</code>) parser no longer crashes if a
+comment is seen outside an element, such as before or after the root
+element.</p>
+
+
+<h3>Serializer Changes</h3>
+
+<p>The RDF/XML (<code>rdfxml</code>) serializer no longer crashes if
+the serializer is used more than once.
+</p>
+
+
+
+<h2 id="rel1_4_9"><a name="rel1_4_9">Raptor 1.4.9 Changes</a></h2>
+
+<h3>Configuration and Build Changes</h3>
+
+<p>Now using <a href="http://subversion.tigris.org/">Subversion</a>
+for version control and the <a href="INSTALL.html">Raptor installation instructions</a> explain how to get Raptor from Subversion.</p>
+
+<p>configure now allows <code>--enable-parsers=node</code> and
+<code>--enable-serializers=none</code>.  Using both is possible!</p>
+
+<p>No longer require libxml2 for the RSS Tag Soup parser</p>
+
+<p>Various Win32 fixes and VC build files updates from John Barstow.
+</p>
+
+
+<h3>Documentation Changes</h3>
+
+<p>A new 
+<a href="http://librdf.org/raptor/api/tutorial.html">Raptor Tutorial</a>
+was written covering using all parsing and serializing functions along with
+example code.
+</p>
+
+<p>The
+<a href="http://librdf.org/raptor/api/reference-manual.html">Raptor Reference Manual</a> 
+now covers 100% of all functions, structs and defines with gtkdoc generated
+documentation.</p>
+
+
+<h3><code>rapper</code> utility Changes</h3>
+
+<p><code>rapper</code> now uses namespaces found in parsing to give
+hints to the serializer as to how to format the output.  The result
+of this is that <code>rapper</code> can be used as an RDF
+pretty-printer and is especially good at such things as turning flat
+N-Triples to RDF/XML or RDF/XML-Abbrev. such as:
+</p>
+<pre>
+rapper -q -i ntriples -o rdfxml-abbrev example.nt
+</pre>
+
+
+<h3>Parser Changes</h3>
+
+<p>All parsers no longer generate
+<code>RAPTOR_IDENTIFIER_TYPE_PREDICATE</code> as the statement
+predicate type, as deprecated in 1.4.8.  The replacement
+type generated is <code>RAPTOR_IDENTIFIER_TYPE_RESOURCE</code>.</p>
+
+<p>The Turtle parser now has <code>true</code> and <code>false</code>
+boolean literals, which were accidently omiited from the parser in
+the 1.4.8 update.
+</p>
+
+<p>Parsers can register capabilities for handling multiple mime types
+with Q values.  These are then used in WWW requests for content
+in the <code>Accept:</code> header for HTTP.  Added
+<code>raptor_parser_factory_add_mime_type</code> for registering,
+<code>raptor_parser_get_accept_header</code> to get the accept header
+values for the types supported by one parser.
+</p>
+
+<p>From the previous change, the RSS parser now accepts several
+unregistered RSS mime types as well as the registered Atom one; the
+RDF/XML parser accepts unregistered mime type <code>text/rdf</code>
+seen occasionally; the Turtle parser accepts several experimental
+mime types.  All unregistered or experimental types are accepted with
+lower Q than any registered type.
+</p>
+
+<p>The RSS Tag Soup parser for RSS* and Atom no longer requires
+libxml2 (for it's XML Reader API).  Internal changes mean that it
+will fully work on top of expat.</p>
+
+
+
+<h3>Serializer Changes</h3>
+
+<p>The RSS/Atom serializer now uses input namespace declarations to
+choose namespaces on output.</p>
+
+<p>Added <code>raptor_serialize_set_namespace_from_namespace</code>
+to set a namespace for serializing from an existing
+<code>raptor_namespace</code>.
+</p>
+
+<p>Serializing to RDF/XML (or RDF/XML Abbrev) now does not
+double-free URI strings.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=65">Issue #0000065</a>
+</p>
+
+<p>RSS serializer no longer writes the XML header twice.</p>
+
+
+<h3>IOStream Class Changes</h3>
+
+<p>Added <code>raptor_iostream_write_uri</code> to directly write a URI
+to an iostream without the need to go via a string.</p>
+
+<p>Fixed bug in <code>raptor_iostream_write_xml_any_escaped_string</code>
+failing to write ';' after escaping U+0009 and U+000A</p>
+
+
+<h3>Namespaces Class Changes</h3>
+
+<p>Added <code>raptor_namespaces_qname_from_uri</code> to do URI
+splitting into qname prefering to use the current in-scope namespaces
+before having to search.</p>
+
+<p><code>raptor_namespaces_format</code> now NULL-terminates the namespace string.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=62">Issue #0000062</a>
+</p>
+
+<p>Added <code>raptor_namespace_get_counted_prefix</code> to return a
+namespace prefix and it's length.</p>
+
+
+<h3>QName Class Changes</h3>
+
+<p>Added <code>raptor_qname_get_namespace</code> to get the namespace
+associated with a QName.</p>
+
+
+<h3>StringBuffer Class Changes</h3>
+
+<p><code>raptor_stringbuffer_append_counted_string</code> and
+<code>raptor_stringbuffer_append_string</code> now Do nothing on
+appending a NULL string or a string of length 0.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=73">Issue #0000073</a>
+</p>
+
+
+<h3>Unicode Class Changes</h3>
+
+<p><code>raptor_utf8_to_unicode_char</code> now also checks for
+overlong UTF-8 sequences, illegal code positions or out of range
+codes.
+</p>
+
+
+<h3>URI Class Changes</h3>
+
+<p>Deprecated <code>raptor_uri_is_file_uri</code> which takes a
+URI string argument for new function <code>raptor_uri_string_is_file_uri</code>
+which more clearly says that.
+</p>
+
+<p>Changed all URI string calloc/mallocs to add enough room for a
+full pointer at the string end to stop valgrind moaning on 64bit
+systems when looking for the end of string NUL.
+</p>
+
+<p><code>raptor_uri_set_handler</code> and
+<code>raptor_new_iostream_from_handler</code> now take const
+<em>handler</em> arguments.
+</p>
+
+
+<h3>WWW Class Changes</h3>
+
+<p>Get the curl success status into a long, not an int which causes
+failure on 64 bit.
+Fixes <a href="http://bugs.librdf.org/mantis/view.php?id=75">Issue #0000075</a>
+</p>
+
+<p>WWW requests for content to parse now always send an appropriate
+<code>Accept:</code> header with Q values for the parser, or for the
+<code>guess</code> parser, all supported mime types.
+</p>
+
+
+<h3>Internal Changes</h3>
+
+<p>Added XML element methods
+<code>raptor_xml_element_get_attributes</code> and
+<code>raptor_xml_element_get_attributes_count</code>,
+<code>raptor_xml_element_is_empty</code>
+to the SAX2 API.
+</p>
+
+<p>Many internal changes were made to the SAX2 API to finally
+separate XML and RDF/XML parts.  The SAX2 API is now fully usable on
+either libxml2 or expat.  That last sentence implies a lot of work,
+by the way.</p>
+
+
+
+<h2 id="rel1_4_8"><a name="rel1_4_8">Raptor 1.4.8 Changes</a></h2>
+
+<h3>General Changes</h3>
+
+<p>A large source re-arrangement was performed.  All C sources and
+headers that build the library are now in the src dir, general
+documentation in the doc dir and utilities in the utils dir.  This
+both tidied up the mixture of files at the top level and also enabled
+better use with gtk-doc.
+</p>
+
+<p>Future API change: From the next release of
+Raptor, <code>raptor_statement</code> predicates will return
+identifiers of type <code>RAPTOR_IDENTIFIER_TYPE_RESOURCE</code>
+instead of <code>RAPTOR_IDENTIFIER_TYPE_PREDICATE</code>.
+Identifiers of type <code>RAPTOR_IDENTIFIER_TYPE_ORDINAL</code> may
+no longer be returned in any statement position (to be confirmed).
+</p>
+
+<p>Version Control change: Raptor will be switching to use
+<a href="http://subversion.tigris.org/">Subversion</a>
+for version control after the 1.4.8 release.  Please check the
+<a href="http://svn.librdf.org/">Redland Subversion site</a>
+for the latest status or the online
+<a href="http://librdf.org/raptor/INSTALL.html">Raptor installation notes</a>
+for the raptor specific subversion installation information.
+</p>
+
+
+
+<h3>Configuration Changes</h3>
+
+<p>The autogen.sh script for building from CVS was revamped to be
+more modular.</p>
+
+<p><code>configure</code> now takes an <code>--enable-gtk-doc</code>
+option to enable building of the documentation using the
+<code>gtk-doc</code> utility.  It is by default enabled only if the
+utility is available.
+</p>
+
+<p>Added a new configure option <code>--enable-serializers</code> (in
+1.4.7) to allow the selection of the required RDF serializers from
+any of those supported.</p>
+
+<p><code>raptor-config</code> now has a <code>--options</code>
+argument to list the configured or discovered options of the library
+such as parsers, serializers and other choices.
+</p>
+
+
+<h3>Documentation Changes</h3>
+
+<p>The GNOME <code>gtk-doc</code> program is now used to
+automatically extract documentation from source comments into
+reference documentation.  This is then merged with templates and
+additional documentation to provide a reference manual for raptor
+as XML document which is turned into HTML along with GNOME devhelp
+support.</p>
+
+<p>This new documentation intended to replace the libraptor manual
+page/web page as easier to read document with scope for better
+expanding with more detail of raptor including examples and tutorial
+information.  The manual page will continue to contain the summary
+information for the present.
+</p>
+
+
+<h3>Portability Changes</h3>
+
+<p>Fixed a long-standing URI resolution bug on win32 - only remove
+leading / if there is one present (patch from John C. Barstow)</p>
+
+
+<h3><code>rapper</code> utility Changes</h3>
+
+<p>Altered the <code>-g</code> argument to invoke the guessing parser
+rather than guess on file/URI name alone.  This is now equivalent to
+choosing an input syntax of <em>guess</em> with <code>-i guess</code>.</p>
+
+<p>Added a <code>--show-namespaces</code> long option (no short version)
+to show namespaces that are declared in the parsed content.
+</p>
+
+
+<h3>Parser Changes</h3>
+
+<p>A new guessing parser was added, picking the actual parser to use
+at run-time based on protocol or other information.</p>
+
+<p>Allow a content type returned by a protocol (such as HTTP) to
+enable choosing of parser at run-time.  Added a new optional
+parser factory method <code>content_type_handler</code> to return this.
+</p>
+
+<p>Allow parsers to handle several syntaxes rather than only 1 or 2.
+</p>
+
+<p>Parsers can now return namespace prefix/URI declarations as
+they are given in the content by the means of a new handler type
+<code>raptor_namespace_handler</code> and parser method
+<code>raptor_set_namespace_handler</code>.  Duplicate namespace
+prefix/URIs can be returned.
+</p>
+
+<h4>GRDDL Parser Changes</h4>
+
+<p>Bug fix when the entire content is in one chunk (René Puls).</p>
+
+<h4>Guessing Parser Changes</h4>
+
+<p>A new parser that guesses the actual parser to use at run-time
+based on a combination of MIME Content-Type, file or URI name and in
+future, iniital bytes of the content.  If the Content-Type is an
+exact match to a known parser, it is always chosen before trying
+heuristics.
+</p>
+
+<h4>RDF/XML Parser Changes</h4>
+
+<p>When emitting literals, handle a datatyped empty literal.  This
+is a post-REC errata for the revised RDF/XML recommendation.
+See
+<a href="http://lists.w3.org/Archives/Public/www-archive/2005Jul/0017.html">archived example</a>
+for further information.
+</p>
+
+<h4>RSS Tag Soup Parser Changes</h4>
+
+<p>Added atom 1.0 support including use of the new namespace.  Atom
+0.3 namespace terms are turned into new properties.  Replace atom
+copies of Dublin Core or RSS properties with the original terms:
+</p>
+<div style="text-align:center">
+<table>
+<tr><th>Atom 1.0 term</th>               <th>Original term</th></tr>
+<tr><td><code>atom:content</code></td>   <td><code>rss:description</code></td></tr>
+<tr><td><code>atom:id</code></td>        <td><code>rss:link</code></td></tr>
+<tr><td><code>atom:published</code></td> <td><code>dc:date</code></td></tr>
+<tr><td><code>atom:rights</code></td>    <td><code>dc:rights</code></td></tr>
+<tr><td><code>atom:title</code></td>     <td><code>rss:title</code></td></tr>
+</table>
+</div>
+
+<p>Apply the in-scope base URI (such as from <code>xml:base</code>)
+to atom 1.0 fields that take URI values:
+<code>atom:id</code>, <code>atom:icon</code> and <code>atom:logo</code>.
+</p>
+
+<p>Added optional date parsing code to turn XML RSS date fields into
+ISO format ones, suitable for Atom and XML schema datatypes format.
+Will use library parsedate code from curl or INN if available.
+</p>
+
+<p>XML RSS field <code>pubDate</code> is now turned into Dublin Core
+<code>dc:date</code> field in the ISO format.
+</p>
+
+<p>XML RSS field <code>content</code> is turned into
+<code>content:encoded</code> in RDF triples on output with
+escaping.</p>
+
+<h4>Turtle Parser Changes</h4>
+
+<p>Updated to support Turtle version 2006-01-02
+(<a href="http://www.dajobe.org/2004/01/turtle/">announcement</a>).
+</p>
+
+<p>Switch qname, blank node and prefix definitions to SPARQL ones.</p>
+
+<p>Check for illegal not-hexadecimal \u and \U escape values.</p>
+
+<p>Fix greedy matching of long literals ("""....""") that ended on
+the last """ found rather than the first.</p> <!-- """ -->
+
+<p>Added double and decimal constants.</p>
+
+<p>Added optional +- sign to all numeric constants.</p>
+
+<p>Allow \" escape inside long strings.</p>
+
+<p>Take care to reset the generated <code>raptor_statement</code>
+language and datatype fields when not used.
+</p>
+
+
+<h3>Serializer Changes</h3>
+
+<p>Added a new Atom 1.0 serializer (name <em>atom</em>)
+by parameterising the RSS 1.0 serializer.
+</p>
+
+<p>Added a new Adobe XMP compatible serializer (name <em>rdfxml-xmp</em>)
+by parameterising the RDF/XML Abbreviated serializer.  Patch provided by
+Sid Steward.
+</p>
+
+<p>All serializers can be chosen at <code>configure</code> time from
+those available using configure option <code>--enable-serializers</code>.
+</p>
+
+<p>The RSS parser and serializer can now be independently enabled or
+disabled.  The RSS serializer no longer requires an XML parser.</p>
+
+
+<h3>RDF/XML Serializer / XML Writer Changes</h3>
+
+<p>A new XML Writer feature
+<code>RAPTOR_FEATURE_WRITER_XML_VERSION</code> was added to allow
+chosing XML 1.0 (value 10) or XML 1.1 output (value 11).  This
+feature is also accepted by serializers as an option and used by the
+RDF/XML and RDF/XML-Abbrev serializers.
+</p>
+
+<p>A new XML Writer feature
+<code>RAPTOR_FEATURE_WRITER_XML_DECLARATION</code> was added to allow
+omitting the XML declaration (default true).
+</p>
+
+<p>Added functions <code>raptor_xml_any_escape_string()</code>
+and <code>raptor_iostream_write_xml_any_escaped_string()</code>
+which take an XML version.  The XML 1.0 functions give errors
+when attempting to write #x1-#x1f (excluding #x9, #xA, #xD) or #x7F.
+</p>
+
+
+<h3>Atom 1.0 Serializer Changes</h3>
+
+<p>Added a new serializer using the Atom 1.0 format and namespace.
+This reads RDF triples in the RSS 1.0 model, along with any
+additional atom 1.0 properties and serializes an Atom 1.0 feed
+file.</p>
+
+
+<h3>Adobe XMP Serializer Changes</h3>
+
+<p>Added a new serializer writing RDF/XML in the profile used by
+Adobe XMP.  Note that this does require RDF triples to be used in a
+certain style; for example all triple subjects are the "current
+documment" giving <code>rdf:about=""</code>.</p>
+
+
+<h3>URI Class Changes</h3>
+
+<p>Fix a bug when adding a default path of / to a URI
+in functions <code>raptor_new_uri_for_xmlbase()</code>
+and <code>raptor_new_uri_for_retrieval()</code>.
+(Bug #<a href="http://bugs.librdf.org/mantis/view.php?id=45">0000045</a>)
+</p>
+
+
+<p><em>raptor_uri_equals</em> was altered to accept NULL pointers,
+which do not compare equal to a non-NULL URI.  NULL does equal NULL.
+</p>
+
+
+<h3>Internal Changes</h3>
+
+<p>The internal SAX2 class was extensively changed so that remaining
+interdependencies with the RDF/XML parser were removed and it can now
+be re-used for other syntaxes cleanly.  Several functions
+were modified or added.</p>
+
+<p>Removed old and hardly-tested internal support for XML entity
+resolution (libxml only).</p>
+
+<p>Various fixes for GCC 4 warnings.
+</p>
+
+
+<h2 id="rel1_4_7"><a name="rel1_4_7">Raptor 1.4.7 Changes</a></h2>
+
+<p>Fix a couple of crashes in the RSS tag soup parser / serializer
+(Dave Beckett, Suzan Foster).</p>
+
+<p><code>configure</code> now looks for the
+<code>libxslt/xslt.h</code> header as well as the
+<code>libxslt</code> library and disables XSLT and GRDDL support it
+if is missing.  This catches systems with the libraries without
+headers as has happened on some OSX versions.
+</p>
+
+<p>In serializers rdfxml and rdfxml-abbrev, report failure to
+serialize to RDF/XML if the predicate URI is not absolute.
+</p>
+
+
+<h2 id="rel1_4_6"><a name="rel1_4_6">Raptor 1.4.6 Changes</a></h2>
+
+<p>Added <code>--with-xslt-config</code> configure option</p>
+
+<p>Added a new parser for
+<a href="http://www.w3.org/2004/01/rdxh/spec">Gleaning Resource Descriptions from Dialects of Languages (GRDDL)</a>
+which allows reading XHTML and XML as RDF triples by using profiles
+in the document that declare XSLT transforms from the XHTML/XML
+content into RDF/XML which is the RDF content.  It does not
+support all the GRDDL styles, for example
+<code>dataview:namespaceTransformation</code>,
+or perform recursive transformations.
+</p>
+
+<p>The turtle parser now accepts """long literals"""</p> 
+
+<p>XML writer feature support were added in 1.4.5 and not documented.
+The new functions are:
+<code>raptor_xml_writer_features_enumerate</code>,
+<code>raptor_xml_writer_set_feature</code>,
+<code>raptor_xml_writer_set_feature_string</code>,
+<code>raptor_xml_writer_get_feature</code> and
+<code>raptor_xml_writer_get_feature_string</code>.
+The three XML writer features added are
+\fBRAPTOR_FEATURE_WRITER_AUTO_INDENT\fR with boolean value (default true)
+to auto-indent the XML,
+\fBRAPTOR_FEATURE_WRITER_AUTO_EMPTY\fR with boolean value (default true)
+to automatically generate empty elements if a start/end element sequence
+has no content and
+\fBRAPTOR_FEATURE_WRITER_INDENT_WIDTH\fR with an integer value (default 2)
+to set the indenting level for the XML.
+</p>
+
+<p>New build configuration and portability fixes for win32 (John Barstow)</p>
+
+<p>Portability fixes for win32 - added
+<code>SIZEOF_UNSIGNED_SHORT</code> (Dave Viner, others)</p>
+
+<p>Added a signing memory debugging system to aid checking when
+raptor-allocated memory is freed in another library or vice-versa
+enabled by <code>--with-memory-signing</code> configure option
+(defaults to on in maintainer mode).</p>
+
+<p>Fixed a few internal malloc/frees to use RAPTOR_MALLOC / RAPTOR_FREE
+so that the above signed memory system worked.</p>
+
+<p>RDF/XML serializer:
+Use the maximal name when splitting a predicate.<br />
+Turn datatyped literals that are rdf:XMLLiteral into inline XML with
+<code>rdf:parseType="Literal"</code> rather than XML-escaped.
+</p>
+
+<p>RDF/XML abbreviated serializer:
+Fix a crash when there is a NULL base URI.
+Use the maximal name when splitting a predicate.<br />
+Turn datatyped literals that are rdf:XMLLiteral into inline XML with
+<code>rdf:parseType="Literal"</code> rather than XML-escaped.
+</p>
+
+<p>RSS tag soup parser:
+Fix crash with unexpected use of <code>alternate</code> attribute.<br />
+Update from Suzan Foster to reflect the latest status of the
+enclosure vocabulary and allow multiple common items and fields.
+</p>
+
+<p>RSS 1.0 serializer:
+Added RSS enclosures serializing.
+</p>
+
+<p><code>grapper</code> example GTK program now stores the window
+width and height using gconf2.</p>
+
+
+<h2 id="rel1_4_5"><a name="rel1_4_5">Raptor 1.4.5 Changes</a></h2>
+
+<p>Added a new <em>RDF/XML with abbreviations</em> serializer
+<code>rdfxml-abbrev</code> written by Steve Shepard which handles
+several of the abbreviations specified by the
+<a href="http://www.w3.org/TR/rdf-syntax-grammar/">RDF/XML Syntax Specification (Revised)</a>
+W3C Recommendation.  It is suitable for writing small documents as
+there are known scaling issues.
+</p>
+
+<p>The RSS tag soup parser was updated to work better when there is
+no base URI given.  It also now supports reading the 
+<a href="http://inamidst.com/rss1.1/">RSS 1.1</a> format and
+turning it into RSS 1.0 model triples.</p>
+
+<p>Deprecated <code>raptor_ntriples_string_as_utf8_string</code> as
+rather too internal to be useful, since it only works with a parser.
+</p>
+
+<p>More fixes to work around the broken libxml2 on Apple OSX 10.3.x
+with inconsistent shared libraries / headers.</p>
+
+<p>Experimental and incomplete Notation 3 parser - updated to match
+changes to Turtle.  CVS changes only, not enabled in standard builds.
+</p>
+
+
+
+<h2 id="rel1_4_4"><a name="rel1_4_4">Raptor 1.4.4 Changes</a></h2>
+
+<p>Make the RSS tag soup parser handle RSS 0.9 namespace elements by
+turning them into RSS 1.0.</p>
+
+<p>Fix a couple of crashes in the RSS 1.0 serialiser when
+no base URI is used.</p>
+
+<p>Make <code>raptor_uri_to_relative_counted_uri_string</code>
+work when the base or reference URI have no paths such as like
+<em>http://example.org</em>
+</p>
+
+<p>Added portability fixes for Win32 to get Raptor 1.4.3 building
+with MS Visual Studio using expat and libcurl.  The RAPTOR_INTERNAL
+define was moved to the build configuration and defines added for
+integral type sizes.  Patch from Dave Viner (dviner at apache dot
+org).</p>
+
+
+
+<h2 id="rel1_4_3"><a name="rel1_4_3">Raptor 1.4.3 Changes</a></h2>
+
+<p>A release with the major new feature of an XML writer API.
+This is now used along with a new supporting XML element class to
+improve the existing RDF/XML serializer and to provide a new
+<a href="http://purl.org/rss/1.0/spec">RSS 1.0</a> serializer.
+</p>
+
+<p>This API it is also used by the next release of
+<a href="http://librdf.org/rasqal/">Rasqal</a> to provide serializing
+of query results to XML.
+</p>
+
+<p>The new <code>raptor_xml_writer</code> class functions added are:
+<code>raptor_new_xml_writer</code> (constructor),
+<code>raptor_free_xml_writer</code> (destructor),
+<code>raptor_xml_writer_empty_element</code>,
+<code>raptor_xml_writer_start_element</code>,
+<code>raptor_xml_writer_end_element</code>,
+<code>raptor_xml_writer_cdata</code>,
+<code>raptor_xml_writer_cdata_counted</code>,
+<code>raptor_xml_writer_raw</code>,
+<code>raptor_xml_writer_raw_counted</code>,
+<code>raptor_xml_writer_comment</code> and
+<code>raptor_xml_writer_comment_counted</code>.
+</p>
+
+<p>The new <code>raptor_xml_element</code> class functions added are:
+<code>raptor_new_xml_element</code> (constructor),
+<code>raptor_free_xml_element</code> (destructor),
+<code>raptor_xml_element_get_name</code>,
+<code>raptor_xml_element_set_attributes</code>,
+<code>raptor_xml_element_declare_namespace</code> and
+<code>raptor_iostream_write_xml_element</code>.
+</p>
+
+
+<h3>Parser Changes</h3>
+
+<p>RSS tag soup parser now works with older libxml2s (2.5.10+),
+including the one shipped with some Apple OSX versions that has an
+inconsistent header file and library.</p>
+
+<p>RSS tag soup parser recognises/scores more common XML RSS file names.</p>
+
+<p>RSS tag soup parser turns XML RSS
+<code>&lt;guid isPermaLink="true"&gt;val&lt;/guid&gt;</code>
+into RDF/XML form <code>&lt;guid rdf:resource="val"/&gt;</code>, leaving
+the non isPermaLink form to be a literal value.</p>
+
+<p>A bug was found in libxml2 that causes double expanding of XML
+entities in RDF/XML.  This has been reported but cannot be worked
+around from raptor.  The expat XML parser can be used as an
+alternative, as it does not have this problem.  A test was added for
+this bug but it will not cause the test suite ('make check') to
+fail.</p>
+
+<p>Added additional 
+<a href="http://www.dajobe.org/2004/01/turtle/">Turtle</a>
+parser tests that cover Notation 3 syntax that is not part of the
+Turtle language.</p>
+
+<p>Added
+<code>raptor_parser_set_feature_string</code> and
+<code>raptor_parser_get_feature_string</code>
+methods to set/get string feature values.</p>
+
+
+<h3>Serializer Changes</h3>
+
+<p>Added feature <code>relative_uris</code> for serializers.  This
+is used by the RDF/XML serializer and enabled by default.</p>
+
+<p>Added feature <code>start_uri</code> for serializers with a string
+value to set the start URI for serializing.  Not used at present.</p>
+
+<p>Added new methods <code>raptor_serializer_features_enumerate</code>
+to list serializer features and functions to set/get serializer
+feature integer or strings values:
+<code>raptor_serializer_set_feature</code>,
+<code>raptor_serializer_get_feature</code>,
+<code>raptor_serializer_set_feature_string</code> and
+<code>raptor_serializer_get_feature_string</code>.
+</p>
+
+<p>Added <code>raptor_serialize_set_namespace</code> to allow user
+declaration of prefix/URI namespaces pairs as serializing hints.</p>
+
+<p>the RDF/XML serializer was improved using the new XML Writer class
+so it now uses any user-declared namespace hints in it's output and
+emits relative URIs whenever possible.  The latter was provided
+by a patch from René Puls.</p>
+
+<p>A new 
+<a href="http://purl.org/rss/1.0/spec">RSS 1.0</a>
+serializer was added, using the new XML Writer class
+and using the same structures, classes and properties as the RSS tag
+soup parser.</p>
+
+
+<h3>URI class changes</h3>
+
+<p>Added relative URI generating code from a patch written by René Puls
+and provide this with two new methods
+<code>raptor_uri_to_relative_uri_string</code> and
+<code>raptor_uri_to_relative_counted_uri_string</code>.
+</p>
+
+<p>Added <code>raptor_uri_print</code> to print a URI to a file handle.</p>
+
+<p>Added methods <code>raptor_uri_to_string</code> and
+<code>raptor_uri_to_counted_string</code> to return a URI as newly
+allocated strings.</p>
+
+
+<h3>I/O Stream Changes</h3>
+
+<p>Many classes gained methods to write to iostreams, supporting the
+new XML Writer class functionality.  The added methods are:
+<code>raptor_iostream_write_namespace</code>,
+<code>raptor_iostream_write_ntriples_string</code>,
+<code>raptor_iostream_write_qname</code>,
+<code>raptor_iostream_write_statement_ntriples</code>,
+<code>raptor_iostream_write_stringbuffer</code>,
+<code>raptor_iostream_write_xml_element</code> and
+<code>raptor_iostream_write_xml_escaped_string</code>.
+</p>
+
+
+<h3>Namespace Class Changes</h3>
+
+<p>Added <code>raptor_namespace_copy</code> copy
+constructor and <code>raptor_new_namespace_from_uri</code>
+constructor to build a namespace from a raptor_uri object.</p>
+
+<p>Added utility function <code>raptor_new_namespace_parts_from_string</code>
+to decode syntax of the form
+<code>xmlns:</code><em>prefix</em><code>="</code><em>uri</em><code>"</code>
+into <em>prefix</em> and <em>uri</em> string pairs.
+</p>
+
+<p>Added <code>raptor_namespaces_find_namespace_by_uri</code> method
+for namespace stack to find a declared namespace by URI.  This
+complements <code>raptor_namespaces_find_namespace</code> which
+already provides searching by prefix.</p>
+
+
+<h3>Unicode and UTF-8 Changes</h3>
+
+<p>Added several methods for checking characters forming
+parts of XML 1.0 or XML 1.1 names:
+<code>raptor_unicode_is_xml10_namestartchar</code>,
+<code>raptor_unicode_is_xml11_namestartchar</code>,
+<code>raptor_unicode_is_xml10_namechar</code> and
+<code>raptor_unicode_is_xml11_namechar</code>.
+</p>
+
+<p>Added a function <code>raptor_utf8_check</code> to check that a
+string is legal UTF-8 and all the encoded Unicode characters are in
+the range U+0 &lt;= character &lt;= U+10FFFF</p>
+
+<p>Added a function <code>raptor_xml_name_check</code> to check that
+a string is a legal XML name (1.0 or 1.1) as well as legal UTF-8.</p>
+
+
+<h3>Other Changes</h3>
+
+<p>Feature support: Added <code>raptor_feature_value_type</code> to
+determine value of a feature - either integer (most) or string.</p>
+
+<p>XML QName class: Added <code>raptor_qname_copy</code> copy
+constructor.</p>
+
+<p>Sequence class: Added <code>raptor_sequence_join</code>
+to join two sequences of items, leaving one empty.</p>
+
+<p>Statement class: Added <code>raptor_statement_copy</code> copy
+constructor and <code>raptor_free_statement</code> destructor.
+Previously these were internal to raptor.</p>
+
+<p>The <code>rapper</code> utility was modified to add a feature form:
+<code>-f xmlns:</code><em>PREFIX</em><code>="</code><em>URI</em><code>"</code>
+allowing the setting of output serializer namespaces.</p>
+
+<p>The namespace URI string constants exported by raptor are now of
+type unsigned char*.</p>
+
+
+<h2 id="rel1_4_2"><a name="rel1_4_2">Raptor 1.4.2 Changes</a></h2>
+
+<p>Make <code>raptor_xml_escape_string</code> fail correctly when
+given bad UTF-8 to escape.</p>
+
+
+<h2 id="rel1_4_1"><a name="rel1_4_1">Raptor 1.4.1 Changes</a></h2>
+
+<p>Fixed a buffer overrun in decoding a URI scheme in
+<code>raptor_uri</code> constructors such as
+<code>raptor_new_uri</code>.</p>
+
+<p>Fixed a crash in RSS enclosures crash when the <code>url</code>
+attribute seen on a non-<code>&lt;enclosure&gt;</code> element</p>
+
+<p><code>raptor_xml_escape_string</code> return value has changed to
+be an int, returning &lt;0 on failure.  This allows the empty string
+encoding an empty string case to work and be distinguished from an
+error.
+</p>
+
+
+<h2 id="rel1_4_0"><a name="rel1_4_0">Raptor 1.4.0 Changes</a></h2>
+
+<p>A release with the major new feature of providing serializing of
+RDF triples to syntaxes.  It also added a new support class for I/O
+streams and had other minor fixes.</p>
+
+<p>Added a Raptor Serializer class (<code>raptor_serializer</code>)
+with similar style to Parser (<code>raptor_parser</code>).  Two
+serializers are provided, for RDF/XML and N-Triples.  The serializing
+can be done to files, C <code>FILE*</code> or to strings.  The
+raptor_iostream class that provides this also allows writing
+to any other form by creating a custom iostream.
+</p>
+
+<p>The new raptor_serializer class functions added are:
+<code>raptor_serializers_enumerate</code>,
+<code>raptor_serializer_syntax_name_check</code>,
+<code>raptor_new_serializer</code>,
+<code>raptor_free_serializer</code>,
+<code>raptor_serialize_start</code>,
+<code>raptor_serialize_start_to_filename</code>,
+<code>raptor_serialize_start_to_string</code>,
+<code>raptor_serialize_start_to_file_handle</code>,
+<code>raptor_serialize_statement</code>,
+<code>raptor_serialize_end</code>,
+<code>raptor_serializer_get_iostream</code>,
+<code>raptor_serializer_set_error_handler</code>,
+<code>raptor_serializer_set_warning_handler</code> and
+<code>raptor_serializer_get_locator</code>
+</p>
+
+<p>Added a Raptor I/O stream abstraction in
+<code>raptor_iostream</code> class to support serializing of RDF to
+multiple output streams such as to filenames, to C standard I/O
+<code>FILE*</code> handles and to strings especially for
+cross-language use.  A <code>raptor_iostream_handler</code> can
+be used to construct a user-defined iostream.
+</p>
+
+<p>The new raptor_iostream class functions added are:
+<code>raptor_new_iostream_from_handler</code>,
+<code>raptor_new_iostream_to_sink</code>,
+<code>raptor_new_iostream_to_filename</code>,
+<code>raptor_new_iostream_to_file_handle</code>,
+<code>raptor_new_iostream_to_string</code>,
+<code>raptor_free_iostream</code>,
+<code>raptor_iostream_write_bytes</code>,
+<code>raptor_iostream_write_byte</code>,
+<code>raptor_iostream_write_end</code>,
+<code>raptor_iostream_write_string</code>,
+<code>raptor_iostream_write_counted_string</code>,
+<code>raptor_iostream_get_bytes_written_count</code>,
+<code>raptor_iostream_write_decimal</code> and
+<code>raptor_iostream_format_hexadecimal</code>.
+</p>
+
+
+<p>The <code>rapper</code> utility was modified to use serializer
+class so that the output formats supported are now N-Triples
+(<code>-o ntriples</code>) - the default, and RDF/XML (<code>-o
+rdfxml</code>).</p>
+
+
+<p>Raptor now exports more static namespace URI strings for
+general application use:
+<code>raptor_xml_namespace_uri</code>,
+<code>raptor_rdf_namespace_uri</code>,
+<code>raptor_rdf_schema_namespace_uri</code>,
+<code>raptor_xmlschema_datatypes_namespace_uri</code>,
+<code>raptor_owl_namespace_uri</code>,
+and the length
+<code>raptor_rdf_namespace_uri_len</code>.
+</p>
+
+<p>The raptor_stringbuffer class gained a new method
+<code>raptor_stringbuffer_copy_to_string</code>
+which allows efficient copy-out of a constructed string.
+</p>
+
+<p>The raptor_www class gained a new method
+<code>raptor_www_fetch_to_string</code> to allow retrieving of
+web content as a single string.
+</p>
+
+<p>RSS tag soup parser gained support for generating triples for
+enclosures, after a patch from Suzan Foster.  Changes made include
+correcting the enclosures namespace and tidying some memory leaks.
+</p>
+
+
+<h2 id="rel1_3_3"><a name="rel1_3_3">Raptor 1.3.3 Changes</a></h2>
+
+<p>A release with major improvements along with several minor fixes.</p>
+
+<p>Raptor's License was changed from LGPL 2.1/MPL 1.1 to
+LGPL 2.1/Apache 2</p>
+
+<p>Thanks to Chris Pointon for several patches to make Raptor
+easier to build under Win32 which were applied, with some slight
+modifications.</p>
+
+<p>Increased WWW content retrieval buffer size from 256 bytes to 4K
+since this was causing problems for even moderate size documents.</p>
+
+<p>After testing raptor on a very large RDF/XML file with many
+<code>rdf:ID</code> values, the check for duplicate values was found
+to be inefficient in memory and slow.  The implementation was
+improved to be more memory efficient and a new parser feature
+<code>check_rdf_id</code> was added to disable checking (default is
+enabled).</p>
+
+<p>Added a new Unicode NFC checker to replace the functionality
+formally available by calling the GNOME glib function
+g_utf8_normalize.  This new checker is done via several tables and
+adds approximately 50K to the object size of the library when
+compiled on x86.  This code and tables can be disabled with configure
+option <code>--disable-nfc-check</code> causing all checks to
+succeed.</p>
+
+<p>Fix the exporting of
+<code>raptor_xml_literal_datatype_uri_string</code> and
+<code>raptor_xml_literal_datatype_uri_string_len</code> as constants
+for use by applications.  Previously raptor.h wasn't doing this
+correctly.</p>
+
+<p>Added <code>raptor_calloc_memory</code> for allocating zeroed
+memory inside raptor, for use by applications passing memory in/out
+of raptor.</p>
+
+<p>Added a new configure option <code>--enable-parsers</code> to
+allow the selection of the required RDF parsers from any of those
+supported (RDF/XML, Turtle, N-Triples, RSS tag soup).
+</p>
+
+<p>Reorganised the sources to split parsing support from RDF/XML
+to support compiling without this parser.</p>
+
+<p>Updated the RSS Tag Soup parser to start to handle the Atom 0.3
+currently being standardised by the
+<a href="http://www.ietf.org/html.charters/atompub-charter.html">IETF Atom Publishing Format and Protocol</a>
+working group.
+</p>
+
+<p>Altered the Turtle parser to work with large source documents that
+exceeded bison limits.  Thanks to Geoff Chappell for providing a fix for
+this.</p>
+
+<p>Rewrote the URI parsing to create an internal structure and
+improved the relative URI resolving in preparation for future work
+such as potentially supporting URI canonicalisation such as proposed
+to be used by Atom.</p>
+
+
+<h2 id="rel1_3_2"><a name="rel1_3_2">Raptor 1.3.2 Changes</a></h2>
+
+<p>A release with some minor fixes.</p>
+
+<p>Added a new configure option
+<code>--with-expat-source=</code><em>DIR</em>
+to allow the use of external expat source trees in either the old or
+newer directory structure style. (Patch from Mark Smith).</p>
+
+<p>Added <code>raptor_alloc_memory</code> for handlers that need to
+allocate memory in the same heap as raptor uses for
+<code>raptor_free_memory</code>. This is mostly useful for allocating
+memory that is freed by raptor in error, ID and statement handlers
+on win32 which has separate heaps for different DLLs.</p>
+
+<p>A bug was fixed where errors which happened when fetching WWW
+content were always printed to stderr.  They are now passed to the
+main error routines which allows applications to retrieve them.</p>
+
+<p>Accessor functions were added for parts of the public
+<code>raptor_locator</code> structure which makes it possible to get
+structured error information from language bindings via Redland
+(Patch from Edd Dumbill).  The new functions are:</p>
+
+<ul>
+<li><code>int raptor_locator_line(raptor_locator *locator);</code></li>
+<li><code>int raptor_locator_column(raptor_locator *locator);</code></li>
+<li><code>int raptor_locator_byte(raptor_locator *locator);</code></li>
+<li><code>const char * raptor_locator_file(raptor_locator *locator);</code></li>
+<li><code>const char * raptor_locator_uri(raptor_locator *locator);</code></li>
+</ul>
+
+<p>The Unicode Normal Form C (NFC) checking via the GNOME glib
+library function <code>g_utf8_normalize</code> is broken, comparing
+the data it says is failed against other NFC checkers.  It is also
+slower than need be since it is doing full normalizing rather than
+just checking for NFC, and adds a rather large dependency for just
+one function.  A new portable checker will be added in a later
+release.</p>
+
+
+
+
+<h2 id="rel1_3_1"><a name="rel1_3_1">Raptor 1.3.1 Changes</a></h2>
+
+<p>A release primarily to fix some win32 and portability issues.</p>
+
+<p>raptor.h now includes stdarg.h</p>
+
+<p>Corrected the <code>raptor_print_statement</code> declaration in
+raptor.h for the argument statement to have one less 'const' which
+matches the actual code.</p>
+
+<p>Made several portability fixes for compiling natively on win32
+which doesn't quite do POSIX or C99.</p>
+
+<p>Changed the support for file: URIs and converting to and from
+filenames.  It now %-escapes spaces and % characters on conversion
+to and from filenames with
+<code>raptor_uri_uri_string_to_filename</code>,
+<code>raptor_uri_uri_string_to_filename_fragment</code>
+and
+<code>raptor_uri_filename_to_uri_string</code>.
+For Win32, more tests were added and the
+format of URIs supported corrected to use the <code>file:///c:</code>
+form rather than <code>file://c|/</code></p>
+
+<p>URIs that resolve to directories now return an error when lstat is
+available to check.</p>
+
+
+
+<h3>Parser Changes</h3>
+
+<p>The
+<a href="http://www.dajobe.org/2004/01/turtle/">Turtle</a>
+parser was updated to only allow language with non-datatyped literals,
+allow a '_' immediately after a ':' in qnames and to make a bare ':'
+qname work correctly.
+</p>
+
+<p>The Turtle parser was fixed to re-initialise correctly when
+performing multiple parsings.  The other parsers already did this
+correctly.</p>
+
+<p>Added a warning to the RDF/XML parser for unknown
+<code>rdf:parseType</code> values, when parsing in lax mode - which
+is the default.  It now tells the user when the parsing is working as
+'Literal' mode by finding an unknown value.  This is controlled by a
+new parser feature warn_other_parsetypes which is default set true
+in lax mode.  Parser modes are controlled by the
+<code>raptor_set_parser_strict</code> method.</p>
+
+
+
+<h2 id="rel1_3_0"><a name="rel1_3_0">Raptor 1.3.0 Changes</a></h2>
+
+<p>A release primarily to provide support for
+the new <a href="http://librdf.org/rasqal/">Rasqal</a>
+RDF query library but with some new features and fixes.</p>
+
+
+<h3>Parser Changes</h3>
+
+<p>Added a new constructor
+ <code>raptor_new_parser_for_content</code> to guess the parser to use
+from hints in URIs or content, using a new utility function
+<code>raptor_guess_parser_name</code>.</p>
+
+<p>Additional checks were added to the RDF/XML parser for
+RDF-namespaced names in element and attributes and if they are
+forbidden giving an error otherwise if unknown, giving a warning.</p>
+
+<p>The
+<a href="http://www.dajobe.org/2004/01/turtle/">Turtle</a>
+parser was updated to correct the collections syntax, allow '-' in
+names and QNames and to add integer literals.  This parser now correctly
+uses <code>raptor_generate_id</code> when a blank identifier name is
+needed.</p>
+
+<p>Completed parser feature support by adding <code>raptor_get_feature</code>,
+<code>raptor_feature_from_uri</code>, and
+<code>raptor_features_enumerate</code> to get values and enable
+discovery of supported features at run time.
+<code>raptor_set_feature</code> was changed to give return a success
+value</p>
+
+<p>Added a new method <code>raptor_get_mime_type</code> to get the
+MIME type of the syntax for a parser</p>
+
+<p><code>raptor_parse_uri_with_connection</code> (which is called by
+<code>raptor_parse_uri</code>) now sets the HTTP <code>Accept:</code>
+header to the MIME type of the parser in WWW requests using the new
+<code>raptor_www_set_http_accept()</code>.
+</p>
+
+
+<h3><code>rapper</code> changes</h3>
+
+<p>Added options <code>-f</code>/<code>--feature</code> for setting
+features and <code>-g</code>/<code>--guess</code> for guessing syntax
+from some content or identifiers.  See <a href="rapper.html">rapper(1)</a>
+for all rapper options.</p>
+
+
+<h3>Utility function changes</h3>
+
+<p>Added <code>raptor_syntax_name_check</code> to check for valid
+syntax language names.<br />
+</p>
+
+<p>Added <code>raptor_free_memory</code> to free memory returned by
+raptor functions.</p>
+
+<p>Added Unicode utility functions <code>raptor_unicode_char_to_utf8</code> and
+<code>raptor_utf8_to_unicode_char</code>.</p>
+
+<p>Exported URI string <code>raptor_xml_literal_datatype_uri_string</code>.</p>
+
+<p>Deprecated <code>raptor_print_statement_detailed</code> always
+intended to be internal.</p>
+
+
+<h3>WWW Class changes</h3>
+
+<p>Added support to set the HTTP <code>Accept:</code> header for curl
+and libxml2 when retrieving HTTP content by the new
+<code>raptor_www_set_http_accept</code> method.
+</p>
+
+
+<h3>New classes - Sequence and Stringbuffer</h3>
+
+<p>Added a utility class <code>raptor_sequence</code> providing
+simple sequences that can handle stacks and queues</p>
+
+<p>Added a utility class <code>raptor_stringbuffer</code> 
+for constructing strings from substrings appended or prepended.</p>
+
+
+
+<h2 id="rel_older"><a name="rel_older">Raptor 0.9.0 - Raptor 1.2.0 Changes</a></h2>
+
+<p>Release notes for 1.2.0 and earlier are in the
+<a href="NEWS.html">NEWS page</a> or
+<a href="ChangeLog">ChangeLog</a>
+</p>
+
+
+
+<hr />
+
+<p>Copyright (C) 2003-2014 <a href="http://www.dajobe.org/">Dave Beckett</a><br />Copyright (C) 2003-2005 <a href="http://www.bristol.ac.uk/">University of Bristol</a></p>
+
+</body>
+</html>

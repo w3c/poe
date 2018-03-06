@@ -1,0 +1,380 @@
+<!-- ##### SECTION Title ##### -->
+Triples
+
+<!-- ##### SECTION Short_Description ##### -->
+RDF Triples
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+Representation of RDF statements inside Raptor.  They are
+a 3 or 4-tuple of #raptor_term which cover the RDF terms of
+URI (%RAPTOR_TERM_TYPE_URI),
+Literal (%RAPTOR_TERM_TYPE_LITERAL) and
+Blank Node (%RAPTOR_TERM_TYPE_BLANK).
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### ENUM raptor_term_type ##### -->
+<para>
+
+</para>
+
+@RAPTOR_TERM_TYPE_UNKNOWN: 
+@RAPTOR_TERM_TYPE_URI: 
+@RAPTOR_TERM_TYPE_LITERAL: 
+@RAPTOR_TERM_TYPE_BLANK: 
+
+<!-- ##### STRUCT raptor_term ##### -->
+<para>
+
+</para>
+
+@world: 
+@usage: 
+@type: 
+@value: 
+
+<!-- ##### UNION raptor_term_value ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT raptor_term_blank_value ##### -->
+<para>
+
+</para>
+
+@string: 
+@string_len: 
+
+<!-- ##### STRUCT raptor_term_literal_value ##### -->
+<para>
+
+</para>
+
+@string: 
+@string_len: 
+@datatype: 
+@language: 
+@language_len: 
+
+<!-- ##### FUNCTION raptor_new_term_from_blank ##### -->
+<para>
+
+</para>
+
+@world: 
+@blank: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_term_from_counted_blank ##### -->
+<para>
+
+</para>
+
+@world: 
+@blank: 
+@length: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_term_from_literal ##### -->
+<para>
+
+</para>
+
+@world: 
+@literal: 
+@datatype: 
+@language: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_term_from_counted_literal ##### -->
+<para>
+
+</para>
+
+@world: 
+@literal: 
+@literal_len: 
+@datatype: 
+@language: 
+@language_len: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_term_from_counted_uri_string ##### -->
+<para>
+
+</para>
+
+@world: 
+@uri_string: 
+@length: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_term_from_uri ##### -->
+<para>
+
+</para>
+
+@world: 
+@uri: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_term_from_uri_string ##### -->
+<para>
+
+</para>
+
+@world: 
+@uri_string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_term_from_counted_string ##### -->
+<para>
+
+</para>
+
+@world: 
+@string: 
+@length: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_term_copy ##### -->
+<para>
+
+</para>
+
+@term: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_term_compare ##### -->
+<para>
+
+</para>
+
+@t1: 
+@t2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_term_equals ##### -->
+<para>
+
+</para>
+
+@t1: 
+@t2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_free_term ##### -->
+<para>
+
+</para>
+
+@term: 
+
+
+<!-- ##### FUNCTION raptor_term_to_counted_string ##### -->
+<para>
+
+</para>
+
+@term: 
+@len_p: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_term_to_string ##### -->
+<para>
+
+</para>
+
+@term: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_term_ntriples_write ##### -->
+<para>
+
+</para>
+
+@term: 
+@iostr: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_term_to_turtle_counted_string ##### -->
+<para>
+
+</para>
+
+@term: 
+@nstack: 
+@base_uri: 
+@len_p: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_term_to_turtle_string ##### -->
+<para>
+
+</para>
+
+@term: 
+@nstack: 
+@base_uri: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_term_turtle_write ##### -->
+<para>
+
+</para>
+
+@iostr: 
+@term: 
+@nstack: 
+@base_uri: 
+@Returns: 
+
+
+<!-- ##### STRUCT raptor_statement ##### -->
+<para>
+
+</para>
+
+@world: 
+@usage: 
+@subject: 
+@predicate: 
+@object: 
+@graph: 
+
+<!-- ##### FUNCTION raptor_new_statement ##### -->
+<para>
+
+</para>
+
+@world: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_statement_from_nodes ##### -->
+<para>
+
+</para>
+
+@world: 
+@subject: 
+@predicate: 
+@object: 
+@graph: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_free_statement ##### -->
+<para>
+
+</para>
+
+@statement: 
+
+
+<!-- ##### FUNCTION raptor_statement_copy ##### -->
+<para>
+
+</para>
+
+@statement: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_statement_compare ##### -->
+<para>
+
+</para>
+
+@s1: 
+@s2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_statement_equals ##### -->
+<para>
+
+</para>
+
+@s1: 
+@s2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_statement_init ##### -->
+<para>
+
+</para>
+
+@statement: 
+@world: 
+
+
+<!-- ##### FUNCTION raptor_statement_clear ##### -->
+<para>
+
+</para>
+
+@statement: 
+
+
+<!-- ##### FUNCTION raptor_statement_print ##### -->
+<para>
+
+</para>
+
+@statement: 
+@stream: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_statement_print_as_ntriples ##### -->
+<para>
+
+</para>
+
+@statement: 
+@stream: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_statement_ntriples_write ##### -->
+<para>
+
+</para>
+
+@statement: 
+@iostr: 
+@write_graph_term: 
+@Returns: 
+
+

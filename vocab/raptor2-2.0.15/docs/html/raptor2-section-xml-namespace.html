@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XML Namespaces</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="reference-manual.html" title="Part II. Raptor Reference Manual">
+<link rel="prev" href="raptor2-section-www.html" title="WWW">
+<link rel="next" href="raptor2-section-xml-qname.html" title="XML QName">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="raptor2-section-www.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference-manual.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="raptor2-section-xml-qname.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#raptor2-section-xml-namespace.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#raptor2-section-xml-namespace.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="raptor2-section-xml-namespace"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="raptor2-section-xml-namespace.top_of_page"></a>XML Namespaces</span></h2>
+<p>XML Namespaces — Namespaces in XML include stacks of Namespaces</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="raptor2-section-xml-namespace.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace">raptor_namespace</a>;
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  <a class="link" href="raptor2-section-xml-namespace.html#raptor-new-namespace-from-uri" title="raptor_new_namespace_from_uri ()">raptor_new_namespace_from_uri</a>       (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *ns_uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> depth</code></em>);
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="returnvalue">raptor_namespace_stack</span></a> * <a class="link" href="raptor2-section-xml-namespace.html#raptor-new-namespaces" title="raptor_new_namespaces ()">raptor_new_namespaces</a>          (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> defaults</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-init" title="raptor_namespaces_init ()">raptor_namespaces_init</a>              (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> defaults</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-clear" title="raptor_namespaces_clear ()">raptor_namespaces_clear</a>             (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-xml-namespace.html#raptor-free-namespaces" title="raptor_free_namespaces ()">raptor_free_namespaces</a>              (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-start-namespace" title="raptor_namespaces_start_namespace ()">raptor_namespaces_start_namespace</a>   (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *nspace</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-start-namespace-full" title="raptor_namespaces_start_namespace_full ()">raptor_namespaces_start_namespace_full</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *ns_uri_string</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> depth</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-end-for-depth" title="raptor_namespaces_end_for_depth ()">raptor_namespaces_end_for_depth</a>     (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> depth</code></em>);
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-get-default-namespace" title="raptor_namespaces_get_default_namespace ()">raptor_namespaces_get_default_namespace</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>);
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-find-namespace" title="raptor_namespaces_find_namespace ()">raptor_namespaces_find_namespace</a>    (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> prefix_length</code></em>);
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-find-namespace-by-uri" title="raptor_namespaces_find_namespace_by_uri ()">raptor_namespaces_find_namespace_by_uri</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *ns_uri</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-namespace-in-scope" title="raptor_namespaces_namespace_in_scope ()">raptor_namespaces_namespace_in_scope</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *nspace</code></em>);
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  <a class="link" href="raptor2-section-xml-namespace.html#raptor-new-namespace" title="raptor_new_namespace ()">raptor_new_namespace</a>                (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *ns_uri_string</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> depth</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-xml-namespace.html#raptor-free-namespace" title="raptor_free_namespace ()">raptor_free_namespace</a>               (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>);
+<a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="returnvalue">raptor_uri</span></a> *        <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-get-uri" title="raptor_namespace_get_uri ()">raptor_namespace_get_uri</a>            (<em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>);
+const unsigned <span class="returnvalue">char</span> * <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-get-prefix" title="raptor_namespace_get_prefix ()">raptor_namespace_get_prefix</a>       (<em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>);
+const unsigned <span class="returnvalue">char</span> * <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-get-counted-prefix" title="raptor_namespace_get_counted_prefix ()">raptor_namespace_get_counted_prefix</a>
+                                                        (<em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length_p</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-write" title="raptor_namespace_write ()">raptor_namespace_write</a>              (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-iostream.html#raptor-iostream" title="raptor_iostream"><span class="type">raptor_iostream</span></a> *iostr</code></em>);
+typedef             <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack">raptor_namespace_stack</a>;
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack-start-namespace" title="raptor_namespace_stack_start_namespace ()">raptor_namespace_stack_start_namespace</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> new_depth</code></em>);
+unsigned <span class="returnvalue">char</span> *     <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-format-as-xml" title="raptor_namespace_format_as_xml ()">raptor_namespace_format_as_xml</a>      (<em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length_p</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-xml-namespace.html#raptor-xml-namespace-string-parse" title="raptor_xml_namespace_string_parse ()">raptor_xml_namespace_string_parse</a>   (<em class="parameter"><code>const unsigned <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">char</span> **prefix</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">char</span> **uri_string</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-xml-namespace.description"></a><h2>Description</h2>
+<p>
+Two classes that provide an XML namespace - short prefix (or none) and
+absolute URI (or none) to match the form <code class="literal">xmlns...="..."</code>
+seen in XML.  A stack of namespaces <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> is also
+provided to handle in-scope namespace calculations that happen inside
+XML documents where inner namespaces can override outer ones.
+</p>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-xml-namespace.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="raptor-namespace"></a><h3>raptor_namespace</h3>
+<pre class="programlisting">raptor_namespace* raptor_namespace;
+</pre>
+<p>
+Raptor XML Namespace class
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-namespace-from-uri"></a><h3>raptor_new_namespace_from_uri ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  raptor_new_namespace_from_uri       (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *ns_uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> depth</code></em>);</pre>
+<p>
+Constructor - create a new namespace from a prefix and URI object.
+</p>
+<p>
+This declares but does not enable the namespace declaration (or 'start' it)
+Use <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-start-namespace" title="raptor_namespaces_start_namespace ()"><code class="function">raptor_namespaces_start_namespace()</code></a> to make the namespace
+enabled and in scope for binding prefixes.
+</p>
+<p>
+Alternatively use <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-start-namespace-full" title="raptor_namespaces_start_namespace_full ()"><code class="function">raptor_namespaces_start_namespace_full()</code></a> can construct
+and enable a namespace in one call.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em> :</span></p></td>
+<td>namespace prefix string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns_uri</code></em> :</span></p></td>
+<td>namespace URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>depth</code></em> :</span></p></td>
+<td>depth of namespace in the stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-namespaces"></a><h3>raptor_new_namespaces ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="returnvalue">raptor_namespace_stack</span></a> * raptor_new_namespaces          (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> defaults</code></em>);</pre>
+<p>
+Constructor - create a new <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a>.
+</p>
+<p>
+See <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-init" title="raptor_namespaces_init ()"><code class="function">raptor_namespaces_init()</code></a> for the values of <em class="parameter"><code>defaults</code></em>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>defaults</code></em> :</span></p></td>
+<td>namespaces to initialise</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new namespace stack or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-init"></a><h3>raptor_namespaces_init ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_namespaces_init              (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> defaults</code></em>);</pre>
+<p>
+Initialise an existing namespaces stack object
+</p>
+<p>
+This sets up the stack optionally with some common RDF namespaces.
+</p>
+<p>
+<em class="parameter"><code>defaults</code></em> can be 0 for none, 1 for just XML, 2 for RDF, RDFS, OWL
+and XSD (RDQL uses this) or 3+ undefined.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> to initialise</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>defaults</code></em> :</span></p></td>
+<td>namespaces to initialise.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on error</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-clear"></a><h3>raptor_namespaces_clear ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_namespaces_clear             (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>);</pre>
+<p>
+Empty a namespace stack of namespaces and any other resources.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-free-namespaces"></a><h3>raptor_free_namespaces ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_free_namespaces              (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>);</pre>
+<p>
+Destructor - destroy a namespace stack
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-start-namespace"></a><h3>raptor_namespaces_start_namespace ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_namespaces_start_namespace   (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *nspace</code></em>);</pre>
+<p>
+Start a namespace on a stack of namespaces.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nspace</code></em> :</span></p></td>
+<td>namespace to start</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-start-namespace-full"></a><h3>raptor_namespaces_start_namespace_full ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_namespaces_start_namespace_full
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *ns_uri_string</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> depth</code></em>);</pre>
+<p>
+Create a new namespace and start it on a stack of namespaces.
+</p>
+<p>
+See <a class="link" href="raptor2-section-xml-namespace.html#raptor-new-namespace" title="raptor_new_namespace ()"><code class="function">raptor_new_namespace()</code></a> for the meanings of <em class="parameter"><code>prefix</code></em>,
+<em class="parameter"><code>ns_uri_string</code></em> and <em class="parameter"><code>depth</code></em> for namespaces.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em> :</span></p></td>
+<td>new namespace prefix (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns_uri_string</code></em> :</span></p></td>
+<td>new namespace URI (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>depth</code></em> :</span></p></td>
+<td>new namespace depth</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-end-for-depth"></a><h3>raptor_namespaces_end_for_depth ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_namespaces_end_for_depth     (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> depth</code></em>);</pre>
+<p>
+End all namespaces at the given depth in the namespace stack.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>depth</code></em> :</span></p></td>
+<td>depth</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-get-default-namespace"></a><h3>raptor_namespaces_get_default_namespace ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  raptor_namespaces_get_default_namespace
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>);</pre>
+<p>
+Get the current default namespace in-scope in a stack.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> or NULL if no default namespace is in scope</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-find-namespace"></a><h3>raptor_namespaces_find_namespace ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  raptor_namespaces_find_namespace    (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> prefix_length</code></em>);</pre>
+<p>
+Find a namespace in a namespace stack by prefix.
+</p>
+<p>
+Note that this uses the <em class="parameter"><code>length</code></em> so that the prefix may be a prefix (sic)
+of a longer string.  If <em class="parameter"><code>prefix</code></em> is NULL, the default namespace will
+be returned if present, <em class="parameter"><code>prefix_length</code></em> length is ignored in this case.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em> :</span></p></td>
+<td>namespace prefix to find</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix_length</code></em> :</span></p></td>
+<td>length of prefix.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> for the prefix or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-find-namespace-by-uri"></a><h3>raptor_namespaces_find_namespace_by_uri ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  raptor_namespaces_find_namespace_by_uri
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *ns_uri</code></em>);</pre>
+<p>
+Find a namespace in a namespace stack by namespace URI.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns_uri</code></em> :</span></p></td>
+<td>namespace URI to find</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> for the URI or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespaces-namespace-in-scope"></a><h3>raptor_namespaces_namespace_in_scope ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_namespaces_namespace_in_scope
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *nspace</code></em>);</pre>
+<p>
+Test if a given namespace is in-scope in the namespace stack.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nspace</code></em> :</span></p></td>
+<td>namespace</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 if the namespace is in scope.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-namespace"></a><h3>raptor_new_namespace ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="returnvalue">raptor_namespace</span></a> *  raptor_new_namespace                (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *ns_uri_string</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> depth</code></em>);</pre>
+<p>
+Constructor - create a new namespace from a prefix and URI string with a depth scope.
+</p>
+<p>
+This declares but does not enable the namespace declaration (or 'start' it)
+Use <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-start-namespace" title="raptor_namespaces_start_namespace ()"><code class="function">raptor_namespaces_start_namespace()</code></a> to make the namespace
+enabled and in scope for binding prefixes.
+</p>
+<p>
+Alternatively use <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-start-namespace-full" title="raptor_namespaces_start_namespace_full ()"><code class="function">raptor_namespaces_start_namespace_full()</code></a> can construct
+and enable a namespace in one call.
+</p>
+<p>
+The <em class="parameter"><code>depth</code></em> is a way to use the stack of namespaces for providing scoped
+namespaces where inner scope namespaces override outer scope namespaces.
+This is primarily for RDF/XML and XML syntaxes that have hierarchical
+elements.  The main use of this is <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-end-for-depth" title="raptor_namespaces_end_for_depth ()"><code class="function">raptor_namespaces_end_for_depth()</code></a>
+to disable ('end') all namespaces at a given depth.   Otherwise set this
+to 0.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em> :</span></p></td>
+<td>namespace prefix string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns_uri_string</code></em> :</span></p></td>
+<td>namespace URI string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>depth</code></em> :</span></p></td>
+<td>depth of namespace in the stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-free-namespace"></a><h3>raptor_free_namespace ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_free_namespace               (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>);</pre>
+<p>
+Destructor - destroy a namespace.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>ns</code></em> :</span></p></td>
+<td>namespace object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespace-get-uri"></a><h3>raptor_namespace_get_uri ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="returnvalue">raptor_uri</span></a> *        raptor_namespace_get_uri            (<em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>);</pre>
+<p>
+Get the namespace URI.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns</code></em> :</span></p></td>
+<td>namespace object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>namespace URI or NULL</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespace-get-prefix"></a><h3>raptor_namespace_get_prefix ()</h3>
+<pre class="programlisting">const unsigned <span class="returnvalue">char</span> * raptor_namespace_get_prefix       (<em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>);</pre>
+<p>
+Get the namespace prefix.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns</code></em> :</span></p></td>
+<td>namespace object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>prefix string or NULL</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespace-get-counted-prefix"></a><h3>raptor_namespace_get_counted_prefix ()</h3>
+<pre class="programlisting">const unsigned <span class="returnvalue">char</span> * raptor_namespace_get_counted_prefix
+                                                        (<em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length_p</code></em>);</pre>
+<p>
+Get the namespace prefix and length.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns</code></em> :</span></p></td>
+<td>namespace object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length_p</code></em> :</span></p></td>
+<td>pointer to store length or NULL</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>prefix string or NULL</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespace-write"></a><h3>raptor_namespace_write ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_namespace_write              (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-iostream.html#raptor-iostream" title="raptor_iostream"><span class="type">raptor_iostream</span></a> *iostr</code></em>);</pre>
+<p>
+Write a formatted namespace to an iostream
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns</code></em> :</span></p></td>
+<td>namespace to write</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iostr</code></em> :</span></p></td>
+<td>raptor iosteram</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespace-stack"></a><h3>raptor_namespace_stack</h3>
+<pre class="programlisting">raptor_namespace_stack* raptor_namespace_stack;
+</pre>
+<p>
+Raptor XML Namespace Stack class
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespace-stack-start-namespace"></a><h3>raptor_namespace_stack_start_namespace ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_namespace_stack_start_namespace
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-stack" title="raptor_namespace_stack"><span class="type">raptor_namespace_stack</span></a> *nstack</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> new_depth</code></em>);</pre>
+<p>
+Copy an existing namespace to a namespace stack with a new depth
+and start it.
+</p>
+<p>
+The <em class="parameter"><code>depth</code></em> is a way to use the stack of namespaces for providing scoped
+namespaces where inner scope namespaces override outer scope namespaces.
+This is primarily for RDF/XML and XML syntaxes that have hierarchical
+elements.  The main use of this is <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespaces-end-for-depth" title="raptor_namespaces_end_for_depth ()"><code class="function">raptor_namespaces_end_for_depth()</code></a>
+to disable ('end') all namespaces at a given depth.   If depths are
+not being needed it is unlikely this call is ever needed to copy an
+existing namespace at a new depth.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nstack</code></em> :</span></p></td>
+<td>namespace stack</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns</code></em> :</span></p></td>
+<td>namespace</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>new_depth</code></em> :</span></p></td>
+<td>new depth</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-namespace-format-as-xml"></a><h3>raptor_namespace_format_as_xml ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">char</span> *     raptor_namespace_format_as_xml      (<em class="parameter"><code>const <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *ns</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length_p</code></em>);</pre>
+<p>
+Format a namespace in an XML style into a newly allocated string.
+</p>
+<p>
+Generates a string of the form xmlns:prefix="uri",
+xmlns="uri", xmlns:prefix="" or xmlns="" depending on the
+namespace's prefix or URI.  Double quotes are always used.
+</p>
+<p>
+If <em class="parameter"><code>length_p</code></em> is not NULL, the length of the string is
+stored in the address it points to.
+</p>
+<p>
+See also <a class="link" href="raptor2-section-xml-namespace.html#raptor-xml-namespace-string-parse" title="raptor_xml_namespace_string_parse ()"><code class="function">raptor_xml_namespace_string_parse()</code></a>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ns</code></em> :</span></p></td>
+<td>namespace object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length_p</code></em> :</span></p></td>
+<td>pointer to length (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>namespace formatted as newly allocated string or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-xml-namespace-string-parse"></a><h3>raptor_xml_namespace_string_parse ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_xml_namespace_string_parse   (<em class="parameter"><code>const unsigned <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">char</span> **prefix</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">char</span> **uri_string</code></em>);</pre>
+<p>
+Parse a string containing an XML style namespace declaration
+into a namespace prefix and URI pair.
+</p>
+<p>
+The string is of the form xmlns:prefix="uri",
+xmlns="uri", xmlns:prefix="" or xmlns="".
+The quotes can be single or double quotes.
+</p>
+<p>
+Two values are returned from this function into *<em class="parameter"><code>prefix</code></em> and
+*<em class="parameter"><code>uri_string</code></em>.  Either but not both may be NULL.
+</p>
+<p>
+See also <a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace-format-as-xml" title="raptor_namespace_format_as_xml ()"><code class="function">raptor_namespace_format_as_xml()</code></a>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td>string to parse</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em> :</span></p></td>
+<td>pointer to location to store namespace prefix</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri_string</code></em> :</span></p></td>
+<td>pointer to location to store namespace URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

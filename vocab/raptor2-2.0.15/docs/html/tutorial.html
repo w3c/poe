@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Part I. Raptor Tutorial</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="prev" href="introduction.html" title="Raptor Overview">
+<link rel="next" href="tutorial-initialising-finishing.html" title="Initialising and Finishing using the Library">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="introduction.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td> </td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="tutorial-initialising-finishing.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="part">
+<div class="titlepage"><div><div><h1 class="title">
+<a name="tutorial"></a>Part I. Raptor Tutorial</h1></div></div></div>
+<div class="partintro">
+<div></div>
+<p>This part describes how to use the
+      <a class="ulink" href="http://librdf.org/raptor/" target="_top">Raptor</a> APIs to
+      turn syntaxes into RDF triples and RDF triples into syntaxes.</p>
+<p>The next part contains the
+      <a class="link" href="reference-manual.html" title="Part II. Raptor Reference Manual">Raptor Reference Manual</a>
+      which comprehensively describes every class and function of the API.
+      </p>
+<p>For the latest information, see the
+      <a class="ulink" href="http://librdf.org/raptor/" target="_top">Raptor Home Page</a>
+      and the <a class="ulink" href="../README.html" target="_top">main document overview</a>
+      in this document tree.
+      </p>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="chapter"><a href="tutorial-initialising-finishing.html">Initialising and Finishing using the Library</a></span></dt>
+<dt><span class="chapter"><a href="tutorial-querying-functionality.html">Listing built-in functionality</a></span></dt>
+<dt><span class="chapter"><a href="tutorial-parsing.html">Parsing syntaxes to RDF Triples</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="tutorial-parsing.html#tutorial-parsing-intro">Introduction</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-create.html">Create the Parser object</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-features.html">Parser options</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-set-triple-handler.html">Set RDF statement callback handler</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-set-error-warning-handlers.html">Set parsing log message handlers</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-set-id-handler.html">Set the identifier creator handler</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-set-namespace-handler.html">Set namespace declared handler</a></span></dt>
+<dt><span class="section"><a href="tutorial-parse-strictness.html">Set the parsing strictness</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-content.html">Provide syntax content to parse</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="tutorial-parser-content.html#parse-from-uri">Parse the content from a URI (<code class="function">raptor_parser_parse_uri()</code>)</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-content.html#parse-from-www">Parse the content of a URI using an existing WWW connection (<code class="function">raptor_parser_parse_uri_with_connection()</code>)</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-content.html#parse-from-filehandle">Parse the content of a C <code class="literal">FILE*</code> (<code class="function">raptor_parser_parse_file_stream()</code>)</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-content.html#parse-from-file-uri">Parse the content of a file URI (<code class="function">raptor_parser_parse_file()</code>)</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-content.html#parse-from-chunks">Parse chunks of syntax content provided by the application  (<code class="function">raptor_parser_parse_start()</code> and <code class="function">raptor_parser_parse_chunk()</code>)</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="restrict-parser-network-access.html">Restrict parser network access</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="restrict-parser-network-access.html#tutorial-filter-network-with-feature">Filtering parser network requests with option <code class="literal">RAPTOR_OPTION_NO_NET</code></a></span></dt>
+<dt><span class="section"><a href="restrict-parser-network-access.html#tutorial-filter-network-www-uri-filter">Filtering parser network requests with <code class="function">raptor_www_set_uri_filter()</code></a></span></dt>
+<dt><span class="section"><a href="restrict-parser-network-access.html#tutorial-filter-network-parser-uri-filter">Filtering parser network requests with <code class="function">raptor_parser_set_uri_filter()</code></a></span></dt>
+<dt><span class="section"><a href="restrict-parser-network-access.html#tutorial-filter-network-parser-timeout">Setting timeout for parser network requests with option <code class="literal">RAPTOR_OPTION_WWW_TIMEOUT</code></a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="tutorial-parser-static-info.html">Querying parser static information</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-runtime-info.html">Querying parser run-time information</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-abort.html">Aborting parsing</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-destroy.html">Destroy the parser</a></span></dt>
+<dt><span class="section"><a href="tutorial-parser-example.html">Parsing example code</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="tutorial-serializing.html">Serializing RDF triples to a syntax</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="tutorial-serializing.html#tutorial-serializing-intro">Introduction</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-create.html">Create the Serializer object</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-features.html">Serializer options</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-declare-namespace.html">Declare namespaces</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-set-error-warning-handlers.html">Set error and warning handlers</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-to-destination.html">Provide a destination for the serialized syntax</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="tutorial-serializer-to-destination.html#serialize-to-filename">Serialize to a filename (<code class="function">raptor_serializer_start_to_filename()</code>)</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-to-destination.html#serialize-to-string">Serialize to a string (<code class="function">raptor_serializer_start_to_string()</code>)</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-to-destination.html#serialize-to-filehandle">Serialize to a FILE* file handle (<code class="function">raptor_serializer_start_to_file_handle()</code>)</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-to-destination.html#serialize-to-iostream">Serialize to an <span class="type">raptor_iostream</span> (<code class="function">raptor_serializer_start_to_iostream()</code>)</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="tutorial-serializer-get-triples.html">Get or construct RDF Statements (Triples)</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-send-triples.html">Send RDF Triples to serializer</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-runtime-info.html">Querying serializer run-time information</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-destroy.html">Destroy the serializer</a></span></dt>
+<dt><span class="section"><a href="tutorial-serializer-example.html">Serializing example code</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

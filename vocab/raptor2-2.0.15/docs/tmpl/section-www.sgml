@@ -1,0 +1,260 @@
+<!-- ##### SECTION Title ##### -->
+WWW
+
+<!-- ##### SECTION Short_Description ##### -->
+Retrieval of URI content from the web.
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+Provides a wrapper to the resolution of URIs to give content
+using an underlying WWW-retrieval library.  The content is
+delivered by callbacks and includes returning content type
+for handling content-negotation by the caller as well as
+chunks of byte content.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### TYPEDEF raptor_www ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION raptor_new_www ##### -->
+<para>
+
+</para>
+
+@world: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_new_www_with_connection ##### -->
+<para>
+
+</para>
+
+@world: 
+@connection: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_free_www ##### -->
+<para>
+
+</para>
+
+@www: 
+
+
+<!-- ##### USER_FUNCTION raptor_www_write_bytes_handler ##### -->
+<para>
+
+</para>
+
+@www: 
+@userdata: 
+@ptr: 
+@size: 
+@nmemb: 
+
+
+<!-- ##### USER_FUNCTION raptor_www_content_type_handler ##### -->
+<para>
+
+</para>
+
+@www: 
+@userdata: 
+@content_type: 
+
+
+<!-- ##### FUNCTION raptor_www_set_user_agent ##### -->
+<para>
+
+</para>
+
+@www: 
+@user_agent: 
+
+
+<!-- ##### FUNCTION raptor_www_set_proxy ##### -->
+<para>
+
+</para>
+
+@www: 
+@proxy: 
+
+
+<!-- ##### FUNCTION raptor_www_set_http_accept ##### -->
+<para>
+
+</para>
+
+@www: 
+@value: 
+
+
+<!-- ##### FUNCTION raptor_www_set_http_cache_control ##### -->
+<para>
+
+</para>
+
+@www: 
+@cache_control: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_www_set_write_bytes_handler ##### -->
+<para>
+
+</para>
+
+@www: 
+@handler: 
+@user_data: 
+
+
+<!-- ##### FUNCTION raptor_www_set_connection_timeout ##### -->
+<para>
+
+</para>
+
+@www: 
+@timeout: 
+
+
+<!-- ##### FUNCTION raptor_www_set_content_type_handler ##### -->
+<para>
+
+</para>
+
+@www: 
+@handler: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION raptor_uri_filter_func ##### -->
+<para>
+
+</para>
+
+@user_data: 
+@uri: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_www_set_uri_filter ##### -->
+<para>
+
+</para>
+
+@www: 
+@filter: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION raptor_www_final_uri_handler ##### -->
+<para>
+
+</para>
+
+@www: 
+@userdata: 
+@final_uri: 
+
+
+<!-- ##### FUNCTION raptor_www_get_final_uri ##### -->
+<para>
+
+</para>
+
+@www: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_www_set_final_uri_handler ##### -->
+<para>
+
+</para>
+
+@www: 
+@handler: 
+@user_data: 
+
+
+<!-- ##### FUNCTION raptor_www_fetch ##### -->
+<para>
+
+</para>
+
+@www: 
+@uri: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_www_fetch_to_string ##### -->
+<para>
+
+</para>
+
+@www: 
+@uri: 
+@string_p: 
+@length_p: 
+@malloc_handler: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_www_get_connection ##### -->
+<para>
+
+</para>
+
+@www: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_www_set_ssl_cert_options ##### -->
+<para>
+
+</para>
+
+@www: 
+@cert_filename: 
+@cert_type: 
+@cert_passphrase: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_www_set_ssl_verify_options ##### -->
+<para>
+
+</para>
+
+@www: 
+@verify_peer: 
+@verify_host: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_www_abort ##### -->
+<para>
+
+</para>
+
+@www: 
+@reason: 
+
+

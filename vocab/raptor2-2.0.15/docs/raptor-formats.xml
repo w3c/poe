@@ -1,0 +1,455 @@
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<chapter id="raptor-formats">
+<title>Syntax Formats supported in Raptor</title>
+
+<para>This chapter describes the syntax formats supported
+by parsers and serializers in Raptor.
+</para>
+
+<section id="raptor-formats-intro">
+<title>Introduction</title>
+<para>
+The parsers and serializers in raptor can handle different MIME Types with different levels of quality (Q).  A Q of 1.0 indicates that the parser or serializer will be able to read or write the full format with high quality, and it should be the prefered parser or serializer for that mime type.  Lower Q values indicate either additional mime type support (for parsing) or less-preferred mime types (for serializing).  A serializer typically has just 1 mime type of Q 1.0; the preferred type.</para>
+</section>
+
+<section id="raptor-formats-types-by-parser">
+<title>MIME Types by Parser</title>
+  <variablelist>
+
+    <varlistentry><term>Gleaning Resource Descriptions from Dialects of Languages (<literal>grddl</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>text/html</literal> with q 0.2</para></listitem>
+        <listitem><para><literal>application/xhtml+xml</literal> with q 0.4</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>N-Quads (<literal>nquads</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>text/x-nquads</literal> with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>N-Triples (<literal>ntriples</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/n-triples</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>text/plain</literal> with q 0.1</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RDF/A via librdfa (<literal>rdfa</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>text/html</literal> with q 0.6</para></listitem>
+        <listitem><para><literal>application/xhtml+xml</literal> with q 0.8</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RDF/JSON (either Triples or Resource-Centric) (<literal>json</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/json</literal> with q 0.1</para></listitem>
+        <listitem><para><literal>text/json</literal> with q 0.1</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RDF/XML (<literal>rdfxml</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/rdf+xml</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>text/rdf</literal> with q 0.6</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RSS Tag Soup (<literal>rss-tag-soup</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/rss</literal> with q 0.8</para></listitem>
+        <listitem><para><literal>application/rss+xml</literal> with q 0.8</para></listitem>
+        <listitem><para><literal>text/rss</literal> with q 0.8</para></listitem>
+        <listitem><para><literal>application/xml</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>text/xml</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>application/atom+xml</literal> with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>TriG - Turtle with Named Graphs (<literal>trig</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/x-trig</literal> with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>Turtle Terse RDF Triple Language (<literal>turtle</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>text/turtle</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>application/x-turtle</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>application/turtle</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>text/n3</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>text/rdf+n3</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>application/rdf+n3</literal> with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+</section>
+
+<section id="raptor-formats-types-by-serializer">
+<title>MIME Types by Serializer</title>
+  <variablelist>
+
+    <varlistentry><term>Atom 1.0 (<literal>atom</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/atom+xml</literal> with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>GraphViz DOT format (<literal>dot</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>text/x-graphviz</literal> with q 0.5</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>HTML Table (<literal>html</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/xhtml+xml</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>text/html</literal> with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>N-Quads (<literal>nquads</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>text/x-nquads</literal> with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>N-Triples (<literal>ntriples</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/n-triples</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>text/plain</literal> with q 0.1</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RDF/JSON Resource-Centric (<literal>json</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/json</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>text/json</literal> with q 0.1</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RDF/JSON Triples (<literal>json-triples</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/json</literal> with q 0.0</para></listitem>
+        <listitem><para><literal>text/json</literal> with q 0.1</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RDF/XML (<literal>rdfxml</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/rdf+xml</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>text/rdf</literal> with q 0.6</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RDF/XML (Abbreviated) (<literal>rdfxml-abbrev</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/rdf+xml</literal> with q 0.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RDF/XML (XMP Profile) (<literal>rdfxml-xmp</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/rdf+xml</literal> with q 0.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>RSS 1.0 (<literal>rss-1.0</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>application/rss+xml</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>application/rss</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>text/rss</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>application/xml</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>text/xml</literal> with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term>Turtle Terse RDF Triple Language (<literal>turtle</literal>)</term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para><literal>text/turtle</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>application/turtle</literal> with q 1.0</para></listitem>
+        <listitem><para><literal>application/x-turtle</literal> with q 0.8</para></listitem>
+        <listitem><para><literal>text/n3</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>text/rdf+n3</literal> with q 0.3</para></listitem>
+        <listitem><para><literal>application/rdf+n3</literal> with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+</section>
+
+<section id="raptor-formats-types-index">
+<title>MIME Types Index</title>
+  <variablelist>
+
+    <varlistentry><term><literal>application/atom+xml</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>Atom 1.0 Serializer (<literal>atom</literal>) with q 1.0</para></listitem>
+        <listitem><para>RSS Tag Soup Parser (<literal>rss-tag-soup</literal>) with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/json</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RDF/JSON Resource-Centric Serializer (<literal>json</literal>) with q 1.0</para></listitem>
+        <listitem><para>RDF/JSON (either Triples or Resource-Centric) Parser (<literal>json</literal>) with q 0.1</para></listitem>
+        <listitem><para>RDF/JSON Triples Serializer (<literal>json-triples</literal>) with q 0.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/n-triples</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>N-Triples Parser (<literal>ntriples</literal>) with q 1.0</para></listitem>
+        <listitem><para>N-Triples Serializer (<literal>ntriples</literal>) with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/rdf+n3</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>Turtle Terse RDF Triple Language Parser (<literal>turtle</literal>) with q 0.3</para></listitem>
+        <listitem><para>Turtle Terse RDF Triple Language Serializer (<literal>turtle</literal>) with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/rdf+xml</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RDF/XML Parser (<literal>rdfxml</literal>) with q 1.0</para></listitem>
+        <listitem><para>RDF/XML Serializer (<literal>rdfxml</literal>) with q 1.0</para></listitem>
+        <listitem><para>RDF/XML (XMP Profile) Serializer (<literal>rdfxml-xmp</literal>) with q 0.0</para></listitem>
+        <listitem><para>RDF/XML (Abbreviated) Serializer (<literal>rdfxml-abbrev</literal>) with q 0.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/rss</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RSS Tag Soup Parser (<literal>rss-tag-soup</literal>) with q 0.8</para></listitem>
+        <listitem><para>RSS 1.0 Serializer (<literal>rss-1.0</literal>) with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/rss+xml</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RSS 1.0 Serializer (<literal>rss-1.0</literal>) with q 1.0</para></listitem>
+        <listitem><para>RSS Tag Soup Parser (<literal>rss-tag-soup</literal>) with q 0.8</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/turtle</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>Turtle Terse RDF Triple Language Parser (<literal>turtle</literal>) with q 1.0</para></listitem>
+        <listitem><para>Turtle Terse RDF Triple Language Serializer (<literal>turtle</literal>) with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/x-trig</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>TriG - Turtle with Named Graphs Parser (<literal>trig</literal>) with q 1.0</para></listitem>
+    <listitem><para>No serializer.</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/x-turtle</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>Turtle Terse RDF Triple Language Parser (<literal>turtle</literal>) with q 1.0</para></listitem>
+        <listitem><para>Turtle Terse RDF Triple Language Serializer (<literal>turtle</literal>) with q 0.8</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/xhtml+xml</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>HTML Table Serializer (<literal>html</literal>) with q 1.0</para></listitem>
+        <listitem><para>RDF/A via librdfa Parser (<literal>rdfa</literal>) with q 0.8</para></listitem>
+        <listitem><para>Gleaning Resource Descriptions from Dialects of Languages Parser (<literal>grddl</literal>) with q 0.4</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>application/xml</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RSS Tag Soup Parser (<literal>rss-tag-soup</literal>) with q 0.3</para></listitem>
+        <listitem><para>RSS 1.0 Serializer (<literal>rss-1.0</literal>) with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/html</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>HTML Table Serializer (<literal>html</literal>) with q 1.0</para></listitem>
+        <listitem><para>RDF/A via librdfa Parser (<literal>rdfa</literal>) with q 0.6</para></listitem>
+        <listitem><para>Gleaning Resource Descriptions from Dialects of Languages Parser (<literal>grddl</literal>) with q 0.2</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/json</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RDF/JSON (either Triples or Resource-Centric) Parser (<literal>json</literal>) with q 0.1</para></listitem>
+        <listitem><para>RDF/JSON Triples Serializer (<literal>json-triples</literal>) with q 0.1</para></listitem>
+        <listitem><para>RDF/JSON Resource-Centric Serializer (<literal>json</literal>) with q 0.1</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/n3</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>Turtle Terse RDF Triple Language Parser (<literal>turtle</literal>) with q 0.3</para></listitem>
+        <listitem><para>Turtle Terse RDF Triple Language Serializer (<literal>turtle</literal>) with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/plain</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>N-Triples Parser (<literal>ntriples</literal>) with q 0.1</para></listitem>
+        <listitem><para>N-Triples Serializer (<literal>ntriples</literal>) with q 0.1</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/rdf</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RDF/XML Parser (<literal>rdfxml</literal>) with q 0.6</para></listitem>
+        <listitem><para>RDF/XML Serializer (<literal>rdfxml</literal>) with q 0.6</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/rdf+n3</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>Turtle Terse RDF Triple Language Parser (<literal>turtle</literal>) with q 0.3</para></listitem>
+        <listitem><para>Turtle Terse RDF Triple Language Serializer (<literal>turtle</literal>) with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/rss</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RSS Tag Soup Parser (<literal>rss-tag-soup</literal>) with q 0.8</para></listitem>
+        <listitem><para>RSS 1.0 Serializer (<literal>rss-1.0</literal>) with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/turtle</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>Turtle Terse RDF Triple Language Parser (<literal>turtle</literal>) with q 1.0</para></listitem>
+        <listitem><para>Turtle Terse RDF Triple Language Serializer (<literal>turtle</literal>) with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/x-graphviz</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>GraphViz DOT format Serializer (<literal>dot</literal>) with q 0.5</para></listitem>
+    <listitem><para>No parser.</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/x-nquads</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>N-Quads Parser (<literal>nquads</literal>) with q 1.0</para></listitem>
+        <listitem><para>N-Quads Serializer (<literal>nquads</literal>) with q 1.0</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry><term><literal>text/xml</literal></term>
+      <listitem>
+      <itemizedlist>
+        <listitem><para>RSS Tag Soup Parser (<literal>rss-tag-soup</literal>) with q 0.3</para></listitem>
+        <listitem><para>RSS 1.0 Serializer (<literal>rss-1.0</literal>) with q 0.3</para></listitem>
+      </itemizedlist>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+</section>
+
+</chapter>
+
+<!--
+Local variables:
+mode: sgml
+sgml-parent-document: ("raptor-docs.xml" "book" "part")
+End:
+-->
+

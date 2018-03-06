@@ -1,0 +1,140 @@
+.\"
+.\" libraptor2.3 - Raptor2 library manual page
+.\"
+.\" Copyright (C) 2002-2010 David Beckett - http://www.dajobe.org/
+.\" Copyright (C) 2002-2005 University of Bristol, UK
+.\"
+.TH libraptor2 3 "2010-08-16"
+.\" Please adjust this date whenever revising the manpage.
+.SH NAME
+libraptor2 \- Raptor RDF syntax library 2.0
+.SH SYNOPSIS
+.nf
+.B #include <raptor2.h>
+.br
+
+.br
+.BI world = raptor_new_world( );
+.br
+.BI "raptor_parser *" p = raptor_new_parser( world , "rdfxml" );
+.br
+.BI raptor_set_statement_handler( p , NULL , print_triples );
+.br
+.BI "raptor_uri *" file_uri = raptor_new_uri( world , "http://example.org/" );
+.br
+.BI raptor_parser_parse_file( p , file_uri , base_uri );
+.br
+.BI raptor_parser_parse_uri( p , uri , NULL );
+.br
+.BI raptor_free_parser( p );
+.br
+.BI raptor_free_uri( file_uri );
+.br
+.BI raptor_free_world( world );
+.br
+
+.B cc prog.c -o prog `pkg-config raptor2 --cflags` `pkg-config raptor2 --libs`
+.br
+.fi
+.SH DESCRIPTION
+The \fIRaptor\fP library provides a high-level interface to a set
+of parsers and serializers that generate
+Resource Description Framework (RDF) triples
+by parsing syntaxes or serialize the triples into syntaxes.
+.LP
+The supported parsing syntaxes include RDF/XML, N-Triples, Turtle,
+TRiG, RSS tag soup (including all RSS and Atoms), GRDDL, RDF/JSON, RDFa and the
+serializing syntaxes include RDF/XML (3 varieties), N-Quads, N-Triples,
+Turtle, RSS 1.0, Atom 1.0, GraphViz DOT and RDF/JSON.
+The RDF/XML parser can use either \fIexpat\fP or \fIlibxml\fP
+XML parsers for providing the SAX event stream.
+The library functions are arranged in an object-oriented style with
+constructors, destructors and method calls.  The statements
+and error messages are delivered via callback functions.
+.LP
+Raptor also contains classes to support the RDF graph triples:
+a statement object containing term objects and support for RDF
+URI-References for both parsing them and resolving / retrieval of
+URIs.
+.LP
+It some utility classes such as an I/O Stream abstraction for
+supporting reading and writing to and from a variety of locations,
+AVL Trees, String buffers and Sequences.
+.LP
+Raptor uses Unicode strings for RDF literals and URIs
+and preserves them throughout the library.  It uses the UTF-8
+encoding of Unicode at the API for passing in or returning Unicode
+strings.  It is intended that the preservation of Unicode for URIs
+supports Internationalized Resource Identifiers (IRIs).
+.SH "API REFERENCE"
+See the HTML API docs that may be installed system wide at
+/usr/share/gtk-doc/html/raptor2/
+or on the web at
+.UR http://librdf.org/raptor/api/
+http://librdf.org/raptor/api/
+.UE
+.SH API CHANGES
+See the Raptor API docs changes section at
+.UR http://librdf.org/raptor/api/raptor-changes.html
+http://librdf.org/raptor/api/raptor-changes.html 
+.UE
+and the upgrading information when converting from libraptor(1)
+code at
+.UR http://librdf.org/raptor/UPGRADING.html
+http://librdf.org/raptor/UPGRADING.html
+.UE
+.br
+.SH "CONFORMING TO"
+\fIRDF/XML Syntax (Revised)\fP, Dave Beckett (ed.)
+W3C Recommendation,
+.UR http://www.w3.org/TR/rdf-syntax-grammar/
+http://www.w3.org/TR/rdf-syntax-grammar/
+.UE
+
+\fIN-Triples\fP, in \fIRDF Test Cases\fP, Jan Grant and Dave Beckett (eds.)
+W3C Recommendation,
+.UR http://www.w3.org/TR/rdf-testcases/#ntriples
+http://www.w3.org/TR/rdf-testcases/#ntriples
+.UE
+
+\fITurtle - Terse RDF Triple Language\fP, Dave Beckett,
+.UR http://www.dajobe.org/2004/01/turtle/
+http://www.dajobe.org/2004/01/turtle/
+.UE
+
+\fIRSS 0.91 spec revision 3\fP, Dan Libby, Netscape,
+.UR http://my.netscape.com/publish/formats/rss-spec-0.91.html
+http://my.netscape.com/publish/formats/rss-spec-0.91.html
+.UE
+
+\fIRDF Site Summary (RSS) 1.0\fP,
+.UR http://purl.org/rss/1.0/spec
+http://purl.org/rss/1.0/spec
+.UE
+
+\fIAtom 1.0 syndication format\fP,
+RFC 4287,
+.UR http://www.ietf.org/rfc/rfc4287.txt
+http://www.ietf.org/rfc/rfc4287.txt
+.UE
+
+\fIGleaning Resource Descriptions from Dialects of Languages
+(GRDDL)\fP, Dan Connolly (ed.), W3C Recommendation, 2007-09-11,
+.UR http://www.w3.org/TR/2007/REC-grddl-20070911/
+http://www.w3.org/TR/2007/REC-grddl-20070911/
+.UE
+
+\fIRDFa in XHTML: Syntax and Processing\fP,
+Ben Adida, Mark Birbeck, Shane McCarron, Steven Pemberton (eds.)
+ W3C Recommendation, 2008-10-14,
+.UR http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014/
+http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014/
+.UE
+
+.SH SEE ALSO
+.BR rapper(1)
+.SH AUTHOR
+Dave Beckett - 
+.UR http://www.dajobe.org/
+http://www.dajobe.org/
+.UE

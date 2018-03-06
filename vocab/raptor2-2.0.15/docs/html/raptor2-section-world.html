@@ -1,0 +1,663 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Initialisation</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="reference-manual.html" title="Part II. Raptor Reference Manual">
+<link rel="prev" href="serializer-dot.html" title="GraphViz dot serializer (name dot)">
+<link rel="next" href="raptor2-section-general.html" title="General">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="serializer-dot.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference-manual.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="raptor2-section-general.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#raptor2-section-world.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#raptor2-section-world.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="raptor2-section-world"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="raptor2-section-world.top_of_page"></a>Initialisation</span></h2>
+<p>Initialisation — Library startup, shutdown and configuration.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="raptor2-section-world.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world">raptor_world</a>;
+#define             <a class="link" href="raptor2-section-world.html#raptor-new-world" title="raptor_new_world">raptor_new_world</a>
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-world.html#raptor-world-open" title="raptor_world_open ()">raptor_world_open</a>                   (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-world.html#raptor-free-world" title="raptor_free_world ()">raptor_free_world</a>                   (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);
+enum                <a class="link" href="raptor2-section-world.html#raptor-world-flag" title="enum raptor_world_flag">raptor_world_flag</a>;
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-world.html#raptor-world-set-flag" title="raptor_world_set_flag ()">raptor_world_set_flag</a>               (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world-flag" title="enum raptor_world_flag"><span class="type">raptor_world_flag</span></a> flag</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> value</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-world.html#raptor-world-set-libxslt-security-preferences" title="raptor_world_set_libxslt_security_preferences ()">raptor_world_set_libxslt_security_preferences</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *security_preferences</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-world.html#raptor-world-set-log-handler" title="raptor_world_set_log_handler ()">raptor_world_set_log_handler</a>        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-log-handler" title="raptor_log_handler ()"><span class="type">raptor_log_handler</span></a> handler</code></em>);
+const <a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="returnvalue">raptor_syntax_description</span></a> * <a class="link" href="raptor2-section-world.html#raptor-world-get-parser-description" title="raptor_world_get_parser_description ()">raptor_world_get_parser_description</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">int</span> counter</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-world.html#raptor-world-is-parser-name" title="raptor_world_is_parser_name ()">raptor_world_is_parser_name</a>         (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>);
+const <span class="returnvalue">char</span> *        <a class="link" href="raptor2-section-world.html#raptor-world-guess-parser-name" title="raptor_world_guess_parser_name ()">raptor_world_guess_parser_name</a>      (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *mime_type</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> len</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *identifier</code></em>);
+const <a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="returnvalue">raptor_syntax_description</span></a> * <a class="link" href="raptor2-section-world.html#raptor-world-get-serializer-description" title="raptor_world_get_serializer_description ()">raptor_world_get_serializer_description</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">int</span> counter</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-world.html#raptor-world-is-serializer-name" title="raptor_world_is_serializer_name ()">raptor_world_is_serializer_name</a>     (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>);
+unsigned <span class="returnvalue">char</span> *     <a class="link" href="raptor2-section-world.html#raptor-world-generate-bnodeid" title="raptor_world_generate_bnodeid ()">raptor_world_generate_bnodeid</a>       (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-world.html#raptor-world-set-generate-bnodeid-handler" title="raptor_world_set_generate_bnodeid_handler ()">raptor_world_set_generate_bnodeid_handler</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><span class="type">raptor_generate_bnodeid_handler</span> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-world.html#raptor-world-set-generate-bnodeid-parameters" title="raptor_world_set_generate_bnodeid_parameters ()">raptor_world_set_generate_bnodeid_parameters</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> base</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-world.html#raptor-world-get-parsers-count" title="raptor_world_get_parsers_count ()">raptor_world_get_parsers_count</a>      (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-world.html#raptor-world-get-serializers-count" title="raptor_world_get_serializers_count ()">raptor_world_get_serializers_count</a>  (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-world.description"></a><h2>Description</h2>
+<p>
+How to initialise and terminate the library, set
+library-wide configuration flags and options.
+</p>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-world.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="raptor-world"></a><h3>raptor_world</h3>
+<pre class="programlisting">typedef struct raptor_world_s raptor_world;
+</pre>
+<p>
+Raptor world class.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-world"></a><h3>raptor_new_world</h3>
+<pre class="programlisting">#define raptor_new_world() raptor_new_world_internal(RAPTOR_VERSION)
+</pre>
+<p>
+Allocate a new raptor_world object.
+</p>
+<p>
+Allocation of the world and initialization are decoupled to allow
+changing settings on the world object before init.
+</p>
+<p>
+Settings and configuration of the world may be made after creating
+the object and before the world is initialized using methods such
+as <a class="link" href="raptor2-section-world.html#raptor-world-set-flag" title="raptor_world_set_flag ()"><code class="function">raptor_world_set_flag()</code></a>, <a class="link" href="raptor2-section-world.html#raptor-world-set-log-handler" title="raptor_world_set_log_handler ()"><code class="function">raptor_world_set_log_handler()</code></a>,
+<a class="link" href="raptor2-section-world.html#raptor-world-set-generate-bnodeid-handler" title="raptor_world_set_generate_bnodeid_handler ()"><code class="function">raptor_world_set_generate_bnodeid_handler()</code></a>.  Some configuration
+may not be changed after initialization.
+</p>
+<p>
+The raptor_world is initialized with <a class="link" href="raptor2-section-world.html#raptor-world-open" title="raptor_world_open ()"><code class="function">raptor_world_open()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>uninitialized raptor_world object or NULL on failure</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-open"></a><h3>raptor_world_open ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_world_open                   (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);</pre>
+<p>
+Initialise the raptor library.
+</p>
+<p>
+Initializes a <a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> object created by <a class="link" href="raptor2-section-world.html#raptor-new-world" title="raptor_new_world"><code class="function">raptor_new_world()</code></a>.
+Allocation and initialization are decoupled to allow
+changing settings on the world object before init.
+</p>
+<p>
+The initialized world object is used with subsequent raptor API calls.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-free-world"></a><h3>raptor_free_world ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_free_world                   (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);</pre>
+<p>
+Terminate the raptor library.
+</p>
+<p>
+Destroys the raptor_world object and all related information.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-flag"></a><h3>enum raptor_world_flag</h3>
+<pre class="programlisting">typedef enum {
+  RAPTOR_WORLD_FLAG_LIBXML_GENERIC_ERROR_SAVE = 1,
+  RAPTOR_WORLD_FLAG_LIBXML_STRUCTURED_ERROR_SAVE = 2,
+  RAPTOR_WORLD_FLAG_URI_INTERNING = 3,
+  RAPTOR_WORLD_FLAG_WWW_SKIP_INIT_FINISH = 4
+} raptor_world_flag;
+</pre>
+<p>
+Raptor world flags
+</p>
+<p>
+These are used by <a href="raptor2-section-world.html#raptor-world-set-flag"><code class="function">raptor_world_set_flags()</code></a> to control raptor-wide
+options across classes.  These must be set before
+<a class="link" href="raptor2-section-world.html#raptor-world-open" title="raptor_world_open ()"><code class="function">raptor_world_open()</code></a> is called explicitly or implicitly (by
+creating a raptor object).  There is no enumeration function for
+these flags because they are not user options and must be set
+before the library is initialised.  For similar reasons, there is
+no get function.
+</p>
+<p>
+If any libxml handler saving/restoring is enabled, any existing
+handler and context is saved before parsing and restored
+afterwards.  Otherwise, no saving/restoring is performed.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="RAPTOR-WORLD-FLAG-LIBXML-GENERIC-ERROR-SAVE:CAPS"></a><span class="term"><code class="literal">RAPTOR_WORLD_FLAG_LIBXML_GENERIC_ERROR_SAVE</code></span></p></td>
+<td>if set (non-0 value) - save/restore the libxml generic error handler when raptor library initializes (default set)
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-WORLD-FLAG-LIBXML-STRUCTURED-ERROR-SAVE:CAPS"></a><span class="term"><code class="literal">RAPTOR_WORLD_FLAG_LIBXML_STRUCTURED_ERROR_SAVE</code></span></p></td>
+<td>if set (non-0 value) - save/restore the libxml structured error handler when raptor library terminates (default set)
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-WORLD-FLAG-URI-INTERNING:CAPS"></a><span class="term"><code class="literal">RAPTOR_WORLD_FLAG_URI_INTERNING</code></span></p></td>
+<td>if set (non-0 value) - each URI is saved interned in-memory and reused (default set)
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-WORLD-FLAG-WWW-SKIP-INIT-FINISH:CAPS"></a><span class="term"><code class="literal">RAPTOR_WORLD_FLAG_WWW_SKIP_INIT_FINISH</code></span></p></td>
+<td>if set (non-0 value) the raptor will neither initialise or terminate the lower level WWW library.  Usually in raptor initialising either curl_global_init (for libcurl) are called and in raptor cleanup, curl_global_cleanup is called.   This flag allows the application finer control over these libraries such as setting other global options or potentially calling and terminating raptor several times.  It does mean that applications which use this call must do their own extra work in order to allocate and free all resources to the system.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-set-flag"></a><h3>raptor_world_set_flag ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_world_set_flag               (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world-flag" title="enum raptor_world_flag"><span class="type">raptor_world_flag</span></a> flag</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> value</code></em>);</pre>
+<p>
+Set library-wide configuration
+</p>
+<p>
+This function is used to control raptor-wide options across
+classes.  These options must be set before <a class="link" href="raptor2-section-world.html#raptor-world-open" title="raptor_world_open ()"><code class="function">raptor_world_open()</code></a> is
+called explicitly or implicitly (by creating a raptor object).
+There is no enumeration function for these flags because they are
+not user options and must be set before the library is
+initialised.  For similar reasons, there is no get function.
+</p>
+<p>
+See the <a href="raptor2-section-world.html#raptor-world-flag"><span class="type">raptor_world_flags</span></a> documentation for full details of
+what the flags mean.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flag</code></em> :</span></p></td>
+<td>flag</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td>value</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success, non-0 on failure: &lt;0 on errors (-1 if flag is unknown, -2 if value is illegal) and &gt;0 if world is already opened</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-set-libxslt-security-preferences"></a><h3>raptor_world_set_libxslt_security_preferences ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_world_set_libxslt_security_preferences
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *security_preferences</code></em>);</pre>
+<p>
+Set libxslt security preferences policy object
+</p>
+<p>
+The <em class="parameter"><code>security_preferences</code></em> object will NOT become owned by
+<a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a>.
+</p>
+<p>
+If libxslt is compiled into the library, <em class="parameter"><code>security_preferences</code></em>
+should be an <span class="type">xsltSecurityPrefsPtr</span> and will be used to call
+<code class="function">xsltSetCtxtSecurityPrefs()</code> when an XSLT engine is initialised.
+If <em class="parameter"><code>security_preferences</code></em> is NULL, this will disable all raptor's
+calls to <code class="function">xsltSetCtxtSecurityPrefs()</code>.
+</p>
+<p>
+If libxslt is not compiled in, the object set here is not used.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>security_preferences</code></em> :</span></p></td>
+<td>security preferences (an <span class="type">xsltSecurityPrefsPtr</span>) or NULL</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success, non-0 on failure: &lt;0 on errors and &gt;0 if world is already opened</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-set-log-handler"></a><h3>raptor_world_set_log_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_world_set_log_handler        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-log-handler" title="raptor_log_handler ()"><span class="type">raptor_log_handler</span></a> handler</code></em>);</pre>
+<p>
+Set the message (error, warning, info) handling function.
+</p>
+<p>
+The function will receive callbacks when messages are generated
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data to pass to function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>pointer to the function</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-get-parser-description"></a><h3>raptor_world_get_parser_description ()</h3>
+<pre class="programlisting">const <a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="returnvalue">raptor_syntax_description</span></a> * raptor_world_get_parser_description
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">int</span> counter</code></em>);</pre>
+<p>
+Get parser descriptive syntax information
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>counter</code></em> :</span></p></td>
+<td>index into the list of parsers</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>description or NULL if counter is out of range</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-is-parser-name"></a><h3>raptor_world_is_parser_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_world_is_parser_name         (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>);</pre>
+<p>
+Check the name of a parser is known.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>the syntax name</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non 0 if name is a known syntax name</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-guess-parser-name"></a><h3>raptor_world_guess_parser_name ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        raptor_world_guess_parser_name      (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *mime_type</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> len</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *identifier</code></em>);</pre>
+<p>
+Guess a parser name for content.
+</p>
+<p>
+Find a parser by scoring recognition of the syntax by a block of
+characters, the content identifier or a mime type.  The content
+identifier is typically a filename or URI or some other identifier.
+</p>
+<p>
+If the guessing finds only low scores, NULL will be returned.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>URI identifying the syntax (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mime_type</code></em> :</span></p></td>
+<td>mime type identifying the content (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td>buffer of content to guess (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>len</code></em> :</span></p></td>
+<td>length of buffer</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>identifier</code></em> :</span></p></td>
+<td>identifier of content (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a parser name or NULL if no guess could be made</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-get-serializer-description"></a><h3>raptor_world_get_serializer_description ()</h3>
+<pre class="programlisting">const <a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="returnvalue">raptor_syntax_description</span></a> * raptor_world_get_serializer_description
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">int</span> counter</code></em>);</pre>
+<p>
+Get serializer descriptive syntax information
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>counter</code></em> :</span></p></td>
+<td>index into the list of serializers</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>description or NULL if counter is out of range</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-is-serializer-name"></a><h3>raptor_world_is_serializer_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_world_is_serializer_name     (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>);</pre>
+<p>
+Check name of a serializer.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>the syntax name</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non 0 if name is a known syntax name</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-generate-bnodeid"></a><h3>raptor_world_generate_bnodeid ()</h3>
+<pre class="programlisting">unsigned <span class="returnvalue">char</span> *     raptor_world_generate_bnodeid       (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);</pre>
+<p>
+Generate an new blank node ID
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>newly allocated generated ID or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-set-generate-bnodeid-handler"></a><h3>raptor_world_set_generate_bnodeid_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_world_set_generate_bnodeid_handler
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><span class="type">raptor_generate_bnodeid_handler</span> handler</code></em>);</pre>
+<p>
+Set the generate ID handler function.
+</p>
+<p>
+Sets the function to generate IDs for the library.  The handler is
+called with the <em class="parameter"><code>user_data</code></em> parameter.
+</p>
+<p>
+The final argument of the callback method is user_bnodeid, the value of
+the rdf:nodeID attribute that the user provided if any (or NULL).
+It can either be returned directly as the generated value when present or
+modified.  The passed in value must be <code class="function">free()</code>d if it is not used.
+</p>
+<p>
+If handler is NULL, the default method is used
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data pointer for callback</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>generate ID callback function</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-set-generate-bnodeid-parameters"></a><h3>raptor_world_set_generate_bnodeid_parameters ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_world_set_generate_bnodeid_parameters
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *prefix</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> base</code></em>);</pre>
+<p>
+Set default ID generation parameters.
+</p>
+<p>
+Sets the parameters for the default algorithm used to generate IDs.
+The default algorithm uses both <em class="parameter"><code>prefix</code></em> and <em class="parameter"><code>base</code></em> to generate a new
+identifier.   The exact identifier generated is not guaranteed to
+be a strict concatenation of <em class="parameter"><code>prefix</code></em> and <em class="parameter"><code>base</code></em> but will use both
+parts. The <em class="parameter"><code>prefix</code></em> parameter is copied to generate an ID.
+</p>
+<p>
+For finer control of the generated identifiers, use
+<a class="link" href="raptor2-section-world.html#raptor-world-set-generate-bnodeid-handler" title="raptor_world_set_generate_bnodeid_handler ()"><code class="function">raptor_world_set_generate_bnodeid_handler()</code></a>.
+</p>
+<p>
+If <em class="parameter"><code>prefix</code></em> is NULL, the default prefix is used (currently "genid")
+If <em class="parameter"><code>base</code></em> is less than 1, it is initialised to 1.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em> :</span></p></td>
+<td>prefix string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>base</code></em> :</span></p></td>
+<td>integer base identifier</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-get-parsers-count"></a><h3>raptor_world_get_parsers_count ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_world_get_parsers_count      (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);</pre>
+<p>
+Get number of parsers
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>number of parsers</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-world-get-serializers-count"></a><h3>raptor_world_get_serializers_count ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_world_get_serializers_count  (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);</pre>
+<p>
+Get number of serializers
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>number of serializers</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

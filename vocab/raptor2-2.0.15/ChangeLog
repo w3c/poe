@@ -1,0 +1,871 @@
+2014-11-01  Dave Beckett  <dave@dajobe.org>
+
+	* Snapshotted raptor2_2_0_15 for 2.0.15 release (GIT 815e4a75a0e1f15a5cf35de48a3d0b32a14c5663)
+
+	* src/turtle_lexer.l, tests/trig/Makefile.am,
+	tests/trig/bug-584-dos.out, tests/trig/bug-584-dos.trig,
+	tests/trig/bug-584-unix.out, tests/trig/bug-584-unix.trig: Handle
+	\r in TRiG "graph-name {"
+
+	Fixes Issue #0000584
+	http://bugs.librdf.org/mantis/view.php?id=584
+
+	* src/turtle_lexer.l:
+	(turtle_token_print): Add GRAPH_NAME_LEFT_CURLY
+
+	* src/turtle_lexer.l:
+	(turtle_token_print): Add LEFT/RIGHT_CURLY
+
+	* src/turtle_lexer.l:
+	(main): Fix turtle_lexer_test to pass in string, not use yyinput
+
+	* tests/ntriples/Makefile.am, tests/ntriples/bug-577.nt,
+	tests/ntriples/bug-577.out: Add ntriples test bug-577 for URI
+	escaping
+
+	* src/turtle_common.h, src/turtle_parser.y: Rename
+	raptor_turtle_expand_name_escapes to
+	raptor_turtle_expand_qname_escapes
+
+	* src/raptor_internal.h, src/turtle_common.c, src/turtle_lexer.l:
+	(raptor_stringbuffer_append_turtle_string): Enforce URI
+	restrictions.
+
+	Add is_uri argument to distinguish.  Report type label correctly.
+	URIs may not have \t \b \n \r \f or raw ' ' or \u0020 or \u003C or
+	\u003E
+
+	Update all raptor_stringbuffer_append_turtle_string callers to
+	pass URI flag.
+
+	* src/raptor_ntriples.c:
+	(raptor_ntriples_parse_term_internal): Enforce URI restrictions.
+	URIs may not have \t \b \n \r \f or raw ' ' or \u0020 or \u003C or
+	\u003E
+
+	* src/raptor_internal.h, src/raptor_ntriples.c,
+	src/turtle_common.c, src/turtle_lexer.l:
+	Remove raptor_turtle_check_uri_string() which is at wrong level.
+
+	Needs to be checked in earlier lexing so e.g. illegal escapes in
+	URIs such as \b are found.  For example.
+
+2014-10-28  Dave Beckett <dave@dajobe.org>
+
+	* docs/raptor-changes.tsv, docs/raptor2-sections.txt,
+	src/raptor2.h.in, src/raptor_parse.c, src/raptor_serialize.c:
+	(raptor_world_get_parsers_count,
+	raptor_world_get_serializers_count): Added
+
+	Fixes Issue #0000581
+	http://bugs.librdf.org/mantis/view.php?id=581
+
+2014-10-26  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_general.c: doc fix
+
+	Fixes Issue #0000579
+	http://bugs.librdf.org/mantis/view.php?id=579
+
+	* src/raptor_iostream.c: Code tidy; use nobj for
+	raptor_iostream_write_bytes() return value.
+
+	Related to Issue #0000575 fix
+
+	* src/raptor_iostream.c:
+	Fix return values for
+	raptor_iostream_{hexa,}decimal_write
+
+	(raptor_iostream_decimal_write,
+	raptor_iostream_hexadecimal_write): Return non-0 if number of
+	objects returned from raptor_iostream_write_bytes() does not match
+	expected length.
+
+	Fixes Issue #0000575
+	http://bugs.librdf.org/mantis/view.php?id=575
+
+	* src/raptor_ntriples.c, src/raptor_term.c,
+	tests/ntriples/Makefile.am, tests/ntriples/bug-574.nt,
+	tests/ntriples/bug-574.out: Accept '_' as alias/typo for '-' in
+	lang strings.
+
+	Replace on parsing.
+	Fixes Issue #0000574
+	http://bugs.librdf.org/mantis/view.php?id=574
+
+2014-10-20  Dave Beckett <dave@dajobe.org>
+
+	* Merge pull request #16 from rhmccullough/rdf-nil do not change
+	"( )" to "rdf:nil"
+
+2014-10-19  Dave Beckett <dave@dajobe.org>
+
+	* docs/Makefile.am, docs/raptor-1-to-2-map.tsv,
+	docs/raptor-changes.tsv: Rename changes file to raptor-changes.tsv
+
+	Not just about v1 to v2
+
+	* scripts/process-changes.pl: Make process-changes.pl report wrong
+	fields count
+
+	* .travis.yml: run autogen.sh not configure twice
+
+	* scripts/install-bison3.sh:
+	delete working dir
+
+	* scripts/install-bison3.sh: sudo
+
+	* .travis.yml: Looks like Travis OS support is not generally
+	available
+
+	http://blog.travis-ci.com/2014-05-13-multi-os-feature-available/
+
+2014-10-19  Richard H. McCullough <rhmccullough@gmail.com>
+
+	* src/raptor_serialize_turtle.c: do not change "( )" to "rdf:nil"
+
+	In tests/turtle: rapper -i turtle -o turtle test-08.ttl
+	changes "( )" to "rdf:nil".
+	This change to src/raptor_serialize_turtle.c will produce "( )" in
+	the output file.
+
+2014-10-19  Dave Beckett <dave@dajobe.org>
+
+	* .travis.yml: Quote TRAVIS_OS_NAME that doesn't always seem to be
+	defined
+
+	* .travis.yml: use test not [ ]
+
+	* RELEASE.html: 2.0.15
+
+	* .travis.yml, scripts/install-bison3.sh: Travis update attempt
+
+2014-10-12  Dave Beckett <dave@dajobe.org>
+
+	* tests/rdfa11/Makefile.am: doc
+
+	* tests/rdfa11/0297.out, tests/rdfa11/Makefile.am: 0297 passes
+
+	* tests/rdfa11/0303.out, tests/rdfa11/Makefile.am: 0303 passes
+
+	* tests/rdfa11/Makefile.am: 26 failures
+
+	* tests/rdfa11/0235.out, tests/rdfa11/Makefile.am: 0235 passes
+
+	* tests/rdfa11/Makefile.am: Fix error report again
+
+	* tests/rdfa11/0134.out: fix 134 out
+
+	* tests/rdfa11/0134.out, tests/rdfa11/Makefile.am: 0134 passes
+
+	* tests/rdfa11/0197.out, tests/rdfa11/Makefile.am: 0197 passes
+
+	* tests/rdfa11/Makefile.am: 0197 now fails, 0302 now passes.
+
+	* tests/rdfa11/Makefile.am: Tidy failure output
+
+	* tests/rdfa11/0295.out: Update 0295 output
+
+2014-10-10  Dave Beckett <dave@dajobe.org>
+
+	* librdfa/curie.c: Support full URLs for typeof.
+	librdfa commit 5b73975a778ee00f328457356a69163911d540a5
+
+2014-10-09  Dave Beckett <dave@dajobe.org>
+
+	* src/Makefile.am: Further fix flex/bison rules to silence them in
+	normal runs
+
+	* configure.ac, src/parsedate.y, src/raptor_internal.h,
+	src/raptor_rdfxml.c: Use __FUNCTION__ (c99) replacing __func__
+	(c90)
+
+	* src/sort_r.h: Add BSD header checks from sort_r
+
+	* src/raptor_turtle_writer.c: Trailing ,
+
+	* configure.ac: Add some GCC5 warning flags
+
+	* Merge pull request #14 from hroptatyr/compiler-support Intel C
+	compiler (icc) support
+
+2014-10-09  Sebastian Freundt <freundt@ga-group.nl>
+
+	* librdfa/rdfa.c, librdfa/triple.c, utils/rapper.c: const'ify
+	string literals and char pointers that needn't be changed
+
+	librdfa (start_element): const'ify umap_key
+	librdfa (rdfa_complete_object_literal_triples): const'ifty
+	current_object_literal
+	rapper (print_graph): const'ify label
+
+	* configure.ac: Always use AC_LANG_WERROR when checking for
+	compiler warning flags
+
+	Many gcc-compatible compilers (icc, clang, etc.) verbosely ignore
+	gcc command line flags issuing a warning of some sort.  Catch
+	these warnings and turn them into errors when checking for support
+	of specific warning flags.
+
+2014-10-04  Dave Beckett <dave@dajobe.org>
+
+	* scripts/Makefile.am, scripts/fix-bison, scripts/fix-bison.pl,
+	scripts/fix-flex, scripts/fix-flex.pl, src/Makefile.am: Rename
+	fix-flex, fix-bison to have .pl suffix
+
+	* ChangeLog, NEWS.html, RELEASE.html:
+	2.0.15
+
+2014-09-25  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_grddl.c:
+	(raptor_grddl_filter_triples): Fix <uri> <uri> <uri> check [gcc5]
+
+	This has been broken since 2007 but just meant too much work was
+	being done.  Original commit that added this
+	8bb88c9c4a5800b1163b50d2ff12b5245b4b1498
+
+2014-08-21  Dave Beckett <dave@dajobe.org>
+
+	* utils/rdfdiff.c: Provide title and usage if args are missing
+	[Coverity CID 72385]
+
+2014-08-09  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_term.c:
+	(raptor_new_term_from_blank): Accept "" as same as NULL blank
+
+2014-08-04  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_uri.c: raptor_uri_counted_filename_to_uri_string
+	handles a counted string
+
+	(raptor_uri_counted_filename_to_uri_string): Do not look for end
+	NUL char, count lengths.
+
+	Fixes Issue #0000576
+	http://bugs.librdf.org/mantis/view.php?id=576
+
+	* src/raptor_turtle_writer.c:
+	raptor_turtle_writer_quoted_counted_string handles a counted
+	string
+
+	(raptor_turtle_writer_contains_newline): Add len param and use it,
+	drop strlen().
+
+	(raptor_turtle_writer_quoted_counted_string): Use len, drop
+	strlen() and call raptor_turtle_writer_contains_newline with
+	passed in len.
+
+	Fixes Issue #0000576
+	http://bugs.librdf.org/mantis/view.php?id=576
+
+	* src/raptor_uri.c:
+	Do not assume NUL terminated string in
+	raptor_new_uri_from_counted_string
+
+	(raptor_new_uri_from_counted_string): Remove debug assert and use
+	fwrite to emit counted URI string to debug file handler.
+
+	Fixes Issue #0000576
+	http://bugs.librdf.org/mantis/view.php?id=576
+
+	* src/raptor_internal.h, src/turtle_parser.y: Add RAPTOR_DEBUG_FH
+	define internally
+
+2014-08-02  Dave Beckett <dave@dajobe.org>
+
+	* INSTALL.html: Fix flex url
+
+2014-07-27  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_iostream.c: Document sink handlers
+
+2014-07-26  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_rfc2396.c:
+	(raptor_uri_normalize_path): Check size of output buffer is big
+	enough.
+
+2014-07-07  Dave Beckett <dave@dajobe.org>
+
+	* README.html, INSTALL.html: bye bye sf
+
+	* README.html: Update TRiG pointer, conformance
+
+2014-06-29  Dave Beckett <dave@dajobe.org>
+
+	* src/sort_r.c: correct docs; does not always use sort_r
+
+	* src/ssort.h: one more rename
+
+	* docs/raptor-1-to-2-map.tsv, src/raptor2.h.in,
+	src/raptor_sequence.c, src/sort_r.c:
+	raptor_data_compare_arg_handler renamed from raptor_sort_r_compare
+	Added it to changelog too
+
+	* src/sort_r.c: Make sort test quiet on success
+
+	* src/sort_r.c: const
+
+	* src/sort_r.c: portability
+
+	* configure.ac, src/Makefile.am, src/sort_r.c, src/ssort.h:
+	Add
+	public domain ssort_r if qsort_r and qsort_s are not present
+
+	* docs/raptor-1-to-2-map.tsv, src/raptor2.h.in,
+	src/raptor_sequence.c:
+	(raptor_sequence_sort_r): Added based on raptor_sort_r()
+
+	* docs/raptor-1-to-2-map.tsv, src/Makefile.am, src/raptor2.h.in,
+	src/sort_r.c:
+	(raptor_sort_r): Added based on public domain sort_r()
+
+	* src/sort_r.h, sort_r.c: Public Domain sort_r() by Isaac Turner
+	Imported GIT commit 7c60ef94753624291055af0b1eec291f8c4bd5a7 from
+	https://github.com/noporpoise/sort_r
+
+2014-05-21  Dave Beckett <dave@dajobe.org>
+
+	* src/parsedate.y:
+	Update to point to PHP GIT
+
+	* src/parsedate.y: Fix -99 <= var <= 99 timezone interval check.
+	Thanks to Richard Trieu for the report.
+
+2014-05-11  Dave Beckett <dave@dajobe.org>
+
+	* docs/raptor-docs.xml: 2014
+
+2014-05-09  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_locator.c, src/snprintf.c:
+	(raptor_locator_format): Add a NUL to terminate output string.
+	See librdf commit aa3bf4ccf4cc9381a1c198566428812af28944de that
+	works around this.
+
+2014-05-05  Dave Beckett <dave@dajobe.org>
+
+	* utils/rapper.1: Use \- for hyphen
+
+	* CMakeLists.txt, NEWS.html, RELEASE.html, configure.ac: Bumped
+	version to 2.0.15
+
+	* ChangeLog:
+	Snapshotted raptor2_2_0_14 for 2.0.14 release (GIT
+	93bc8ef8fa1c0b6b4278412f5d12e558b70db708)
+
+	* src/raptor_uri.c: fix autodoc
+
+	* NEWS.html, RELEASE.html: 2.0.14
+
+	* Update tmpls
+
+	* Snapshotted raptor2_2_0_14 for 2.0.14 release (GIT 93bc8ef8fa1c0b6b4278412f5d12e558b70db708)
+
+2014-05-03  Dave Beckett <dave@dajobe.org>
+
+	* configure.ac: Import flex check from rasqal
+
+2014-04-28  Dave Beckett <dave@dajobe.org>
+
+	* scripts/fix-bison: Remove dead code from bison output
+
+2014-04-27  Dave Beckett <dave@dajobe.org>
+
+	* tests/rdfa/Makefile.am: Fix failure test and update expected
+	failures: +0294.xml +0349.xml
+
+	* tests/rdfa11/Makefile.am: Echo message when failures are not
+	what expected
+
+	* librdfa/rdfa.c:
+	(rdfa_init_base): Fix <base href > Fixes support broke in commit
+	9447e886ad66a1c3dd2c877341feca639824488a
+
+2014-04-26  Dave Beckett <dave@dajobe.org>
+
+	* tests/rdfa11/Makefile.am: Fail exit on test failures - broken
+	for a long itme
+
+	* src/turtle_parser.y:
+	(collection): Use YYERR_MSG_GOTO to stop early break and add debug
+	info
+
+	* src/turtle_parser.y: Import header code from turtle-parser.y
+
+2014-04-20  Dave Beckett <dave@dajobe.org>
+
+	* configure.ac, src/turtle_lexer.l: Define FLEX_VERSION_DECIMAL
+	and use to not duplicate column prototypes.
+
+	* scripts/fix-flex: Convert buffer check for PREFIX_restart into
+	simple form
+
+	* scripts/fix-flex: Use YY_CURRENT_BUFFER_LVALUE in
+	PREFIX_pop_buffer_state [coverity CID 29295]
+
+	* scripts/fix-flex: pop_buffer_state does not get changed with
+	rule; delete ref
+
+	* src/turtle_lexer.l: YY_FATAL_ERROR always calls abort() -
+	hopefully coverity notices
+
+	* scripts/fix-flex:
+	Remove dead code after YY_INPUT - which is a
+	return NULL [coverity CID 29302]
+
+	* scripts/fix-flex:
+	Match (static) yy_ prefix functions too
+
+	* scripts/fix-flex:
+	Use YY_CURRENT_BUFFER_LVALUE when ensured ok
+	[coverity CID 29242 29252 29253 29295]
+
+	Rewrite YY_CURRENT_BUFFER to YY_CURRENT_BUFFER_LVALUE in some
+	functions after a PREFIX_ensure_buffer_stack() call has been seen.
+
+	* scripts/fix-flex:
+	Give function processing a state var %fn_state
+
+	* scripts/fix-flex: Cleanups - Figure out lexer prefix from input
+	- Capture current function name in $cur_function - Rewrite some
+	checks to use exact function name - Added $debug var
+
+2014-04-19  Dave Beckett <dave@dajobe.org>
+
+	* scripts/fix-bison: Set yytoken to non-negative value for
+	[coverity CID 29259]
+
+	* scripts/fix-bison: Add a default value for yyformat for
+	[coverity CID 10838]
+
+	* src/raptor_xml.c: Added coverity[negative_returns] for second
+	use of unichar_len [CID 29257]
+
+	* librdfa/lists.c:
+	(rdfa_complete_list_triples): Init tmp for error path [coverity
+	CID 36737]
+
+	* src/raptor_grddl.c:
+	(raptor_grddl_run_xpath_match): Free base_uri on error path
+	[coverity CID 34618]
+
+	* src/raptor_serialize_turtle.c:
+	(raptor_turtle_emit_subject): Free iterator on error path [coverity
+	CID 34617]
+
+2014-04-18  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_serialize_rss.c:
+	(raptor_rss10_emit_rdfxml_item_triples): root_element NULL [coverity
+	CID 34616] (raptor_rss10_emit_rdfxml_item_triples): start xml root_element if
+	not NULL [coverity CID 34616]
+
+	* librdfa/curie.c:
+	(rdfa_resolve_uri): Check end_index2 is not NULL [coverity CID
+	29261]
+
+	* librdfa/lists.c:
+	(rdfa_complete_list_triples):  strdup and strstr output. [coverity
+	CID 29260]
+
+	(rdfa_complete_list_triples): Be careful for strdup and strstr
+	returning NULL. [coverity CID 29260]
+
+	* src/raptor_namespace.c: Check return of raptor_xml_escape_string
+	for errors [coverity CID 29258]
+
+	(raptor_namespace_format_as_xml): Check return values of
+	raptor_xml_escape_string() for negative failure before casting to
+	size_t.
+
+	* src/raptor_iostream.c:
+	(test_read_from_filename): Use int for read bytes values
+
+	* src/raptor_parse.c: Treat raptor_iostream_read_bytes() returning
+	int [coverity CID 29256]
+
+	(raptor_parser_parse_iostream): Treat raptor_iostream_read_bytes()
+	return as int, convert to size_t when it's known to be
+	non-negative. [coverity CID 29256] The real fix is incompatible
+	API change to make iostream return size_t or ssize_t for reads.
+
+	* src/raptor_serialize_rdfxml.c:
+	(raptor_rdfxml_serialize_statement): Restore *name always [coverity
+	CID 29255]
+
+	* librdfa/rdfa.c:
+	(end_element): Do not call rdfa_complete_list_triples() with no
+	new subject [coverity CID 29254]
+
+	* src/raptor_xml_writer.c:
+	(raptor_xml_writer_start_element_common): attribute namespaces
+	[coverity CID 29244]
+
+	(raptor_xml_writer_start_element_common): Process attribute
+	namespaces only if there is a namespace stack [coverity CID 29244]
+
+	* src/raptor_librdfa.c: rdfa requires a base URI [coverity CID
+	29250]
+
+	(raptor_librdfa_parse_start): Add check for base URI
+	(raptor_librdfa_parser_register_factory): Mark 'rdfa' parser needs
+	a base URI.
+
+	* librdfa/triple.c:
+	(rdfa_complete_object_literal_triples) strchr on NULL [coverity CID
+	29429]
+
+	(rdfa_complete_object_literal_triples): Need non NULL
+	context->xml_literal to do strchr() on it [coverity CID 29429]
+
+	* src/raptor_serialize_rdfxml.c:
+	(raptor_rdfxml_serialize_statement): Remove always 0
+	end_predicate_element [coverity CID 29238]
+
+	* src/raptor_serialize_rss.c:
+	(raptor_rss10_emit_rdfxml_item_triples): Free root_qname in logical
+	place [coverity CID 29236]
+
+	* src/raptor_xml_writer.c:
+	(raptor_xml_writer_start_element_common): nstack [coverity CID
+	29244]
+
+	(raptor_xml_writer_start_element_common): Defining xml language
+	declaration requires namespace declarations so add nstack check.
+
+	* src/raptor_grddl.c:
+	(raptor_grddl_run_xpath_match): Check if uri_string is not NULL
+	[coverity CID 29243]
+
+	* src/raptor_log.c:
+	(raptor_log_error): Allow world to be NULL [coverity CID 29241]
+
+	* src/raptor_log.c:
+	(raptor_log_error_varargs): Allow world to be NULL [coverity CID
+	29241]
+
+	* librdfa/triple.c:
+	(rdfa_complete_current_property_value_triples): Remove duplicate
+	variable [coverity CID 29240]
+
+	* src/raptor_grddl.c:
+	(raptor_grddl_parse_chunk): Remove logically dead code [coverity CID
+	29239] loop is always 0 or 1 so don't check for other values.
+
+	* src/raptor_serialize_rss.c:
+	(raptor_rss10_emit_rdfxml_item_triples): Remove logically dead code
+	[coverity CID 29237] No need to test freeing serializer twice.
+
+	* src/raptor_grddl.c:
+	(raptor_grddl_run_grddl_transform_doc): Check parse start/chunk
+	returns [coverity CID 29235]
+
+	* src/raptor_serialize_turtle.c:
+	(raptor_turtle_emit_subject): check raptor_avltree_iterator_next()
+	return [coverity CID 29234]
+
+2014-04-17  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_parse.c:
+	(raptor_parser_fatal_error): set parser failed if not NULL [coverity
+	CID 29283]
+
+	* src/raptor_xml_writer.c:
+	(raptor_xml_writer_start_element_common): nspace_declarations is
+	never NULL on return path [coverity CID 29284]
+
+	* src/raptor_xml_writer.c:
+	(raptor_xml_writer_start_element): element is not NULL [coverity CID
+	29285]
+
+	* src/raptor_rss.c:
+	(raptor_rss_end_element_handler): rss_element is never NULL
+	[coverity CID 29286]
+
+	* src/raptor_abbrev.c:
+	(raptor_new_abbrev_subject): Do not use subject->properties on debug
+	path [coverity CID 29287]
+
+	* src/raptor_uri.c:
+	(raptor_uri_counted_filename_to_uri_string): Error path cannot use
+	NULL buffer [coverity CID 29302]
+
+	* src/raptor_serialize_rdfxml.c:
+	(raptor_rdfxml_serialize_statement): Free object_uri_string always
+	[coverity CID 29269]
+
+	* src/raptor_serialize_turtle.c:
+	(raptor_turtle_emit_subject_collection_items): Free iter on error
+	[coverity CID 29263]
+
+	* src/turtle_lexer.l: Free stringbuffer on error case [coverity
+	CID 29273]
+
+2014-04-16  Dave Beckett <dave@dajobe.org>
+
+	* librdfa/rdfa.c:
+	(rdfa_init_base): Fix uri_start dead code again [coverity CID 29700]
+
+	* src/raptor_abbrev.c:
+	(raptor_new_abbrev_subject): node arg is never NULL [coverity CID
+	29288]
+
+	* src/raptor_qname.c:
+	(raptor_new_qname_from_namespace_local_name): move strlen after
+	local_name NULL check [coverity CID 29289]
+
+	* utils/rdfdiff.c:
+	(main): from_string and to_string are never NULL [coverity CID
+	29290, CID 29291]
+
+	* librdfa/triple.c:
+	(rdfa_complete_object_literal_triples): NULL check for
+	context->xml_literal [coverity CID 29292]
+
+	* src/raptor_serialize_rdfxmla.c:
+	(raptor_rdfxmla_serialize_set_xml_writer): Check xml_writer NULL
+	[coverity CID 29293]
+
+	* src/raptor_log.c:
+	(raptor_log_error_varargs): Can assume world is not NULL [coverity
+	CID 29294]
+
+	* librdfa/rdfa.c:
+	(end_element): Add parent_context check around block [coverity CID
+	29296]
+
+	* librdfa/rdfa.c:
+	(rdfa_init_base): Check for uri_start before use [coverity CID
+	29297]
+
+	* src/raptor_serialize_turtle.c:
+	(raptor_turtle_emit_subject_collection_items): Free iter on error
+	path [coverity CID 29263]
+
+	* src/raptor_parse.c:
+	(raptor_world_guess_parser_name): Free scores on error path
+	[coverity CID 29264]
+
+	* src/raptor_grddl.c:
+	(raptor_grddl_run_recursive): Free ibuffer [coverity CID 29265]
+
+	* src/raptor_rss.c:
+	(raptor_rss_end_element_handler): Free field on error path [coverity
+	CID 29266]
+
+	* src/raptor_rss.c:
+	(raptor_rss_insert_rss_link): Free field on error path [coverity CID
+	29267]
+
+	* src/raptor_serialize_rdfxml.c:
+	(raptor_rdfxml_serialize_statement): Free object_uri_string on error
+	path [coverity CID 29269]
+
+	* src/raptor_serialize_rss.c:
+	(raptor_rss10_serialize_end): Error path entry_uri cleanup [coverity
+	CID 29270]
+
+	* librdfa/lists.c:
+	(rdfa_complete_list_triples): Free bnode after loop [coverity CID
+	29272] Also strdup() the rdf:nil string so it can be freed.
+
+	* src/turtle_lexer.l: Free stringbuffer on error case [coverity
+	CID 29273]
+
+	* docs/raptor-1-to-2-map.tsv, docs/raptor2-sections.txt,
+	src/raptor2.h.in, src/raptor_internal.h, src/raptor_rfc2396.c,
+	src/raptor_uri.c: Added raptor_uri_counted_filename_to_uri_string
+
+	(raptor_uri_counted_filename_to_uri_string): Added based on
+	raptor_uri_filename_to_uri_string.  Updated to properly check the
+	length of the incoming filename and ensure (on unix) that the path
+	buffer is big enough.  Eliminate strcat() calls while here.  For
+	win32, properly calculate the length when there is a :\ in the
+	filename.  RAPTOR_FATAL4 added for debugging URI length failures
+
+	* src/turtle_common.c: (raptor_turtle_expand_name_escapes): arg
+	free on error path [coverity CID 29303]
+
+	(raptor_turtle_expand_name_escapes): Remove RAPTOR_FREE of name
+	argument on error paths - this function does not own name.
+
+2014-03-24  Dave Beckett <dave@dajobe.org>
+
+	* ChangeLog, ChangeLog.14, Makefile.am: ChangeLog.14 for 2013
+
+2014-03-24  Dave Beckett <dave@dajobe.org>
+
+	* librdfa/lists.c, librdfa/rdfa.c: librdfa fixes for
+	-Wunreachable-code (clang)
+
+2014-02-24  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_general.c, src/raptor_json.c, src/raptor_rss.c,
+	src/raptor_turtle_writer.c: Fixes for -Wunreachable-code (clang)
+
+	(raptor_rss_insert_identifiers): When inserting identifiers, allow
+	the loop to continue searching.
+
+	(raptor_rss_start_namespaces): Remove loop since 1 value is
+	enough.
+
+	* configure.ac: Add -Wunreachable-code (clang)
+
+2014-02-13  Dave Beckett <dave@dajobe.org>
+
+	* tests/turtle-2013/Makefile.am, tests/turtle-2013/oops.nt,
+	tests/turtle-2013/oops.ttl: Add test and expected response for RDF
+	1.1 Turtle post-REC error
+
+	Announced:
+	http://lists.w3.org/Archives/Public/public-rdf-comments/2014Feb/0018.html
+	Expected answer requested:
+	http://lists.w3.org/Archives/Public/public-rdf-comments/2014Feb/0020.html
+
+2014-02-12  Dave Beckett <dave@dajobe.org>
+
+	* tests/ntriples-2013/LITERAL.nt,
+	tests/ntriples-2013/LITERAL_all_controls.nt,
+	tests/ntriples-2013/LITERAL_all_punctuation.nt,
+	tests/ntriples-2013/LITERAL_with_2_dquotes.nt,
+	tests/ntriples-2013/LITERAL_with_2_squotes.nt,
+	tests/ntriples-2013/LITERAL_with_UTF8_boundaries.nt,
+	tests/ntriples-2013/LITERAL_with_dquote.nt,
+	tests/ntriples-2013/LITERAL_with_squote.nt,
+	tests/ntriples-2013/Makefile.am, tests/ntriples-2013/README,
+	tests/ntriples-2013/literal.nt,
+	tests/ntriples-2013/literal_all_controls.nt,
+	tests/ntriples-2013/literal_all_punctuation.nt,
+	tests/ntriples-2013/literal_with_2_dquotes.nt,
+	tests/ntriples-2013/literal_with_2_squotes.nt,
+	tests/ntriples-2013/literal_with_UTF8_boundaries.nt,
+	tests/ntriples-2013/literal_with_dquote.nt,
+	tests/ntriples-2013/literal_with_squote.nt: Renames to match W3C
+	mercurial repo names
+
+2014-01-29  Dave Beckett <dave@dajobe.org>
+
+	* CMakeLists.txt, NEWS.html, RELEASE.html, configure.ac: Bumped
+	version to 2.0.14
+
+	* Snapshotted raptor2_2_0_13 for 2.0.13 release (GIT
+	fde3f210e7442de6de16c410443fd8a695f09820)
+
+2014-01-29  Dave Beckett <dave@dajobe.org>
+
+	* NEWS.html, RELEASE.html:
+	2.0.13
+
+2014-01-27  Dave Beckett <dave@dajobe.org>
+
+	* ChangeLog, INSTALL.html, LICENSE.html, NEWS.html, README.html,
+	RELEASE.html, TODO.html, UPGRADING.html: 2.0.13 and 2014
+
+	* configure.ac: Use presence of libxml / curl config programs as
+	test for presence
+
+	Symptom was that after configuring, curl was present but not used
+	for WWW fetching.
+
+	Original commit that changed this was
+	  commit 7da03ba5cd6e45ea41afebd4955acf6e96e9d622
+	  Date:   Fri Apr 5 19:01:55 2013 +0100
+
+	which was Raptor 2.0.10 onwards
+
+2014-01-15  Dave Beckett <dave@dajobe.org>
+
+	* autogen.sh: Create NEWS and README
+
+2014-01-14  Dave Beckett <dave@dajobe.org>
+
+	* Makefile.am: fix html rules more
+
+	* .travis.yml: Travis CI fix
+
+	* Makefile.am: fix html rule
+
+2014-01-10  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_abbrev.c:
+	Revert: (raptor_abbrev_subject_find): Remove
+	double free of lookup_node.
+
+	This reverts commit c1c82f1be5d86ebf95fa10b86a938d6799e35626.
+
+	* src/raptor_rfc2396.c:
+	(raptor_uri_resolve_uri_reference): Handle NULL ref->path
+
+	* src/raptor_abbrev.c:
+	(raptor_abbrev_subject_find): Remove double free of lookup_node
+	Remove call to raptor_free_abbrev_node()
+
+2014-01-07  Dave Beckett <dave@dajobe.org>
+
+	* configure.ac: Use AC_CHECK_PROGS to find jing
+	AC_CHECK_PROG doesn't default to setting it as found!
+
+2014-01-04  Dave Beckett <dave@dajobe.org>
+
+	* src/raptor_general.c: 2014
+
+	* src/turtle_lexer.l: Remove YY_INPUT - never want to read from
+	stdin/file
+
+2014-01-02  Dave Beckett <dave@dajobe.org>
+
+	* Merge pull request #12 from dajobe/bison3.0-new Switch to use
+	and require Bison 3.0
+
+	* src/turtle_lexer.l: Provide missing flex prototypes for flex
+	2.5.35 or earlier
+
+	* src/parsedate.y:
+	(raptor_parse_date): No need for cast to void* for yyparse
+
+2014-01-01  Dave Beckett <dave@dajobe.org>
+
+	* src/turtle_parser.y: Remove redundant declaration of
+	turtle_lexer_lex
+
+	* configure.ac, src/Makefile.am: Alter configure to accept bison
+	3.0.0 or newer, no yacc
+
+	* src/parsedate.y: Add bison 3.0 directives
+
+	* src/parsedate.y: Bison 3.0 the parsedate parser
+
+	- Update to new directives
+	- Set %param
+	- Update error call
+
+	* src/turtle_parser.y: Bison 3.0 the turtle parser
+
+	- Use bison 3.0+ directives replacing all command line arguments
+	- Update lexer and parser parameters (remove use of YYLEX_PARAM)
+	- (turtle_parser_error): Add scanner arg.
+	- Use rdf_parser argument directly rather than via casted variable.
+	- Add %empty directives
+	- Remove casts to raptor_parser* that are no longer needed
+	- (turtle_parse): Pass in scanner
+
+	* src/turtle_parser.y: Remove YY_DECL
+
+	* src/turtle_lexer.l: Add %option bison-bridge
+
+	* src/turtle_lexer.l: Remove turtle_lexer_lex prototype / header
+	override
+
+	No longer use YYDECL - the default works.
+
+	* src/turtle_lexer.l: Replace turtle_parser_lval with yylval
+
+	* src/turtle_common.c: Move turtle_lexer.h include earlier so
+	YYSTYPE can be found
+
+	* src/turtle_lexer.l, src/turtle_parser.y: Remove token union
+	unused integer field
+

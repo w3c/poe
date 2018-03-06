@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Part II. Raptor Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="prev" href="tutorial-serializer-example.html" title="Serializing example code">
+<link rel="next" href="raptor-parsers.html" title="Parsers in Raptor (syntax to triples)">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="tutorial-serializer-example.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td> </td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="raptor-parsers.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="part">
+<div class="titlepage"><div><div><h1 class="title">
+<a name="reference-manual"></a>Part II. Raptor Reference Manual</h1></div></div></div>
+<div class="partintro">
+<div></div>
+<p>This part contains the Raptor Reference Manual
+      which comprehensively describes every class and function of the API.
+      </p>
+<p>The previous part contains the
+      <a class="link" href="tutorial.html" title="Part I. Raptor Tutorial">Raptor Tutorial</a>
+      explaining how to use the API parts.
+      </p>
+<p>For the latest information, see the
+      <a class="ulink" href="http://librdf.org/raptor/" target="_top">Raptor Home Page</a>
+      and the <a class="ulink" href="../README.html" target="_top">main document overview</a>
+      in this document tree.
+      </p>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="chapter"><a href="raptor-parsers.html">Parsers in Raptor (syntax to triples)</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="raptor-parsers.html#raptor-parsers-intro">Introduction</a></span></dt>
+<dt><span class="section"><a href="parser-grddl.html">GRDDL parser (name <code class="literal">grddl</code>)</a></span></dt>
+<dt><span class="section"><a href="parser-guess.html">Guess parser (name <code class="literal">guess</code>)</a></span></dt>
+<dt><span class="section"><a href="parser-json.html">JSON parser (name <code class="literal">json</code>)</a></span></dt>
+<dt><span class="section"><a href="parser-ntriples.html">N-Triples parser (name <code class="literal">ntriples</code>)</a></span></dt>
+<dt><span class="section"><a href="parser-rdfa.html">RDFa parser - (name <code class="literal">rdfa</code>)</a></span></dt>
+<dt><span class="section"><a href="parser-rdfxml.html">RDF/XML parser - default (name <code class="literal">rdfxml</code>)</a></span></dt>
+<dt><span class="section"><a href="parser-rss-tag-soup.html">RSS Tag Soup parser (name <code class="literal">rss-tag-soup</code>)</a></span></dt>
+<dt><span class="section"><a href="parser-trig.html">TRiG parser (name <code class="literal">trig</code>)</a></span></dt>
+<dt><span class="section"><a href="parser-turtle.html">Turtle Terse RDF Triple Language parser (name <code class="literal">turtle</code>)</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="raptor-serializers.html">Serializers in Raptor (triples to syntax)</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="raptor-serializers.html#raptor-serializers-intro">Introduction</a></span></dt>
+<dt><span class="section"><a href="serializer-atom.html">Atom 1.0 serializer (name <code class="literal">atom</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-json.html">JSON serializers (name <code class="literal">json</code> and name <code class="literal">json-triples</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-nquads.html">N-Quads serializer - default (name <code class="literal">nquads</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-ntriples.html">N-Triples serializer - default (name <code class="literal">ntriples</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-rdfxml.html">RDF/XML serializer (name <code class="literal">rdfxml</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-rdfxml-abbrev.html">RDF/XML (Abbreviated) serializer (name <code class="literal">rdfxml-abbrev</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-rdfxml-xmp.html">RDF/XML (XMP Profile) serializer (name <code class="literal">rdfxml-xmp</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-turtle.html">Turtle serializer (name <code class="literal">turtle</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-rss-1-0.html">RSS 1.0 serializer (name <code class="literal">rss-1.0</code>)</a></span></dt>
+<dt><span class="section"><a href="serializer-dot.html">GraphViz dot serializer (name <code class="literal">dot</code>)</a></span></dt>
+</dl></dd>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-world.html">Initialisation</a></span><span class="refpurpose"> — Library startup, shutdown and configuration.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-general.html">General</a></span><span class="refpurpose"> — General library constants and utility functions</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-memory.html">Memory</a></span><span class="refpurpose"> — Memory handling functions</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-avltree.html">AVL Trees</a></span><span class="refpurpose"> — AVL Trees</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-constants.html">Constants</a></span><span class="refpurpose"> — Constant values and strings</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-option.html">Options</a></span><span class="refpurpose"> — Class options</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-iostream.html">I/O Stream</a></span><span class="refpurpose"> — Providing streaming I/O writing to files, strings or user code.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-locator.html">Locator</a></span><span class="refpurpose"> — Location information for errors, warnings and messages.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-parser.html">Parser</a></span><span class="refpurpose"> — RDF parsers - from a syntax to RDF triples</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-sax2.html">SAX2</a></span><span class="refpurpose"> — SAX2 XML Parsing API with namespaces and base URI support.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-sequence.html">Sequence</a></span><span class="refpurpose"> — Ordered sequence of items.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-serializer.html">Serializer</a></span><span class="refpurpose"> — RDF serializers - from RDF triples to a syntax</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-stringbuffer.html">String buffer</a></span><span class="refpurpose"> — Append-only strings.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-triples.html">Triples</a></span><span class="refpurpose"> — RDF Triples</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-unicode.html">Unicode</a></span><span class="refpurpose"> — Unicode and UTF-8 utility functions.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-uri.html">URI</a></span><span class="refpurpose"> — URI class and relative URI computation</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-www.html">WWW</a></span><span class="refpurpose"> — Retrieval of URI content from the web.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-xml-namespace.html">XML Namespaces</a></span><span class="refpurpose"> — Namespaces in XML include stacks of Namespaces</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-xml-qname.html">XML QName</a></span><span class="refpurpose"> — XML Namespace-qualified names.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="raptor2-section-xml.html">XML</a></span><span class="refpurpose"> — XML and XML Writer</span>
+</dt>
+<dt><span class="chapter"><a href="raptor-formats.html">Syntax Formats supported in Raptor</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="raptor-formats.html#raptor-formats-intro">Introduction</a></span></dt>
+<dt><span class="section"><a href="raptor-formats-types-by-parser.html">MIME Types by Parser</a></span></dt>
+<dt><span class="section"><a href="raptor-formats-types-by-serializer.html">MIME Types by Serializer</a></span></dt>
+<dt><span class="section"><a href="raptor-formats-types-index.html">MIME Types Index</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="raptor2-changes.html">API Changes</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="raptor2-changes.html#raptor2-changes-intro">Introduction</a></span></dt>
+<dt><span class="section"><a href="raptor2-changes-1-4-21-to-2-0-0.html">Changes between raptor2 1.4.21 and 2.0.0</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="raptor2-changes-1-4-21-to-2-0-0.html#raptor2-changes-new-1-4-21-to-2-0-0">New functions, types and enums</a></span></dt>
+<dt><span class="section"><a href="raptor2-changes-1-4-21-to-2-0-0.html#raptor2-changes-deleted-1-4-21-to-2-0-0">Deleted functions, types and enums</a></span></dt>
+<dt><span class="section"><a href="raptor2-changes-1-4-21-to-2-0-0.html#raptor2-changes-renamed-1-4-21-to-2-0-0">Renamed function and enums</a></span></dt>
+<dt><span class="section"><a href="raptor2-changes-1-4-21-to-2-0-0.html#raptor2-changes-changed-1-4-21-to-2-0-0">Changed functions and types</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-3-to-2-0-4.html">Changes between raptor2 2.0.3 and 2.0.4</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-3-to-2-0-4.html#raptor2-changes-new-2-0-3-to-2-0-4">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-4-to-2-0-5.html">Changes between raptor2 2.0.4 and 2.0.5</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-4-to-2-0-5.html#raptor2-changes-new-2-0-4-to-2-0-5">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-5-to-2-0-6.html">Changes between raptor2 2.0.5 and 2.0.6</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-5-to-2-0-6.html#raptor2-changes-new-2-0-5-to-2-0-6">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-6-to-2-0-7.html">Changes between raptor2 2.0.6 and 2.0.7</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-6-to-2-0-7.html#raptor2-changes-new-2-0-6-to-2-0-7">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-7-to-2-0-8.html">Changes between raptor2 2.0.7 and 2.0.8</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-7-to-2-0-8.html#raptor2-changes-new-2-0-7-to-2-0-8">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-9-to-2-0-10.html">Changes between raptor2 2.0.9 and 2.0.10</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-9-to-2-0-10.html#raptor2-changes-new-2-0-9-to-2-0-10">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-10-to-2-0-11.html">Changes between raptor2 2.0.10 and 2.0.11</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-10-to-2-0-11.html#raptor2-changes-new-2-0-10-to-2-0-11">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-11-to-2-0-12.html">Changes between raptor2 2.0.11 and 2.0.12</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-11-to-2-0-12.html#raptor2-changes-new-2-0-11-to-2-0-12">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-13-to-2-0-14.html">Changes between raptor2 2.0.13 and 2.0.14</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-13-to-2-0-14.html#raptor2-changes-new-2-0-13-to-2-0-14">New functions, types and enums</a></span></dt></dl></dd>
+<dt><span class="section"><a href="raptor2-changes-2-0-14-to-2-0-15.html">Changes between raptor2 2.0.14 and 2.0.15</a></span></dt>
+<dd><dl><dt><span class="section"><a href="raptor2-changes-2-0-14-to-2-0-15.html#raptor2-changes-new-2-0-14-to-2-0-15">New functions, types and enums</a></span></dt></dl></dd>
+</dl></dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

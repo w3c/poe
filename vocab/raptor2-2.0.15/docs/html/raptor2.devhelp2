@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="Raptor RDF Syntax Library Manual" link="index.html" author="" name="raptor2" version="2" language="c">
+  <chapters>
+    <sub name="Raptor Overview" link="introduction.html"/>
+    <sub name="Raptor Tutorial" link="tutorial.html">
+      <sub name="Initialising and Finishing using the Library" link="tutorial-initialising-finishing.html"/>
+      <sub name="Listing built-in functionality" link="tutorial-querying-functionality.html"/>
+      <sub name="Parsing syntaxes to RDF Triples" link="tutorial-parsing.html">
+        <sub name="Introduction" link="tutorial-parsing.html#tutorial-parsing-intro"/>
+        <sub name="Create the Parser object" link="tutorial-parser-create.html"/>
+        <sub name="Parser options" link="tutorial-parser-features.html"/>
+        <sub name="Set RDF statement callback handler" link="tutorial-parser-set-triple-handler.html"/>
+        <sub name="Set parsing log message handlers" link="tutorial-parser-set-error-warning-handlers.html"/>
+        <sub name="Set the identifier creator handler" link="tutorial-parser-set-id-handler.html"/>
+        <sub name="Set namespace declared handler" link="tutorial-parser-set-namespace-handler.html"/>
+        <sub name="Set the parsing strictness" link="tutorial-parse-strictness.html"/>
+        <sub name="Provide syntax content to parse" link="tutorial-parser-content.html">
+          <sub name="Parse the content from a URI (raptor_parser_parse_uri())" link="tutorial-parser-content.html#parse-from-uri"/>
+          <sub name="Parse the content of a URI using an existing WWW connection (raptor_parser_parse_uri_with_connection())" link="tutorial-parser-content.html#parse-from-www"/>
+          <sub name="Parse the content of a C FILE* (raptor_parser_parse_file_stream())" link="tutorial-parser-content.html#parse-from-filehandle"/>
+          <sub name="Parse the content of a file URI (raptor_parser_parse_file())" link="tutorial-parser-content.html#parse-from-file-uri"/>
+          <sub name="Parse chunks of syntax content provided by the application  (raptor_parser_parse_start() and raptor_parser_parse_chunk())" link="tutorial-parser-content.html#parse-from-chunks"/>
+        </sub>
+        <sub name="Restrict parser network access" link="restrict-parser-network-access.html">
+          <sub name="Filtering parser network requests with option RAPTOR_OPTION_NO_NET" link="restrict-parser-network-access.html#tutorial-filter-network-with-feature"/>
+          <sub name="Filtering parser network requests with raptor_www_set_uri_filter()" link="restrict-parser-network-access.html#tutorial-filter-network-www-uri-filter"/>
+          <sub name="Filtering parser network requests with raptor_parser_set_uri_filter()" link="restrict-parser-network-access.html#tutorial-filter-network-parser-uri-filter"/>
+          <sub name="Setting timeout for parser network requests with option RAPTOR_OPTION_WWW_TIMEOUT" link="restrict-parser-network-access.html#tutorial-filter-network-parser-timeout"/>
+        </sub>
+        <sub name="Querying parser static information" link="tutorial-parser-static-info.html"/>
+        <sub name="Querying parser run-time information" link="tutorial-parser-runtime-info.html"/>
+        <sub name="Aborting parsing" link="tutorial-parser-abort.html"/>
+        <sub name="Destroy the parser" link="tutorial-parser-destroy.html"/>
+        <sub name="Parsing example code" link="tutorial-parser-example.html"/>
+      </sub>
+      <sub name="Serializing RDF triples to a syntax" link="tutorial-serializing.html">
+        <sub name="Introduction" link="tutorial-serializing.html#tutorial-serializing-intro"/>
+        <sub name="Create the Serializer object" link="tutorial-serializer-create.html"/>
+        <sub name="Serializer options" link="tutorial-serializer-features.html"/>
+        <sub name="Declare namespaces" link="tutorial-serializer-declare-namespace.html"/>
+        <sub name="Set error and warning handlers" link="tutorial-serializer-set-error-warning-handlers.html"/>
+        <sub name="Provide a destination for the serialized syntax" link="tutorial-serializer-to-destination.html">
+          <sub name="Serialize to a filename (raptor_serializer_start_to_filename())" link="tutorial-serializer-to-destination.html#serialize-to-filename"/>
+          <sub name="Serialize to a string (raptor_serializer_start_to_string())" link="tutorial-serializer-to-destination.html#serialize-to-string"/>
+          <sub name="Serialize to a FILE* file handle (raptor_serializer_start_to_file_handle())" link="tutorial-serializer-to-destination.html#serialize-to-filehandle"/>
+          <sub name="Serialize to an raptor_iostream (raptor_serializer_start_to_iostream())" link="tutorial-serializer-to-destination.html#serialize-to-iostream"/>
+        </sub>
+        <sub name="Get or construct RDF Statements (Triples)" link="tutorial-serializer-get-triples.html"/>
+        <sub name="Send RDF Triples to serializer" link="tutorial-serializer-send-triples.html"/>
+        <sub name="Querying serializer run-time information" link="tutorial-serializer-runtime-info.html"/>
+        <sub name="Destroy the serializer" link="tutorial-serializer-destroy.html"/>
+        <sub name="Serializing example code" link="tutorial-serializer-example.html"/>
+      </sub>
+    </sub>
+    <sub name="Raptor Reference Manual" link="reference-manual.html">
+      <sub name="Parsers in Raptor (syntax to triples)" link="raptor-parsers.html">
+        <sub name="Introduction" link="raptor-parsers.html#raptor-parsers-intro"/>
+        <sub name="GRDDL parser (name grddl)" link="parser-grddl.html"/>
+        <sub name="Guess parser (name guess)" link="parser-guess.html"/>
+        <sub name="JSON parser (name json)" link="parser-json.html"/>
+        <sub name="N-Triples parser (name ntriples)" link="parser-ntriples.html"/>
+        <sub name="RDFa parser - (name rdfa)" link="parser-rdfa.html"/>
+        <sub name="RDF/XML parser - default (name rdfxml)" link="parser-rdfxml.html"/>
+        <sub name="RSS Tag Soup parser (name rss-tag-soup)" link="parser-rss-tag-soup.html"/>
+        <sub name="TRiG parser (name trig)" link="parser-trig.html"/>
+        <sub name="Turtle Terse RDF Triple Language parser (name turtle)" link="parser-turtle.html"/>
+      </sub>
+      <sub name="Serializers in Raptor (triples to syntax)" link="raptor-serializers.html">
+        <sub name="Introduction" link="raptor-serializers.html#raptor-serializers-intro"/>
+        <sub name="Atom 1.0 serializer (name atom)" link="serializer-atom.html"/>
+        <sub name="JSON serializers (name json and name json-triples)" link="serializer-json.html"/>
+        <sub name="N-Quads serializer - default (name nquads)" link="serializer-nquads.html"/>
+        <sub name="N-Triples serializer - default (name ntriples)" link="serializer-ntriples.html"/>
+        <sub name="RDF/XML serializer (name rdfxml)" link="serializer-rdfxml.html"/>
+        <sub name="RDF/XML (Abbreviated) serializer (name rdfxml-abbrev)" link="serializer-rdfxml-abbrev.html"/>
+        <sub name="RDF/XML (XMP Profile) serializer (name rdfxml-xmp)" link="serializer-rdfxml-xmp.html"/>
+        <sub name="Turtle serializer (name turtle)" link="serializer-turtle.html"/>
+        <sub name="RSS 1.0 serializer (name rss-1.0)" link="serializer-rss-1-0.html"/>
+        <sub name="GraphViz dot serializer (name dot)" link="serializer-dot.html"/>
+      </sub>
+      <sub name="Initialisation" link="raptor2-section-world.html"/>
+      <sub name="General" link="raptor2-section-general.html"/>
+      <sub name="Memory" link="raptor2-section-memory.html"/>
+      <sub name="AVL Trees" link="raptor2-section-avltree.html"/>
+      <sub name="Constants" link="raptor2-section-constants.html"/>
+      <sub name="Options" link="raptor2-section-option.html"/>
+      <sub name="I/O Stream" link="raptor2-section-iostream.html"/>
+      <sub name="Locator" link="raptor2-section-locator.html"/>
+      <sub name="Parser" link="raptor2-section-parser.html"/>
+      <sub name="SAX2" link="raptor2-section-sax2.html"/>
+      <sub name="Sequence" link="raptor2-section-sequence.html"/>
+      <sub name="Serializer" link="raptor2-section-serializer.html"/>
+      <sub name="String buffer" link="raptor2-section-stringbuffer.html"/>
+      <sub name="Triples" link="raptor2-section-triples.html"/>
+      <sub name="Unicode" link="raptor2-section-unicode.html"/>
+      <sub name="URI" link="raptor2-section-uri.html"/>
+      <sub name="WWW" link="raptor2-section-www.html"/>
+      <sub name="XML Namespaces" link="raptor2-section-xml-namespace.html"/>
+      <sub name="XML QName" link="raptor2-section-xml-qname.html"/>
+      <sub name="XML" link="raptor2-section-xml.html"/>
+      <sub name="Syntax Formats supported in Raptor" link="raptor-formats.html">
+        <sub name="Introduction" link="raptor-formats.html#raptor-formats-intro"/>
+        <sub name="MIME Types by Parser" link="raptor-formats-types-by-parser.html"/>
+        <sub name="MIME Types by Serializer" link="raptor-formats-types-by-serializer.html"/>
+        <sub name="MIME Types Index" link="raptor-formats-types-index.html"/>
+      </sub>
+      <sub name="API Changes" link="raptor2-changes.html">
+        <sub name="Introduction" link="raptor2-changes.html#raptor2-changes-intro"/>
+        <sub name="Changes between raptor2 1.4.21 and 2.0.0" link="raptor2-changes-1-4-21-to-2-0-0.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-1-4-21-to-2-0-0.html#raptor2-changes-new-1-4-21-to-2-0-0"/>
+          <sub name="Deleted functions, types and enums" link="raptor2-changes-1-4-21-to-2-0-0.html#raptor2-changes-deleted-1-4-21-to-2-0-0"/>
+          <sub name="Renamed function and enums" link="raptor2-changes-1-4-21-to-2-0-0.html#raptor2-changes-renamed-1-4-21-to-2-0-0"/>
+          <sub name="Changed functions and types" link="raptor2-changes-1-4-21-to-2-0-0.html#raptor2-changes-changed-1-4-21-to-2-0-0"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.3 and 2.0.4" link="raptor2-changes-2-0-3-to-2-0-4.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-3-to-2-0-4.html#raptor2-changes-new-2-0-3-to-2-0-4"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.4 and 2.0.5" link="raptor2-changes-2-0-4-to-2-0-5.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-4-to-2-0-5.html#raptor2-changes-new-2-0-4-to-2-0-5"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.5 and 2.0.6" link="raptor2-changes-2-0-5-to-2-0-6.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-5-to-2-0-6.html#raptor2-changes-new-2-0-5-to-2-0-6"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.6 and 2.0.7" link="raptor2-changes-2-0-6-to-2-0-7.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-6-to-2-0-7.html#raptor2-changes-new-2-0-6-to-2-0-7"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.7 and 2.0.8" link="raptor2-changes-2-0-7-to-2-0-8.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-7-to-2-0-8.html#raptor2-changes-new-2-0-7-to-2-0-8"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.9 and 2.0.10" link="raptor2-changes-2-0-9-to-2-0-10.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-9-to-2-0-10.html#raptor2-changes-new-2-0-9-to-2-0-10"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.10 and 2.0.11" link="raptor2-changes-2-0-10-to-2-0-11.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-10-to-2-0-11.html#raptor2-changes-new-2-0-10-to-2-0-11"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.11 and 2.0.12" link="raptor2-changes-2-0-11-to-2-0-12.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-11-to-2-0-12.html#raptor2-changes-new-2-0-11-to-2-0-12"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.13 and 2.0.14" link="raptor2-changes-2-0-13-to-2-0-14.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-13-to-2-0-14.html#raptor2-changes-new-2-0-13-to-2-0-14"/>
+        </sub>
+        <sub name="Changes between raptor2 2.0.14 and 2.0.15" link="raptor2-changes-2-0-14-to-2-0-15.html">
+          <sub name="New functions, types and enums" link="raptor2-changes-2-0-14-to-2-0-15.html#raptor2-changes-new-2-0-14-to-2-0-15"/>
+        </sub>
+      </sub>
+    </sub>
+    <sub name="Index" link="ix01.html"/>
+  </chapters>
+  <functions>
+    <keyword type="typedef" name="raptor_world" link="raptor2-section-world.html#raptor-world"/>
+    <keyword type="macro" name="raptor_new_world" link="raptor2-section-world.html#raptor-new-world"/>
+    <keyword type="function" name="raptor_world_open ()" link="raptor2-section-world.html#raptor-world-open"/>
+    <keyword type="function" name="raptor_free_world ()" link="raptor2-section-world.html#raptor-free-world"/>
+    <keyword type="enum" name="enum raptor_world_flag" link="raptor2-section-world.html#raptor-world-flag"/>
+    <keyword type="function" name="raptor_world_set_flag ()" link="raptor2-section-world.html#raptor-world-set-flag"/>
+    <keyword type="function" name="raptor_world_set_libxslt_security_preferences ()" link="raptor2-section-world.html#raptor-world-set-libxslt-security-preferences"/>
+    <keyword type="function" name="raptor_world_set_log_handler ()" link="raptor2-section-world.html#raptor-world-set-log-handler"/>
+    <keyword type="function" name="raptor_world_get_parser_description ()" link="raptor2-section-world.html#raptor-world-get-parser-description"/>
+    <keyword type="function" name="raptor_world_is_parser_name ()" link="raptor2-section-world.html#raptor-world-is-parser-name"/>
+    <keyword type="function" name="raptor_world_guess_parser_name ()" link="raptor2-section-world.html#raptor-world-guess-parser-name"/>
+    <keyword type="function" name="raptor_world_get_serializer_description ()" link="raptor2-section-world.html#raptor-world-get-serializer-description"/>
+    <keyword type="function" name="raptor_world_is_serializer_name ()" link="raptor2-section-world.html#raptor-world-is-serializer-name"/>
+    <keyword type="function" name="raptor_world_generate_bnodeid ()" link="raptor2-section-world.html#raptor-world-generate-bnodeid"/>
+    <keyword type="function" name="raptor_world_set_generate_bnodeid_handler ()" link="raptor2-section-world.html#raptor-world-set-generate-bnodeid-handler"/>
+    <keyword type="function" name="raptor_world_set_generate_bnodeid_parameters ()" link="raptor2-section-world.html#raptor-world-set-generate-bnodeid-parameters"/>
+    <keyword type="function" name="raptor_world_get_parsers_count ()" link="raptor2-section-world.html#raptor-world-get-parsers-count"/>
+    <keyword type="function" name="raptor_world_get_serializers_count ()" link="raptor2-section-world.html#raptor-world-get-serializers-count"/>
+    <keyword type="macro" name="RAPTOR_VERSION" link="raptor2-section-general.html#RAPTOR-VERSION:CAPS"/>
+    <keyword type="macro" name="RAPTOR_VERSION_MAJOR" link="raptor2-section-general.html#RAPTOR-VERSION-MAJOR:CAPS"/>
+    <keyword type="macro" name="RAPTOR_VERSION_MINOR" link="raptor2-section-general.html#RAPTOR-VERSION-MINOR:CAPS"/>
+    <keyword type="macro" name="RAPTOR_VERSION_RELEASE" link="raptor2-section-general.html#RAPTOR-VERSION-RELEASE:CAPS"/>
+    <keyword type="macro" name="RAPTOR_VERSION_STRING" link="raptor2-section-general.html#RAPTOR-VERSION-STRING:CAPS"/>
+    <keyword type="variable" name="raptor_version_major" link="raptor2-section-general.html#raptor-version-major"/>
+    <keyword type="variable" name="raptor_version_minor" link="raptor2-section-general.html#raptor-version-minor"/>
+    <keyword type="variable" name="raptor_version_release" link="raptor2-section-general.html#raptor-version-release"/>
+    <keyword type="variable" name="raptor_version_decimal" link="raptor2-section-general.html#raptor-version-decimal"/>
+    <keyword type="variable" name="raptor_copyright_string" link="raptor2-section-general.html#raptor-copyright-string"/>
+    <keyword type="variable" name="raptor_home_url_string" link="raptor2-section-general.html#raptor-home-url-string"/>
+    <keyword type="variable" name="raptor_license_string" link="raptor2-section-general.html#raptor-license-string"/>
+    <keyword type="variable" name="raptor_short_copyright_string" link="raptor2-section-general.html#raptor-short-copyright-string"/>
+    <keyword type="variable" name="raptor_version_string" link="raptor2-section-general.html#raptor-version-string"/>
+    <keyword type="variable" name="raptor_owl_namespace_uri" link="raptor2-section-general.html#raptor-owl-namespace-uri"/>
+    <keyword type="variable" name="raptor_rdf_namespace_uri" link="raptor2-section-general.html#raptor-rdf-namespace-uri"/>
+    <keyword type="variable" name="raptor_rdf_schema_namespace_uri" link="raptor2-section-general.html#raptor-rdf-schema-namespace-uri"/>
+    <keyword type="variable" name="raptor_xml_literal_datatype_uri_string" link="raptor2-section-general.html#raptor-xml-literal-datatype-uri-string"/>
+    <keyword type="variable" name="raptor_xml_namespace_uri" link="raptor2-section-general.html#raptor-xml-namespace-uri"/>
+    <keyword type="variable" name="raptor_xmlschema_datatypes_namespace_uri" link="raptor2-section-general.html#raptor-xmlschema-datatypes-namespace-uri"/>
+    <keyword type="function" name="raptor_statement_handler ()" link="raptor2-section-general.html#raptor-statement-handler"/>
+    <keyword type="function" name="raptor_snprintf ()" link="raptor2-section-general.html#raptor-snprintf"/>
+    <keyword type="function" name="raptor_vasprintf ()" link="raptor2-section-general.html#raptor-vasprintf"/>
+    <keyword type="function" name="raptor_vsnprintf ()" link="raptor2-section-general.html#raptor-vsnprintf"/>
+    <keyword type="function" name="raptor_vsnprintf2 ()" link="raptor2-section-general.html#raptor-vsnprintf2"/>
+    <keyword type="function" name="raptor_sort_r ()" link="raptor2-section-general.html#raptor-sort-r"/>
+    <keyword type="function" name="raptor_log_handler ()" link="raptor2-section-general.html#raptor-log-handler"/>
+    <keyword type="struct" name="raptor_log_message" link="raptor2-section-general.html#raptor-log-message"/>
+    <keyword type="enum" name="enum raptor_log_level" link="raptor2-section-general.html#raptor-log-level"/>
+    <keyword type="function" name="raptor_log_level_get_label ()" link="raptor2-section-general.html#raptor-log-level-get-label"/>
+    <keyword type="enum" name="enum raptor_domain" link="raptor2-section-general.html#raptor-domain"/>
+    <keyword type="function" name="raptor_domain_get_label ()" link="raptor2-section-general.html#raptor-domain-get-label"/>
+    <keyword type="function" name="raptor_data_compare_handler ()" link="raptor2-section-general.html#raptor-data-compare-handler"/>
+    <keyword type="function" name="raptor_data_compare_arg_handler ()" link="raptor2-section-general.html#raptor-data-compare-arg-handler"/>
+    <keyword type="function" name="raptor_data_context_free_handler ()" link="raptor2-section-general.html#raptor-data-context-free-handler"/>
+    <keyword type="function" name="raptor_data_context_print_handler ()" link="raptor2-section-general.html#raptor-data-context-print-handler"/>
+    <keyword type="function" name="raptor_data_free_handler ()" link="raptor2-section-general.html#raptor-data-free-handler"/>
+    <keyword type="function" name="raptor_data_malloc_handler ()" link="raptor2-section-general.html#raptor-data-malloc-handler"/>
+    <keyword type="function" name="raptor_data_print_handler ()" link="raptor2-section-general.html#raptor-data-print-handler"/>
+    <keyword type="enum" name="enum raptor_syntax_bitflags" link="raptor2-section-general.html#raptor-syntax-bitflags"/>
+    <keyword type="struct" name="raptor_syntax_description" link="raptor2-section-general.html#raptor-syntax-description"/>
+    <keyword type="function" name="raptor_syntax_description_validate ()" link="raptor2-section-general.html#raptor-syntax-description-validate"/>
+    <keyword type="struct" name="raptor_type_q" link="raptor2-section-general.html#raptor-type-q"/>
+    <keyword type="function" name="raptor_free_memory ()" link="raptor2-section-memory.html#raptor-free-memory"/>
+    <keyword type="function" name="raptor_alloc_memory ()" link="raptor2-section-memory.html#raptor-alloc-memory"/>
+    <keyword type="function" name="raptor_calloc_memory ()" link="raptor2-section-memory.html#raptor-calloc-memory"/>
+    <keyword type="typedef" name="raptor_avltree" link="raptor2-section-avltree.html#raptor-avltree"/>
+    <keyword type="enum" name="enum raptor_avltree_bitflags" link="raptor2-section-avltree.html#raptor-avltree-bitflags"/>
+    <keyword type="function" name="raptor_new_avltree ()" link="raptor2-section-avltree.html#raptor-new-avltree"/>
+    <keyword type="function" name="raptor_free_avltree ()" link="raptor2-section-avltree.html#raptor-free-avltree"/>
+    <keyword type="function" name="raptor_avltree_add ()" link="raptor2-section-avltree.html#raptor-avltree-add"/>
+    <keyword type="function" name="raptor_avltree_delete ()" link="raptor2-section-avltree.html#raptor-avltree-delete"/>
+    <keyword type="function" name="raptor_avltree_print ()" link="raptor2-section-avltree.html#raptor-avltree-print"/>
+    <keyword type="function" name="raptor_avltree_remove ()" link="raptor2-section-avltree.html#raptor-avltree-remove"/>
+    <keyword type="function" name="raptor_avltree_search ()" link="raptor2-section-avltree.html#raptor-avltree-search"/>
+    <keyword type="function" name="raptor_avltree_set_print_handler ()" link="raptor2-section-avltree.html#raptor-avltree-set-print-handler"/>
+    <keyword type="function" name="raptor_avltree_size ()" link="raptor2-section-avltree.html#raptor-avltree-size"/>
+    <keyword type="function" name="raptor_avltree_visit ()" link="raptor2-section-avltree.html#raptor-avltree-visit"/>
+    <keyword type="typedef" name="raptor_avltree_iterator" link="raptor2-section-avltree.html#raptor-avltree-iterator"/>
+    <keyword type="function" name="raptor_new_avltree_iterator ()" link="raptor2-section-avltree.html#raptor-new-avltree-iterator"/>
+    <keyword type="function" name="raptor_free_avltree_iterator ()" link="raptor2-section-avltree.html#raptor-free-avltree-iterator"/>
+    <keyword type="function" name="raptor_avltree_iterator_get ()" link="raptor2-section-avltree.html#raptor-avltree-iterator-get"/>
+    <keyword type="function" name="raptor_avltree_iterator_is_end ()" link="raptor2-section-avltree.html#raptor-avltree-iterator-is-end"/>
+    <keyword type="function" name="raptor_avltree_iterator_next ()" link="raptor2-section-avltree.html#raptor-avltree-iterator-next"/>
+    <keyword type="function" name="raptor_avltree_visit_handler ()" link="raptor2-section-avltree.html#raptor-avltree-visit-handler"/>
+    <keyword type="variable" name="raptor_rdf_namespace_uri_len" link="raptor2-section-constants.html#raptor-rdf-namespace-uri-len"/>
+    <keyword type="variable" name="raptor_xml_literal_datatype_uri_string_len" link="raptor2-section-constants.html#raptor-xml-literal-datatype-uri-string-len"/>
+    <keyword type="macro" name="RAPTOR_RDF_MS_URI" link="raptor2-section-constants.html#RAPTOR-RDF-MS-URI:CAPS"/>
+    <keyword type="macro" name="RAPTOR_RDF_SCHEMA_URI" link="raptor2-section-constants.html#RAPTOR-RDF-SCHEMA-URI:CAPS"/>
+    <keyword type="macro" name="RAPTOR_XMLSCHEMA_DATATYPES_URI" link="raptor2-section-constants.html#RAPTOR-XMLSCHEMA-DATATYPES-URI:CAPS"/>
+    <keyword type="macro" name="RAPTOR_OWL_URI" link="raptor2-section-constants.html#RAPTOR-OWL-URI:CAPS"/>
+    <keyword type="enum" name="enum raptor_option" link="raptor2-section-option.html#raptor-option"/>
+    <keyword type="struct" name="raptor_option_description" link="raptor2-section-option.html#raptor-option-description"/>
+    <keyword type="function" name="raptor_option_get_count ()" link="raptor2-section-option.html#raptor-option-get-count"/>
+    <keyword type="enum" name="enum raptor_option_value_type" link="raptor2-section-option.html#raptor-option-value-type"/>
+    <keyword type="function" name="raptor_option_get_value_type_label ()" link="raptor2-section-option.html#raptor-option-get-value-type-label"/>
+    <keyword type="function" name="raptor_world_get_option_description ()" link="raptor2-section-option.html#raptor-world-get-option-description"/>
+    <keyword type="function" name="raptor_free_option_description ()" link="raptor2-section-option.html#raptor-free-option-description"/>
+    <keyword type="function" name="raptor_world_get_option_from_uri ()" link="raptor2-section-option.html#raptor-world-get-option-from-uri"/>
+    <keyword type="typedef" name="raptor_iostream" link="raptor2-section-iostream.html#raptor-iostream"/>
+    <keyword type="function" name="raptor_iostream_init_func ()" link="raptor2-section-iostream.html#raptor-iostream-init-func"/>
+    <keyword type="function" name="raptor_iostream_finish_func ()" link="raptor2-section-iostream.html#raptor-iostream-finish-func"/>
+    <keyword type="function" name="raptor_iostream_write_byte_func ()" link="raptor2-section-iostream.html#raptor-iostream-write-byte-func"/>
+    <keyword type="function" name="raptor_iostream_write_bytes_func ()" link="raptor2-section-iostream.html#raptor-iostream-write-bytes-func"/>
+    <keyword type="function" name="raptor_iostream_write_end_func ()" link="raptor2-section-iostream.html#raptor-iostream-write-end-func"/>
+    <keyword type="function" name="raptor_iostream_read_bytes_func ()" link="raptor2-section-iostream.html#raptor-iostream-read-bytes-func"/>
+    <keyword type="function" name="raptor_iostream_read_eof_func ()" link="raptor2-section-iostream.html#raptor-iostream-read-eof-func"/>
+    <keyword type="struct" name="raptor_iostream_handler" link="raptor2-section-iostream.html#raptor-iostream-handler"/>
+    <keyword type="function" name="raptor_new_iostream_from_handler ()" link="raptor2-section-iostream.html#raptor-new-iostream-from-handler"/>
+    <keyword type="function" name="raptor_new_iostream_from_sink ()" link="raptor2-section-iostream.html#raptor-new-iostream-from-sink"/>
+    <keyword type="function" name="raptor_new_iostream_from_filename ()" link="raptor2-section-iostream.html#raptor-new-iostream-from-filename"/>
+    <keyword type="function" name="raptor_new_iostream_from_file_handle ()" link="raptor2-section-iostream.html#raptor-new-iostream-from-file-handle"/>
+    <keyword type="function" name="raptor_new_iostream_from_string ()" link="raptor2-section-iostream.html#raptor-new-iostream-from-string"/>
+    <keyword type="function" name="raptor_new_iostream_to_sink ()" link="raptor2-section-iostream.html#raptor-new-iostream-to-sink"/>
+    <keyword type="function" name="raptor_new_iostream_to_filename ()" link="raptor2-section-iostream.html#raptor-new-iostream-to-filename"/>
+    <keyword type="function" name="raptor_new_iostream_to_file_handle ()" link="raptor2-section-iostream.html#raptor-new-iostream-to-file-handle"/>
+    <keyword type="function" name="raptor_new_iostream_to_string ()" link="raptor2-section-iostream.html#raptor-new-iostream-to-string"/>
+    <keyword type="function" name="raptor_free_iostream ()" link="raptor2-section-iostream.html#raptor-free-iostream"/>
+    <keyword type="function" name="raptor_iostream_hexadecimal_write ()" link="raptor2-section-iostream.html#raptor-iostream-hexadecimal-write"/>
+    <keyword type="function" name="raptor_iostream_read_bytes ()" link="raptor2-section-iostream.html#raptor-iostream-read-bytes"/>
+    <keyword type="function" name="raptor_iostream_read_eof ()" link="raptor2-section-iostream.html#raptor-iostream-read-eof"/>
+    <keyword type="function" name="raptor_iostream_tell ()" link="raptor2-section-iostream.html#raptor-iostream-tell"/>
+    <keyword type="function" name="raptor_iostream_counted_string_write ()" link="raptor2-section-iostream.html#raptor-iostream-counted-string-write"/>
+    <keyword type="function" name="raptor_iostream_decimal_write ()" link="raptor2-section-iostream.html#raptor-iostream-decimal-write"/>
+    <keyword type="function" name="raptor_iostream_string_write ()" link="raptor2-section-iostream.html#raptor-iostream-string-write"/>
+    <keyword type="function" name="raptor_iostream_write_byte ()" link="raptor2-section-iostream.html#raptor-iostream-write-byte"/>
+    <keyword type="function" name="raptor_iostream_write_bytes ()" link="raptor2-section-iostream.html#raptor-iostream-write-bytes"/>
+    <keyword type="function" name="raptor_iostream_write_end ()" link="raptor2-section-iostream.html#raptor-iostream-write-end"/>
+    <keyword type="function" name="raptor_bnodeid_ntriples_write ()" link="raptor2-section-iostream.html#raptor-bnodeid-ntriples-write"/>
+    <keyword type="enum" name="enum raptor_escaped_write_bitflags" link="raptor2-section-iostream.html#raptor-escaped-write-bitflags"/>
+    <keyword type="function" name="raptor_string_escaped_write ()" link="raptor2-section-iostream.html#raptor-string-escaped-write"/>
+    <keyword type="function" name="raptor_term_escaped_write ()" link="raptor2-section-iostream.html#raptor-term-escaped-write"/>
+    <keyword type="function" name="raptor_uri_escaped_write ()" link="raptor2-section-iostream.html#raptor-uri-escaped-write"/>
+    <keyword type="function" name="raptor_string_ntriples_write ()" link="raptor2-section-iostream.html#raptor-string-ntriples-write"/>
+    <keyword type="function" name="raptor_string_python_write ()" link="raptor2-section-iostream.html#raptor-string-python-write"/>
+    <keyword type="struct" name="raptor_locator" link="raptor2-section-locator.html#raptor-locator"/>
+    <keyword type="function" name="raptor_locator_print ()" link="raptor2-section-locator.html#raptor-locator-print"/>
+    <keyword type="function" name="raptor_locator_format ()" link="raptor2-section-locator.html#raptor-locator-format"/>
+    <keyword type="function" name="raptor_locator_line ()" link="raptor2-section-locator.html#raptor-locator-line"/>
+    <keyword type="function" name="raptor_locator_column ()" link="raptor2-section-locator.html#raptor-locator-column"/>
+    <keyword type="function" name="raptor_locator_byte ()" link="raptor2-section-locator.html#raptor-locator-byte"/>
+    <keyword type="function" name="raptor_locator_file ()" link="raptor2-section-locator.html#raptor-locator-file"/>
+    <keyword type="function" name="raptor_locator_uri ()" link="raptor2-section-locator.html#raptor-locator-uri"/>
+    <keyword type="typedef" name="raptor_parser" link="raptor2-section-parser.html#raptor-parser"/>
+    <keyword type="function" name="raptor_new_parser ()" link="raptor2-section-parser.html#raptor-new-parser"/>
+    <keyword type="function" name="raptor_new_parser_for_content ()" link="raptor2-section-parser.html#raptor-new-parser-for-content"/>
+    <keyword type="function" name="raptor_free_parser ()" link="raptor2-section-parser.html#raptor-free-parser"/>
+    <keyword type="function" name="raptor_graph_mark_handler ()" link="raptor2-section-parser.html#raptor-graph-mark-handler"/>
+    <keyword type="function" name="raptor_namespace_handler ()" link="raptor2-section-parser.html#raptor-namespace-handler"/>
+    <keyword type="function" name="raptor_parser_set_statement_handler ()" link="raptor2-section-parser.html#raptor-parser-set-statement-handler"/>
+    <keyword type="enum" name="enum raptor_graph_mark_flags" link="raptor2-section-parser.html#raptor-graph-mark-flags"/>
+    <keyword type="function" name="raptor_parser_set_graph_mark_handler ()" link="raptor2-section-parser.html#raptor-parser-set-graph-mark-handler"/>
+    <keyword type="function" name="raptor_parser_set_namespace_handler ()" link="raptor2-section-parser.html#raptor-parser-set-namespace-handler"/>
+    <keyword type="function" name="raptor_parser_get_description ()" link="raptor2-section-parser.html#raptor-parser-get-description"/>
+    <keyword type="function" name="raptor_parser_get_locator ()" link="raptor2-section-parser.html#raptor-parser-get-locator"/>
+    <keyword type="function" name="raptor_parser_parse_abort ()" link="raptor2-section-parser.html#raptor-parser-parse-abort"/>
+    <keyword type="function" name="raptor_parser_parse_chunk ()" link="raptor2-section-parser.html#raptor-parser-parse-chunk"/>
+    <keyword type="function" name="raptor_parser_parse_file ()" link="raptor2-section-parser.html#raptor-parser-parse-file"/>
+    <keyword type="function" name="raptor_parser_parse_file_stream ()" link="raptor2-section-parser.html#raptor-parser-parse-file-stream"/>
+    <keyword type="function" name="raptor_parser_parse_iostream ()" link="raptor2-section-parser.html#raptor-parser-parse-iostream"/>
+    <keyword type="function" name="raptor_parser_parse_start ()" link="raptor2-section-parser.html#raptor-parser-parse-start"/>
+    <keyword type="function" name="raptor_parser_parse_uri ()" link="raptor2-section-parser.html#raptor-parser-parse-uri"/>
+    <keyword type="function" name="raptor_parser_parse_uri_with_connection ()" link="raptor2-section-parser.html#raptor-parser-parse-uri-with-connection"/>
+    <keyword type="function" name="raptor_parser_get_graph ()" link="raptor2-section-parser.html#raptor-parser-get-graph"/>
+    <keyword type="function" name="raptor_parser_get_name ()" link="raptor2-section-parser.html#raptor-parser-get-name"/>
+    <keyword type="function" name="raptor_parser_set_option ()" link="raptor2-section-parser.html#raptor-parser-set-option"/>
+    <keyword type="function" name="raptor_parser_get_option ()" link="raptor2-section-parser.html#raptor-parser-get-option"/>
+    <keyword type="function" name="raptor_parser_get_accept_header ()" link="raptor2-section-parser.html#raptor-parser-get-accept-header"/>
+    <keyword type="function" name="raptor_parser_set_uri_filter ()" link="raptor2-section-parser.html#raptor-parser-set-uri-filter"/>
+    <keyword type="function" name="raptor_parser_get_world ()" link="raptor2-section-parser.html#raptor-parser-get-world"/>
+    <keyword type="typedef" name="raptor_sax2" link="raptor2-section-sax2.html#raptor-sax2"/>
+    <keyword type="function" name="raptor_new_sax2 ()" link="raptor2-section-sax2.html#raptor-new-sax2"/>
+    <keyword type="function" name="raptor_free_sax2 ()" link="raptor2-section-sax2.html#raptor-free-sax2"/>
+    <keyword type="function" name="raptor_sax2_start_element_handler ()" link="raptor2-section-sax2.html#raptor-sax2-start-element-handler"/>
+    <keyword type="function" name="raptor_sax2_end_element_handler ()" link="raptor2-section-sax2.html#raptor-sax2-end-element-handler"/>
+    <keyword type="function" name="raptor_sax2_characters_handler ()" link="raptor2-section-sax2.html#raptor-sax2-characters-handler"/>
+    <keyword type="function" name="raptor_sax2_cdata_handler ()" link="raptor2-section-sax2.html#raptor-sax2-cdata-handler"/>
+    <keyword type="function" name="raptor_sax2_comment_handler ()" link="raptor2-section-sax2.html#raptor-sax2-comment-handler"/>
+    <keyword type="function" name="raptor_sax2_unparsed_entity_decl_handler ()" link="raptor2-section-sax2.html#raptor-sax2-unparsed-entity-decl-handler"/>
+    <keyword type="function" name="raptor_sax2_external_entity_ref_handler ()" link="raptor2-section-sax2.html#raptor-sax2-external-entity-ref-handler"/>
+    <keyword type="function" name="raptor_sax2_set_start_element_handler ()" link="raptor2-section-sax2.html#raptor-sax2-set-start-element-handler"/>
+    <keyword type="function" name="raptor_sax2_set_end_element_handler ()" link="raptor2-section-sax2.html#raptor-sax2-set-end-element-handler"/>
+    <keyword type="function" name="raptor_sax2_set_characters_handler ()" link="raptor2-section-sax2.html#raptor-sax2-set-characters-handler"/>
+    <keyword type="function" name="raptor_sax2_set_cdata_handler ()" link="raptor2-section-sax2.html#raptor-sax2-set-cdata-handler"/>
+    <keyword type="function" name="raptor_sax2_set_comment_handler ()" link="raptor2-section-sax2.html#raptor-sax2-set-comment-handler"/>
+    <keyword type="function" name="raptor_sax2_set_unparsed_entity_decl_handler ()" link="raptor2-section-sax2.html#raptor-sax2-set-unparsed-entity-decl-handler"/>
+    <keyword type="function" name="raptor_sax2_set_external_entity_ref_handler ()" link="raptor2-section-sax2.html#raptor-sax2-set-external-entity-ref-handler"/>
+    <keyword type="function" name="raptor_sax2_set_namespace_handler ()" link="raptor2-section-sax2.html#raptor-sax2-set-namespace-handler"/>
+    <keyword type="function" name="raptor_sax2_set_uri_filter ()" link="raptor2-section-sax2.html#raptor-sax2-set-uri-filter"/>
+    <keyword type="function" name="raptor_sax2_parse_start ()" link="raptor2-section-sax2.html#raptor-sax2-parse-start"/>
+    <keyword type="function" name="raptor_sax2_parse_chunk ()" link="raptor2-section-sax2.html#raptor-sax2-parse-chunk"/>
+    <keyword type="function" name="raptor_sax2_inscope_xml_language ()" link="raptor2-section-sax2.html#raptor-sax2-inscope-xml-language"/>
+    <keyword type="function" name="raptor_sax2_inscope_base_uri ()" link="raptor2-section-sax2.html#raptor-sax2-inscope-base-uri"/>
+    <keyword type="typedef" name="raptor_sequence" link="raptor2-section-sequence.html#raptor-sequence"/>
+    <keyword type="function" name="raptor_new_sequence ()" link="raptor2-section-sequence.html#raptor-new-sequence"/>
+    <keyword type="function" name="raptor_new_sequence_with_context ()" link="raptor2-section-sequence.html#raptor-new-sequence-with-context"/>
+    <keyword type="function" name="raptor_free_sequence ()" link="raptor2-section-sequence.html#raptor-free-sequence"/>
+    <keyword type="function" name="raptor_sequence_delete_at ()" link="raptor2-section-sequence.html#raptor-sequence-delete-at"/>
+    <keyword type="function" name="raptor_sequence_get_at ()" link="raptor2-section-sequence.html#raptor-sequence-get-at"/>
+    <keyword type="function" name="raptor_sequence_join ()" link="raptor2-section-sequence.html#raptor-sequence-join"/>
+    <keyword type="function" name="raptor_sequence_next_permutation ()" link="raptor2-section-sequence.html#raptor-sequence-next-permutation"/>
+    <keyword type="function" name="raptor_sequence_pop ()" link="raptor2-section-sequence.html#raptor-sequence-pop"/>
+    <keyword type="function" name="raptor_sequence_print ()" link="raptor2-section-sequence.html#raptor-sequence-print"/>
+    <keyword type="function" name="raptor_sequence_push ()" link="raptor2-section-sequence.html#raptor-sequence-push"/>
+    <keyword type="function" name="raptor_sequence_reverse ()" link="raptor2-section-sequence.html#raptor-sequence-reverse"/>
+    <keyword type="function" name="raptor_sequence_set_at ()" link="raptor2-section-sequence.html#raptor-sequence-set-at"/>
+    <keyword type="function" name="raptor_sequence_shift ()" link="raptor2-section-sequence.html#raptor-sequence-shift"/>
+    <keyword type="function" name="raptor_sequence_size ()" link="raptor2-section-sequence.html#raptor-sequence-size"/>
+    <keyword type="function" name="raptor_sequence_sort ()" link="raptor2-section-sequence.html#raptor-sequence-sort"/>
+    <keyword type="function" name="raptor_sequence_sort_r ()" link="raptor2-section-sequence.html#raptor-sequence-sort-r"/>
+    <keyword type="function" name="raptor_sequence_swap ()" link="raptor2-section-sequence.html#raptor-sequence-swap"/>
+    <keyword type="function" name="raptor_sequence_unshift ()" link="raptor2-section-sequence.html#raptor-sequence-unshift"/>
+    <keyword type="typedef" name="raptor_serializer" link="raptor2-section-serializer.html#raptor-serializer"/>
+    <keyword type="function" name="raptor_new_serializer ()" link="raptor2-section-serializer.html#raptor-new-serializer"/>
+    <keyword type="function" name="raptor_free_serializer ()" link="raptor2-section-serializer.html#raptor-free-serializer"/>
+    <keyword type="function" name="raptor_serializer_start_to_iostream ()" link="raptor2-section-serializer.html#raptor-serializer-start-to-iostream"/>
+    <keyword type="function" name="raptor_serializer_start_to_filename ()" link="raptor2-section-serializer.html#raptor-serializer-start-to-filename"/>
+    <keyword type="function" name="raptor_serializer_start_to_string ()" link="raptor2-section-serializer.html#raptor-serializer-start-to-string"/>
+    <keyword type="function" name="raptor_serializer_start_to_file_handle ()" link="raptor2-section-serializer.html#raptor-serializer-start-to-file-handle"/>
+    <keyword type="function" name="raptor_serializer_set_namespace ()" link="raptor2-section-serializer.html#raptor-serializer-set-namespace"/>
+    <keyword type="function" name="raptor_serializer_set_namespace_from_namespace ()" link="raptor2-section-serializer.html#raptor-serializer-set-namespace-from-namespace"/>
+    <keyword type="function" name="raptor_serializer_serialize_statement ()" link="raptor2-section-serializer.html#raptor-serializer-serialize-statement"/>
+    <keyword type="function" name="raptor_serializer_serialize_end ()" link="raptor2-section-serializer.html#raptor-serializer-serialize-end"/>
+    <keyword type="function" name="raptor_serializer_flush ()" link="raptor2-section-serializer.html#raptor-serializer-flush"/>
+    <keyword type="function" name="raptor_serializer_get_description ()" link="raptor2-section-serializer.html#raptor-serializer-get-description"/>
+    <keyword type="function" name="raptor_serializer_get_iostream ()" link="raptor2-section-serializer.html#raptor-serializer-get-iostream"/>
+    <keyword type="function" name="raptor_serializer_get_locator ()" link="raptor2-section-serializer.html#raptor-serializer-get-locator"/>
+    <keyword type="function" name="raptor_serializer_set_option ()" link="raptor2-section-serializer.html#raptor-serializer-set-option"/>
+    <keyword type="function" name="raptor_serializer_get_option ()" link="raptor2-section-serializer.html#raptor-serializer-get-option"/>
+    <keyword type="function" name="raptor_serializer_get_world ()" link="raptor2-section-serializer.html#raptor-serializer-get-world"/>
+    <keyword type="typedef" name="raptor_stringbuffer" link="raptor2-section-stringbuffer.html#raptor-stringbuffer"/>
+    <keyword type="function" name="raptor_new_stringbuffer ()" link="raptor2-section-stringbuffer.html#raptor-new-stringbuffer"/>
+    <keyword type="function" name="raptor_free_stringbuffer ()" link="raptor2-section-stringbuffer.html#raptor-free-stringbuffer"/>
+    <keyword type="function" name="raptor_stringbuffer_append_counted_string ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-append-counted-string"/>
+    <keyword type="function" name="raptor_stringbuffer_append_decimal ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-append-decimal"/>
+    <keyword type="function" name="raptor_stringbuffer_append_hexadecimal ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-append-hexadecimal"/>
+    <keyword type="function" name="raptor_stringbuffer_append_string ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-append-string"/>
+    <keyword type="function" name="raptor_stringbuffer_append_stringbuffer ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-append-stringbuffer"/>
+    <keyword type="function" name="raptor_stringbuffer_append_uri_escaped_counted_string ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-append-uri-escaped-counted-string"/>
+    <keyword type="function" name="raptor_stringbuffer_prepend_counted_string ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-prepend-counted-string"/>
+    <keyword type="function" name="raptor_stringbuffer_prepend_string ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-prepend-string"/>
+    <keyword type="function" name="raptor_stringbuffer_as_string ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-as-string"/>
+    <keyword type="function" name="raptor_stringbuffer_length ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-length"/>
+    <keyword type="function" name="raptor_stringbuffer_copy_to_string ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-copy-to-string"/>
+    <keyword type="function" name="raptor_stringbuffer_write ()" link="raptor2-section-stringbuffer.html#raptor-stringbuffer-write"/>
+    <keyword type="enum" name="enum raptor_term_type" link="raptor2-section-triples.html#raptor-term-type"/>
+    <keyword type="struct" name="raptor_term" link="raptor2-section-triples.html#raptor-term"/>
+    <keyword type="union" name="raptor_term_value" link="raptor2-section-triples.html#raptor-term-value"/>
+    <keyword type="struct" name="raptor_term_blank_value" link="raptor2-section-triples.html#raptor-term-blank-value"/>
+    <keyword type="struct" name="raptor_term_literal_value" link="raptor2-section-triples.html#raptor-term-literal-value"/>
+    <keyword type="function" name="raptor_new_term_from_blank ()" link="raptor2-section-triples.html#raptor-new-term-from-blank"/>
+    <keyword type="function" name="raptor_new_term_from_counted_blank ()" link="raptor2-section-triples.html#raptor-new-term-from-counted-blank"/>
+    <keyword type="function" name="raptor_new_term_from_literal ()" link="raptor2-section-triples.html#raptor-new-term-from-literal"/>
+    <keyword type="function" name="raptor_new_term_from_counted_literal ()" link="raptor2-section-triples.html#raptor-new-term-from-counted-literal"/>
+    <keyword type="function" name="raptor_new_term_from_counted_uri_string ()" link="raptor2-section-triples.html#raptor-new-term-from-counted-uri-string"/>
+    <keyword type="function" name="raptor_new_term_from_uri ()" link="raptor2-section-triples.html#raptor-new-term-from-uri"/>
+    <keyword type="function" name="raptor_new_term_from_uri_string ()" link="raptor2-section-triples.html#raptor-new-term-from-uri-string"/>
+    <keyword type="function" name="raptor_new_term_from_counted_string ()" link="raptor2-section-triples.html#raptor-new-term-from-counted-string"/>
+    <keyword type="function" name="raptor_term_copy ()" link="raptor2-section-triples.html#raptor-term-copy"/>
+    <keyword type="function" name="raptor_term_compare ()" link="raptor2-section-triples.html#raptor-term-compare"/>
+    <keyword type="function" name="raptor_term_equals ()" link="raptor2-section-triples.html#raptor-term-equals"/>
+    <keyword type="function" name="raptor_free_term ()" link="raptor2-section-triples.html#raptor-free-term"/>
+    <keyword type="function" name="raptor_term_to_counted_string ()" link="raptor2-section-triples.html#raptor-term-to-counted-string"/>
+    <keyword type="function" name="raptor_term_to_string ()" link="raptor2-section-triples.html#raptor-term-to-string"/>
+    <keyword type="function" name="raptor_term_ntriples_write ()" link="raptor2-section-triples.html#raptor-term-ntriples-write"/>
+    <keyword type="function" name="raptor_term_to_turtle_counted_string ()" link="raptor2-section-triples.html#raptor-term-to-turtle-counted-string"/>
+    <keyword type="function" name="raptor_term_to_turtle_string ()" link="raptor2-section-triples.html#raptor-term-to-turtle-string"/>
+    <keyword type="function" name="raptor_term_turtle_write ()" link="raptor2-section-triples.html#raptor-term-turtle-write"/>
+    <keyword type="struct" name="raptor_statement" link="raptor2-section-triples.html#raptor-statement"/>
+    <keyword type="function" name="raptor_new_statement ()" link="raptor2-section-triples.html#raptor-new-statement"/>
+    <keyword type="function" name="raptor_new_statement_from_nodes ()" link="raptor2-section-triples.html#raptor-new-statement-from-nodes"/>
+    <keyword type="function" name="raptor_free_statement ()" link="raptor2-section-triples.html#raptor-free-statement"/>
+    <keyword type="function" name="raptor_statement_copy ()" link="raptor2-section-triples.html#raptor-statement-copy"/>
+    <keyword type="function" name="raptor_statement_compare ()" link="raptor2-section-triples.html#raptor-statement-compare"/>
+    <keyword type="function" name="raptor_statement_equals ()" link="raptor2-section-triples.html#raptor-statement-equals"/>
+    <keyword type="function" name="raptor_statement_init ()" link="raptor2-section-triples.html#raptor-statement-init"/>
+    <keyword type="function" name="raptor_statement_clear ()" link="raptor2-section-triples.html#raptor-statement-clear"/>
+    <keyword type="function" name="raptor_statement_print ()" link="raptor2-section-triples.html#raptor-statement-print"/>
+    <keyword type="function" name="raptor_statement_print_as_ntriples ()" link="raptor2-section-triples.html#raptor-statement-print-as-ntriples"/>
+    <keyword type="function" name="raptor_statement_ntriples_write ()" link="raptor2-section-triples.html#raptor-statement-ntriples-write"/>
+    <keyword type="typedef" name="raptor_unichar" link="raptor2-section-unicode.html#raptor-unichar"/>
+    <keyword type="function" name="raptor_unicode_utf8_string_put_char ()" link="raptor2-section-unicode.html#raptor-unicode-utf8-string-put-char"/>
+    <keyword type="function" name="raptor_unicode_utf8_string_get_char ()" link="raptor2-section-unicode.html#raptor-unicode-utf8-string-get-char"/>
+    <keyword type="function" name="raptor_unicode_is_xml11_namestartchar ()" link="raptor2-section-unicode.html#raptor-unicode-is-xml11-namestartchar"/>
+    <keyword type="function" name="raptor_unicode_is_xml10_namestartchar ()" link="raptor2-section-unicode.html#raptor-unicode-is-xml10-namestartchar"/>
+    <keyword type="function" name="raptor_unicode_is_xml11_namechar ()" link="raptor2-section-unicode.html#raptor-unicode-is-xml11-namechar"/>
+    <keyword type="function" name="raptor_unicode_is_xml10_namechar ()" link="raptor2-section-unicode.html#raptor-unicode-is-xml10-namechar"/>
+    <keyword type="function" name="raptor_unicode_check_utf8_string ()" link="raptor2-section-unicode.html#raptor-unicode-check-utf8-string"/>
+    <keyword type="function" name="raptor_unicode_utf8_strlen ()" link="raptor2-section-unicode.html#raptor-unicode-utf8-strlen"/>
+    <keyword type="function" name="raptor_unicode_utf8_substr ()" link="raptor2-section-unicode.html#raptor-unicode-utf8-substr"/>
+    <keyword type="typedef" name="raptor_uri" link="raptor2-section-uri.html#raptor-uri"/>
+    <keyword type="function" name="raptor_new_uri ()" link="raptor2-section-uri.html#raptor-new-uri"/>
+    <keyword type="function" name="raptor_new_uri_from_counted_string ()" link="raptor2-section-uri.html#raptor-new-uri-from-counted-string"/>
+    <keyword type="function" name="raptor_new_uri_from_uri_local_name ()" link="raptor2-section-uri.html#raptor-new-uri-from-uri-local-name"/>
+    <keyword type="function" name="raptor_new_uri_from_uri_or_file_string ()" link="raptor2-section-uri.html#raptor-new-uri-from-uri-or-file-string"/>
+    <keyword type="function" name="raptor_new_uri_relative_to_base ()" link="raptor2-section-uri.html#raptor-new-uri-relative-to-base"/>
+    <keyword type="function" name="raptor_new_uri_relative_to_base_counted ()" link="raptor2-section-uri.html#raptor-new-uri-relative-to-base-counted"/>
+    <keyword type="function" name="raptor_new_uri_from_id ()" link="raptor2-section-uri.html#raptor-new-uri-from-id"/>
+    <keyword type="function" name="raptor_new_uri_for_rdf_concept ()" link="raptor2-section-uri.html#raptor-new-uri-for-rdf-concept"/>
+    <keyword type="function" name="raptor_new_uri_for_xmlbase ()" link="raptor2-section-uri.html#raptor-new-uri-for-xmlbase"/>
+    <keyword type="function" name="raptor_new_uri_for_retrieval ()" link="raptor2-section-uri.html#raptor-new-uri-for-retrieval"/>
+    <keyword type="function" name="raptor_free_uri ()" link="raptor2-section-uri.html#raptor-free-uri"/>
+    <keyword type="function" name="raptor_uri_compare ()" link="raptor2-section-uri.html#raptor-uri-compare"/>
+    <keyword type="function" name="raptor_uri_equals ()" link="raptor2-section-uri.html#raptor-uri-equals"/>
+    <keyword type="function" name="raptor_uri_copy ()" link="raptor2-section-uri.html#raptor-uri-copy"/>
+    <keyword type="function" name="raptor_uri_as_string ()" link="raptor2-section-uri.html#raptor-uri-as-string"/>
+    <keyword type="function" name="raptor_uri_as_counted_string ()" link="raptor2-section-uri.html#raptor-uri-as-counted-string"/>
+    <keyword type="function" name="raptor_uri_to_relative_counted_uri_string ()" link="raptor2-section-uri.html#raptor-uri-to-relative-counted-uri-string"/>
+    <keyword type="function" name="raptor_uri_to_relative_uri_string ()" link="raptor2-section-uri.html#raptor-uri-to-relative-uri-string"/>
+    <keyword type="function" name="raptor_uri_to_counted_string ()" link="raptor2-section-uri.html#raptor-uri-to-counted-string"/>
+    <keyword type="function" name="raptor_uri_to_string ()" link="raptor2-section-uri.html#raptor-uri-to-string"/>
+    <keyword type="function" name="raptor_uri_resolve_uri_reference ()" link="raptor2-section-uri.html#raptor-uri-resolve-uri-reference"/>
+    <keyword type="function" name="raptor_uri_counted_filename_to_uri_string ()" link="raptor2-section-uri.html#raptor-uri-counted-filename-to-uri-string"/>
+    <keyword type="function" name="raptor_uri_filename_to_uri_string ()" link="raptor2-section-uri.html#raptor-uri-filename-to-uri-string"/>
+    <keyword type="function" name="raptor_uri_uri_string_is_absolute ()" link="raptor2-section-uri.html#raptor-uri-uri-string-is-absolute"/>
+    <keyword type="function" name="raptor_uri_uri_string_is_file_uri ()" link="raptor2-section-uri.html#raptor-uri-uri-string-is-file-uri"/>
+    <keyword type="function" name="raptor_uri_uri_string_to_filename ()" link="raptor2-section-uri.html#raptor-uri-uri-string-to-filename"/>
+    <keyword type="function" name="raptor_uri_uri_string_to_filename_fragment ()" link="raptor2-section-uri.html#raptor-uri-uri-string-to-filename-fragment"/>
+    <keyword type="function" name="raptor_uri_uri_string_to_counted_filename_fragment ()" link="raptor2-section-uri.html#raptor-uri-uri-string-to-counted-filename-fragment"/>
+    <keyword type="function" name="raptor_uri_print ()" link="raptor2-section-uri.html#raptor-uri-print"/>
+    <keyword type="function" name="raptor_uri_get_world ()" link="raptor2-section-uri.html#raptor-uri-get-world"/>
+    <keyword type="function" name="raptor_uri_write ()" link="raptor2-section-uri.html#raptor-uri-write"/>
+    <keyword type="function" name="raptor_uri_file_exists ()" link="raptor2-section-uri.html#raptor-uri-file-exists"/>
+    <keyword type="function" name="raptor_uri_filename_exists ()" link="raptor2-section-uri.html#raptor-uri-filename-exists"/>
+    <keyword type="function" name="raptor_uri_to_turtle_counted_string ()" link="raptor2-section-uri.html#raptor-uri-to-turtle-counted-string"/>
+    <keyword type="function" name="raptor_uri_to_turtle_string ()" link="raptor2-section-uri.html#raptor-uri-to-turtle-string"/>
+    <keyword type="function" name="raptor_uri_turtle_write ()" link="raptor2-section-uri.html#raptor-uri-turtle-write"/>
+    <keyword type="typedef" name="raptor_www" link="raptor2-section-www.html#raptor-www"/>
+    <keyword type="function" name="raptor_new_www ()" link="raptor2-section-www.html#raptor-new-www"/>
+    <keyword type="function" name="raptor_new_www_with_connection ()" link="raptor2-section-www.html#raptor-new-www-with-connection"/>
+    <keyword type="function" name="raptor_free_www ()" link="raptor2-section-www.html#raptor-free-www"/>
+    <keyword type="function" name="raptor_www_write_bytes_handler ()" link="raptor2-section-www.html#raptor-www-write-bytes-handler"/>
+    <keyword type="function" name="raptor_www_content_type_handler ()" link="raptor2-section-www.html#raptor-www-content-type-handler"/>
+    <keyword type="function" name="raptor_www_set_user_agent ()" link="raptor2-section-www.html#raptor-www-set-user-agent"/>
+    <keyword type="function" name="raptor_www_set_proxy ()" link="raptor2-section-www.html#raptor-www-set-proxy"/>
+    <keyword type="function" name="raptor_www_set_http_accept ()" link="raptor2-section-www.html#raptor-www-set-http-accept"/>
+    <keyword type="function" name="raptor_www_set_http_cache_control ()" link="raptor2-section-www.html#raptor-www-set-http-cache-control"/>
+    <keyword type="function" name="raptor_www_set_write_bytes_handler ()" link="raptor2-section-www.html#raptor-www-set-write-bytes-handler"/>
+    <keyword type="function" name="raptor_www_set_connection_timeout ()" link="raptor2-section-www.html#raptor-www-set-connection-timeout"/>
+    <keyword type="function" name="raptor_www_set_content_type_handler ()" link="raptor2-section-www.html#raptor-www-set-content-type-handler"/>
+    <keyword type="function" name="raptor_uri_filter_func ()" link="raptor2-section-www.html#raptor-uri-filter-func"/>
+    <keyword type="function" name="raptor_www_set_uri_filter ()" link="raptor2-section-www.html#raptor-www-set-uri-filter"/>
+    <keyword type="function" name="raptor_www_final_uri_handler ()" link="raptor2-section-www.html#raptor-www-final-uri-handler"/>
+    <keyword type="function" name="raptor_www_get_final_uri ()" link="raptor2-section-www.html#raptor-www-get-final-uri"/>
+    <keyword type="function" name="raptor_www_set_final_uri_handler ()" link="raptor2-section-www.html#raptor-www-set-final-uri-handler"/>
+    <keyword type="function" name="raptor_www_fetch ()" link="raptor2-section-www.html#raptor-www-fetch"/>
+    <keyword type="function" name="raptor_www_fetch_to_string ()" link="raptor2-section-www.html#raptor-www-fetch-to-string"/>
+    <keyword type="function" name="raptor_www_get_connection ()" link="raptor2-section-www.html#raptor-www-get-connection"/>
+    <keyword type="function" name="raptor_www_set_ssl_cert_options ()" link="raptor2-section-www.html#raptor-www-set-ssl-cert-options"/>
+    <keyword type="function" name="raptor_www_set_ssl_verify_options ()" link="raptor2-section-www.html#raptor-www-set-ssl-verify-options"/>
+    <keyword type="function" name="raptor_www_abort ()" link="raptor2-section-www.html#raptor-www-abort"/>
+    <keyword type="typedef" name="raptor_namespace" link="raptor2-section-xml-namespace.html#raptor-namespace"/>
+    <keyword type="function" name="raptor_new_namespace_from_uri ()" link="raptor2-section-xml-namespace.html#raptor-new-namespace-from-uri"/>
+    <keyword type="function" name="raptor_new_namespaces ()" link="raptor2-section-xml-namespace.html#raptor-new-namespaces"/>
+    <keyword type="function" name="raptor_namespaces_init ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-init"/>
+    <keyword type="function" name="raptor_namespaces_clear ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-clear"/>
+    <keyword type="function" name="raptor_free_namespaces ()" link="raptor2-section-xml-namespace.html#raptor-free-namespaces"/>
+    <keyword type="function" name="raptor_namespaces_start_namespace ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-start-namespace"/>
+    <keyword type="function" name="raptor_namespaces_start_namespace_full ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-start-namespace-full"/>
+    <keyword type="function" name="raptor_namespaces_end_for_depth ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-end-for-depth"/>
+    <keyword type="function" name="raptor_namespaces_get_default_namespace ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-get-default-namespace"/>
+    <keyword type="function" name="raptor_namespaces_find_namespace ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-find-namespace"/>
+    <keyword type="function" name="raptor_namespaces_find_namespace_by_uri ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-find-namespace-by-uri"/>
+    <keyword type="function" name="raptor_namespaces_namespace_in_scope ()" link="raptor2-section-xml-namespace.html#raptor-namespaces-namespace-in-scope"/>
+    <keyword type="function" name="raptor_new_namespace ()" link="raptor2-section-xml-namespace.html#raptor-new-namespace"/>
+    <keyword type="function" name="raptor_free_namespace ()" link="raptor2-section-xml-namespace.html#raptor-free-namespace"/>
+    <keyword type="function" name="raptor_namespace_get_uri ()" link="raptor2-section-xml-namespace.html#raptor-namespace-get-uri"/>
+    <keyword type="function" name="raptor_namespace_get_prefix ()" link="raptor2-section-xml-namespace.html#raptor-namespace-get-prefix"/>
+    <keyword type="function" name="raptor_namespace_get_counted_prefix ()" link="raptor2-section-xml-namespace.html#raptor-namespace-get-counted-prefix"/>
+    <keyword type="function" name="raptor_namespace_write ()" link="raptor2-section-xml-namespace.html#raptor-namespace-write"/>
+    <keyword type="typedef" name="raptor_namespace_stack" link="raptor2-section-xml-namespace.html#raptor-namespace-stack"/>
+    <keyword type="function" name="raptor_namespace_stack_start_namespace ()" link="raptor2-section-xml-namespace.html#raptor-namespace-stack-start-namespace"/>
+    <keyword type="function" name="raptor_namespace_format_as_xml ()" link="raptor2-section-xml-namespace.html#raptor-namespace-format-as-xml"/>
+    <keyword type="function" name="raptor_xml_namespace_string_parse ()" link="raptor2-section-xml-namespace.html#raptor-xml-namespace-string-parse"/>
+    <keyword type="typedef" name="raptor_qname" link="raptor2-section-xml-qname.html#raptor-qname"/>
+    <keyword type="function" name="raptor_new_qname ()" link="raptor2-section-xml-qname.html#raptor-new-qname"/>
+    <keyword type="function" name="raptor_new_qname_from_namespace_local_name ()" link="raptor2-section-xml-qname.html#raptor-new-qname-from-namespace-local-name"/>
+    <keyword type="function" name="raptor_new_qname_from_namespace_uri ()" link="raptor2-section-xml-qname.html#raptor-new-qname-from-namespace-uri"/>
+    <keyword type="function" name="raptor_qname_copy ()" link="raptor2-section-xml-qname.html#raptor-qname-copy"/>
+    <keyword type="function" name="raptor_free_qname ()" link="raptor2-section-xml-qname.html#raptor-free-qname"/>
+    <keyword type="function" name="raptor_qname_equal ()" link="raptor2-section-xml-qname.html#raptor-qname-equal"/>
+    <keyword type="function" name="raptor_qname_string_to_uri ()" link="raptor2-section-xml-qname.html#raptor-qname-string-to-uri"/>
+    <keyword type="function" name="raptor_qname_write ()" link="raptor2-section-xml-qname.html#raptor-qname-write"/>
+    <keyword type="function" name="raptor_qname_format_as_xml ()" link="raptor2-section-xml-qname.html#raptor-qname-format-as-xml"/>
+    <keyword type="function" name="raptor_qname_get_counted_value ()" link="raptor2-section-xml-qname.html#raptor-qname-get-counted-value"/>
+    <keyword type="function" name="raptor_qname_get_local_name ()" link="raptor2-section-xml-qname.html#raptor-qname-get-local-name"/>
+    <keyword type="function" name="raptor_qname_get_namespace ()" link="raptor2-section-xml-qname.html#raptor-qname-get-namespace"/>
+    <keyword type="function" name="raptor_qname_get_value ()" link="raptor2-section-xml-qname.html#raptor-qname-get-value"/>
+    <keyword type="function" name="raptor_qname_to_counted_name ()" link="raptor2-section-xml-qname.html#raptor-qname-to-counted-name"/>
+    <keyword type="typedef" name="raptor_xml_element" link="raptor2-section-xml.html#raptor-xml-element"/>
+    <keyword type="function" name="raptor_new_xml_element ()" link="raptor2-section-xml.html#raptor-new-xml-element"/>
+    <keyword type="function" name="raptor_new_xml_element_from_namespace_local_name ()" link="raptor2-section-xml.html#raptor-new-xml-element-from-namespace-local-name"/>
+    <keyword type="function" name="raptor_free_xml_element ()" link="raptor2-section-xml.html#raptor-free-xml-element"/>
+    <keyword type="function" name="raptor_xml_element_get_name ()" link="raptor2-section-xml.html#raptor-xml-element-get-name"/>
+    <keyword type="function" name="raptor_xml_element_get_attributes ()" link="raptor2-section-xml.html#raptor-xml-element-get-attributes"/>
+    <keyword type="function" name="raptor_xml_element_get_attributes_count ()" link="raptor2-section-xml.html#raptor-xml-element-get-attributes-count"/>
+    <keyword type="function" name="raptor_xml_element_set_attributes ()" link="raptor2-section-xml.html#raptor-xml-element-set-attributes"/>
+    <keyword type="function" name="raptor_xml_element_declare_namespace ()" link="raptor2-section-xml.html#raptor-xml-element-declare-namespace"/>
+    <keyword type="function" name="raptor_xml_element_is_empty ()" link="raptor2-section-xml.html#raptor-xml-element-is-empty"/>
+    <keyword type="function" name="raptor_xml_element_get_language ()" link="raptor2-section-xml.html#raptor-xml-element-get-language"/>
+    <keyword type="function" name="raptor_xml_element_write ()" link="raptor2-section-xml.html#raptor-xml-element-write"/>
+    <keyword type="function" name="raptor_new_xml_writer ()" link="raptor2-section-xml.html#raptor-new-xml-writer"/>
+    <keyword type="function" name="raptor_free_xml_writer ()" link="raptor2-section-xml.html#raptor-free-xml-writer"/>
+    <keyword type="function" name="raptor_xml_writer_empty_element ()" link="raptor2-section-xml.html#raptor-xml-writer-empty-element"/>
+    <keyword type="function" name="raptor_xml_writer_start_element ()" link="raptor2-section-xml.html#raptor-xml-writer-start-element"/>
+    <keyword type="function" name="raptor_xml_writer_end_element ()" link="raptor2-section-xml.html#raptor-xml-writer-end-element"/>
+    <keyword type="function" name="raptor_xml_writer_cdata ()" link="raptor2-section-xml.html#raptor-xml-writer-cdata"/>
+    <keyword type="function" name="raptor_xml_writer_cdata_counted ()" link="raptor2-section-xml.html#raptor-xml-writer-cdata-counted"/>
+    <keyword type="function" name="raptor_xml_writer_raw ()" link="raptor2-section-xml.html#raptor-xml-writer-raw"/>
+    <keyword type="function" name="raptor_xml_writer_raw_counted ()" link="raptor2-section-xml.html#raptor-xml-writer-raw-counted"/>
+    <keyword type="function" name="raptor_xml_writer_comment ()" link="raptor2-section-xml.html#raptor-xml-writer-comment"/>
+    <keyword type="function" name="raptor_xml_writer_comment_counted ()" link="raptor2-section-xml.html#raptor-xml-writer-comment-counted"/>
+    <keyword type="function" name="raptor_xml_writer_flush ()" link="raptor2-section-xml.html#raptor-xml-writer-flush"/>
+    <keyword type="function" name="raptor_xml_writer_newline ()" link="raptor2-section-xml.html#raptor-xml-writer-newline"/>
+    <keyword type="function" name="raptor_xml_writer_get_depth ()" link="raptor2-section-xml.html#raptor-xml-writer-get-depth"/>
+    <keyword type="function" name="raptor_xml_writer_set_option ()" link="raptor2-section-xml.html#raptor-xml-writer-set-option"/>
+    <keyword type="function" name="raptor_xml_writer_get_option ()" link="raptor2-section-xml.html#raptor-xml-writer-get-option"/>
+    <keyword type="typedef" name="raptor_xml_writer" link="raptor2-section-xml.html#raptor-xml-writer"/>
+    <keyword type="function" name="raptor_xml_escape_string_any ()" link="raptor2-section-xml.html#raptor-xml-escape-string-any"/>
+    <keyword type="function" name="raptor_xml_escape_string_any_write ()" link="raptor2-section-xml.html#raptor-xml-escape-string-any-write"/>
+    <keyword type="function" name="raptor_xml_escape_string ()" link="raptor2-section-xml.html#raptor-xml-escape-string"/>
+    <keyword type="function" name="raptor_xml_escape_string_write ()" link="raptor2-section-xml.html#raptor-xml-escape-string-write"/>
+    <keyword type="function" name="raptor_xml_name_check ()" link="raptor2-section-xml.html#raptor-xml-name-check"/>
+    <keyword type="constant" name="RAPTOR_WORLD_FLAG_LIBXML_GENERIC_ERROR_SAVE" link="raptor2-section-world.html#RAPTOR-WORLD-FLAG-LIBXML-GENERIC-ERROR-SAVE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_WORLD_FLAG_LIBXML_STRUCTURED_ERROR_SAVE" link="raptor2-section-world.html#RAPTOR-WORLD-FLAG-LIBXML-STRUCTURED-ERROR-SAVE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_WORLD_FLAG_URI_INTERNING" link="raptor2-section-world.html#RAPTOR-WORLD-FLAG-URI-INTERNING:CAPS"/>
+    <keyword type="constant" name="RAPTOR_WORLD_FLAG_WWW_SKIP_INIT_FINISH" link="raptor2-section-world.html#RAPTOR-WORLD-FLAG-WWW-SKIP-INIT-FINISH:CAPS"/>
+    <keyword type="constant" name="RAPTOR_LOG_LEVEL_NONE" link="raptor2-section-general.html#RAPTOR-LOG-LEVEL-NONE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_LOG_LEVEL_TRACE" link="raptor2-section-general.html#RAPTOR-LOG-LEVEL-TRACE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_LOG_LEVEL_DEBUG" link="raptor2-section-general.html#RAPTOR-LOG-LEVEL-DEBUG:CAPS"/>
+    <keyword type="constant" name="RAPTOR_LOG_LEVEL_INFO" link="raptor2-section-general.html#RAPTOR-LOG-LEVEL-INFO:CAPS"/>
+    <keyword type="constant" name="RAPTOR_LOG_LEVEL_WARN" link="raptor2-section-general.html#RAPTOR-LOG-LEVEL-WARN:CAPS"/>
+    <keyword type="constant" name="RAPTOR_LOG_LEVEL_ERROR" link="raptor2-section-general.html#RAPTOR-LOG-LEVEL-ERROR:CAPS"/>
+    <keyword type="constant" name="RAPTOR_LOG_LEVEL_FATAL" link="raptor2-section-general.html#RAPTOR-LOG-LEVEL-FATAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_LOG_LEVEL_LAST" link="raptor2-section-general.html#RAPTOR-LOG-LEVEL-LAST:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_NONE" link="raptor2-section-general.html#RAPTOR-DOMAIN-NONE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_IOSTREAM" link="raptor2-section-general.html#RAPTOR-DOMAIN-IOSTREAM:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_NAMESPACE" link="raptor2-section-general.html#RAPTOR-DOMAIN-NAMESPACE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_PARSER" link="raptor2-section-general.html#RAPTOR-DOMAIN-PARSER:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_QNAME" link="raptor2-section-general.html#RAPTOR-DOMAIN-QNAME:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_SAX2" link="raptor2-section-general.html#RAPTOR-DOMAIN-SAX2:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_SERIALIZER" link="raptor2-section-general.html#RAPTOR-DOMAIN-SERIALIZER:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_TERM" link="raptor2-section-general.html#RAPTOR-DOMAIN-TERM:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_TURTLE_WRITER" link="raptor2-section-general.html#RAPTOR-DOMAIN-TURTLE-WRITER:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_URI" link="raptor2-section-general.html#RAPTOR-DOMAIN-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_WORLD" link="raptor2-section-general.html#RAPTOR-DOMAIN-WORLD:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_WWW" link="raptor2-section-general.html#RAPTOR-DOMAIN-WWW:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_XML_WRITER" link="raptor2-section-general.html#RAPTOR-DOMAIN-XML-WRITER:CAPS"/>
+    <keyword type="constant" name="RAPTOR_DOMAIN_LAST" link="raptor2-section-general.html#RAPTOR-DOMAIN-LAST:CAPS"/>
+    <keyword type="constant" name="RAPTOR_SYNTAX_NEED_BASE_URI" link="raptor2-section-general.html#RAPTOR-SYNTAX-NEED-BASE-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_AVLTREE_FLAG_REPLACE_DUPLICATES" link="raptor2-section-avltree.html#RAPTOR-AVLTREE-FLAG-REPLACE-DUPLICATES:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_SCANNING" link="raptor2-section-option.html#RAPTOR-OPTION-SCANNING:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_ALLOW_NON_NS_ATTRIBUTES" link="raptor2-section-option.html#RAPTOR-OPTION-ALLOW-NON-NS-ATTRIBUTES:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_ALLOW_OTHER_PARSETYPES" link="raptor2-section-option.html#RAPTOR-OPTION-ALLOW-OTHER-PARSETYPES:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_ALLOW_BAGID" link="raptor2-section-option.html#RAPTOR-OPTION-ALLOW-BAGID:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_ALLOW_RDF_TYPE_RDF_LIST" link="raptor2-section-option.html#RAPTOR-OPTION-ALLOW-RDF-TYPE-RDF-LIST:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_NORMALIZE_LANGUAGE" link="raptor2-section-option.html#RAPTOR-OPTION-NORMALIZE-LANGUAGE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_NON_NFC_FATAL" link="raptor2-section-option.html#RAPTOR-OPTION-NON-NFC-FATAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WARN_OTHER_PARSETYPES" link="raptor2-section-option.html#RAPTOR-OPTION-WARN-OTHER-PARSETYPES:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_CHECK_RDF_ID" link="raptor2-section-option.html#RAPTOR-OPTION-CHECK-RDF-ID:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_RELATIVE_URIS" link="raptor2-section-option.html#RAPTOR-OPTION-RELATIVE-URIS:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WRITER_AUTO_INDENT" link="raptor2-section-option.html#RAPTOR-OPTION-WRITER-AUTO-INDENT:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WRITER_AUTO_EMPTY" link="raptor2-section-option.html#RAPTOR-OPTION-WRITER-AUTO-EMPTY:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WRITER_INDENT_WIDTH" link="raptor2-section-option.html#RAPTOR-OPTION-WRITER-INDENT-WIDTH:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WRITER_XML_VERSION" link="raptor2-section-option.html#RAPTOR-OPTION-WRITER-XML-VERSION:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WRITER_XML_DECLARATION" link="raptor2-section-option.html#RAPTOR-OPTION-WRITER-XML-DECLARATION:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_NO_NET" link="raptor2-section-option.html#RAPTOR-OPTION-NO-NET:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_RESOURCE_BORDER" link="raptor2-section-option.html#RAPTOR-OPTION-RESOURCE-BORDER:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_LITERAL_BORDER" link="raptor2-section-option.html#RAPTOR-OPTION-LITERAL-BORDER:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_BNODE_BORDER" link="raptor2-section-option.html#RAPTOR-OPTION-BNODE-BORDER:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_RESOURCE_FILL" link="raptor2-section-option.html#RAPTOR-OPTION-RESOURCE-FILL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_LITERAL_FILL" link="raptor2-section-option.html#RAPTOR-OPTION-LITERAL-FILL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_BNODE_FILL" link="raptor2-section-option.html#RAPTOR-OPTION-BNODE-FILL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_HTML_TAG_SOUP" link="raptor2-section-option.html#RAPTOR-OPTION-HTML-TAG-SOUP:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_MICROFORMATS" link="raptor2-section-option.html#RAPTOR-OPTION-MICROFORMATS:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_HTML_LINK" link="raptor2-section-option.html#RAPTOR-OPTION-HTML-LINK:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WWW_TIMEOUT" link="raptor2-section-option.html#RAPTOR-OPTION-WWW-TIMEOUT:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WRITE_BASE_URI" link="raptor2-section-option.html#RAPTOR-OPTION-WRITE-BASE-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WWW_HTTP_CACHE_CONTROL" link="raptor2-section-option.html#RAPTOR-OPTION-WWW-HTTP-CACHE-CONTROL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WWW_HTTP_USER_AGENT" link="raptor2-section-option.html#RAPTOR-OPTION-WWW-HTTP-USER-AGENT:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_JSON_CALLBACK" link="raptor2-section-option.html#RAPTOR-OPTION-JSON-CALLBACK:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_JSON_EXTRA_DATA" link="raptor2-section-option.html#RAPTOR-OPTION-JSON-EXTRA-DATA:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_RSS_TRIPLES" link="raptor2-section-option.html#RAPTOR-OPTION-RSS-TRIPLES:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_ATOM_ENTRY_URI" link="raptor2-section-option.html#RAPTOR-OPTION-ATOM-ENTRY-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_PREFIX_ELEMENTS" link="raptor2-section-option.html#RAPTOR-OPTION-PREFIX-ELEMENTS:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_STRICT" link="raptor2-section-option.html#RAPTOR-OPTION-STRICT:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WWW_CERT_FILENAME" link="raptor2-section-option.html#RAPTOR-OPTION-WWW-CERT-FILENAME:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WWW_CERT_TYPE" link="raptor2-section-option.html#RAPTOR-OPTION-WWW-CERT-TYPE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WWW_CERT_PASSPHRASE" link="raptor2-section-option.html#RAPTOR-OPTION-WWW-CERT-PASSPHRASE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_NO_FILE" link="raptor2-section-option.html#RAPTOR-OPTION-NO-FILE:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WWW_SSL_VERIFY_PEER" link="raptor2-section-option.html#RAPTOR-OPTION-WWW-SSL-VERIFY-PEER:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_WWW_SSL_VERIFY_HOST" link="raptor2-section-option.html#RAPTOR-OPTION-WWW-SSL-VERIFY-HOST:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_LOAD_EXTERNAL_ENTITIES" link="raptor2-section-option.html#RAPTOR-OPTION-LOAD-EXTERNAL-ENTITIES:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_LAST" link="raptor2-section-option.html#RAPTOR-OPTION-LAST:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_VALUE_TYPE_BOOL" link="raptor2-section-option.html#RAPTOR-OPTION-VALUE-TYPE-BOOL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_VALUE_TYPE_INT" link="raptor2-section-option.html#RAPTOR-OPTION-VALUE-TYPE-INT:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_VALUE_TYPE_STRING" link="raptor2-section-option.html#RAPTOR-OPTION-VALUE-TYPE-STRING:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_VALUE_TYPE_URI" link="raptor2-section-option.html#RAPTOR-OPTION-VALUE-TYPE-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_OPTION_VALUE_TYPE_LAST" link="raptor2-section-option.html#RAPTOR-OPTION-VALUE-TYPE-LAST:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_BITFLAG_BS_ESCAPES_BF" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-BITFLAG-BS-ESCAPES-BF:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_BITFLAG_BS_ESCAPES_TNRU" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-BITFLAG-BS-ESCAPES-TNRU:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_BITFLAG_UTF8" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-BITFLAG-UTF8:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_BITFLAG_SPARQL_URI_ESCAPES" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-BITFLAG-SPARQL-URI-ESCAPES:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_NTRIPLES_LITERAL" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-NTRIPLES-LITERAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_NTRIPLES_URI" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-NTRIPLES-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_SPARQL_LITERAL" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-SPARQL-LITERAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_SPARQL_LONG_LITERAL" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-SPARQL-LONG-LITERAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_SPARQL_URI" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-SPARQL-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_TURTLE_URI" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-TURTLE-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_TURTLE_LITERAL" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-TURTLE-LITERAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_TURTLE_LONG_LITERAL" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-TURTLE-LONG-LITERAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_ESCAPED_WRITE_JSON_LITERAL" link="raptor2-section-iostream.html#RAPTOR-ESCAPED-WRITE-JSON-LITERAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_GRAPH_MARK_START" link="raptor2-section-parser.html#RAPTOR-GRAPH-MARK-START:CAPS"/>
+    <keyword type="constant" name="RAPTOR_GRAPH_MARK_DECLARED" link="raptor2-section-parser.html#RAPTOR-GRAPH-MARK-DECLARED:CAPS"/>
+    <keyword type="constant" name="RAPTOR_TERM_TYPE_UNKNOWN" link="raptor2-section-triples.html#RAPTOR-TERM-TYPE-UNKNOWN:CAPS"/>
+    <keyword type="constant" name="RAPTOR_TERM_TYPE_URI" link="raptor2-section-triples.html#RAPTOR-TERM-TYPE-URI:CAPS"/>
+    <keyword type="constant" name="RAPTOR_TERM_TYPE_LITERAL" link="raptor2-section-triples.html#RAPTOR-TERM-TYPE-LITERAL:CAPS"/>
+    <keyword type="constant" name="RAPTOR_TERM_TYPE_BLANK" link="raptor2-section-triples.html#RAPTOR-TERM-TYPE-BLANK:CAPS"/>
+  </functions>
+</book>

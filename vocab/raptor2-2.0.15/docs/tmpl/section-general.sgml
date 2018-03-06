@@ -1,0 +1,394 @@
+<!-- ##### SECTION Title ##### -->
+General
+
+<!-- ##### SECTION Short_Description ##### -->
+General library constants and utility functions
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+How to get access to version numbers, set message and error handlers,
+list the parsed and serialized syntaxes provided in the library
+and various other utility functions.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### MACRO RAPTOR_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO RAPTOR_VERSION_MAJOR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO RAPTOR_VERSION_MINOR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO RAPTOR_VERSION_RELEASE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO RAPTOR_VERSION_STRING ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### VARIABLE raptor_version_major ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_version_minor ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_version_release ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_version_decimal ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_copyright_string ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_home_url_string ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_license_string ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_short_copyright_string ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_version_string ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_owl_namespace_uri ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_rdf_namespace_uri ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_rdf_schema_namespace_uri ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_xml_literal_datatype_uri_string ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_xml_namespace_uri ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE raptor_xmlschema_datatypes_namespace_uri ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION raptor_statement_handler ##### -->
+<para>
+
+</para>
+
+@user_data: 
+@statement: 
+
+
+<!-- ##### FUNCTION raptor_snprintf ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@size: 
+@format: 
+@...: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_vasprintf ##### -->
+<para>
+
+</para>
+
+@ret: 
+@format: 
+@arguments: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_vsnprintf ##### -->
+<para>
+
+</para>
+
+@format: 
+@arguments: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_vsnprintf2 ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@size: 
+@format: 
+@arguments: 
+@Returns: 
+
+
+<!-- ##### FUNCTION raptor_sort_r ##### -->
+<para>
+
+</para>
+
+@base: 
+@nel: 
+@width: 
+@compar: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION raptor_log_handler ##### -->
+<para>
+
+</para>
+
+@user_data: 
+@message: 
+
+
+<!-- ##### STRUCT raptor_log_message ##### -->
+<para>
+
+</para>
+
+@code: 
+@domain: 
+@level: 
+@locator: 
+@text: 
+
+<!-- ##### ENUM raptor_log_level ##### -->
+<para>
+
+</para>
+
+@RAPTOR_LOG_LEVEL_NONE: 
+@RAPTOR_LOG_LEVEL_TRACE: 
+@RAPTOR_LOG_LEVEL_DEBUG: 
+@RAPTOR_LOG_LEVEL_INFO: 
+@RAPTOR_LOG_LEVEL_WARN: 
+@RAPTOR_LOG_LEVEL_ERROR: 
+@RAPTOR_LOG_LEVEL_FATAL: 
+@RAPTOR_LOG_LEVEL_LAST: 
+
+<!-- ##### FUNCTION raptor_log_level_get_label ##### -->
+<para>
+
+</para>
+
+@level: 
+@Returns: 
+
+
+<!-- ##### ENUM raptor_domain ##### -->
+<para>
+
+</para>
+
+@RAPTOR_DOMAIN_NONE: 
+@RAPTOR_DOMAIN_IOSTREAM: 
+@RAPTOR_DOMAIN_NAMESPACE: 
+@RAPTOR_DOMAIN_PARSER: 
+@RAPTOR_DOMAIN_QNAME: 
+@RAPTOR_DOMAIN_SAX2: 
+@RAPTOR_DOMAIN_SERIALIZER: 
+@RAPTOR_DOMAIN_TERM: 
+@RAPTOR_DOMAIN_TURTLE_WRITER: 
+@RAPTOR_DOMAIN_URI: 
+@RAPTOR_DOMAIN_WORLD: 
+@RAPTOR_DOMAIN_WWW: 
+@RAPTOR_DOMAIN_XML_WRITER: 
+@RAPTOR_DOMAIN_LAST: 
+
+<!-- ##### FUNCTION raptor_domain_get_label ##### -->
+<para>
+
+</para>
+
+@domain: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION raptor_data_compare_handler ##### -->
+<para>
+
+</para>
+
+@data1: 
+@data2: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION raptor_data_compare_arg_handler ##### -->
+<para>
+
+</para>
+
+@data1: 
+@data2: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION raptor_data_context_free_handler ##### -->
+<para>
+
+</para>
+
+@context: 
+@object: 
+
+
+<!-- ##### USER_FUNCTION raptor_data_context_print_handler ##### -->
+<para>
+
+</para>
+
+@context: 
+@object: 
+@fh: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION raptor_data_free_handler ##### -->
+<para>
+
+</para>
+
+@data: 
+
+
+<!-- ##### USER_FUNCTION raptor_data_malloc_handler ##### -->
+<para>
+
+</para>
+
+@size: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION raptor_data_print_handler ##### -->
+<para>
+
+</para>
+
+@object: 
+@fh: 
+@Returns: 
+
+
+<!-- ##### ENUM raptor_syntax_bitflags ##### -->
+<para>
+
+</para>
+
+@RAPTOR_SYNTAX_NEED_BASE_URI: 
+
+<!-- ##### STRUCT raptor_syntax_description ##### -->
+<para>
+
+</para>
+
+@names: 
+@names_count: 
+@label: 
+@mime_types: 
+@mime_types_count: 
+@uri_strings: 
+@uri_strings_count: 
+@flags: 
+
+<!-- ##### FUNCTION raptor_syntax_description_validate ##### -->
+<para>
+
+</para>
+
+@desc: 
+@Returns: 
+
+
+<!-- ##### STRUCT raptor_type_q ##### -->
+<para>
+
+</para>
+
+@mime_type: 
+@mime_type_len: 
+@q: 
+

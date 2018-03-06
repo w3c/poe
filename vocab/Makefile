@@ -1,6 +1,6 @@
 TOP = .
 
-RAPPER ?= /Users/renato/users/odrl/W3C-POE/raptor2-2.0.15/utils/rapper
+RAPPER ?= ./raptor2-2.0.15/utils/rapper
 PHP ?= php
 
 NSURI = http://www.w3.org/ns/odrl/2/

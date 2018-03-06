@@ -1,0 +1,1127 @@
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<chapter id="raptor2-changes">
+<title>API Changes</title>
+
+<para>This chapter describes the API changes for raptor2.
+</para>
+<section id="raptor2-changes-intro">
+<title>Introduction</title>
+
+<para>
+The following sections describe the changes in the API between
+versions including additions, deletions, renames (retaining the same
+number of parameters, types and return value type) and more complex
+changes to functions, types and enums.
+</para>
+
+</section>
+<section id="raptor2-changes-1-4-21-to-2-0-0">
+<title>Changes between raptor2 1.4.21 and 2.0.0</title>
+
+<section id="raptor2-changes-new-1-4-21-to-2-0-0">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>int <link linkend="raptor-avltree-add"><function>raptor_avltree_add</function></link>(raptor_avltree* tree, void* p_data) </para></listitem>
+    <listitem><para>int <link linkend="raptor-avltree-delete"><function>raptor_avltree_delete</function></link>(raptor_avltree* tree, void* p_data) </para></listitem>
+    <listitem><para>void* <link linkend="raptor-avltree-iterator-get"><function>raptor_avltree_iterator_get</function></link>(raptor_avltree_iterator* iterator) </para></listitem>
+    <listitem><para>int <link linkend="raptor-avltree-iterator-is-end"><function>raptor_avltree_iterator_is_end</function></link>(raptor_avltree_iterator* iterator) </para></listitem>
+    <listitem><para>int <link linkend="raptor-avltree-iterator-next"><function>raptor_avltree_iterator_next</function></link>(raptor_avltree_iterator* iterator) </para></listitem>
+    <listitem><para>int <link linkend="raptor-avltree-print"><function>raptor_avltree_print</function></link>(raptor_avltree* tree, FILE* stream) </para></listitem>
+    <listitem><para>void* <link linkend="raptor-avltree-remove"><function>raptor_avltree_remove</function></link>(raptor_avltree* tree, void* p_data) </para></listitem>
+    <listitem><para>void* <link linkend="raptor-avltree-search"><function>raptor_avltree_search</function></link>(raptor_avltree* tree, const void* p_data) </para></listitem>
+    <listitem><para>void <link linkend="raptor-avltree-set-print-handler"><function>raptor_avltree_set_print_handler</function></link>(raptor_avltree* tree, raptor_data_print_handler print_handler) </para></listitem>
+    <listitem><para>int <link linkend="raptor-avltree-size"><function>raptor_avltree_size</function></link>(raptor_avltree* tree) </para></listitem>
+    <listitem><para>int <link linkend="raptor-avltree-visit"><function>raptor_avltree_visit</function></link>(raptor_avltree* tree, raptor_avltree_visit_handler visit_handler, void* user_data) </para></listitem>
+    <listitem><para>const char* <link linkend="raptor-domain-get-label"><function>raptor_domain_get_label</function></link>(raptor_domain domain) </para></listitem>
+    <listitem><para>void <link linkend="raptor-free-avltree"><function>raptor_free_avltree</function></link>(raptor_avltree* tree) </para></listitem>
+    <listitem><para>void <link linkend="raptor-free-avltree-iterator"><function>raptor_free_avltree_iterator</function></link>(raptor_avltree_iterator* iterator) </para></listitem>
+    <listitem><para>void <link linkend="raptor-free-option-description"><function>raptor_free_option_description</function></link>(raptor_option_description* option_description) </para></listitem>
+    <listitem><para>void <link linkend="raptor-free-statement"><function>raptor_free_statement</function></link>(raptor_statement *statement) </para></listitem>
+    <listitem><para>void <link linkend="raptor-free-term"><function>raptor_free_term</function></link>(raptor_term *term) </para></listitem>
+    <listitem><para>const char* <link linkend="raptor-log-level-get-label"><function>raptor_log_level_get_label</function></link>(raptor_log_level level) </para></listitem>
+    <listitem><para>raptor_avltree* <link linkend="raptor-new-avltree"><function>raptor_new_avltree</function></link>(raptor_data_compare_handler compare_handler, raptor_data_free_handler free_handler, unsigned int flags) </para></listitem>
+    <listitem><para>raptor_avltree_iterator* <link linkend="raptor-new-avltree-iterator"><function>raptor_new_avltree_iterator</function></link>(raptor_avltree* tree, void* range, raptor_data_free_handler range_free_handler, int direction) </para></listitem>
+    <listitem><para>raptor_sequence* <link linkend="raptor-new-sequence-with-context"><function>raptor_new_sequence_with_context</function></link>(raptor_data_context_free_handler* free_handler, raptor_data_context_print_handler* print_handler, void* handler_context) </para></listitem>
+    <listitem><para>raptor_statement* <link linkend="raptor-new-statement"><function>raptor_new_statement</function></link>(raptor_world *world) </para></listitem>
+    <listitem><para>raptor_statement* <link linkend="raptor-new-statement-from-nodes"><function>raptor_new_statement_from_nodes</function></link>(raptor_world* world, raptor_term *subject, raptor_term *predicate, raptor_term *object, raptor_term *graph) </para></listitem>
+    <listitem><para>raptor_term* <link linkend="raptor-new-term-from-blank"><function>raptor_new_term_from_blank</function></link>(raptor_world* world, const unsigned char* blank) </para></listitem>
+    <listitem><para>raptor_term* <link linkend="raptor-new-term-from-counted-blank"><function>raptor_new_term_from_counted_blank</function></link>(raptor_world* world, const unsigned char* blank, size_t length) </para></listitem>
+    <listitem><para>raptor_term* <link linkend="raptor-new-term-from-counted-literal"><function>raptor_new_term_from_counted_literal</function></link>(raptor_world* world, const unsigned char* literal, size_t literal_len, raptor_uri* datatype, const unsigned char* language, unsigned char language_len) </para></listitem>
+    <listitem><para>raptor_term* <link linkend="raptor-new-term-from-literal"><function>raptor_new_term_from_literal</function></link>(raptor_world* world, const unsigned char* literal, raptor_uri* datatype, const unsigned char* language) </para></listitem>
+    <listitem><para>raptor_term* <link linkend="raptor-new-term-from-uri"><function>raptor_new_term_from_uri</function></link>(raptor_world* world, raptor_uri* uri) </para></listitem>
+    <listitem><para>raptor_uri* <link linkend="raptor-new-uri-from-counted-string"><function>raptor_new_uri_from_counted_string</function></link>(raptor_world* world, const unsigned char* uri_string, size_t length) </para></listitem>
+    <listitem><para>const char* <link linkend="raptor-option-get-value-type-label"><function>raptor_option_get_value_type_label</function></link>(const raptor_option_value_type type) </para></listitem>
+    <listitem><para>raptor_uri* <link linkend="raptor-parser-get-graph"><function>raptor_parser_get_graph</function></link>(raptor_parser* rdf_parser) </para></listitem>
+    <listitem><para>int <link linkend="raptor-parser-parse-iostream"><function>raptor_parser_parse_iostream</function></link>(raptor_parser* rdf_parser, raptor_iostream *iostr, raptor_uri *base_uri) </para></listitem>
+    <listitem><para>int <link linkend="raptor-serializer-flush"><function>raptor_serializer_flush</function></link>(raptor_serializer *rdf_serializer) </para></listitem>
+    <listitem><para>raptor_syntax_description* <link linkend="raptor-serializer-get-description"><function>raptor_serializer_get_description</function></link>(raptor_serializer* rdf_serializer) </para></listitem>
+    <listitem><para>void <link linkend="raptor-statement-clear"><function>raptor_statement_clear</function></link>(raptor_statement *statement) </para></listitem>
+    <listitem><para>raptor_statement* <link linkend="raptor-statement-copy"><function>raptor_statement_copy</function></link>(raptor_statement *statement) </para></listitem>
+    <listitem><para>int <link linkend="raptor-statement-equals"><function>raptor_statement_equals</function></link>(const raptor_statement* s1, const raptor_statement* s2) </para></listitem>
+    <listitem><para>void <link linkend="raptor-statement-init"><function>raptor_statement_init</function></link>(raptor_statement *statement, raptor_world *world) </para></listitem>
+    <listitem><para>int <link linkend="raptor-syntax-description-validate"><function>raptor_syntax_description_validate</function></link>      (raptor_syntax_description* desc) </para></listitem>
+    <listitem><para>int <link linkend="raptor-term-compare"><function>raptor_term_compare</function></link>(const raptor_term *t1, const raptor_term *t2) </para></listitem>
+    <listitem><para>raptor_term* <link linkend="raptor-term-copy"><function>raptor_term_copy</function></link>(raptor_term* term) </para></listitem>
+    <listitem><para>int <link linkend="raptor-term-equals"><function>raptor_term_equals</function></link>(raptor_term* term1, raptor_term* term2) </para></listitem>
+    <listitem><para>int <link linkend="raptor-term-ntriples-write"><function>raptor_term_ntriples_write</function></link>(const raptor_term *term, raptor_iostream* iostr) </para></listitem>
+    <listitem><para>unsigned char* <link linkend="raptor-term-to-counted-string"><function>raptor_term_to_counted_string</function></link>(raptor_term *term, size_t* len_p) </para></listitem>
+    <listitem><para>unsigned char* <link linkend="raptor-term-to-string"><function>raptor_term_to_string</function></link>(raptor_term *term) </para></listitem>
+    <listitem><para>raptor_world* <link linkend="raptor-uri-get-world"><function>raptor_uri_get_world</function></link>(raptor_uri *uri) </para></listitem>
+    <listitem><para>unsigned char* <link linkend="raptor-world-generate-bnodeid"><function>raptor_world_generate_bnodeid</function></link>(raptor_world *world) </para></listitem>
+    <listitem><para>raptor_option_description* <link linkend="raptor-world-get-option-description"><function>raptor_world_get_option_description</function></link>(raptor_world* world, const raptor_domain domain, const raptor_option option) </para></listitem>
+    <listitem><para>int <link linkend="raptor-world-is-parser-name"><function>raptor_world_is_parser_name</function></link>(raptor_world* world, const char* name) </para></listitem>
+    <listitem><para>int <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>(raptor_world *world, void *user_data, raptor_log_handler handler) </para></listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title>Types</title>
+    <listitem><para><link linkend="raptor-avltree"><type>raptor_avltree</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-avltree-bitflags"><type>raptor_avltree_bitflags</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-avltree-iterator"><type>raptor_avltree_iterator</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-avltree-visit-handler"><type>raptor_avltree_visit_handler</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-data-compare-handler"><type>raptor_data_compare_handler</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-data-context-free-handler"><type>raptor_data_context_free_handler</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-data-malloc-handler"><type>raptor_data_malloc_handler</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-domain"><type>raptor_domain</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-graph-mark-flags"><type>raptor_graph_mark_flags</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-log-message"><type>raptor_log_message</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-option-description"><type>raptor_option_description</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-option-value-type"><type>raptor_option_value_type</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-syntax-bitflags"><type>raptor_syntax_bitflags</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-syntax-description"><type>raptor_syntax_description</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-term-blank-value"><type>raptor_term_blank_value</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-term-literal-value"><type>raptor_term_literal_value</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-term-value"><type>raptor_term_value</type></link> </para></listitem>
+    <listitem><para><link linkend="raptor-type-q"><type>raptor_type_q</type></link> </para></listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title>Enums</title>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-IOSTREAM:CAPS"><literal>RAPTOR_DOMAIN_IOSTREAM</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-LAST:CAPS"><literal>RAPTOR_DOMAIN_LAST</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-NAMESPACE:CAPS"><literal>RAPTOR_DOMAIN_NAMESPACE</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-NONE:CAPS"><literal>RAPTOR_DOMAIN_NONE</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-PARSER:CAPS"><literal>RAPTOR_DOMAIN_PARSER</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-QNAME:CAPS"><literal>RAPTOR_DOMAIN_QNAME</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-SAX2:CAPS"><literal>RAPTOR_DOMAIN_SAX2</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-SERIALIZER:CAPS"><literal>RAPTOR_DOMAIN_SERIALIZER</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-TERM:CAPS"><literal>RAPTOR_DOMAIN_TERM</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-TURTLE-WRITER:CAPS"><literal>RAPTOR_DOMAIN_TURTLE_WRITER</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-URI:CAPS"><literal>RAPTOR_DOMAIN_URI</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-WORLD:CAPS"><literal>RAPTOR_DOMAIN_WORLD</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-WWW:CAPS"><literal>RAPTOR_DOMAIN_WWW</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-DOMAIN-XML-WRITER:CAPS"><literal>RAPTOR_DOMAIN_XML_WRITER</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-GRAPH-MARK-DECLARED:CAPS"><literal>RAPTOR_GRAPH_MARK_DECLARED</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-GRAPH-MARK-START:CAPS"><literal>RAPTOR_GRAPH_MARK_START</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-LOG-LEVEL-DEBUG:CAPS"><literal>RAPTOR_LOG_LEVEL_DEBUG</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-LOG-LEVEL-INFO:CAPS"><literal>RAPTOR_LOG_LEVEL_INFO</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-LOG-LEVEL-TRACE:CAPS"><literal>RAPTOR_LOG_LEVEL_TRACE</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-OPTION-VALUE-TYPE-BOOL:CAPS"><literal>RAPTOR_OPTION_VALUE_TYPE_BOOL</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-OPTION-VALUE-TYPE-INT:CAPS"><literal>RAPTOR_OPTION_VALUE_TYPE_INT</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-OPTION-VALUE-TYPE-LAST:CAPS"><literal>RAPTOR_OPTION_VALUE_TYPE_LAST</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-OPTION-VALUE-TYPE-STRING:CAPS"><literal>RAPTOR_OPTION_VALUE_TYPE_STRING</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-OPTION-VALUE-TYPE-URI:CAPS"><literal>RAPTOR_OPTION_VALUE_TYPE_URI</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-WORLD-FLAG-URI-INTERNING:CAPS"><literal>RAPTOR_WORLD_FLAG_URI_INTERNING</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-WORLD-FLAG-WWW-SKIP-INIT-FINISH:CAPS"><literal>RAPTOR_WORLD_FLAG_WWW_SKIP_INIT_FINISH</literal></link> </para></listitem>
+  </itemizedlist>
+
+</section>
+<section id="raptor2-changes-deleted-1-4-21-to-2-0-0">
+<title>Deleted functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>raptor_compare_strings - Trivial utility function removed.</para></listitem>
+    <listitem><para>raptor_copy_identifier - Use <link linkend="raptor-term-copy"><function>raptor_term_copy</function></link>() with <link linkend="raptor-term"><type>raptor_term</type></link> objects.</para></listitem>
+    <listitem><para>raptor_error_handlers_init - Replaced by generic raptor log mechanism.  See <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>()</para></listitem>
+    <listitem><para>raptor_error_handlers_init_v2 - Replaced by generic raptor log mechanism.  See <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>()</para></listitem>
+    <listitem><para>raptor_feature_value_type - Use <link linkend="raptor-world-get-option-description"><function>raptor_world_get_option_description</function></link>() for the option and access the value_type field.</para></listitem>
+    <listitem><para>raptor_finish - Use <link linkend="raptor-free-world"><function>raptor_free_world</function></link>() with <link linkend="raptor-world"><type>raptor_world</type></link> object.</para></listitem>
+    <listitem><para>raptor_free_identifier - Use <link linkend="raptor-free-term"><function>raptor_free_term</function></link>() with <link linkend="raptor-term"><type>raptor_term</type></link> objects.</para></listitem>
+    <listitem><para>raptor_init - Use <link linkend="raptor-new-world"><function>raptor_new_world</function></link>() to create a new <link linkend="raptor-world"><type>raptor_world</type></link> object.</para></listitem>
+    <listitem><para>raptor_iostream_get_bytes_written_count - Deprecated for <link linkend="raptor-iostream-tell"><function>raptor_iostream_tell</function></link>().</para></listitem>
+    <listitem><para>raptor_iostream_write_string_turtle - Deprecated for <link linkend="raptor-string-python-write"><function>raptor_string_python_write</function></link>().</para></listitem>
+    <listitem><para>raptor_new_identifier - Replaced by <link linkend="raptor-new-term-from-blank"><function>raptor_new_term_from_blank</function></link>(), <link linkend="raptor-new-term-from-literal"><function>raptor_new_term_from_literal</function></link>() or <link linkend="raptor-new-term-from-blank"><function>raptor_new_term_from_blank</function></link>() and <link linkend="raptor-term"><type>raptor_term</type></link> class.</para></listitem>
+    <listitem><para>raptor_new_identifier_v2 - Replaced by <link linkend="raptor-new-term-from-blank"><function>raptor_new_term_from_blank</function></link>(), <link linkend="raptor-new-term-from-literal"><function>raptor_new_term_from_literal</function></link>() or <link linkend="raptor-new-term-from-blank"><function>raptor_new_term_from_blank</function></link>() and <link linkend="raptor-term"><type>raptor_term</type></link> class.</para></listitem>
+    <listitem><para>raptor_ntriples_string_as_utf8_string - Deprecated internal debug function.</para></listitem>
+    <listitem><para>raptor_ntriples_term_as_string - Deprecated internal debug function.</para></listitem>
+    <listitem><para>raptor_print_ntriples_string - Use <link linkend="raptor-string-ntriples-write"><function>raptor_string_ntriples_write</function></link>() with a <link linkend="raptor-iostream"><type>raptor_iostream</type></link></para></listitem>
+    <listitem><para>raptor_print_statement_detailed - Deprecated internal function.</para></listitem>
+    <listitem><para>raptor_sequence_print_string - Trivial utility function removed.</para></listitem>
+    <listitem><para>raptor_sequence_print_uri - Deprecated for <link linkend="raptor-uri-print"><function>raptor_uri_print</function></link>()</para></listitem>
+    <listitem><para>raptor_sequence_set_print_handler - Use the argument in the <link linkend="raptor-new-sequence"><function>raptor_new_sequence</function></link>() constructor instead.</para></listitem>
+    <listitem><para>raptor_sequence_set_print_handler_v2 - Use the argument in the <link linkend="raptor-new-sequence"><function>raptor_new_sequence</function></link>() constructor instead.</para></listitem>
+    <listitem><para>raptor_serializer_set_error_handler - Replaced by <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>() on the <link linkend="raptor-world"><type>raptor_world</type></link> object.</para></listitem>
+    <listitem><para>raptor_serializer_set_warning_handler - Replaced by <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>() on the <link linkend="raptor-world"><type>raptor_world</type></link> object.</para></listitem>
+    <listitem><para>raptor_set_error_handler - Replaced by <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>() on the <link linkend="raptor-world"><type>raptor_world</type></link> object.</para></listitem>
+    <listitem><para>raptor_set_fatal_error_handler - Replaced by <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>() on the <link linkend="raptor-world"><type>raptor_world</type></link> object.</para></listitem>
+    <listitem><para>raptor_set_parser_strict - Replaced by <link linkend="raptor-parser-set-option"><function>raptor_parser_set_option</function></link>() with option <link linkend="RAPTOR-OPTION-STRICT:CAPS"><literal>RAPTOR_OPTION_STRICT</literal></link></para></listitem>
+    <listitem><para>raptor_set_warning_handler - Replaced by <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>() on the <link linkend="raptor-world"><type>raptor_world</type></link> object.</para></listitem>
+    <listitem><para>raptor_statement_part_as_counted_string - Better done via methods of <link linkend="raptor-term"><type>raptor_term</type></link> class such as <link linkend="raptor-term-to-counted-string"><function>raptor_term_to_counted_string</function></link>().</para></listitem>
+    <listitem><para>raptor_statement_part_as_counted_string_v2 - Better done via methods of <link linkend="raptor-term"><type>raptor_term</type></link> class such as <link linkend="raptor-term-to-counted-string"><function>raptor_term_to_counted_string</function></link>().</para></listitem>
+    <listitem><para>raptor_statement_part_as_string - Better done via methods of <link linkend="raptor-term"><type>raptor_term</type></link> class such as <link linkend="raptor-term-to-string"><function>raptor_term_to_string</function></link>().</para></listitem>
+    <listitem><para>raptor_statement_part_as_string_v2 - Better done via methods of <link linkend="raptor-term"><type>raptor_term</type></link> class such as <link linkend="raptor-term-to-string"><function>raptor_term_to_string</function></link>().</para></listitem>
+    <listitem><para>raptor_uri_get_handler - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_get_handler_v2 - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_set_handler - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_set_handler_v2 - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_www_finish - No need for this to be public.</para></listitem>
+    <listitem><para>raptor_www_finish_v2 - No need for this to be public.</para></listitem>
+    <listitem><para>raptor_www_init - No need for this to be public.</para></listitem>
+    <listitem><para>raptor_www_init_v2 - No need for this to be public.</para></listitem>
+    <listitem><para>raptor_www_no_www_library_init_finish - Deprecated for <link linkend="raptor-world-set-flag"><function>raptor_world_set_flag</function></link>().</para></listitem>
+    <listitem><para>raptor_www_no_www_library_init_finish_v2 - Deprecated for <link linkend="raptor-world-set-flag"><function>raptor_world_set_flag</function></link>().</para></listitem>
+    <listitem><para>raptor_www_set_error_handler - Replaced by <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>() on the <link linkend="raptor-world"><type>raptor_world</type></link> object.</para></listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title>Types</title>
+    <listitem><para>raptor_error_handlers - Replaced by generic raptor log mechanism.  See <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>()</para></listitem>
+    <listitem><para>raptor_free_uri_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_libxml_flags - replaced by <link linkend="raptor-world-set-flags"><function>raptor_world_set_flags</function></link>() with <link linkend="raptor-world-flag"><type>raptor_world_flag</type></link></para></listitem>
+    <listitem><para>raptor_message_handler - Replaced by generic raptor log mechanism.  See <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>()</para></listitem>
+    <listitem><para>raptor_message_handler_closure - Replaced by generic raptor log mechanism.  See <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>()</para></listitem>
+    <listitem><para>raptor_new_uri_for_rdf_concept_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_new_uri_from_uri_local_name_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_new_uri_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_new_uri_relative_to_base_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_ntriples_parser - replaced by <link linkend="raptor-parser"><type>raptor_parser</type></link></para></listitem>
+    <listitem><para>raptor_ntriples_term_type - replaced by <link linkend="raptor-term-type"><type>raptor_term_type</type></link></para></listitem>
+    <listitem><para>raptor_uri_as_counted_string_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_as_string_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_compare_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_copy_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_equals_func - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_handler - Entire URI implementation is internal and not replaceable.</para></listitem>
+    <listitem><para>raptor_uri_source - URI source was useless.</para></listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title>Enums</title>
+    <listitem><para>RAPTOR_FEATURE_ASSUME_IS_RDF - Never used.</para></listitem>
+    <listitem><para>RAPTOR_FEATURE_START_URI - Never used.</para></listitem>
+    <listitem><para>RAPTOR_GENID_TYPE_BAGID - There is just one type of generated ID now.</para></listitem>
+    <listitem><para>RAPTOR_GENID_TYPE_BNODEID - There is just one type of generated ID now.</para></listitem>
+    <listitem><para>RAPTOR_IDENTIFIER_TYPE_ORDINAL - Deprecated value deleted.</para></listitem>
+    <listitem><para>RAPTOR_URI_SOURCE_ATTRIBUTE - URI source concept removed.</para></listitem>
+    <listitem><para>RAPTOR_URI_SOURCE_BLANK_ID - URI source concept removed.</para></listitem>
+    <listitem><para>RAPTOR_URI_SOURCE_ELEMENT - URI source concept removed.</para></listitem>
+    <listitem><para>RAPTOR_URI_SOURCE_GENERATED - URI source concept removed.</para></listitem>
+    <listitem><para>RAPTOR_URI_SOURCE_ID - URI source concept removed.</para></listitem>
+    <listitem><para>RAPTOR_URI_SOURCE_NOT_URI - URI source concept removed.</para></listitem>
+    <listitem><para>RAPTOR_URI_SOURCE_UNKNOWN - URI source concept removed.</para></listitem>
+    <listitem><para>RAPTOR_URI_SOURCE_URI - URI source concept removed.</para></listitem>
+  </itemizedlist>
+
+</section>
+<section id="raptor2-changes-renamed-1-4-21-to-2-0-0">
+<title>Renamed function and enums</title>
+
+<table border='1'>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.4.21 function</th>
+      <th>2.0.0 function</th>
+      <th>Notes</th>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_format_locator</td> <td><link linkend="raptor-locator-format"><function>raptor_locator_format</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_get_feature_count</td> <td><link linkend="raptor-option-get-count"><function>raptor_option_get_count</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_get_locator</td> <td><link linkend="raptor-parser-get-locator"><function>raptor_parser_get_locator</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_get_name</td> <td><link linkend="raptor-parser-get-name"><function>raptor_parser_get_name</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_guess_parser_name_v2</td> <td><link linkend="raptor-world-guess-parser-name"><function>raptor_world_guess_parser_name</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_namespace_copy</td> <td><link linkend="raptor-namespace-stack-start-namespace"><function>raptor_namespace_stack_start_namespace</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_namespaces_format</td> <td><link linkend="raptor-namespace-format-as-xml"><function>raptor_namespace_format_as_xml</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_namespaces_qname_from_uri</td> <td><link linkend="raptor-new-qname-from-namespace-uri"><function>raptor_new_qname_from_namespace_uri</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_namespace_parts_from_string</td> <td><link linkend="raptor-xml-namespace-string-parse"><function>raptor_xml_namespace_string_parse</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_parser_for_content_v2</td> <td><link linkend="raptor-new-parser-for-content"><function>raptor_new_parser_for_content</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_parser_v2</td> <td><link linkend="raptor-new-parser"><function>raptor_new_parser</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_qname_from_namespace_local_name_v2</td> <td><link linkend="raptor-new-qname-from-namespace-local-name"><function>raptor_new_qname_from_namespace_local_name</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_serializer_v2</td> <td><link linkend="raptor-new-serializer"><function>raptor_new_serializer</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_uri_from_id_v2</td> <td><link linkend="raptor-new-uri-from-id"><function>raptor_new_uri_from_id</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_uri_from_uri_local_name_v2</td> <td><link linkend="raptor-new-uri-from-uri-local-name"><function>raptor_new_uri_from_uri_local_name</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_uri_relative_to_base_v2</td> <td><link linkend="raptor-new-uri-relative-to-base"><function>raptor_new_uri_relative_to_base</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_new_uri_v2</td> <td><link linkend="raptor-new-uri"><function>raptor_new_uri</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_parse_abort</td> <td><link linkend="raptor-parser-parse-abort"><function>raptor_parser_parse_abort</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_parse_chunk</td> <td><link linkend="raptor-parser-parse-chunk"><function>raptor_parser_parse_chunk</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_parse_file</td> <td><link linkend="raptor-parser-parse-file"><function>raptor_parser_parse_file</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_parse_file_stream</td> <td><link linkend="raptor-parser-parse-file-stream"><function>raptor_parser_parse_file_stream</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_parse_uri</td> <td><link linkend="raptor-parser-parse-uri"><function>raptor_parser_parse_uri</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_parse_uri_with_connection</td> <td><link linkend="raptor-parser-parse-uri-with-connection"><function>raptor_parser_parse_uri_with_connection</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serialize_end</td> <td><link linkend="raptor-serializer-serialize-end"><function>raptor_serializer_serialize_end</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serialize_set_namespace</td> <td><link linkend="raptor-serializer-set-namespace"><function>raptor_serializer_set_namespace</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serialize_set_namespace_from_namespace</td> <td><link linkend="raptor-serializer-set-namespace-from-namespace"><function>raptor_serializer_set_namespace_from_namespace</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serialize_start</td> <td><link linkend="raptor-serializer-start-to-iostream"><function>raptor_serializer_start_to_iostream</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serialize_start_to_file_handle</td> <td><link linkend="raptor-serializer-start-to-file-handle"><function>raptor_serializer_start_to_file_handle</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serialize_start_to_filename</td> <td><link linkend="raptor-serializer-start-to-filename"><function>raptor_serializer_start_to_filename</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serialize_start_to_iostream</td> <td><link linkend="raptor-serializer-start-to-iostream"><function>raptor_serializer_start_to_iostream</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serialize_start_to_string</td> <td><link linkend="raptor-serializer-start-to-string"><function>raptor_serializer_start_to_string</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_serializer_syntax_name_check_v2</td> <td><link linkend="raptor-world-is-serializer-name"><function>raptor_world_is_serializer_name</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_set_namespace_handler</td> <td><link linkend="raptor-parser-set-namespace-handler"><function>raptor_parser_set_namespace_handler</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_set_statement_handler</td> <td><link linkend="raptor-parser-set-statement-handler"><function>raptor_parser_set_statement_handler</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_start_parse</td> <td><link linkend="raptor-parser-parse-start"><function>raptor_parser_parse_start</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_uri_is_file_uri</td> <td><link linkend="raptor-uri-uri-string-is-file-uri"><function>raptor_uri_uri_string_is_file_uri</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_utf8_check</td> <td><link linkend="raptor-unicode-check-utf8-string"><function>raptor_unicode_check_utf8_string</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_www_free</td> <td><link linkend="raptor-free-www"><function>raptor_free_www</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_www_new_v2</td> <td><link linkend="raptor-new-www"><function>raptor_new_www</function></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>raptor_www_new_with_connection_v2</td> <td><link linkend="raptor-new-www-with-connection"><function>raptor_new_www_with_connection</function></link></td> <td>&#160;</td>
+   </tr>
+  </tbody>
+</table>
+<table border='1'>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.4.21 enum</th>
+      <th>2.0.0 enum</th>
+      <th>Notes</th>
+    </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_ALLOW_BAGID</td> <td><link linkend="RAPTOR-OPTION-ALLOW-BAGID:CAPS"><literal>RAPTOR_OPTION_ALLOW_BAGID</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_ALLOW_NON_NS_ATTRIBUTES</td> <td><link linkend="RAPTOR-OPTION-ALLOW-NON-NS-ATTRIBUTES:CAPS"><literal>RAPTOR_OPTION_ALLOW_NON_NS_ATTRIBUTES</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_ALLOW_OTHER_PARSETYPES</td> <td><link linkend="RAPTOR-OPTION-ALLOW-OTHER-PARSETYPES:CAPS"><literal>RAPTOR_OPTION_ALLOW_OTHER_PARSETYPES</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_ALLOW_RDF_TYPE_RDF_LIST</td> <td><link linkend="RAPTOR-OPTION-ALLOW-RDF-TYPE-RDF-LIST:CAPS"><literal>RAPTOR_OPTION_ALLOW_RDF_TYPE_RDF_LIST</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_ATOM_ENTRY_URI</td> <td><link linkend="RAPTOR-OPTION-ATOM-ENTRY-URI:CAPS"><literal>RAPTOR_OPTION_ATOM_ENTRY_URI</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_BNODE_BORDER</td> <td><link linkend="RAPTOR-OPTION-BNODE-BORDER:CAPS"><literal>RAPTOR_OPTION_BNODE_BORDER</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_BNODE_FILL</td> <td><link linkend="RAPTOR-OPTION-BNODE-FILL:CAPS"><literal>RAPTOR_OPTION_BNODE_FILL</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_CHECK_RDF_ID</td> <td><link linkend="RAPTOR-OPTION-CHECK-RDF-ID:CAPS"><literal>RAPTOR_OPTION_CHECK_RDF_ID</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_HTML_LINK</td> <td><link linkend="RAPTOR-OPTION-HTML-LINK:CAPS"><literal>RAPTOR_OPTION_HTML_LINK</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_HTML_TAG_SOUP</td> <td><link linkend="RAPTOR-OPTION-HTML-TAG-SOUP:CAPS"><literal>RAPTOR_OPTION_HTML_TAG_SOUP</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_JSON_CALLBACK</td> <td><link linkend="RAPTOR-OPTION-JSON-CALLBACK:CAPS"><literal>RAPTOR_OPTION_JSON_CALLBACK</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_JSON_EXTRA_DATA</td> <td><link linkend="RAPTOR-OPTION-JSON-EXTRA-DATA:CAPS"><literal>RAPTOR_OPTION_JSON_EXTRA_DATA</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_LAST</td> <td><link linkend="RAPTOR-OPTION-LAST:CAPS"><literal>RAPTOR_OPTION_LAST</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_LITERAL_BORDER</td> <td><link linkend="RAPTOR-OPTION-LITERAL-BORDER:CAPS"><literal>RAPTOR_OPTION_LITERAL_BORDER</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_LITERAL_FILL</td> <td><link linkend="RAPTOR-OPTION-LITERAL-FILL:CAPS"><literal>RAPTOR_OPTION_LITERAL_FILL</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_MICROFORMATS</td> <td><link linkend="RAPTOR-OPTION-MICROFORMATS:CAPS"><literal>RAPTOR_OPTION_MICROFORMATS</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_NON_NFC_FATAL</td> <td><link linkend="RAPTOR-OPTION-NON-NFC-FATAL:CAPS"><literal>RAPTOR_OPTION_NON_NFC_FATAL</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_NORMALIZE_LANGUAGE</td> <td><link linkend="RAPTOR-OPTION-NORMALIZE-LANGUAGE:CAPS"><literal>RAPTOR_OPTION_NORMALIZE_LANGUAGE</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_NO_NET</td> <td><link linkend="RAPTOR-OPTION-NO-NET:CAPS"><literal>RAPTOR_OPTION_NO_NET</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_PREFIX_ELEMENTS</td> <td><link linkend="RAPTOR-OPTION-PREFIX-ELEMENTS:CAPS"><literal>RAPTOR_OPTION_PREFIX_ELEMENTS</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_RELATIVE_URIS</td> <td><link linkend="RAPTOR-OPTION-RELATIVE-URIS:CAPS"><literal>RAPTOR_OPTION_RELATIVE_URIS</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_RESOURCE_BORDER</td> <td><link linkend="RAPTOR-OPTION-RESOURCE-BORDER:CAPS"><literal>RAPTOR_OPTION_RESOURCE_BORDER</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_RESOURCE_FILL</td> <td><link linkend="RAPTOR-OPTION-RESOURCE-FILL:CAPS"><literal>RAPTOR_OPTION_RESOURCE_FILL</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_RSS_TRIPLES</td> <td><link linkend="RAPTOR-OPTION-RSS-TRIPLES:CAPS"><literal>RAPTOR_OPTION_RSS_TRIPLES</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_SCANNING </td> <td><link linkend="RAPTOR-OPTION-SCANNING:CAPS"><literal>RAPTOR_OPTION_SCANNING</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WARN_OTHER_PARSETYPES</td> <td><link linkend="RAPTOR-OPTION-WARN-OTHER-PARSETYPES:CAPS"><literal>RAPTOR_OPTION_WARN_OTHER_PARSETYPES</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WRITER_AUTO_EMPTY</td> <td><link linkend="RAPTOR-OPTION-WRITER-AUTO-EMPTY:CAPS"><literal>RAPTOR_OPTION_WRITER_AUTO_EMPTY</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WRITER_AUTO_INDENT</td> <td><link linkend="RAPTOR-OPTION-WRITER-AUTO-INDENT:CAPS"><literal>RAPTOR_OPTION_WRITER_AUTO_INDENT</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WRITER_INDENT_WIDTH</td> <td><link linkend="RAPTOR-OPTION-WRITER-INDENT-WIDTH:CAPS"><literal>RAPTOR_OPTION_WRITER_INDENT_WIDTH</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WRITER_XML_DECLARATION</td> <td><link linkend="RAPTOR-OPTION-WRITER-XML-DECLARATION:CAPS"><literal>RAPTOR_OPTION_WRITER_XML_DECLARATION</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WRITER_XML_VERSION</td> <td><link linkend="RAPTOR-OPTION-WRITER-XML-VERSION:CAPS"><literal>RAPTOR_OPTION_WRITER_XML_VERSION</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WRITE_BASE_URI</td> <td><link linkend="RAPTOR-OPTION-WRITE-BASE-URI:CAPS"><literal>RAPTOR_OPTION_WRITE_BASE_URI</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WWW_HTTP_CACHE_CONTROL</td> <td><link linkend="RAPTOR-OPTION-WWW-HTTP-CACHE-CONTROL:CAPS"><literal>RAPTOR_OPTION_WWW_HTTP_CACHE_CONTROL</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WWW_HTTP_USER_AGENT</td> <td><link linkend="RAPTOR-OPTION-WWW-HTTP-USER-AGENT:CAPS"><literal>RAPTOR_OPTION_WWW_HTTP_USER_AGENT</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_FEATURE_WWW_TIMEOUT</td> <td><link linkend="RAPTOR-OPTION-WWW-TIMEOUT:CAPS"><literal>RAPTOR_OPTION_WWW_TIMEOUT</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_IDENTIFIER_TYPE_ANONYMOUS</td> <td><link linkend="RAPTOR-TERM-TYPE-BLANK:CAPS"><literal>RAPTOR_TERM_TYPE_BLANK</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_IDENTIFIER_TYPE_LITERAL</td> <td><link linkend="RAPTOR-TERM-TYPE-LITERAL:CAPS"><literal>RAPTOR_TERM_TYPE_LITERAL</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_IDENTIFIER_TYPE_PREDICATE</td> <td><link linkend="RAPTOR-TERM-TYPE-URI:CAPS"><literal>RAPTOR_TERM_TYPE_URI</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_IDENTIFIER_TYPE_RESOURCE</td> <td><link linkend="RAPTOR-TERM-TYPE-URI:CAPS"><literal>RAPTOR_TERM_TYPE_URI</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_IDENTIFIER_TYPE_UNKNOWN</td> <td><link linkend="RAPTOR-TERM-TYPE-UNKNOWN:CAPS"><literal>RAPTOR_TERM_TYPE_UNKNOWN</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_IDENTIFIER_TYPE_XML_LITERAL</td> <td><link linkend="RAPTOR-TERM-TYPE-LITERAL:CAPS"><literal>RAPTOR_TERM_TYPE_LITERAL</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_LIBXML_FLAGS_GENERIC_ERROR_SAVE</td> <td><link linkend="RAPTOR-WORLD-FLAG-LIBXML-GENERIC-ERROR-SAVE:CAPS"><literal>RAPTOR_WORLD_FLAG_LIBXML_GENERIC_ERROR_SAVE</literal></link></td> <td>Flag setting is done by <link linkend="raptor-world-set-flags"><function>raptor_world_set_flags</function></link>()</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_LIBXML_FLAGS_STRUCTURED_ERROR_SAVE</td> <td><link linkend="RAPTOR-WORLD-FLAG-LIBXML-STRUCTURED-ERROR-SAVE:CAPS"><literal>RAPTOR_WORLD_FLAG_LIBXML_STRUCTURED_ERROR_SAVE</literal></link></td> <td>Flag setting is done by <link linkend="raptor-world-set-flags"><function>raptor_world_set_flags</function></link>()</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_LOG_LEVEL_WARNING</td> <td><link linkend="RAPTOR-LOG-LEVEL-WARN:CAPS"><literal>RAPTOR_LOG_LEVEL_WARN</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_NTRIPLES_TERM_TYPE_BLANK_NODE</td> <td><link linkend="RAPTOR-TERM-TYPE-BLANK:CAPS"><literal>RAPTOR_TERM_TYPE_BLANK</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_NTRIPLES_TERM_TYPE_LITERAL</td> <td><link linkend="RAPTOR-TERM-TYPE-LITERAL:CAPS"><literal>RAPTOR_TERM_TYPE_LITERAL</literal></link></td> <td>&#160;</td>
+   </tr>
+    <tr valign='top'>
+      <td>RAPTOR_NTRIPLES_TERM_TYPE_URI_REF</td> <td><link linkend="RAPTOR-TERM-TYPE-URI:CAPS"><literal>RAPTOR_TERM_TYPE_URI</literal></link></td> <td>&#160;</td>
+   </tr>
+  </tbody>
+</table>
+
+</section>
+<section id="raptor2-changes-changed-1-4-21-to-2-0-0">
+<title>Changed functions and types</title>
+
+<table border='1'>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.4.21 function</th>
+      <th>2.0.0 function</th>
+      <th>Notes</th>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_feature raptor_feature_from_uri(raptor_uri *uri)</td> <td>raptor_option <link linkend="raptor-world-get-option-from-uri"><function>raptor_world_get_option_from_uri</function></link>(raptor_world* world, raptor_uri *uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_feature raptor_feature_from_uri_v2(raptor_world* world, raptor_uri *uri)</td> <td>raptor_option <link linkend="raptor-world-get-option-from-uri"><function>raptor_world_get_option_from_uri</function></link>(raptor_world* world, raptor_uri *uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_features_enumerate(const raptor_feature feature, const char* *name, raptor_uri **uri, const char* *label)</td> <td>raptor_option_description* <link linkend="raptor-world-get-option-description"><function>raptor_world_get_option_description</function></link>(raptor_world* world, const raptor_domain domain, const raptor_option option)</td> <td>Call with domain = <link linkend="RAPTOR-DOMAIN-PARSER:CAPS"><literal>RAPTOR_DOMAIN_PARSER</literal></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_features_enumerate_v2(raptor_world* world, const raptor_feature feature, const char* *name, raptor_uri **uri, const char* *label)</td> <td>raptor_option_description* <link linkend="raptor-world-get-option-description"><function>raptor_world_get_option_description</function></link>(raptor_world* world, const raptor_domain domain, const raptor_option option)</td> <td>Call with domain = <link linkend="RAPTOR-DOMAIN-PARSER:CAPS"><literal>RAPTOR_DOMAIN_PARSER</literal></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_format_locator_v2(raptor_world* world, char* buffer, size_t length, raptor_locator* locator)</td> <td>int <link linkend="raptor-locator-format"><function>raptor_locator_format</function></link>(char* buffer, size_t length, raptor_locator* locator)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_free_uri_v2(raptor_world* world, raptor_uri *uri)</td> <td>void <link linkend="raptor-free-uri"><function>raptor_free_uri</function></link>(raptor_uri *uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_get_feature(raptor_parser *parser, raptor_feature feature)</td> <td>int <link linkend="raptor-parser-get-option"><function>raptor_parser_get_option</function></link>(raptor_parser *parser, raptor_option option, char** string_p, int* integer_p)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>const char* raptor_get_label(raptor_parser *rdf_parser)</td> <td>raptor_syntax_description* <link linkend="raptor-parser-get-description"><function>raptor_parser_get_description</function></link>(raptor_parser* rdf_parser)</td> <td>Use label field of returned description.</td>
+    </tr>
+    <tr valign='top'>
+      <td>const char* raptor_get_mime_type(raptor_parser *rdf_parser)</td> <td>raptor_syntax_description* <link linkend="raptor-parser-get-description"><function>raptor_parser_get_description</function></link>(raptor_parser* rdf_parser)</td> <td>Use the mime_types array field of returned <link linkend="raptor-syntax-description"><type>raptor_syntax_description</type></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_get_need_base_uri(raptor_parser *rdf_parser)</td> <td>raptor_syntax_description* <link linkend="raptor-parser-get-description"><function>raptor_parser_get_description</function></link>(raptor_parser* rdf_parser)</td> <td>Use the <link linkend="RAPTOR-SYNTAX-NEED-BASE-URI:CAPS"><literal>RAPTOR_SYNTAX_NEED_BASE_URI</literal></link> bitflag in the flags field of the returned <link linkend="raptor-syntax-description"><type>raptor_syntax_description</type></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>const char* raptor_guess_parser_name(raptor_uri *uri, const char* mime_type, const unsigned char* buffer, size_t len, const unsigned char* identifier)</td> <td>const char* <link linkend="raptor-world-guess-parser-name"><function>raptor_world_guess_parser_name</function></link>(raptor_world* world, raptor_uri *uri, const char* mime_type, const unsigned char* buffer, size_t len, const unsigned char* identifier)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_format_hexadecimal(raptor_iostream* iostr, unsigned int integer, int width)</td> <td>int <link linkend="raptor-iostream-hexadecimal-write"><function>raptor_iostream_hexadecimal_write</function></link>(unsigned int integer, int width, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_read_bytes(raptor_iostream* iostr, void *ptr, size_t size, size_t nmemb)</td> <td>int <link linkend="raptor-iostream-read-bytes"><function>raptor_iostream_read_bytes</function></link>(void *ptr, size_t size, size_t nmemb, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_byte(raptor_iostream *iostr, const int byte)</td> <td>int <link linkend="raptor-iostream-write-byte"><function>raptor_iostream_write_byte</function></link>(const int byte, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_bytes(raptor_iostream *iostr, const void *ptr, size_t size, size_t nmemb)</td> <td>int <link linkend="raptor-iostream-write-bytes"><function>raptor_iostream_write_bytes</function></link>(const void *ptr, size_t size, size_t nmemb, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_counted_string(raptor_iostream *iostr, const void *string, size_t len)</td> <td>int <link linkend="raptor-iostream-counted-string-write"><function>raptor_iostream_counted_string_write</function></link>(const void *string, size_t len, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_decimal(raptor_iostream* iostr, int integer)</td> <td>int <link linkend="raptor-iostream-decimal-write"><function>raptor_iostream_decimal_write</function></link>(int integer, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_iostream_write_end(raptor_iostream *iostr)</td> <td>int <link linkend="raptor-iostream-write-end"><function>raptor_iostream_write_end</function></link>(raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_namespace(raptor_iostream* iostr, raptor_namespace *ns)</td> <td>int <link linkend="raptor-namespace-write"><function>raptor_namespace_write</function></link>(raptor_namespace *ns, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_qname(raptor_iostream* iostr, raptor_qname *qname)</td> <td>int <link linkend="raptor-qname-write"><function>raptor_qname_write</function></link>(raptor_qname *qname, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_iostream_write_statement_ntriples(raptor_iostream* iostr, const raptor_statement *statement)</td> <td>int <link linkend="raptor-statement-ntriples-write"><function>raptor_statement_ntriples_write</function></link>(const raptor_statement *statement, raptor_iostream* iostr, int write_graph_term)</td> <td>Gains extra flag arg to decide whether to write any graph term.</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_string(raptor_iostream *iostr, const void *string)</td> <td>int <link linkend="raptor-iostream-string-write"><function>raptor_iostream_string_write</function></link>(const void *string, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_string_ntriples(raptor_iostream *iostr, const unsigned char* string, size_t len, const char delim)</td> <td>int <link linkend="raptor-string-ntriples-write"><function>raptor_string_ntriples_write</function></link>(const unsigned char* string, size_t len, const char delim, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_string_python(raptor_iostream *iostr, const unsigned char* string, size_t len, const char delim, int flags)</td> <td>int <link linkend="raptor-string-python-write"><function>raptor_string_python_write</function></link>(const unsigned char* string, size_t len, const char delim, int flags, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_stringbuffer(raptor_iostream* iostr, raptor_stringbuffer *sb)</td> <td>int <link linkend="raptor-stringbuffer-write"><function>raptor_stringbuffer_write</function></link>(raptor_stringbuffer *sb, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_uri(raptor_iostream *iostr, raptor_uri *uri)</td> <td>int <link linkend="raptor-uri-write"><function>raptor_uri_write</function></link>(raptor_uri *uri, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_uri_v2(raptor_world* world, raptor_iostream *iostr, raptor_uri *uri)</td> <td>int <link linkend="raptor-uri-write"><function>raptor_uri_write</function></link>(raptor_uri *uri, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_xml_any_escaped_string(raptor_iostream* iostr, const unsigned char* string, size_t len, char quote, int xml_version, raptor_simple_message_handler error_handler, void *error_data)</td> <td>int <link linkend="raptor-xml-escape-string-any-write"><function>raptor_xml_escape_string_any_write</function></link>(const unsigned char* string, size_t len, char quote, int xml_version, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_xml_element(raptor_iostream *iostr, raptor_xml_element *element, raptor_namespace_stack *nstack, int is_empty, int is_end, raptor_simple_message_handler error_handler, void *error_data, int depth)</td> <td>int <link linkend="raptor-xml-element-write"><function>raptor_xml_element_write</function></link>(raptor_xml_element *element, raptor_namespace_stack *nstack, int is_empty, int is_end, int depth, raptor_iostream *iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_iostream_write_xml_escaped_string(raptor_iostream* iostr, const unsigned char* string, size_t len, char quote, raptor_simple_message_handler error_handler, void *error_data)</td> <td>int <link linkend="raptor-xml-escape-string-write"><function>raptor_xml_escape_string_write</function></link>(const unsigned char* string, size_t len, char quote, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>const char* raptor_locator_uri_v2(raptor_world* world, raptor_locator *locator)</td> <td>const char* <link linkend="raptor-locator-uri"><function>raptor_locator_uri</function></link>(raptor_locator *locator)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_namespaces_init(raptor_namespace_stack *nstack, const raptor_uri_handler *uri_handler, void *uri_context, raptor_simple_message_handler error_handler, void *error_data, int defaults)</td> <td>int <link linkend="raptor-namespaces-init"><function>raptor_namespaces_init</function></link>(raptor_world* world, raptor_namespace_stack *nstack, int defaults)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_namespaces_init_v2(raptor_world* world, raptor_namespace_stack *nstack, raptor_simple_message_handler error_handler, void *error_data, int defaults)</td> <td>int <link linkend="raptor-namespaces-init"><function>raptor_namespaces_init</function></link>(raptor_world* world, raptor_namespace_stack *nstack, int defaults)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_from_file_handle(FILE *handle)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-from-file-handle"><function>raptor_new_iostream_from_file_handle</function></link>(raptor_world* world, FILE *handle)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_from_filename(const char* filename)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-from-filename"><function>raptor_new_iostream_from_filename</function></link>(raptor_world* world, const char* filename)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_from_handler(void *context, const raptor_iostream_handler *handler)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-from-handler"><function>raptor_new_iostream_from_handler</function></link>(raptor_world* world, void *user_data, const raptor_iostream_handler* const handler)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_from_handler2(void *user_data, const raptor_iostream_handler2* const handler2)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-from-handler"><function>raptor_new_iostream_from_handler</function></link>(raptor_world* world, void *user_data, const raptor_iostream_handler* const handler)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_from_sink(void)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-from-sink"><function>raptor_new_iostream_from_sink</function></link>(raptor_world* world)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_from_string(void *string, size_t length)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-from-string"><function>raptor_new_iostream_from_string</function></link>(raptor_world* world, void *string, size_t length)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_to_file_handle(FILE *handle)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-to-file-handle"><function>raptor_new_iostream_to_file_handle</function></link>(raptor_world* world, FILE *handle)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_to_filename(const char* filename)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-to-filename"><function>raptor_new_iostream_to_filename</function></link>(raptor_world* world, const char* filename)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_to_sink(void)</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-to-sink"><function>raptor_new_iostream_to_sink</function></link>(raptor_world* world)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream* raptor_new_iostream_to_string(void **string_p, size_t *length_p, void *(*malloc_handler)(size_t size))</td> <td>raptor_iostream* <link linkend="raptor-new-iostream-to-string"><function>raptor_new_iostream_to_string</function></link>(raptor_world* world, void **string_p, size_t *length_p, void *(*malloc_handler)(size_t size))</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_namespace_stack* raptor_new_namespaces(const raptor_uri_handler *uri_handler, void *uri_context, raptor_simple_message_handler error_handler, void *error_data, int defaults)</td> <td>raptor_namespace_stack* <link linkend="raptor-new-namespaces"><function>raptor_new_namespaces</function></link>(raptor_world* world, int defaults)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_namespace_stack* raptor_new_namespaces_v2(raptor_world* world, raptor_simple_message_handler error_handler, void *error_data, int defaults)</td> <td>raptor_namespace_stack* <link linkend="raptor-new-namespaces"><function>raptor_new_namespaces</function></link>(raptor_world* world, int defaults)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_parser* raptor_new_parser(const char* name)</td> <td>raptor_parser* <link linkend="raptor-new-parser"><function>raptor_new_parser</function></link>(raptor_world* world, const char* name)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_parser* raptor_new_parser_for_content(raptor_uri *uri, const char* mime_type, const unsigned char* buffer, size_t len, const unsigned char* identifier)</td> <td>raptor_parser* <link linkend="raptor-new-parser-for-content"><function>raptor_new_parser_for_content</function></link>(raptor_world* world, raptor_uri *uri, const char* mime_type, const unsigned char* buffer, size_t len, const unsigned char* identifier)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_qname* raptor_new_qname(raptor_namespace_stack *nstack, const unsigned char* name, const unsigned char* value, raptor_simple_message_handler error_handler, void *error_data)</td> <td>raptor_qname* <link linkend="raptor-new-qname"><function>raptor_new_qname</function></link>(raptor_namespace_stack *nstack, const unsigned char* name, const unsigned char* value)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_qname* raptor_new_qname_from_namespace_local_name(raptor_namespace *ns, const unsigned char* local_name, const unsigned char* value)</td> <td>raptor_qname* <link linkend="raptor-new-qname-from-namespace-local-name"><function>raptor_new_qname_from_namespace_local_name</function></link>(raptor_world* world, raptor_namespace *ns, const unsigned char* local_name, const unsigned char* value)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_sax2* raptor_new_sax2(void *user_data, raptor_error_handlers* error_handlers)</td> <td>raptor_sax2* <link linkend="raptor-new-sax2"><function>raptor_new_sax2</function></link>(raptor_world *world, raptor_locator *locator, void* user_data)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_sequence* raptor_new_sequence(raptor_sequence_free_handler* free_handler, raptor_sequence_print_handler* print_handler)</td> <td>raptor_sequence* <link linkend="raptor-new-sequence"><function>raptor_new_sequence</function></link>(raptor_data_free_handler free_handler, raptor_data_print_handler print_handler)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_sequence* raptor_new_sequence_v2(raptor_sequence_free_handler_v2* free_handler, raptor_sequence_print_handler_v2* print_handler, void* handler_context)</td> <td>raptor_sequence* <link linkend="raptor-new-sequence"><function>raptor_new_sequence</function></link>(raptor_data_free_handler free_handler, raptor_data_print_handler print_handler)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_serializer* raptor_new_serializer(const char* name)</td> <td>raptor_serializer* <link linkend="raptor-new-serializer"><function>raptor_new_serializer</function></link>(raptor_world* world, const char* name)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_new_uri(const unsigned char* uri_string)</td> <td>raptor_uri* <link linkend="raptor-new-uri"><function>raptor_new_uri</function></link>(raptor_world* world, const unsigned char* uri_string)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_new_uri_for_rdf_concept(const char* name)</td> <td>raptor_uri* <link linkend="raptor-new-uri-for-rdf-concept"><function>raptor_new_uri_for_rdf_concept</function></link>(raptor_world* world, const unsigned char* name)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_new_uri_for_rdf_concept_v2(raptor_world* world, const char* name)</td> <td>raptor_uri* <link linkend="raptor-new-uri-for-rdf-concept"><function>raptor_new_uri_for_rdf_concept</function></link>(raptor_world* world, const unsigned char* name)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_new_uri_for_retrieval_v2(raptor_world* world, raptor_uri* old_uri)</td> <td>raptor_uri* <link linkend="raptor-new-uri-for-retrieval"><function>raptor_new_uri_for_retrieval</function></link>(raptor_uri* old_uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_new_uri_for_xmlbase_v2(raptor_world* world, raptor_uri* old_uri)</td> <td>raptor_uri* <link linkend="raptor-new-uri-for-xmlbase"><function>raptor_new_uri_for_xmlbase</function></link>(raptor_uri* old_uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_new_uri_from_id(raptor_uri *base_uri, const unsigned char* id)</td> <td>raptor_uri* <link linkend="raptor-new-uri-from-id"><function>raptor_new_uri_from_id</function></link>(raptor_world* world, raptor_uri *base_uri, const unsigned char* id)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_new_uri_from_uri_local_name(raptor_uri *uri, const unsigned char* local_name)</td> <td>raptor_uri* <link linkend="raptor-new-uri-from-uri-local-name"><function>raptor_new_uri_from_uri_local_name</function></link>(raptor_world* world, raptor_uri *uri, const unsigned char* local_name)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_new_uri_relative_to_base(raptor_uri *base_uri, const unsigned char* uri_string)</td> <td>raptor_uri* <link linkend="raptor-new-uri-relative-to-base"><function>raptor_new_uri_relative_to_base</function></link>(raptor_world* world, raptor_uri *base_uri, const unsigned char* uri_string)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_xml_writer* raptor_new_xml_writer(raptor_namespace_stack *nstack, const raptor_uri_handler *uri_handler, void *uri_context, raptor_iostream* iostr, raptor_simple_message_handler error_handler, void *error_data, int canonicalize)</td> <td>raptor_xml_writer* <link linkend="raptor-new-xml-writer"><function>raptor_new_xml_writer</function></link>(raptor_world* world, raptor_namespace_stack *nstack, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_xml_writer* raptor_new_xml_writer_v2(raptor_world* world, raptor_namespace_stack *nstack, raptor_iostream* iostr, raptor_simple_message_handler error_handler, void *error_data, int canonicalize)</td> <td>raptor_xml_writer* <link linkend="raptor-new-xml-writer"><function>raptor_new_xml_writer</function></link>(raptor_world* world, raptor_namespace_stack *nstack, raptor_iostream* iostr)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>const unsigned char* raptor_parser_get_feature_string(raptor_parser *parser, raptor_feature feature)</td> <td>const unsigned char* <link linkend="raptor-parser-get-option"><function>raptor_parser_get_option</function></link>(raptor_parser *parser, raptor_option option, char** string_p, int* integer_p)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_parser_set_feature_string(raptor_parser *parser, raptor_feature feature, const unsigned char* value)</td> <td>int <link linkend="raptor-parser-set-option"><function>raptor_parser_set_option</function></link>(raptor_parser *parser, raptor_option option, char* string, int integer)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_parsers_enumerate(const unsigned int counter, const char* *name, const char* *label)</td> <td>raptor_syntax_description* <link linkend="raptor-world-get-parser-description"><function>raptor_world_get_parser_description</function></link>(raptor_world* world, unsigned int counter)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_parsers_enumerate_v2(raptor_world* world, const unsigned int counter, const char* *name, const char* *label)</td> <td>raptor_syntax_description* <link linkend="raptor-world-get-parser-description"><function>raptor_world_get_parser_description</function></link>(raptor_world* world, const unsigned int counter)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_print_locator(FILE *stream, raptor_locator* locator)</td> <td>int <link linkend="raptor-locator-print"><function>raptor_locator_print</function></link>(raptor_locator* locator, FILE *stream)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_print_locator_v2(raptor_world* world, FILE *stream, raptor_locator* locator)</td> <td>void <link linkend="raptor-locator-print"><function>raptor_locator_print</function></link>(raptor_locator* locator, FILE *stream)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_print_statement(const raptor_statement * statement, FILE *stream)</td> <td>int <link linkend="raptor-statement-print"><function>raptor_statement_print</function></link>(const raptor_statement * statement, FILE *stream)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_print_statement_as_ntriples(const raptor_statement * statement, FILE *stream)</td> <td>int <link linkend="raptor-statement-print-as-ntriples"><function>raptor_statement_print_as_ntriples</function></link>(const raptor_statement * statement, FILE *stream)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_print_statement_as_ntriples_v2(const raptor_statement_v2 * statement, FILE *stream)</td> <td>int <link linkend="raptor-statement-print-as-ntriples"><function>raptor_statement_print_as_ntriples</function></link>(const raptor_statement * statement, FILE *stream)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_print_statement_v2(const raptor_statement_v2 * statement, FILE *stream)</td> <td>int <link linkend="raptor-statement-print"><function>raptor_statement_print</function></link>(const raptor_statement * statement, FILE *stream)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_qname_string_to_uri(raptor_namespace_stack *nstack, const unsigned char* name, size_t name_len, raptor_simple_message_handler error_handler, void *error_data)</td> <td>raptor_uri* <link linkend="raptor-qname-string-to-uri"><function>raptor_qname_string_to_uri</function></link>(raptor_namespace_stack *nstack, const unsigned char* name, size_t name_len)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_sequence_print(raptor_sequence* seq, FILE* fh)</td> <td>int <link linkend="raptor-sequence-print"><function>raptor_sequence_print</function></link>(raptor_sequence* seq, FILE* fh)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_sequence_sort(raptor_sequence* seq, int(*compare)(const void *, const void *))</td> <td>void <link linkend="raptor-sequence-sort"><function>raptor_sequence_sort</function></link>(raptor_sequence* seq, raptor_data_compare_handler compare)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serialize_statement(raptor_serializer* rdf_serializer, const raptor_statement *statement)</td> <td>int <link linkend="raptor-serializer-serialize-statement"><function>raptor_serializer_serialize_statement</function></link>(raptor_serializer* rdf_serializer, raptor_statement *statement)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serializer_features_enumerate(const raptor_feature feature, const char* *name, raptor_uri **uri, const char* *label)</td> <td>raptor_option_description* <link linkend="raptor-world-get-option-description"><function>raptor_world_get_option_description</function></link>(raptor_world* world, const raptor_domain domain, const raptor_option option)</td> <td>Call with domain = <link linkend="RAPTOR-DOMAIN-SERIALIZER:CAPS"><literal>RAPTOR_DOMAIN_SERIALIZER</literal></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serializer_features_enumerate_v2(raptor_world* world, const raptor_feature feature, const char* *name, raptor_uri **uri, const char* *label)</td> <td>raptor_option_description* <link linkend="raptor-world-get-option-description"><function>raptor_world_get_option_description</function></link>(raptor_world* world, const raptor_domain domain, const raptor_option option)</td> <td>Call with domain = <link linkend="RAPTOR-DOMAIN-SERIALIZER:CAPS"><literal>RAPTOR_DOMAIN_SERIALIZER</literal></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serializer_get_feature(raptor_serializer *serializer, raptor_feature feature)</td> <td>int <link linkend="raptor-serializer-get-option"><function>raptor_serializer_get_option</function></link>(raptor_serializer *serializer, raptor_option option)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>const unsigned char* raptor_serializer_get_feature_string(raptor_serializer *serializer, raptor_feature feature)</td> <td>int <link linkend="raptor-serializer-get-option"><function>raptor_serializer_get_option</function></link>(raptor_serializer *serializer, raptor_option option, char** string_p, int* integer_p)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serializer_set_feature(raptor_serializer *serializer, raptor_feature feature, int value)</td> <td>int <link linkend="raptor-serializer-set-option"><function>raptor_serializer_set_option</function></link>(raptor_serializer *serializer, raptor_option option, char* string, int integer)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serializer_set_feature_string(raptor_serializer *serializer, raptor_feature feature, const unsigned char* value)</td> <td>int <link linkend="raptor-serializer-set-option"><function>raptor_serializer_set_option</function></link>(raptor_serializer *serializer, raptor_option option, char* string, int integer)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serializer_syntax_name_check(const char* name)</td> <td>int <link linkend="raptor-world-is-serializer-name"><function>raptor_world_is_serializer_name</function></link>(raptor_world* world, const char* name)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serializers_enumerate(const unsigned int counter, const char* *name, const char* *label, const char* *mime_type, const unsigned char* *uri_string)</td> <td>const raptor_syntax_description* <link linkend="raptor-world-get-serializer-description"><function>raptor_world_get_serializer_description</function></link>(raptor_world* world, unsigned int counter)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_serializers_enumerate_v2(raptor_world* world, const unsigned int counter, const char* *name, const char* *label, const char* *mime_type, const unsigned char* *uri_string)</td> <td>const raptor_syntax_description* <link linkend="raptor-world-get-serializer-description"><function>raptor_world_get_serializer_description</function></link>(raptor_world* world, const unsigned int counter)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_set_default_generate_id_parameters(raptor_parser* rdf_parser, char* prefix, int base)</td> <td>void <link linkend="raptor-world-set-generate-bnodeid-parameters"><function>raptor_world_set_generate_bnodeid_parameters</function></link>(raptor_world* world, char* prefix, int base)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_set_feature(raptor_parser *parser, raptor_feature feature, int value)</td> <td>int <link linkend="raptor-parser-set-option"><function>raptor_parser_set_option</function></link>(raptor_parser *parser, raptor_option option, char* string, int integer)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_set_generate_id_handler(raptor_parser* parser, void *user_data, raptor_generate_id_handler handler)</td> <td>void <link linkend="raptor-world-set-generate-bnodeid-handler"><function>raptor_world_set_generate_bnodeid_handler</function></link>(raptor_world* world, void *user_data, raptor_generate_bnodeid_handler handler)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_set_graph_handler(raptor_parser* parser, void *user_data, raptor_graph_handler handler)</td> <td>void <link linkend="raptor-parser-set-graph-mark-handler"><function>raptor_parser_set_graph_mark_handler</function></link>(raptor_parser* parser, void *user_data, raptor_graph_mark_handler handler)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_set_libxslt_security_preferences(void *security_preferences)</td> <td>int <link linkend="raptor-world-set-libxslt-security-preferences"><function>raptor_world_set_libxslt_security_preferences</function></link>(raptor_world *world, void *security_preferences)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_statement_compare_v2(const raptor_statement_v2 *s1, const raptor_statement_v2 *s2)</td> <td>int <link linkend="raptor-statement-compare"><function>raptor_statement_compare</function></link>(const raptor_statement *s1, const raptor_statement *s2)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_syntax_name_check(const char* name)</td> <td>int <link linkend="raptor-world-is-parser-name"><function>raptor_world_is_parser_name</function></link>(raptor_world* world, const char *name)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_syntax_name_check_v2(raptor_world* world, const char* name)</td> <td>int <link linkend="raptor-world-is-parser-name"><function>raptor_world_is_parser_name</function></link>(raptor_world* world, const char *name)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_syntaxes_enumerate(const unsigned int counter, const char* *name, const char* *label, const char* *mime_type, const unsigned char* *uri_string)</td> <td>raptor_syntax_description* <link linkend="raptor-world-get-parser-description"><function>raptor_world_get_parser_description</function></link>(raptor_world* world, const unsigned int counter)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_syntaxes_enumerate_v2(raptor_world* world, const unsigned int counter, const char* *name, const char* *label, const char* *mime_type, const unsigned char* *uri_string)</td> <td>raptor_syntax_description* <link linkend="raptor-world-get-parser-description"><function>raptor_world_get_parser_description</function></link>(raptor_world* world, const unsigned int counter)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_unicode_char_to_utf8(raptor_unichar c, unsigned char* output)</td> <td>int <link linkend="raptor-unicode-utf8-string-put-char"><function>raptor_unicode_utf8_string_put_char</function></link>(raptor_unichar c, unsigned char* output, size_t length)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>unsigned char* raptor_uri_as_counted_string_v2(raptor_world* world, raptor_uri *uri, size_t* len_p)</td> <td>unsigned char* <link linkend="raptor-uri-as-counted-string"><function>raptor_uri_as_counted_string</function></link>(raptor_uri *uri, size_t* len_p)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>unsigned char* raptor_uri_as_string_v2(raptor_world* world, raptor_uri *uri)</td> <td>unsigned char* <link linkend="raptor-uri-as-string"><function>raptor_uri_as_string</function></link>(raptor_uri *uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_uri_compare_v2(raptor_world* world, raptor_uri* uri1, raptor_uri* uri2)</td> <td>int <link linkend="raptor-uri-compare"><function>raptor_uri_compare</function></link>(raptor_uri* uri1, raptor_uri* uri2)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_uri* raptor_uri_copy_v2(raptor_world* world, raptor_uri *uri)</td> <td>raptor_uri* <link linkend="raptor-uri-copy"><function>raptor_uri_copy</function></link>(raptor_uri *uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_uri_equals_v2(raptor_world* world, raptor_uri* uri1, raptor_uri* uri2)</td> <td>int <link linkend="raptor-uri-equals"><function>raptor_uri_equals</function></link>(raptor_uri* uri1, raptor_uri* uri2)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_uri_print(const raptor_uri* uri, FILE *stream)</td> <td>int <link linkend="raptor-uri-print"><function>raptor_uri_print</function></link>(const raptor_uri* uri, FILE *stream)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_uri_print_v2(raptor_world* world, const raptor_uri* uri, FILE *stream)</td> <td>int <link linkend="raptor-uri-print"><function>raptor_uri_print</function></link>(const raptor_uri* uri, FILE *stream)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_uri_resolve_uri_reference(const unsigned char* base_uri, const unsigned char* reference_uri, unsigned char* buffer, size_t length)</td> <td>size_t <link linkend="raptor-uri-resolve-uri-reference"><function>raptor_uri_resolve_uri_reference</function></link>(const unsigned char* base_uri, const unsigned char* reference_uri, unsigned char* buffer, size_t length)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>unsigned char* raptor_uri_to_counted_string_v2(raptor_world* world, raptor_uri *uri, size_t *len_p)</td> <td>unsigned char* <link linkend="raptor-uri-to-counted-string"><function>raptor_uri_to_counted_string</function></link>(raptor_uri *uri, size_t *len_p)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>unsigned char* raptor_uri_to_relative_counted_uri_string_v2(raptor_world* world, raptor_uri *base_uri, raptor_uri *reference_uri, size_t *length_p)</td> <td>unsigned char* <link linkend="raptor-uri-to-relative-counted-uri-string"><function>raptor_uri_to_relative_counted_uri_string</function></link>(raptor_uri *base_uri, raptor_uri *reference_uri, size_t *length_p)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>unsigned char* raptor_uri_to_relative_uri_string_v2(raptor_world* world, raptor_uri *base_uri, raptor_uri *reference_uri)</td> <td>unsigned char* <link linkend="raptor-uri-to-relative-uri-string"><function>raptor_uri_to_relative_uri_string</function></link>(raptor_uri *base_uri, raptor_uri *reference_uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>unsigned char* raptor_uri_to_string_v2(raptor_world* world, raptor_uri *uri)</td> <td>unsigned char* <link linkend="raptor-uri-to-string"><function>raptor_uri_to_string</function></link>(raptor_uri *uri)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_utf8_to_unicode_char(raptor_unichar* output, const unsigned char* input, int length)</td> <td>int <link linkend="raptor-unicode-utf8-string-get-char"><function>raptor_unicode_utf8_string_get_char</function></link>(const unsigned char* input, size_t length, raptor_unichar* output)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_world_set_libxml_flags(raptor_world *world, int flags)</td> <td>int <link linkend="raptor-world-set-flag"><function>raptor_world_set_flag</function></link>(raptor_world *world, raptor_world_flag flag, int value)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>void raptor_world_set_libxslt_security_preferences(raptor_world *world, void *security_preferences)</td> <td>int <link linkend="raptor-world-set-libxslt-security-preferences"><function>raptor_world_set_libxslt_security_preferences</function></link>(raptor_world *world, void *security_preferences)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_www_fetch_to_string(raptor_www *www, raptor_uri *uri, void **string_p, size_t *length_p, void *(*malloc_handler)(size_t size))</td> <td>int <link linkend="raptor-www-fetch-to-string"><function>raptor_www_fetch_to_string</function></link>(raptor_www *www, raptor_uri *uri, void **string_p, size_t *length_p, raptor_data_malloc_handler const malloc_handler)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_www* raptor_www_new(void)</td> <td>raptor_www* <link linkend="raptor-new-www"><function>raptor_new_www</function></link>(raptor_world* world)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_www* raptor_www_new_with_connection(void* connection)</td> <td>raptor_www* <link linkend="raptor-new-www-with-connection"><function>raptor_new_www_with_connection</function></link>(raptor_world* world, void* connection)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_xml_any_escape_string(const unsigned char* string, size_t len, unsigned char* buffer, size_t length, char quote, int xml_version, raptor_simple_message_handler error_handler, void *error_data)</td> <td>int <link linkend="raptor-xml-escape-string-any"><function>raptor_xml_escape_string_any</function></link>(raptor_world* world, const unsigned char* string, size_t len, unsigned char* buffer, size_t length, char quote, int xml_version)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_xml_escape_string(const unsigned char* string, size_t len, unsigned char* buffer, size_t length, char quote, raptor_simple_message_handler error_handler, void *error_data)</td> <td>int <link linkend="raptor-xml-escape-string"><function>raptor_xml_escape_string</function></link>(raptor_world *world, const unsigned char* string, size_t len, unsigned char* buffer, size_t length, char quote)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_xml_writer_features_enumerate(const raptor_feature feature, const char* *name, raptor_uri **uri, const char* *label)</td> <td>raptor_option_description* <link linkend="raptor-world-get-option-description"><function>raptor_world_get_option_description</function></link>(raptor_world* world, const raptor_domain domain, const raptor_option option)</td> <td>Call with domain = <link linkend="RAPTOR-DOMAIN-XML-WRITER:CAPS"><literal>RAPTOR_DOMAIN_XML_WRITER</literal></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_xml_writer_features_enumerate_v2(raptor_world* world, const raptor_feature feature, const char* *name, raptor_uri **uri, const char* *label)</td> <td>raptor_option_description* <link linkend="raptor-world-get-option-description"><function>raptor_world_get_option_description</function></link>(raptor_world* world, const raptor_domain domain, const raptor_option option)</td> <td>Call with domain = <link linkend="RAPTOR-DOMAIN-XML-WRITER:CAPS"><literal>RAPTOR_DOMAIN_XML_WRITER</literal></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_xml_writer_get_feature(raptor_xml_writer *xml_writer, raptor_feature feature)</td> <td>int <link linkend="raptor-xml-writer-get-option"><function>raptor_xml_writer_get_option</function></link>(raptor_xml_writer *xml_writer, raptor_option option, char** string_p, int* integer_p)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>const unsigned char* raptor_xml_writer_get_feature_string(raptor_xml_writer *xml_writer, raptor_feature feature)</td> <td>const unsigned char* <link linkend="raptor-xml-writer-get-option"><function>raptor_xml_writer_get_option</function></link>(raptor_xml_writer *xml_writer, raptor_option option, char** string_p, int* integer_p)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_xml_writer_set_feature(raptor_xml_writer *xml_writer, raptor_feature feature, int value)</td> <td>int <link linkend="raptor-xml-writer-set-option"><function>raptor_xml_writer_set_option</function></link>(raptor_xml_writer *xml_writer, raptor_option option, char* string, int integer)</td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>int raptor_xml_writer_set_feature_string(raptor_xml_writer *xml_writer, raptor_feature feature, const unsigned char* value)</td> <td>int <link linkend="raptor-xml-writer-set-option"><function>raptor_xml_writer_set_option</function></link>(raptor_xml_writer *xml_writer, raptor_option option, char* string, int integer)</td> <td>&#160;</td>
+    </tr>
+  </tbody>
+</table>
+<table border='1'>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.4.21 type</th>
+      <th>2.0.0 type</th>
+      <th>Notes</th>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_feature</td> <td><link linkend="raptor-option"><type>raptor_option</type></link></td> <td>And new option <link linkend="RAPTOR-OPTION-STRICT:CAPS"><literal>RAPTOR_OPTION_STRICT</literal></link> added.</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_graph_handler</td> <td><link linkend="raptor-graph-mark-handler"><type>raptor_graph_mark_handler</type></link></td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_identifier</td> <td><link linkend="raptor-term"><type>raptor_term</type></link></td> <td>Fields changed to be simpler <link linkend="raptor-term-type"><type>raptor_term_type</type></link> and <link linkend="raptor-term-value"><type>raptor_term_value</type></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_identifier_type</td> <td><link linkend="raptor-term-type"><type>raptor_term_type</type></link></td> <td>Removed several enum values to leave just URI, blank and literal types.</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream_handler2</td> <td><link linkend="raptor-iostream-handler"><type>raptor_iostream_handler</type></link></td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_iostream_write_end_func</td> <td><link linkend="raptor-iostream-write-end-func"><type>raptor_iostream_write_end_func</type></link></td> <td>handler returns an int</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_log_level</td> <td><link linkend="raptor-log-level"><type>raptor_log_level</type></link></td> <td>Added <link linkend="RAPTOR-LOG-LEVEL-TRACE:CAPS"><literal>RAPTOR_LOG_LEVEL_TRACE</literal></link>, <link linkend="RAPTOR-LOG-LEVEL-DEBUG:CAPS"><literal>RAPTOR_LOG_LEVEL_DEBUG</literal></link>, <link linkend="RAPTOR-LOG-LEVEL-INFO:CAPS"><literal>RAPTOR_LOG_LEVEL_INFO</literal></link>. <link linkend="RAPTOR-LOG-LEVEL-WARNING:CAPS"><literal>RAPTOR_LOG_LEVEL_WARNING</literal></link> renamed <link linkend="RAPTOR-LOG-LEVEL-WARN:CAPS"><literal>RAPTOR_LOG_LEVEL_WARN</literal></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_sequence_free_function</td> <td><link linkend="raptor-data-free-handler"><type>raptor_data_free_handler</type></link></td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_sequence_free_handler_v2</td> <td><link linkend="raptor-data-context-free-handler"><type>raptor_data_context_free_handler</type></link></td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_sequence_print_handler</td> <td><link linkend="raptor-data-print-handler"><type>raptor_data_print_handler</type></link></td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_sequence_print_handler_v2</td> <td><link linkend="raptor-data-context-print-handler"><type>raptor_data_context_print_handler</type></link></td> <td>&#160;</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_simple_message_handler</td> <td><link linkend="raptor-log-handler"><type>raptor_log_handler</type></link></td> <td>Replaced by generic raptor log mechanism.  See <link linkend="raptor-world-set-log-handler"><function>raptor_world_set_log_handler</function></link>()</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_statement</td> <td><link linkend="raptor-statement"><type>raptor_statement</type></link></td> <td>fields changed to use <link linkend="raptor-term"><type>raptor_term</type></link></td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_statement_handler</td> <td><link linkend="raptor-statement-handler"><type>raptor_statement_handler</type></link></td> <td>added const</td>
+    </tr>
+    <tr valign='top'>
+      <td>raptor_statement_v2</td> <td><link linkend="raptor-statement"><type>raptor_statement</type></link></td> <td>Fields changed to be a 3 or 4 tuple of <link linkend="raptor-term"><type>raptor_term</type></link></td>
+    </tr>
+  </tbody>
+</table>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-3-to-2-0-4">
+<title>Changes between raptor2 2.0.3 and 2.0.4</title>
+
+<section id="raptor2-changes-new-2-0-3-to-2-0-4">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>int <link linkend="raptor-bnodeid-ntriples-write"><function>raptor_bnodeid_ntriples_write</function></link>(const unsigned char *bnodeid, size_t len, raptor_iostream *iostr) </para></listitem>
+    <listitem><para>int <link linkend="raptor-www-set-ssl-cert-options"><function>raptor_www_set_ssl_cert_options</function></link>(raptor_www* www, const char* cert_filename, const char* cert_type, const char* cert_passphrase) </para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-4-to-2-0-5">
+<title>Changes between raptor2 2.0.4 and 2.0.5</title>
+
+<section id="raptor2-changes-new-2-0-4-to-2-0-5">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>int <link linkend="raptor-snprintf"><function>raptor_snprintf</function></link>(char *buffer, size_t size, const char *format, ...) </para></listitem>
+    <listitem><para>int <link linkend="raptor-unicode-utf8-strlen"><function>raptor_unicode_utf8_strlen</function></link>(const unsigned char *string, size_t length) </para></listitem>
+    <listitem><para>size_t <link linkend="raptor-unicode-utf8-substr"><function>raptor_unicode_utf8_substr</function></link>(unsigned char* dest, size_t* dest_length_p, const unsigned char* src, size_t src_length, int startingLoc, int length) </para></listitem>
+    <listitem><para>int <link linkend="raptor-vasprintf"><function>raptor_vasprintf</function></link>(char **ret, const char *format, va_list arguments) </para></listitem>
+    <listitem><para>int <link linkend="raptor-vsnprintf2"><function>raptor_vsnprintf2</function></link>(char *buffer, size_t size, const char *format, va_list arguments) - Deprecates <link linkend="raptor-vsnprintf"><function>raptor_vsnprintf</function></link>()</para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-5-to-2-0-6">
+<title>Changes between raptor2 2.0.5 and 2.0.6</title>
+
+<section id="raptor2-changes-new-2-0-5-to-2-0-6">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>int <link linkend="raptor-sequence-next-permutation"><function>raptor_sequence_next_permutation</function></link>(raptor_sequence *seq, raptor_data_compare_handler compare) </para></listitem>
+    <listitem><para>int <link linkend="raptor-sequence-reverse"><function>raptor_sequence_reverse</function></link>(raptor_sequence* seq, int start_index, int length) </para></listitem>
+    <listitem><para>int <link linkend="raptor-sequence-swap"><function>raptor_sequence_swap</function></link>(raptor_sequence* seq, int i, int j) </para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-6-to-2-0-7">
+<title>Changes between raptor2 2.0.6 and 2.0.7</title>
+
+<section id="raptor2-changes-new-2-0-6-to-2-0-7">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>raptor_uri* <link linkend="raptor-new-uri-from-uri-or-file-string"><function>raptor_new_uri_from_uri_or_file_string</function></link>(raptor_world* world, raptor_uri* base_uri, const unsigned char* uri_or_file_string) </para></listitem>
+    <listitem><para>void <link linkend="raptor-sax2-set-uri-filter"><function>raptor_sax2_set_uri_filter</function></link>(raptor_sax2* sax2, raptor_uri_filter_func filter, void *user_data) </para></listitem>
+    <listitem><para>int <link linkend="raptor-uri-file-exists"><function>raptor_uri_file_exists</function></link>(raptor_uri* uri) </para></listitem>
+    <listitem><para>int <link linkend="raptor-uri-filename-exists"><function>raptor_uri_filename_exists</function></link>(const unsigned char* path) </para></listitem>
+    <listitem><para>char* <link linkend="raptor-uri-uri-string-to-counted-filename-fragment"><function>raptor_uri_uri_string_to_counted_filename_fragment</function></link>(const unsigned char *uri_string, size_t* len_p, unsigned char **fragment_p, size_t* fragment_len_p) </para></listitem>
+    <listitem><para>int <link linkend="raptor-www-set-ssl-verify-options"><function>raptor_www_set_ssl_verify_options</function></link>(raptor_www* www, int verify_peer, int verify_host) </para></listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title>Enums</title>
+    <listitem><para><link linkend="RAPTOR-OPTION-LOAD-EXTERNAL-ENTITIES:CAPS"><literal>RAPTOR_OPTION_LOAD_EXTERNAL_ENTITIES</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-OPTION-NO-FILE:CAPS"><literal>RAPTOR_OPTION_NO_FILE</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-OPTION-WWW-SSL-VERIFY-HOST:CAPS"><literal>RAPTOR_OPTION_WWW_SSL_VERIFY_HOST</literal></link> </para></listitem>
+    <listitem><para><link linkend="RAPTOR-OPTION-WWW-SSL-VERIFY-PEER:CAPS"><literal>RAPTOR_OPTION_WWW_SSL_VERIFY_PEER</literal></link> </para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-7-to-2-0-8">
+<title>Changes between raptor2 2.0.7 and 2.0.8</title>
+
+<section id="raptor2-changes-new-2-0-7-to-2-0-8">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>raptor_uri* <link linkend="raptor-new-uri-relative-to-base-counted"><function>raptor_new_uri_relative_to_base_counted</function></link>(raptor_world* world, raptor_uri *base_uri, const unsigned char *uri_string, size_t uri_len) </para></listitem>
+    <listitem><para>unsigned char* <link linkend="raptor-term-to-turtle-counted-string"><function>raptor_term_to_turtle_counted_string</function></link>(raptor_term* term, raptor_namespace_stack *nstack, raptor_uri *base_uri, size_t *len_p) </para></listitem>
+    <listitem><para>unsigned char* <link linkend="raptor-term-to-turtle-string"><function>raptor_term_to_turtle_string</function></link>(raptor_term* term, raptor_namespace_stack *nstack, raptor_uri *base_uri) </para></listitem>
+    <listitem><para>int <link linkend="raptor-term-turtle-write"><function>raptor_term_turtle_write</function></link>(raptor_iostream* iostr, raptor_term* term, raptor_namespace_stack *nstack, raptor_uri *base_uri) </para></listitem>
+    <listitem><para>unsigned char* <link linkend="raptor-uri-to-turtle-counted-string"><function>raptor_uri_to_turtle_counted_string</function></link>(raptor_world *world, raptor_uri* uri, raptor_namespace_stack *nstack, raptor_uri *base_uri, size_t *len_p) </para></listitem>
+    <listitem><para>unsigned char* <link linkend="raptor-uri-to-turtle-string"><function>raptor_uri_to_turtle_string</function></link>(raptor_world *world, raptor_uri* uri, raptor_namespace_stack *nstack, raptor_uri *base_uri) </para></listitem>
+    <listitem><para>int <link linkend="raptor-uri-turtle-write"><function>raptor_uri_turtle_write</function></link>(raptor_world *world, raptor_iostream* iostr, raptor_uri* uri, raptor_namespace_stack *nstack, raptor_uri *base_uri) </para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-9-to-2-0-10">
+<title>Changes between raptor2 2.0.9 and 2.0.10</title>
+
+<section id="raptor2-changes-new-2-0-9-to-2-0-10">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>int <link linkend="raptor-string-escaped-write"><function>raptor_string_escaped_write</function></link>(const unsigned char *string, size_t len, const char delim, unsigned int flags, raptor_iostream *iostr) </para></listitem>
+    <listitem><para>int <link linkend="raptor-term-escaped-write"><function>raptor_term_escaped_write</function></link>(const raptor_term *term, unsigned int flags, raptor_iostream* iostr) </para></listitem>
+    <listitem><para>int <link linkend="raptor-uri-escaped-write"><function>raptor_uri_escaped_write</function></link>(raptor_uri* uri, raptor_uri* base_uri, unsigned int flags, raptor_iostream *iostr) </para></listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title>Types</title>
+    <listitem><para><link linkend="raptor-escaped-write-bitflags"><type>raptor_escaped_write_bitflags</type></link> </para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-10-to-2-0-11">
+<title>Changes between raptor2 2.0.10 and 2.0.11</title>
+
+<section id="raptor2-changes-new-2-0-10-to-2-0-11">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>unsigned char* <link linkend="raptor-qname-format-as-xml"><function>raptor_qname_format_as_xml</function></link>(const raptor_qname *qname, size_t *length_p) </para></listitem>
+    <listitem><para>int <link linkend="raptor-uri-uri-string-is-absolute"><function>raptor_uri_uri_string_is_absolute</function></link>(const unsigned char* uri_string) </para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-11-to-2-0-12">
+<title>Changes between raptor2 2.0.11 and 2.0.12</title>
+
+<section id="raptor2-changes-new-2-0-11-to-2-0-12">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>raptor_term* <link linkend="raptor-new-term-from-counted-string"><function>raptor_new_term_from_counted_string</function></link>(raptor_world* world, unsigned char* string, size_t length) </para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-13-to-2-0-14">
+<title>Changes between raptor2 2.0.13 and 2.0.14</title>
+
+<section id="raptor2-changes-new-2-0-13-to-2-0-14">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>unsigned char* <link linkend="raptor-uri-counted-filename-to-uri-string"><function>raptor_uri_counted_filename_to_uri_string</function></link>(const char *filename, size_t filename_len) </para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+<section id="raptor2-changes-2-0-14-to-2-0-15">
+<title>Changes between raptor2 2.0.14 and 2.0.15</title>
+
+<section id="raptor2-changes-new-2-0-14-to-2-0-15">
+<title>New functions, types and enums</title>
+
+  <itemizedlist>
+    <title>Functions</title>
+    <listitem><para>void <link linkend="raptor-sequence-sort-r"><function>raptor_sequence_sort_r</function></link>(raptor_sequence* seq, raptor_data_compare_arg_handler compare, void* user_data) - Uses <link linkend="raptor-sort-r"><function>raptor_sort_r</function></link>() internally.</para></listitem>
+    <listitem><para>void <link linkend="raptor-sort-r"><function>raptor_sort_r</function></link>(void *base, size_t nel, size_t width, raptor_data_compare_arg_handler compar, void *user_data) </para></listitem>
+    <listitem><para>int <link linkend="raptor-world-get-parsers-count"><function>raptor_world_get_parsers_count</function></link>(raptor_world* world) </para></listitem>
+    <listitem><para>int <link linkend="raptor-world-get-serializers-count"><function>raptor_world_get_serializers_count</function></link>(raptor_world* world) </para></listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title>Types</title>
+    <listitem><para><link linkend="raptor-data-compare-arg-handler"><type>raptor_data_compare_arg_handler</type></link> - Used by <link linkend="raptor-sort-r"><function>raptor_sort_r</function></link>()</para></listitem>
+  </itemizedlist>
+
+</section>
+
+</section>
+
+</chapter>

@@ -1,0 +1,85 @@
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<chapter id="tutorial-querying-functionality">
+<title>Listing built-in functionality</title>
+
+<para>
+Raptor can be configured and compiled with support for different
+lists of parsers and serializers.  The list built into the
+library can be found by means of
+<emphasis>description</emphasis> functions.  These take as input an
+<literal>int</literal> counter and return descriptions of the object
+at that offset in the list.  The return value is a pointer to a
+shared, read-only description of the object, or NULL if the counter
+has gone too far into the list.
+</para>
+
+<variablelist>
+<title>Listing Functionality with Descriptions</title>
+<varlistentry><term>Get descriptions of the parser syntaxes</term>
+<listitem><programlisting>
+  const raptor_syntax_description*
+  raptor_world_get_parser_description(raptor_world* world,
+                                      unsigned int counter);
+</programlisting></listitem>
+</varlistentry>
+<varlistentry><term>Get descriptions of the serializer syntaxes</term>
+<listitem><programlisting>
+  const raptor_syntax_description*
+  raptor_world_get_serializer_description(raptor_world* world,
+                                          unsigned int counter);
+</programlisting></listitem>
+</varlistentry>
+<varlistentry><term>Get descriptions of options</term>
+<listitem><programlisting>
+  raptor_option_description*
+  raptor_world_get_option_description(raptor_world* world,
+                                      const raptor_domain domain,
+                                      const raptor_option option);
+</programlisting>
+<para>
+Call with the appropriate domains for the class such as
+<link linkend="RAPTOR-DOMAIN-PARSER:CAPS"><literal>RAPTOR_DOMAIN_PARSER</literal></link>,
+<link linkend="RAPTOR-DOMAIN-SERIALIZER:CAPS"><literal>RAPTOR_DOMAIN_SERIALIZER</literal></link>
+ etc.  See the
+<link linkend="raptor-domain"><literal>raptor_domain</literal></link>
+description for the full list.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>These functions can be called directly after creating a
+raptor world object with
+<link linkend="raptor-new-world"><function>raptor_new_world()</function></link>.
+This is one way to find a parser (name) by it's MIME Type, the other
+is to use the mime_type parameter of the
+<link linkend="raptor-new-parser-for-content"><function>raptor_new_parser_for_content()</function></link>.</para>
+
+<example id="raptor-example-list-all-parser-options">
+<title>List all parser options using option description</title>
+<programlisting>
+  unsigned int i;
+  for(i = 0; i &lt; raptor_option_get_count(); i++) {
+    raptor_option_description* od;
+
+    od = raptor_world_get_option_description(world, RAPTOR_DOMAIN_PARSER, i);
+
+    if(od) {
+      /* do something with od fields such as od->name, od->label */
+    }
+  }
+</programlisting>
+<para>There are more examples of this usage in the source for the
+<literal>rapper</literal> utility in <filename>util/rapper.c</filename>.
+</para>
+</example>
+
+</chapter>
+
+<!--
+Local variables:
+mode: sgml
+sgml-parent-document: ("raptor-docs.xml" "book" "part")
+End:
+-->

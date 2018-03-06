@@ -1,0 +1,619 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Serializer</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="reference-manual.html" title="Part II. Raptor Reference Manual">
+<link rel="prev" href="raptor2-section-sequence.html" title="Sequence">
+<link rel="next" href="raptor2-section-stringbuffer.html" title="String buffer">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="raptor2-section-sequence.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference-manual.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="raptor2-section-stringbuffer.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#raptor2-section-serializer.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#raptor2-section-serializer.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="raptor2-section-serializer"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="raptor2-section-serializer.top_of_page"></a>Serializer</span></h2>
+<p>Serializer — RDF serializers - from RDF triples to a syntax</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="raptor2-section-serializer.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer">raptor_serializer</a>;
+<a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="returnvalue">raptor_serializer</span></a> * <a class="link" href="raptor2-section-serializer.html#raptor-new-serializer" title="raptor_new_serializer ()">raptor_new_serializer</a>               (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-serializer.html#raptor-free-serializer" title="raptor_free_serializer ()">raptor_free_serializer</a>              (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-start-to-iostream" title="raptor_serializer_start_to_iostream ()">raptor_serializer_start_to_iostream</a> (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-iostream.html#raptor-iostream" title="raptor_iostream"><span class="type">raptor_iostream</span></a> *iostream</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-start-to-filename" title="raptor_serializer_start_to_filename ()">raptor_serializer_start_to_filename</a> (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *filename</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-start-to-string" title="raptor_serializer_start_to_string ()">raptor_serializer_start_to_string</a>   (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> **string_p</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length_p</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-start-to-file-handle" title="raptor_serializer_start_to_file_handle ()">raptor_serializer_start_to_file_handle</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">FILE</span> *fh</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-set-namespace" title="raptor_serializer_set_namespace ()">raptor_serializer_set_namespace</a>     (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-set-namespace-from-namespace" title="raptor_serializer_set_namespace_from_namespace ()">raptor_serializer_set_namespace_from_namespace</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *nspace</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-serialize-statement" title="raptor_serializer_serialize_statement ()">raptor_serializer_serialize_statement</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-triples.html#raptor-statement" title="raptor_statement"><span class="type">raptor_statement</span></a> *statement</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-serialize-end" title="raptor_serializer_serialize_end ()">raptor_serializer_serialize_end</a>     (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-flush" title="raptor_serializer_flush ()">raptor_serializer_flush</a>             (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);
+const <a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="returnvalue">raptor_syntax_description</span></a> * <a class="link" href="raptor2-section-serializer.html#raptor-serializer-get-description" title="raptor_serializer_get_description ()">raptor_serializer_get_description</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);
+<a class="link" href="raptor2-section-iostream.html#raptor-iostream" title="raptor_iostream"><span class="returnvalue">raptor_iostream</span></a> *   <a class="link" href="raptor2-section-serializer.html#raptor-serializer-get-iostream" title="raptor_serializer_get_iostream ()">raptor_serializer_get_iostream</a>      (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *serializer</code></em>);
+<a class="link" href="raptor2-section-locator.html#raptor-locator" title="raptor_locator"><span class="returnvalue">raptor_locator</span></a> *    <a class="link" href="raptor2-section-serializer.html#raptor-serializer-get-locator" title="raptor_serializer_get_locator ()">raptor_serializer_get_locator</a>       (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-set-option" title="raptor_serializer_set_option ()">raptor_serializer_set_option</a>        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-option.html#raptor-option" title="enum raptor_option"><span class="type">raptor_option</span></a> option</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> integer</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-serializer.html#raptor-serializer-get-option" title="raptor_serializer_get_option ()">raptor_serializer_get_option</a>        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-option.html#raptor-option" title="enum raptor_option"><span class="type">raptor_option</span></a> option</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> **string_p</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> *integer_p</code></em>);
+<a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="returnvalue">raptor_world</span></a> *      <a class="link" href="raptor2-section-serializer.html#raptor-serializer-get-world" title="raptor_serializer_get_world ()">raptor_serializer_get_world</a>         (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-serializer.description"></a><h2>Description</h2>
+<p>
+The serializing class that allows creating a serializer for
+writing a particular syntax to an output string, file, file
+handle or user function (via <a class="link" href="raptor2-section-iostream.html#raptor-iostream" title="raptor_iostream"><span class="type">raptor_iostream</span></a>).
+</p>
+<p>
+There are also methods to deal with handling errors, warnings and
+returned triples as well as setting options (features)
+that can adjust how serializing is performed.
+</p>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-serializer.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="raptor-serializer"></a><h3>raptor_serializer</h3>
+<pre class="programlisting">raptor_serializer* raptor_serializer;
+</pre>
+<p>
+Raptor Serializer class
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-serializer"></a><h3>raptor_new_serializer ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="returnvalue">raptor_serializer</span></a> * raptor_new_serializer               (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>);</pre>
+<p>
+Constructor - create a new raptor_serializer object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>the serializer name or NULL for default syntax</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> object or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-free-serializer"></a><h3>raptor_free_serializer ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_free_serializer              (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);</pre>
+<p>
+Destructor - destroy a raptor_serializer object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-start-to-iostream"></a><h3>raptor_serializer_start_to_iostream ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_start_to_iostream (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-iostream.html#raptor-iostream" title="raptor_iostream"><span class="type">raptor_iostream</span></a> *iostream</code></em>);</pre>
+<p>
+Start serialization to an iostream with given base URI
+</p>
+<p>
+The passed in <em class="parameter"><code>iostream</code></em> does not become owned by the serializer
+and can be used by the caller after serializing is done.  It
+must be destroyed by the caller.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>the <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>base URI or NULL if no base URI is required</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iostream</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-iostream.html#raptor-iostream" title="raptor_iostream"><span class="type">raptor_iostream</span></a> to write serialization to</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-start-to-filename"></a><h3>raptor_serializer_start_to_filename ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_start_to_filename (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *filename</code></em>);</pre>
+<p>
+Start serializing to a filename.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>the <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filename</code></em> :</span></p></td>
+<td>filename to serialize to</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-start-to-string"></a><h3>raptor_serializer_start_to_string ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_start_to_string   (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> **string_p</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length_p</code></em>);</pre>
+<p>
+Start serializing to a string.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>the <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>base URI or NULL if no base URI is required</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string_p</code></em> :</span></p></td>
+<td>pointer to location to hold string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length_p</code></em> :</span></p></td>
+<td>pointer to location to hold length of string (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-start-to-file-handle"></a><h3>raptor_serializer_start_to_file_handle ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_start_to_file_handle
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">FILE</span> *fh</code></em>);</pre>
+<p>
+Start serializing to a FILE*.
+</p>
+<p>
+NOTE: This does not fclose the handle when it is finished.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>the <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>base URI or NULL if no base URI is required</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fh</code></em> :</span></p></td>
+<td>FILE* to serialize to</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-set-namespace"></a><h3>raptor_serializer_set_namespace ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_set_namespace     (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *prefix</code></em>);</pre>
+<p>
+set a namespace uri/prefix mapping for serializing.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>the <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> of namespace or NULL</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em> :</span></p></td>
+<td>prefix to use or NULL</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-set-namespace-from-namespace"></a><h3>raptor_serializer_set_namespace_from_namespace ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_set_namespace_from_namespace
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> *nspace</code></em>);</pre>
+<p>
+Set a namespace uri/prefix mapping for serializing from an existing namespace.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>the <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nspace</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-xml-namespace.html#raptor-namespace" title="raptor_namespace"><span class="type">raptor_namespace</span></a> to set</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-serialize-statement"></a><h3>raptor_serializer_serialize_statement ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_serialize_statement
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-triples.html#raptor-statement" title="raptor_statement"><span class="type">raptor_statement</span></a> *statement</code></em>);</pre>
+<p>
+Serialize a statement.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>the <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>statement</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-triples.html#raptor-statement" title="raptor_statement"><span class="type">raptor_statement</span></a> to serialize to a syntax</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-serialize-end"></a><h3>raptor_serializer_serialize_end ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_serialize_end     (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);</pre>
+<p>
+End a serialization.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>the <a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-flush"></a><h3>raptor_serializer_flush ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_flush             (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);</pre>
+<p>
+Flush the current serializer output and free any pending state
+</p>
+<p>
+In serializers that can generate blocks of content, this causes
+the writing of any current pending block.  For example in Turtle
+this may write all pending triples.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>raptor serializer</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-get-description"></a><h3>raptor_serializer_get_description ()</h3>
+<pre class="programlisting">const <a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="returnvalue">raptor_syntax_description</span></a> * raptor_serializer_get_description
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);</pre>
+<p>
+Get description of the syntaxes of the serializer.
+</p>
+<p>
+The returned description is static and lives as long as the raptor
+library (raptor world).
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> serializer object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>description of syntax</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-get-iostream"></a><h3>raptor_serializer_get_iostream ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-iostream.html#raptor-iostream" title="raptor_iostream"><span class="returnvalue">raptor_iostream</span></a> *   raptor_serializer_get_iostream      (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *serializer</code></em>);</pre>
+<p>
+Get the current serializer iostream.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>serializer</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the serializer's current iostream or NULL if</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-get-locator"></a><h3>raptor_serializer_get_locator ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-locator.html#raptor-locator" title="raptor_locator"><span class="returnvalue">raptor_locator</span></a> *    raptor_serializer_get_locator       (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);</pre>
+<p>
+Get the serializer raptor locator object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>raptor serializer</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>raptor locator</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-set-option"></a><h3>raptor_serializer_set_option ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_set_option        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-option.html#raptor-option" title="enum raptor_option"><span class="type">raptor_option</span></a> option</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *string</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> integer</code></em>);</pre>
+<p>
+Set serializer option.
+</p>
+<p>
+If <em class="parameter"><code>string</code></em> is not NULL and the option type is numeric, the string
+value is converted to an integer and used in preference to <em class="parameter"><code>integer</code></em>.
+</p>
+<p>
+If <em class="parameter"><code>string</code></em> is NULL and the option type is not numeric, an error is
+returned.
+</p>
+<p>
+The <em class="parameter"><code>string</code></em> values used are copied.
+</p>
+<p>
+The allowed options are available via
+<a class="link" href="raptor2-section-option.html#raptor-world-get-option-description" title="raptor_world_get_option_description ()"><code class="function">raptor_world_get_option_description()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>serializer</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> serializer object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>option</code></em> :</span></p></td>
+<td>option to set from enumerated <a class="link" href="raptor2-section-option.html#raptor-option" title="enum raptor_option"><span class="type">raptor_option</span></a> values</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em> :</span></p></td>
+<td>string option value (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>integer</code></em> :</span></p></td>
+<td>integer option value</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non 0 on failure or if the option is unknown</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-get-option"></a><h3>raptor_serializer_get_option ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_serializer_get_option        (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *serializer</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-option.html#raptor-option" title="enum raptor_option"><span class="type">raptor_option</span></a> option</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> **string_p</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> *integer_p</code></em>);</pre>
+<p>
+Get serializer option.
+</p>
+<p>
+Any string value returned in *<em class="parameter"><code>string_p</code></em> is shared and must
+be copied by the caller.
+</p>
+<p>
+The allowed options are available via
+<a class="link" href="raptor2-section-option.html#raptor-world-get-option-description" title="raptor_world_get_option_description ()"><code class="function">raptor_world_get_option_description()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>serializer</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> serializer object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>option</code></em> :</span></p></td>
+<td>option to get value</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string_p</code></em> :</span></p></td>
+<td>pointer to where to store string value</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>integer_p</code></em> :</span></p></td>
+<td>pointer to where to store integer value</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>option value or &lt; 0 for an illegal option</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-serializer-get-world"></a><h3>raptor_serializer_get_world ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="returnvalue">raptor_world</span></a> *      raptor_serializer_get_world         (<em class="parameter"><code><a class="link" href="raptor2-section-serializer.html#raptor-serializer" title="raptor_serializer"><span class="type">raptor_serializer</span></a> *rdf_serializer</code></em>);</pre>
+<p>
+Get the <a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> object associated with a serializer.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rdf_serializer</code></em> :</span></p></td>
+<td>raptor serializer</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>raptor_world* pointer</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

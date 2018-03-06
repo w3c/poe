@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AVL Trees</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="reference-manual.html" title="Part II. Raptor Reference Manual">
+<link rel="prev" href="raptor2-section-memory.html" title="Memory">
+<link rel="next" href="raptor2-section-constants.html" title="Constants">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="raptor2-section-memory.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference-manual.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="raptor2-section-constants.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#raptor2-section-avltree.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#raptor2-section-avltree.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="raptor2-section-avltree"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="raptor2-section-avltree.top_of_page"></a>AVL Trees</span></h2>
+<p>AVL Trees — AVL Trees</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="raptor2-section-avltree.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree">raptor_avltree</a>;
+enum                <a class="link" href="raptor2-section-avltree.html#raptor-avltree-bitflags" title="enum raptor_avltree_bitflags">raptor_avltree_bitflags</a>;
+<a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="returnvalue">raptor_avltree</span></a> *    <a class="link" href="raptor2-section-avltree.html#raptor-new-avltree" title="raptor_new_avltree ()">raptor_new_avltree</a>                  (<em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-compare-handler" title="raptor_data_compare_handler ()"><span class="type">raptor_data_compare_handler</span></a> compare_handler</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-free-handler" title="raptor_data_free_handler ()"><span class="type">raptor_data_free_handler</span></a> free_handler</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">int</span> flags</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-avltree.html#raptor-free-avltree" title="raptor_free_avltree ()">raptor_free_avltree</a>                 (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-avltree.html#raptor-avltree-add" title="raptor_avltree_add ()">raptor_avltree_add</a>                  (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *p_data</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-avltree.html#raptor-avltree-delete" title="raptor_avltree_delete ()">raptor_avltree_delete</a>               (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *p_data</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-avltree.html#raptor-avltree-print" title="raptor_avltree_print ()">raptor_avltree_print</a>                (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">FILE</span> *stream</code></em>);
+<span class="returnvalue">void</span> *              <a class="link" href="raptor2-section-avltree.html#raptor-avltree-remove" title="raptor_avltree_remove ()">raptor_avltree_remove</a>               (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *p_data</code></em>);
+<span class="returnvalue">void</span> *              <a class="link" href="raptor2-section-avltree.html#raptor-avltree-search" title="raptor_avltree_search ()">raptor_avltree_search</a>               (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">void</span> *p_data</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-avltree.html#raptor-avltree-set-print-handler" title="raptor_avltree_set_print_handler ()">raptor_avltree_set_print_handler</a>    (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-print-handler" title="raptor_data_print_handler ()"><span class="type">raptor_data_print_handler</span></a> print_handler</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-avltree.html#raptor-avltree-size" title="raptor_avltree_size ()">raptor_avltree_size</a>                 (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-avltree.html#raptor-avltree-visit" title="raptor_avltree_visit ()">raptor_avltree_visit</a>                (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-visit-handler" title="raptor_avltree_visit_handler ()"><span class="type">raptor_avltree_visit_handler</span></a> visit_handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+typedef             <a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator">raptor_avltree_iterator</a>;
+<a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="returnvalue">raptor_avltree_iterator</span></a> * <a class="link" href="raptor2-section-avltree.html#raptor-new-avltree-iterator" title="raptor_new_avltree_iterator ()">raptor_new_avltree_iterator</a>   (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *range</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-free-handler" title="raptor_data_free_handler ()"><span class="type">raptor_data_free_handler</span></a> range_free_handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> direction</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-avltree.html#raptor-free-avltree-iterator" title="raptor_free_avltree_iterator ()">raptor_free_avltree_iterator</a>        (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> *iterator</code></em>);
+<span class="returnvalue">void</span> *              <a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator-get" title="raptor_avltree_iterator_get ()">raptor_avltree_iterator_get</a>         (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> *iterator</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator-is-end" title="raptor_avltree_iterator_is_end ()">raptor_avltree_iterator_is_end</a>      (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> *iterator</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator-next" title="raptor_avltree_iterator_next ()">raptor_avltree_iterator_next</a>        (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> *iterator</code></em>);
+<span class="returnvalue">int</span>                 (<a class="link" href="raptor2-section-avltree.html#raptor-avltree-visit-handler" title="raptor_avltree_visit_handler ()">*raptor_avltree_visit_handler</a>)     (<em class="parameter"><code><span class="type">int</span> depth</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *data</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-avltree.description"></a><h2>Description</h2>
+<p>
+AVL Trees
+</p>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-avltree.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="raptor-avltree"></a><h3>raptor_avltree</h3>
+<pre class="programlisting">typedef struct raptor_avltree_s raptor_avltree;
+</pre>
+<p>
+AVL Tree
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-bitflags"></a><h3>enum raptor_avltree_bitflags</h3>
+<pre class="programlisting">typedef enum {
+ RAPTOR_AVLTREE_FLAG_REPLACE_DUPLICATES = 1
+} raptor_avltree_bitflags;
+</pre>
+<p>
+Bit flags for AVL Tree class constructor <a class="link" href="raptor2-section-avltree.html#raptor-new-avltree" title="raptor_new_avltree ()"><code class="function">raptor_new_avltree()</code></a>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><a name="RAPTOR-AVLTREE-FLAG-REPLACE-DUPLICATES:CAPS"></a><span class="term"><code class="literal">RAPTOR_AVLTREE_FLAG_REPLACE_DUPLICATES</code></span></p></td>
+<td>If set <a class="link" href="raptor2-section-avltree.html#raptor-avltree-add" title="raptor_avltree_add ()"><code class="function">raptor_avltree_add()</code></a> will replace any duplicate items. If not set, <a class="link" href="raptor2-section-avltree.html#raptor-avltree-add" title="raptor_avltree_add ()"><code class="function">raptor_avltree_add()</code></a> will not replace them and will return status &gt;0 when adding a duplicate. (Default is not set)
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-avltree"></a><h3>raptor_new_avltree ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="returnvalue">raptor_avltree</span></a> *    raptor_new_avltree                  (<em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-compare-handler" title="raptor_data_compare_handler ()"><span class="type">raptor_data_compare_handler</span></a> compare_handler</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-free-handler" title="raptor_data_free_handler ()"><span class="type">raptor_data_free_handler</span></a> free_handler</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">int</span> flags</code></em>);</pre>
+<p>
+AVL Tree Constructor
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>compare_handler</code></em> :</span></p></td>
+<td>item comparison handler for ordering</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>free_handler</code></em> :</span></p></td>
+<td>item free handler (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td>AVLTree flags - bitmask of <a class="link" href="raptor2-section-avltree.html#raptor-avltree-bitflags" title="enum raptor_avltree_bitflags"><span class="type">raptor_avltree_bitflags</span></a> flags.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>new AVL Tree or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-free-avltree"></a><h3>raptor_free_avltree ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_free_avltree                 (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>);</pre>
+<p>
+AVL Tree destructor
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVLTree object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-add"></a><h3>raptor_avltree_add ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_avltree_add                  (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *p_data</code></em>);</pre>
+<p>
+add an item to an AVL Tree
+</p>
+<p>
+The item added becomes owned by the AVL Tree, and will be freed by
+the free_handler argument given to <a class="link" href="raptor2-section-avltree.html#raptor-new-avltree" title="raptor_new_avltree ()"><code class="function">raptor_new_avltree()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVL Tree object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>p_data</code></em> :</span></p></td>
+<td>pointer to data item</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success, &gt;0 if equivalent item exists (and the old element remains in the tree), &lt;0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-delete"></a><h3>raptor_avltree_delete ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_avltree_delete               (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *p_data</code></em>);</pre>
+<p>
+Remove an item from an AVL Tree and free it
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVL Tree object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>p_data</code></em> :</span></p></td>
+<td>pointer to data item</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-print"></a><h3>raptor_avltree_print ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_avltree_print                (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">FILE</span> *stream</code></em>);</pre>
+<p>
+Print the items in the tree in order to a stream (for debugging)
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVL Tree</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stream</code></em> :</span></p></td>
+<td>stream to print to</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-remove"></a><h3>raptor_avltree_remove ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span> *              raptor_avltree_remove               (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *p_data</code></em>);</pre>
+<p>
+Remove an item from an AVL Tree and return it
+</p>
+<p>
+The item removed is  no longer owned by the AVL Tree and is
+owned by the caller.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVL Tree object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>p_data</code></em> :</span></p></td>
+<td>pointer to data item</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>object or NULL on failure or if not found</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-search"></a><h3>raptor_avltree_search ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span> *              raptor_avltree_search               (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">void</span> *p_data</code></em>);</pre>
+<p>
+Find an item in an AVL Tree
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVL Tree object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>p_data</code></em> :</span></p></td>
+<td>pointer to data item</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>shared pointer to item (still owned by AVL Tree) or NULL on failure or if not found</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-set-print-handler"></a><h3>raptor_avltree_set_print_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_avltree_set_print_handler    (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-print-handler" title="raptor_data_print_handler ()"><span class="type">raptor_data_print_handler</span></a> print_handler</code></em>);</pre>
+<p>
+Set the handler for printing an item in a tree
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVL Tree object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>print_handler</code></em> :</span></p></td>
+<td>print function</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-size"></a><h3>raptor_avltree_size ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_avltree_size                 (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>);</pre>
+<p>
+Get the number of items in the AVL Tree
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVL Tree object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>number of items in tree</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-visit"></a><h3>raptor_avltree_visit ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_avltree_visit                (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-visit-handler" title="raptor_avltree_visit_handler ()"><span class="type">raptor_avltree_visit_handler</span></a> visit_handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Perform an in-order visit of the items in the AVL Tree
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>AVL Tree object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>visit_handler</code></em> :</span></p></td>
+<td>visit function to call at each item</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data pointer fo visit function</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 if traversal was terminated early by <em class="parameter"><code>visit_handler</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-iterator"></a><h3>raptor_avltree_iterator</h3>
+<pre class="programlisting">typedef struct raptor_avltree_iterator_s raptor_avltree_iterator;
+</pre>
+<p>
+AVL Tree Iterator as created by <a class="link" href="raptor2-section-avltree.html#raptor-new-avltree-iterator" title="raptor_new_avltree_iterator ()"><code class="function">raptor_new_avltree_iterator()</code></a>
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-avltree-iterator"></a><h3>raptor_new_avltree_iterator ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="returnvalue">raptor_avltree_iterator</span></a> * raptor_new_avltree_iterator   (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> *tree</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *range</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-free-handler" title="raptor_data_free_handler ()"><span class="type">raptor_data_free_handler</span></a> range_free_handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> direction</code></em>);</pre>
+<p>
+Get an in-order iterator for the start of a range, or the entire contents
+</p>
+<p>
+If range is NULL, the entire tree is walked in order.  If range
+specifies a range (i.e. the tree comparison function will 'match'
+(return 0 for) range and /several/ nodes), the iterator will be
+placed at the leftmost child matching range, and
+raptor_avltree_iterator_next will iterate over all nodes (and only
+nodes) that match range.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-avltree.html#raptor-avltree" title="raptor_avltree"><span class="type">raptor_avltree</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>range</code></em> :</span></p></td>
+<td>range</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>range_free_handler</code></em> :</span></p></td>
+<td>function to free <em class="parameter"><code>range</code></em> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td>&lt;0 to go 'backwards' otherwise 'forwards'</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new <a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> object or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-free-avltree-iterator"></a><h3>raptor_free_avltree_iterator ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_free_avltree_iterator        (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> *iterator</code></em>);</pre>
+<p>
+AVL Tree Iterator destructor
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>iterator</code></em> :</span></p></td>
+<td>AVL Tree iterator object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-iterator-get"></a><h3>raptor_avltree_iterator_get ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span> *              raptor_avltree_iterator_get         (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> *iterator</code></em>);</pre>
+<p>
+Get current iteration object
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iterator</code></em> :</span></p></td>
+<td>AVL Tree iterator object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>object or NULL if iteration is finished</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-iterator-is-end"></a><h3>raptor_avltree_iterator_is_end ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_avltree_iterator_is_end      (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> *iterator</code></em>);</pre>
+<p>
+Test if an iteration is finished
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iterator</code></em> :</span></p></td>
+<td>AVL Tree iterator object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 if iteration is finished</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-iterator-next"></a><h3>raptor_avltree_iterator_next ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_avltree_iterator_next        (<em class="parameter"><code><a class="link" href="raptor2-section-avltree.html#raptor-avltree-iterator" title="raptor_avltree_iterator"><span class="type">raptor_avltree_iterator</span></a> *iterator</code></em>);</pre>
+<p>
+Move iteration to next/prev object
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iterator</code></em> :</span></p></td>
+<td>AVL Tree iterator object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 if iteration is finished</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-avltree-visit-handler"></a><h3>raptor_avltree_visit_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 (*raptor_avltree_visit_handler)     (<em class="parameter"><code><span class="type">int</span> depth</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *data</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+AVL Tree visitor function as given to <a class="link" href="raptor2-section-avltree.html#raptor-avltree-visit" title="raptor_avltree_visit ()"><code class="function">raptor_avltree_visit()</code></a>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>depth</code></em> :</span></p></td>
+<td>depth of object in tree</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>data object being visited</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data arg to <a class="link" href="raptor2-section-avltree.html#raptor-avltree-visit" title="raptor_avltree_visit ()"><code class="function">raptor_avltree_visit()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 to terminate visit early.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

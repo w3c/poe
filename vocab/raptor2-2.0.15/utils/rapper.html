@@ -1,0 +1,104 @@
+<!-- Creator     : groff version 1.21 -->
+<!-- CreationDate: Sun Jun 29 20:55:05 2014 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+/*<![CDATA[*/
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+/*]]>*/
+</style>
+<title>Raptor RDF Parser Toolkit - Raptor RDF parser utility</title>
+</head>
+<body bgcolor="#ffffff" text="#000085">
+<h1>Raptor RDF Parser Toolkit - Raptor RDF parser utility</h1>
+<hr />
+<h2>NAME <a name="NAME" id="NAME"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">rapper &minus; Raptor RDF parsing and serializing utility</p>
+<h2>SYNOPSIS <a name="SYNOPSIS" id="SYNOPSIS"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><b>rapper</b> [<b>OPTIONS</b>] <i>INPUT-URI [INPUT-BASE-URI]</i></p>
+<h2>EXAMPLE <a name="EXAMPLE" id="EXAMPLE"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><i><b>rapper -o ntriples http://planetrdf.com/guide/rss.rdf<br />
+rapper -i rss-tag-soup -o rss-1.0 pile-of-rss.xml http://example.org/base/<br />
+rapper --count http://example.org/index.rdf</b></i></p>
+<h2>DESCRIPTION <a name="DESCRIPTION" id="DESCRIPTION"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">The <b>rapper</b> utility allows parsing of RDF content by the <b>Raptor</b> RDF parser toolkit emitting the results as RDF triples in a choice of syntaxes. The <i>INPUT-URI</i> can be a file name, &rsquo;-&rsquo; for standard input or if Raptor is built with a WWW retrieval library, a general URI. The optional <i>INPUT-BASE-URI</i> is used as the document parser base URI if present otherwise defaults to the <i>INPUT-URI</i>. A value of &rsquo;-&rsquo; means no base URI.</p>
+<h2>OPTIONS <a name="OPTIONS" id="OPTIONS"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">rapper uses the usual GNU command line syntax, with long options starting with two dashes (&rsquo;-&rsquo;) if supported by the getopt_long function. Otherwise the short options are only available. <b><br />
+&minus;h, &minus;&minus;help</b></p>
+<p style="margin-left:22%;">Show a summary of the options.</p>
+<p style="margin-left:11%;"><b>&minus;i, &minus;&minus;input FORMAT</b></p>
+<p style="margin-left:22%;">Set the input <i>FORMAT</i> to one of &rsquo;rdfxml&rsquo; (RDF/XML, default), &rsquo;ntriples&rsquo; (N-Triples, see below), &rsquo;turtle&rsquo; (Turtle, see below) or &rsquo;rss-tag-soup&rsquo; (RSS Tag Soup). The RSS Tag Soup parser can turn the many XML RSS formats and Atom 0.3 into RDF triples.</p>
+<p style="margin-left:22%; margin-top: 1em">The list of parsers depends on how libraptor(3) was built. The list of supported parsers is given in the help summary given by &minus;h.</p>
+<p style="margin-left:11%;"><b>&minus;I, &minus;&minus;input-uri URI</b></p>
+<p style="margin-left:22%;">Set the input/parser base <i>URI</i> or use value &rsquo;-&rsquo; for no base. The default is the INPUT-URI argument value.</p>
+<p style="margin-left:11%;"><b>&minus;o, &minus;&minus;output FORMAT</b></p>
+<p style="margin-left:22%;">Set the output <i>FORMAT</i> to &rsquo;ntriples&rsquo; (N-Triples, default), &rsquo;rdfxml&rsquo; (RDF/XML), &rsquo;rdfxml-abbrev&rsquo; (RDF/XML with abbreviations) or &rsquo;rss-1.0&rsquo; (RSS 1.0, also an RDF/XML syntax).</p>
+<p style="margin-left:22%; margin-top: 1em">The list of serializers depends on how libraptor(3) was built. The list of supported serializers is given in the help summary given by &minus;h.</p>
+<p style="margin-left:11%;"><b>&minus;O, &minus;&minus;output-uri URI</b></p>
+<p style="margin-left:22%;">Set the output/serializer base <i>URI</i> or use value &rsquo;-&rsquo; for no base. The default is the input base uri, either set by the argument INPUT-BASE-URI or via options <b>&minus;I, &minus;&minus;input-uri URI</b></p>
+<p style="margin-left:11%;"><b>&minus;c, &minus;&minus;count</b></p>
+<p style="margin-left:22%;">Only count the triples and produce no other output.</p>
+<p style="margin-left:11%;"><b>&minus;e, &minus;&minus;ignore-errors</b></p>
+<p style="margin-left:22%;">Ignore errors, do not emit the messages and try to continue parsing.</p>
+<p style="margin-left:11%;"><b>&minus;f, &minus;&minus;feature FEATURE[=VALUE]</b></p>
+<p style="margin-left:22%;">Set a parser or serializer feature <i>FEATURE</i> to a value, or to 1 if <i>VALUE</i> is omitted, Use &minus;f help to get lists of valid parser and serializer features.</p>
+<p style="margin-left:22%; margin-top: 1em">If the form &minus;f &rsquo;xmlns:<i>prefix</i>="<i>uri</i>"&rsquo; is used, the prefix and namespace uri given will be set for serializing. The syntax matches XML in that either or both of <i>prefix</i> or <i>uri</i> can be omitted.</p>
+<p style="margin-left:11%;"><b>&minus;g, &minus;&minus;guess</b></p>
+<p style="margin-left:22%;">Guess the parser to use from the source-URI rather than use the &minus;i FORMAT.</p>
+<p style="margin-left:11%;"><b>&minus;q, &minus;&minus;quiet</b></p>
+<p style="margin-left:22%;">No extra information messages.</p>
+<p style="margin-left:11%;"><b>&minus;r, &minus;&minus;replace-newlines</b></p>
+<p style="margin-left:22%;">Replace newlines in multi-line literals with spaces.</p>
+<p style="margin-left:11%;"><b>&minus;&minus;show-graphs</b></p>
+<p style="margin-left:22%;">Print graph names (URIs) as they are seen in the input. This only has a meaning for parsers that support graph names such as the TRiG parser.</p>
+<p style="margin-left:11%;"><b>&minus;&minus;show-namespaces</b></p>
+<p style="margin-left:22%;">Print namespaces as they are seen in the input.</p>
+<p style="margin-left:11%;"><b>&minus;t, &minus;&minus;trace</b></p>
+<p style="margin-left:22%;">Print URIs retrieved during parsing. Especially useful for monitoring what the guess and GRDDL parsers are doing.</p>
+<p style="margin-left:11%;"><b>&minus;w, &minus;&minus;ignore-warnings</b></p>
+<p style="margin-left:22%;">Ignore warnings, do not emit the messages.</p>
+<p style="margin-left:11%;"><b>&minus;v, &minus;&minus;version</b></p>
+<p style="margin-left:22%;">Print the raptor version and exit.</p>
+<h2>EXAMPLES <a name="EXAMPLES" id="EXAMPLES"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><b>rapper -q -i ntriples -o rdfxml -f &rsquo;xmlns:rss="http://purl.org/rss/1.0/"&rsquo; -f &rsquo;xmlns:ex="http://example.org/"&rsquo; tests/test.nt<br />
+rapper -q -o rdfxml -f &rsquo;xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&rsquo; tests/rdf-schema.rdf &rsquo;http://www.w3.org/2000/01/rdf-schema#&rsquo;</b></p>
+<h2>CONFORMING TO <a name="CONFORMING_TO"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><b><i>RDF/XML Syntax (Revised)</i></b>, W3C Recommendation, <a href="http://www.w3.org/TR/rdf-syntax-grammar/">http://www.w3.org/TR/rdf-syntax-grammar/</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>N-Triples</i>, in <i>RDF Test Cases</i>, Jan Grant and Dave Beckett (eds.), W3C Recommendation, <a href="http://www.w3.org/TR/rdf-testcases/#ntriples">http://www.w3.org/TR/rdf-testcases/#ntriples</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>Turtle Terse RDF Triple Language</i>, Dave Beckett, <a href="http://www.dajobe.org/2004/01/turtle/">http://www.dajobe.org/2004/01/turtle/</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>RDFA in XHTML: Syntax and Processing</i>, Ben Adida, Mark Birbeck, Shane McCarron and Steven Pemberton (eds.), W3C Candidate Recommendation, 20 June 2008 <a href="http://www.w3.org/TR/2008/CR-rdfa-syntax-20080620/">http://www.w3.org/TR/2008/CR-rdfa-syntax-20080620/</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>RDF Site Summary (RSS) 1.0</i>, 2000-12-06 <a href="http://purl.org/rss/1.0/spec">http://purl.org/rss/1.0/spec</a></p>
+<h2>SEE ALSO <a name="SEE_ALSO"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><b>libraptor(3),</b>raptor-config(1)</p>
+<h2>CHANGES <a name="CHANGES" id="CHANGES"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><b>2.0.0</b><br />
+Removed &minus;a option that did nothing.</p>
+<p style="margin-left:11%; margin-top: 1em">Removed &minus;m option from rapper but it was never documented here.</p>
+<p style="margin-left:11%; margin-top: 1em">Removed &minus;n option that was long hidden.</p>
+<p style="margin-left:11%; margin-top: 1em">Removed &minus;s option that was equivalent to &minus;f scanForRDF</p>
+<p style="margin-left:11%; margin-top: 1em"><b>1.4.16</b><br />
+Added &minus;I/&minus;&minus;input-uri and &minus;O/&minus;&minus;output&minus;uri to set the input and output (parser and serializer) base URIs separately.</p>
+<p style="margin-left:11%; margin-top: 1em"><b>1.4.15</b><br />
+Added &minus;t/&minus;&minus;trace to do URI traces.</p>
+<p style="margin-left:11%; margin-top: 1em"><b>1.4.5</b><br />
+Updated to add serializer rdfxml-abbrev</p>
+<p style="margin-left:11%; margin-top: 1em"><b>1.4.3</b><br />
+Updated potential parser and serializers and described &minus;f for defining namespaces.</p>
+<p style="margin-left:11%; margin-top: 1em"><b>1.3.0</b><br />
+Added &minus;f for features.<br />
+Added &minus;g for guessing the parser to use.</p>
+<p style="margin-left:11%; margin-top: 1em"><b>1.1.0</b><br />
+Removed &minus;a, &minus;&minus;assume since rdf:RDF is now always optional.</p>
+<h2>AUTHOR <a name="AUTHOR" id="AUTHOR"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">Dave Beckett - <a href="http://www.dajobe.org/">http://www.dajobe.org/</a></p>
+<hr />
+
+<p>Copyright 2002-2014 <a href="http://www.dajobe.org/">Dave Beckett</a><br />2002-2014 <a href="http://www.bristol.ac.uk/">University of Bristol</a></p>
+
+</body>
+</html>

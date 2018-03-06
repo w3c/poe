@@ -1,0 +1,1135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>General</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="reference-manual.html" title="Part II. Raptor Reference Manual">
+<link rel="prev" href="raptor2-section-world.html" title="Initialisation">
+<link rel="next" href="raptor2-section-memory.html" title="Memory">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="raptor2-section-world.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference-manual.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="raptor2-section-memory.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#raptor2-section-general.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#raptor2-section-general.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="raptor2-section-general"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="raptor2-section-general.top_of_page"></a>General</span></h2>
+<p>General — General library constants and utility functions</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="raptor2-section-general.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">#define             <a class="link" href="raptor2-section-general.html#RAPTOR-VERSION:CAPS" title="RAPTOR_VERSION">RAPTOR_VERSION</a>
+#define             <a class="link" href="raptor2-section-general.html#RAPTOR-VERSION-MAJOR:CAPS" title="RAPTOR_VERSION_MAJOR">RAPTOR_VERSION_MAJOR</a>
+#define             <a class="link" href="raptor2-section-general.html#RAPTOR-VERSION-MINOR:CAPS" title="RAPTOR_VERSION_MINOR">RAPTOR_VERSION_MINOR</a>
+#define             <a class="link" href="raptor2-section-general.html#RAPTOR-VERSION-RELEASE:CAPS" title="RAPTOR_VERSION_RELEASE">RAPTOR_VERSION_RELEASE</a>
+#define             <a class="link" href="raptor2-section-general.html#RAPTOR-VERSION-STRING:CAPS" title="RAPTOR_VERSION_STRING">RAPTOR_VERSION_STRING</a>
+extern const unsigned int <a class="link" href="raptor2-section-general.html#raptor-version-major" title="raptor_version_major">raptor_version_major</a>;
+extern const unsigned int <a class="link" href="raptor2-section-general.html#raptor-version-minor" title="raptor_version_minor">raptor_version_minor</a>;
+extern const unsigned int <a class="link" href="raptor2-section-general.html#raptor-version-release" title="raptor_version_release">raptor_version_release</a>;
+extern const unsigned int <a class="link" href="raptor2-section-general.html#raptor-version-decimal" title="raptor_version_decimal">raptor_version_decimal</a>;
+extern const char * const <a class="link" href="raptor2-section-general.html#raptor-copyright-string" title="raptor_copyright_string">raptor_copyright_string</a>;
+extern const char * const <a class="link" href="raptor2-section-general.html#raptor-home-url-string" title="raptor_home_url_string">raptor_home_url_string</a>;
+extern const char * const <a class="link" href="raptor2-section-general.html#raptor-license-string" title="raptor_license_string">raptor_license_string</a>;
+extern const char * const <a class="link" href="raptor2-section-general.html#raptor-short-copyright-string" title="raptor_short_copyright_string">raptor_short_copyright_string</a>;
+extern const char * const <a class="link" href="raptor2-section-general.html#raptor-version-string" title="raptor_version_string">raptor_version_string</a>;
+extern const unsigned char * const <a class="link" href="raptor2-section-general.html#raptor-owl-namespace-uri" title="raptor_owl_namespace_uri">raptor_owl_namespace_uri</a>;
+extern const unsigned char * const <a class="link" href="raptor2-section-general.html#raptor-rdf-namespace-uri" title="raptor_rdf_namespace_uri">raptor_rdf_namespace_uri</a>;
+extern const unsigned char * const <a class="link" href="raptor2-section-general.html#raptor-rdf-schema-namespace-uri" title="raptor_rdf_schema_namespace_uri">raptor_rdf_schema_namespace_uri</a>;
+extern const unsigned char * const <a class="link" href="raptor2-section-general.html#raptor-xml-literal-datatype-uri-string" title="raptor_xml_literal_datatype_uri_string">raptor_xml_literal_datatype_uri_string</a>;
+extern const unsigned char * const <a class="link" href="raptor2-section-general.html#raptor-xml-namespace-uri" title="raptor_xml_namespace_uri">raptor_xml_namespace_uri</a>;
+extern const unsigned char * const <a class="link" href="raptor2-section-general.html#raptor-xmlschema-datatypes-namespace-uri" title="raptor_xmlschema_datatypes_namespace_uri">raptor_xmlschema_datatypes_namespace_uri</a>;
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-general.html#raptor-statement-handler" title="raptor_statement_handler ()">*raptor_statement_handler</a>)         (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-triples.html#raptor-statement" title="raptor_statement"><span class="type">raptor_statement</span></a> *statement</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-general.html#raptor-snprintf" title="raptor_snprintf ()">raptor_snprintf</a>                     (<em class="parameter"><code><span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> size</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-general.html#raptor-vasprintf" title="raptor_vasprintf ()">raptor_vasprintf</a>                    (<em class="parameter"><code><span class="type">char</span> **ret</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
+                                                         <em class="parameter"><code><span class="type">va_list</span> arguments</code></em>);
+<span class="returnvalue">char</span> *              <a class="link" href="raptor2-section-general.html#raptor-vsnprintf" title="raptor_vsnprintf ()">raptor_vsnprintf</a>                    (<em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
+                                                         <em class="parameter"><code><span class="type">va_list</span> arguments</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-general.html#raptor-vsnprintf2" title="raptor_vsnprintf2 ()">raptor_vsnprintf2</a>                   (<em class="parameter"><code><span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> size</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
+                                                         <em class="parameter"><code><span class="type">va_list</span> arguments</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-general.html#raptor-sort-r" title="raptor_sort_r ()">raptor_sort_r</a>                       (<em class="parameter"><code><span class="type">void</span> *base</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> nel</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> width</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-compare-arg-handler" title="raptor_data_compare_arg_handler ()"><span class="type">raptor_data_compare_arg_handler</span></a> compar</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-general.html#raptor-log-handler" title="raptor_log_handler ()">*raptor_log_handler</a>)               (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-log-message" title="raptor_log_message"><span class="type">raptor_log_message</span></a> *message</code></em>);
+                    <a class="link" href="raptor2-section-general.html#raptor-log-message" title="raptor_log_message">raptor_log_message</a>;
+enum                <a class="link" href="raptor2-section-general.html#raptor-log-level" title="enum raptor_log_level">raptor_log_level</a>;
+const <span class="returnvalue">char</span> *        <a class="link" href="raptor2-section-general.html#raptor-log-level-get-label" title="raptor_log_level_get_label ()">raptor_log_level_get_label</a>          (<em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-log-level" title="enum raptor_log_level"><span class="type">raptor_log_level</span></a> level</code></em>);
+enum                <a class="link" href="raptor2-section-general.html#raptor-domain" title="enum raptor_domain">raptor_domain</a>;
+const <span class="returnvalue">char</span> *        <a class="link" href="raptor2-section-general.html#raptor-domain-get-label" title="raptor_domain_get_label ()">raptor_domain_get_label</a>             (<em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-domain" title="enum raptor_domain"><span class="type">raptor_domain</span></a> domain</code></em>);
+<span class="returnvalue">int</span>                 (<a class="link" href="raptor2-section-general.html#raptor-data-compare-handler" title="raptor_data_compare_handler ()">*raptor_data_compare_handler</a>)      (<em class="parameter"><code>const <span class="type">void</span> *data1</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">void</span> *data2</code></em>);
+<span class="returnvalue">int</span>                 (<a class="link" href="raptor2-section-general.html#raptor-data-compare-arg-handler" title="raptor_data_compare_arg_handler ()">*raptor_data_compare_arg_handler</a>)  (<em class="parameter"><code>const <span class="type">void</span> *data1</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">void</span> *data2</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-general.html#raptor-data-context-free-handler" title="raptor_data_context_free_handler ()">*raptor_data_context_free_handler</a>) (<em class="parameter"><code><span class="type">void</span> *context</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *object</code></em>);
+<span class="returnvalue">int</span>                 (<a class="link" href="raptor2-section-general.html#raptor-data-context-print-handler" title="raptor_data_context_print_handler ()">*raptor_data_context_print_handler</a>)
+                                                        (<em class="parameter"><code><span class="type">void</span> *context</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *object</code></em>,
+                                                         <em class="parameter"><code><span class="type">FILE</span> *fh</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-general.html#raptor-data-free-handler" title="raptor_data_free_handler ()">*raptor_data_free_handler</a>)         (<em class="parameter"><code><span class="type">void</span> *data</code></em>);
+<span class="returnvalue">void</span> *              (<a class="link" href="raptor2-section-general.html#raptor-data-malloc-handler" title="raptor_data_malloc_handler ()">*raptor_data_malloc_handler</a>)       (<em class="parameter"><code><span class="type">size_t</span> size</code></em>);
+<span class="returnvalue">int</span>                 (<a class="link" href="raptor2-section-general.html#raptor-data-print-handler" title="raptor_data_print_handler ()">*raptor_data_print_handler</a>)        (<em class="parameter"><code><span class="type">void</span> *object</code></em>,
+                                                         <em class="parameter"><code><span class="type">FILE</span> *fh</code></em>);
+enum                <a class="link" href="raptor2-section-general.html#raptor-syntax-bitflags" title="enum raptor_syntax_bitflags">raptor_syntax_bitflags</a>;
+                    <a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description">raptor_syntax_description</a>;
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-general.html#raptor-syntax-description-validate" title="raptor_syntax_description_validate ()">raptor_syntax_description_validate</a>  (<em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="type">raptor_syntax_description</span></a> *desc</code></em>);
+                    <a class="link" href="raptor2-section-general.html#raptor-type-q" title="raptor_type_q">raptor_type_q</a>;
+</pre>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-general.description"></a><h2>Description</h2>
+<p>
+How to get access to version numbers, set message and error handlers,
+list the parsed and serialized syntaxes provided in the library
+and various other utility functions.
+</p>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-general.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="RAPTOR-VERSION:CAPS"></a><h3>RAPTOR_VERSION</h3>
+<pre class="programlisting">#define RAPTOR_VERSION 20015
+</pre>
+<p>
+Raptor library version number
+</p>
+<p>
+Format: major * 10000 + minor * 100 + release
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="RAPTOR-VERSION-MAJOR:CAPS"></a><h3>RAPTOR_VERSION_MAJOR</h3>
+<pre class="programlisting">#define RAPTOR_VERSION_MAJOR 2
+</pre>
+<p>
+Raptor library major version
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="RAPTOR-VERSION-MINOR:CAPS"></a><h3>RAPTOR_VERSION_MINOR</h3>
+<pre class="programlisting">#define RAPTOR_VERSION_MINOR 0
+</pre>
+<p>
+Raptor library minor version
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="RAPTOR-VERSION-RELEASE:CAPS"></a><h3>RAPTOR_VERSION_RELEASE</h3>
+<pre class="programlisting">#define RAPTOR_VERSION_RELEASE 15
+</pre>
+<p>
+Raptor library release
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="RAPTOR-VERSION-STRING:CAPS"></a><h3>RAPTOR_VERSION_STRING</h3>
+<pre class="programlisting">#define RAPTOR_VERSION_STRING "2.0.15"
+</pre>
+<p>
+Raptor library version string
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-version-major"></a><h3>raptor_version_major</h3>
+<pre class="programlisting">extern const unsigned int raptor_version_major;
+</pre>
+<p>
+Raptor major version number.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-version-minor"></a><h3>raptor_version_minor</h3>
+<pre class="programlisting">extern const unsigned int raptor_version_minor;
+</pre>
+<p>
+Raptor minor version number.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-version-release"></a><h3>raptor_version_release</h3>
+<pre class="programlisting">extern const unsigned int raptor_version_release;
+</pre>
+<p>
+Raptor release version number.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-version-decimal"></a><h3>raptor_version_decimal</h3>
+<pre class="programlisting">extern const unsigned int raptor_version_decimal;
+</pre>
+<p>
+Raptor version as a decimal number.
+</p>
+<p>
+Format: major * 10000 + minor * 100 + release
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-copyright-string"></a><h3>raptor_copyright_string</h3>
+<pre class="programlisting">extern const char * const raptor_copyright_string;
+</pre>
+<p>
+Copyright string (multiple lines).
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-home-url-string"></a><h3>raptor_home_url_string</h3>
+<pre class="programlisting">extern const char * const raptor_home_url_string;
+</pre>
+<p>
+Raptor home page URL.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-license-string"></a><h3>raptor_license_string</h3>
+<pre class="programlisting">extern const char * const raptor_license_string;
+</pre>
+<p>
+Raptor license string.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-short-copyright-string"></a><h3>raptor_short_copyright_string</h3>
+<pre class="programlisting">extern const char * const raptor_short_copyright_string;
+</pre>
+<p>
+Short copyright string (one line).
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-version-string"></a><h3>raptor_version_string</h3>
+<pre class="programlisting">extern const char * const raptor_version_string;
+</pre>
+<p>
+Raptor version as a string.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-owl-namespace-uri"></a><h3>raptor_owl_namespace_uri</h3>
+<pre class="programlisting">extern const unsigned char * const raptor_owl_namespace_uri;
+</pre>
+<p>
+OWL (owl:) Namespace URI string.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-rdf-namespace-uri"></a><h3>raptor_rdf_namespace_uri</h3>
+<pre class="programlisting">extern const unsigned char * const raptor_rdf_namespace_uri;
+</pre>
+<p>
+RDF Namespace (rdf:) URI string.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-rdf-schema-namespace-uri"></a><h3>raptor_rdf_schema_namespace_uri</h3>
+<pre class="programlisting">extern const unsigned char * const raptor_rdf_schema_namespace_uri;
+</pre>
+<p>
+RDF Schema (rdfs:) Namespace URI string.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-xml-literal-datatype-uri-string"></a><h3>raptor_xml_literal_datatype_uri_string</h3>
+<pre class="programlisting">extern const unsigned char * const raptor_xml_literal_datatype_uri_string;
+</pre>
+<p>
+XML Literal datatype (rdf:XMLLiteral) URI string.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-xml-namespace-uri"></a><h3>raptor_xml_namespace_uri</h3>
+<pre class="programlisting">extern const unsigned char * const raptor_xml_namespace_uri;
+</pre>
+<p>
+XML Namespace (xml:) URI string.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-xmlschema-datatypes-namespace-uri"></a><h3>raptor_xmlschema_datatypes_namespace_uri</h3>
+<pre class="programlisting">extern const unsigned char * const raptor_xmlschema_datatypes_namespace_uri;
+</pre>
+<p>
+XML Schema datatypes (xsd:) namespace URI string.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-statement-handler"></a><h3>raptor_statement_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_statement_handler)         (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-triples.html#raptor-statement" title="raptor_statement"><span class="type">raptor_statement</span></a> *statement</code></em>);</pre>
+<p>
+Statement (triple) reporting handler function.
+</p>
+<p>
+This handler function set with
+<a class="link" href="raptor2-section-parser.html#raptor-parser-set-statement-handler" title="raptor_parser_set_statement_handler ()"><code class="function">raptor_parser_set_statement_handler()</code></a> on a parser receives
+statements as the parsing proceeds. The <em class="parameter"><code>statement</code></em> argument to the
+handler is shared and must be copied by the caller with
+<a class="link" href="raptor2-section-triples.html#raptor-statement-copy" title="raptor_statement_copy ()"><code class="function">raptor_statement_copy()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>statement</code></em> :</span></p></td>
+<td>statement to report</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-snprintf"></a><h3>raptor_snprintf ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_snprintf                     (<em class="parameter"><code><span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> size</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
+                                                         <em class="parameter"><code>...</code></em>);</pre>
+<p>
+Format output into an allocated sized buffer
+</p>
+<p>
+This provides a portable version <code class="function">snprintf()</code> over variants on
+different systems.
+</p>
+<p>
+If <em class="parameter"><code>buffer</code></em> is NULL, calculates the number of bytes needed to
+allocate for buffer and do no formatting.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td>buffer (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>bufer size (or 0)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>printf-style format string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>format arguments</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>number of bytes allocated (excluding NUL) or 0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-vasprintf"></a><h3>raptor_vasprintf ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_vasprintf                    (<em class="parameter"><code><span class="type">char</span> **ret</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
+                                                         <em class="parameter"><code><span class="type">va_list</span> arguments</code></em>);</pre>
+<p>
+Format output into a new buffer and return it
+</p>
+<p>
+This is a wrapper around the (GNU) vasprintf function that is not
+always avaiable.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ret</code></em> :</span></p></td>
+<td>pointer to store buffer</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>printf-style format string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arguments</code></em> :</span></p></td>
+<td>format arguments list</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>number of bytes allocated (excluding NUL) or &lt; 0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-vsnprintf"></a><h3>raptor_vsnprintf ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *              raptor_vsnprintf                    (<em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
+                                                         <em class="parameter"><code><span class="type">va_list</span> arguments</code></em>);</pre>
+<p>
+Format output for a variable arguments list into a newly allocated buffer
+</p>
+<p>
+<em class="parameter"><code>Deprecated</code></em>: This does not actually conform to vsnprintf's calling
+convention and does not return the allocated buffer length.  Use
+<a class="link" href="raptor2-section-general.html#raptor-vsnprintf2" title="raptor_vsnprintf2 ()"><code class="function">raptor_vsnprintf2()</code></a> or <a class="link" href="raptor2-section-general.html#raptor-vasprintf" title="raptor_vasprintf ()"><code class="function">raptor_vasprintf()</code></a> instead.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>printf-style format string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arguments</code></em> :</span></p></td>
+<td>variable arguments list</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly allocated string as the formatted result or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-vsnprintf2"></a><h3>raptor_vsnprintf2 ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_vsnprintf2                   (<em class="parameter"><code><span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> size</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *format</code></em>,
+                                                         <em class="parameter"><code><span class="type">va_list</span> arguments</code></em>);</pre>
+<p>
+Format output for a variable arguments list into an allocated sized buffer.
+</p>
+<p>
+This is a wrapper around system versions of vsnprintf with
+different call and return conventions.
+</p>
+<p>
+If <em class="parameter"><code>buffer</code></em> is NULL or size is 0 or the buffer size is too small,
+returns the number of bytes that would be needed for buffer
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td>buffer (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>size of buffer (or 0)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>printf-style format string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arguments</code></em> :</span></p></td>
+<td>variable arguments list</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>number of bytes allocated (excluding NUL) or &lt;0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sort-r"></a><h3>raptor_sort_r ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sort_r                       (<em class="parameter"><code><span class="type">void</span> *base</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> nel</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> width</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-compare-arg-handler" title="raptor_data_compare_arg_handler ()"><span class="type">raptor_data_compare_arg_handler</span></a> compar</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Sort an array with an extra user data arg for the comparison funciton.
+</p>
+<p>
+Sorts data at <em class="parameter"><code>base</code></em> of <em class="parameter"><code>nel</code></em> elememnts of width <em class="parameter"><code>width</code></em> using
+comparison function <em class="parameter"><code>comp</code></em> that takes args (void* data1, void*
+data2, <em class="parameter"><code>user_data</code></em>) and returns &lt;0, 0, or &gt;0 for object comparison.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>base</code></em> :</span></p></td>
+<td>the array to be sorted</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nel</code></em> :</span></p></td>
+<td>the number of elements in the array</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td>the size in bytes of each element of the array</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>compar</code></em> :</span></p></td>
+<td>comparison function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>a pointer to be passed to the comparison function</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-log-handler"></a><h3>raptor_log_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_log_handler)               (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-log-message" title="raptor_log_message"><span class="type">raptor_log_message</span></a> *message</code></em>);</pre>
+<p>
+Handler function for log messages with location
+</p>
+<p>
+Used during parsing and serializing for errors and warnings that
+may include location information. Handlers may be set
+by <a class="link" href="raptor2-section-world.html#raptor-world-set-log-handler" title="raptor_world_set_log_handler ()"><code class="function">raptor_world_set_log_handler()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
+<td>log message</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-log-message"></a><h3>raptor_log_message</h3>
+<pre class="programlisting">typedef struct {
+  int code;
+  raptor_domain domain;
+  raptor_log_level level;
+  raptor_locator *locator;
+  const char *text;
+} raptor_log_message;
+</pre>
+<p>
+Log message.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><span class="type">int</span> <em class="structfield"><code><a name="raptor-log-message.code"></a>code</code></em>;</span></p></td>
+<td>error code or &lt; 0 if not used or known</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="raptor2-section-general.html#raptor-domain" title="enum raptor_domain"><span class="type">raptor_domain</span></a> <em class="structfield"><code><a name="raptor-log-message.domain"></a>domain</code></em>;</span></p></td>
+<td>message domain or <a class="link" href="raptor2-section-general.html#RAPTOR-DOMAIN-NONE:CAPS"><span class="type">RAPTOR_DOMAIN_NONE</span></a> if not used or known</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="raptor2-section-general.html#raptor-log-level" title="enum raptor_log_level"><span class="type">raptor_log_level</span></a> <em class="structfield"><code><a name="raptor-log-message.level"></a>level</code></em>;</span></p></td>
+<td>log message level</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="raptor2-section-locator.html#raptor-locator" title="raptor_locator"><span class="type">raptor_locator</span></a> *<em class="structfield"><code><a name="raptor-log-message.locator"></a>locator</code></em>;</span></p></td>
+<td>location associated with message or NULL if not known</td>
+</tr>
+<tr>
+<td><p><span class="term">const <span class="type">char</span> *<em class="structfield"><code><a name="raptor-log-message.text"></a>text</code></em>;</span></p></td>
+<td>message string</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-log-level"></a><h3>enum raptor_log_level</h3>
+<pre class="programlisting">typedef enum {
+  RAPTOR_LOG_LEVEL_NONE,
+  RAPTOR_LOG_LEVEL_TRACE,
+  RAPTOR_LOG_LEVEL_DEBUG,
+  RAPTOR_LOG_LEVEL_INFO,
+  RAPTOR_LOG_LEVEL_WARN,
+  RAPTOR_LOG_LEVEL_ERROR,
+  RAPTOR_LOG_LEVEL_FATAL,
+  RAPTOR_LOG_LEVEL_LAST = RAPTOR_LOG_LEVEL_FATAL
+} raptor_log_level;
+</pre>
+<p>
+Log levels
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="RAPTOR-LOG-LEVEL-NONE:CAPS"></a><span class="term"><code class="literal">RAPTOR_LOG_LEVEL_NONE</code></span></p></td>
+<td>Internal
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-LOG-LEVEL-TRACE:CAPS"></a><span class="term"><code class="literal">RAPTOR_LOG_LEVEL_TRACE</code></span></p></td>
+<td>very fine-grained tracing messages information
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-LOG-LEVEL-DEBUG:CAPS"></a><span class="term"><code class="literal">RAPTOR_LOG_LEVEL_DEBUG</code></span></p></td>
+<td>fine-grained tracing messages suitable for debugging
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-LOG-LEVEL-INFO:CAPS"></a><span class="term"><code class="literal">RAPTOR_LOG_LEVEL_INFO</code></span></p></td>
+<td>coarse-grained information messages
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-LOG-LEVEL-WARN:CAPS"></a><span class="term"><code class="literal">RAPTOR_LOG_LEVEL_WARN</code></span></p></td>
+<td>warning messages of potentially harmful problems
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-LOG-LEVEL-ERROR:CAPS"></a><span class="term"><code class="literal">RAPTOR_LOG_LEVEL_ERROR</code></span></p></td>
+<td>error messages where the application can continue
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-LOG-LEVEL-FATAL:CAPS"></a><span class="term"><code class="literal">RAPTOR_LOG_LEVEL_FATAL</code></span></p></td>
+<td>fatal error message where the application will likely abort
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-LOG-LEVEL-LAST:CAPS"></a><span class="term"><code class="literal">RAPTOR_LOG_LEVEL_LAST</code></span></p></td>
+<td>Internal
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-log-level-get-label"></a><h3>raptor_log_level_get_label ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        raptor_log_level_get_label          (<em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-log-level" title="enum raptor_log_level"><span class="type">raptor_log_level</span></a> level</code></em>);</pre>
+<p>
+Get label for a log message level
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>level</code></em> :</span></p></td>
+<td>log message level</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>label string or NULL if level is not valid</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-domain"></a><h3>enum raptor_domain</h3>
+<pre class="programlisting">typedef enum {
+  RAPTOR_DOMAIN_NONE,
+  RAPTOR_DOMAIN_IOSTREAM,
+  RAPTOR_DOMAIN_NAMESPACE,
+  RAPTOR_DOMAIN_PARSER,
+  RAPTOR_DOMAIN_QNAME,
+  RAPTOR_DOMAIN_SAX2,
+  RAPTOR_DOMAIN_SERIALIZER,
+  RAPTOR_DOMAIN_TERM,
+  RAPTOR_DOMAIN_TURTLE_WRITER,
+  RAPTOR_DOMAIN_URI,
+  RAPTOR_DOMAIN_WORLD,
+  RAPTOR_DOMAIN_WWW,
+  RAPTOR_DOMAIN_XML_WRITER,
+  RAPTOR_DOMAIN_LAST = RAPTOR_DOMAIN_XML_WRITER
+} raptor_domain;
+</pre>
+<p>
+Log domain
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-NONE:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_NONE</code></span></p></td>
+<td>Internal
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-IOSTREAM:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_IOSTREAM</code></span></p></td>
+<td>I/O stream
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-NAMESPACE:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_NAMESPACE</code></span></p></td>
+<td>XML Namespace / namespace stack
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-PARSER:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_PARSER</code></span></p></td>
+<td>RDF Parser
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-QNAME:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_QNAME</code></span></p></td>
+<td>XML QName
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-SAX2:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_SAX2</code></span></p></td>
+<td>XML SAX2
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-SERIALIZER:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_SERIALIZER</code></span></p></td>
+<td>RDF Serializer
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-TERM:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_TERM</code></span></p></td>
+<td>RDF Term
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-TURTLE-WRITER:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_TURTLE_WRITER</code></span></p></td>
+<td>Turtle Writer
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-URI:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_URI</code></span></p></td>
+<td>RDF Uri
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-WORLD:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_WORLD</code></span></p></td>
+<td>RDF world
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-WWW:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_WWW</code></span></p></td>
+<td>WWW
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-XML-WRITER:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_XML_WRITER</code></span></p></td>
+<td>XML Writer
+</td>
+</tr>
+<tr>
+<td><p><a name="RAPTOR-DOMAIN-LAST:CAPS"></a><span class="term"><code class="literal">RAPTOR_DOMAIN_LAST</code></span></p></td>
+<td>Internal
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-domain-get-label"></a><h3>raptor_domain_get_label ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        raptor_domain_get_label             (<em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-domain" title="enum raptor_domain"><span class="type">raptor_domain</span></a> domain</code></em>);</pre>
+<p>
+Get label for a domain
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>domain</code></em> :</span></p></td>
+<td>domain</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>label string or NULL if domain is not valid</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-data-compare-handler"></a><h3>raptor_data_compare_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 (*raptor_data_compare_handler)      (<em class="parameter"><code>const <span class="type">void</span> *data1</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">void</span> *data2</code></em>);</pre>
+<p>
+Function to compare two data objects - signature like <code class="function">strcmp()</code> and function pssed to <code class="function">qsort()</code>
+</p>
+<p>
+Designed to be passed into generic data structure constructors
+like <a class="link" href="raptor2-section-avltree.html#raptor-new-avltree" title="raptor_new_avltree ()"><code class="function">raptor_new_avltree()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data1</code></em> :</span></p></td>
+<td>first data object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data2</code></em> :</span></p></td>
+<td>second data object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>compare value &lt;0 if <em class="parameter"><code>data1</code></em> is before <em class="parameter"><code>data2</code></em>, =0 if equal, &gt;0 if <em class="parameter"><code>data1</code></em> is after <em class="parameter"><code>data2</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-data-compare-arg-handler"></a><h3>raptor_data_compare_arg_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 (*raptor_data_compare_arg_handler)  (<em class="parameter"><code>const <span class="type">void</span> *data1</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">void</span> *data2</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Function to compare two data objects with a user data argument
+</p>
+<p>
+Designed to be used with <a class="link" href="raptor2-section-general.html#raptor-sort-r" title="raptor_sort_r ()"><code class="function">raptor_sort_r()</code></a> and compatible functions
+such as <a class="link" href="raptor2-section-sequence.html#raptor-sequence-sort-r" title="raptor_sequence_sort_r ()"><code class="function">raptor_sequence_sort_r()</code></a> which uses it.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data1</code></em> :</span></p></td>
+<td>first object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data2</code></em> :</span></p></td>
+<td>second object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data argument</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>compare value &lt;0 if <em class="parameter"><code>data1</code></em> is before <em class="parameter"><code>data2</code></em>, =0 if equal, &gt;0 if <em class="parameter"><code>data1</code></em> is after <em class="parameter"><code>data2</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-data-context-free-handler"></a><h3>raptor_data_context_free_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_data_context_free_handler) (<em class="parameter"><code><span class="type">void</span> *context</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *object</code></em>);</pre>
+<p>
+Handler function for freeing a sequence item with a contextual pointer.
+</p>
+<p>
+Set by <a class="link" href="raptor2-section-sequence.html#raptor-new-sequence-with-context" title="raptor_new_sequence_with_context ()"><code class="function">raptor_new_sequence_with_context()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td>context data for the free function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td>object to free</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-data-context-print-handler"></a><h3>raptor_data_context_print_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 (*raptor_data_context_print_handler)
+                                                        (<em class="parameter"><code><span class="type">void</span> *context</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *object</code></em>,
+                                                         <em class="parameter"><code><span class="type">FILE</span> *fh</code></em>);</pre>
+<p>
+Function function for printing an object with data context to a stream.
+</p>
+<p>
+Set by <a class="link" href="raptor2-section-sequence.html#raptor-new-sequence-with-context" title="raptor_new_sequence_with_context ()"><code class="function">raptor_new_sequence_with_context()</code></a>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td>context data for the print function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td>object to print</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fh</code></em> :</span></p></td>
+<td>FILE* to print to</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-data-free-handler"></a><h3>raptor_data_free_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_data_free_handler)         (<em class="parameter"><code><span class="type">void</span> *data</code></em>);</pre>
+<p>
+Typedef for function to free a data object - signature like <code class="function">free()</code>
+</p>
+<p>
+Designed to be passed into generic data structure constructors
+like <a class="link" href="raptor2-section-avltree.html#raptor-new-avltree" title="raptor_new_avltree ()"><code class="function">raptor_new_avltree()</code></a>.  If <em class="parameter"><code>data</code></em> is NULL, nothing should be done.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>data object or NULL</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-data-malloc-handler"></a><h3>raptor_data_malloc_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span> *              (*raptor_data_malloc_handler)       (<em class="parameter"><code><span class="type">size_t</span> size</code></em>);</pre>
+<p>
+Typedef for a function to allocate memory - signature like <code class="function">malloc()</code>
+</p>
+<p>
+Designed to be passed into constructors
+like raptor_www_fetch_to_string
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>data size</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>pointer to newly allocated memory or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-data-print-handler"></a><h3>raptor_data_print_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 (*raptor_data_print_handler)        (<em class="parameter"><code><span class="type">void</span> *object</code></em>,
+                                                         <em class="parameter"><code><span class="type">FILE</span> *fh</code></em>);</pre>
+<p>
+Handler function for printing an object to a stream.
+</p>
+<p>
+Set by <a class="link" href="raptor2-section-sequence.html#raptor-new-sequence" title="raptor_new_sequence ()"><code class="function">raptor_new_sequence()</code></a>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td>object to print</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fh</code></em> :</span></p></td>
+<td>FILE* to print to</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-syntax-bitflags"></a><h3>enum raptor_syntax_bitflags</h3>
+<pre class="programlisting">typedef enum {
+  RAPTOR_SYNTAX_NEED_BASE_URI = 1
+} raptor_syntax_bitflags;
+</pre>
+<p>
+Bit flags for <a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="type">raptor_syntax_description</span></a> flags field
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><a name="RAPTOR-SYNTAX-NEED-BASE-URI:CAPS"></a><span class="term"><code class="literal">RAPTOR_SYNTAX_NEED_BASE_URI</code></span></p></td>
+<td>the syntax requires a base URI
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-syntax-description"></a><h3>raptor_syntax_description</h3>
+<pre class="programlisting">typedef struct {
+  const char* names;
+  unsigned int names_count;
+
+  const char* label;
+
+  const raptor_type_q* mime_types;
+  unsigned int mime_types_count;
+
+  const char* uri_strings;
+  unsigned int uri_strings_count;
+
+  unsigned int flags;
+} raptor_syntax_description;
+</pre>
+<p>
+Description of a syntax or file format.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">const <span class="type">char</span> *<em class="structfield"><code><a name="raptor-syntax-description.names"></a>names</code></em>;</span></p></td>
+<td>array of syntax names - the first one (required) is the public name, the rest are aliases.  The array is NULL terminated.</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned <span class="type">int</span> <em class="structfield"><code><a name="raptor-syntax-description.names-count"></a>names_count</code></em>;</span></p></td>
+<td>size of <em class="parameter"><code>names</code></em> array</td>
+</tr>
+<tr>
+<td><p><span class="term">const <span class="type">char</span> *<em class="structfield"><code><a name="raptor-syntax-description.label"></a>label</code></em>;</span></p></td>
+<td>long descriptive label for syntax</td>
+</tr>
+<tr>
+<td><p><span class="term">const <a class="link" href="raptor2-section-general.html#raptor-type-q" title="raptor_type_q"><span class="type">raptor_type_q</span></a> *<em class="structfield"><code><a name="raptor-syntax-description.mime-types"></a>mime_types</code></em>;</span></p></td>
+<td>Array of (MIME type, Q) values associated with the syntax (or NULL).  If present the array is NULL terminated.</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned <span class="type">int</span> <em class="structfield"><code><a name="raptor-syntax-description.mime-types-count"></a>mime_types_count</code></em>;</span></p></td>
+<td>size of <em class="parameter"><code>mime_types</code></em> array</td>
+</tr>
+<tr>
+<td><p><span class="term">const <span class="type">char</span> *<em class="structfield"><code><a name="raptor-syntax-description.uri-strings"></a>uri_strings</code></em>;</span></p></td>
+<td>array of URIs identifying the syntax (or NULL). The first one if present is the main URI, the rest are aliases.  The array is NULL terminated.</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned <span class="type">int</span> <em class="structfield"><code><a name="raptor-syntax-description.uri-strings-count"></a>uri_strings_count</code></em>;</span></p></td>
+<td>size of <em class="parameter"><code>uri_strings</code></em> array</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned <span class="type">int</span> <em class="structfield"><code><a name="raptor-syntax-description.flags"></a>flags</code></em>;</span></p></td>
+<td>See <a class="link" href="raptor2-section-general.html#raptor-syntax-bitflags" title="enum raptor_syntax_bitflags"><span class="type">raptor_syntax_bitflags</span></a> for the bits</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-syntax-description-validate"></a><h3>raptor_syntax_description_validate ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_syntax_description_validate  (<em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-syntax-description" title="raptor_syntax_description"><span class="type">raptor_syntax_description</span></a> *desc</code></em>);</pre>
+<p>
+Validate a syntax description has the required fields (name, labels) and update counts
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>desc</code></em> :</span></p></td>
+<td>description</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-type-q"></a><h3>raptor_type_q</h3>
+<pre class="programlisting">typedef struct {
+  const char* mime_type;
+  size_t mime_type_len;
+  unsigned char q;
+} raptor_type_q;
+</pre>
+<p>
+(MIME Type, Q) pair
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">const <span class="type">char</span> *<em class="structfield"><code><a name="raptor-type-q.mime-type"></a>mime_type</code></em>;</span></p></td>
+<td>MIME type string</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">size_t</span> <em class="structfield"><code><a name="raptor-type-q.mime-type-len"></a>mime_type_len</code></em>;</span></p></td>
+<td>length of <em class="parameter"><code>mime_type</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned <span class="type">char</span> <em class="structfield"><code><a name="raptor-type-q.q"></a>q</code></em>;</span></p></td>
+<td>Q value 0-10 standing for decimal 0.0-1.0</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

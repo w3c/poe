@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Listing built-in functionality</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="tutorial.html" title="Part I. Raptor Tutorial">
+<link rel="prev" href="tutorial-initialising-finishing.html" title="Initialising and Finishing using the Library">
+<link rel="next" href="tutorial-parsing.html" title="Parsing syntaxes to RDF Triples">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="tutorial-initialising-finishing.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="tutorial.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="tutorial-parsing.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="tutorial-querying-functionality"></a>Listing built-in functionality</h2></div></div></div>
+<p>
+Raptor can be configured and compiled with support for different
+lists of parsers and serializers.  The list built into the
+library can be found by means of
+<span class="emphasis"><em>description</em></span> functions.  These take as input an
+<code class="literal">int</code> counter and return descriptions of the object
+at that offset in the list.  The return value is a pointer to a
+shared, read-only description of the object, or NULL if the counter
+has gone too far into the list.
+</p>
+<div class="variablelist">
+<p class="title"><b>Listing Functionality with Descriptions</b></p>
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">Get descriptions of the parser syntaxes</span></p></td>
+<td><pre class="programlisting">
+  const raptor_syntax_description*
+  raptor_world_get_parser_description(raptor_world* world,
+                                      unsigned int counter);
+</pre></td>
+</tr>
+<tr>
+<td><p><span class="term">Get descriptions of the serializer syntaxes</span></p></td>
+<td><pre class="programlisting">
+  const raptor_syntax_description*
+  raptor_world_get_serializer_description(raptor_world* world,
+                                          unsigned int counter);
+</pre></td>
+</tr>
+<tr>
+<td><p><span class="term">Get descriptions of options</span></p></td>
+<td>
+<pre class="programlisting">
+  raptor_option_description*
+  raptor_world_get_option_description(raptor_world* world,
+                                      const raptor_domain domain,
+                                      const raptor_option option);
+</pre>
+<p>
+Call with the appropriate domains for the class such as
+<a class="link" href="raptor2-section-general.html#RAPTOR-DOMAIN-PARSER:CAPS"><code class="literal">RAPTOR_DOMAIN_PARSER</code></a>,
+<a class="link" href="raptor2-section-general.html#RAPTOR-DOMAIN-SERIALIZER:CAPS"><code class="literal">RAPTOR_DOMAIN_SERIALIZER</code></a>
+ etc.  See the
+<a class="link" href="raptor2-section-general.html#raptor-domain" title="enum raptor_domain"><code class="literal">raptor_domain</code></a>
+description for the full list.
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These functions can be called directly after creating a
+raptor world object with
+<a class="link" href="raptor2-section-world.html#raptor-new-world" title="raptor_new_world"><code class="function">raptor_new_world()</code></a>.
+This is one way to find a parser (name) by it's MIME Type, the other
+is to use the mime_type parameter of the
+<a class="link" href="raptor2-section-parser.html#raptor-new-parser-for-content" title="raptor_new_parser_for_content ()"><code class="function">raptor_new_parser_for_content()</code></a>.</p>
+<div class="example">
+<a name="raptor-example-list-all-parser-options"></a><p class="title"><b>Example 1. List all parser options using option description</b></p>
+<div class="example-contents">
+<pre class="programlisting">
+  unsigned int i;
+  for(i = 0; i &lt; raptor_option_get_count(); i++) {
+    raptor_option_description* od;
+
+    od = raptor_world_get_option_description(world, RAPTOR_DOMAIN_PARSER, i);
+
+    if(od) {
+      /* do something with od fields such as od-&gt;name, od-&gt;label */
+    }
+  }
+</pre>
+<p>There are more examples of this usage in the source for the
+<code class="literal">rapper</code> utility in <code class="filename">util/rapper.c</code>.
+</p>
+</div>
+</div>
+<br class="example-break">
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

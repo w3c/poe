@@ -1,0 +1,783 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>WWW</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="reference-manual.html" title="Part II. Raptor Reference Manual">
+<link rel="prev" href="raptor2-section-uri.html" title="URI">
+<link rel="next" href="raptor2-section-xml-namespace.html" title="XML Namespaces">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="raptor2-section-uri.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference-manual.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="raptor2-section-xml-namespace.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#raptor2-section-www.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#raptor2-section-www.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="raptor2-section-www"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="raptor2-section-www.top_of_page"></a>WWW</span></h2>
+<p>WWW — Retrieval of URI content from the web.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="raptor2-section-www.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www">raptor_www</a>;
+<a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="returnvalue">raptor_www</span></a> *        <a class="link" href="raptor2-section-www.html#raptor-new-www" title="raptor_new_www ()">raptor_new_www</a>                      (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);
+<a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="returnvalue">raptor_www</span></a> *        <a class="link" href="raptor2-section-www.html#raptor-new-www-with-connection" title="raptor_new_www_with_connection ()">raptor_new_www_with_connection</a>      (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *connection</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-free-www" title="raptor_free_www ()">raptor_free_www</a>                     (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-www.html#raptor-www-write-bytes-handler" title="raptor_www_write_bytes_handler ()">*raptor_www_write_bytes_handler</a>)   (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *userdata</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">void</span> *ptr</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> size</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> nmemb</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-www.html#raptor-www-content-type-handler" title="raptor_www_content_type_handler ()">*raptor_www_content_type_handler</a>)  (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *userdata</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *content_type</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-set-user-agent" title="raptor_www_set_user_agent ()">raptor_www_set_user_agent</a>           (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *user_agent</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-set-proxy" title="raptor_www_set_proxy ()">raptor_www_set_proxy</a>                (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *proxy</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-set-http-accept" title="raptor_www_set_http_accept ()">raptor_www_set_http_accept</a>          (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *value</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-www.html#raptor-www-set-http-cache-control" title="raptor_www_set_http_cache_control ()">raptor_www_set_http_cache_control</a>   (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *cache_control</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-set-write-bytes-handler" title="raptor_www_set_write_bytes_handler ()">raptor_www_set_write_bytes_handler</a>  (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www-write-bytes-handler" title="raptor_www_write_bytes_handler ()"><span class="type">raptor_www_write_bytes_handler</span></a> handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-set-connection-timeout" title="raptor_www_set_connection_timeout ()">raptor_www_set_connection_timeout</a>   (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> timeout</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-set-content-type-handler" title="raptor_www_set_content_type_handler ()">raptor_www_set_content_type_handler</a> (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www-content-type-handler" title="raptor_www_content_type_handler ()"><span class="type">raptor_www_content_type_handler</span></a> handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+<span class="returnvalue">int</span>                 (<a class="link" href="raptor2-section-www.html#raptor-uri-filter-func" title="raptor_uri_filter_func ()">*raptor_uri_filter_func</a>)           (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-set-uri-filter" title="raptor_www_set_uri_filter ()">raptor_www_set_uri_filter</a>           (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-uri-filter-func" title="raptor_uri_filter_func ()"><span class="type">raptor_uri_filter_func</span></a> filter</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-www.html#raptor-www-final-uri-handler" title="raptor_www_final_uri_handler ()">*raptor_www_final_uri_handler</a>)     (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *userdata</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *final_uri</code></em>);
+<a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="returnvalue">raptor_uri</span></a> *        <a class="link" href="raptor2-section-www.html#raptor-www-get-final-uri" title="raptor_www_get_final_uri ()">raptor_www_get_final_uri</a>            (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-set-final-uri-handler" title="raptor_www_set_final_uri_handler ()">raptor_www_set_final_uri_handler</a>    (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www-final-uri-handler" title="raptor_www_final_uri_handler ()"><span class="type">raptor_www_final_uri_handler</span></a> handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-www.html#raptor-www-fetch" title="raptor_www_fetch ()">raptor_www_fetch</a>                    (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-www.html#raptor-www-fetch-to-string" title="raptor_www_fetch_to_string ()">raptor_www_fetch_to_string</a>          (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> **string_p</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length_p</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-malloc-handler" title="raptor_data_malloc_handler ()"><span class="type">raptor_data_malloc_handler</span></a> const malloc_handler</code></em>);
+<span class="returnvalue">void</span> *              <a class="link" href="raptor2-section-www.html#raptor-www-get-connection" title="raptor_www_get_connection ()">raptor_www_get_connection</a>           (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-www.html#raptor-www-set-ssl-cert-options" title="raptor_www_set_ssl_cert_options ()">raptor_www_set_ssl_cert_options</a>     (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *cert_filename</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *cert_type</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *cert_passphrase</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-www.html#raptor-www-set-ssl-verify-options" title="raptor_www_set_ssl_verify_options ()">raptor_www_set_ssl_verify_options</a>   (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> verify_peer</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> verify_host</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-www.html#raptor-www-abort" title="raptor_www_abort ()">raptor_www_abort</a>                    (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *reason</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-www.description"></a><h2>Description</h2>
+<p>
+Provides a wrapper to the resolution of URIs to give content
+using an underlying WWW-retrieval library.  The content is
+delivered by callbacks and includes returning content type
+for handling content-negotation by the caller as well as
+chunks of byte content.
+</p>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-www.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="raptor-www"></a><h3>raptor_www</h3>
+<pre class="programlisting">raptor_www* raptor_www;
+</pre>
+<p>
+Raptor WWW class
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-www"></a><h3>raptor_new_www ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="returnvalue">raptor_www</span></a> *        raptor_new_www                      (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>);</pre>
+<p>
+Constructor - create a new <a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new <a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> or NULL on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-www-with-connection"></a><h3>raptor_new_www_with_connection ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="returnvalue">raptor_www</span></a> *        raptor_new_www_with_connection      (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *connection</code></em>);</pre>
+<p>
+Constructor - create a new <a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> object over an existing WWW connection.
+</p>
+<p>
+At present this only works with a libcurl CURL handle object
+when raptor is compiled with libcurl suppport. Otherwise the
+<em class="parameter"><code>connection</code></em> is ignored.  This allows such things as setting
+up special flags on the curl handle before passing into the constructor.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor_world object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>connection</code></em> :</span></p></td>
+<td>external WWW connection object.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new <a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> object or NULL on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-free-www"></a><h3>raptor_free_www ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_free_www                     (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>);</pre>
+<p>
+Destructor - destroy a <a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object.</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-write-bytes-handler"></a><h3>raptor_www_write_bytes_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_www_write_bytes_handler)   (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *userdata</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">void</span> *ptr</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> size</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> nmemb</code></em>);</pre>
+<p>
+Receiving bytes of data from WWW retrieval handler.
+</p>
+<p>
+Set by <a class="link" href="raptor2-section-www.html#raptor-www-set-write-bytes-handler" title="raptor_www_set_write_bytes_handler ()"><code class="function">raptor_www_set_write_bytes_handler()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>userdata</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ptr</code></em> :</span></p></td>
+<td>data pointer</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>size of individual item</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nmemb</code></em> :</span></p></td>
+<td>number of items</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-content-type-handler"></a><h3>raptor_www_content_type_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_www_content_type_handler)  (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *userdata</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *content_type</code></em>);</pre>
+<p>
+Receiving Content-Type: header from WWW retrieval handler.
+</p>
+<p>
+Set by <a class="link" href="raptor2-section-www.html#raptor-www-set-content-type-handler" title="raptor_www_set_content_type_handler ()"><code class="function">raptor_www_set_content_type_handler()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>userdata</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>content_type</code></em> :</span></p></td>
+<td>content type seen</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-user-agent"></a><h3>raptor_www_set_user_agent ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_set_user_agent           (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *user_agent</code></em>);</pre>
+<p>
+Set the user agent value, for HTTP requests typically.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_agent</code></em> :</span></p></td>
+<td>User-Agent string</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-proxy"></a><h3>raptor_www_set_proxy ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_set_proxy                (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *proxy</code></em>);</pre>
+<p>
+Set the proxy for the WWW object.
+</p>
+<p>
+The <em class="parameter"><code>proxy</code></em> usually a string of the form http://server.domain:port.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>proxy</code></em> :</span></p></td>
+<td>proxy string.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-http-accept"></a><h3>raptor_www_set_http_accept ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_set_http_accept          (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *value</code></em>);</pre>
+<p>
+Set HTTP Accept header.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td>Accept: header value or NULL to have an empty one.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-http-cache-control"></a><h3>raptor_www_set_http_cache_control ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_www_set_http_cache_control   (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *cache_control</code></em>);</pre>
+<p>
+Set HTTP Cache-Control:header (default none)
+</p>
+<p>
+The <em class="parameter"><code>cache_control</code></em> value can be a string to set it, "" to send
+a blank header or NULL to not set the header at all.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cache_control</code></em> :</span></p></td>
+<td>Cache-Control header value (or NULL to disable)</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-write-bytes-handler"></a><h3>raptor_www_set_write_bytes_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_set_write_bytes_handler  (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www-write-bytes-handler" title="raptor_www_write_bytes_handler ()"><span class="type">raptor_www_write_bytes_handler</span></a> handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Set the handler to receive bytes written by the <a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> implementation.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>bytes handler function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>bytes handler data</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-connection-timeout"></a><h3>raptor_www_set_connection_timeout ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_set_connection_timeout   (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> timeout</code></em>);</pre>
+<p>
+Set WWW connection timeout
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeout</code></em> :</span></p></td>
+<td>Timeout in seconds</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-content-type-handler"></a><h3>raptor_www_set_content_type_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_set_content_type_handler (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www-content-type-handler" title="raptor_www_content_type_handler ()"><span class="type">raptor_www_content_type_handler</span></a> handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Set the handler to receive the HTTP Content-Type header value.
+</p>
+<p>
+This is called if or when the value is discovered during retrieval
+by the raptor_www implementation.  Not all implementations provide
+access to this.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>content type handler function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>content type handler data</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-uri-filter-func"></a><h3>raptor_uri_filter_func ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 (*raptor_uri_filter_func)           (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>);</pre>
+<p>
+Callback function for <a class="link" href="raptor2-section-www.html#raptor-www-set-uri-filter" title="raptor_www_set_uri_filter ()"><span class="type">raptor_www_set_uri_filter</span></a>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> URI to check</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 to filter the URI</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-uri-filter"></a><h3>raptor_www_set_uri_filter ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_set_uri_filter           (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-uri-filter-func" title="raptor_uri_filter_func ()"><span class="type">raptor_uri_filter_func</span></a> filter</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Set URI filter function for WWW retrieval.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filter</code></em> :</span></p></td>
+<td>URI filter function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>User data to pass to filter function</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-final-uri-handler"></a><h3>raptor_www_final_uri_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_www_final_uri_handler)     (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *userdata</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *final_uri</code></em>);</pre>
+<p>
+Receiving the final resolved URI from a WWW retrieval
+</p>
+<p>
+Set by <a class="link" href="raptor2-section-www.html#raptor-www-set-final-uri-handler" title="raptor_www_set_final_uri_handler ()"><code class="function">raptor_www_set_final_uri_handler()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>userdata</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>final_uri</code></em> :</span></p></td>
+<td>final URI seen</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-get-final-uri"></a><h3>raptor_www_get_final_uri ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="returnvalue">raptor_uri</span></a> *        raptor_www_get_final_uri            (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>);</pre>
+<p>
+Get the WWW final resolved URI.
+</p>
+<p>
+This returns the URI used after any protocol redirection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new URI or NULL if not known.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-final-uri-handler"></a><h3>raptor_www_set_final_uri_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_set_final_uri_handler    (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www-final-uri-handler" title="raptor_www_final_uri_handler ()"><span class="type">raptor_www_final_uri_handler</span></a> handler</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Set the handler to receive the HTTP Content-Type header value.
+</p>
+<p>
+This is called if or when the value is discovered during retrieval
+by the raptor_www implementation.  Not all implementations provide
+access to this.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>content type handler function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>content type handler data</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-fetch"></a><h3>raptor_www_fetch ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_www_fetch                    (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>);</pre>
+<p>
+Start a WWW content retrieval for the given URI, returning data via the write_bytes handler.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>URI to read from</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-fetch-to-string"></a><h3>raptor_www_fetch_to_string ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_www_fetch_to_string          (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *uri</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> **string_p</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> *length_p</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-general.html#raptor-data-malloc-handler" title="raptor_data_malloc_handler ()"><span class="type">raptor_data_malloc_handler</span></a> const malloc_handler</code></em>);</pre>
+<p>
+Start a WWW content retrieval for the given URI, returning the data in a new string.
+</p>
+<p>
+If <em class="parameter"><code>malloc_handler</code></em> is null, raptor will allocate it using it's
+own memory allocator.  *string_p is set to NULL on failure (and
+*length_p to 0 if length_p is not NULL).
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>raptor_www object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uri</code></em> :</span></p></td>
+<td>raptor_uri to retrieve</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string_p</code></em> :</span></p></td>
+<td>pointer to location to hold string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length_p</code></em> :</span></p></td>
+<td>pointer to location to hold length of string (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>malloc_handler</code></em> :</span></p></td>
+<td>pointer to <code class="function">malloc()</code> to use to make string (or NULL)</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-get-connection"></a><h3>raptor_www_get_connection ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span> *              raptor_www_get_connection           (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>);</pre>
+<p>
+Get WWW library connection object.
+</p>
+<p>
+Return the internal WWW connection handle.  For libcurl, this
+returns the CURL handle and for libxml the context.  Otherwise
+it returns NULL.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>connection pointer</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-ssl-cert-options"></a><h3>raptor_www_set_ssl_cert_options ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_www_set_ssl_cert_options     (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *cert_filename</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *cert_type</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *cert_passphrase</code></em>);</pre>
+<p>
+Set SSL client certificate options (where supported)
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cert_filename</code></em> :</span></p></td>
+<td>SSL client certificate file</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cert_type</code></em> :</span></p></td>
+<td>SSL client certificate type (default is "PEM")</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cert_passphrase</code></em> :</span></p></td>
+<td>SSL client certificate password</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 when setting options is not supported</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-set-ssl-verify-options"></a><h3>raptor_www_set_ssl_verify_options ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_www_set_ssl_verify_options   (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> verify_peer</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> verify_host</code></em>);</pre>
+<p>
+Set whether SSL verifies the authenticity of the peer's certificate
+</p>
+<p>
+These options correspond to setting the curl
+CURLOPT_SSL_VERIFYPEER and CURLOPT_SSL_VERIFYHOST options.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>verify_peer</code></em> :</span></p></td>
+<td>SSL verify peer - non-0 to verify peer SSL certificate (default)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>verify_host</code></em> :</span></p></td>
+<td>SSL verify host - 0 none, non-0 to require a CN match (default).</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-www-abort"></a><h3>raptor_www_abort ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_www_abort                    (<em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-www" title="raptor_www"><span class="type">raptor_www</span></a> *www</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *reason</code></em>);</pre>
+<p>
+Abort an ongoing raptor WWW operation and pass back a reason.
+</p>
+<p>
+This is typically used within one of the raptor WWW handlers
+when retrieval need no longer continue due to another
+processing issue or error.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>www</code></em> :</span></p></td>
+<td>WWW object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>reason</code></em> :</span></p></td>
+<td>abort reason message</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

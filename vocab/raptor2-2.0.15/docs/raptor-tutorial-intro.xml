@@ -1,0 +1,25 @@
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<chapter id="tutorial-initialising-finishing">
+<title>Initialising and Finishing using the Library</title>
+
+<para>Raptor requires initialising a raptor_world object before using
+any of the classes which take the world object as an argument in
+their constructors.  The function to make the world object is
+raptor_new_world() and the destructor raptor_free_world().
+<programlisting>
+  raptor_world* world;
+  world = raptor_new_world();
+  ...
+  raptor_free_world(world);
+</programlisting>
+</para>
+
+</chapter>
+
+<!--
+Local variables:
+mode: sgml
+sgml-parent-document: ("raptor-docs.xml" "book" "part")
+End:
+-->

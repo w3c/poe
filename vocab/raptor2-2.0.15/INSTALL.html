@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Raptor RDF Syntax Library - Building and Installing from Source</title>
+</head>
+<body>
+
+<h1>Raptor RDF Syntax Library - Building and Installing from Source</h1>
+  
+
+<h2>1. Getting the sources</h2>
+
+<p>There are several ways to get the sources.  The most stable and
+tested versions are the sources shipped with each release and these
+are recommended as the first place to start.  If you want to get a
+newer set, then there are nightly snapshots made of the development
+sources, which may not yet be committed to GIT.  For the
+latest developent sources, anonymous GIT access is available
+but this may require some configuring of developer tools that are not
+needed for the snapshot releases.
+</p>
+
+<p>The source bundle and package files contain all the HTML files and
+documentation provided on the web site.
+</p>
+
+<h2>1.1 Getting the sources from releases</h2>
+
+<p><b>This is the recommended source to build and install raptor.</b>  It
+ensures that a tested and working set of files are used.</p>
+
+<p>The released sources are available from
+<a href="http://download.librdf.org/source/">http://download.librdf.org/source/</a> (master site).
+Do not use GitHub tagged tarballs, they are not the same thing and
+are not supported.
+</p>
+
+
+<h2>1.2 Getting the sources from GIT</h2>
+
+<p><b>This is the recommended source for developers</b>.  It provides
+the latest beta or unstable code.  For a stable version, use a release
+as described above.</p>
+
+<pre>
+  git clone git://github.com/dajobe/raptor.git
+  cd raptor
+</pre>
+
+<p>At this stage, or after a <tt>git pull</tt> you will
+need to create the automake and autoconf derived files, as described
+below in <a href="#sec-create-configure">Create the configure program</a>
+by using the <code>autogen.sh</code> script.
+</p>
+
+<p>Building Raptor in this way requires some particular development
+tools not needed when building from snapshot releases - automake,
+autoconf, libtool, gtkdocize and their dependencies.
+The <code>autogen.sh</code> script looks for the newest versions of
+the auto* tools and checks that they meet the minimum versions.
+</p>
+
+<p>gtkdocize can be found in the <code>gtk-doc-tools</code> package
+on Debian-based systems such as Ubuntu, <code>gtk-doc</code package
+on RPM based systems such as Redhat and Fedora and in the homebrew
+and macports package <code>gtk-doc</code> on OSX.</p>
+
+<h2>2. Configuring and building</h2>
+
+<p>Raptor uses the GNU automake and autoconf to handle system
+dependency checking.  It is developed and built on x86 Linux
+and x86 OSX but is also tested on other systems occasionally.
+</p>
+
+<p>Raptor has several optional libraries:</p>
+<ul>
+  <li>The libxml2 XML library (2.6.8 or newer) for parsing XML syntaxes.</li>
+  <li>Libcurl, libxml2 or libfetch for retrieving URIs.</li>
+  <li>libxslt (requiring libxml2 also) to provide the XSLT functionality for the
+    GRDDL and microformats parser.</li>
+  <li><a href="http://lloyd.github.com/yajl/">YAJL</a> to provide JSON
+    parsers if it is available.</li>
+  <li><a href="http://www.icu-project.org/">ICU</a> to provide
+    Unicode NFC checking only if enabled with
+    <code>--with-icu-config</code></li>
+</ul>
+
+<h3><a id="sec-create-configure" name="sec-create-configure"></a>2.1. Create <code>configure</code> program</h3>
+
+<p>If there is a <code>configure</code> program, skip to the next
+section.</p>
+
+<p>If there is no <tt>configure</tt> program, you can create it 
+using the <tt>autogen.sh</tt> script, as long as you have the
+<a href="http://www.gnu.org/software/automake/automake.html">automake</a> and
+<a href="http://www.gnu.org/software/autoconf/autoconf.html">autoconf</a>
+tools.  This is done by:
+</p>
+<pre>
+  ./autogen.sh
+</pre>
+<p>and you can also pass along arguments intended for configure (see
+below for what these are):
+</p>
+<pre>
+  ./autogen.sh --prefix=/usr/local/somewhere
+</pre>
+
+<blockquote>
+<p>On OSX you may have to explicitly set the <code>LIBTOOLIZE</code>
+variable for the <code>libtoolize</code> utility since on
+OSX <code>libtoolize</code> is a different program.  The full
+path to the utility should be given:
+</p>
+<pre>
+  LIBTOOLIZE=/opt/local/bin/glibtoolize ./autogen.sh
+</pre>
+</blockquote>
+
+<p>Alternatively you can run them by hand with:
+</p>
+<pre>
+  aclocal; autoheader; automake --add-missing; autoconf
+</pre>
+
+<p>The automake and autoconf tools have many different versions and
+at present development is being done with automake 1.11.1 (minimum
+version 1.11), autoconf 2.65 (minimum version 2.62) and libtool 2.2.10
+(minimum version 2.2.0).  These are only needed when compiling from
+GIT sources.  autogen.sh enforces the requirements.
+</p>
+
+<p>Raptor also requires
+<a href="http://flex.sourceforge.net/">flex</a> version 2.5.31 or newer
+(2.5.4 will not work) and
+<a href="http://www.gnu.org/software/bison/bison.html">GNU Bison</a>
+to build lexers and parsers.
+These are only required when building from GIT.
+</p>
+
+
+<h3>2.2 Options for <tt>configure</tt></h3>
+
+<p>Raptor's configure supports the following options:
+</p>
+
+<dl>
+<dt><tt>--disable-nfc-check</tt><br /></dt>
+<dd><p>Disable Unicode Normal Form C (NFC) checking code.
+The code primarily consists of large tables plus some checking code
+which can be removed from the library with this option.  All NFC
+checks will succeed when this is disabled.
+</p></dd>
+
+<dt><code>--enable-debug</code><br /></dt>
+<dd><p>Enable debug messages (default not enabled).
+Maintainer mode automatically enables this.
+</p>
+</dd>
+
+<dt><tt>--enable-parsers=PARSERS</tt><br /></dt>
+<dd><p>Pick the RDF parsers to build from the list:<br />
+<code>rdfxml ntriples turtle rss-tag-soup</code><br />
+The default when this option is omitted is to enable all parsers.
+<code>grddl</code> requires libxml2 and libxstl so may not always be
+available.  If all parsers are not enabled, parts of the test suite
+will likely fail.
+</p>
+
+<p>The parsers that a built library supports can be found from the
+API level using functions such as
+<code>raptor_parsers_enumerate</code> and
+<code>raptor_syntaxes_enumerate</code> or from the
+<code>rapper</code> utility in the help message.
+</p></dd>
+
+<dt><tt>--enable-serializers=SERIALIZERS</tt><br /></dt>
+<dd><p>Pick the RDF serializers to build from the list:<br />
+<code>rdfxml ntriples rdfxml-abbrev</code><br />
+The default when this option is omitted is to enable all serializers.
+If all serializers are not enabled, parts of the test suite will
+likely fail.
+</p>
+
+<p>The serializers that a built library supports can be found from the
+API level using functions such as
+<code>raptor_serializers_enumerate</code> or from the
+<code>rapper</code> utility in the help message.
+</p></dd>
+
+<dt><tt>--with-memory-signing</tt><br /></dt>
+<dd><p>Enable signing of memory allocations so that when memory is
+allocated with malloc() and released free(), a check is made that the
+memory was allocated in the same library.
+</p></dd>
+
+<dt><tt>--with-www=NAME</tt><br /></dt>
+<dd><p>Pick a WWW library to use - either <tt>curl</tt>, 
+<tt>xml</tt> (for libxml), <tt>libwww</tt> for W3C libwww or
+<tt>none</tt> to disable it.
+</p></dd>
+
+<dt><tt>--with-xml2-config=NAME</tt><br /></dt>
+<dd><p>Set the path to the libxml xml2-config program.
+The default is to look for this on the PATH.
+</p></dd>
+
+<dt><tt>--with-xslt-config=NAME</tt><br /></dt>
+<dd><p>Set the path to the libxslt xslt-config program.
+The default is to look for this on the PATH.
+</p></dd>
+
+<dt><tt>--with-curl-config=NAME</tt><br /></dt>
+<dd><p>Set the path to the <a
+href="http://curl.haxx.se/libcurl/">libcurl</a> curl-config program.
+The default is to look for this on the PATH.
+</p></dd>
+
+<dt><tt>--with-icu-config=NAME</tt><br /></dt>
+<dd><p>Set the path to the <a href="http://www.icu-project.org/">ICU</a>
+icu-config program. This will NOT be searched for on the PATH.
+</p></dd>
+
+<dt><tt>--with-libwww-config=NAME</tt><br /></dt>
+<dd><p>Legacy option that used to support the libwww library.
+</p></dd>
+
+<dt><tt>--with-yajl=DIR|no</tt><br /></dt>
+<dd><p>Build against <a href="http://lloyd.github.com/yajl/">YAJL</a>
+installed into directory <em>DIR</em> or with 'no', disable looking
+for YAJL.  The default is to search a set of common installation directories
+such /opt/local, /usr/local and /usr.
+</p></dd>
+
+</dl>
+
+<h3>2.3 Configuring</h3>
+
+<p>The default configuration will install into /usr/local:
+</p>
+<pre>
+   ./configure
+</pre>
+
+<p>To install into the standard Unix / Linux (and also Cygwin) system
+directory, use:
+</p>
+<pre>
+   ./configure --prefix=/usr
+</pre>
+
+
+<p>Append to the line any additional options you need like this:
+</p>
+<pre>
+   ./configure --prefix=/usr --enable-parsers=rdfxml
+</pre>
+
+
+<h3>2.4 Compiling</h3>
+
+<p>Compile the library and the <tt>rapper</tt> utility with:
+</p>
+<pre>
+   make
+</pre>
+<p>Note: GNU make is probably required which may be called
+gmake or gnumake if your system has a different make available too.
+</p>
+
+
+<h3>2.5 Testing</h3>
+
+<p>Raptor has a built-in test suite that can be invoked with:
+</p>
+<pre>
+  make check
+</pre>
+
+<p>which should emit lots of exciting test messages to the screen but
+conclude with something like:<br />
+  <tt>All </tt><em>n</em><tt> tests passed</tt><br />
+if everything works correctly. There will be some Unicode NFC
+checking tests that give ignored failures in 1.3.2 or later as NFC
+checking has been temporarily removed.
+</p>
+
+
+<h3>2.6 Installing</h3>
+
+<p>Install the library and the <tt>rapper</tt> utility into the area
+configure with <code>--prefix</code> (or /usr/local if not given)
+with:</p>
+<pre>
+   make install
+</pre>
+<p>Note: This may require root access if the destination area is
+a system directory such as /usr.  In that case you may have to do
+<code>sudo make install</code>.
+</p>
+
+
+<h2>3. Using the library</h2>
+
+<p>Raptor includes a full tutorial and reference manual
+for the library.  These are installed into
+<em>PREFIX</em><code>/share/gtk-doc/html/raptor</code>
+and are also available from the
+<a href="http://librdf.org/raptor/api/">Raptor web site</a>.
+</p>
+
+<p>In addition, the examples in the tutorial as well as some other
+example programs are available in the <code>examples</code>
+sub-directory.  These can be compiled with:
+</p>
+<pre>
+   cd examples
+
+   # Raptor GUI - only if you have the GTK libraries
+   make grapper
+
+   # If you have all requirements
+   make examples
+</pre>
+
+
+<h3>3.2 rapper utility</h3>
+
+<p>Raptor provides an RDF syntax utility program called
+<em>rapper</em> which can do a variety of parsing and serializing operations.
+</p>
+
+<p>rapper can be run over RDF/XML content like this:
+</p>
+
+<pre>
+  rapper http://librdf.org/raptor/raptor.rdf
+</pre>
+
+<p>Raptor can also extract RDF content inside general XML when the
+<tt>-f scanForRDF</tt> feature is enabled.  For example if some
+RDF/XML is embedded inside some SVG, it could be extracted with:
+</p>
+
+<pre>
+  rapper -f scanForRDF /path/to/test/pic.svg
+</pre>
+
+<p>You can also run it on other syntaxes such as 
+<a href="http://www.w3.org/TR/rdf-testcases/#ntriples">N-Triples</a>
+files with the <code>-i</code> option like this:
+</p>
+
+<pre>
+  rapper -i ntriples test.nt
+</pre>
+
+<p>The default output is a simple statement dump format, but it can
+be changed to write
+<a href="http://www.w3.org/TR/rdf-testcases/#ntriples">N-Triples</a>
+by using the <code>-o</code> option, like this:
+</p>
+
+<pre>
+  rapper -o ntriples dc.rdf
+</pre>
+
+
+<p>See the rapper manual page for full details using 'man rapper'
+or read the HTML version in docs/rapper.html or on the
+<a href="http://librdf.org/raptor/rapper.html">Raptor website</a>.
+</p>
+
+
+<hr />
+
+<p>Copyright 2000-2014 <a href="http://www.dajobe.org/">Dave Beckett</a><br />Copyright 2000-2005 <a href="http://www.bristol.ac.uk/">University of Bristol</a></p>
+
+</body>
+</html>

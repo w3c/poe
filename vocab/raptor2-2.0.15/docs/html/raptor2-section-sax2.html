@@ -1,0 +1,719 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SAX2</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="reference-manual.html" title="Part II. Raptor Reference Manual">
+<link rel="prev" href="raptor2-section-parser.html" title="Parser">
+<link rel="next" href="raptor2-section-sequence.html" title="Sequence">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="raptor2-section-parser.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="reference-manual.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="raptor2-section-sequence.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#raptor2-section-sax2.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#raptor2-section-sax2.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="raptor2-section-sax2"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="raptor2-section-sax2.top_of_page"></a>SAX2</span></h2>
+<p>SAX2 — SAX2 XML Parsing API with namespaces and base URI support.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="raptor2-section-sax2.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2">raptor_sax2</a>;
+<a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="returnvalue">raptor_sax2</span></a> *       <a class="link" href="raptor2-section-sax2.html#raptor-new-sax2" title="raptor_new_sax2 ()">raptor_new_sax2</a>                     (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-locator.html#raptor-locator" title="raptor_locator"><span class="type">raptor_locator</span></a> *locator</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-free-sax2" title="raptor_free_sax2 ()">raptor_free_sax2</a>                    (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-sax2.html#raptor-sax2-start-element-handler" title="raptor_sax2_start_element_handler ()">*raptor_sax2_start_element_handler</a>)
+                                                        (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-sax2.html#raptor-sax2-end-element-handler" title="raptor_sax2_end_element_handler ()">*raptor_sax2_end_element_handler</a>)  (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-sax2.html#raptor-sax2-characters-handler" title="raptor_sax2_characters_handler ()">*raptor_sax2_characters_handler</a>)   (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *s</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> len</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-sax2.html#raptor-sax2-cdata-handler" title="raptor_sax2_cdata_handler ()">*raptor_sax2_cdata_handler</a>)        (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *s</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> len</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-sax2.html#raptor-sax2-comment-handler" title="raptor_sax2_comment_handler ()">*raptor_sax2_comment_handler</a>)      (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *s</code></em>);
+<span class="returnvalue">void</span>                (<a class="link" href="raptor2-section-sax2.html#raptor-sax2-unparsed-entity-decl-handler" title="raptor_sax2_unparsed_entity_decl_handler ()">*raptor_sax2_unparsed_entity_decl_handler</a>)
+                                                        (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *entityName</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *base</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *systemId</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *publicId</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *notationName</code></em>);
+<span class="returnvalue">int</span>                 (<a class="link" href="raptor2-section-sax2.html#raptor-sax2-external-entity-ref-handler" title="raptor_sax2_external_entity_ref_handler ()">*raptor_sax2_external_entity_ref_handler</a>)
+                                                        (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *context</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *base</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *systemId</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *publicId</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-start-element-handler" title="raptor_sax2_set_start_element_handler ()">raptor_sax2_set_start_element_handler</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-start-element-handler" title="raptor_sax2_start_element_handler ()"><span class="type">raptor_sax2_start_element_handler</span></a> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-end-element-handler" title="raptor_sax2_set_end_element_handler ()">raptor_sax2_set_end_element_handler</a> (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-end-element-handler" title="raptor_sax2_end_element_handler ()"><span class="type">raptor_sax2_end_element_handler</span></a> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-characters-handler" title="raptor_sax2_set_characters_handler ()">raptor_sax2_set_characters_handler</a>  (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-characters-handler" title="raptor_sax2_characters_handler ()"><span class="type">raptor_sax2_characters_handler</span></a> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-cdata-handler" title="raptor_sax2_set_cdata_handler ()">raptor_sax2_set_cdata_handler</a>       (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-cdata-handler" title="raptor_sax2_cdata_handler ()"><span class="type">raptor_sax2_cdata_handler</span></a> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-comment-handler" title="raptor_sax2_set_comment_handler ()">raptor_sax2_set_comment_handler</a>     (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-comment-handler" title="raptor_sax2_comment_handler ()"><span class="type">raptor_sax2_comment_handler</span></a> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-unparsed-entity-decl-handler" title="raptor_sax2_set_unparsed_entity_decl_handler ()">raptor_sax2_set_unparsed_entity_decl_handler</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-unparsed-entity-decl-handler" title="raptor_sax2_unparsed_entity_decl_handler ()"><span class="type">raptor_sax2_unparsed_entity_decl_handler</span></a> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-external-entity-ref-handler" title="raptor_sax2_set_external_entity_ref_handler ()">raptor_sax2_set_external_entity_ref_handler</a>
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-external-entity-ref-handler" title="raptor_sax2_external_entity_ref_handler ()"><span class="type">raptor_sax2_external_entity_ref_handler</span></a> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-namespace-handler" title="raptor_sax2_set_namespace_handler ()">raptor_sax2_set_namespace_handler</a>   (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-parser.html#raptor-namespace-handler" title="raptor_namespace_handler ()"><span class="type">raptor_namespace_handler</span></a> handler</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-set-uri-filter" title="raptor_sax2_set_uri_filter ()">raptor_sax2_set_uri_filter</a>          (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-uri-filter-func" title="raptor_uri_filter_func ()"><span class="type">raptor_uri_filter_func</span></a> filter</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="raptor2-section-sax2.html#raptor-sax2-parse-start" title="raptor_sax2_parse_start ()">raptor_sax2_parse_start</a>             (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *base_uri</code></em>);
+<span class="returnvalue">int</span>                 <a class="link" href="raptor2-section-sax2.html#raptor-sax2-parse-chunk" title="raptor_sax2_parse_chunk ()">raptor_sax2_parse_chunk</a>             (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> len</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> is_end</code></em>);
+const unsigned <span class="returnvalue">char</span> * <a class="link" href="raptor2-section-sax2.html#raptor-sax2-inscope-xml-language" title="raptor_sax2_inscope_xml_language ()">raptor_sax2_inscope_xml_language</a>  (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>);
+<a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="returnvalue">raptor_uri</span></a> *        <a class="link" href="raptor2-section-sax2.html#raptor-sax2-inscope-base-uri" title="raptor_sax2_inscope_base_uri ()">raptor_sax2_inscope_base_uri</a>        (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-sax2.description"></a><h2>Description</h2>
+<p>
+A class providing a SAX2 XML parsing API with XML namespaces
+and XML base support.
+</p>
+</div>
+<div class="refsect1">
+<a name="raptor2-section-sax2.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="raptor-sax2"></a><h3>raptor_sax2</h3>
+<pre class="programlisting">typedef struct raptor_sax2_s raptor_sax2;
+</pre>
+<p>
+Raptor SAX2 class
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-new-sax2"></a><h3>raptor_new_sax2 ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="returnvalue">raptor_sax2</span></a> *       raptor_new_sax2                     (<em class="parameter"><code><a class="link" href="raptor2-section-world.html#raptor-world" title="raptor_world"><span class="type">raptor_world</span></a> *world</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-locator.html#raptor-locator" title="raptor_locator"><span class="type">raptor_locator</span></a> *locator</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Constructor - Create a new SAX2 with error handlers
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>world</code></em> :</span></p></td>
+<td>raptor world</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>locator</code></em> :</span></p></td>
+<td>raptor locator to use for errors</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>pointer context information to pass to SAX handlers</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>new <a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> object or NULL on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-free-sax2"></a><h3>raptor_free_sax2 ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_free_sax2                    (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>);</pre>
+<p>
+Destructor - destroy a SAX2 object
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-start-element-handler"></a><h3>raptor_sax2_start_element_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_sax2_start_element_handler)
+                                                        (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>);</pre>
+<p>
+SAX2 start element handler
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xml_element</code></em> :</span></p></td>
+<td>XML element</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-end-element-handler"></a><h3>raptor_sax2_end_element_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_sax2_end_element_handler)  (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>);</pre>
+<p>
+SAX2 end element handler
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xml_element</code></em> :</span></p></td>
+<td>XML element</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-characters-handler"></a><h3>raptor_sax2_characters_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_sax2_characters_handler)   (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *s</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> len</code></em>);</pre>
+<p>
+SAX2 characters handler
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xml_element</code></em> :</span></p></td>
+<td>XML element</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em> :</span></p></td>
+<td>string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>len</code></em> :</span></p></td>
+<td>string len</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-cdata-handler"></a><h3>raptor_sax2_cdata_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_sax2_cdata_handler)        (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *s</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> len</code></em>);</pre>
+<p>
+SAX2 CDATA section handler
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xml_element</code></em> :</span></p></td>
+<td>XML element</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em> :</span></p></td>
+<td>string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>len</code></em> :</span></p></td>
+<td>string len</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-comment-handler"></a><h3>raptor_sax2_comment_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_sax2_comment_handler)      (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-xml.html#raptor-xml-element" title="raptor_xml_element"><span class="type">raptor_xml_element</span></a> *xml_element</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *s</code></em>);</pre>
+<p>
+SAX2 XML comment handler
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xml_element</code></em> :</span></p></td>
+<td>XML element</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em> :</span></p></td>
+<td>string</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-unparsed-entity-decl-handler"></a><h3>raptor_sax2_unparsed_entity_decl_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*raptor_sax2_unparsed_entity_decl_handler)
+                                                        (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *entityName</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *base</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *systemId</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *publicId</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *notationName</code></em>);</pre>
+<p>
+SAX2 unparsed entity (NDATA) handler
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entityName</code></em> :</span></p></td>
+<td>entity name</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>base</code></em> :</span></p></td>
+<td>base URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>systemId</code></em> :</span></p></td>
+<td>system ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>publicId</code></em> :</span></p></td>
+<td>public ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notationName</code></em> :</span></p></td>
+<td>notation name</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-external-entity-ref-handler"></a><h3>raptor_sax2_external_entity_ref_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 (*raptor_sax2_external_entity_ref_handler)
+                                                        (<em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *context</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *base</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *systemId</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *publicId</code></em>);</pre>
+<p>
+SAX2 external entity reference handler
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>context</code></em> :</span></p></td>
+<td>context</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>base</code></em> :</span></p></td>
+<td>base URI</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>systemId</code></em> :</span></p></td>
+<td>system ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>publicId</code></em> :</span></p></td>
+<td>public ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if processing should not continue because of a
+fatal error in the handling of the external entity.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-start-element-handler"></a><h3>raptor_sax2_set_start_element_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_start_element_handler
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-start-element-handler" title="raptor_sax2_start_element_handler ()"><span class="type">raptor_sax2_start_element_handler</span></a> handler</code></em>);</pre>
+<p>
+Set SAX2 start element handler.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>start element handler</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-end-element-handler"></a><h3>raptor_sax2_set_end_element_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_end_element_handler (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-end-element-handler" title="raptor_sax2_end_element_handler ()"><span class="type">raptor_sax2_end_element_handler</span></a> handler</code></em>);</pre>
+<p>
+Set SAX2 end element handler.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>end element handler</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-characters-handler"></a><h3>raptor_sax2_set_characters_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_characters_handler  (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-characters-handler" title="raptor_sax2_characters_handler ()"><span class="type">raptor_sax2_characters_handler</span></a> handler</code></em>);</pre>
+<p>
+Set SAX2 characters handler.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>characters handler</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-cdata-handler"></a><h3>raptor_sax2_set_cdata_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_cdata_handler       (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-cdata-handler" title="raptor_sax2_cdata_handler ()"><span class="type">raptor_sax2_cdata_handler</span></a> handler</code></em>);</pre>
+<p>
+Set SAX2 CDATA handler.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>CDATA handler</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-comment-handler"></a><h3>raptor_sax2_set_comment_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_comment_handler     (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-comment-handler" title="raptor_sax2_comment_handler ()"><span class="type">raptor_sax2_comment_handler</span></a> handler</code></em>);</pre>
+<p>
+Set SAX2 XML comment handler.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>comment handler</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-unparsed-entity-decl-handler"></a><h3>raptor_sax2_set_unparsed_entity_decl_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_unparsed_entity_decl_handler
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-unparsed-entity-decl-handler" title="raptor_sax2_unparsed_entity_decl_handler ()"><span class="type">raptor_sax2_unparsed_entity_decl_handler</span></a> handler</code></em>);</pre>
+<p>
+Set SAX2 XML unparsed entity declaration handler.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>unparsed entity declaration handler</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-external-entity-ref-handler"></a><h3>raptor_sax2_set_external_entity_ref_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_external_entity_ref_handler
+                                                        (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2-external-entity-ref-handler" title="raptor_sax2_external_entity_ref_handler ()"><span class="type">raptor_sax2_external_entity_ref_handler</span></a> handler</code></em>);</pre>
+<p>
+Set SAX2 XML entity reference handler.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>entity reference handler</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-namespace-handler"></a><h3>raptor_sax2_set_namespace_handler ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_namespace_handler   (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-parser.html#raptor-namespace-handler" title="raptor_namespace_handler ()"><span class="type">raptor_namespace_handler</span></a> handler</code></em>);</pre>
+<p>
+Set the XML namespace handler function.
+</p>
+<p>
+When a prefix/namespace is seen in an XML parser, call the given
+<em class="parameter"><code>handler</code></em> with the prefix string and the <a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> namespace URI.
+Either can be NULL for the default prefix or default namespace.
+</p>
+<p>
+The handler function does not deal with duplicates so any
+namespace may be declared multiple times when a namespace is seen
+in different parts of a document.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>
+<a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler</code></em> :</span></p></td>
+<td>new namespace callback function</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-set-uri-filter"></a><h3>raptor_sax2_set_uri_filter ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_set_uri_filter          (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-www.html#raptor-uri-filter-func" title="raptor_uri_filter_func ()"><span class="type">raptor_uri_filter_func</span></a> filter</code></em>,
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+<p>
+Set URI filter function for SAX2 internal retrievals.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filter</code></em> :</span></p></td>
+<td>URI filter function</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>User data to pass to filter function</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-parse-start"></a><h3>raptor_sax2_parse_start ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                raptor_sax2_parse_start             (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="type">raptor_uri</span></a> *base_uri</code></em>);</pre>
+<p>
+Start an XML SAX2 parse.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>sax2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>base_uri</code></em> :</span></p></td>
+<td>base URI</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-parse-chunk"></a><h3>raptor_sax2_parse_chunk ()</h3>
+<pre class="programlisting"><span class="returnvalue">int</span>                 raptor_sax2_parse_chunk             (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>,
+                                                         <em class="parameter"><code>const unsigned <span class="type">char</span> *buffer</code></em>,
+                                                         <em class="parameter"><code><span class="type">size_t</span> len</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> is_end</code></em>);</pre>
+<p>
+Parse a chunk of XML data generating SAX2 events
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>sax2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buffer</code></em> :</span></p></td>
+<td>input buffer</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>len</code></em> :</span></p></td>
+<td>input buffer lenght</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_end</code></em> :</span></p></td>
+<td>non-0 if end of data</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>non-0 on failure</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-inscope-xml-language"></a><h3>raptor_sax2_inscope_xml_language ()</h3>
+<pre class="programlisting">const unsigned <span class="returnvalue">char</span> * raptor_sax2_inscope_xml_language  (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>);</pre>
+<p>
+Get the in-scope XML language
+</p>
+<p>
+The result is a language string which may be "" if xml:lang="" is
+given.  NULL is returned only if there is no xml:lang in any outer
+scope.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>shared pointer to the XML language or NULL if none is in scope.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="raptor-sax2-inscope-base-uri"></a><h3>raptor_sax2_inscope_base_uri ()</h3>
+<pre class="programlisting"><a class="link" href="raptor2-section-uri.html#raptor-uri" title="raptor_uri"><span class="returnvalue">raptor_uri</span></a> *        raptor_sax2_inscope_base_uri        (<em class="parameter"><code><a class="link" href="raptor2-section-sax2.html#raptor-sax2" title="raptor_sax2"><span class="type">raptor_sax2</span></a> *sax2</code></em>);</pre>
+<p>
+Get the in-scope base URI
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sax2</code></em> :</span></p></td>
+<td>SAX2 object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the in-scope base URI shared object or NULL if none is in scope.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

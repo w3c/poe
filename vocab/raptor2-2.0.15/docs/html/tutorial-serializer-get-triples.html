@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Get or construct RDF Statements (Triples)</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="index.html" title="Raptor RDF Syntax Library Manual">
+<link rel="up" href="tutorial-serializing.html" title="Serializing RDF triples to a syntax">
+<link rel="prev" href="tutorial-serializer-to-destination.html" title="Provide a destination for the serialized syntax">
+<link rel="next" href="tutorial-serializer-send-triples.html" title="Send RDF Triples to serializer">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="tutorial-serializer-to-destination.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="tutorial-serializing.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Raptor RDF Syntax Library Manual</th>
+<td><a accesskey="n" href="tutorial-serializer-send-triples.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="tutorial-serializer-get-triples"></a>Get or construct RDF Statements (Triples)</h2></div></div></div>
+<p>
+An <a class="link" href="raptor2-section-triples.html#raptor-statement" title="raptor_statement"><span class="type">raptor_statement</span></a>
+containing the triple terms and optional graph term
+can be made either by receiving them from a
+<a class="link" href="raptor2-section-parser.html#raptor-parser" title="raptor_parser"><span class="type">raptor_parser</span></a>
+via parsing or can be constructed by hand.</p>
+<p>When constructing by hand,
+the <a class="link" href="raptor2-section-triples.html#raptor-statement" title="raptor_statement"><span class="type">raptor_statement</span></a>
+structure should be allocated by the application and the fields
+filled in.  Each statement has three triple terms (subject,
+predicate, object) and an optional graph term.  The subject can be a
+URI or blank node, the predicate can only be a URI and the object can
+be a URI, blank node or RDF literal. RDF literals can have either
+just a Unicode string, a Unicode string and a language or a Unicode
+string and a datatype URI.</p>
+<p>The statement terms are all instances of
+<a class="link" href="raptor2-section-triples.html#raptor-term" title="raptor_term"><span class="type">raptor_term</span></a>
+objects constructed with the appropriate constructor for
+the URI, blank node or rdf literal types.  The graph term
+of the statement is typically a URI or blank node.
+</p>
+<div class="example">
+<a name="raptor-example-rdfserialize"></a><p class="title"><b>Example 3. <code class="filename">rdfserialize.c</code>: Serialize 1 triple to RDF/XML (Abbreviated)</b></p>
+<div class="example-contents">
+<pre class="programlisting">
+#include &lt;stdio.h&gt;
+#include &lt;raptor2.h&gt;
+#include &lt;stdlib.h&gt;
+
+/* rdfserialize.c: serialize 1 triple to RDF/XML-Abbrev */
+
+int
+main(int argc, char *argv[])
+{
+  raptor_world *world = NULL;
+  raptor_serializer* rdf_serializer = NULL;
+  unsigned char *uri_string;
+  raptor_uri *base_uri;
+  raptor_statement* triple;
+
+  world = raptor_new_world();
+  
+  uri_string = raptor_uri_filename_to_uri_string(argv[1]);
+  base_uri = raptor_new_uri(world, uri_string);
+
+  rdf_serializer = raptor_new_serializer(world, "rdfxml-abbrev");
+  raptor_serializer_start_to_file_handle(rdf_serializer, base_uri, stdout);
+  
+  /* Make a triple with URI subject, URI predicate, literal object */
+  triple = raptor_new_statement(world);
+  triple-&gt;subject = raptor_new_term_from_uri_string(world, (const unsigned char*)"http://example.org/subject");
+  triple-&gt;predicate = raptor_new_term_from_uri_string(world, (const unsigned char*)"http://example.org/predicate");
+  triple-&gt;object = raptor_new_term_from_literal(world,
+                                                (const unsigned char*)"An example literal",
+                                                NULL,
+                                                (const unsigned char*)"en");
+
+  /* Write the triple */
+  raptor_serializer_serialize_statement(rdf_serializer, triple);
+
+  /* Delete the triple */
+  raptor_free_statement(triple);
+
+  raptor_serializer_serialize_end(rdf_serializer);
+  raptor_free_serializer(rdf_serializer);
+  
+  raptor_free_uri(base_uri);
+  raptor_free_memory(uri_string);
+
+  raptor_free_world(world);
+  return 0;
+}
+
+</pre>
+<p>Compile it like this:
+</p>
+<pre class="screen">
+$ gcc -o rdfserialize rdfserialize.c `pkg-config raptor2 --cflags --libs`
+</pre>
+<p>
+and run it with an optional base URI argument
+</p>
+<pre class="screen">
+$ ./rdfserialize
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;
+  &lt;rdf:Description rdf:about="http://example.org/subject"&gt;
+    &lt;ns0:predicate xmlns:ns0="http://example.org/" xml:lang="en"&gt;An example&lt;/ns0:predicate&gt;
+  &lt;/rdf:Description&gt;
+&lt;/rdf:RDF&gt;
+</pre>
+<p>
+</p>
+</div>
+</div>
+<br class="example-break">
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

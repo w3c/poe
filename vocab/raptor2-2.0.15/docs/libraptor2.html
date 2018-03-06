@@ -1,0 +1,63 @@
+<!-- Creator     : groff version 1.21 -->
+<!-- CreationDate: Sun Nov 13 16:28:26 2011 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+/*<![CDATA[*/
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+/*]]>*/
+</style>
+<title>libraptor2</title>
+</head>
+<body bgcolor="#ffffff" text="#000085">
+<h1 align="center">libraptor2</h1>
+<hr />
+<h2>NAME <a name="NAME" id="NAME"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">libraptor2 &minus; Raptor RDF syntax library 2.0</p>
+<h2>SYNOPSIS <a name="SYNOPSIS" id="SYNOPSIS"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><b>#include &lt;raptor2.h&gt;</b></p>
+<p style="margin-left:11%; margin-top: 1em"><b>world</b><i>=</i><b>raptor_new_world(</b><i>);</i> <b><br />
+raptor_parser *</b><i>p</i><b>=</b><i>raptor_new_parser(</i><b>world</b><i>,</i><b>rdfxml</b><i>);</i> <b><br />
+raptor_set_statement_handler(</b><i>p</i><b>,</b><i>NULL</i><b>,</b><i>print_triples</i><b>);<br />
+raptor_uri *</b><i>file_uri</i><b>=</b><i>raptor_new_uri(</i><b>world</b><i>,</i><b>http://example.org/</b><i>);</i> <b><br />
+raptor_parser_parse_file(</b><i>p</i><b>,</b><i>file_uri</i><b>,</b><i>base_uri</i><b>);<br />
+raptor_parser_parse_uri(</b><i>p</i><b>,</b><i>uri</i><b>,</b><i>NULL</i><b>);<br />
+raptor_free_parser(</b><i>p</i><b>);<br />
+raptor_free_uri(</b><i>file_uri</i><b>);<br />
+raptor_free_world(</b><i>world</i><b>);</b></p>
+<p style="margin-left:11%; margin-top: 1em"><b>cc prog.c -o prog &rsquo;pkg-config raptor2 --cflags&rsquo; &rsquo;pkg-config raptor2 --libs&rsquo;</b></p>
+<h2>DESCRIPTION <a name="DESCRIPTION" id="DESCRIPTION"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">The <i>Raptor</i> library provides a high-level interface to a set of parsers and serializers that generate Resource Description Framework (RDF) triples by parsing syntaxes or serialize the triples into syntaxes.</p>
+<p style="margin-left:11%; margin-top: 1em">The supported parsing syntaxes include RDF/XML, N-Triples, Turtle, TRiG, RSS tag soup (including all RSS and Atoms), GRDDL, RDF/JSON, RDFa and the serializing syntaxes include RDF/XML (3 varieties), N-Quads, N-Triples, Turtle, RSS 1.0, Atom 1.0, GraphViz DOT and RDF/JSON. The RDF/XML parser can use either <i>expat</i> or <i>libxml</i> XML parsers for providing the SAX event stream. The library functions are arranged in an object-oriented style with constructors, destructors and method calls. The statements and error messages are delivered via callback functions.</p>
+<p style="margin-left:11%; margin-top: 1em">Raptor also contains classes to support the RDF graph triples: a statement object containing term objects and support for RDF URI-References for both parsing them and resolving / retrieval of URIs.</p>
+<p style="margin-left:11%; margin-top: 1em">It some utility classes such as an I/O Stream abstraction for supporting reading and writing to and from a variety of locations, AVL Trees, String buffers and Sequences.</p>
+<p style="margin-left:11%; margin-top: 1em">Raptor uses Unicode strings for RDF literals and URIs and preserves them throughout the library. It uses the UTF-8 encoding of Unicode at the API for passing in or returning Unicode strings. It is intended that the preservation of Unicode for URIs supports Internationalized Resource Identifiers (IRIs).</p>
+<h2>API REFERENCE <a name="API_REFERENCE"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">See the HTML API docs that may be installed system wide at /usr/share/gtk-doc/html/raptor2/ or on the web at <a href="http://librdf.org/raptor/api/">http://librdf.org/raptor/api/</a></p>
+<h2>API CHANGES <a name="API_CHANGES"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">See the Raptor API docs changes section at <a href="http://librdf.org/raptor/api/raptor-changes.html">http://librdf.org/raptor/api/raptor-changes.html</a> and the upgrading information when converting from libraptor(1) code at <a href="http://librdf.org/raptor/UPGRADING.html">http://librdf.org/raptor/UPGRADING.html</a></p>
+<h2>CONFORMING TO <a name="CONFORMING_TO"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><i>RDF/XML Syntax (Revised)</i>, Dave Beckett (ed.) W3C Recommendation, <a href="http://www.w3.org/TR/rdf-syntax-grammar/">http://www.w3.org/TR/rdf-syntax-grammar/</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>N-Triples</i>, in <i>RDF Test Cases</i>, Jan Grant and Dave Beckett (eds.) W3C Recommendation, <a href="http://www.w3.org/TR/rdf-testcases/#ntriples">http://www.w3.org/TR/rdf-testcases/#ntriples</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>Turtle - Terse RDF Triple Language</i>, Dave Beckett, <a href="http://www.dajobe.org/2004/01/turtle/">http://www.dajobe.org/2004/01/turtle/</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>RSS 0.91 spec revision 3</i>, Dan Libby, Netscape, <a href="http://my.netscape.com/publish/formats/rss-spec-0.91.html">http://my.netscape.com/publish/formats/rss-spec-0.91.html</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>RDF Site Summary (RSS) 1.0</i>, <a href="http://purl.org/rss/1.0/spec">http://purl.org/rss/1.0/spec</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>Atom 1.0 syndication format</i>, RFC 4287, <a href="http://www.ietf.org/rfc/rfc4287.txt">http://www.ietf.org/rfc/rfc4287.txt</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>Gleaning Resource Descriptions from Dialects of Languages (GRDDL)</i>, Dan Connolly (ed.), W3C Recommendation, 2007-09-11, <a href="http://www.w3.org/TR/2007/REC-grddl-20070911/">http://www.w3.org/TR/2007/REC-grddl-20070911/</a></p>
+<p style="margin-left:11%; margin-top: 1em"><i>RDFa in XHTML: Syntax and Processing</i>, Ben Adida, Mark Birbeck, Shane McCarron, Steven Pemberton (eds.)<br />
+W3C Recommendation, 2008-10-14, <a href="http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014/">http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014/</a></p>
+<h2>SEE ALSO <a name="SEE_ALSO"></a></h2>
+<p style="margin-left:11%; margin-top: 1em"><b>rapper(1)</b></p>
+<h2>AUTHOR <a name="AUTHOR" id="AUTHOR"></a></h2>
+<p style="margin-left:11%; margin-top: 1em">Dave Beckett - <a href="http://www.dajobe.org/">http://www.dajobe.org/</a></p>
+<hr />
+
+<p>Copyright 2002-2011 <a href="http://www.dajobe.org/">Dave Beckett</a><br />2002-2011 <a href="http://www.bristol.ac.uk/">University of Bristol</a></p>
+
+</body>
+</html>
