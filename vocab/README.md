@@ -8,9 +8,10 @@
 
 ## Make Process
 
-Perform a
+Perform a:
 * make all
-and the following files are created automatically
+
+and the following files are created automatically:
 * index.html
 * ODRL22.rdf
 * ODRL22.nt
