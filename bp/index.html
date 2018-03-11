@@ -166,7 +166,7 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 		<h2>Sample policies</h2> 
 <!--		We can resume here the examples in the <a href="https://www.w3.org/2016/poe/wiki/Best_Practices">wiki</a>. -->
 
-		<h3>1. How to represent a general permission</h3>
+		<h3>1 How to represent a general permission</h3>
 		The following ODRL policy might be read as "<i>Movie 9898 can be used</i>".
 		<div class="example"><div class="example-title marker"><span>Example 1</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
@@ -191,7 +191,7 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 	    <li>The permitted action on the asset is <i>use</i> (line 06). You may want to read its <a href="https://www.w3.org/TR/odrl-vocab/#term-use">definition</a>, or browse other possible actions predefined by the ODRL specs.</li>
 		</ul>
 		
-<h3>2. How to represent the permission to a certain party</h3>		
+<h4>1.1 How to represent the permission to a certain party</h4>		
 If Example 1 permitted the general use of Movie 9898, Example 2 permits only John playing the movie.
 <div class="example"><div class="example-title marker"><span>Example 2</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
@@ -208,7 +208,7 @@ If Example 1 permitted the general use of Movie 9898, Example 2 permits only Joh
 		</pre></div>
 
 
-<h3>3. How to represent an obligation</h3>
+<h3>2 How to represent an obligation</h3>
 Example 3 shows how to oblige John to play the movie.
 
 <div class="example"><div class="example-title marker"><span>Example 3</span></div>
@@ -225,7 +225,7 @@ Example 3 shows how to oblige John to play the movie.
 }		
 		</pre></div>
 
-<h3>4. How to represent a prohibition </h3>
+<h3>3 How to represent a prohibition </h3>
 Example 4 shows how to prohibit John playing the movie.
 
 <div class="example"><div class="example-title marker"><span>Example 4</span></div>
@@ -243,7 +243,7 @@ Example 4 shows how to prohibit John playing the movie.
 		</pre></div>
 
 	
-<h3>5. How to represent a permission and a prohibition</h3>		
+<h3>4 How to represent a permission and a prohibition</h3>		
 	An ODRL can represent one or more <em>rules</em>. For example, the following ODRL policiy might be read as "Alice can use Asset 1, but Bob can't".
 
 	<div class="example"><div class="example-title marker"><span>Example 5</span></div>
@@ -265,7 +265,7 @@ Example 4 shows how to prohibit John playing the movie.
 }		
 </pre></div>
 
-<h3>6. How to simplify policies with more than one rule</h3>	
+<h3>5 How to simplify policies with more than one rule</h3>	
 ODRL policies with more than one rule can be simplified (<a href="https://www.w3.org/TR/odrl-model/#composition-compact
 ">Section 2.7.1</a> in the Information Model). Elements common to every rule can be expressed at root lovel. Policies making use of this feature are called <b>compact policies</b>, an example of them follows.
 
@@ -286,7 +286,7 @@ ODRL policies with more than one rule can be simplified (<a href="https://www.w3
 }	
 	</pre></div>
 	
-<h4>7. How to represent an agreement and an offer</h4>		
+<h4>6 How to represent an agreement and an offer</h4>		
 All the examples above declared that there existed a certain permission, prohibition or obligation. Example 7 shows ....
 
 <div class="example"><div class="example-title marker"><span>Example 7</span></div>
@@ -303,7 +303,7 @@ All the examples above declared that there existed a certain permission, prohibi
 }		
 		</pre></div>
 	
-<h4>8. How to generalize actions</h4>		
+<h4>7 How to generalize actions</h4>		
 	Permitting (or prohibiting) some general actions entail permitting (or prohibitting) other specific actions. In the example below, permitting <code>display</code> is redundant because having permitted <code>play</code> also implies permitting <code>display</code>.  
 	
 	<div class="example"><div class="example-title marker"><span>Example 8</span></div>
