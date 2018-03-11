@@ -166,9 +166,9 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 		<h2>Sample policies</h2> 
 <!--		We can resume here the examples in the <a href="https://www.w3.org/2016/poe/wiki/Best_Practices">wiki</a>. -->
 
-		<h3>1 How to represent a general permission</h3>
+		<h3>1 How to Represent a General Permission</h3>
 		The following ODRL policy might be read as "<i>Movie 9898 can be used</i>".
-		<div class="example"><div class="example-title marker"><span>Example 1</span></div>
+		<div class="example"><div class="example-title marker"><span>Example 1.0</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
 00  {
 01	 "@context": "http://www.w3.org/ns/odrl.jsonld",
@@ -191,23 +191,91 @@ http://www.europeandataportal.eu/sites/default/files/edp-licence-compatibility-p
 	    <li>The permitted action on the asset is <i>use</i> (line 06). You may want to read its <a href="https://www.w3.org/TR/odrl-vocab/#term-use">definition</a>, or browse other possible actions predefined by the ODRL specs.</li>
 		</ul>
 		
-<h4>1.1 How to represent the permission to a certain party</h4>		
-If Example 1 permitted the general use of Movie 9898, Example 2 permits only John playing the movie.
-<div class="example"><div class="example-title marker"><span>Example 2</span></div>
+<h4>1.1 How to restrict the permission to a specified party</h4>		
+If the example above permitted the general use of Movie 9898, this permission permits only John to play the movie.
+<div class="example"><div class="example-title marker"><span>Example 1.1</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
 {
  "@context": "http://www.w3.org/ns/odrl.jsonld",
  "@type": "Set",
  "uid": "http://example.com/policy:1010",
  "permission": [{
-    "target": "http://example.com/asset:9898.movie",
+ 	"target": "http://example.com/asset:9898.movie",
 	"assignee": "John",
 	"action": "play"
  }]
 }		
 		</pre></div>
 
+<h4>1.2 How to restrict the validity of a permission to a specific circumstance</h4>		
+<p>Photographs are often licensed on a geographic basis: global rights will likely be more expensive than a country-specific permission. Such conditions are frequently modelled in ODRL by Constraints.</p>
 
+<div class="example"><div class="example-title marker"><span>Example 1.2</span></div>
+		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+{
+ "@context": "http://www.w3.org/ns/odrl.jsonld",
+ "@type": "Set",
+ "uid": "http://example.com/policy:1010",
+ "permission": [{
+ 	"target": "http://example.com/asset:9898.movie",
+	"action": "display"
+	"constraint": [{
+           "leftOperand": "spatial",
+           "operator": "eq",
+           "rightOperand":  "https://www.wikidata.org/wiki/Q183",
+	   "comment": "i.e Germany"
+       }]
+ }]
+}		
+		</pre></div>
+
+<p>Photographs for the news media can sometimes be "embargoed" - only publishable after a certain data. We can achieve this by putting a time-Constraint on the Permission.</p>
+			
+<p>The following permission can only be exercised after the turn of the New Year in 2019.</p>
+
+<div class="example"><div class="example-title marker"><span>Example 1.2</span></div>
+		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+{
+ "@context": "http://www.w3.org/ns/odrl.jsonld",
+ "@type": "Set",
+ "uid": "http://example.com/policy:1010",
+ "permission": [{
+ 	"target": "http://example.com/asset:9898.movie",
+	"action": "display"
+	"constraint": [{
+           "leftOperand": "dateTime",
+           "operator": "gt",
+           "rightOperand":  { "@value": "2019-01-01", "@type": "xsd:date" }
+       }]
+ }]
+}		
+		</pre></div>	
+			
+<p>We can easily create a permission that only allows the picture to be displayed in Germany after 2018 by adding both Constraints. In this simple scenario ODRL insists both Constraints are satisfied before the Permission becomes active.</p> 
+
+<div class="example"><div class="example-title marker"><span>Example 1.2</span></div>
+		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+{
+ "@context": "http://www.w3.org/ns/odrl.jsonld",
+ "@type": "Set",
+ "uid": "http://example.com/policy:1010",
+ "permission": [{
+ 	"target": "http://example.com/asset:9898.movie",
+	"action": "display"
+	"constraint": [{
+           "leftOperand": "dateTime",
+           "operator": "gt",
+           "rightOperand":  { "@value": "2019-01-01", "@type": "xsd:date" }
+	   }, {
+           "leftOperand": "spatial",
+           "operator": "eq",
+           "rightOperand":  "https://www.wikidata.org/wiki/Q183",
+	   "comment": "i.e Germany"
+       }]
+ }]
+}		
+		</pre></div>	
+			
 <h3>2 How to represent an obligation</h3>
 Example 3 shows how to oblige John to play the movie.
 
