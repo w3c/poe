@@ -210,7 +210,7 @@ If the example above permitted the general use of Movie 9898, this permission pe
 <h4>1.2 How to restrict the validity of a permission to a specific circumstance or set of circumstances</h4>		
 <p>Photographs are often licensed on a geographic basis: global rights will likely be more expensive than a country-specific permission. Such conditions are frequently modelled in ODRL by Constraints.</p>
 
-<div class="example"><div class="example-title marker"><span>Example 1.2-A</span></div>
+<div class="example"><div class="example-title marker"><span>Example 1.2A</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
 {
  "@context": "http://www.w3.org/ns/odrl.jsonld",
@@ -233,7 +233,7 @@ If the example above permitted the general use of Movie 9898, this permission pe
 			
 <p>The following permission can only be exercised after the turn of the New Year in 2019.</p>
 
-<div class="example"><div class="example-title marker"><span>Example 1.2-B</span></div>
+<div class="example"><div class="example-title marker"><span>Example 1.2B</span></div>
 		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
 {
  "@context": "http://www.w3.org/ns/odrl.jsonld",
@@ -253,8 +253,8 @@ If the example above permitted the general use of Movie 9898, this permission pe
 			
 <p>We can easily create a permission that only allows the picture to be displayed in Germany after 2018 by adding both Constraints. In this simple scenario ODRL insists both Constraints are satisfied before the Permission becomes active.</p> 
 
-<div class="example"><div class="example-title marker"><span>Example 1.2-C</span></div>
-		<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+<div class="example"><div class="example-title marker"><span>Example 1.2C</span></div>
+<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
 {
  "@context": "http://www.w3.org/ns/odrl.jsonld",
  "@type": "Set",
@@ -274,7 +274,41 @@ If the example above permitted the general use of Movie 9898, this permission pe
        }]
  }]
 }		
-		</pre></div>	
+</pre></div>	
+
+<h3>2 How to refine the specification of an Action, Asset, or Party</h3>
+<p>Constraints can also be used to 'inject' additional semantics into the definition of an Action, Asset, or Party</p>
+			
+<h4>2.1 Narrowing the applicability of an Action</h4>			
+<p>The following Permission allows the distribution of a video but resticts the delivery channel to mobile networks only. This video cannot be distributed from a website under this Permission.</p>
+			
+<div class="example"><div class="example-title marker"><span>Example 2.1</span></div>
+<pre id="eg2" class="hljs json" aria-busy="false" aria-live="polite">
+{
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Set",
+    "uid": "http://example.com/policy:6161",
+    "permission": [{
+       "target": "http://example.com/asset:9898.movie",
+       "assigner": "http://example.com/org:616",
+       "action": [{
+          "action": "distribute",
+          "refinement": [{
+             "leftOperand": "deliveryChannel",
+             "operator": "eq",
+             "rightOperand": "http://example.com/cv/audMedia/MOBILE"
+          }]
+      }]
+   }]
+}
+</pre></div>
+
+<h4>2.2 Further specifying an Asset</h4>
+<p>In financial markets the value of a piece of data is sometimes proportional to its timeliness. 15-minute delayed stock price is often much cheaper than real-time. We'd probably want different permissions to reflect this. How would we specify the 15 minute delay?</p>
+<p>We could model them as two different Assets. Or we could use Constraints on the same Asset, the stock price:</p>
+			
+			
+			
 			
 <h3>2 How to represent an obligation</h3>
 Example 3 shows how to oblige John to play the movie.
