@@ -44,7 +44,7 @@ var respecConfig = {
                 key: "Issue list",
                 data: [ {
                     value: "Github Repository",
-                    href: "ttps://github.com/w3c/poe/issues"
+                    href: "https://github.com/w3c/poe/issues"
                 }
                 ]
             }
