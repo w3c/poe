@@ -351,7 +351,7 @@
 </div>
     
 <blockquote>	
-    <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. The target asset is also declared as an <code>AssetCollection</code> to indicate the resource is a collection of resources. An additional Asset relation <code>summary</code> indicates the Asset <code>http://example.com/x/database</code> that the indexing output should be stored in. The ODRL Profile <code>ttp://example.com/odrl:profile:03</code> defines this new sub-property of relation.</p>
+    <p>Example Use Case: The below Policy shows the <code>index</code> action Permission on the target Asset <code>http://example.com/archive1011</code>. The target asset is also declared as an <code>AssetCollection</code> to indicate the resource is a collection of resources. An additional Asset relation <code>summary</code> indicates the Asset <code>http://example.com/x/database</code> that the indexing output should be stored in. The ODRL Profile <code>http://example.com/odrl:profile:03</code> defines this new sub-property of relation.</p>
     </blockquote>
 
  <pre id="eg5" class="example hljs json">
@@ -378,7 +378,7 @@
 <p>The <code>partOf</code> property is used to identify an AssetCollection that an Asset resource is a member of. The purpose is to explicitly express membership relationships between Assets and AssetCollections.  This enables a Rule that is related to an AssetCollection to understand which individual Assets the Rule may apply to. In addition, the Asset/AssetCollection membership relationships may potentially detect conflicts in Rules.</p>
 	
 <blockquote>
-<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a document. The <code>odrl:partOf</code> property asserts that the Asset <code>http://example.com/asset:111.doc</code> is a member of the <code>http://example.com/archive1011</code> AssetCollection which is used in the Policy in the example above. This means that <code>http://example.com/asset:111.doc</code> is one of the target Assets in the Policy and can my indexed.</p>
+<p>Example Use Case: The below snippet shows some Dublin Core metadata describing a document. The <code>odrl:partOf</code> property asserts that the Asset <code>http://example.com/asset:111.doc</code> is a member of the <code>http://example.com/archive1011</code> AssetCollection which is used in the Policy in the example above. This means that <code>http://example.com/asset:111.doc</code> is one of the target Assets in the Policy and can be indexed.</p>
 </blockquote>
 
 <pre id="eg6" class="example hljs json">
@@ -467,7 +467,7 @@
 <p>An ODRL validator MUST support the following sub-properties of <code><em>function</em></code>:</p>
 <ul>
 <li><code>assigner</code>: indicates the Party that is issuing the Rule. For example, the Party granting a Permission or requiring an agreed Duty to be fulfilled.</li>
-<li><code>assignee</code>: indicates that the Party that is the recipient the of Rule. For example, the Party being granted a Permission or required to fulfil an agreed Duty.</li>
+<li><code>assignee</code>: indicates that the Party that is the recipient of the Rule. For example, the Party being granted a Permission or required to fulfil an agreed Duty.</li>
 </ul>
  
     <p>Additional <code><em>function</em></code> subtype properties MAY be defined in the ODRL Common Vocabulary [[!odrl-vocab]] and ODRL Profiles.</p>
@@ -761,7 +761,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 
 <p>An Rule (such as a Permission, Prohibition, or Duty) MAY include the <code>constraint</code> property to indicate a condition on the Rule.
 	
-	To meet this condition, all of the the Constraints/Logical Constraints referenced by the <code>constraint</code> property MUST be <strong>satisfied</strong>. 
+	To meet this condition, all of the Constraints/Logical Constraints referenced by the <code>constraint</code> property MUST be <strong>satisfied</strong>. 
 		</p>
 	
 <blockquote>
@@ -993,7 +993,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	
 	<p>Note: The above property cardinalities reflect the normative ODRL Information Model. In some cases, repeat occurrences of some properties are also supported (as described in <a href="#composition">Policy Rule Composition</a> and <a href="#composition-compact">Compact Policy</a>) but the normative atomic Policy is consistent with the above property cardinalities.</p>
 	
-<p>Explicit sub-properties of the abstract <code><em>relation</em></code>, <code><em>relation</em></code> and <code><em>failure</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
+<p>Explicit sub-properties of the abstract <code><em>relation</em></code>, <code><em>function</em></code> and <code><em>failure</em></code> properties must be used, the choice depending on the subclass of Rule in question.</p>
 
 	<p>The three classes of Rules also form important relationships with the Duty Rule. The property relationships are summarised in the figure below.</p>
 
@@ -1171,7 +1171,7 @@ The <code>rightOperand</code> represents a value and the <code>rightOperandRefer
 	<p>A Policy MAY also include a consequence of not fulfilling an obligation.</p>
 	
 	<blockquote>
-<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to delete the target Asset. If the obligation is not fulfilled, then a consequence is that the assigner MUST now also compensate the nominated charity with a payment of EU10.00 (as well as the fulfill the obligation Duty).</p>
+<p>Example Use Case: The below Agreement includes an obligation from assigner <code>http://example.com/org:43</code> to assignee <code>http://example.com/person:44</code>  to delete the target Asset. If the obligation is not fulfilled, then a consequence is that the assignee MUST now also compensate the nominated charity with a payment of EU10.00 (as well as the fulfill the obligation Duty).</p>
     </blockquote>
 
 
